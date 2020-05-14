@@ -2,10 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { Route, Redirect } from "react-router-dom";
 
 function PrivateRoute({ component: Component, ...rest }) {
-  const [tok,setTok] = useState([]);
+  const [tok,setToken] = useState([]);
 
   useEffect(()=>{
-    setTok(localStorage.getItem("tokens"));
+    setToken(localStorage.getItem("tokens"));
   },[]);
 
   return (
