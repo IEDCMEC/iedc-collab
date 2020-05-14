@@ -13,6 +13,8 @@ function App() {
         </Switch>
       </BrowserRouter>
     </AuthState>
+
+    
   );
 }
 export default App;

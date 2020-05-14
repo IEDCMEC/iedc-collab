@@ -1,11 +1,15 @@
 import React from "react";
+import Navigate from './NavigateBar';
+import ProjectList from './projectList'
 
 const Landing = () => {
   return (
-    <>
-      <h1>IEDC</h1>
-    </>
+    <div>
+    <Navigate/>  
+    <ProjectList/>
+    
+    </div>
   );
-};
+}
 
 export default Landing;
