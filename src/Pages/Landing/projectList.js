@@ -1,5 +1,6 @@
 import React , {Component} from 'react';
 import "./page2.css";
+import "./SideBar"
 
 import TeamSect from './TeamSect';
 
@@ -9,9 +10,9 @@ import TeamSect from './TeamSect';
   return (
     <div className="ProjectList">
        <div id="wrapper">
-       <
-       <div class = "auto">
        
+       <div class = "auto">
+         <div class="scrollbar" id="style-6">
       <div class = "content post-item">
          <h3>Project 1</h3>
          <h5>Hari Something</h5>
@@ -66,12 +67,13 @@ import TeamSect from './TeamSect';
       <hr></hr>
    </div>
 </div>
+
    
    <div class="vl">
     <TeamSect/>
     </div>
    </div>
-
+</div>
 
   )
     }
