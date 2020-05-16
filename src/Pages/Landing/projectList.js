@@ -9,9 +9,9 @@ import TeamSect from './TeamSect';
   return (
     <div className="ProjectList">
        <div id="wrapper">
-       
+       <
        <div class = "auto">
-       <div class="scrollbar thin-scroll">
+       
       <div class = "content post-item">
          <h3>Project 1</h3>
          <h5>Hari Something</h5>
@@ -67,11 +67,11 @@ import TeamSect from './TeamSect';
    </div>
 </div>
    
-<div class="vl">
+   <div class="vl">
     <TeamSect/>
     </div>
    </div>
-</div>
+
 
   )
     }

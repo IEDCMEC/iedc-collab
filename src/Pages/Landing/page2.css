@@ -16,25 +16,11 @@ body{
     border-radius: 30px;
     padding:5px;
     margin:50px;
-    
+    overflow-y: scroll;
     width:300px;
-    height:80%;
-    
-   
+    }
 
- }
-
- .scrollbar {
-  
-  overflow-y: scroll;
  
-  scrollbar-color: black;
-  scrollbar-width: thin;
-}
-
-.force-overflow {
-  height: 600px;
-}
 
 
 
@@ -65,29 +51,7 @@ body{
     }
 
 
-  .thin-scroll::-webkit-scrollbar-track {
-    background: linear-gradient(to right, var(--scroll-track-color) 0%, var(--scroll-track-color) 30%, var(--scroll-color) 60%, var(--body-bg-color) 61%, var(--body-bg-color) 100%);
-  }
   
-  .thin-scroll::-webkit-scrollbar {
-    width: 4px;
-  }
-  
-  .thin-scroll::-webkit-scrollbar-thumb {
-    background-color: var(--scroll-color);
-    border-radius: 4px;
-  }
-  :root {
-    --body-bg-color: #e3e3e3;
-    --scroll-color: black;
-    --scroll--hover-color: #666;
-    --scroll-track-color: rgba(255,255,255,0);
-  }
-
-  * {
-    -webkit-overflow-scrolling: touch;
-}
-
 
 
 
@@ -152,7 +116,7 @@ display: block;
 
 .vl {
   border-left: 6px solid tomato;
-  height: 500px;
+  height: 600px;
   position: absolute;
   left: 30%;
   margin-left: -3px;
