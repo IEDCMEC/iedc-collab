@@ -12,7 +12,7 @@ import TeamSect from './TeamSect';
        <div id="wrapper">
        
        <div class = "auto">
-         <div class="scrollbar" id="style-6">
+         <div class="scrollbar" id="style-7">
       <div class = "content post-item">
          <h3>Project 1</h3>
          <h5>Hari Something</h5>
@@ -71,6 +71,18 @@ import TeamSect from './TeamSect';
    
    <div class="vl">
     <TeamSect/>
+    <div>
+       <h3>Project Desption</h3>
+       <p>
+       Lorem ipsum dolor sit amet, at prima aliquando est, eu etiam petentium ius. Has veri invenire gubergren id, id vis possit maiorum perfecto. Ut ipsum ridens est.
+        Virtute laoreet vel no, unum minimum fierent ius te. His agam harum intellegat et.Ea regione blandit referrentur sed.
+         Sit quem euripidis consequuntur ut, eam solum viderer consequat id. Vis atqui mollis honestatis ex, his no verear denique quaestio, 
+          An mei velit possit, ubique persecuti id vel.Mea ut minimum vituperata, ubique scripserit at vix. Usu in voluptua expetendis. Sed quaestio definiebas ea.
+           
+       </p>
+       <h3> Skills Required</h3>
+       <h5>Arduino Coding, IOT,Python/Open Cv</h5>
+    </div>
     </div>
    </div>
 </div>
