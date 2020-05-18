@@ -4,32 +4,22 @@ body{
 #wrapper{
   background-color: white;
   box-sizing: border-box;
-  border-radius: 20px;
+  border-radius: 30px;
   margin: 20px;
-  padding: 5px;
+  padding: 20px;
+  width:95%;
+  height:95%;
 }
+
 
 .auto{
-  display:block;
-  border: 1px solid black;
-  border-radius: 30px;
-  padding:5px;
-  margin:50px;
-  
-  width:300px;
-  height:80%;
-  
- 
-
+  box-sizing: content-box;
+  height: 600px;
+  width: 300px;
+  border-color: black;
+  background-color: burlywood;
 }
 
-.scrollbar{
-  margin-top: 10px;
-  margin-bottom: 10px;
-   margin-right: 10px;
-   overflow-y: scroll;
-   height: 95%;
-}
 
 
 
@@ -59,31 +49,6 @@ border-radius: 15px;
 transition: all 0.2s ease-in-out;
 }
 
-#style-7::-webkit-scrollbar-track
-{
-	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
-	background-color: #F5F5F5;
-	border-radius: 10px;
-}
-
-#style-7::-webkit-scrollbar
-{
-	width: 10px;
-	background-color: #F5F5F5;
-}
-
-#style-7::-webkit-scrollbar-thumb
-{
-	border-radius: 10px;
-	background-image: -webkit-linear-gradient(45deg,
-  rgba(255, 255, 255, .2) 25%,
-transparent 25%,
-transparent 50%,
-rgba(255, 255, 255, .2) 50%,
-rgba(255, 255, 255, .2) 75%,
-transparent 75%,
-transparent)
-}
 
  
 .row.heading h2 {
@@ -145,11 +110,12 @@ display: block;
 
 .vl {
   border-left: 6px solid tomato;
-  height: 600px;
+  height: 500px;
   position: absolute;
   left: 30%;
-  margin-left: -3px;
-  top: 30%;
+  margin-left: -10px;
+  margin-right: 5px;
+  top: 20%;
 }
 
 

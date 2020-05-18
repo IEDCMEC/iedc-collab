@@ -1,7 +1,7 @@
 import React , {Component} from 'react';
 import "./page2.css";
-import "./SideBar"
-
+import "./SideBar";
+import './scrollbar.css';
 import TeamSect from './TeamSect';
 
 
@@ -9,10 +9,11 @@ import TeamSect from './TeamSect';
     render(){
   return (
     <div className="ProjectList">
+       
        <div id="wrapper">
        
        <div class = "auto">
-         <div class="scrollbar" id="style-7">
+       <div class="scrollbar scrollbar-sunny-morning">
       <div class = "content post-item">
          <h3>Project 1</h3>
          <h5>Hari Something</h5>
@@ -84,6 +85,7 @@ import TeamSect from './TeamSect';
        <h5>Arduino Coding, IOT,Python/Open Cv</h5>
     </div>
     </div>
+
    </div>
 </div>
 
