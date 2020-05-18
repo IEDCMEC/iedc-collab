@@ -72,14 +72,16 @@ import TeamSect from './TeamSect';
    
    <div class="vl">
     <TeamSect/>
-    <div>
+    <div class="desc">
        <h3>Project Desption</h3>
        <p>
-       Lorem ipsum dolor sit amet, at prima aliquando est, eu etiam petentium ius. Has veri invenire gubergren id, id vis possit maiorum perfecto. Ut ipsum ridens est.
-        Virtute laoreet vel no, unum minimum fierent ius te. His agam harum intellegat et.Ea regione blandit referrentur sed.
-         Sit quem euripidis consequuntur ut, eam solum viderer consequat id. Vis atqui mollis honestatis ex, his no verear denique quaestio, 
-          An mei velit possit, ubique persecuti id vel.Mea ut minimum vituperata, ubique scripserit at vix. Usu in voluptua expetendis. Sed quaestio definiebas ea.
-           
+       Lorem ipsum dolor sit amet, at prima aliquando est,
+       Has veri invenire gubergren id, id vis<br></br> possit maiorum perfecto. 
+        Virtute laoreet vel no, unum minimum fierent ius te.<br></br>
+        Ea regione blandit referrentur sed.Sit quem euripidis 
+        eam solum viderer consequat id.<br></br> Vis atqui mollis honestatis ex, 
+          An mei velit possit, ubique persecuti id vel.
+           ubique scripserit at vix.
        </p>
        <h3> Skills Required</h3>
        <h5>Arduino Coding, IOT,Python/Open Cv</h5>

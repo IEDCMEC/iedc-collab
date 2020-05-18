@@ -17,7 +17,7 @@ body{
   height: 600px;
   width: 300px;
   border-color: black;
-  background-color: burlywood;
+ 
 }
 
 
@@ -42,8 +42,9 @@ transition: all 0.2s ease-in-out;
 }
 .post-item:hover {
 outline: 0px solid transparent;
-padding: 20px 20px;
+padding: 10px 10px;
 border: 5px solid brown;
+border-width: 5px 20px;
 border-radius: 15px;
 -webkit-transition: all 0.2s ease-in-out;
 transition: all 0.2s ease-in-out;
@@ -112,12 +113,21 @@ display: block;
   border-left: 6px solid tomato;
   height: 500px;
   position: absolute;
-  left: 30%;
-  margin-left: -10px;
-  margin-right: 5px;
+  left:30%;
   top: 20%;
+ 
 }
 
+.desc h3{
+  color: tomato;
+  margin-left: 30px;
+}
 
-  
+.desc p{
+  margin-left: 30px;
+}
+
+.desc h5{
+  margin-left: 30px;
+}  
   
