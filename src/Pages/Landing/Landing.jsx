@@ -5,15 +5,14 @@ import ProjectList from './projectList'
 
 import "./page2.css";
 import Cards_Team from "./cards_team";
-
+import Projects from "./Projects/Projects";
 const Landing = () => {
   return (
     <div>
-    <Navigate/>  
-    
-    <ProjectList/>
-    
-    <Cards_Team/>
+    <Navigate/>
+    <Projects/>
+    {/*<ProjectList/>*/}
+    {/*<Cards_Team/>*/}
     </div>
   );
 }
