@@ -1,0 +1,22 @@
+@import "src/index";
+
+.heading{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.left-right-margin{
+  border-right: 1px solid $color-2;
+  border-left: 1px solid $color-2;
+}
+
+.fix-flex{
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.shadow-bottom{
+  box-shadow: 2px 0 5px rgba(0,0,0,0.32);
+}
