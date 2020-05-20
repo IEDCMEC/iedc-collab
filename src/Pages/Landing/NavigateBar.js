@@ -26,7 +26,7 @@ import React , {Component} from 'react';
       
   <li>
   <li class="nav-item dropdown">
-    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Join Us</a>
     <div class="dropdown-menu">
       <a class="dropdown-item" href="#">Action</a>
       
