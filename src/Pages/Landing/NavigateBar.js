@@ -1,5 +1,7 @@
 import React , {Component} from 'react';
 
+
+
  class Navigate extends Component{
     render(){
   return (
@@ -15,7 +17,7 @@ import React , {Component} from 'react';
         <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Projects</a>
+      <a class="nav-link" href="#">Projects</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="#">Connect</a>

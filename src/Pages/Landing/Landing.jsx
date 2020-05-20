@@ -1,8 +1,10 @@
 import React from "react";
 import Navigate from './NavigateBar';
 import ProjectList from './projectList'
-import TeamSect from "./TeamSect";
+import Ca
+
 import "./page2.css";
+import Cards_Team from "./cards_team";
 
 const Landing = () => {
   return (
@@ -11,7 +13,7 @@ const Landing = () => {
     
     <ProjectList/>
     
-    
+    <Cards_Team/>
     </div>
   );
 }
