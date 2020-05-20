@@ -50,15 +50,16 @@ border-radius: 15px;
 transition: all 0.2s ease-in-out;
 }
 
+#profile-box{
 
+}
  
 .row.heading h2 {
   color:tomato;
   font-size: 30px;
-  line-height: 50px;
+  
   font-weight: 30%;
-  text-align: left;
-  margin-top: 0%;
+  text-align:left;
   margin-left: 30px;
   text-transform: uppercase;
 }
@@ -111,16 +112,18 @@ display: block;
 
 .vl {
   border-left: 6px solid tomato;
-  height: 500px;
-  position: absolute;
+  height: 630px;
+  position:absolute;
   left:30%;
-  top: 20%;
+  top: 80px;
  
 }
+
 
 .desc h3{
   color: tomato;
   margin-left: 30px;
+  margin-top: 10px;
 }
 
 .desc p{

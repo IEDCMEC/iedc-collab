@@ -25,7 +25,7 @@ section .section-title {
     color:white;
     margin-bottom: 50px;
     text-transform: uppercase;
-    font-family: cursive;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 #team .card {
   border: none;
