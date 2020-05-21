@@ -1,3 +1,15 @@
 .project-name-box{
+ 
   box-shadow: 0px 0px 5px rgba(0,0,0,0.32);
+}
+
+svg {
+  text-align: end;
+  cursor: pointer;
+  user-select: none;
+ 
+}
+
+svg:hover{
+ fill:brown;
 }

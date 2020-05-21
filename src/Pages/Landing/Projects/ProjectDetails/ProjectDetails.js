@@ -1,6 +1,7 @@
 import React from "react";
 import "./ProjectDetails.scss";
 import { Row, Col } from "react-bootstrap";
+import TeamSect from "../../TeamSect";
 
 const ProjectDetails = () => {
   return (
@@ -27,8 +28,10 @@ const ProjectDetails = () => {
           </div>
         </Col>
       </Row>
+      
       <Row className={"p-5 flex-grow-1 overflow"}>
         <div>
+          <TeamSect/>
           <h5>Heading</h5>
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do

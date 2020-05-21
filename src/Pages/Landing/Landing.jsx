@@ -12,7 +12,7 @@ const Landing = () => {
     <div>
     <Navigate/>
     <Projects/>
-  
+    
      
     </div>
   );
