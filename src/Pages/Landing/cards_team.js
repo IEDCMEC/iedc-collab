@@ -15,20 +15,17 @@ class Cards_Team extends Component {
                                   <div className="frontside">
                                       <div className="card">
                                           <div className="card-body text-center">
-                                              <p>
-                                                  <img className=" img-fluid"
-                                                       src="https://sunlimetech.com/portfolio/boot4menu/assets/imgs/team/img_01.png"
+                                             
+                                              <h4 className="card-title">IEDC COLLAB <br></br>Platfrom</h4>
+                                              
+                                            
+                                                  <img 
+                                                       src="https://assets.materialup.com/uploads/575f97ee-8103-43fe-a0d3-8df0af28c618/preview.png"
                                                        alt="card image"/>
-                                              </p>
-                                              <h4 className="card-title">Project 1</h4>
-                                              <p className="card-text">
-                                                  This is basic card with image on top, title,
-                                                  description and button.
-                                              </p>
-                                              <a href="https://www.fiverr.com/share/qb8D02"
-                                                 className="btn btn-primary btn-sm">
-                                                  <i className="fa fa-plus"/>
-                                              </a>
+                                            
+                                                  
+                                             
+                                             
                                           </div>
                                       </div>
                                   </div>
@@ -78,23 +75,20 @@ class Cards_Team extends Component {
                       <div className="col-xs-12 col-sm-6 col-md-4">
                           <div className="image-flip" onTouchStart="this.classList.toggle('hover');">
                               <div className="mainflip">
-                                  <div className="frontside">
+                              <div className="frontside">
                                       <div className="card">
                                           <div className="card-body text-center">
-                                              <p>
-                                                  <img className=" img-fluid"
-                                                       src="https://sunlimetech.com/portfolio/boot4menu/assets/imgs/team/img_02.png"
+                                             
+                                              <h4 className="card-title">IEDC COLLAB<br></br> Platfrom</h4>
+                                              
+                                            
+                                                  <img 
+                                                       src="https://assets.materialup.com/uploads/575f97ee-8103-43fe-a0d3-8df0af28c618/preview.png"
                                                        alt="card image"/>
-                                              </p>
-                                              <h4 className="card-title">Project 2</h4>
-                                              <p className="card-text">
-                                                  This is basic card with image on top, title,
-                                                  description and button.
-                                              </p>
-                                              <a href="https://www.fiverr.com/share/qb8D02"
-                                                 className="btn btn-primary btn-sm">
-                                                  <i className="fa fa-plus"/>
-                                              </a>
+                                            
+                                                  
+                                             
+                                             
                                           </div>
                                       </div>
                                   </div>
@@ -144,23 +138,20 @@ class Cards_Team extends Component {
                       <div className="col-xs-12 col-sm-6 col-md-4">
                           <div className="image-flip" onTouchStart="this.classList.toggle('hover');">
                               <div className="mainflip">
-                                  <div className="frontside">
+                              <div className="frontside">
                                       <div className="card">
                                           <div className="card-body text-center">
-                                              <p>
-                                                  <img className=" img-fluid"
-                                                       src="https://sunlimetech.com/portfolio/boot4menu/assets/imgs/team/img_03.png"
+                                             
+                                              <h4 className="card-title">IEDC COLLAB<br></br> Platfrom</h4>
+                                              
+                                            
+                                                  <img 
+                                                       src="https://assets.materialup.com/uploads/575f97ee-8103-43fe-a0d3-8df0af28c618/preview.png"
                                                        alt="card image"/>
-                                              </p>
-                                              <h4 className="card-title">Project 3</h4>
-                                              <p className="card-text">
-                                                  This is basic card with image on top, title,
-                                                  description and button.
-                                              </p>
-                                              <a href="https://www.fiverr.com/share/qb8D02"
-                                                 className="btn btn-primary btn-sm">
-                                                  <i className="fa fa-plus"/>
-                                              </a>
+                                            
+                                                  
+                                             
+                                             
                                           </div>
                                       </div>
                                   </div>
@@ -210,23 +201,20 @@ class Cards_Team extends Component {
                       <div className="col-xs-12 col-sm-6 col-md-4">
                           <div className="image-flip" onTouchStart="this.classList.toggle('hover');">
                               <div className="mainflip">
-                                  <div className="frontside">
+                              <div className="frontside">
                                       <div className="card">
                                           <div className="card-body text-center">
-                                              <p>
-                                                  <img className=" img-fluid"
-                                                       src="https://sunlimetech.com/portfolio/boot4menu/assets/imgs/team/img_04.jpg"
+                                             
+                                              <h4 className="card-title">IEDC COLLAB<br></br> Platfrom</h4>
+                                              
+                                            
+                                                  <img 
+                                                       src="https://assets.materialup.com/uploads/575f97ee-8103-43fe-a0d3-8df0af28c618/preview.png"
                                                        alt="card image"/>
-                                              </p>
-                                              <h4 className="card-title">Project 4</h4>
-                                              <p className="card-text">
-                                                  This is basic card with image on top, title,
-                                                  description and button.
-                                              </p>
-                                              <a href="https://www.fiverr.com/share/qb8D02"
-                                                 className="btn btn-primary btn-sm">
-                                                  <i className="fa fa-plus"/>
-                                              </a>
+                                            
+                                                  
+                                             
+                                             
                                           </div>
                                       </div>
                                   </div>
@@ -276,23 +264,20 @@ class Cards_Team extends Component {
                       <div className="col-xs-12 col-sm-6 col-md-4">
                           <div className="image-flip" onTouchStart="this.classList.toggle('hover');">
                               <div className="mainflip">
-                                  <div className="frontside">
+                              <div className="frontside">
                                       <div className="card">
                                           <div className="card-body text-center">
-                                              <p>
-                                                  <img className=" img-fluid"
-                                                       src="https://sunlimetech.com/portfolio/boot4menu/assets/imgs/team/img_05.png"
+                                             
+                                              <h4 className="card-title">IEDC COLLAB<br></br> Platfrom</h4>
+                                              
+                                            
+                                                  <img 
+                                                       src="https://assets.materialup.com/uploads/575f97ee-8103-43fe-a0d3-8df0af28c618/preview.png"
                                                        alt="card image"/>
-                                              </p>
-                                              <h4 className="card-title">Project 5</h4>
-                                              <p className="card-text">
-                                                  This is basic card with image on top, title,
-                                                  description and button.
-                                              </p>
-                                              <a href="https://www.fiverr.com/share/qb8D02"
-                                                 className="btn btn-primary btn-sm">
-                                                  <i className="fa fa-plus"/>
-                                              </a>
+                                            
+                                                  
+                                             
+                                             
                                           </div>
                                       </div>
                                   </div>
@@ -342,23 +327,20 @@ class Cards_Team extends Component {
                       <div className="col-xs-12 col-sm-6 col-md-4">
                           <div className="image-flip" onTouchStart="this.classList.toggle('hover');">
                               <div className="mainflip">
-                                  <div className="frontside">
+                              <div className="frontside">
                                       <div className="card">
                                           <div className="card-body text-center">
-                                              <p>
-                                                  <img className=" img-fluid"
-                                                       src="https://sunlimetech.com/portfolio/boot4menu/assets/imgs/team/img_06.jpg"
+                                             
+                                              <h4 className="card-title">IEDC COLLAB <br></br>Platfrom</h4>
+                                              
+                                            
+                                                  <img 
+                                                       src="https://assets.materialup.com/uploads/575f97ee-8103-43fe-a0d3-8df0af28c618/preview.png"
                                                        alt="card image"/>
-                                              </p>
-                                              <h4 className="card-title">Project 6</h4>
-                                              <p className="card-text">
-                                                  This is basic card with image on top, title,
-                                                  description and button.
-                                              </p>
-                                              <a href="https://www.fiverr.com/share/qb8D02"
-                                                 className="btn btn-primary btn-sm">
-                                                  <i className="fa fa-plus"/>
-                                              </a>
+                                            
+                                                  
+                                             
+                                             
                                           </div>
                                       </div>
                                   </div>

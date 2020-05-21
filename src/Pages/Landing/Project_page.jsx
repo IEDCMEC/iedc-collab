@@ -1,5 +1,5 @@
 import React from "react";
-import Navigate from './NavigateBar';
+import Nav2 from './Nav2';
 import "./cards.css";
 import Cards_Team from './cards_team';
 
@@ -8,7 +8,7 @@ const Project_page = () => {
   
   return (
     <div className="Project_page">
-    <Navigate/> 
+    <Nav2/> 
     <Cards_Team/>     
     </div>
   );

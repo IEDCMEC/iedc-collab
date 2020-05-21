@@ -2,6 +2,15 @@ body{
     background-color:tomato;
 }
 
+.navbar{
+  background-color: aliceblue;
+  border-bottom-left-radius: 30px;
+  border-bottom-right-radius: 30px;
+}
+
+.navbar .nav-item a{
+    color: tomato;
+}
 .btn-primary:hover,
 .btn-primary:focus {
     background-color: #108d6f;
@@ -116,11 +125,12 @@ section .section-title {
 
 .frontside .card .card-title,
 .backside .card .card-title {
-    color: #007b5e !important;
+    color:tomato;
+    position: relative;
 }
 
 .frontside .card .card-body img {
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
+  
+  width:200px;
+  height: 200px;
 }

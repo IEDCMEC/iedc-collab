@@ -15,7 +15,7 @@ function App() {
       <BrowserRouter>
         <Switch>
           <Route exact path="/" component={Landing} /> 
-          <Route exact path="/" component={Project_page}/>
+          <Route exact path="/home" component={Project_page}/>
         </Switch>
       </BrowserRouter>
     </AuthState>
