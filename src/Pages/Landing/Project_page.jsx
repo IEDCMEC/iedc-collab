@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import Navigate from './NavigateBar';
 import "./cards.css";
 import Cards_Team from './cards_team';

@@ -409,7 +409,7 @@ class Cards_Team extends Component {
               </div>
           </section>
       </div>
-    );
+    )
   }
 }
 
