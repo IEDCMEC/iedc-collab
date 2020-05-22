@@ -405,7 +405,7 @@ class Cards_Team extends Component {
                         <div class="col-md-12 col-12 text-white">
                             <div class="row p-3">
                                 <div class="col-md-6 col-12">
-                                    <p class="m-0">Made with by IEDC MEC</p>
+                                    <p class="m-0">Made by IEDC MEC</p>
                                 </div>
                                 <div class="col-md-6 col-12 footer-icon text-right">
                                     <i class="fa fa-twitter"></i>
