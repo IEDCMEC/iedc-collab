@@ -7,7 +7,7 @@ class Cards_Team extends Component {
       <div className="Cards_Team">
           <section id="team" className="pb-5">
               <div className="container">
-                  <h5 className="section-title h1">PROJECTS</h5>
+                  
                   <div className="row">
                       <div className="col-xs-12 col-sm-6 col-md-4">
                           <div className="image-flip">
@@ -16,7 +16,7 @@ class Cards_Team extends Component {
                                       <div className="card">
                                           <div className="card-body text-center">
                                              
-                                              <h4 className="card-title">IEDC COLLAB <br></br>Platfrom</h4>
+                                              <h4 className="card-title">IEDC COLLAB<br></br>Platform <i class="fa fa-chevron-right"></i></h4>
                                               
                                             
                                                   <img 
@@ -79,7 +79,7 @@ class Cards_Team extends Component {
                                       <div className="card">
                                           <div className="card-body text-center">
                                              
-                                              <h4 className="card-title">IEDC COLLAB<br></br> Platfrom</h4>
+                                              <h4 className="card-title">IEDC COLLAB<br></br> Platfrom<i class="fa fa-chevron-right"></i></h4>
                                               
                                             
                                                   <img 
@@ -142,7 +142,7 @@ class Cards_Team extends Component {
                                       <div className="card">
                                           <div className="card-body text-center">
                                              
-                                              <h4 className="card-title">IEDC COLLAB<br></br> Platfrom</h4>
+                                              <h4 className="card-title">IEDC COLLAB<br></br> Platfrom<i class="fa fa-chevron-right"></i></h4>
                                               
                                             
                                                   <img 
@@ -205,7 +205,7 @@ class Cards_Team extends Component {
                                       <div className="card">
                                           <div className="card-body text-center">
                                              
-                                              <h4 className="card-title">IEDC COLLAB<br></br> Platfrom</h4>
+                                              <h4 className="card-title">IEDC COLLAB<br></br> Platfrom<i class="fa fa-chevron-right"></i></h4>
                                               
                                             
                                                   <img 
@@ -268,7 +268,7 @@ class Cards_Team extends Component {
                                       <div className="card">
                                           <div className="card-body text-center">
                                              
-                                              <h4 className="card-title">IEDC COLLAB<br></br> Platfrom</h4>
+                                              <h4 className="card-title">IEDC COLLAB<br></br> Platfrom<i class="fa fa-chevron-right"></i> </h4>
                                               
                                             
                                                   <img 
@@ -331,7 +331,7 @@ class Cards_Team extends Component {
                                       <div className="card">
                                           <div className="card-body text-center">
                                              
-                                              <h4 className="card-title">IEDC COLLAB <br></br>Platfrom</h4>
+                                              <h4 className="card-title">IEDC COLLAB <br></br>Platfrom<i class="fa fa-chevron-right"></i> </h4>
                                               
                                             
                                                   <img 
@@ -390,6 +390,38 @@ class Cards_Team extends Component {
                   </div>
               </div>
           </section>
+
+          <div class="footer-main w-100">
+            <div class="footer-first">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12 col-12"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-second">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12 col-12 text-white">
+                            <div class="row p-3">
+                                <div class="col-md-6 col-12">
+                                    <p class="m-0">All Right Reserved 2018 - <a href="http://nicesnippets.com/" target="_blank">nicesnippets.com</a></p>
+                                </div>
+                                <div class="col-md-6 col-12 footer-icon text-right">
+                                    <i class="fa fa-twitter"></i>
+                                    <i class="fa fa-instagram"></i>
+                                    <i class="fa fa-pinterest"></i>
+                                    <i class="fa fa-linkedin"></i>
+                                    <i class="fa fa-youtube"></i>
+                                    <i class="fa fa-vimeo"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
       </div>
     )
   }
