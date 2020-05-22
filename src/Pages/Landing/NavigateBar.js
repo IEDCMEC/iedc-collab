@@ -12,19 +12,19 @@ import "./cards.css";
     <ul class="navbar-nav mr-auto">
       
     <li class="nav-item">
-      <a class="nav-link" href="/"><i class="fa fa-chevron-left"></i> IEDC Collab Platform</a>
+      <a class="nav-link" href="/home"><i class="fa fa-chevron-left"></i> IEDC Collab Platform</a>
       </li>
 </ul>
-    <ul>
+    <ul class="navbar-nav">
     <li class="nav-item">
         <a class="nav-link" href="#">New Project</a>
       </li><li class="nav-item">
-        <a class="nav-link" href="#">New Project</a>
+        <a class="nav-link" href="#">Bookmarked <i class="fa fa-chevron-down"></i></a>
       </li>
 
 
       <li class="nav-item">
-        <a class="nav-link" href="#">Notifications </a>
+        <a class="nav-link" href="#">Notifications <i class="fa fa-chevron-down"></i></a>
       </li>
 
       

@@ -405,15 +405,14 @@ class Cards_Team extends Component {
                         <div class="col-md-12 col-12 text-white">
                             <div class="row p-3">
                                 <div class="col-md-6 col-12">
-                                    <p class="m-0">All Right Reserved 2018 - <a href="http://nicesnippets.com/" target="_blank">nicesnippets.com</a></p>
+                                    <p class="m-0">Made with by IEDC MEC</p>
                                 </div>
                                 <div class="col-md-6 col-12 footer-icon text-right">
                                     <i class="fa fa-twitter"></i>
                                     <i class="fa fa-instagram"></i>
-                                    <i class="fa fa-pinterest"></i>
                                     <i class="fa fa-linkedin"></i>
                                     <i class="fa fa-youtube"></i>
-                                    <i class="fa fa-vimeo"></i>
+                                    
                                 </div>
                             </div>
                         </div>
