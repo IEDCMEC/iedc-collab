@@ -4,14 +4,24 @@
 
 .navbar{
   
-  background-color: aliceblue;
-  border-bottom-left-radius: 30px;
-  border-bottom-right-radius: 30px;
+  background-color: white;
+  margin: 5px 5px 5px;
+  box-shadow: 0px 0px 5px rgba(0,0,0,0.32); ;
 }
 
 .navbar .nav-item a{
     color: tomato;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
+
+.navbar .nav-item:hover{
+  
+  border:1px solid tomato;
+  border-radius: 50%;
+  
+  
+}
+
 .btn-primary:hover,
 .btn-primary:focus {
     background-color: #108d6f;

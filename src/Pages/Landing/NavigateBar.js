@@ -6,33 +6,30 @@ import "./cards.css";
     render(){
   return (
     <div className="Navigate">
-      <nav class="navbar navbar-expand-lg navbar-light ">
-  <a class="navbar-brand" href="#">IEDC</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+      <nav class="navbar navbar-expand-lg  ">
+  
   <div class="collapse navbar-collapse" id="navbarNav">
-    <ul class="navbar-nav">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+    <ul class="navbar-nav mr-auto">
+      
+    <li class="nav-item">
+      <a class="nav-link" href="/"><i class="fa fa-chevron-left"></i> IEDC Collab Platform</a>
       </li>
-      <li class="nav-item">
-      <a class="nav-link" href="/home">Projects</a>
+</ul>
+    <ul>
+    <li class="nav-item">
+        <a class="nav-link" href="#">New Project</a>
+      </li><li class="nav-item">
+        <a class="nav-link" href="#">New Project</a>
       </li>
+
+
       <li class="nav-item">
-        <a class="nav-link" href="#">Connect</a>
+        <a class="nav-link" href="#">Notifications </a>
       </li>
 
       
-  <li>
-  <li class="nav-item dropdown">
-    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Join Us</a>
-    <div class="dropdown-menu">
-      <a class="dropdown-item" href="#">Action</a>
-      
-    </div>
-  </li>
-  </li>
+  
+  
   </ul>
   </div>
 </nav>
