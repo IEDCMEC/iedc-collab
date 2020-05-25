@@ -5,13 +5,12 @@
 .navbar{
   
   background-color: white;
-  margin: 5px 5px 5px;
-  box-shadow: 0px 0px 5px rgba(0,0,0,0.32); ;
+  
 }
 
 .navbar .nav-item a{
     color: tomato;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    
 }
 
 .navbar .nav-item:hover{
@@ -205,4 +204,6 @@ section .section-title {
   .footer-icon i{
     padding: 7px 8px !important;
   }
+
+ 
 }

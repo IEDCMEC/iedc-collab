@@ -4,13 +4,12 @@ body{
 .navbar{
   
   background-color: white;
-  margin: 5px 5px 5px;
-  box-shadow: 0px 0px 5px rgba(0,0,0,0.32); ;
+  
 }
 
 .navbar .nav-item a{
     color:brown;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+   
 }
 
 .navbar .nav-item:hover{
@@ -161,8 +160,6 @@ display: block;
 }  
   
 @media (min-width:350px) { 
-  .navbar{
-    display: flex;
-    align-items: flex-end;
-  }
+  
+  
 }
