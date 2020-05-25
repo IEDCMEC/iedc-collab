@@ -160,3 +160,9 @@ display: block;
   margin-left: 30px;
 }  
   
+@media (min-width:350px) { 
+  .navbar{
+    display: flex;
+    align-items: flex-end;
+  }
+}

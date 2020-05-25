@@ -6,10 +6,11 @@ import "./cards.css";
     render(){
   return (
     <div className="Navigate">
-      <nav class="navbar navbar-expand-lg  ">
+      <nav class="navbar navbar-expand-sm ">
   
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav mr-auto">
+    
       
     <li class="nav-item">
       <a class="nav-link" href="/home"><i class="fa fa-chevron-left"></i> IEDC Collab Platform</a>
@@ -27,12 +28,14 @@ import "./cards.css";
         <a class="nav-link" href="#">Notifications <i class="fa fa-chevron-down"></i></a>
       </li>
 
-      
+     
   
   
   </ul>
   </div>
+ 
 </nav>
+
     </div>
   )
     }

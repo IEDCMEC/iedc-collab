@@ -6,7 +6,7 @@ import "./cards.css";
     render(){
   return (
     <div className="Nav2">
-      <nav class="navbar navbar-expand-lg ">
+      <nav class="navbar navbar-expand-sm ">
   
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav mr-auto">
