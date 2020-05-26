@@ -7,7 +7,7 @@ import "./cards.css";
   return ( 
     <div className="Nav2">
     <div className="Navigate"><nav class="navbar navbar-expand-lg navbar-red bg-white">
-    <a class="navbar-brand" href="/home"> <i class="fa fa-chevron-left"></i> Back to Home</a>
+    <a class="navbar-brand" href="/"> <i class="fa fa-chevron-left"></i> Back to Home</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="true" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon-success"></span>
     </button>
