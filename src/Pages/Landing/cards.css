@@ -2,15 +2,9 @@
    background-color: white;
   }
 
-.navbar{
-  
-  background-color: white;
-  
-}
 
-.navbar .nav-item a{
-    color: tomato;
-    
+.brand-name{
+  text-align: center;
 }
 
 .navbar .nav-item:hover{

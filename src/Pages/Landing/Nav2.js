@@ -4,37 +4,31 @@ import "./cards.css";
 
  class Nav2 extends Component{
     render(){
-  return (
+  return ( 
     <div className="Nav2">
-      <nav class="navbar navbar-expand-sm ">
-  
-  <div class="collapse navbar-collapse" id="navbarNav">
-    <ul class="navbar-nav mr-auto">
-      
-      <li class="nav-item">
-      <a class="nav-link" href="/"><i class="fa fa-chevron-left"></i> Back to home</a>
-      </li>
+    <div className="Navigate"><nav class="navbar navbar-expand-lg navbar-red bg-white">
+    <a class="navbar-brand" href="/home"> <i class="fa fa-chevron-left"></i> Back to Home</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="true" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon-success"></span>
+    </button>
+    <div class="brand-name">
+            <h5>IEDC PORTAL</h5>
+      </div>
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+      <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+       
+        <li class="nav-item">
+          <a class="nav-link" href="#">Register</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link " href="#" tabindex="-1" >Login</a>
+        </li>
       </ul>
-      <ul class="navbar-nav justify-content-between mr-auto">
-            <li class="nav-item"><a>IEDC PORTAL</a></li>
-      </ul>
-      <ul class="navbar-nav">
-      <li class="nav-item">
-        <a class="nav-link" href="#">Register</a>
-      </li>
-
       
-  <li>
-  <li class="nav-item ">
-  <a class="nav-link" href="#">Log In</a>
-      </li>
-      
+    </div>
+  </nav>
     
-
-  </li>
-  </ul>
-  </div>
-</nav>
+    </div>
     </div>
   )
     }

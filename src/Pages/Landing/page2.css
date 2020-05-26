@@ -3,22 +3,8 @@
 body{
   background-color:#f5796c;
 }
-.navbar-brand{
-  
-  color: brown;
-  
-}
 
-.navbar-toggle{
 
-}
-.navbar-toggler-icon{
-
-}
-.navbar .nav-item{
-    color:brown;
-   
-}
 
 .navbar .nav-item:hover{
   
@@ -168,10 +154,6 @@ display: block;
 }  
   
 @media (min-width:800px) { 
-  .navbar-brand{
   
-    color: brown;
-    
-  }
   
 }
