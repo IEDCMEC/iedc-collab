@@ -1,5 +1,5 @@
 import React , {Component} from 'react';
-import { Row, Col } from "react-bootstrap";
+
 import "./page2.css";
 
  class TeamSect extends Component{

@@ -1,13 +1,21 @@
+
+
 body{
   background-color:#f5796c;
 }
-.navbar{
+.navbar-brand{
   
-  background-color: white;
+  color: brown;
   
 }
 
-.navbar .nav-item a{
+.navbar-toggle{
+
+}
+.navbar-toggler-icon{
+
+}
+.navbar .nav-item{
     color:brown;
    
 }
@@ -159,7 +167,11 @@ display: block;
   margin-left: 30px;
 }  
   
-@media (min-width:350px) { 
+@media (min-width:800px) { 
+  .navbar-brand{
   
+    color: brown;
+    
+  }
   
 }

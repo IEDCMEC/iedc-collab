@@ -12,3 +12,4 @@
 [0525/124037.253:ERROR:minidumpwritedump_with_crashpad_info.cc(592)] Failed to write minidump file
 [0525/124037.253:ERROR:crash_report_exception_handler.cc(132)] TryMiniDumpWriteDumpWithCrashpadInfo failed
 [0525/124037.259:ERROR:process_info.cc(359)] UncheckedAllocate
+[0526/071232.791:ERROR:settings.cc(401)] Settings magic is not 1129342067
