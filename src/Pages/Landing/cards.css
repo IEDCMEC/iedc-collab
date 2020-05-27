@@ -4,7 +4,9 @@
 
 
 .brand-name{
-  text-align: center;
+   
+ 
+ margin-left: inherit;
 }
 
 .navbar .nav-item:hover{
@@ -153,19 +155,24 @@ section .section-title {
 .footer-main{
   position: fixed;
   bottom: 0;
+  
   border-radius: 10%;
+  margin-top: 10px;
+  height: 100px;
+  width:50%;
 
 }
 
 .footer-second{
-  margin-left:10%;
-  width:80%;
-  background:white;
+  
+  
+  background-color: white;
+
  
 }
 .footer-second p{
   color: tomato;
-  padding-top: 10px;
+  padding-top: 5px;
 }
 .footer-second a{
   color: tomato;
@@ -190,14 +197,43 @@ section .section-title {
 }
 
 @media screen and (min-width:320px) and (max-width:360px) {
+  .brand-name{
+    display: inline;
+  }
+
+  .card img{
+    width:150px;
+    height: 150px;
+  }
+  .footer-second{
+    
+    width: 100%;
+    height: 100%;
+   
+    
+  }
   .footer-second p{
-    font-size: 15px !important;
-    margin-bottom: 2px !important;
-    text-align: center;
+    
+    margin-bottom: 3px !important;
+    
+    font-size: 10px !important;
+    
+    
   }
   .footer-icon i{
+    
+    align-content: center;
     padding: 7px 8px !important;
   }
 
  
+
+ 
+}
+
+@media screen and (min-width:720px) and (max-width:960px){
+  .frontside .card .card-body img{
+    width:150px;
+    height:180px;
+  }
 }

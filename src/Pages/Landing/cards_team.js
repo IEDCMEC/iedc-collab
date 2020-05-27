@@ -392,22 +392,14 @@ class Cards_Team extends Component {
           </section>
 
           <div class="footer-main w-100">
-            <div class="footer-first">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-12 col-12"></div>
-                    </div>
-                </div>
-            </div>
             <div class="footer-second">
                 <div class="container">
                     <div class="row">
                         <div class="col-md-12 col-12 text-white">
                             <div class="row p-3">
-                                <div class="col-md-6 col-12">
-                                    <p class="m-0">Made by IEDC MEC</p>
-                                </div>
+                                
                                 <div class="col-md-6 col-12 footer-icon text-right">
+                                    <p class="m-0">Made by IEDC MEC</p>
                                     <i class="fa fa-twitter"></i>
                                     <i class="fa fa-instagram"></i>
                                     <i class="fa fa-linkedin"></i>
