@@ -32,9 +32,15 @@ svg:hover{
     margin-left: 180px;
   }
 }  
-  @media screen and (min-width:600px) and (max-width:960px){
+
+@media screen and (min-width:500px) and (max-width:640px){
+  svg{
+    margin-left: 100px;
+  }
+}  
+  @media screen and (min-width:660px) and (max-width:960px){
     svg{
-      margin-left: 65px;
+      margin-left: 110px;
     }
 
 
