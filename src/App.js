@@ -5,6 +5,9 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import "./App.scss";
 
 
+import Project_page from "./Pages/Landing/Project_page";
+
+
 
 function App() {
   return (
@@ -12,6 +15,7 @@ function App() {
       <BrowserRouter>
         <Switch>
           <Route exact path="/" component={Landing} /> 
+          <Route exact path="/home" component={Project_page}/>
         </Switch>
       </BrowserRouter>
     </AuthState>

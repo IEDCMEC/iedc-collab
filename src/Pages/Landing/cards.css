@@ -1,5 +1,20 @@
-body{
-    background-color:tomato;
+.Cards_team{
+   background-color: white;
+  }
+
+
+.brand-name{
+   
+ margin-left: 300px;
+
+}
+
+.navbar .nav-item:hover{
+  
+  border:1px solid tomato;
+  border-radius: 50%;
+  
+  
 }
 
 .btn-primary:hover,
@@ -30,7 +45,11 @@ section .section-title {
 #team .card {
   border: none;
   background:white;
+  box-shadow: 0px 0px 5px rgba(0,0,0,0.32);
+  border-radius: 20%;
 }
+
+
 
 .image-flip:hover .backside,
 .image-flip.hover .backside {
@@ -39,7 +58,7 @@ section .section-title {
   -o-transform: rotateY(0deg);
   -ms-transform: rotateY(0deg);
   transform: rotateY(0deg);
-  border-radius: .25rem;
+  border-radius: 20%
 }
 
 .image-flip:hover .frontside,
@@ -48,6 +67,7 @@ section .section-title {
   -moz-transform: rotateY(180deg);
   -o-transform: rotateY(180deg);
   transform: rotateY(180deg);
+  border-radius: 20%;
 }
 
 .mainflip {
@@ -116,11 +136,111 @@ section .section-title {
 
 .frontside .card .card-title,
 .backside .card .card-title {
-    color: #007b5e !important;
+    color:tomato;
+    position: relative;
 }
 
 .frontside .card .card-body img {
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
+  
+  width:200px;
+  height: 200px;
+}
+
+
+.frontside .card .card-body i{
+      position: absolute;
+      margin-left: 80px;
+}
+
+.footer-main{
+  position: fixed;
+  bottom: 0;
+  
+  border-radius: 10%;
+  margin-top: 10px;
+  height: 100px;
+  width:50%;
+
+}
+
+.footer-second{
+  
+  
+  background-color: white;
+
+ 
+}
+.footer-second p{
+  color: tomato;
+  padding-top: 5px;
+}
+.footer-second a{
+  color: tomato;
+}
+.footer-icon i{
+  color: black;
+  border: 2px solid tomato;
+  border-radius: 4px;
+  padding: 10px 13px;
+  margin-right: 5px;
+}
+.footer-icon i:hover{
+  color:black;
+  transition: 0.5s;
+  cursor: pointer;
+  border-color: #fff;
+  background: rgba(255,255,255,0.05);
+  -webkit-transform: scale(0.93);
+  -moz-transform: scale(0.93);
+  -ms-transform: scale(0.93);
+  transform: scale(0.93);
+}
+
+@media screen and (min-width:320px) and (max-width:360px) {
+  .brand-name{
+    display: none;
+  }
+
+  
+  .footer-second{
+    
+    width: 100%;
+    height: 100%;
+   
+    
+  }
+  .footer-second p{
+    
+    margin-bottom: 3px !important;
+    
+    font-size: 10px !important;
+    
+    
+  }
+  .footer-icon i{
+    
+    align-content: center;
+    padding: 7px 8px !important;
+  }
+
+ 
+
+ 
+}
+@media screen and (min-width:375px) and (max-width:660px){
+  .brand-name{
+    margin-left: 0px;
+    size: 10px;
+    
+  }
+}
+
+@media screen and (min-width:660px) and (max-width:960px){
+  .brand-name{
+    margin-left: 10px;
+  }
+  .frontside .card .card-body img{
+    width:150px;
+    height:180px;
+  }
 }

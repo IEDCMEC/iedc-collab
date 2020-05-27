@@ -9,6 +9,9 @@ const ProjectBox = (props) => {
     <>
       <Col className={"p-3 mt-2 project-name-box"}>
         <div>
+        <svg class="bi bi-bookmark-fill" width="2em" height="2em" viewBox="0 0 16 16" fill="silver" xmlns="http://www.w3.org/2000/svg">
+  <path fill-rule="evenodd" d="M3 3a2 2 0 012-2h6a2 2 0 012 2v12l-5-3-5 3V3z" clip-rule="evenodd"/>
+</svg>
           <h5 className={"pt-1 col1"}>{name}</h5>
           <h6 className={"col2"}>{projectName}</h6>
           <div className={"pb-2"}>
