@@ -229,8 +229,8 @@ section .section-title {
 }
 @media screen and (min-width:375px) and (max-width:660px){
   .brand-name{
-    margin-left: 5px;
-    
+    margin-left: 0.5px;
+    font-size: 1.5px;
     
   }
 }
