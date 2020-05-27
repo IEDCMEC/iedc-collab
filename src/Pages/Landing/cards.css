@@ -5,8 +5,8 @@
 
 .brand-name{
    
- 
- margin-left: inherit;
+ margin-left: 300px;
+
 }
 
 .navbar .nav-item:hover{
@@ -198,13 +198,10 @@ section .section-title {
 
 @media screen and (min-width:320px) and (max-width:360px) {
   .brand-name{
-    display: inline;
+    display: none;
   }
 
-  .card img{
-    width:150px;
-    height: 150px;
-  }
+  
   .footer-second{
     
     width: 100%;
@@ -230,8 +227,18 @@ section .section-title {
 
  
 }
+@media screen and (min-width:375px) and (max-width:660px){
+  .brand-name{
+    margin-left: 5px;
+    
+    
+  }
+}
 
-@media screen and (min-width:720px) and (max-width:960px){
+@media screen and (min-width:660px) and (max-width:960px){
+  .brand-name{
+    margin-left: 10px;
+  }
   .frontside .card .card-body img{
     width:150px;
     height:180px;

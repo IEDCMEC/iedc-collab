@@ -14,3 +14,28 @@ svg {
 svg:hover{
  fill:brown;
 }
+
+@media screen and (min-width:375px) and (max-width:440px){
+  svg{
+    margin-left: 260px;
+  }
+}
+
+@media screen and (min-width:320px) and (max-width:360px){
+  svg{
+    margin-left: 200px;
+  }
+}  
+
+@media screen and (min-width:1000px) and (max-width:1300px){
+  svg{
+    margin-left: 180px;
+  }
+}  
+  @media screen and (min-width:600px) and (max-width:960px){
+    svg{
+      margin-left: 65px;
+    }
+
+
+  }

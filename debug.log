@@ -13,3 +13,4 @@
 [0525/124037.253:ERROR:crash_report_exception_handler.cc(132)] TryMiniDumpWriteDumpWithCrashpadInfo failed
 [0525/124037.259:ERROR:process_info.cc(359)] UncheckedAllocate
 [0526/071232.791:ERROR:settings.cc(401)] Settings magic is not 1129342067
+[0527/092625.414:WARNING:minidump_to_upload_parameters.cc(36)] duplicate key guid, discarding value c6dc3f72-e38f-4768-98e0-ed05cf00fd1d
