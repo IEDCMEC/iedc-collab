@@ -29,7 +29,7 @@ const ProjectDetails = () => {
       </Row>
 
       <Row className={"p-5 flex-grow-1 overflow"}>
-        <div class="contents">
+        <div className="contents">
           <div>
             <h2>Description</h2>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quis
