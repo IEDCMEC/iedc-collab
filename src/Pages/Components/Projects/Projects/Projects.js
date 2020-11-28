@@ -4,7 +4,7 @@ import ProjectList from "./ProjectList/ProjectList";
 import "./Project.scss";
 import ProjectDetails from "./ProjectDetails/ProjectDetails";
 
-const Projects = () => {
+const ProjectsView = () => {
   return (
     <>
       <Container fluid={true} className={"project-container"}>
@@ -22,4 +22,4 @@ const Projects = () => {
     </>
   );
 };
-export default Projects;
+export default ProjectsView;
