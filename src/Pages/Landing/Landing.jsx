@@ -2,8 +2,12 @@ import React from "react";
 import "./Landing.css";
 import { useHistory } from 'react-router-dom';
 
-const Landing = () => {
+const Landing = (props) => {
   const history = useHistory();
+  // const signUp = () => {
+  //   console.log("siged up");
+  //   props.firebase.doSignInWithGoogle();
+  // };
   return (
     <div>
       <div class="landing">
@@ -13,6 +17,7 @@ const Landing = () => {
                 <b>Collab</b>
             </button> <br /> <br />
               <b>!What is collab?</b>
+              {/* <button class="btn" onClick={() => { signUp(); }}k>LoginWithGoogle</button> */}
           </div>
         </div>
         <div className="work_at_mec">
