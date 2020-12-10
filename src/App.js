@@ -1,26 +1,27 @@
 import React from "react";
-import AuthState from "./Context/AuthContext/AuthState";
+import { AuthProvider } from "./Auth/Auth";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-// import Firebase, { FirebaseContext } from './components/Firebase';
 import "./App.scss";
 
 import Landing from "./Pages/Landing/Landing";
 import Collab from "./Pages/Collab/Collab";
 import WorkAtMEC from "./Pages/WorkAtMEC/WorkAtMEC";
-
+import Login from './Pages/Login/Login'
+import {initialize} from './Auth/Firebase/firebase_init'
+initialize()
 function App() {
   return (
-    // <FirebaseContext.Provider value={new Firebase()}>
-      <AuthState>
+      <AuthProvider>
         <BrowserRouter>
           <Switch>
             <Route exact path="/" component={Landing} />
             <Route exact path="/collab" component={Collab} />
             <Route exact path="/workatmec" component={WorkAtMEC} />
+            <Route exact path="/login" component={Login}/>
           </Switch>
         </BrowserRouter>
-      </AuthState>
-    // </FirebaseContext.Provider>
+      </AuthProvider>
+ 
   );
 }
 export default App;
