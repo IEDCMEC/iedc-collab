@@ -4,7 +4,12 @@ import { AuthContext } from "./Auth";
 
 const PrivateRoute = ({ component: RouteComponent, ...rest }) => {
   const {currentUser} = useContext(AuthContext);
+  if(currentUser)
+    console.log("current user" + currentUser.email)
+  else
+    console.log("current user is None")
   return (
+   
     <Route
       {...rest}
       render={routeProps =>
@@ -20,3 +25,18 @@ const PrivateRoute = ({ component: RouteComponent, ...rest }) => {
 
 
 export default PrivateRoute
+
+/*
+<Route
+      {...rest}
+      render={routeProps =>
+        !!currentUser ? (
+         
+          <RouteComponent {...routeProps} />
+        ) : (
+          <Redirect to={"/login"} />
+        )
+      }
+    />
+
+    */

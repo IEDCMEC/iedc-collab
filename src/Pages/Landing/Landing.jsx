@@ -1,6 +1,9 @@
 import React from "react";
 import "./Landing.css";
 import { useHistory } from 'react-router-dom';
+import { signOut } from '../../Auth/Firebase/firebase_init'
+import firebase from 'firebase/app'
+import 'firebase/auth'
 
 
 //import {signIn} from '../Firebase/auth';
@@ -23,7 +26,7 @@ const Landing = (props) => {
             </button> <br /> <br />
               <b>!What is collab?</b>
              
-              { /*<button class="btn" onClick={() => { signIn(); }}k>LoginWithGoogle</button>*/ }
+              { <button class="btn" onClick={() => { signOut(); }}k>SignOut</button> }
           </div>
         </div>
         <div className="work_at_mec">
