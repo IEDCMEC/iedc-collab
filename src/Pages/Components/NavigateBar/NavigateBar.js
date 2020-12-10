@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import NewProjectModal from "../NewProjectModal/NewProjectModal";
 import "./cards.css";
+import {signOut} from '../../../Auth/Firebase/firebase_init'
 
 const Navigate = () => {
   const [showNewProjectModal, setShowNewProjectModal] = useState(false);
@@ -29,7 +30,15 @@ const Navigate = () => {
                 onClick={() => setShowNewProjectModal(true)}
                 className="av-link"
               >
-                New Project
+                New Project  
+              </span>
+            </li>
+            <li className="nav-item ">
+              <span
+                onClick={() => {signOut()}}
+                className="av-link"
+              >
+                Sign Out
               </span>
             </li>
           </ul>
