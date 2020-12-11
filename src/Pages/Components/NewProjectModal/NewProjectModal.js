@@ -4,6 +4,8 @@ import Button from "react-bootstrap/Button";
 import { Formik } from "formik";
 import * as yup from "yup";
 import { Form } from "react-bootstrap";
+import { doCreateProject } from '../../../Auth/Firebase/firebase_init';
+
 // import ReactChipInput from "react-chip-input";
 // import Chips from "react-chips";
 // use if want to add links with some validation
@@ -27,7 +29,7 @@ const NewProjectForm = ({ onClose }) => {
         onSubmit={(values, actions) => {
           const { links } = values;
           values.links = links.split(",").map((link) => link.trim());
-          console.log(values);
+          doCreateProject(values.title, values.desc, values.links)
           actions.resetForm();
           onClose();
         }}
