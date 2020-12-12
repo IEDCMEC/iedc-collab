@@ -1,5 +1,5 @@
 import React, { useContext,useState } from "react";
-import { signIn,signOut } from '../../Auth/Firebase/firebase_init';
+import { signIn,signOut } from '../../Firebase/firebase';
 import GoogleButton from 'react-google-button';
 
 const logIn= () =>{

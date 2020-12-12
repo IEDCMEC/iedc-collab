@@ -1,7 +1,7 @@
 import React, { useContext,useState } from "react";
-import { signIn,signOut } from '../../Auth/Firebase/firebase_init';
+import { signIn,signOut } from '../../Firebase/firebase';
 import GoogleButton from 'react-google-button';
-import { AuthContext,validUserContext } from "./../../Auth/Auth";
+import { AuthContext,validUserContext } from "../../Firebase/Auth/Auth";
 import { useHistory } from "react-router-dom";
 import {withRouter, Redirect} from 'react-router-dom'
 import logIn from './googleLogin'

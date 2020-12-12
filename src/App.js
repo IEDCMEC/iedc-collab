@@ -1,14 +1,14 @@
 import React from "react";
-import { AuthProvider } from "./Auth/Auth";
+import { AuthProvider } from "./Firebase/Auth/Auth";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import "./App.scss";
 
 import Landing from "./Pages/Landing/Landing";
 import Collab from "./Pages/Collab/Collab";
 import WorkAtMEC from "./Pages/WorkAtMEC/WorkAtMEC";
-import Login from './Pages/Login/Login'
-import {initialize} from './Auth/Firebase/firebase_init'
-import PrivateRoute from './Auth/PrivateRoute'
+import Login from './Pages/Login/Login';
+import {initialize} from './Firebase/firebase';
+import PrivateRoute from './Firebase/Auth/PrivateRoute';
 initialize()
 function App() {
   return (
