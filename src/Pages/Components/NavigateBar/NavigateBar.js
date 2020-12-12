@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import NewProjectModal from "../NewProjectModal/NewProjectModal";
 import "./cards.css";
-import {signOut} from '../../../Auth/Firebase/firebase_init'
+import {signOut} from '../../../Firebase/firebase';
 
 const Navigate = () => {
   const [showNewProjectModal, setShowNewProjectModal] = useState(false);

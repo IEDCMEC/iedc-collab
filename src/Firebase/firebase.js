@@ -118,7 +118,7 @@ export const doDeleteProject = (project_id) => {
 
 
 export const getProjects = () => {
-	firebase.database()
+	return firebase.database()
 		.ref("projects/")
 		.once("value")
 		.then(function(snapshot) {
@@ -131,7 +131,7 @@ export const getProjects = () => {
 
 
 export const getProject = (project_id) => {
-	firebase.database()
+	return firebase.database()
 	.ref("projects/")
 	.child(project_id)
 	.once("value")

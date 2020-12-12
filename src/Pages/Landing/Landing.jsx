@@ -1,8 +1,7 @@
 import React from "react";
 import "./Landing.css";
 import { useHistory } from 'react-router-dom';
-import { signOut } from '../../Auth/Firebase/firebase_init'
-import firebase from 'firebase/app'
+import { signOut } from '../../Firebase/firebase';
 import 'firebase/auth'
 
 
