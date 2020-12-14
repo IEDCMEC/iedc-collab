@@ -5,6 +5,7 @@ import "./Project.scss";
 import ProjectDetails from "./ProjectDetails/ProjectDetails";
 
 const ProjectsView = () => {
+ 
   return (
     <>
       <Container fluid={true} className={"project-container"}>

@@ -121,12 +121,7 @@ export const getProjects = () => {
 	return firebase.database()
 		.ref("projects/")
 		.once("value")
-		.then(function(snapshot) {
-			console.log(snapshot.val());
-		}).catch(function(error) {
-			alert('Something went wrong');
-			console.log(error);
-		});
+		
 }
 
 
@@ -135,10 +130,10 @@ export const getProject = (project_id) => {
 	.ref("projects/")
 	.child(project_id)
 	.once("value")
-	.then(function(snapshot) {
-		console.log(snapshot.val());
-	}).catch(function(error) {
-		alert('Something went wrong');
-		console.log(error);
-	});
+	// .then(function(snapshot) {
+	// 	console.log(snapshot.val());
+	// }).catch(function(error) {
+	// 	alert('Something went wrong');
+	// 	console.log(error);
+	// });
 }
