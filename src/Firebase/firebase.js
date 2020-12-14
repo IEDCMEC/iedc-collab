@@ -33,8 +33,23 @@ export const signIn = async () => {
 	try {
 		const result = await firebase.auth().signInWithPopup(provider);
 		var user = result.user;
-		console.log(user)
-		return true
+		console.log(user);
+
+		const userData = {
+			name: user.displayName,
+			email: user.email,
+		};
+		firebase.database()
+		.ref("users/" + user.uid)
+		.set(userData)
+		.then(function() {
+			console.log("User added sucessfully");
+		}).catch(function(error) {
+			alert('Something went wrong');
+			console.log(error);
+		});
+
+		return true;
 	} catch (error) {
 		alert('Something is wrong, please check network connection')
 		console.log(error);
@@ -67,6 +82,7 @@ export const doCreateProject = (name, desc, links) => {
 	}
 
 	let uid = user.uid;
+	let leaderName = user.displayName;
     const updatedAt = Date.now();
 	var newProjectID = firebase.database().ref().child("projects").push().key;
     var projectData = {
@@ -75,7 +91,8 @@ export const doCreateProject = (name, desc, links) => {
       desc: desc,
       links: links,
       updatedAt: updatedAt,
-      leader_id: uid,
+	  leader_id: uid,
+	  leader_name: leaderName,
 	};
 
 	firebase.database()
@@ -120,8 +137,7 @@ export const doDeleteProject = (project_id) => {
 export const getProjects = () => {
 	return firebase.database()
 		.ref("projects/")
-		.once("value")
-		
+		.once("value")		
 }
 
 
@@ -130,10 +146,4 @@ export const getProject = (project_id) => {
 	.ref("projects/")
 	.child(project_id)
 	.once("value")
-	// .then(function(snapshot) {
-	// 	console.log(snapshot.val());
-	// }).catch(function(error) {
-	// 	alert('Something went wrong');
-	// 	console.log(error);
-	// });
 }
