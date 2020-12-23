@@ -155,3 +155,16 @@ export const getUser = (user_id) => {
 	.child(user_id)
 	.once("value")
 }
+
+export const getInternships = () => {
+	return firebase.database()
+		.ref("internships/")
+		.once("value")		
+}
+
+export const getInternship = (internship_id) => {
+	return firebase.database()
+	.ref("internships/")
+	.child(internship_id)
+	.once("value")
+}
