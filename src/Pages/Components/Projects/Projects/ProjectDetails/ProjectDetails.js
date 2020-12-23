@@ -1,9 +1,44 @@
-import React,{useContext} from "react";
+import React,{useContext, useEffect, useState} from "react";
 import "./ProjectDetails.scss";
-import { Row, Col } from "react-bootstrap";
+import { Row, Col,Button } from "react-bootstrap";
 import ProjectContext from '../../../../Collab/ProjectContext';
+import {AuthContext} from "../../../../../Firebase/Auth/Auth";
+import {doDeleteProject,getUser} from "../../../../../Firebase/firebase"
 const ProjectDetails = () => {
   const {project}=useContext(ProjectContext);
+  const {currentUser} = useContext(AuthContext);
+  const [deleteProject,setDeleteProject]=useState(false);
+  const [email,setEmail]=useState("");
+  const [phoneNumber,setPhoneNumber]=useState("");
+  // console.log(project[0].id)
+  useEffect(
+    ()=>{
+     
+      if(project[0].leader_id!== undefined){
+        getUser(project[0].leader_id).then(async function(snapshot) {
+          let result=snapshot.val();
+          setEmail(result.email);
+          setPhoneNumber(result.phone_number);
+          })
+          .catch(function(error) {
+          alert('Something went wrong');
+          console.log(error);
+          });
+      }
+      if(currentUser.uid==project[0].leader_id){
+        setDeleteProject(true);
+        console.log(deleteProject)
+      }
+      else{
+        setDeleteProject(false);
+      }
+    }
+  ,[project]);
+  function deleteProj(id){
+    doDeleteProject(id);
+    window.location.reload(false);
+      
+  }
   return (
     <div className={"d-flex h-100 flex-column "}>
       <Row>
@@ -22,8 +57,8 @@ const ProjectDetails = () => {
           </div>
           <div className={"fix-flex"}>
             <div>
-              <h5 className={"font-weight-light"}>xyz@gmail.com</h5>
-              <h5 className={"font-weight-light"}>987876743</h5>
+              <h5 className={"font-weight-light"}>{email}</h5>
+              <h5 className={"font-weight-light"}>{phoneNumber}</h5>
             </div>
           </div>
         </Col>
@@ -43,6 +78,13 @@ const ProjectDetails = () => {
               {project[0].links}
             </a>
           </div>
+          {
+            deleteProject?(
+              <Button onClick={()=>{deleteProj(project[0].id)}}>
+                Delete Project
+              </Button>
+            ):(null)
+          }
         </div>
       </Row>
     </div>

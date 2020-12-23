@@ -10,6 +10,7 @@ const ProjectList = () =>{
 function activeProject(id){
     getProject(id).then(async function(snapshot) {
         let messageObject=snapshot.val();
+          messageObject.id=id;
         project[1](messageObject);
     }).catch(function(error) {
         alert('Something went wrong');
@@ -21,7 +22,10 @@ function activeProject(id){
             {
                 projects.map((x)=>{
                     return(
-<div className="content post-item" onClick={()=>{activeProject(x.id)}}><ProjectBox name={x.name} teamLeader={x.leader_name} /></div>
+<div className="content post-item" onClick={()=>{
+    activeProject(x.id)}}>
+        <ProjectBox name={x.name} teamLeader={x.leader_name} />
+        </div>
                     );
                 })
             }

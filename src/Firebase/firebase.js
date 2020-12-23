@@ -127,10 +127,11 @@ export const doDeleteProject = (project_id) => {
 		.remove()
 		.then(function() {
 			console.log("Project deleted sucessfully");
-		}).catch(function(error) {
+		  })
+		  .catch(function(error) {
 			alert('Something went wrong');
 			console.log(error);
-		});
+		  })
 };
 
 
@@ -145,5 +146,12 @@ export const getProject = (project_id) => {
 	return firebase.database()
 	.ref("projects/")
 	.child(project_id)
+	.once("value")
+}
+
+export const getUser = (user_id) => {
+	return firebase.database()
+	.ref("users/")
+	.child(user_id)
 	.once("value")
 }
