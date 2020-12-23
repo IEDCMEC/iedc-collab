@@ -25,11 +25,6 @@ function activeProject(id){
                     );
                 })
             }
-        
-        
-      
-        
-
         </Col>
     )
 };

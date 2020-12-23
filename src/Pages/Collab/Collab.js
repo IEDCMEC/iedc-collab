@@ -1,7 +1,7 @@
 import React,{ useEffect,useState}  from "react";
 import Projects from "../Components/Projects/Projects";
 import Navigate from "../Components/NavigateBar/NavigateBar";
-import {getProjects,getProject}from '../../Firebase/firebase';
+import {getProjects}from '../../Firebase/firebase';
 import {ProjectProvider}from './ProjectContext';
 const Collab = (props) => {
     const [projects,setProjects]=useState([{}]);
