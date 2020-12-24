@@ -2,20 +2,20 @@ import React,{useEffect,useState}  from "react";
 
 import Internships from "../Components/Internships/Internships";
 import Navigate from "../Components/NavigateBar/NavigateBar";
-import {getProjects}from '../../Firebase/firebase';
-import {ProjectProvider}from '../Collab/ProjectContext';
+import {getInternships}from '../../Firebase/firebase';
+import {InternshipProvider}from './InternshipContext';
 const WorkAtMec = () => {
-    const [projects,setProjects]=useState([{}]);
-    const [project,setProject]=useState([{}]);
+    const [internships,setinternships]=useState([{}]);
+    const [internship,setinternship]=useState([{}]);
     useEffect(()=>{
-        getProjects().then(async function(snapshot) {
+        getInternships().then(async function(snapshot) {
             let messageObject=snapshot.val();
             const result = Object.keys(messageObject).map(key => ({
                 ...messageObject[key],
                 id:key
               }));
-              setProjects(result);
-              setProject(result[0]);
+              setinternships(result);
+              setinternship(result[0]);
 		}).catch(function(error) {
 			alert('Something went wrong');
 			console.log(error);
@@ -23,10 +23,10 @@ const WorkAtMec = () => {
         
     },[]);
     return (
-        <ProjectProvider value={{projects:projects,project:[project,setProject]}}>
+        <InternshipProvider value={{internships:internships,internship:[internship,setinternship]}}>
             <Navigate />
             <Internships />
-        </ProjectProvider>
+        </InternshipProvider>
     );
 }
 

@@ -156,6 +156,13 @@ export const getUser = (user_id) => {
 	.once("value")
 }
 
+export const getCompany = (company_id) => {
+	return firebase.database()
+	.ref("companies/")
+	.child(company_id)
+	.once("value")
+}
+
 export const getInternships = () => {
 	return firebase.database()
 		.ref("internships/")
@@ -168,3 +175,30 @@ export const getInternship = (internship_id) => {
 	.child(internship_id)
 	.once("value")
 }
+
+export const doDeleteInternship = (internship_id) => {
+	let user = firebase.auth().currentUser;
+	if(!user) {
+		alert('Please login to add a project');
+		return;
+	}
+
+	let internshipRef = firebase.database()
+						.ref("internships/" + internship_id);
+
+	internshipRef.child("leader_id").once("value").then(function(snapshot) {
+		if(snapshot.val() != user.uid) {
+			return;
+		}
+	});
+
+	internshipRef
+		.remove()
+		.then(function() {
+			console.log("internship deleted sucessfully");
+		  })
+		  .catch(function(error) {
+			alert('Something went wrong');
+			console.log(error);
+		  })
+};
