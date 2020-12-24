@@ -1,21 +1,21 @@
 import React,{useContext, useEffect, useState} from "react";
-import "./ProjectDetails.scss";
+import "./InternshipDetails.scss";
 import { Row, Col,Button } from "react-bootstrap";
-import ProjectContext from '../../../../Collab/ProjectContext';
+import InternshipContext from '../../../../WorkAtMEC/InternshipContext';
 import {AuthContext} from "../../../../../Firebase/Auth/Auth";
-import {doDeleteProject,getUser} from "../../../../../Firebase/firebase"
-const ProjectDetails = () => {
-  const {project}=useContext(ProjectContext);
-  const {currentUser} = useContext(AuthContext);
-  const [deleteProject,setDeleteProject]=useState(false);
+import {doDeleteInternship,getCompany} from "../../../../../Firebase/firebase";
+const InternshipDetails = () => {
+  const {internship}=useContext(InternshipContext);
+  const {currentCompany} = useContext(AuthContext);
+  const [deleteinternship,setDeleteinternship]=useState(false);
   const [email,setEmail]=useState("");
   const [phoneNumber,setPhoneNumber]=useState("");
-  // console.log(project[0].id)
+  // console.log(internship[0].id)
   useEffect(
     ()=>{
      
-      if(project[0].leader_id!== undefined){
-        getUser(project[0].leader_id).then(async function(snapshot) {
+      if(internship[0].leader_id!== undefined){
+        getCompany(internship[0].leader_id).then(async function(snapshot) {
           let result=snapshot.val();
           setEmail(result.email);
           setPhoneNumber(result.phone_number);
@@ -25,17 +25,18 @@ const ProjectDetails = () => {
           console.log(error);
           });
       }
-      if(currentUser.uid==project[0].leader_id){
-        setDeleteProject(true);
-        console.log(deleteProject)
-      }
-      else{
-        setDeleteProject(false);
-      }
+      console.log(currentCompany);
+      // if(currentCompany.uid==internship[0].leader_id){
+      //   setDeleteinternship(true);
+      //   console.log(deleteinternship)
+      // }
+      // else{
+      //   setDeleteinternship(false);
+      // }
     }
-  ,[project]);
+  ,[internship]);
   function deleteProj(id){
-    doDeleteProject(id);
+    doDeleteInternship(id);
     window.location.reload(false);
       
   }
@@ -47,12 +48,12 @@ const ProjectDetails = () => {
         >
           <div className={"flex-grow-1"}>
             <div>
-              {project[0].name}
+              {internship[0].name}
             </div>
           </div>
           <div className={" fix-flex left-right-margin"}>
             <div>
-              <h5 className={"font-weight-light"}>{project[0].leader_name}</h5>
+              <h5 className={"font-weight-light"}>{internship[0].leader_name}</h5>
             </div>
           </div>
           <div className={"fix-flex"}>
@@ -68,20 +69,20 @@ const ProjectDetails = () => {
         <div className="contents">
           <div>
             <h4>Description</h4>
-            {project[0].desc}
+            {internship[0].desc}
             <h4>Links</h4>
             <a
-              href="http://${links}"
+              href="${links}"
               rel="noopener noreferrer"
               target="_blank"
             >
-              {project[0].links}
+              {internship[0].links}
             </a>
           </div>
           {
-            deleteProject?(
-              <Button onClick={()=>{deleteProj(project[0].id)}}>
-                Delete Project
+            deleteinternship?(
+              <Button onClick={()=>{deleteProj(internship[0].id)}}>
+                Delete internship
               </Button>
             ):(null)
           }
@@ -91,4 +92,4 @@ const ProjectDetails = () => {
   );
 };
 
-export default ProjectDetails;
+export default InternshipDetails;

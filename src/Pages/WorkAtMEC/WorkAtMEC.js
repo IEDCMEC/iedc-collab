@@ -1,15 +1,33 @@
-import React from "react";
+import React,{useEffect,useState}  from "react";
 
-import Projects from "../Components/Projects/Projects";
+import Internships from "../Components/Internships/Internships";
 import Navigate from "../Components/NavigateBar/NavigateBar";
-
-const Collab = () => {
+import {getInternships}from '../../Firebase/firebase';
+import {InternshipProvider}from './InternshipContext';
+const WorkAtMec = () => {
+    const [internships,setinternships]=useState([{}]);
+    const [internship,setinternship]=useState([{}]);
+    useEffect(()=>{
+        getInternships().then(async function(snapshot) {
+            let messageObject=snapshot.val();
+            const result = Object.keys(messageObject).map(key => ({
+                ...messageObject[key],
+                id:key
+              }));
+              setinternships(result);
+              setinternship(result[0]);
+		}).catch(function(error) {
+			alert('Something went wrong');
+			console.log(error);
+		});
+        
+    },[]);
     return (
-        <div>
+        <InternshipProvider value={{internships:internships,internship:[internship,setinternship]}}>
             <Navigate />
-            <Projects />
-        </div>
+            <Internships />
+        </InternshipProvider>
     );
 }
 
-export default Collab;
+export default WorkAtMec;

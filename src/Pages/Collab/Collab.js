@@ -21,23 +21,7 @@ const Collab = (props) => {
 		});
         
     },[]);
-    // useEffect(()=>{
-        
-    //     // let projectId='-MOGbEz3K3a1loPjp-1R';
-    //     // getProject(projectId).then(async function(snapshot) {
-    //     //     let messageObject=snapshot.val();
-    //     //     console.log(messageObject);
-    //     //     // const result = Object.keys(messageObject).map(key => ({
-    //     //     //     ...messageObject[key],
-    //     //     //     id:key
-    //     //     //   }));
-    //     //     //   setProject(result);
-	// 	// }).catch(function(error) {
-	// 	// 	alert('Something went wrong');
-	// 	// 	console.log(error);
-	// 	// });
-        
-    // },[]);
+  
     return (
         <ProjectProvider value={{projects:projects,project:[project,setProject]}}>
             <Navigate />
