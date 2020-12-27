@@ -1,0 +1,116 @@
+.form-page {
+    background-color: #ffe1e1;
+    height: 110vh;
+}
+
+.main-container {
+    background-color: #fff;
+    width: 50%;
+    margin: auto;
+    padding: 20px 80px;
+    height: 100%;
+}
+
+form input, form textarea{
+    background-color: #efefef;
+    border: none;
+    width: 100%;
+    height: 50px;
+    padding: 8px;
+}
+
+input:focus {
+    outline-color:#B12023 ;
+}
+
+textarea:focus {
+    outline-color:#B12023 ;
+}
+
+::placeholder {
+    color: #a3a3a3;
+    font-size: 14px;
+}
+
+form textarea {
+    min-height: 130px;
+}
+
+.form-header {
+    font-family: 'Raleway', sans-serif;
+}
+
+.form-field {
+    margin: 18px 0px
+}
+
+.form-field-title {
+    font-size: 17px;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.submit-container {
+    text-align: center;
+}
+
+.submit-btn {
+    border: none;
+    width: 120px;
+    height: 50px;
+    border-radius: 10px;
+    background-color: #A20003;
+    color: white;
+}
+
+.submit-btn:focus {
+    outline: none;
+}
+.submit-btn:hover {
+    background-color: #8a0002;
+}
+
+hr {
+    width: 100px;
+    background-color: #A20003;
+    border: 3px solid#A20003 ;
+    margin: 0px;
+    margin-bottom: 30px;
+}
+
+@media (max-width: 1100px)
+{
+    .main-container{
+        width: 90%;
+        padding: 10px 15px;
+    }
+    .form-field {
+        margin: 10px 0px
+    }
+    
+    .form-field-title{
+        font-size: 15px;
+    }
+    ::placeholder {
+        font-size: 12px;
+    }
+    .form-page {
+        height: 110vh;
+    }
+    .submit-btn {
+        margin-top: 10px;
+    }
+}
+
+@media (min-height: 500px) and (max-width: 330px)
+{
+    .form-page {
+        height: 130vh;
+    }
+}
+
+@media(min-height: 700px)
+{
+    .form-page {
+        height: 100vh;
+    }
+}
