@@ -23,23 +23,25 @@ const Navigate = () => {
         >
           <span className="navbar-toggler-icon"></span>
         </button>
-        <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
+        <div className="collapse navbar-collapse" id="navbarTogglerDemo02" >
           <ul className="navbar-nav ml-auto mt-2 mt-lg-0">
             <li className="nav-item ">
-              <span
+              <button 
                 onClick={() => setShowNewProjectModal(true)}
                 className="av-link"
               >
                 New Project  
-              </span>
+              </button>
+              &nbsp;
+              &nbsp;
             </li>
             <li className="nav-item ">
-              <span
+              <button 
                 onClick={() => {signOut()}}
                 className="av-link"
               >
                 Sign Out
-              </span>
+              </button>
             </li>
           </ul>
         </div>

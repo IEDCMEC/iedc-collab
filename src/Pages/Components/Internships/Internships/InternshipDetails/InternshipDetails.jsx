@@ -47,19 +47,19 @@ const InternshipDetails = () => {
           className={"p-5 shadow-bottom heading col-sm background-color-white"}
         >
           <div className={"flex-grow-1"}>
-            <div>
+            <div className={"feature"}>
               {internship[0].name}
             </div>
           </div>
           <div className={" fix-flex left-right-margin"}>
             <div>
-              <h5 className={"font-weight-light"}>{internship[0].leader_name}</h5>
+              <h5 className={"feature"}>{internship[0].leader_name}</h5>
             </div>
           </div>
           <div className={"fix-flex"}>
             <div>
-              <h5 className={"font-weight-light"}>{email}</h5>
-              <h5 className={"font-weight-light"}>{phoneNumber}</h5>
+              <h5 className={"feature"}>{email}</h5>
+              <h5 className={"feature"}>{phoneNumber}</h5>
             </div>
           </div>
         </Col>

@@ -1,28 +1,32 @@
 @import "src/index";
-
-.heading{
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+.heading {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
 
-.left-right-margin{
-  border-right: 1px solid $color-2;
-  border-left: 1px solid $color-2;
+.left-right-margin {
+    border-right: 1px solid $color-2;
+    border-left: 1px solid $color-2;
 }
 
-.fix-flex{
-  flex-grow: 1;
-  display: flex;
-  justify-content: center;
+.fix-flex {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
 }
 
-.shadow-bottom{
-  box-shadow: 2px 0 5px rgba(0,0,0,0.32);
-}
-@media (min-width:350px) { 
- .contents { 
-    background-color: white;
-  }
+.feature {
+    font-size: 26px;
+    font-weight: 450;
 }
 
+.shadow-bottom {
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.32);
+}
+
+@media (min-width:350px) {
+    .contents {
+        background-color: white;
+    }
+}
