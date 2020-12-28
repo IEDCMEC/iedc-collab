@@ -7,9 +7,9 @@ import InternshipsView from "./Internships/Internships";
 const Internships = () => {
   return (
     <div>
-      <InternshipsView/>
+      <InternshipsView />
     </div>
   );
-}
+};
 
 export default Internships;
