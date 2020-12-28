@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import NewProjectModal from "../NewProjectModal/NewProjectModal";
 import "./cards.css";
-import {signOut} from '../../../Firebase/firebase';
+import { signOut } from "../../../Firebase/firebase";
 
 const Navigate = () => {
   const [showNewProjectModal, setShowNewProjectModal] = useState(false);
@@ -12,7 +12,7 @@ const Navigate = () => {
         <a className="navbar-brand" href="/">
           <i className="fa fa-chevron-left"></i> Home
         </a>
-        <button
+        {/* <button
           className="navbar-toggler"
           type="button"
           data-toggle="collapse"
@@ -22,7 +22,7 @@ const Navigate = () => {
           aria-label="Toggle navigation"
         >
           <span className="navbar-toggler-icon"></span>
-        </button>
+        </button> */}
         <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
           <ul className="navbar-nav ml-auto mt-2 mt-lg-0">
             <li className="nav-item ">
@@ -30,12 +30,14 @@ const Navigate = () => {
                 onClick={() => setShowNewProjectModal(true)}
                 className="av-link"
               >
-                New Project  
+                New Project
               </span>
             </li>
             <li className="nav-item ">
               <span
-                onClick={() => {signOut()}}
+                onClick={() => {
+                  signOut();
+                }}
                 className="av-link"
               >
                 Sign Out
