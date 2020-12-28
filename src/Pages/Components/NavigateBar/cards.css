@@ -1,218 +1,230 @@
+button {
+    background: #880061;
+    border-radius: 8px;
+    color: white;
+}
+
+button:hover {
+    background-color: #b1006a;
+}
+
 .Cards_team {
-  background-color: white;
+    background-color: white;
 }
 
 .brand-name {
-  margin-left: 300px;
+    margin-left: 300px;
 }
 
 .navbar .nav-item {
-  cursor: pointer;
+    cursor: pointer;
 }
 
 .btn-primary:hover,
 .btn-primary:focus {
-  background-color: #108d6f;
-  border-color: #108d6f;
-  box-shadow: none;
-  outline: none;
+    background-color: #108d6f;
+    border-color: #108d6f;
+    box-shadow: none;
+    outline: none;
 }
 
 .btn-primary {
-  color: #fff;
-  background-color: #007b5e;
-  border-color: #007b5e;
+    color: #fff;
+    background-color: #007b5e;
+    border-color: #007b5e;
 }
 
 section {
-  padding: 60px 0;
+    padding: 60px 0;
 }
 
 section .section-title {
-  text-align: center;
-  color: white;
-  margin-bottom: 50px;
-  text-transform: uppercase;
-  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
-    "Lucida Sans", Arial, sans-serif;
+    text-align: center;
+    color: white;
+    margin-bottom: 50px;
+    text-transform: uppercase;
+    font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif;
 }
+
 #team .card {
-  border: none;
-  background: white;
-  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.32);
-  border-radius: 20%;
+    border: none;
+    background: white;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.32);
+    border-radius: 20%;
 }
 
 .image-flip:hover .backside,
 .image-flip.hover .backside {
-  -webkit-transform: rotateY(0deg);
-  -moz-transform: rotateY(0deg);
-  -o-transform: rotateY(0deg);
-  -ms-transform: rotateY(0deg);
-  transform: rotateY(0deg);
-  border-radius: 20%;
+    -webkit-transform: rotateY(0deg);
+    -moz-transform: rotateY(0deg);
+    -o-transform: rotateY(0deg);
+    -ms-transform: rotateY(0deg);
+    transform: rotateY(0deg);
+    border-radius: 20%;
 }
 
 .image-flip:hover .frontside,
 .image-flip.hover .frontside {
-  -webkit-transform: rotateY(180deg);
-  -moz-transform: rotateY(180deg);
-  -o-transform: rotateY(180deg);
-  transform: rotateY(180deg);
-  border-radius: 20%;
+    -webkit-transform: rotateY(180deg);
+    -moz-transform: rotateY(180deg);
+    -o-transform: rotateY(180deg);
+    transform: rotateY(180deg);
+    border-radius: 20%;
 }
 
 .mainflip {
-  -webkit-transition: 1s;
-  -webkit-transform-style: preserve-3d;
-  -ms-transition: 1s;
-  -moz-transition: 1s;
-  -moz-transform: perspective(1000px);
-  -moz-transform-style: preserve-3d;
-  -ms-transform-style: preserve-3d;
-  transition: 1s;
-  transform-style: preserve-3d;
-  position: relative;
+    -webkit-transition: 1s;
+    -webkit-transform-style: preserve-3d;
+    -ms-transition: 1s;
+    -moz-transition: 1s;
+    -moz-transform: perspective(1000px);
+    -moz-transform-style: preserve-3d;
+    -ms-transform-style: preserve-3d;
+    transition: 1s;
+    transform-style: preserve-3d;
+    position: relative;
 }
 
 .frontside {
-  position: relative;
-  -webkit-transform: rotateY(0deg);
-  -ms-transform: rotateY(0deg);
-  z-index: 2;
-  margin-bottom: 30px;
+    position: relative;
+    -webkit-transform: rotateY(0deg);
+    -ms-transform: rotateY(0deg);
+    z-index: 2;
+    margin-bottom: 30px;
 }
 
 .backside {
-  position: absolute;
-  top: 0;
-  left: 0;
-  background: white;
-  -webkit-transform: rotateY(-180deg);
-  -moz-transform: rotateY(-180deg);
-  -o-transform: rotateY(-180deg);
-  -ms-transform: rotateY(-180deg);
-  transform: rotateY(-180deg);
-  -webkit-box-shadow: 5px 7px 9px -4px rgb(158, 158, 158);
-  -moz-box-shadow: 5px 7px 9px -4px rgb(158, 158, 158);
-  box-shadow: 5px 7px 9px -4px rgb(158, 158, 158);
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: white;
+    -webkit-transform: rotateY(-180deg);
+    -moz-transform: rotateY(-180deg);
+    -o-transform: rotateY(-180deg);
+    -ms-transform: rotateY(-180deg);
+    transform: rotateY(-180deg);
+    -webkit-box-shadow: 5px 7px 9px -4px rgb(158, 158, 158);
+    -moz-box-shadow: 5px 7px 9px -4px rgb(158, 158, 158);
+    box-shadow: 5px 7px 9px -4px rgb(158, 158, 158);
 }
 
 .frontside,
 .backside {
-  -webkit-backface-visibility: hidden;
-  -moz-backface-visibility: hidden;
-  -ms-backface-visibility: hidden;
-  backface-visibility: hidden;
-  -webkit-transition: 1s;
-  -webkit-transform-style: preserve-3d;
-  -moz-transition: 1s;
-  -moz-transform-style: preserve-3d;
-  -o-transition: 1s;
-  -o-transform-style: preserve-3d;
-  -ms-transition: 1s;
-  -ms-transform-style: preserve-3d;
-  transition: 1s;
-  transform-style: preserve-3d;
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    -ms-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-transition: 1s;
+    -webkit-transform-style: preserve-3d;
+    -moz-transition: 1s;
+    -moz-transform-style: preserve-3d;
+    -o-transition: 1s;
+    -o-transform-style: preserve-3d;
+    -ms-transition: 1s;
+    -ms-transform-style: preserve-3d;
+    transition: 1s;
+    transform-style: preserve-3d;
 }
 
 .frontside .card,
 .backside .card {
-  min-height: 312px;
+    min-height: 312px;
 }
 
 .backside .card a {
-  font-size: 18px;
-  color: #007b5e !important;
+    font-size: 18px;
+    color: #007b5e !important;
 }
 
 .frontside .card .card-title,
 .backside .card .card-title {
-  color: tomato;
-  position: relative;
+    color: tomato;
+    position: relative;
 }
 
 .frontside .card .card-body img {
-  width: 200px;
-  height: 200px;
+    width: 200px;
+    height: 200px;
 }
 
 .frontside .card .card-body i {
-  position: absolute;
-  margin-left: 80px;
+    position: absolute;
+    margin-left: 80px;
 }
 
 .footer-main {
-  position: fixed;
-  bottom: 0;
-
-  border-radius: 10%;
-  margin-top: 10px;
-  height: 100px;
-  width: 50%;
+    position: fixed;
+    bottom: 0;
+    border-radius: 10%;
+    margin-top: 10px;
+    height: 100px;
+    width: 50%;
 }
 
 .footer-second {
-  background-color: white;
+    background-color: white;
 }
+
 .footer-second p {
-  color: tomato;
-  padding-top: 5px;
+    color: tomato;
+    padding-top: 5px;
 }
+
 .footer-second a {
-  color: tomato;
+    color: tomato;
 }
+
 .footer-icon i {
-  color: black;
-  border: 2px solid tomato;
-  border-radius: 4px;
-  padding: 10px 13px;
-  margin-right: 5px;
+    color: black;
+    border: 2px solid tomato;
+    border-radius: 4px;
+    padding: 10px 13px;
+    margin-right: 5px;
 }
+
 .footer-icon i:hover {
-  color: black;
-  transition: 0.5s;
-  cursor: pointer;
-  border-color: #fff;
-  background: rgba(255, 255, 255, 0.05);
-  -webkit-transform: scale(0.93);
-  -moz-transform: scale(0.93);
-  -ms-transform: scale(0.93);
-  transform: scale(0.93);
+    color: black;
+    transition: 0.5s;
+    cursor: pointer;
+    border-color: #fff;
+    background: rgba(255, 255, 255, 0.05);
+    -webkit-transform: scale(0.93);
+    -moz-transform: scale(0.93);
+    -ms-transform: scale(0.93);
+    transform: scale(0.93);
 }
 
 @media screen and (min-width: 320px) and (max-width: 360px) {
-  .brand-name {
-    display: none;
-  }
-
-  .footer-second {
-    width: 100%;
-    height: 100%;
-  }
-  .footer-second p {
-    margin-bottom: 3px !important;
-
-    font-size: 10px !important;
-  }
-  .footer-icon i {
-    align-content: center;
-    padding: 7px 8px !important;
-  }
+    .brand-name {
+        display: none;
+    }
+    .footer-second {
+        width: 100%;
+        height: 100%;
+    }
+    .footer-second p {
+        margin-bottom: 3px !important;
+        font-size: 10px !important;
+    }
+    .footer-icon i {
+        align-content: center;
+        padding: 7px 8px !important;
+    }
 }
+
 @media screen and (min-width: 375px) and (max-width: 660px) {
-  .brand-name {
-    margin-left: 0px;
-    size: 10px;
-  }
+    .brand-name {
+        margin-left: 0px;
+        size: 10px;
+    }
 }
 
 @media screen and (min-width: 660px) and (max-width: 960px) {
-  .brand-name {
-    margin-left: 10px;
-  }
-  .frontside .card .card-body img {
-    width: 150px;
-    height: 180px;
-  }
+    .brand-name {
+        margin-left: 10px;
+    }
+    .frontside .card .card-body img {
+        width: 150px;
+        height: 180px;
+    }
 }
