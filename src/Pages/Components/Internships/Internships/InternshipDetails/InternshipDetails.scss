@@ -16,6 +16,7 @@
     justify-content: center;
 }
 
+<<<<<<< HEAD
 .shadow-bottom {
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.32);
 }
@@ -31,5 +32,19 @@
         font-size: 4vw;
         margin: auto;
         padding: 0.2rem;
+=======
+.feature {
+    font-size: 26px;
+    font-weight: 450;
+}
+
+.shadow-bottom {
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.32);
+}
+
+@media (min-width:350px) {
+    .contents {
+        background-color: white;
+>>>>>>> a354a02c94a034fd545037f22bc709e96d1a00e4
     }
 }
