@@ -8,6 +8,32 @@ button:hover {
     background-color: #b1006a;
 }
 
+.feature {
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    transform: translate(-60%, 25%);
+    transition: 350ms;
+    cursor: pointer;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+    margin-left: 80%;
+}
+
+.dropdown-content {
+    display: block;
+    position: absolute;
+    background-color: whitesmoke;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    padding: 12px;
+    z-index: 1;
+}
+
 .Cards_team {
     background-color: white;
 }
@@ -194,6 +220,15 @@ section .section-title {
     transform: scale(0.93);
 }
 
+@media screen and (max-width:350px) {
+    button:hover {
+        background-color: white;
+    }
+    .dropdown {
+        margin-left: 42% !important;
+    }
+}
+
 @media screen and (min-width: 320px) and (max-width: 360px) {
     .brand-name {
         display: none;
@@ -210,12 +245,33 @@ section .section-title {
         align-content: center;
         padding: 7px 8px !important;
     }
+    button:hover {
+        background-color: white;
+    }
+    .dropdown {
+        margin-left: 45% !important;
+    }
+}
+
+@media screen and (min-width: 360px) and (max-width:375px) {
+    button:hover {
+        background-color: white;
+    }
+    .dropdown {
+        margin-left: 50% !important;
+    }
 }
 
 @media screen and (min-width: 375px) and (max-width: 660px) {
     .brand-name {
         margin-left: 0px;
         size: 10px;
+    }
+    button:hover {
+        background-color: white;
+    }
+    .dropdown {
+        margin-left: 60% !important;
     }
 }
 
@@ -226,5 +282,17 @@ section .section-title {
     .frontside .card .card-body img {
         width: 150px;
         height: 180px;
+    }
+    button:hover {
+        background-color: white;
+    }
+    .dropdown {
+        margin-left: 75% !important;
+    }
+}
+
+@media screen and (min-width:960px) and (max-width: 1000px) {
+    button:hover {
+        background-color: white;
     }
 }
