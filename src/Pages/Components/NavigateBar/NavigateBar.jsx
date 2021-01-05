@@ -5,14 +5,46 @@ import { signOut } from "../../../Firebase/firebase";
 
 const Navigate = () => {
   const [showNewProjectModal, setShowNewProjectModal] = useState(false);
+  const [showNavContents,setShowNavContents]=useState(false);
 
+  const Navcontents = () => {
+    if(showNavContents)
+    return(
+      <div className="dropdown">
+          <ul className="navbar-nav ml-auto mt-2 mt-lg-0 dropdown-content">
+            <li className="nav-item ">
+              <span
+                onClick={() => setShowNewProjectModal(true)}
+                className="av-link"
+              >
+                New Project
+              </span>
+            </li>
+            &nbsp;&nbsp;
+            <li className="nav-item ">
+              <span
+                onClick={() => {
+                  signOut();
+                }}
+                className="av-link"
+              >
+                Sign Out
+              </span>
+            </li>
+          </ul>
+        </div>
+    );
+    else return(<div></div>);
+  }
   return (
     <div className="Navigate">
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
         <a className="navbar-brand" href="/">
           <i className="fa fa-chevron-left"></i> Home
         </a>
-        <button
+        <div className="feature">
+        <button 
+          onClick={() => setShowNavContents(!showNavContents)}
           className="navbar-toggler"
           type="button"
           data-toggle="collapse"
@@ -23,6 +55,7 @@ const Navigate = () => {
         >
           <span className="navbar-toggler-icon"></span>
         </button>
+        </div>
         <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
           <ul className="navbar-nav ml-auto mt-2 mt-lg-0">
             <li className="nav-item ">
@@ -46,11 +79,13 @@ const Navigate = () => {
             </li>
           </ul>
         </div>
+        
       </nav>
       <NewProjectModal
         show={showNewProjectModal}
         onHide={() => setShowNewProjectModal(false)}
       />
+      <Navcontents />
     </div>
   );
 };
