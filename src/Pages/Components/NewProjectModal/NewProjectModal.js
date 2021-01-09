@@ -30,8 +30,7 @@ const NewProjectForm = ({ onClose }) => {
           const { links } = values;
           values.links = links.split(",").map((link) => link.trim());
           doCreateProject(values.title, values.desc, values.links)
-          actions.resetForm();
-          window.location.reload(false);
+          actions.resetForm(); 
           onClose();
         }}
       >

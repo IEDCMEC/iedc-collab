@@ -34,7 +34,6 @@ const ProjectDetails = (props) => {
   }, [project]);
   function deleteProj(id) {
     doDeleteProject(id);
-    window.location.reload(false);
   }
   return (
     <div className={"d-flex h-100 flex-column "}>
