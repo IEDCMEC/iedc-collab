@@ -5,12 +5,14 @@ import ProjectContext from "../../../../Collab/ProjectContext";
 import { AuthContext } from "../../../../../Firebase/Auth/Auth";
 import { doDeleteProject, getUser } from "../../../../../Firebase/firebase";
 import { propTypes } from "react-bootstrap/esm/Image";
+import { useHistory } from 'react-router';
 const ProjectDetails = (props) => {
   const { project } = useContext(ProjectContext);
   const { currentUser } = useContext(AuthContext);
   const [deleteProject, setDeleteProject] = useState(false);
   const [email, setEmail] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
+  const history = useHistory();
   // console.log(project[0].id)
   useEffect(() => {
     if (project[0].leader_id !== undefined) {
@@ -34,7 +36,7 @@ const ProjectDetails = (props) => {
   }, [project]);
   function deleteProj(id) {
     doDeleteProject(id);
-    window.history.go(0);
+    history.go(0);
   }
   return (
     <div className={"d-flex h-100 flex-column "}>

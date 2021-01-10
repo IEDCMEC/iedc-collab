@@ -5,6 +5,7 @@ import { Formik } from "formik";
 import * as yup from "yup";
 import { Form } from "react-bootstrap";
 import { doCreateProject } from '../../../Firebase/firebase';
+import { useHistory } from 'react-router';
 
 // import ReactChipInput from "react-chip-input";
 // import Chips from "react-chips";
@@ -16,7 +17,7 @@ const NewProjectForm = ({ onClose }) => {
     desc: yup.string().required().min(10),
     links: yup.string().optional().min(4),
   });
-
+  const history = useHistory();
   return (
     <div className="newProjectForm">
       <Formik
@@ -31,7 +32,7 @@ const NewProjectForm = ({ onClose }) => {
           values.links = links.split(",").map((link) => link.trim());
           doCreateProject(values.title, values.desc, values.links)
           actions.resetForm(); 
-          window.history.go(0);
+          history.go(0);
           onClose();
         }}
       >
