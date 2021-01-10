@@ -31,6 +31,7 @@ const NewProjectForm = ({ onClose }) => {
           values.links = links.split(",").map((link) => link.trim());
           doCreateProject(values.title, values.desc, values.links)
           actions.resetForm(); 
+          window.history.go(0);
           onClose();
         }}
       >

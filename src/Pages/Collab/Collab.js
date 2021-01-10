@@ -20,7 +20,7 @@ const Collab = (props) => {
 			console.log(error);
 		});
         
-    },[projects]);
+    },[]);
   
     return (
         <ProjectProvider value={{projects:projects,project:[project,setProject]}}>

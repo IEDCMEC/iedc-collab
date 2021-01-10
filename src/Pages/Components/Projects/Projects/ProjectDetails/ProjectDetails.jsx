@@ -34,6 +34,7 @@ const ProjectDetails = (props) => {
   }, [project]);
   function deleteProj(id) {
     doDeleteProject(id);
+    window.history.go(0);
   }
   return (
     <div className={"d-flex h-100 flex-column "}>
