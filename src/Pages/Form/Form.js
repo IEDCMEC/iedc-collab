@@ -31,7 +31,7 @@ const Form = () => {
 
                 <div className="main-form" style={{ display: displayMainForm }}>
                     <div className="form-header">
-                        <h3>CONTACT US</h3>
+                        <h3>ADD INTERNSHIP</h3>
                     </div>
                     <hr />
                     <form action="" method="" onSubmit="">

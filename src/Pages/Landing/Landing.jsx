@@ -38,10 +38,8 @@ const Landing = (props) => {
             <Col className={"mt-3 mt-md-0"} md={8}>
               <h4>IEDC COLLAB PLATFORM</h4>
               <p>
-                What is collab and lorem ipsum des dolor set emet.What is collab
-                and lorem ipsum des dolor set emet.What is collab and lorem
-                ipsum des dolor set emet.What is collab and lorem ipsum des
-                dolor set emet.
+                  Find, share and collaborate on projects with other students
+                  on-campus.
               </p>
             </Col>
             <Col className={"d-flex justify-content-center align-items-center"}>
@@ -57,10 +55,9 @@ const Landing = (props) => {
             <Col className={"mt-3 mt-md-0"} md={8}>
               <h4>WORK AT MEC</h4>
               <p>
-                What is collab and lorem ipsum des dolor set emet.What is collab
-                and lorem ipsum des dolor set emet.What is collab and lorem
-                ipsum des dolor set emet.What is collab and lorem ipsum des
-                dolor set emet.
+                  Internship opportunities on a project basis.
+
+                  An intiative in association with Placement Cell.
               </p>
             </Col>
             <Col className={"d-flex justify-content-center align-items-center"}>
