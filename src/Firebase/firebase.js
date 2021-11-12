@@ -53,10 +53,10 @@ export const signIn = async () => {
 	} catch (error) {
 		alert('Something is wrong, please check network connection')
 		console.log(error);
-		var errorCode = error.code;
-		var errorMessage = error.message;
-		var email = error.email;
-		var credential = error.credential;
+		// var errorCode = error.code;
+		// var errorMessage = error.message;
+		// var email = error.email;
+		// var credential = error.credential;
 	}
 };
 

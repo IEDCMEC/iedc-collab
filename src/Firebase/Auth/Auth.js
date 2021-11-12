@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 //import app from "./base.js";
 import firebase from "firebase";
-import validate from './Validate'
 
 
 export const AuthContext = React.createContext();

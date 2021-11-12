@@ -1,11 +1,9 @@
-import React, { useContext,useState } from "react";
+import React, { useContext } from "react";
 import { signIn,signOut } from '../../Firebase/firebase';
 import GoogleButton from 'react-google-button';
 import { AuthContext,validUserContext } from "../../Firebase/Auth/Auth";
-import { Container, Row, Col } from "react-bootstrap";
-import { useHistory } from "react-router-dom";
+import { Row} from "react-bootstrap";
 import {withRouter, Redirect} from 'react-router-dom'
-import logIn from './googleLogin'
 import logo from '../../assets/logo.png'
 
 import './Login.css'
