@@ -5,7 +5,6 @@ import Collab from "../../assets/collab.png";
 import Work from "../../assets/work.png";
 import Logo from "../../assets/logo.svg";
 import { useHistory } from 'react-router-dom';
-import { signOut } from '../../Firebase/firebase';
 import 'firebase/auth'
 
 

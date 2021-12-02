@@ -4,7 +4,6 @@ import { Row, Col, Button } from "react-bootstrap";
 import ProjectContext from "../../../../Collab/ProjectContext";
 import { AuthContext } from "../../../../../Firebase/Auth/Auth";
 import { doDeleteProject, getUser } from "../../../../../Firebase/firebase";
-import { propTypes } from "react-bootstrap/esm/Image";
 import { useHistory } from 'react-router';
 const ProjectDetails = (props) => {
   const { project } = useContext(ProjectContext);

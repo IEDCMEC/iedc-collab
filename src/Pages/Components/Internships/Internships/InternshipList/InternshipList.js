@@ -3,7 +3,6 @@ import InternshipBox from "./InternshipBox";
 import { Col } from "react-bootstrap";
 import InternshipContext from "../../../../WorkAtMEC/InternshipContext";
 import { getInternship } from "../../../../../Firebase/firebase";
-import { propTypes } from "react-bootstrap/esm/Image";
 const InternshipList = (props) => {
   const { internships } = useContext(InternshipContext);
   const { internship } = useContext(InternshipContext);
