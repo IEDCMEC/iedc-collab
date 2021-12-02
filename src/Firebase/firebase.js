@@ -118,7 +118,7 @@ export const doDeleteProject = (project_id) => {
 						.ref("projects/" + project_id);
 
 	projectRef.child("leader_id").once("value").then(function(snapshot) {
-		if(snapshot.val() != user.uid) {
+		if(snapshot.val() !== user.uid) {
 			return;
 		}
 	});
@@ -187,7 +187,7 @@ export const doDeleteInternship = (internship_id) => {
 						.ref("internships/" + internship_id);
 
 	internshipRef.child("leader_id").once("value").then(function(snapshot) {
-		if(snapshot.val() != user.uid) {
+		if(snapshot.val() !== user.uid) {
 			return;
 		}
 	});

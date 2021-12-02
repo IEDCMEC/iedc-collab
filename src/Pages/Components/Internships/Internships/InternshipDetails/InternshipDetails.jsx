@@ -28,13 +28,6 @@ const InternshipDetails = (props) => {
         });
     }
     console.log(currentCompany);
-    // if(currentCompany.uid==internship[0].leader_id){
-    //   setDeleteinternship(true);
-    //   console.log(deleteinternship)
-    // }
-    // else{
-    //   setDeleteinternship(false);
-    // }
   }, [internship]);
   function deleteProj(id) {
     doDeleteInternship(id);
