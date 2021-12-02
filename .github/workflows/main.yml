@@ -13,7 +13,7 @@ jobs:
         env:
           CI: false
       - name: Install Dependencies
-        run: npm install
+        run: yarn install
       - name: Build
         env:
           CI: false
