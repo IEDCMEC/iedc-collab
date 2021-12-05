@@ -17,11 +17,11 @@ export const AuthProvider = ({ children }) => {
       setCurrentUser(user)
       setPending(false)
       console.log("out set validity  " + validUserState + user + pending)
-      if(user.email.includes("mec.ac.in"))
+      // if(user.email.includes("mec.ac.in"))
         setValidity(true)
-      else
-       setValidity(false)
-        console.log("in set validity  " + validUserState + user + pending)
+      // else
+      //  setValidity(false)
+      //   console.log("in set validity  " + validUserState + user + pending)
 
     });
   }, []);
