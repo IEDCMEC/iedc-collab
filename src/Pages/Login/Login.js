@@ -34,10 +34,36 @@ const GoogleLogIn = () =>{
     }*/
     //&& validUserState
     //&& currentUser.email.includes("vitstudent.ac.in")
+    // if(!!currentUser ){
+    //     if(currentUser.email.includes("mec.ac.in")){
+    //         console.log("in redirect" + validUserState)
+    //         return  <Redirect to="/" />
+    //     }
+    //     else{
+    //         return (
+
+    // <div>
+    //  <h3>Please Sign In with @mec.ac.in </h3>
+    // <GoogleButton  
+    //     label = "sign in"
+    //     onClick={
+    //         () => { 
+    //             signIn();
+    //             console.log('Google button clicked') 
+    //         }
+    //     }
+    // />
+    // </div>
+    
+    // )
+    //     }
+        
+    // }
     if(!!currentUser ){
      
         console.log("in redirect" + validUserState)
         return  <Redirect to="/" />
+  
 
  
         
