@@ -5,33 +5,27 @@
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: center;
-    
+    justify-content: auto;
+   
 }
-
+ 
 .login-container{
     align-self:center ;
     justify-self: center;
     background-color: #fff;
     width: 60%;
     margin: auto;
-    padding: 20px 80px;
+    padding: 20px;
     height: 70%;
     -webkit-box-shadow: 0px 0px 16px 0px rgba(46, 24, 24, 0.16);
     -moz-box-shadow: 0px 0px 16px 0px rgba(46, 24, 24, 0.16);
     box-shadow: 0px 0px 16px 0px rgba(46, 24, 24, 0.16);
     border-radius: 0.5rem;
-    
+   
 }
+ 
 
-.signInButton {
-  float:none;
-  position:static;
-  display:block;
-  margin:auto;
-  width:max-content;
-}
-
+ 
 .intro{
     text-align: center;
     padding:1.5rem;
@@ -42,23 +36,25 @@
     font-size: 2rem;
     font-weight: 700;
 }
-
-
+ 
+ 
 @media screen and (min-width: 360px) and (max-width: 960px) {
     .main{
         height:120vh;
     }
-
+    svg{margin-left: 0px;}
+ 
     .login-container{
-        width:80%;
-        height:85% ;
+        width:50%;
+        height:70% ;
+        margin-bottom: 25px;
     }
-
+ 
     .intro{
         padding-top:0.75rem;
         font-size:1rem;
     }
-
+ 
     .intro2{
         padding:0rem;
         font-size:1.5rem;
