@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { GoogleLogin, GoogleLogout } from 'react-google-login';
 import './googlebutton.css'
 
-const clientId = "Your-Client-Id";
+
+const clientId = "754647911412-29ouku2r6o5bal74t02f2gkc10e5j1cu.apps.googleusercontent.com";
 
 function Login() {
 
