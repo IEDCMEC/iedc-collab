@@ -5,6 +5,7 @@ import { AuthContext,validUserContext } from "../../Firebase/Auth/Auth";
 import { Row} from "react-bootstrap";
 import {withRouter, Redirect} from 'react-router-dom'
 import logo from '../../assets/logo.png'
+import Login from './Glogin'
 
 import './Login.css'
 /*
@@ -120,7 +121,7 @@ const login = () => {
                     <p className="intro">
                         Welcome to Collab, a Place exclusively for MECians to find like minded people with desired skillsets to Collaborate
                         on your project.
-                        <br></br>
+                        
                         Work At Mec also provides internship opportunities listed by the Placement Cell
                     </p>
                     <p className="intro2">
@@ -128,7 +129,7 @@ const login = () => {
                     </p>
                 </Row>
                 <Row className={"d-flex justify-content-center align-items-center"}>
-                    <GoogleLogIn />
+                    <Login />
                 </Row>
 
             </div>
