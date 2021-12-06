@@ -11,7 +11,12 @@ const ProjectDetails = (props) => {
   const [deleteProject, setDeleteProject] = useState(false);
   const [email, setEmail] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
+
   const history = useHistory();
+
+  let linkHeading;
+  
+
   // console.log(project[0].id)
   useEffect(() => {
     if (project[0].leader_id !== undefined) {
@@ -32,11 +37,23 @@ const ProjectDetails = (props) => {
     } else {
       setDeleteProject(false);
     }
+
+    if( project[0].links !== undefined){
+      linkHeading = "Links";
+    }else{
+      linkHeading = null;  }
+      // console.log(linkHeading)
+   
+
   }, [project]);
+  
   function deleteProj(id) {
     doDeleteProject(id);
     history.go(0);
   }
+ 
+
+
   return (
     <div className={"d-flex h-100 flex-column "}>
       {props.mobileComponentClicked ? (
@@ -88,7 +105,10 @@ const ProjectDetails = (props) => {
           <div>
             <h4>Description</h4>
             {project[0].desc}
-            <h4>Links</h4>
+          <h4>{linkHeading}</h4>
+        
+            
+            
             <a href="http://${links}" rel="noopener noreferrer" target="_blank">
               {project[0].links}
             </a>
