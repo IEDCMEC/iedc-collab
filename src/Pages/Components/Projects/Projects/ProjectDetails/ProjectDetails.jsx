@@ -109,7 +109,7 @@ const ProjectDetails = (props) => {
         
             
             
-            <a href="http://${links}" rel="noopener noreferrer" target="_blank">
+            <a href={project[0].links} rel="noopener noreferrer" target="_blank">
               {project[0].links}
             </a>
           </div>
