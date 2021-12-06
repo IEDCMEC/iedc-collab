@@ -106,11 +106,12 @@ const ProjectDetails = (props) => {
           <div>
             <h4>Description</h4>
             {project[0].desc}
-            <h4>{linkHeading}</h4>
 
-
-
-            <a href="http://${links}" rel="noopener noreferrer" target="_blank">
+          <h4>{linkHeading}</h4>
+        
+            
+            
+            <a href={project[0].links} rel="noopener noreferrer" target="_blank">
               {project[0].links}
             </a>
           </div>
