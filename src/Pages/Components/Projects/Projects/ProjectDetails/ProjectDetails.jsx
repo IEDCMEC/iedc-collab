@@ -15,7 +15,7 @@ const ProjectDetails = (props) => {
   const history = useHistory();
 
   let linkHeading;
-  
+
 
   // console.log(project[0].id)
   useEffect(() => {
@@ -38,20 +38,21 @@ const ProjectDetails = (props) => {
       setDeleteProject(false);
     }
 
-    if( project[0].links !== undefined){
+    if (project[0].links !== undefined) {
       linkHeading = "Links";
-    }else{
-      linkHeading = null;  }
-      // console.log(linkHeading)
-   
+    } else {
+      linkHeading = null;
+    }
+    // console.log(linkHeading)
+
 
   }, [project]);
-  
+
   function deleteProj(id) {
     doDeleteProject(id);
     history.go(0);
   }
- 
+
 
 
   return (
@@ -105,22 +106,28 @@ const ProjectDetails = (props) => {
           <div>
             <h4>Description</h4>
             {project[0].desc}
-          <h4>{linkHeading}</h4>
-        
-            
-            
+            <h4>{linkHeading}</h4>
+
+
+
             <a href="http://${links}" rel="noopener noreferrer" target="_blank">
               {project[0].links}
             </a>
           </div>
           {deleteProject ? (
-            <Button
+
+            <Button variant="danger" className="delete-btn"
               onClick={() => {
                 deleteProj(project[0].id);
               }}
             >
               Delete Project
             </Button>
+
+
+
+
+
           ) : null}
         </div>
       </Row>
