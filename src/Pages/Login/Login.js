@@ -89,22 +89,7 @@ const GoogleLogIn = () =>{
         
        // return  <Redirect to="/error" />
     }
-    return (
 
-    <div>
-     
-    <GoogleButton  
-        label = "sign in"
-        onClick={
-            () => { 
-                signIn();
-                console.log('Google button clicked') 
-            }
-        }
-    />
-    </div>
-    
-    )
 }
 
 const login = () => {
