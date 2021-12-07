@@ -8,7 +8,7 @@ import Collab from "./Pages/Collab/Collab";
 import WorkAtMEC from "./Pages/WorkAtMEC/WorkAtMEC";
 import Login from './Pages/Login/Login';
 import Form from './Pages/Form/Form'
-import { initialize } from './Firebase/firebase';
+import initialize from './Firebase/firebase';
 import PrivateRoute from './Firebase/Auth/PrivateRoute';
 initialize()
 function App() {
