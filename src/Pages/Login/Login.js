@@ -105,7 +105,6 @@ const login = () => {
                     <p className="intro">
                         Welcome to Collab, a Place exclusively for MECians to find like minded people with desired skillsets to Collaborate
                         on your project.
-
                     </p>
                     <p className="intro2">
                       
