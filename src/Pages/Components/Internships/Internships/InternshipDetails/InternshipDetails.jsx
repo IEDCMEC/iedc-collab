@@ -10,6 +10,7 @@ import {
 const InternshipDetails = (props) => {
   const { internship } = useContext(InternshipContext);
   const { currentCompany } = useContext(AuthContext);
+  // eslint-disable-next-line no-unused-vars
   const [deleteinternship, setDeleteinternship] = useState(false);
   const [email, setEmail] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
