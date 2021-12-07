@@ -105,11 +105,9 @@ const login = () => {
                     <p className="intro">
                         Welcome to Collab, a Place exclusively for MECians to find like minded people with desired skillsets to Collaborate
                         on your project.
-                        
-                        Work At Mec also provides internship opportunities listed by the Placement Cell
                     </p>
                     <p className="intro2">
-                        Sign in to Continue
+                      
                     </p>
                 </Row>
                 <Row className={"d-flex justify-content-center align-items-center"}>
