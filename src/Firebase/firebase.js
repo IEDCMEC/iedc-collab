@@ -1,4 +1,4 @@
-import firebase from "firebase";
+import firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/database";
 
@@ -14,14 +14,14 @@ const config = {
 // !!!!!!!!!!!!!!!!!!!!  Just for testing purposes. Should be removed at all costs before production deploy!!!!!!!!!!!!!!!!!!
 console.log(config)
 
-export const initialize = () => {
+const initialize = () => {
 	if (!firebase.apps.length) {
 		 firebase.initializeApp(config);
 	} else {
 		firebase.app(); // if already initialized, use that one
 	}
 };
-
+export default initialize;
 	
 // Authentication functions
 
