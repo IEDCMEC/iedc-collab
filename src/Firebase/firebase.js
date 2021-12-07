@@ -11,6 +11,8 @@ const config = {
     messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
 };
 
+// !!!!!!!!!!!!!!!!!!!!  Just for testing purposes. Should be removed at all costs before production deploy!!!!!!!!!!!!!!!!!!
+console.log(config)
 
 export const initialize = () => {
 	if (!firebase.apps.length) {
