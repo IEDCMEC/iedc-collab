@@ -10,6 +10,10 @@
     border-radius: 0.5rem;
     cursor: pointer;
   }
+  .card-2{
+    pointer-events: none;
+    opacity: 60%;
+  }
   h4{
     font-weight: 700;
     color: #4a4a4a
