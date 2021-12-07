@@ -4,8 +4,8 @@ import Button from "react-bootstrap/Button";
 import { Formik } from "formik";
 import * as yup from "yup";
 import { Form } from "react-bootstrap";
-import { doCreateProject } from '../../../Firebase/firebase';
-import { useHistory } from 'react-router';
+import { doCreateProject } from "../../../Firebase/firebase";
+import { useHistory } from "react-router";
 
 // import ReactChipInput from "react-chip-input";
 // import Chips from "react-chips";
@@ -13,13 +13,13 @@ import { useHistory } from 'react-router';
 
 const NewProjectForm = ({ onClose }) => {
   const newProjectSchema = yup.object({
-    title: yup.string().required().min(3),
-    desc: yup.string().required().min(10),
+    title: yup.string().required("Please add a valid title").min(3),
+    desc: yup.string().required("Please add a valid description").min(10),
     links: yup.string().optional().min(4),
   });
   const history = useHistory();
   return (
-    <div className="newProjectForm">
+    <div className='newProjectForm'>
       <Formik
         initialValues={{
           title: "",
@@ -30,63 +30,63 @@ const NewProjectForm = ({ onClose }) => {
         onSubmit={(values, actions) => {
           const { links } = values;
           values.links = links.split(",").map((link) => link.trim());
-          doCreateProject(values.title, values.desc, values.links)
-          actions.resetForm(); 
+          doCreateProject(values.title, values.desc, values.links);
+          actions.resetForm();
           history.go(0);
           onClose();
         }}
       >
         {(props) => (
           <Form>
-            <Form.Group controlId="formBasicTitle">
+            <Form.Group controlId='formBasicTitle'>
               <Form.Label>Project Name</Form.Label>
               <Form.Control
                 onBlur={props.handleBlur("title")}
                 value={props.values.title}
                 onChange={props.handleChange("title")}
-                type="text"
-                placeholder="Enter Project Title"
+                type='text'
+                placeholder='Enter Project Title'
               />
-              <Form.Text className="text-danger">
+              <Form.Text className='text-danger'>
                 {props.touched.title && props.errors.title}
               </Form.Text>
             </Form.Group>
 
-            <Form.Group controlId="formBasicDescription">
+            <Form.Group controlId='formBasicDescription'>
               <Form.Label>Project Description</Form.Label>
               <Form.Control
                 onBlur={props.handleBlur("desc")}
                 value={props.values.desc}
                 onChange={props.handleChange("desc")}
-                as="textarea"
-                placeholder="lorem ipsum dolor si amet..."
-                rows="3"
+                as='textarea'
+                placeholder='lorem ipsum dolor si amet...'
+                rows='3'
               />
-              <Form.Text className="text-danger">
+              <Form.Text className='text-danger'>
                 {props.touched.desc && props.errors.desc}
               </Form.Text>
             </Form.Group>
 
-            <Form.Group controlId="formLinks">
+            <Form.Group controlId='formLinks'>
               <Form.Label>Any Links (optional)</Form.Label>
               <Form.Control
                 onBlur={props.handleBlur("links")}
                 value={props.values.links}
                 onChange={props.handleChange("links")}
-                type="text"
-                placeholder="www.example.com, www.yahoo.com"
+                type='text'
+                placeholder='www.example.com, www.yahoo.com'
               />
-              <Form.Text className="text-muted">
+              <Form.Text className='text-muted'>
                 Please separate the links using commas
               </Form.Text>
-              <Form.Text className="text-danger">
+              <Form.Text className='text-danger'>
                 {props.touched.links && props.errors.links}
               </Form.Text>
             </Form.Group>
             <Button
-              variant="outline-danger"
-              type="submit"
-              size="sm"
+              variant='outline-danger'
+              type='submit'
+              size='sm'
               onClick={props.handleSubmit}
             >
               Submit
@@ -102,12 +102,12 @@ const NewProjectModal = (props) => {
   return (
     <Modal
       {...props}
-      size="lg"
-      aria-labelledby="contained-modal-title-vcenter"
+      size='lg'
+      aria-labelledby='contained-modal-title-vcenter'
       centered
     >
       <Modal.Header closeButton>
-        <Modal.Title id="contained-modal-title-vcenter">
+        <Modal.Title id='contained-modal-title-vcenter'>
           Create New Project
         </Modal.Title>
       </Modal.Header>
