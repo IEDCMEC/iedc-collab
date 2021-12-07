@@ -5,6 +5,7 @@ import ProjectContext from "../../../../Collab/ProjectContext";
 import { AuthContext } from "../../../../../Firebase/Auth/Auth";
 import { doDeleteProject, getUser } from "../../../../../Firebase/firebase";
 import { useHistory } from 'react-router';
+import "./ProjectDetails.scss";
 const ProjectDetails = (props) => {
   const { project } = useContext(ProjectContext);
   const { currentUser } = useContext(AuthContext);
@@ -65,7 +66,7 @@ const ProjectDetails = (props) => {
           </div>
           <div className={" flex-grow-1 left-right-margin"}>
             <div>
-              <h5 className={"text-size-responsive}"}>
+              <h5 className={"text-size-responsive"}>
                 {project[0].leader_name}
               </h5>
             </div>
@@ -86,9 +87,11 @@ const ProjectDetails = (props) => {
       <Row className={"p-5 flex-grow-1 overflow"}>
         <div className="contents">
           <div>
-            <h4>Description</h4>
+            <h4 className="desc">Description</h4>
+            <div className="Info">
             {project[0].desc}
-            <h4>Links</h4>
+            </div>
+            <h4 className="desc">Links</h4>
             <a href="http://${links}" rel="noopener noreferrer" target="_blank">
               {project[0].links}
             </a>
