@@ -31,7 +31,7 @@ const ProjectDetails = (props) => {
           console.log(error);
         });
     }
-    if (currentUser.uid == project[0].leader_id) {
+    if (currentUser.uid === project[0].leader_id) {
       setDeleteProject(true);
       console.log(deleteProject);
     } else {
