@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
 import { ProjectContext } from "../../contexts/ProjectContext";
-import Projects from "../Components/Projects/Projects";
 import ProjectsView from "../Components/Projects/Projects/Projects";
 import { ProjectProvider } from "./ProjectContext";
 

@@ -12,12 +12,17 @@ const ProjectList = (props) => {
         return (
           <div
             className="content post-item"
+            key={x.id}
             onClick={() => {
-              props.setMobileComponent(true);
+              // props.setMobileComponent(true);
               setProject(x);
             }}
           >
-            <ProjectBox name={x.name} teamLeader={x.leader_name} />
+            <ProjectBox
+              name={x.name}
+              teamLeader={x.leader_name}
+              projectId={x.id}
+            />
           </div>
         );
       })}

@@ -1,10 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Col } from "react-bootstrap";
 import "./ProjectList.scss";
 import PropTypes from "prop-types";
+import { ProjectContext } from "../../../../../contexts/ProjectContext";
 
 const ProjectBox = (props) => {
-  const { name, teamLeader } = props;
+  const { name, teamLeader, projectId } = props;
+  const { project: selectedProject } = useContext(ProjectContext);
+  const isSelected = projectId === selectedProject.id;
+  if (isSelected) {
+    console.log(name);
+  }
   return (
     <>
       <Col className={"p-3 mt-2 project-name-box"}>
@@ -23,4 +29,4 @@ ProjectBox.prototype = {
   skills: PropTypes.array,
 };
 
-export default ProjectBox
+export default ProjectBox;
