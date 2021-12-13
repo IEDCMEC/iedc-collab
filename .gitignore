@@ -28,3 +28,4 @@ package-lock.json
 .firebase
 firebase-debug.log
 .eslintcache
+yarn.lock
