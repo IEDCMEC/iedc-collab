@@ -48,7 +48,7 @@ const Landing = (props) => {
           <Row
           onClick={() => { history.push("/workatmec"); }}
             className={
-              "box mt-5 p-3 pt-4 mb-4 pb-4 justify-content center flex-column-reverse flex-md-row align-items-md-center"
+              "box mt-5 p-3 pt-4 mb-4 pb-4 justify-content center flex-column-reverse flex-md-row align-items-md-center card-2"
             }
           >
             <Col className={"mt-3 mt-md-0"} md={8}>
