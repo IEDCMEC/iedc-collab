@@ -17,11 +17,12 @@ const Landing = (props) => {
     <>
       <Container className={"landing"}>
         <h3 style={{ textAlign: "center" }}>Projects</h3>
-        {projects.map((project) => (
+
+        {/* {projects.map((project) => (
           <div>
             <h2>{project.name}</h2>
           </div>
-        ))}
+        ))} */}
       </Container>
     </>
   );
