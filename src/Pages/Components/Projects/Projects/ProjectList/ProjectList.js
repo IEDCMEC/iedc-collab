@@ -1,37 +1,28 @@
 import React, { useContext } from "react";
 import ProjectBox from "./ProjectBox";
 import { Col } from "react-bootstrap";
-import ProjectContext from "../../../../Collab/ProjectContext";
-import { getProject } from "../../../../../Firebase/firebase";
+import { ProjectContext } from "../../../../../contexts/ProjectContext";
+
 const ProjectList = (props) => {
-  const { projects } = useContext(ProjectContext);
-  const { project } = useContext(ProjectContext);
-  //    console.log(project[0])
-  function activeProject(id) {
-    getProject(id)
-      .then(async function (snapshot) {
-        let messageObject = snapshot.val();
-        messageObject.id = id;
-        project[1](messageObject);
-      })
-      .catch(function (error) {
-        alert("Something went wrong");
-        console.log(error);
-      });
-  }
+  const { projects, setProject } = useContext(ProjectContext);
+
   return (
     <Col className={" overflow "}>
       {projects.map((x) => {
         return (
           <div
             className="content post-item"
+            key={x.id}
             onClick={() => {
-              activeProject(x.id);
-              props.setMobileComponent(true);
-              console.log("true");
+              // props.setMobileComponent(true);
+              setProject(x);
             }}
           >
-            <ProjectBox name={x.name} teamLeader={x.leader_name} />
+            <ProjectBox
+              name={x.name}
+              teamLeader={x.leader_name}
+              projectId={x.id}
+            />
           </div>
         );
       })}
