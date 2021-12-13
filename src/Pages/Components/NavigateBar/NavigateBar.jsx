@@ -4,7 +4,7 @@ import "./cards.css";
 import { signOut } from "../../../Firebase/firebase";
 import { AuthContext } from "../../../Firebase/Auth/Auth";
 
-const Navigate = () => {
+const Navbar = () => {
   const [showNewProjectModal, setShowNewProjectModal] = useState(false);
   const [showNavContents, setShowNavContents] = useState(false);
   const { currentUser } = useContext(AuthContext);
@@ -107,4 +107,4 @@ const Navigate = () => {
   );
 };
 
-export default Navigate;
+export default Navbar;
