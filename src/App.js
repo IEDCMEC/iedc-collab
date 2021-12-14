@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { AuthProvider } from "./Firebase/Auth/Auth";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import "./App.scss";
