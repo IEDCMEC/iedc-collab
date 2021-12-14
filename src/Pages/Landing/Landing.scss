@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400&display=swap');
+
 .landing {
   background-color: white;
   // img {
@@ -21,7 +23,7 @@
 }
 
 h3 {
-color: #9e0000;
+color: var(--primaryColor);
 font-weight: 700;
 }
 
@@ -29,7 +31,7 @@ font-weight: 700;
 body {
   background: #dce1df;
   // color: #4f585e;
-  font-family: 'Source Sans Pro', sans-serif;
+  font-family: 'Nunito', sans-serif;
   text-rendering: optimizeLegibility;
 }
 
@@ -45,13 +47,13 @@ div.cards {
 }
 
 div.card {
-  background: #9e0000;
+  background: var(--primaryColor);
   display: inline-block;
   margin: 8px;
   max-width: 300px;
   perspective: 1000;
   position: relative;
-  text-align: left;
+  text-align: center;
   transition: all 0.3s 0s ease-in;
   width: 300px;
   z-index: 1;
@@ -73,7 +75,7 @@ div.card {
   }
 
   div.card-title {
-    background: #9e0000;
+    background: var(--primaryColor);
     padding: 6px 15px 10px;
     position: relative;
     z-index: 0;
