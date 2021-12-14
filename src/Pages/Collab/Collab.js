@@ -1,10 +1,10 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext } from "react";
 import { ProjectContext } from "../../contexts/ProjectContext";
 import ProjectsView from "../Components/Projects/Projects/Projects";
-import { ProjectProvider } from "./ProjectContext";
 
-const Collab = (props) => {
-  const { projects } = useContext(ProjectContext);
+const Collab = () => {
+  const { projects, loading } = useContext(ProjectContext);
+
   if (projects.length === 0)
     return (
       <div className="container">
@@ -19,10 +19,17 @@ const Collab = (props) => {
         </div>
       </div>
     );
-  return (
-    <div>
-      <ProjectsView />;
+
+  return loading ? (
+    <div
+      className="d-flex justify-content-center align-items-center flex-column"
+      style={{ height: "90vh" }}
+    >
+      <div class="spinner-border" role="status"></div>
+      <div className="mt-3">Loading projects...</div>
     </div>
+  ) : (
+    <ProjectsView />
   );
 };
 
