@@ -7,8 +7,10 @@ export const ProjectContext = React.createContext();
 export const ProjectProvider = ({ children }) => {
   const [projects, setProjects] = useState([{}]);
   const [project, setProject] = useState([{}]);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    setLoading(true);
     getProjects()
       .then(async function (snapshot) {
         let messageObject = snapshot.val();
@@ -22,6 +24,9 @@ export const ProjectProvider = ({ children }) => {
       .catch(function (error) {
         alert("Something went wrong");
         console.log(error);
+      })
+      .finally(() => {
+        setLoading(false);
       });
   }, []);
 
@@ -31,6 +36,7 @@ export const ProjectProvider = ({ children }) => {
         projects,
         project, // selectedProject
         setProject, // setSelectedProject
+        loading,
       }}
     >
       {children}
