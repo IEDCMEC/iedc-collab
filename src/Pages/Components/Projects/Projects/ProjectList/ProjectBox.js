@@ -19,7 +19,7 @@ const ProjectBox = ({ name, teamLeader, projectId }) => {
         <h5 className="text-uppercase">{name}</h5>
         <h6 className={"text-capitalize"}>{teamLeader}</h6>
       </div>
-      <i class="fas fa-play-circle playIcon"></i>
+      <i class="fa fa-play-circle playIcon"></i>
     </div>
   );
 };
