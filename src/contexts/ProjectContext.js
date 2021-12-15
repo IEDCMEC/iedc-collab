@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { getProjects } from "../Firebase/firebase";
-// import { getProjects } from "../../Firebase/firebase";
 
 export const ProjectContext = React.createContext();
 
