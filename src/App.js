@@ -8,9 +8,7 @@ import Login from "./Pages/Login/Login";
 import initialize from "./Firebase/firebase";
 import Navbar from "./Pages/Components/NavigateBar/NavigateBar";
 import { ProjectProvider } from "./contexts/ProjectContext";
-// import Form from "./Pages/Form/Form";
-// import PrivateRoute from "./Firebase/Auth/PrivateRoute";
-// import WorkAtMEC from "./Pages/WorkAtMEC/WorkAtMEC";
+
 initialize();
 
 function App() {
@@ -23,7 +21,6 @@ function App() {
             <Route exact path="/" component={Landing} />
             <Route path="/login" component={Login} />
             <Route Route path="/collab" component={Collab} />
-            {/* <Route path="/form" component={Form} /> */}
             {/* <PrivateRoute Route exact path="/workatmec" component={WorkAtMEC} /> */}
           </Switch>
         </BrowserRouter>
