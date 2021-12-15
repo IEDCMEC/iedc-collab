@@ -54,7 +54,7 @@ const Navbar = () => {
   return (
     <div className="Navigate">
       <nav
-        className="navbar navbar-expand-lg navbar-light "
+        className="navbar navbar-expand-lg navbar-light NavigateBar-mainNav"
         style={{ justifyContent: "space-between", backgroundColor: "white" }}
       >
         <div style={{ display: "flex", alignItems: "center" }}>
@@ -76,6 +76,7 @@ const Navbar = () => {
               marginBottom: "0",
               fontWeight: "700",
             }}
+            className="NavigateBar-title"
           >
             IEDC MEC COLLAB
           </p>
@@ -94,7 +95,7 @@ const Navbar = () => {
           ></input>
           <i class="fa fa-search fa-lg" style={{ color: "#9E0000" }}></i>
         </div>
-        <div className="feature">
+        {/*<div className="feature">
           <button
             onClick={() => setShowNavContents(!showNavContents)}
             className="navbar-toggler"
@@ -107,14 +108,9 @@ const Navbar = () => {
           >
             <span className="navbar-toggler-icon"></span>
           </button>
-        </div>
-        <div
-          className="collapse navbar-collapse "
-          id="navbarTogglerDemo02"
-          style={{ flexGrow: "0" }}
-        >
-          <ul className="navbar-nav ml-auto mt-2 mt-lg-0">
-            {currentUser && (
+        </div>*/}
+
+        {/*{currentUser && (
               <>
                 <li className="nav-item ">
                   <button
@@ -126,37 +122,40 @@ const Navbar = () => {
                 </li>
                 &nbsp;&nbsp;
               </>
-            )}
+            )}*/}
+        
 
-            <a class="css-button">
-              <span class="css-button-icon">
-                <i class="fa fa-plus-square"></i>
-              </span>
-              <span class="css-button-text">New Project</span>
-            </a>
-            <div style={{ display: "flex", alignItems: "center" }}>
-              <img src={SignoutLogo} className="NavigateBar-SignoutLogo"></img>
-              <p
-                onClick={() => {
-                  signOut();
-                }}
-                style={{
-                  color: "rgba(158, 0, 0, 1)",
-                  fontWeight: "700",
-                  marginBottom: "0",
-                }}
-              >
-                Sign Out
-              </p>
-            </div>
-          </ul>
+        <div id="navbarSupportedContent" style={{ flexGrow: "0",display:"flex" }} >
+          <a className="NavigateBar-Newprobtn css-button"  onClick={() => setShowNewProjectModal(true)}>
+            <span class="css-button-icon">
+              <i className="fa fa-plus-square"></i>
+            </span>
+            <span className="css-button-text">New Project</span>
+          </a>
+       
+
+          <div style={{ display: "flex", alignItems: "center" }} onClick={() => {
+                signOut();
+              }}>
+            <img src={SignoutLogo} className="NavigateBar-SignoutLogo"></img>
+            <p
+              
+              style={{
+                color: "rgba(158, 0, 0, 1)",
+                fontWeight: "700",
+                marginBottom: "0",
+              }}
+            >
+              Sign Out
+            </p>
+          </div>
         </div>
       </nav>
       <NewProjectModal
         show={showNewProjectModal}
         onHide={() => setShowNewProjectModal(false)}
       />
-      <Navcontents />
+      {/*<Navcontents />*/}
     </div>
   );
 };
