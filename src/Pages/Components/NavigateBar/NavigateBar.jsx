@@ -3,6 +3,7 @@ import NewProjectModal from "../NewProjectModal/NewProjectModal";
 import "./cards.css";
 import { signOut } from "../../../Firebase/firebase";
 import { AuthContext } from "../../../Firebase/Auth/Auth";
+import SignoutLogo from "../../../assets/Signout-Logo.png";
 
 const Navbar = () => {
   const [showNewProjectModal, setShowNewProjectModal] = useState(false);
@@ -52,10 +53,47 @@ const Navbar = () => {
   };
   return (
     <div className="Navigate">
-      <nav className="navbar navbar-expand-lg navbar-light bg-light">
-        <a className="navbar-brand" href="/">
-          <i className="fa fa-chevron-left"></i> Home
-        </a>
+      <nav
+        className="navbar navbar-expand-lg navbar-light "
+        style={{ justifyContent: "space-between", backgroundColor: "white" }}
+      >
+        <div style={{ display: "flex", alignItems: "center" }}>
+          <a className="navbar-brand" href="/">
+            <div
+              style={{ background: "#9E0000", display: "flex" }}
+              className="NavigateBar-homeicondiv"
+            >
+              <i
+                class="fa fa-home NavigateBar-homeicon"
+                style={{ color: "white" }}
+              ></i>
+            </div>
+          </a>
+          <p
+            style={{
+              color: "#9E0000",
+              marginTop: "0",
+              marginBottom: "0",
+              fontWeight: "700",
+            }}
+          >
+            IEDC MEC COLLAB
+          </p>
+        </div>
+        <div
+          style={{
+            border: "2px solid #9E0000",
+            display: "flex",
+            alignItems: "center",
+          }}
+          className="NavigateBar-searchbox"
+        >
+          <input
+            placeholder="Search projects..."
+            style={{ borderStyle: "none", outline: "none", width: "95%" }}
+          ></input>
+          <i class="fa fa-search fa-lg" style={{ color: "#9E0000" }}></i>
+        </div>
         <div className="feature">
           <button
             onClick={() => setShowNavContents(!showNavContents)}
@@ -70,7 +108,11 @@ const Navbar = () => {
             <span className="navbar-toggler-icon"></span>
           </button>
         </div>
-        <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
+        <div
+          className="collapse navbar-collapse "
+          id="navbarTogglerDemo02"
+          style={{ flexGrow: "0" }}
+        >
           <ul className="navbar-nav ml-auto mt-2 mt-lg-0">
             {currentUser && (
               <>
@@ -85,16 +127,28 @@ const Navbar = () => {
                 &nbsp;&nbsp;
               </>
             )}
-            <li className="nav-item ">
-              <button
+
+            <a class="css-button">
+              <span class="css-button-icon">
+                <i class="fa fa-plus-square"></i>
+              </span>
+              <span class="css-button-text">New Project</span>
+            </a>
+            <div style={{ display: "flex", alignItems: "center" }}>
+              <img src={SignoutLogo} className="NavigateBar-SignoutLogo"></img>
+              <p
                 onClick={() => {
                   signOut();
                 }}
-                className="av-link"
+                style={{
+                  color: "rgba(158, 0, 0, 1)",
+                  fontWeight: "700",
+                  marginBottom: "0",
+                }}
               >
                 Sign Out
-              </button>
-            </li>
+              </p>
+            </div>
           </ul>
         </div>
       </nav>

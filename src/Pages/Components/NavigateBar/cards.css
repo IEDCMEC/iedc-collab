@@ -8,6 +8,54 @@ button:hover {
     background-color: #b1006a;
 }
 
+.NavigateBar-homeicon{
+    padding: 0.3rem;
+}
+.NavigateBar-homeicondiv{
+    border-radius: 0.3rem;
+}
+.NavigateBar-searchbox{
+    width: 28rem;
+    border-radius: 0.3rem;
+    padding: 0.3rem;
+   
+}
+.Navigate-searchicon{
+    background: url("https://static.thenounproject.com/png/101791-200.png") no-repeat right ;
+    background-size: 1.5rem;
+}
+.NavigateBar-searchbox > input::placeholder{
+    color: #9E0000;
+}
+.NavigateBar-SignoutLogo{
+    height: 1.3rem;
+    padding-right: 0.6rem;
+}
+.css-button {
+	font-family: Arial;
+	color: #FFFFFF;
+	font-size: 13px;
+	border-radius: 5px;
+	border: 1px #3866a3 solid;
+	background-color: #9e0000;
+	text-shadow: 1px 1px 1px #528ecc;
+	box-shadow: inset 1px 1px 2px 0px #bbdaf7;
+	cursor: pointer;
+	display: inline-flex;
+	align-items: center;
+}
+
+.css-button-icon {
+	padding: 0.3rem;
+	border-right: 1px solid rgba(255, 255, 255, 0.16);
+	box-shadow: rgba(0, 0, 0, 0.14) -1px 0px 0px inset;
+    color: white;
+}
+.css-button-text {
+	padding: 0.3rem;
+    color: white;
+}
+
 .feature {
     display: block;
     position: absolute;
