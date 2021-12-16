@@ -123,23 +123,29 @@ const Navbar = () => {
                 &nbsp;&nbsp;
               </>
             )}*/}
-        
 
-        <div id="navbarSupportedContent" style={{ flexGrow: "0",display:"flex" }} >
-          <a className="NavigateBar-Newprobtn css-button"  onClick={() => setShowNewProjectModal(true)}>
+        <div
+          id="navbarSupportedContent"
+          style={{ flexGrow: "0", display: "flex" }}
+        >
+          <a
+            className="NavigateBar-Newprobtn css-button"
+            onClick={() => setShowNewProjectModal(true)}
+          >
             <span class="css-button-icon">
               <i className="fa fa-plus-square"></i>
             </span>
             <span className="css-button-text">New Project</span>
           </a>
-       
 
-          <div style={{ display: "flex", alignItems: "center" }} onClick={() => {
-                signOut();
-              }}>
+          <div
+            style={{ display: "flex", alignItems: "center" }}
+            onClick={() => {
+              signOut();
+            }}
+          >
             <img src={SignoutLogo} className="NavigateBar-SignoutLogo"></img>
             <p
-              
               style={{
                 color: "rgba(158, 0, 0, 1)",
                 fontWeight: "700",
