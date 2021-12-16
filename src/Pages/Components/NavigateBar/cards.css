@@ -270,11 +270,19 @@ section .section-title {
     -ms-transform: scale(0.93);
     transform: scale(0.93);
 }
-
+.Navbar-homebtn:hover{
+text-decoration: none;
+}
 .NavigateBar-mainNav{
     flex-wrap: nowrap;
 }
 
+.NavigateBar-title{
+    margin-left: 0.5rem;
+}
+.NavigateBar-title:hover{
+    color: white;
+}
 @media (max-width:865px) {
 
 .NavigateBar-searchbox{

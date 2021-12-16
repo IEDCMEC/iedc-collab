@@ -16,8 +16,9 @@ initialize();
 function App() {
   return (
     <AuthProvider>
-      <Navbar />
+     
       <ProjectProvider>
+      <Navbar />
         <BrowserRouter>
           <Switch>
             <Route exact path="/" component={Landing} />

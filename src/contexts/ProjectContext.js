@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { getProjects } from "../Firebase/firebase";
+import Navbar from "../Pages/Components/NavigateBar/NavigateBar";
 // import { getProjects } from "../../Firebase/firebase";
 
 export const ProjectContext = React.createContext();
@@ -8,7 +9,7 @@ export const ProjectProvider = ({ children }) => {
   const [projects, setProjects] = useState([{}]);
   const [project, setProject] = useState([{}]);
   const [loading, setLoading] = useState(false);
-
+  const [projectbackup, setprojectbackup] = useState([{}]);
   useEffect(() => {
     setLoading(true);
     getProjects()
@@ -19,6 +20,7 @@ export const ProjectProvider = ({ children }) => {
           id: key,
         }));
         setProjects(result);
+        setprojectbackup(result);
         setProject(result[0]);
       })
       .catch(function (error) {
@@ -30,6 +32,16 @@ export const ProjectProvider = ({ children }) => {
       });
   }, []);
 
+  let search = (searchtext) => {
+
+    if (searchtext !== "") {
+      let modified = projects.filter((itm) => itm.name.includes(searchtext));
+
+      setProjects(modified);
+    } else {
+      setProjects(projectbackup);
+    }
+  };
   return (
     <ProjectContext.Provider
       value={{
@@ -37,6 +49,7 @@ export const ProjectProvider = ({ children }) => {
         project, // selectedProject
         setProject, // setSelectedProject
         loading,
+        search,
       }}
     >
       {children}
