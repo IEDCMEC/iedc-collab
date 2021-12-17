@@ -3,8 +3,8 @@ import ProjectBox from "./ProjectBox";
 import { Col } from "react-bootstrap";
 import { ProjectContext } from "../../../../../contexts/ProjectContext";
 
-const ProjectList = (props) => {
-  const { projects, setProject } = useContext(ProjectContext);
+const ProjectList = () => {
+  const { projects, setSelectedProject } = useContext(ProjectContext);
 
   return (
     <Col className={" overflow "}>
@@ -15,7 +15,7 @@ const ProjectList = (props) => {
             key={x.id}
             onClick={() => {
               // props.setMobileComponent(true);
-              setProject(x);
+              setSelectedProject(x);
             }}
           >
             <ProjectBox

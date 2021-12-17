@@ -5,13 +5,13 @@ import { signOut } from "../../../Firebase/firebase";
 import { AuthContext } from "../../../Firebase/Auth/Auth";
 import { ProjectContext } from "../../../contexts/ProjectContext";
 import SignoutLogo from "../../../assets/Signout-Logo.png";
-import {signIn} from "../../../Firebase/firebase";
+import { signIn } from "../../../Firebase/firebase";
+
 const Navbar = () => {
   const [showNewProjectModal, setShowNewProjectModal] = useState(false);
-  const [showNavContents, setShowNavContents] = useState(false);
-
   const { currentUser } = useContext(AuthContext);
-  const { search } = useContext(ProjectContext);
+  const { handleSearch } = useContext(ProjectContext);
+
   useEffect(() => {
     if (currentUser) {
       console.log("User logged in");
@@ -20,49 +20,14 @@ const Navbar = () => {
     }
   }, [currentUser]);
 
-  let newprojectClick = async () => {
+  const newprojectClick = async () => {
     if (currentUser) {
       setShowNewProjectModal(true);
     } else {
-     
       signIn();
     }
   };
-  {
-    /*const Navcontents = () => {
-    if (showNavContents)
-      return (
-        <div className="dropdown">
-          <ul className="navbar-nav ml-auto mt-2 mt-lg-0 dropdown-content">
-            {currentUser && (
-              <>
-                <li className="nav-item ">
-                  <span
-                    onClick={() => setShowNewProjectModal(true)}
-                    className="av-link"
-                  >
-                    New Project
-                  </span>
-                </li>
-                &nbsp;&nbsp;
-              </>
-            )}
-            <li className="nav-item ">
-              <span
-                onClick={() => {
-                  signOut();
-                }}
-                className="av-link"
-              >
-                Sign Out
-              </span>
-            </li>
-          </ul>
-        </div>
-      );
-    else return <div></div>;
-  };*/
-  }
+
   return (
     <div className="Navigate">
       <nav
@@ -105,7 +70,7 @@ const Navbar = () => {
         >
           <input
             placeholder="Search projects..."
-            onChange={(e) => search(e.target.value)}
+            onChange={(e) => handleSearch(e.target.value)}
             style={{ borderStyle: "none", outline: "none", width: "95%" }}
           ></input>
           <i
@@ -113,40 +78,12 @@ const Navbar = () => {
             style={{ cursor: "pointer" }}
           ></i>
         </div>
-        {/*<div className="feature">
-          <button
-            onClick={() => setShowNavContents(!showNavContents)}
-            className="navbar-toggler"
-            type="button"
-            data-toggle="collapse"
-            data-target="#navbarTogglerDemo02"
-            aria-controls="navbarTogglerDemo02"
-            aria-expanded="true"
-            aria-label="Toggle navigation"
-          >
-            <span className="navbar-toggler-icon"></span>
-          </button>
-        </div>*/}
-
-        {/*{currentUser && (
-              <>
-                <li className="nav-item ">
-                  <button
-                    onClick={() => setShowNewProjectModal(true)}
-                    className="av-link"
-                  >
-                    New Project
-                  </button>
-                </li>
-                &nbsp;&nbsp;
-              </>
-            )}*/}
 
         <div
           id="navbarSupportedContent"
           style={{ flexGrow: "0", display: "flex" }}
         >
-          <a
+          <div
             className="NavigateBar-Newprobtn css-button"
             onClick={newprojectClick}
           >
@@ -154,7 +91,7 @@ const Navbar = () => {
               <i className="fa fa-plus-square"></i>
             </span>
             <span className="css-button-text">New Project</span>
-          </a>
+          </div>
 
           {currentUser && (
             <div
@@ -167,7 +104,11 @@ const Navbar = () => {
                 signOut();
               }}
             >
-              <img src={SignoutLogo} className="NavigateBar-SignoutLogo"></img>
+              <img
+                src={SignoutLogo}
+                alt="Sign-Out btn img"
+                className="NavigateBar-SignoutLogo"
+              ></img>
               <p
                 style={{
                   color: "rgba(158, 0, 0, 1)",
@@ -185,7 +126,6 @@ const Navbar = () => {
         show={showNewProjectModal}
         onHide={() => setShowNewProjectModal(false)}
       />
-      {/*<Navcontents />*/}
     </div>
   );
 };

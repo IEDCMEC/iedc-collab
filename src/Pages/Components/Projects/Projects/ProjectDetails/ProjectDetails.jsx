@@ -8,21 +8,19 @@ import { doDeleteProject, getUser } from "../../../../../Firebase/firebase";
 import { useHistory } from "react-router";
 
 const ProjectDetails = (props) => {
-  const { project } = useContext(ProjectContext);
-  console.log(project);
+  const { selectedProject } = useContext(ProjectContext);
   const { currentUser } = useContext(AuthContext);
   const [deleteProject, setDeleteProject] = useState(false);
   const [email, setEmail] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
-
   const history = useHistory();
 
   let linkHeading;
+  console.log(selectedProject);
 
-  // console.log(project.id)
   useEffect(() => {
-    if (project.leader_id !== undefined) {
-      getUser(project.leader_id)
+    if (selectedProject.leader_id !== undefined) {
+      getUser(selectedProject.leader_id)
         .then(async function (snapshot) {
           let result = snapshot.val();
           setEmail(result.email);
@@ -33,20 +31,19 @@ const ProjectDetails = (props) => {
           console.log(error);
         });
     }
-    if (currentUser?.uid === project.leader_id) {
+    if (currentUser?.uid === selectedProject.leader_id) {
       setDeleteProject(true);
       console.log(deleteProject);
     } else {
       setDeleteProject(false);
     }
 
-    if (project.links !== undefined) {
+    if (selectedProject.links !== undefined) {
       linkHeading = "Links";
     } else {
       linkHeading = null;
     }
-    // console.log(linkHeading)
-  }, [project]);
+  }, [selectedProject]);
 
   function deleteProj(id) {
     doDeleteProject(id);
@@ -77,11 +74,13 @@ const ProjectDetails = (props) => {
           style={{ textAlign: "center" }}
         >
           <div className={"flex-grow-1"}>
-            <h5 className={"text-size-responsive"}>{project.name}</h5>
+            <h5 className={"text-size-responsive"}>{selectedProject.name}</h5>
           </div>
           <div className={" flex-grow-1 left-right-margin"}>
             <div>
-              <h5 className={"text-size-responsive}"}>{project.leader_name}</h5>
+              <h5 className={"text-size-responsive}"}>
+                {selectedProject.leader_name}
+              </h5>
             </div>
           </div>
           <div className={"flex-grow-1"}>
@@ -97,12 +96,16 @@ const ProjectDetails = (props) => {
         <div className="contents">
           <div>
             <h4>Description</h4>
-            {project.desc}
+            {selectedProject.desc}
 
             <h4>{linkHeading}</h4>
 
-            <a href={project.links} rel="noopener noreferrer" target="_blank">
-              {project.links}
+            <a
+              href={selectedProject.links}
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              {selectedProject.links}
             </a>
           </div>
           {deleteProject ? (
@@ -110,7 +113,7 @@ const ProjectDetails = (props) => {
               variant="danger"
               className="delete-btn"
               onClick={() => {
-                deleteProj(project.id);
+                deleteProj(selectedProject.id);
               }}
             >
               Delete Project

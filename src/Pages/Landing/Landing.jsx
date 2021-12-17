@@ -5,11 +5,12 @@ import { useHistory } from "react-router-dom";
 import { ProjectContext } from "../../contexts/ProjectContext";
 
 const Landing = () => {
-  const { projects, setProject } = useContext(ProjectContext);
+  const { projects, setSelectedProject } = useContext(ProjectContext);
   const history = useHistory();
+
   const handleClick = (p) => {
     history.push("/collab");
-    setProject(p);
+    setSelectedProject(p);
   };
 
   return (
