@@ -54,7 +54,7 @@ const ProjectDetails = (props) => {
   }
 
   return (
-    <div className={"d-flex h-100 flex-column "}>
+    <div className={"d-flex h-100 flex-column project-description"}>
       {props.mobileComponentClicked ? (
         <Row>
           <Col
@@ -93,11 +93,21 @@ const ProjectDetails = (props) => {
         </Col>
       </Row>
 
-      <Row className={"p-5 flex-grow-1 overflow"}>
-        <div className="contents">
+      <Row className={"p-5 flex-grow-1 overflow  description"}>
+        <div className="contents ">
           <div>
-            <h4>Description</h4>
-            {project.desc}
+            <h4>PROJECT DESCRIPTION</h4>
+            <p> {project.desc}</p>
+
+            <div className="team">
+              <h4>TEAM MEMBERS</h4>
+            </div>
+            <div className="members">
+              <ol>
+                <li>Rindish Krishna</li>
+                <li>Rindish Krishna</li>
+              </ol>
+            </div>
 
             <h4>{linkHeading}</h4>
 
@@ -105,6 +115,7 @@ const ProjectDetails = (props) => {
               {project.links}
             </a>
           </div>
+
           {deleteProject ? (
             <Button
               variant="danger"
