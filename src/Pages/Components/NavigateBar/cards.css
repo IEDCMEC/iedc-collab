@@ -283,9 +283,7 @@ text-decoration: none;
     margin-left: 0.5rem;
     color:var(--primaryColor);
 }
-.NavigateBar-title:hover{
-    color: white;
-}
+
 @media (max-width:865px) {
 
 .NavigateBar-searchbox{
