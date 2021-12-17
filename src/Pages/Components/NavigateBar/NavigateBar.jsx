@@ -62,7 +62,7 @@ const Navbar = () => {
         <div style={{ cursor: "pointer" }}>
           <a href="/" style={{ display: "flex", alignItems: "center" }} className="Navbar-homebtn">
             <div
-              style={{ background: "#9E0000", display: "flex" }}
+              style={{  display: "flex" }}
               className="NavigateBar-homeicondiv"
             >
               <i
@@ -72,7 +72,7 @@ const Navbar = () => {
             </div>
             <p
               style={{
-                color: "#9E0000",
+               
                 marginTop: "0",
                 marginBottom: "0",
                 fontWeight: "700",
@@ -85,7 +85,7 @@ const Navbar = () => {
         </div>
         <div
           style={{
-            border: "2px solid #9E0000",
+            
             display: "flex",
             alignItems: "center",
           }}
@@ -98,7 +98,7 @@ const Navbar = () => {
            
             style={{ borderStyle: "none", outline: "none", width: "95%" }}
           ></input>
-          <i className="fa fa-search fa-lg" style={{ color: "#9E0000",cursor:"pointer" }} ></i>
+          <i className="fa fa-search fa-lg Navigate-searchicon" style={{ cursor:"pointer" }} ></i>
         </div>
         {/*<div className="feature">
           <button

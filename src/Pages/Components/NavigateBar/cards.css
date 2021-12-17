@@ -16,19 +16,21 @@ margin-right: 1rem;
 }
 .NavigateBar-homeicondiv{
     border-radius: 0.3rem;
+    background-color: var(--primaryColor);
 }
 .NavigateBar-searchbox{
     width: 25rem;
     border-radius: 0.3rem;
     padding: 0.3rem;
-   
+    border: 2px solid var(--primaryColor);
 }
+
 .Navigate-searchicon{
-    background: url("https://static.thenounproject.com/png/101791-200.png") no-repeat right ;
-    background-size: 1.5rem;
+    
+   color: var(--primaryColor);
 }
 .NavigateBar-searchbox > input::placeholder{
-    color: #9E0000;
+    color: var(--primaryColor);
 }
 .NavigateBar-SignoutLogo{
     height: 1.3rem;
@@ -40,7 +42,7 @@ margin-right: 1rem;
 	font-size: 13px;
 	border-radius: 5px;
 	border: 1px #3866a3 solid;
-	background-color: #9e0000;
+	background-color: var(--primaryColor);
 	text-shadow: 1px 1px 1px #528ecc;
 	box-shadow: inset 1px 1px 2px 0px #bbdaf7;
 	cursor: pointer;
@@ -279,6 +281,7 @@ text-decoration: none;
 
 .NavigateBar-title{
     margin-left: 0.5rem;
+    color:var(--primaryColor);
 }
 .NavigateBar-title:hover{
     color: white;
