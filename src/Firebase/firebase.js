@@ -22,6 +22,7 @@ export default initialize;
 
 // Authentication functions
 export const signIn = async () => {
+ 
   const provider = new firebase.auth.GoogleAuthProvider();
   provider.setCustomParameters({
     prompt: "select_account",

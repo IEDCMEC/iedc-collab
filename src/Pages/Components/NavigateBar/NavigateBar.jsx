@@ -3,13 +3,15 @@ import NewProjectModal from "../NewProjectModal/NewProjectModal";
 import "./cards.css";
 import { signOut } from "../../../Firebase/firebase";
 import { AuthContext } from "../../../Firebase/Auth/Auth";
+import { ProjectContext } from "../../../contexts/ProjectContext";
 import SignoutLogo from "../../../assets/Signout-Logo.png";
-
+import {signIn} from "../../../Firebase/firebase";
 const Navbar = () => {
   const [showNewProjectModal, setShowNewProjectModal] = useState(false);
   const [showNavContents, setShowNavContents] = useState(false);
-  const { currentUser } = useContext(AuthContext);
 
+  const { currentUser } = useContext(AuthContext);
+  const { search } = useContext(ProjectContext);
   useEffect(() => {
     if (currentUser) {
       console.log("User logged in");
@@ -18,7 +20,16 @@ const Navbar = () => {
     }
   }, [currentUser]);
 
-  const Navcontents = () => {
+  let newprojectClick = async () => {
+    if (currentUser) {
+      setShowNewProjectModal(true);
+    } else {
+     
+      signIn();
+    }
+  };
+  {
+    /*const Navcontents = () => {
     if (showNavContents)
       return (
         <div className="dropdown">
@@ -50,40 +61,43 @@ const Navbar = () => {
         </div>
       );
     else return <div></div>;
-  };
+  };*/
+  }
   return (
     <div className="Navigate">
       <nav
         className="navbar navbar-expand-lg navbar-light NavigateBar-mainNav"
         style={{ justifyContent: "space-between", backgroundColor: "white" }}
       >
-        <div style={{ display: "flex", alignItems: "center" }}>
-          <a className="navbar-brand" href="/">
+        <div style={{ cursor: "pointer" }}>
+          <a
+            href="/"
+            style={{ display: "flex", alignItems: "center" }}
+            className="Navbar-homebtn"
+          >
             <div
-              style={{ background: "#9E0000", display: "flex" }}
+              style={{ display: "flex" }}
               className="NavigateBar-homeicondiv"
             >
               <i
-                class="fa fa-home NavigateBar-homeicon"
+                className="fa fa-home NavigateBar-homeicon"
                 style={{ color: "white" }}
               ></i>
             </div>
+            <p
+              style={{
+                marginTop: "0",
+                marginBottom: "0",
+                fontWeight: "700",
+              }}
+              className=" NavigateBar-title"
+            >
+              IEDC MEC COLLAB
+            </p>
           </a>
-          <p
-            style={{
-              color: "#9E0000",
-              marginTop: "0",
-              marginBottom: "0",
-              fontWeight: "700",
-            }}
-            className="NavigateBar-title"
-          >
-            IEDC MEC COLLAB
-          </p>
         </div>
         <div
           style={{
-            border: "2px solid #9E0000",
             display: "flex",
             alignItems: "center",
           }}
@@ -91,9 +105,13 @@ const Navbar = () => {
         >
           <input
             placeholder="Search projects..."
+            onChange={(e) => search(e.target.value)}
             style={{ borderStyle: "none", outline: "none", width: "95%" }}
           ></input>
-          <i class="fa fa-search fa-lg" style={{ color: "#9E0000" }}></i>
+          <i
+            className="fa fa-search fa-lg Navigate-searchicon"
+            style={{ cursor: "pointer" }}
+          ></i>
         </div>
         {/*<div className="feature">
           <button
@@ -130,31 +148,37 @@ const Navbar = () => {
         >
           <a
             className="NavigateBar-Newprobtn css-button"
-            onClick={() => setShowNewProjectModal(true)}
+            onClick={newprojectClick}
           >
-            <span class="css-button-icon">
+            <span className="css-button-icon">
               <i className="fa fa-plus-square"></i>
             </span>
             <span className="css-button-text">New Project</span>
           </a>
 
-          <div
-            style={{ display: "flex", alignItems: "center" }}
-            onClick={() => {
-              signOut();
-            }}
-          >
-            <img src={SignoutLogo} className="NavigateBar-SignoutLogo"></img>
-            <p
+          {currentUser && (
+            <div
               style={{
-                color: "rgba(158, 0, 0, 1)",
-                fontWeight: "700",
-                marginBottom: "0",
+                display: "flex",
+                alignItems: "center",
+                cursor: "pointer",
+              }}
+              onClick={() => {
+                signOut();
               }}
             >
-              Sign Out
-            </p>
-          </div>
+              <img src={SignoutLogo} className="NavigateBar-SignoutLogo"></img>
+              <p
+                style={{
+                  color: "rgba(158, 0, 0, 1)",
+                  fontWeight: "700",
+                  marginBottom: "0",
+                }}
+              >
+                Sign Out
+              </p>
+            </div>
+          )}
         </div>
       </nav>
       <NewProjectModal
