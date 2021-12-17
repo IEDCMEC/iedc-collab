@@ -8,11 +8,7 @@ import { doCreateProject } from "../../../Firebase/firebase";
 import { useHistory } from "react-router";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUpload } from "@fortawesome/free-solid-svg-icons";
-
-import "./NewProjectModal.css";
-// import ReactChipInput from "react-chip-input";
-// import Chips from "react-chips";
-// use if want to add links with some validation
+import "./NewProjectModal.scss";
 
 const NewProjectForm = ({ onClose }) => {
   const newProjectSchema = yup.object({
@@ -25,8 +21,11 @@ const NewProjectForm = ({ onClose }) => {
       .min(10, "Must be more than 10 characters"),
     githubLink: yup.string().required().min(4),
     tags: yup.string().optional().min(4),
+    teamMembers: yup.string(),
   });
+
   const history = useHistory();
+
   return (
     <div className="newProjectForm">
       <Formik
@@ -43,14 +42,15 @@ const NewProjectForm = ({ onClose }) => {
           const { links, tags } = values;
           values.links = links.split(",").map((link) => link.trim());
           values.tags = tags.split(",").map((tag) => tag.trim());
-          doCreateProject(
-            values.title,
-            values.desc,
-            values.links,
-            values.contactNo,
-            values.githubLink,
-            values.tags
-          );
+          doCreateProject(values);
+          // doCreateProject(
+          //   values.title,
+          //   values.desc,
+          //   values.links,
+          //   values.contactNo,
+          //   values.githubLink,
+          //   values.tags
+          // );
           actions.resetForm();
           history.go(0);
           onClose();

@@ -22,6 +22,7 @@ export default initialize;
 
 // Authentication functions
 export const signIn = async () => {
+ 
   const provider = new firebase.auth.GoogleAuthProvider();
   provider.setCustomParameters({
     prompt: "select_account",
@@ -72,7 +73,7 @@ export const signOut = () => {
 
 // Firebase Realtime Database functions
 
-export const doCreateProject = (name, desc, links) => {
+export const doCreateProject = (obj) => {
   let user = firebase.auth().currentUser;
   if (!user) {
     alert("Please login to add a project");
@@ -81,14 +82,13 @@ export const doCreateProject = (name, desc, links) => {
 
   let uid = user.uid;
   let leaderName = user.displayName;
-  const updatedAt = Date.now();
+  const createdAt = Date.now();
   var newProjectID = firebase.database().ref().child("projects").push().key;
   var projectData = {
-    name: name,
+    ...obj,
     available: "true",
-    desc: desc,
-    links: links,
-    updatedAt: updatedAt,
+    createdAt,
+    updatedAt: createdAt,
     leader_id: uid,
     leader_name: leaderName,
   };

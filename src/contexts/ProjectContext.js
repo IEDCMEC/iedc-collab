@@ -5,7 +5,8 @@ export const ProjectContext = React.createContext();
 
 export const ProjectProvider = ({ children }) => {
   const [projects, setProjects] = useState([]);
-  const [project, setProject] = useState([]);
+  const [selectedProject, setSelectedProject] = useState();
+  const [allProjects, setAllProjects] = useState([]);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -18,7 +19,8 @@ export const ProjectProvider = ({ children }) => {
           id: key,
         }));
         setProjects(result);
-        setProject(result[0]);
+        setAllProjects(result);
+        setSelectedProject(result[0]);
       })
       .catch(function (error) {
         alert("Something went wrong");
@@ -29,13 +31,24 @@ export const ProjectProvider = ({ children }) => {
       });
   }, []);
 
+  const handleSearch = (searchtext) => {
+    if (searchtext !== "") {
+      let modified = allProjects.filter((itm) =>
+        itm.name.toLowerCase().includes(searchtext.toLowerCase())
+      );
+      setProjects(modified);
+    } else {
+      setProjects(allProjects);
+    }
+  };
   return (
     <ProjectContext.Provider
       value={{
         projects,
-        project, // selectedProject
-        setProject, // setSelectedProject
+        selectedProject,
+        setSelectedProject,
         loading,
+        handleSearch,
       }}
     >
       {children}

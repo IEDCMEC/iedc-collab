@@ -1,0 +1,84 @@
+.modalbody {
+  background-color: #fff;
+  color: #9e0000;
+}
+
+.modalHead {
+  text-align: center;
+  font-weight: 700;
+}
+
+.modalHead2 {
+  font-weight: 500;
+}
+
+.newProjectForm {
+  .form-group > label {
+    top: 18px;
+    left: 6px;
+    position: relative;
+    background-color: #fff;
+    padding: 0px 5px 0px 5px;
+    font-size: 1em;
+    font-weight: 600;
+  }
+
+  textarea:focus,
+  input:focus,
+  input[type]:focus,
+  .uneditable-input:focus {
+    box-shadow: 0 1px 1px rgba(229, 103, 23, 0.075) inset,
+      0 0 8px rgba(229, 103, 23, 0.6) !important;
+    outline: 0 none;
+  }
+
+  textarea,
+  input,
+  input[type],
+  .uneditable-input {
+    border-color: #9e0000 !important;
+    border-width: 2px !important;
+    border-radius: 10px !important;
+    color: #9e0000 !important;
+  }
+  .custom-file-input {
+    border-color: #9e0000 !important;
+  }
+  .form-control::-webkit-input-placeholder {
+    color: #9e0000;
+  }
+
+  input[type="file"] {
+    display: none;
+  }
+}
+
+.photoContainer {
+  border: 2px solid #9e0000;
+  display: inline-block;
+  border-radius: 10px !important;
+  cursor: pointer;
+}
+
+.photoLabel {
+  margin-right: 10;
+}
+
+.photoHead {
+  bottom: 15px;
+  left: 6px;
+  position: relative;
+  background-color: #fff;
+  padding: 0px 5px 0px 5px;
+  font-size: 1em;
+  font-weight: 600;
+}
+
+.photoIcon {
+  right: 0;
+  position: absolute;
+}
+
+.helperText {
+  color: #9e0000;
+}
