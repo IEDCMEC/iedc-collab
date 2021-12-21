@@ -21,8 +21,7 @@ const initialize = () => {
 export default initialize;
 
 // Authentication functions
-export const signIn = async () => {
- 
+export const signIn = async (onSigninSuccess = () => {}) => {
   const provider = new firebase.auth.GoogleAuthProvider();
   provider.setCustomParameters({
     prompt: "select_account",
@@ -44,6 +43,7 @@ export const signIn = async () => {
       .set(userData)
       .then(function () {
         console.log("User added sucessfully");
+        onSigninSuccess();
       })
       .catch(function (error) {
         alert("Something went wrong");
