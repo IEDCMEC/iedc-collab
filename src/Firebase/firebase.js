@@ -27,12 +27,9 @@ export const signIn = async (onSigninSuccess = () => {}) => {
     prompt: "select_account",
   });
 
-  // firebase.auth().signOut();
   try {
     const result = await firebase.auth().signInWithPopup(provider);
-    var user = result.user;
-    console.log(user);
-
+    const user = result.user;
     const userData = {
       name: user.displayName,
       email: user.email,
@@ -49,8 +46,6 @@ export const signIn = async (onSigninSuccess = () => {}) => {
         alert("Something went wrong");
         console.log(error);
       });
-
-    return true;
   } catch (error) {
     alert("Something is wrong, please check network connection");
     console.log(error);
@@ -72,7 +67,6 @@ export const signOut = () => {
 };
 
 // Firebase Realtime Database functions
-
 export const doCreateProject = (obj) => {
   let user = firebase.auth().currentUser;
   if (!user) {
