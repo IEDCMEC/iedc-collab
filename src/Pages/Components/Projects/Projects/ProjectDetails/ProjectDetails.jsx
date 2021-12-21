@@ -6,7 +6,6 @@ import { ProjectContext } from "../../../../../contexts/ProjectContext";
 import { AuthContext } from "../../../../../Firebase/Auth/Auth";
 import { doDeleteProject, getUser } from "../../../../../Firebase/firebase";
 import { useHistory } from "react-router";
-
 const ProjectDetails = (props) => {
   const { selectedProject } = useContext(ProjectContext);
   const { currentUser } = useContext(AuthContext);
@@ -14,10 +13,8 @@ const ProjectDetails = (props) => {
   const [email, setEmail] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const history = useHistory();
-
   let linkHeading;
   console.log(selectedProject);
-
   useEffect(() => {
     if (selectedProject.leader_id !== undefined) {
       getUser(selectedProject.leader_id)
@@ -37,21 +34,18 @@ const ProjectDetails = (props) => {
     } else {
       setDeleteProject(false);
     }
-
     if (selectedProject.links !== undefined) {
       linkHeading = "Links";
     } else {
       linkHeading = null;
     }
   }, [selectedProject]);
-
   function deleteProj(id) {
     doDeleteProject(id);
     history.go(0);
   }
-
   return (
-    <div className={"d-flex h-100 flex-column "}>
+    <div className={"d-flex h-100 flex-column project-description"}>
       {props.mobileComponentClicked ? (
         <Row>
           <Col
@@ -67,7 +61,6 @@ const ProjectDetails = (props) => {
           </Col>
         </Row>
       ) : null}
-
       <Row>
         <Col
           className={"p-4 shadow-bottom heading col-sm background-color-white"}
@@ -91,15 +84,23 @@ const ProjectDetails = (props) => {
           </div>
         </Col>
       </Row>
-
-      <Row className={"p-5 flex-grow-1 overflow"}>
-        <div className="contents">
+      <Row className={"p-5 flex-grow-1 overflow  description"}>
+        <div className="contents ">
           <div>
-            <h4>Description</h4>
+            <h4>PROJECT DESCRIPTION</h4>
             {selectedProject.desc}
 
-            <h4>{linkHeading}</h4>
+            <div className="team">
+              <h4>TEAM MEMBERS</h4>
+            </div>
+            <div className="members">
+              <ol>
+                <li>Rindish Krishna</li>
+                <li>Rindish Krishna</li>
+              </ol>
+            </div>
 
+            <h4>{linkHeading}</h4>
             <a
               href={selectedProject.links}
               rel="noopener noreferrer"
@@ -124,5 +125,4 @@ const ProjectDetails = (props) => {
     </div>
   );
 };
-
 export default ProjectDetails;

@@ -1,5 +1,46 @@
 @import "src/index";
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@300;400&display=swap");
 
+h4{
+  font-family: "Nunito", sans-serif;
+  font-weight: 700;
+  text-align: center;
+  font-size: 25px;
+  padding-bottom: 15px;
+
+}
+.team h4{
+  text-align: left;
+}
+.project-description{
+  background-color: var(--primaryColor);
+  color: #fff;
+  
+}
+.contents{
+  background-color: var(--primaryColor) !important;
+  font-family: "Nunito", sans-serif;
+  padding: 20px;
+}
+.description{
+
+ 
+ 
+  padding: 20px;
+  margin: 20px auto;
+
+  color: #fff;
+  line-height: 1.6;
+  font-size: 18px;
+}
+ol{
+  padding: 20px;
+}
+ol li{
+  float: left;
+  margin: 0 10px;
+  padding: 0 10px;
+}
 .heading {
   display: flex;
   flex-direction: row;
@@ -17,9 +58,9 @@
   justify-content: center;
 }
 
-.shadow-bottom {
-  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.32);
-}
+// .shadow-bottom {
+//   box-shadow: 2px 0 5px rgba(0, 0, 0, 0.32);
+// }
 .delete-btn{
   margin-top: 2rem;
 }
