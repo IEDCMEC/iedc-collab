@@ -1,14 +1,16 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import ProjectBox from "./ProjectBox";
 import { Col } from "react-bootstrap";
 import { ProjectContext } from "../../../../../contexts/ProjectContext";
-
-const ProjectList = () => {
+import { ProjectDetailMob } from "../ProjectDetails/ProjectDetails";
+const ProjectList = ({ width,setdispmobDetails }) => {
   const { projects, setSelectedProject } = useContext(ProjectContext);
-
+  
+  
   return (
     <Col className={" overflow "}>
-      {projects.map((x) => {
+     
+     {projects.map((x) => {
         return (
           <div
             className="content post-item"
@@ -16,6 +18,7 @@ const ProjectList = () => {
             onClick={() => {
               // props.setMobileComponent(true);
               setSelectedProject(x);
+              if(width<768) setdispmobDetails(true)
             }}
           >
             <ProjectBox
