@@ -2,11 +2,14 @@ import React, { useLayoutEffect, useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import ProjectList from "./ProjectList/ProjectList";
 import "./Project.scss";
-import ProjectDetails from "./ProjectDetails/ProjectDetails";
+import ProjectDetails, {
+  ProjectDetailMob,
+} from "./ProjectDetails/ProjectDetails";
 
 const ProjectsView = () => {
   const [mobileComponentClicked, setMobileComponent] = useState(false);
   const [width, setWidth] = useState(0);
+  const [dispmobDetails, setdispmobDetails] = useState(false);
   const breakpoint = 620;
   useLayoutEffect(() => {
     function updateSize() {
@@ -18,10 +21,10 @@ const ProjectsView = () => {
   }, []);
 
   return (
-    <>
-      <Container fluid={true} className={"project-container"}>
+    <Container fluid={true} className={"project-container"}>
+      {dispmobDetails == false ? (
         <Row className={"h-100"}>
-          <Col sm={4} className={"h-100 m-0  p-0 shadow-right"}>
+          <Col md={4} className={"h-100 m-0  p-0 shadow-right"}>
             <Col className={"h-100 m-0 p-0"}>
               {width < breakpoint && mobileComponentClicked ? (
                 <ProjectDetails
@@ -29,16 +32,22 @@ const ProjectsView = () => {
                   setMobileComponent={setMobileComponent}
                 />
               ) : (
-                <ProjectList setMobileComponent={setMobileComponent} />
+                <ProjectList
+                  setMobileComponent={setMobileComponent}
+                  setdispmobDetails={setdispmobDetails}
+                  width={width}
+                />
               )}
             </Col>
           </Col>
           <Col className={"h-100 projectDetails"}>
-            <ProjectDetails />
+            <ProjectDetails  />
           </Col>
         </Row>
-      </Container>
-    </>
+      ) : (
+        <ProjectDetailMob setdispmobDetails={setdispmobDetails}></ProjectDetailMob>
+      )}
+    </Container>
   );
 };
 export default ProjectsView;
