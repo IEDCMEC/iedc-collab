@@ -15,7 +15,7 @@ const ProjectBox = ({ name, teamLeader, projectId }) => {
         isSelected ? "selected" : ""
       }`}
     >
-      <div>
+      <div className="text">
         <h5 className="text-uppercase">{name}</h5>
         <h6 className={"text-capitalize"}>{teamLeader}</h6>
       </div>
