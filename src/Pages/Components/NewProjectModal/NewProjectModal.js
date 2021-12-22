@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import { Formik } from "formik";
@@ -23,6 +23,8 @@ const NewProjectForm = ({ onClose }) => {
     teamMembers: yup.string(),
   });
 
+  const [projectPhoto, setProjectPhoto] = useState(null);
+
   return (
     <div className="newProjectForm">
       <Formik
@@ -40,10 +42,11 @@ const NewProjectForm = ({ onClose }) => {
           values.links = links.split(",").map((link) => link.trim());
           values.tags = tags.split(",").map((tag) => tag.trim());
           values.teamMembers = teamMembers.split(",").map((tag) => tag.trim());
+          values.photo = projectPhoto;
           doCreateProject(values);
-          // window.location.reload();
-          // actions.resetForm();
-          // onClose();
+          onClose();
+          actions.resetForm();
+          window.location.reload();
         }}
       >
         {(props) => (
@@ -84,13 +87,14 @@ const NewProjectForm = ({ onClose }) => {
                 <i className="photoIcon">
                   <FontAwesomeIcon icon={faUpload} />
                 </i>
+                <p>{projectPhoto?.name}</p>
+
                 <Form.Control
                   required
                   onBlur={props.handleBlur("photo")}
-                  value={""}
                   onChange={(e) => {
-                    props.handleChange("photo");
-                    props.values.photo = e.target.files[0];
+                    console.log(e.target.files[0]);
+                    setProjectPhoto(e.target.files[0]);
                   }}
                   type="file"
                   className="customFile"
@@ -172,7 +176,7 @@ const NewProjectForm = ({ onClose }) => {
                 value={props.values.links}
                 onChange={props.handleChange("links")}
                 type="text"
-                placeholder="www.tata.com"
+                placeholder="eg: www.tata.com"
               />
               <Form.Text className="helperText text-right">
                 Please separate the links using commas
