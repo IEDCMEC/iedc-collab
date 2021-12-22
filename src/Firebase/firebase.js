@@ -68,18 +68,34 @@ export const signOut = () => {
 
 // Firebase Realtime Database functions
 export const doCreateProject = (obj) => {
-  let user = firebase.auth().currentUser;
+  firebase.storage().ref(`projectPhoto/${obj.photo.name}`).put(obj.photo).then(({ref}) => {
+    ref.getDownloadURL().then((url)=>{
+    let user = firebase.auth().currentUser;
   if (!user) {
     alert("Please login to add a project");
     return;
   }
-
+  let title = obj.title;
+  let desc = obj.desc;
+  let links = obj.links;
+  let contactNo = obj.contactNo;
+  let githubLink = obj.githubLink;
+  let tags = obj.tags;
+  let teamMembers = obj.teamMembers;
+  let photo = url;
   let uid = user.uid;
   let leaderName = user.displayName;
   const createdAt = Date.now();
   var newProjectID = firebase.database().ref().child("projects").push().key;
   var projectData = {
-    ...obj,
+    name: title,
+    desc: desc,
+    links: links,
+    contactNo: contactNo,
+    githubLink: githubLink,
+    tags: tags,
+    teamMembers: teamMembers,
+    photo: photo,
     available: "true",
     createdAt,
     updatedAt: createdAt,
@@ -98,6 +114,8 @@ export const doCreateProject = (obj) => {
       alert("Something went wrong");
       console.log(error);
     });
+  });
+  });
 };
 
 export const doDeleteProject = (project_id) => {
@@ -185,3 +203,19 @@ export const doDeleteInternship = (internship_id) => {
       console.log(error);
     });
 };
+/*export function getImageURL(image) {
+  var storageref = firebase.storage().ref('projectPhoto/' + image);
+var uploadTask = storageref.put(image);
+
+uploadTask.on('state_changed', function(snapshot){
+}, function(error){
+  console.error(error);
+}, function() {
+  uploadTask.snapshot.ref.getDownloadURL().then(function(downloadURL) {
+    console.log('File available at', downloadURL);
+    image = downloadURL;
+    
+  });
+});
+ 
+} */

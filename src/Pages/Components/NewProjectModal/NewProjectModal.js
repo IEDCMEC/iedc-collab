@@ -11,16 +11,17 @@ import { faUpload } from "@fortawesome/free-solid-svg-icons";
 import "./NewProjectModal.scss";
 
 const NewProjectForm = ({ onClose }) => {
+  console.log(onClose);
   const newProjectSchema = yup.object({
-    title: yup.string().required("Please add a valid title").min(3),
+  title: yup.string().required("Please add a valid title").min(3),
     desc: yup.string().required("Please add a valid description").min(10),
-    links: yup.string().optional().min(4),
+ //   links: yup.string().optional().min(4),
     contactNo: yup
       .string()
       .required("Please add a valid phone number")
       .min(10, "Must be more than 10 characters"),
-    githubLink: yup.string().min(4),
-    tags: yup.string().optional().min(4),
+    githubLink: yup.string().optional().min(4),
+  //  tags: yup.string().optional().min(4),
     teamMembers: yup.string(),
   });
 
@@ -39,20 +40,22 @@ const NewProjectForm = ({ onClose }) => {
         }}
         validationSchema={newProjectSchema}
         onSubmit={(values, actions) => {
-          const { links, tags } = values;
+          const { links, tags, photo } = values;
           values.links = links.split(",").map((link) => link.trim());
           values.tags = tags.split(",").map((tag) => tag.trim());
+         
           doCreateProject(values);
-          // doCreateProject(
-          //   values.title,
-          //   values.desc,
-          //   values.links,
-          //   values.contactNo,
-          //   values.githubLink,
-          //   values.tags
-          // );
+
+         //  doCreateProject(
+           //  values.title,
+             //values.desc,
+             //values.links,
+             //values.contactNo,
+             //values.githubLink,
+             //values.tags
+         //  );
           actions.resetForm();
-          history.go(0);
+          history.push('/');
           onClose();
         }}
       >
@@ -97,8 +100,8 @@ const NewProjectForm = ({ onClose }) => {
                 <Form.Control
                   required
                   onBlur={props.handleBlur("photo")}
-                  value={props.values.photo}
-                  onChange={props.handleChange("photo")}
+                  value={""}
+                  onChange={(e)=>{props.handleChange("photo");props.values.photo=e.target.files[0];}}
                   type="file"
                   className="customFile"
                 />
