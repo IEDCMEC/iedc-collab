@@ -33,8 +33,9 @@ export const ProjectProvider = ({ children }) => {
 
   const handleSearch = (searchtext) => {
     if (searchtext !== "") {
-      let modified = allProjects.filter((itm) =>
-        itm.name.toLowerCase().includes(searchtext.toLowerCase())
+      let modified = allProjects.filter(
+        (itm) =>
+          itm.name && itm.name.toLowerCase().includes(searchtext.toLowerCase())
       );
       setProjects(modified);
     } else {
