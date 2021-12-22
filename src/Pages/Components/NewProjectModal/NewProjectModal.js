@@ -3,7 +3,7 @@ import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import { Formik } from "formik";
 import * as yup from "yup";
-import { Form, Row, Col, InputGroup, Input } from "react-bootstrap";
+import { Form, Row, Col, InputGroup } from "react-bootstrap";
 import { doCreateProject } from "../../../Firebase/firebase";
 import { useHistory } from "react-router";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -19,7 +19,7 @@ const NewProjectForm = ({ onClose }) => {
       .string()
       .required("Please add a valid phone number")
       .min(10, "Must be more than 10 characters"),
-    githubLink: yup.string().required().min(4),
+    githubLink: yup.string().min(4),
     tags: yup.string().optional().min(4),
     teamMembers: yup.string(),
   });
@@ -118,7 +118,7 @@ const NewProjectForm = ({ onClose }) => {
                 placeholder="Enter Team members name..."
               />
               <Form.Text className="text-right helperText">
-                Please separate the links using commas
+                Please separate the names using commas
               </Form.Text>
               <Form.Text className="text-danger">
                 {props.touched.teamMembers && props.errors.teamMembers}
@@ -162,10 +162,10 @@ const NewProjectForm = ({ onClose }) => {
                 value={props.values.tags}
                 onChange={props.handleChange("tags")}
                 type="text"
-                placeholder="#webdevelopmet,#appdevelopment"
+                placeholder="eg: webdevelopment, appdevelopment"
               />
               <Form.Text className="helperText text-right">
-                Please separate the links using commas
+                Please separate the tags using commas
               </Form.Text>
               <Form.Text className="text-danger">
                 {props.touched.tags && props.errors.tags}
@@ -213,12 +213,6 @@ const NewProjectModal = (props) => {
       aria-labelledby="contained-modal-title-vcenter"
       centered
     >
-      {/* <Modal.Header closeButton>
-        <Modal.Title id='contained-modal-title-vcenter'>
-          Create New Project
-        </Modal.Title>
-      </Modal.Header> */}
-
       <Modal.Body className="modalbody">
         <h3 className="modalHead">Create New Project</h3>
         <Col className="p-md-5">

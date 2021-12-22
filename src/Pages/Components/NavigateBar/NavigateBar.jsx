@@ -24,12 +24,12 @@ const Navbar = () => {
     if (currentUser) {
       setShowNewProjectModal(true);
     } else {
-      signIn();
+      signIn(() => setShowNewProjectModal(true));
     }
   };
 
   return (
-    <div className="Navigate">
+    <div className="Navigate p-2">
       <nav
         className="navbar navbar-expand-lg navbar-light NavigateBar-mainNav"
         style={{ justifyContent: "space-between", backgroundColor: "white" }}
@@ -66,7 +66,7 @@ const Navbar = () => {
             display: "flex",
             alignItems: "center",
           }}
-          className="NavigateBar-searchbox"
+          className="NavigateBar-searchbox mt-2"
         >
           <input
             placeholder="Search projects..."
