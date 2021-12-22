@@ -66,56 +66,49 @@ export const signOut = () => {
     });
 };
 
-// Firebase Realtime Database functions
 export const doCreateProject = (obj) => {
-  firebase.storage().ref(`projectPhoto/${obj.photo.name}`).put(obj.photo).then(({ref}) => {
-    ref.getDownloadURL().then((url)=>{
-    let user = firebase.auth().currentUser;
-  if (!user) {
-    alert("Please login to add a project");
-    return;
-  }
-  let title = obj.title;
-  let desc = obj.desc;
-  let links = obj.links;
-  let contactNo = obj.contactNo;
-  let githubLink = obj.githubLink;
-  let tags = obj.tags;
-  let teamMembers = obj.teamMembers;
-  let photo = url;
-  let uid = user.uid;
-  let leaderName = user.displayName;
-  const createdAt = Date.now();
-  var newProjectID = firebase.database().ref().child("projects").push().key;
-  var projectData = {
-    name: title,
-    desc: desc,
-    links: links,
-    contactNo: contactNo,
-    githubLink: githubLink,
-    tags: tags,
-    teamMembers: teamMembers,
-    photo: photo,
-    available: "true",
-    createdAt,
-    updatedAt: createdAt,
-    leader_id: uid,
-    leader_name: leaderName,
-  };
-
   firebase
-    .database()
-    .ref("projects/" + newProjectID)
-    .set(projectData)
-    .then(function () {
-      console.log("Project added sucessfully");
-    })
-    .catch(function (error) {
-      alert("Something went wrong");
-      console.log(error);
+    .storage()
+    .ref(`projectPhoto/${obj.photo.name}`)
+    .put(obj.photo)
+    .then(({ ref }) => {
+      ref.getDownloadURL().then((url) => {
+        let user = firebase.auth().currentUser;
+        if (!user) {
+          alert("Please login to add a project");
+          return;
+        }
+        let photo = url;
+        const createdAt = Date.now();
+        var newProjectID = firebase.database().ref().child("projects").push()
+          .key;
+        var projectData = {
+          ...obj,
+          name: obj.title,
+          projectPhoto: photo,
+          available: "true",
+          createdAt,
+          updatedAt: createdAt,
+          leader_id: user.uid,
+          leader_name: user.displayName,
+          leaderEmail: user.email,
+          leaderImg: user.photoUrl || null,
+        };
+        console.log(projectData);
+
+        firebase
+          .database()
+          .ref("projects/" + newProjectID)
+          .set(projectData)
+          .then(function () {
+            console.log("Project added sucessfully");
+          })
+          .catch(function (error) {
+            alert("Something went wrong");
+            console.log(error);
+          });
+      });
     });
-  });
-  });
 };
 
 export const doDeleteProject = (project_id) => {
@@ -158,64 +151,3 @@ export const getProject = (project_id) => {
 export const getUser = (user_id) => {
   return firebase.database().ref("users/").child(user_id).once("value");
 };
-
-export const getCompany = (company_id) => {
-  return firebase.database().ref("companies/").child(company_id).once("value");
-};
-
-export const getInternships = () => {
-  return firebase.database().ref("internships/").once("value");
-};
-
-export const getInternship = (internship_id) => {
-  return firebase
-    .database()
-    .ref("internships/")
-    .child(internship_id)
-    .once("value");
-};
-
-export const doDeleteInternship = (internship_id) => {
-  let user = firebase.auth().currentUser;
-  if (!user) {
-    alert("Please login to add a project");
-    return;
-  }
-
-  let internshipRef = firebase.database().ref("internships/" + internship_id);
-
-  internshipRef
-    .child("leader_id")
-    .once("value")
-    .then(function (snapshot) {
-      if (snapshot.val() !== user.uid) {
-        return;
-      }
-    });
-
-  internshipRef
-    .remove()
-    .then(function () {
-      console.log("internship deleted sucessfully");
-    })
-    .catch(function (error) {
-      alert("Something went wrong");
-      console.log(error);
-    });
-};
-/*export function getImageURL(image) {
-  var storageref = firebase.storage().ref('projectPhoto/' + image);
-var uploadTask = storageref.put(image);
-
-uploadTask.on('state_changed', function(snapshot){
-}, function(error){
-  console.error(error);
-}, function() {
-  uploadTask.snapshot.ref.getDownloadURL().then(function(downloadURL) {
-    console.log('File available at', downloadURL);
-    image = downloadURL;
-    
-  });
-});
- 
-} */

@@ -5,27 +5,23 @@ import { Formik } from "formik";
 import * as yup from "yup";
 import { Form, Row, Col, InputGroup } from "react-bootstrap";
 import { doCreateProject } from "../../../Firebase/firebase";
-import { useHistory } from "react-router";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUpload } from "@fortawesome/free-solid-svg-icons";
 import "./NewProjectModal.scss";
 
 const NewProjectForm = ({ onClose }) => {
-  console.log(onClose);
   const newProjectSchema = yup.object({
-  title: yup.string().required("Please add a valid title").min(3),
+    title: yup.string().required("Please add a valid title").min(3),
     desc: yup.string().required("Please add a valid description").min(10),
- //   links: yup.string().optional().min(4),
+    links: yup.string().min(4),
     contactNo: yup
       .string()
       .required("Please add a valid phone number")
-      .min(10, "Must be more than 10 characters"),
+      .min(10, "Must be of atleast 10 digits"),
     githubLink: yup.string().optional().min(4),
-  //  tags: yup.string().optional().min(4),
+    tags: yup.string(),
     teamMembers: yup.string(),
   });
-
-  const history = useHistory();
 
   return (
     <div className="newProjectForm">
@@ -40,23 +36,14 @@ const NewProjectForm = ({ onClose }) => {
         }}
         validationSchema={newProjectSchema}
         onSubmit={(values, actions) => {
-          const { links, tags, photo } = values;
+          const { links, tags, teamMembers } = values;
           values.links = links.split(",").map((link) => link.trim());
           values.tags = tags.split(",").map((tag) => tag.trim());
-         
+          values.teamMembers = teamMembers.split(",").map((tag) => tag.trim());
           doCreateProject(values);
-
-         //  doCreateProject(
-           //  values.title,
-             //values.desc,
-             //values.links,
-             //values.contactNo,
-             //values.githubLink,
-             //values.tags
-         //  );
-          actions.resetForm();
-          history.push('/');
-          onClose();
+          // window.location.reload();
+          // actions.resetForm();
+          // onClose();
         }}
       >
         {(props) => (
@@ -93,7 +80,7 @@ const NewProjectForm = ({ onClose }) => {
 
             <InputGroup controlId="formPhoto" className="photoContainer">
               <Form.Label className="photoLabel">
-                <i className="photoHead">Upload Featuring Photo</i>
+                <i className="photoHead">Upload Featuring Photo*</i>
                 <i className="photoIcon">
                   <FontAwesomeIcon icon={faUpload} />
                 </i>
@@ -101,7 +88,10 @@ const NewProjectForm = ({ onClose }) => {
                   required
                   onBlur={props.handleBlur("photo")}
                   value={""}
-                  onChange={(e)=>{props.handleChange("photo");props.values.photo=e.target.files[0];}}
+                  onChange={(e) => {
+                    props.handleChange("photo");
+                    props.values.photo = e.target.files[0];
+                  }}
                   type="file"
                   className="customFile"
                 />

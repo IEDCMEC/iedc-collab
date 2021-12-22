@@ -17,12 +17,11 @@ import Navigate from "../../../../../assets/Navigate.png";
 const ProjectDetails = (props) => {
   const { selectedProject } = useContext(ProjectContext);
   const { currentUser } = useContext(AuthContext);
-  const [deleteProject, setDeleteProject] = useState(false);
+  const [canModifyProject, setCanModifyProject] = useState(false);
   const [email, setEmail] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const history = useHistory();
-  let linkHeading;
- 
+
   useEffect(() => {
     if (selectedProject.leader_id !== undefined) {
       getUser(selectedProject.leader_id)
@@ -30,6 +29,7 @@ const ProjectDetails = (props) => {
           let result = snapshot.val();
           setEmail(result.email);
           setPhoneNumber(result.phone_number);
+          console.log(result);
         })
         .catch(function (error) {
           alert("Something went wrong");
@@ -37,17 +37,12 @@ const ProjectDetails = (props) => {
         });
     }
     if (currentUser?.uid === selectedProject.leader_id) {
-      setDeleteProject(true);
-     
+      setCanModifyProject(true);
     } else {
-      setDeleteProject(false);
+      setCanModifyProject(false);
     }
-    if (selectedProject.links !== undefined) {
-      linkHeading = "Links";
-    } else {
-      linkHeading = null;
-    }
-  }, [selectedProject]);
+  }, [currentUser?.uid, selectedProject.leader_id]);
+
   function deleteProj(id) {
     doDeleteProject(id);
     history.go(0);
@@ -75,7 +70,12 @@ const ProjectDetails = (props) => {
             style={{ display: "flex", alignItems: "center" }}
             className="ProjectDetails-headerLeft"
           >
-            <img src="https://cvbay.com/wp-content/uploads/2017/03/dummy-image.jpg"></img>
+            <img
+              src={
+                selectedProject.leaderImg ||
+                "https://cvbay.com/wp-content/uploads/2017/03/dummy-image.jpg"
+              }
+            ></img>
             <p>{selectedProject.leader_name}</p>
           </div>
           <div className="ProjectDetails-imagediv">
@@ -92,63 +92,67 @@ const ProjectDetails = (props) => {
 
         <div className="contents ">
           <div
-          className="contents-subdiv"
+            className="contents-subdiv"
             style={{
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
             }}
           >
-            <h4>{selectedProject.name}</h4>
-            {selectedProject.desc}
+            <h4>PROJECT DESCRIPTION</h4>
+            <p>{selectedProject.desc}</p>
 
             <div className="team">
               <h4>TEAM MEMBERS</h4>
             </div>
             <div className="members">
               <ol>
-                <li>Rindish Krishna</li>
-                <li>Rindish Krishna</li>
+                {Array.isArray(selectedProject.teamMembers) &&
+                  selectedProject.teamMembers.map((member) => (
+                    <li>{member}</li>
+                  ))}
               </ol>
             </div>
-
-            <h4>{linkHeading}</h4>
-            {selectedProject.links.length !== 1 ? (
-              <a
-                href={selectedProject.links}
-                rel="noopener noreferrer"
-                target="_blank"
-              >
-                <img src={Link} style={{ marginRight: "10px" }}></img>
-                {selectedProject.links}
-              </a>
+            {selectedProject.links.length ? (
+              <>
+                <h4>Links</h4>
+                {selectedProject.links.map((link) => (
+                  <>
+                    <img
+                      src={Link}
+                      alt="tag icon"
+                      style={{ marginRight: "10px" }}
+                    ></img>
+                    <a rel="noopener noreferrer" target="_blank" href={link}>
+                      {link}
+                    </a>
+                  </>
+                ))}
+              </>
             ) : (
               ""
             )}
           </div>
-
-          {deleteProject ? (
-            <Button
-              variant="danger"
-              className="delete-btn"
-              onClick={() => {
-                deleteProj(selectedProject.id);
-              }}
-            >
-              Delete Project
-            </Button>
-          ) : null}
         </div>
       </div>
       <div className="ProjectDetails-Bottomdiv">
-        <img
-          src={Bin}
-          style={{ cursor: "pointer" }}
-          onClick={() => {
-            deleteProj(selectedProject.id);
-          }}
-        ></img>
-        <img src={Edit} style={{ cursor: "pointer" }}></img>
+        {canModifyProject && (
+          <img
+            src={Bin}
+            style={{ cursor: "pointer" }}
+            onClick={() => {
+              deleteProj(selectedProject.id);
+            }}
+            alt="delete project"
+          />
+        )}
+        {canModifyProject && (
+          <img
+            src={Edit}
+            alt="Edit Project"
+            style={{ cursor: "pointer" }}
+          ></img>
+        )}
       </div>
     </div>
   );
@@ -158,12 +162,12 @@ export default ProjectDetails;
 export const ProjectDetailMob = ({ setdispmobDetails }) => {
   const { selectedProject } = useContext(ProjectContext);
   const { currentUser } = useContext(AuthContext);
-  const [deleteProject, setDeleteProject] = useState(false);
+  const [canModifyProject, setCanModifyProject] = useState(false);
   const [email, setEmail] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const history = useHistory();
   let linkHeading;
-  
+
   useEffect(() => {
     if (selectedProject.leader_id !== undefined) {
       getUser(selectedProject.leader_id)
@@ -178,10 +182,9 @@ export const ProjectDetailMob = ({ setdispmobDetails }) => {
         });
     }
     if (currentUser?.uid === selectedProject.leader_id) {
-      setDeleteProject(true);
-   
+      setCanModifyProject(true);
     } else {
-      setDeleteProject(false);
+      setCanModifyProject(false);
     }
     if (selectedProject.links !== undefined) {
       linkHeading = "Links";
@@ -245,7 +248,7 @@ export const ProjectDetailMob = ({ setdispmobDetails }) => {
           )}
         </div>
 
-        {deleteProject ? (
+        {canModifyProject ? (
           <Button
             variant="danger"
             className="delete-btn"
