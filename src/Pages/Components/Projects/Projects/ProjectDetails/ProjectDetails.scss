@@ -14,6 +14,10 @@ h4 {
   height: 55vh;
   overflow: auto;
 }
+.contentsmob > h4{
+  background: white;
+  color: var(--primaryColor);
+}
 .ProjectDetails-headerLeft > img {
   height: 3.5rem;
   width: 3.5rem;
@@ -126,16 +130,24 @@ ol li {
   display: flex;
   justify-content: center;
 }
+.contents-subdiv{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 20rem;
 
+}
 .ProjectDetailmob-Navdiv {
   background: white;
   border: 2px solid white;
   border-radius: 100%;
   padding: 0.3rem;
+  cursor: pointer;
 }
 .ProjectDetailMob-imgdiv > img {
   height: 1.2rem;
   margin-right: 0.6rem;
+  cursor: pointer;
 }
 .ProjectDetailMob-imgdiv {
   margin-left: 0.6rem;

@@ -22,7 +22,7 @@ const ProjectDetails = (props) => {
   const [phoneNumber, setPhoneNumber] = useState("");
   const history = useHistory();
   let linkHeading;
-  console.log(selectedProject.links.length);
+ 
   useEffect(() => {
     if (selectedProject.leader_id !== undefined) {
       getUser(selectedProject.leader_id)
@@ -38,7 +38,7 @@ const ProjectDetails = (props) => {
     }
     if (currentUser?.uid === selectedProject.leader_id) {
       setDeleteProject(true);
-      console.log(deleteProject);
+     
     } else {
       setDeleteProject(false);
     }
@@ -92,6 +92,7 @@ const ProjectDetails = (props) => {
 
         <div className="contents ">
           <div
+          className="contents-subdiv"
             style={{
               display: "flex",
               flexDirection: "column",
@@ -140,15 +141,21 @@ const ProjectDetails = (props) => {
         </div>
       </div>
       <div className="ProjectDetails-Bottomdiv">
-        <img src={Bin}></img>
-        <img src={Edit}></img>
+        <img
+          src={Bin}
+          style={{ cursor: "pointer" }}
+          onClick={() => {
+            deleteProj(selectedProject.id);
+          }}
+        ></img>
+        <img src={Edit} style={{ cursor: "pointer" }}></img>
       </div>
     </div>
   );
 };
 export default ProjectDetails;
 
-export const ProjectDetailMob = ({setdispmobDetails}) => {
+export const ProjectDetailMob = ({ setdispmobDetails }) => {
   const { selectedProject } = useContext(ProjectContext);
   const { currentUser } = useContext(AuthContext);
   const [deleteProject, setDeleteProject] = useState(false);
@@ -156,7 +163,7 @@ export const ProjectDetailMob = ({setdispmobDetails}) => {
   const [phoneNumber, setPhoneNumber] = useState("");
   const history = useHistory();
   let linkHeading;
-  console.log(selectedProject.links.length);
+  
   useEffect(() => {
     if (selectedProject.leader_id !== undefined) {
       getUser(selectedProject.leader_id)
@@ -172,7 +179,7 @@ export const ProjectDetailMob = ({setdispmobDetails}) => {
     }
     if (currentUser?.uid === selectedProject.leader_id) {
       setDeleteProject(true);
-      console.log(deleteProject);
+   
     } else {
       setDeleteProject(false);
     }
@@ -188,7 +195,7 @@ export const ProjectDetailMob = ({setdispmobDetails}) => {
   }
   return (
     <div className="ProjectDetailMob-maindiv">
-      <div  className="ProjectDetailMob-headerdiv">
+      <div className="ProjectDetailMob-headerdiv">
         <div
           style={{ display: "flex", alignItems: "center" }}
           className="ProjectDetailsmob-headerLeft"
@@ -201,16 +208,16 @@ export const ProjectDetailMob = ({setdispmobDetails}) => {
             <img src={Github}></img>
           </div>
         </div>
-        <div className="ProjectDetailmob-Navdiv" onClick={()=>setdispmobDetails(false)}>
-        <img src={Navigate}  className="ProjectDetailMob-headerRight"></img>
+        <div
+          className="ProjectDetailmob-Navdiv"
+          onClick={() => setdispmobDetails(false)}
+        >
+          <img src={Navigate} className="ProjectDetailMob-headerRight"></img>
         </div>
       </div>
       <div className="contentsmob">
-        <div
-        className="contentsmob-subdiv"
-        
-        >
-          <h4>{selectedProject.name}</h4>
+        <h4>{selectedProject.name}</h4>
+        <div className="contentsmob-subdiv">
           {selectedProject.desc}
 
           <div className="team">
@@ -251,8 +258,14 @@ export const ProjectDetailMob = ({setdispmobDetails}) => {
         ) : null}
       </div>
       <div className="ProjectDetailsmob-Bottomdiv">
-        <img src={Bin}></img>
-        <img src={Edit}></img>
+        <img
+          src={Bin}
+          style={{ cursor: "pointer" }}
+          onClick={() => {
+            deleteProj(selectedProject.id);
+          }}
+        ></img>
+        <img src={Edit} style={{ cursor: "pointer" }}></img>
       </div>
     </div>
   );
