@@ -210,8 +210,20 @@ const NewProjectModal = (props) => {
       aria-labelledby="contained-modal-title-vcenter"
       centered
     >
-      <Modal.Body className="modalbody">
+      <Modal.Body className="modalbody" style={{ position: "relative" }}>
         <h3 className="modalHead">Create New Project</h3>
+        <i
+          className="fa fa-close"
+          style={{
+            position: "absolute",
+            top: "15px",
+            fontSize: "25px",
+            right: "30px",
+            padding: 10,
+            cursor: "pointer",
+          }}
+          onClick={props.onHide}
+        ></i>
         <Col className="p-md-5">
           <h5 className="modalHead2">Please add details about your project</h5>
           <NewProjectForm onClose={props.onHide} />
