@@ -22,6 +22,7 @@ const ProjectList = () => {
               name={x.name}
               teamLeader={x.leader_name}
               projectId={x.id}
+              project = {x}
             />
           </div>
         );

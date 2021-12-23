@@ -74,7 +74,14 @@ export const signOut = () => {
 // Firebase Realtime Database functions
 
 export const doCreateProject = (obj) => {
-  firebase.storage().ref(`projectPhoto/${obj.photo.name}`).put(obj.photo).then(({ref}) => {
+  const getRandomFileName=()=> {
+    var timestamp = new Date().toISOString().replace(/[-:.]/g,"");  
+    var random = ("" + Math.random()).substring(2, 8); 
+    var random_number = timestamp+random;  
+    return random_number;
+    }
+  const fileName = getRandomFileName().toString();
+  firebase.storage().ref(`projectPhoto/${fileName}`).put(obj.photo).then(({ref}) => {
     ref.getDownloadURL().then((url)=>{
     let user = firebase.auth().currentUser;
   if (!user) {
@@ -103,7 +110,6 @@ export const doCreateProject = (obj) => {
     teamMembers: teamMembers,
     photo: photo,
     available: "true",
-    createdAt,
     updatedAt: createdAt,
     leader_id: uid,
     leader_name: leaderName,
@@ -121,7 +127,8 @@ export const doCreateProject = (obj) => {
       console.log(error);
     });
   });
-  });
+  }, (error) => {alert("Something went wrong\n"+ error); console.log("something went wrong")})
+  .catch(error => {alert("Something went wrong\n"+ error); console.log("something went wrong")});
 };
 
 export const doDeleteProject = (project_id) => {
