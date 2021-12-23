@@ -29,9 +29,9 @@ const Navbar = () => {
   };
 
   return (
-    <div className="Navigate p-2">
+    <div className="Navigate p-2 mb-5 pb-2">
       <nav
-        className="navbar navbar-expand-lg navbar-light NavigateBar-mainNav"
+        className="navbar navbar-expand-lg fixed-top navbar-light NavigateBar-mainNav"
         style={{ justifyContent: "space-between", backgroundColor: "white" }}
       >
         <div style={{ cursor: "pointer" }}>

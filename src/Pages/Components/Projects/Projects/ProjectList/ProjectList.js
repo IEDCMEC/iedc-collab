@@ -8,7 +8,7 @@ const ProjectList = ({ width, setdispmobDetails }) => {
   console.log(projects);
 
   return (
-    <Col className={" overflow "}>
+    <Col className={" overflow "} style={{ maxHeight: "90vh" }}>
       {projects.map((x) => {
         return (
           <div

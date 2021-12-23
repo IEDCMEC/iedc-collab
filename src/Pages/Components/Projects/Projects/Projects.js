@@ -41,11 +41,13 @@ const ProjectsView = () => {
             </Col>
           </Col>
           <Col className={"h-100 projectDetails"}>
-            <ProjectDetails  />
+            <ProjectDetails />
           </Col>
         </Row>
       ) : (
-        <ProjectDetailMob setdispmobDetails={setdispmobDetails}></ProjectDetailMob>
+        <ProjectDetailMob
+          setdispmobDetails={setdispmobDetails}
+        ></ProjectDetailMob>
       )}
     </Container>
   );

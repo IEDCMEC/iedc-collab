@@ -129,7 +129,11 @@ const ProjectDetails = (props) => {
                       alt="tag icon"
                       style={{ marginRight: "10px" }}
                     ></img>
-                    <a rel="noopener noreferrer" target="_blank" href={link}>
+                    <a
+                      rel="noopener noreferrer"
+                      target="_blank"
+                      href={link.startsWith("http") ? link : "http://" + link}
+                    >
                       {link}
                     </a>
                   </>
