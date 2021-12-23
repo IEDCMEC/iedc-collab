@@ -115,7 +115,7 @@ const ProjectDetails = (props) => {
               <ol>
                 {Array.isArray(selectedProject.teamMembers) &&
                   selectedProject.teamMembers.map((member) => (
-                    <li>{member}</li>
+                   <li>{member}</li>
                   ))}
               </ol>
             </div>
@@ -247,7 +247,7 @@ export const ProjectDetailMob = ({ setdispmobDetails }) => {
           <div className="members">
             <ol>
               {Array.isArray(selectedProject.teamMembers) &&
-                selectedProject.teamMembers.map((member) => <li>{member}</li>)}
+                selectedProject.teamMembers.map((member) => <p><li className="ProjectDetailsmob-members">{member}</li></p>)}
             </ol>
           </div>
           {selectedProject.links.length ? (
