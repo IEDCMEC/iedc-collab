@@ -21,7 +21,7 @@ const ProjectDetails = (props) => {
   const [email, setEmail] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const history = useHistory();
-
+  console.log(selectedProject);
   useEffect(() => {
     if (selectedProject.leader_id !== undefined) {
       getUser(selectedProject.leader_id)
@@ -79,9 +79,15 @@ const ProjectDetails = (props) => {
             <p>{selectedProject.leader_name}</p>
           </div>
           <div className="ProjectDetails-imagediv">
-            <img src={Phoneicon}></img>
-            <img src={Mail}></img>
-            <img src={Github}></img>
+          <a href={`tel:${selectedProject.contactNo}`}>
+              <img src={Phoneicon}></img>
+            </a>
+            <a href={`mailto: ${selectedProject.leaderEmail}`}>
+              <img src={Mail}></img>
+            </a>
+            <a href={selectedProject.githubLink}>
+              <img src={Github}></img>
+            </a>
           </div>
         </div>
       </div>
@@ -114,8 +120,8 @@ const ProjectDetails = (props) => {
               </ol>
             </div>
             {selectedProject.links.length ? (
-              <>
-                <h4>Links</h4>
+              <div className="ProjectDetail-linkdiv">
+               
                 {selectedProject.links.map((link) => (
                   <>
                     <img
@@ -128,7 +134,7 @@ const ProjectDetails = (props) => {
                     </a>
                   </>
                 ))}
-              </>
+              </div>
             ) : (
               ""
             )}
@@ -168,6 +174,7 @@ export const ProjectDetailMob = ({ setdispmobDetails }) => {
   const history = useHistory();
   let linkHeading;
 
+  console.log(selectedProject);
   useEffect(() => {
     if (selectedProject.leader_id !== undefined) {
       getUser(selectedProject.leader_id)
@@ -206,9 +213,16 @@ export const ProjectDetailMob = ({ setdispmobDetails }) => {
           <img src="https://cvbay.com/wp-content/uploads/2017/03/dummy-image.jpg"></img>
           <div className="ProjectDetailMob-imgdiv">
             <p>{selectedProject.leader_name}</p>
-            <img src={Phoneicon}></img>
-            <img src={Mail}></img>
-            <img src={Github}></img>
+
+            <a href={`tel:${selectedProject.contactNo}`}>
+              <img src={Phoneicon}></img>
+            </a>
+            <a href={`mailto: ${selectedProject.leaderEmail}`}>
+              <img src={Mail}></img>
+            </a>
+            <a href={selectedProject.githubLink}>
+              <img src={Github}></img>
+            </a>
           </div>
         </div>
         <div
@@ -228,21 +242,26 @@ export const ProjectDetailMob = ({ setdispmobDetails }) => {
           </div>
           <div className="members">
             <ol>
-              <li>Rindish Krishna</li>
-              <li>Rindish Krishna</li>
+              {Array.isArray(selectedProject.teamMembers) &&
+                selectedProject.teamMembers.map((member) => <li>{member}</li>)}
             </ol>
           </div>
-
-          <h4>{linkHeading}</h4>
-          {selectedProject.links.length !== 1 ? (
-            <a
-              href={selectedProject.links}
-              rel="noopener noreferrer"
-              target="_blank"
-            >
-              <img src={Link} style={{ marginRight: "10px" }}></img>
-              {selectedProject.links}
-            </a>
+          {selectedProject.links.length ? (
+            <div className="ProjectDetail-linkdiv">
+            
+              {selectedProject.links.map((link) => (
+                <>
+                  <img
+                    src={Link}
+                    alt="tag icon"
+                    style={{ marginRight: "10px" }}
+                  ></img>
+                  <a rel="noopener noreferrer" target="_blank" href={link}>
+                    {link}
+                  </a>
+                </>
+              ))}
+            </div>
           ) : (
             ""
           )}
@@ -261,14 +280,23 @@ export const ProjectDetailMob = ({ setdispmobDetails }) => {
         ) : null}
       </div>
       <div className="ProjectDetailsmob-Bottomdiv">
-        <img
-          src={Bin}
-          style={{ cursor: "pointer" }}
-          onClick={() => {
-            deleteProj(selectedProject.id);
-          }}
-        ></img>
-        <img src={Edit} style={{ cursor: "pointer" }}></img>
+      {canModifyProject && (
+          <img
+            src={Bin}
+            style={{ cursor: "pointer" }}
+            onClick={() => {
+              deleteProj(selectedProject.id);
+            }}
+            alt="delete project"
+          />
+        )}
+        {canModifyProject && (
+          <img
+            src={Edit}
+            alt="Edit Project"
+            style={{ cursor: "pointer" }}
+          ></img>
+        )}
       </div>
     </div>
   );

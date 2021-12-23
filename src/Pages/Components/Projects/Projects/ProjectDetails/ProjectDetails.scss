@@ -37,7 +37,16 @@ h4 {
   margin-left: 1rem;
   margin-bottom: 0;
 }
-.ProjectDetails-imagediv > img {
+.team , .members , .ProjectDetail-linkdiv{
+align-self: flex-start;
+}
+.ProjectDetail-linkdiv > h4{
+text-align: start;
+}
+.team{
+  margin-top: 1.3rem;
+}
+.ProjectDetails-imagediv > a >img{
   margin-right: 1.5rem;
   width: 2rem;
 }
@@ -143,7 +152,7 @@ ol li {
   padding: 0.3rem;
   cursor: pointer;
 }
-.ProjectDetailMob-imgdiv > img {
+.ProjectDetailMob-imgdiv > a > img {
   height: 1.2rem;
   margin-right: 0.6rem;
   cursor: pointer;
