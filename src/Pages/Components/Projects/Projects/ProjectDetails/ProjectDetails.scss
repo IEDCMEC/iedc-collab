@@ -43,6 +43,9 @@ align-self: flex-start;
 .ProjectDetail-linkdiv > h4{
 text-align: start;
 }
+.ProjectDetail-linkdiv > a {
+  margin-right: 0.3rem;
+}
 .ProjectDetailsmob-members{
   margin-top: 0.5rem;
 }
@@ -92,6 +95,7 @@ text-align: start;
   padding: 20px;
   width: 100%;
   overflow: auto;
+  height: 25rem;
 }
 .description {
   //padding: 20px;

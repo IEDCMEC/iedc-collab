@@ -121,17 +121,18 @@ const ProjectDetails = (props) => {
             </div>
             {selectedProject.links.length ? (
               <div className="ProjectDetail-linkdiv">
-               
-                {selectedProject.links.map((link) => (
-                  <>
-                    <img
+                <img
                       src={Link}
                       alt="tag icon"
                       style={{ marginRight: "10px" }}
                     ></img>
+                {selectedProject.links.map((link) => (
+                  <>
+                   
                     <a
                       rel="noopener noreferrer"
                       target="_blank"
+                      style={{marginRight:"10"}}
                       href={link.startsWith("http") ? link : "http://" + link}
                     >
                       {link}
@@ -252,14 +253,14 @@ export const ProjectDetailMob = ({ setdispmobDetails }) => {
           </div>
           {selectedProject.links.length ? (
             <div className="ProjectDetail-linkdiv">
-            
-              {selectedProject.links.map((link) => (
-                <>
-                  <img
+            <img
                     src={Link}
                     alt="tag icon"
                     style={{ marginRight: "10px" }}
                   ></img>
+              {selectedProject.links.map((link) => (
+                <>
+                  
                   <a rel="noopener noreferrer" target="_blank" href={link}>
                     {link}
                   </a>
