@@ -84,7 +84,7 @@ const NewProjectForm = ({ onClose, project }) => {
              //values.tags
          //  );
           actions.resetForm();
-          history.push('/');
+          history.go(0);
           onClose();
         }}
       >

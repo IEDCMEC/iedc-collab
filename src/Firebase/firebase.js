@@ -1,3 +1,4 @@
+import { faCommentsDollar } from "@fortawesome/free-solid-svg-icons";
 import firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/database";
@@ -76,7 +77,7 @@ export const signOut = () => {
 export const doCreateProject = (obj) => {
   
   var newProjectID = firebase.database().ref().child("projects").push().key;
-  if(obj.photo!==null){
+  if(obj.photo){
   firebase.storage().ref(`projectPhoto/${newProjectID}`).put(obj.photo).then(({ref}) => {
     ref.getDownloadURL().then((url)=>{
     let user = firebase.auth().currentUser;
@@ -264,7 +265,7 @@ export const doDeleteInternship = (internship_id) => {
 };
 
 
-export const doEditProject = (obj,project_id) => {
+export const doEditProject = async (obj,project_id) => {
   let user = firebase.auth().currentUser;
   if (!user) {
     alert("Please login to add a project");
@@ -279,17 +280,19 @@ export const doEditProject = (obj,project_id) => {
       return;
     }
   });
-  var photoUrl = projectRef.child("photo").once("value").then(function(snapshot){if(snapshot.val()){return snapshot.val()}
+  let photoUrl='';  
+   projectRef.child("photo").once("value").then(await function(snapshot){if(snapshot.val()){photoUrl= snapshot.val()}
   else{return 'https://images.unsplash.com/photo-1639413665566-2f75adf7b7ca?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyN3x8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60'}});
   if(obj.photo!==''){
-  photoUrl=firebase.storage().ref(`projectPhoto/${project_id}`).put(obj.photo).then(({ref}) => {
-    ref.getDownloadURL().then((url)=>{
-   return url;
-}, (error)=>{alert("Something went wrong"); console.log(error); return photoUrl;})});
-  }
+ try{
+  let imgDb = await firebase.storage().ref(`projectPhoto/${project_id}`)
+  let newimg= await imgDb.put(obj.photo)
+    photoUrl = await newimg.ref.getDownloadURL()
+
   let uid = user.uid;
   let leaderName = user.displayName;
   const createdAt = Date.now();
+  console.log(photoUrl)
 projectRef
   .set( {
     name: obj.title,
@@ -310,9 +313,9 @@ projectRef
   .then(function () {
     console.log("Project edited sucessfully");
   })
-  .catch(function (error) {
-    alert("Something went wrong");
-    console.log(error);
-  });
+}
+catch(error){
+  alert("Something went wrong");
+  console.log(error);
 };
-
+  }}
