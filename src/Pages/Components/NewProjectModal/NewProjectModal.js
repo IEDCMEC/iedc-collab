@@ -16,8 +16,11 @@ const NewProjectForm = ({ onClose }) => {
     links: yup.string().min(4),
     contactNo: yup
       .string()
-      .required("Please add a valid phone number")
-      .min(10, "Must be of atleast 10 digits"),
+      .required()
+      .matches(
+        /^[(]?[0-9]{3}[)]?[-\s.]?[0-9]{3}[-\s.]?[0-9]{4,6}$/,
+        "Please enter a valid 10 digit phone number"
+      ),
     githubLink: yup.string().optional().min(4),
     tags: yup.string(),
     teamMembers: yup.string(),
@@ -39,14 +42,16 @@ const NewProjectForm = ({ onClose }) => {
         validationSchema={newProjectSchema}
         onSubmit={(values, actions) => {
           const { links, tags, teamMembers } = values;
-          values.links = links.split(",").map((link) => link.trim());
-          values.tags = tags.split(",").map((tag) => tag.trim());
-          values.teamMembers = teamMembers.split(",").map((tag) => tag.trim());
-          values.photo = projectPhoto;
-          doCreateProject(values);
+          const formValues = {
+            ...values,
+            links: links.split(",").map((link) => link.trim()),
+            tags: tags.split(",").map((link) => link.trim()),
+            teamMembers: teamMembers.split(",").map((link) => link.trim()),
+            photo: projectPhoto,
+          };
+          doCreateProject(formValues);
           onClose();
           actions.resetForm();
-          window.location.reload();
         }}
       >
         {(props) => (
@@ -77,7 +82,9 @@ const NewProjectForm = ({ onClose }) => {
                 rows="3"
               />
               <Form.Text className="text-danger">
-                {props.touched.desc && props.errors.desc}
+                {props.touched.desc && props.errors.desc
+                  ? "Please enter a description greater than 10 characters"
+                  : ""}
               </Form.Text>
             </Form.Group>
 
@@ -176,7 +183,7 @@ const NewProjectForm = ({ onClose }) => {
                 value={props.values.links}
                 onChange={props.handleChange("links")}
                 type="text"
-                placeholder="eg: www.tata.com"
+                placeholder="eg: www.example.com"
               />
               <Form.Text className="helperText text-right">
                 Please separate the links using commas
@@ -210,8 +217,20 @@ const NewProjectModal = (props) => {
       aria-labelledby="contained-modal-title-vcenter"
       centered
     >
-      <Modal.Body className="modalbody">
+      <Modal.Body className="modalbody" style={{ position: "relative" }}>
         <h3 className="modalHead">Create New Project</h3>
+        <i
+          className="fa fa-close d-block d-md-none"
+          style={{
+            position: "absolute",
+            top: "15px",
+            fontSize: "25px",
+            right: "30px",
+            padding: 10,
+            cursor: "pointer",
+          }}
+          onClick={props.onHide}
+        ></i>
         <Col className="p-md-5">
           <h5 className="modalHead2">Please add details about your project</h5>
           <NewProjectForm onClose={props.onHide} />
