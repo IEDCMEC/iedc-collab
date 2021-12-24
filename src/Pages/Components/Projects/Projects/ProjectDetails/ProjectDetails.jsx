@@ -18,24 +18,24 @@ const ProjectDetails = (props) => {
   const { selectedProject } = useContext(ProjectContext);
   const { currentUser } = useContext(AuthContext);
   const [canModifyProject, setCanModifyProject] = useState(false);
-  const [email, setEmail] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
+  // const [email, setEmail] = useState("");
+  // const [phoneNumber, setPhoneNumber] = useState("");
   const history = useHistory();
 
   useEffect(() => {
-    if (selectedProject.leader_id !== undefined) {
-      getUser(selectedProject.leader_id)
-        .then(async function (snapshot) {
-          let result = snapshot.val();
-          setEmail(result.email);
-          setPhoneNumber(result.phone_number);
-          console.log(result);
-        })
-        .catch(function (error) {
-          alert("Something went wrong");
-          console.log(error);
-        });
-    }
+    // if (selectedProject.leader_id !== undefined) {
+    //   getUser(selectedProject.leader_id)
+    //     .then(async function (snapshot) {
+    //       let result = snapshot.val();
+    //       setEmail(result.email);
+    //       setPhoneNumber(result.phone_number);
+    //       console.log(result);
+    //     })
+    //     .catch(function (error) {
+    //       alert("Something went wrong");
+    //       console.log(error);
+    //     });
+    // }
     if (currentUser?.uid === selectedProject.leader_id) {
       setCanModifyProject(true);
     } else {
@@ -75,6 +75,7 @@ const ProjectDetails = (props) => {
                 selectedProject.leaderImg ||
                 "https://cvbay.com/wp-content/uploads/2017/03/dummy-image.jpg"
               }
+              alt="Leader profile pic"
             ></img>
             <p>{selectedProject.leader_name}</p>
           </div>

@@ -23,9 +23,9 @@ const Landing = () => {
             <div className="card">
               <div className="card__image-holder">
                 <img
-                  className="card__image"
+                  className="img-fluid"
                   src={
-                    project.imgUrl ||
+                    project.projectPhoto ||
                     "https://images.unsplash.com/photo-1639413665566-2f75adf7b7ca?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyN3x8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60"
                   }
                   alt="project banner"
