@@ -4,7 +4,7 @@ import { Row, Col, Button } from "react-bootstrap";
 // import ProjectContext from "../../../../Collab/ProjectContext";
 import { ProjectContext } from "../../../../../contexts/ProjectContext";
 import { AuthContext } from "../../../../../Firebase/Auth/Auth";
-import { doDeleteProject, getUser } from "../../../../../Firebase/firebase";
+import { doDeleteProject } from "../../../../../Firebase/firebase";
 import { useHistory } from "react-router";
 import Phoneicon from "../../../../../assets/Phoneicon.png";
 import Mail from "../../../../../assets/Mail.png";
@@ -21,7 +21,7 @@ const ProjectDetails = (props) => {
   // const [email, setEmail] = useState("");
   // const [phoneNumber, setPhoneNumber] = useState("");
   const history = useHistory();
-
+  console.log(selectedProject);
   useEffect(() => {
     // if (selectedProject.leader_id !== undefined) {
     //   getUser(selectedProject.leader_id)
@@ -72,7 +72,7 @@ const ProjectDetails = (props) => {
           >
             <img
               src={
-                selectedProject.leaderImg ||
+                selectedProject.projectPhoto ||
                 "https://cvbay.com/wp-content/uploads/2017/03/dummy-image.jpg"
               }
               alt="Leader profile pic"
@@ -80,13 +80,15 @@ const ProjectDetails = (props) => {
             <p>{selectedProject.leader_name}</p>
           </div>
           <div className="ProjectDetails-imagediv">
-            <img
-              className="d-block d-md-none" // display only on small screns
-              src={Phoneicon}
-              alt="phone-icon"
-            ></img>
-            <img src={Mail} alt="mail"></img>
-            <img src={Github} alt="github"></img>
+            <a href={`tel:${selectedProject.contactNo}`}>
+              <img src={Phoneicon}   alt="phone-icon"></img>
+            </a>
+            <a href={`mailto: ${selectedProject.leaderEmail}`}>
+              <img src={Mail} alt="mail"></img>
+            </a>
+            <a href={selectedProject.githubLink}>
+              <img src={Github}  alt="github"></img>
+            </a>
           </div>
         </div>
       </div>
@@ -118,31 +120,46 @@ const ProjectDetails = (props) => {
                   ))}
               </ol>
             </div>
+            {selectedProject.tags ? (
+              <div className="ProjectDetail-tagdiv">
+                <img
+                  src={Link}
+                  alt="tag icon"
+                  style={{ marginRight: "10px" }}
+                ></img>
+                {selectedProject.tags.map((tag, index) => (
+                  <p
+                    rel="noopener noreferrer"
+                    style={{ marginRight: "10" }}
+                    key={index}
+                  >
+                    #{tag}
+                  </p>
+                ))}
+              </div>
+            ) : (
+              ""
+            )}
             {selectedProject.links.length ? (
-              <>
-                <h4>Links</h4>
+              <div className="ProjectDetail-linkdiv" style={{display:"flex"}}>
                 {selectedProject.links.map((link) => (
-                  <div key={link}>
-                    <img
-                      src={Link}
-                      alt="tag icon"
-                      style={{ marginRight: "10px" }}
-                    ></img>
+                  <div key={link} className="ProjectDetail-links">
                     <a
                       rel="noopener noreferrer"
                       target="_blank"
+                      style={{ marginRight: "10" }}
                       href={link.startsWith("http") ? link : "http://" + link}
                     >
                       {link}
                     </a>
                   </div>
                 ))}
-              </>
+              </div>
             ) : (
               ""
             )}
             {selectedProject.contactNo && ( // display only on large screns
-              <div className="d-flex align-items-center d-none d-md-block">
+              <div className="d-flex align-self-start d-none d-md-block mt-3">
                 <h4 className="font-weight-bolder mr-2">Contact Number: </h4>
                 <h5>{selectedProject.contactNo}</h5>
               </div>
@@ -178,13 +195,14 @@ export const ProjectDetailMob = ({ setdispmobDetails }) => {
   const { selectedProject } = useContext(ProjectContext);
   const { currentUser } = useContext(AuthContext);
   const [canModifyProject, setCanModifyProject] = useState(false);
-  const [email, setEmail] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
+  //const [email, setEmail] = useState("");
+  //const [phoneNumber, setPhoneNumber] = useState("");
   const history = useHistory();
-  let linkHeading;
+ // let linkHeading;
 
+  console.log(selectedProject);
   useEffect(() => {
-    if (selectedProject.leader_id !== undefined) {
+    /* if (selectedProject.leader_id !== undefined) {
       getUser(selectedProject.leader_id)
         .then(async function (snapshot) {
           let result = snapshot.val();
@@ -195,18 +213,18 @@ export const ProjectDetailMob = ({ setdispmobDetails }) => {
           alert("Something went wrong");
           console.log(error);
         });
-    }
+    }*/
     if (currentUser?.uid === selectedProject.leader_id) {
       setCanModifyProject(true);
     } else {
       setCanModifyProject(false);
     }
-    if (selectedProject.links !== undefined) {
-      linkHeading = "Links";
+    /*if (selectedProject.links !== undefined) {
+      //linkHeading = "Links";
     } else {
       linkHeading = null;
-    }
-  }, [selectedProject]);
+    }*/
+  }, [currentUser?.uid, selectedProject.leader_id]);
   function deleteProj(id) {
     doDeleteProject(id);
     history.go(0);
@@ -219,14 +237,24 @@ export const ProjectDetailMob = ({ setdispmobDetails }) => {
           className="ProjectDetailsmob-headerLeft"
         >
           <img
-            alt="dummy-image"
-            src="https://cvbay.com/wp-content/uploads/2017/03/dummy-image.jpg"
+          alt="Leader profile pic"
+            src={
+              selectedProject.projectPhoto ||
+              "https://cvbay.com/wp-content/uploads/2017/03/dummy-image.jpg"
+            }
           ></img>
           <div className="ProjectDetailMob-imgdiv">
             <p>{selectedProject.leader_name}</p>
-            <img alt="phone-icon" src={Phoneicon}></img>
-            <img alt="mail" src={Mail}></img>
-            <img alt="github" src={Github}></img>
+
+            <a href={`tel:${selectedProject.contactNo}`}>
+              <img src={Phoneicon}   alt="phone-icon"></img>
+            </a>
+            <a href={`mailto: ${selectedProject.leaderEmail}`}>
+              <img src={Mail} alt="mail"></img>
+            </a>
+            <a href={selectedProject.githubLink}>
+              <img src={Github}  alt="github"></img>
+            </a>
           </div>
         </div>
         <div
@@ -249,49 +277,73 @@ export const ProjectDetailMob = ({ setdispmobDetails }) => {
             <h4>TEAM MEMBERS</h4>
           </div>
           <div className="members">
-            <ol>
-              <li>Rindish Krishna</li>
-              <li>Rindish Krishna</li>
+            <ol style={{ paddingTop: "0" }}>
+              {Array.isArray(selectedProject.teamMembers) &&
+                selectedProject.teamMembers.map((member) => (
+                  <p key={member}>
+                    <li className="ProjectDetailsmob-members">{member}</li>
+                  </p>
+                ))}
             </ol>
           </div>
-
-          <h4>{linkHeading}</h4>
-          {selectedProject.links.length !== 1 ? (
-            <a
-              href={selectedProject.links}
-              rel="noopener noreferrer"
-              target="_blank"
-            >
-              <img alt="bin" src={Link} style={{ marginRight: "10px" }}></img>
-              {selectedProject.links}
-            </a>
+          {selectedProject.tags ? (
+            <div className="ProjectDetail-tagdiv">
+              <img
+                src={Link}
+                alt="tag icon"
+                style={{ marginRight: "10px" }}
+              ></img>
+              {selectedProject.tags.map((tag, index) => (
+                <p
+                  rel="noopener noreferrer"
+                  style={{ marginRight: "10" }}
+                  key={index}
+                >
+                  #{tag}
+                </p>
+              ))}
+            </div>
+          ) : (
+            ""
+          )}
+          {selectedProject.links.length ? (
+            <div className="ProjectDetail-linkdiv" style={{display:"flex"}}>
+              {selectedProject.links.map((link) => (
+                <div key={link} className="ProjectDetail-links">
+                  <a
+                    rel="noopener noreferrer"
+                    target="_blank"
+                    style={{ marginRight: "10" }}
+                    href={link.startsWith("http") ? link : "http://" + link}
+                  >
+                    {link}
+                  </a>
+                </div>
+              ))}
+            </div>
           ) : (
             ""
           )}
         </div>
-
-        {canModifyProject ? (
-          <Button
-            variant="danger"
-            className="delete-btn"
+      </div>
+      <div className="ProjectDetailsmob-Bottomdiv">
+        {canModifyProject && (
+          <img
+            src={Bin}
+            style={{ cursor: "pointer" }}
             onClick={() => {
               deleteProj(selectedProject.id);
             }}
-          >
-            Delete Project
-          </Button>
-        ) : null}
-      </div>
-      <div className="ProjectDetailsmob-Bottomdiv">
-        <img
-          alt="bin"
-          src={Bin}
-          style={{ cursor: "pointer" }}
-          onClick={() => {
-            deleteProj(selectedProject.id);
-          }}
-        ></img>
-        <img alt="edit" src={Edit} style={{ cursor: "pointer" }}></img>
+            alt="delete project"
+          />
+        )}
+        {canModifyProject && (
+          <img
+            src={Edit}
+            alt="Edit Project"
+            style={{ cursor: "pointer" }}
+          ></img>
+        )}
       </div>
     </div>
   );

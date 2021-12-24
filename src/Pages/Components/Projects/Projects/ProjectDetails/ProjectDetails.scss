@@ -37,7 +37,31 @@ h4 {
   margin-left: 1rem;
   margin-bottom: 0;
 }
-.ProjectDetails-imagediv > img {
+.team , .members , .ProjectDetail-linkdiv{
+align-self: flex-start;
+}
+ .ProjectDetail-linkdiv{
+  margin-top: 1rem;
+}
+.ProjectDetail-links{
+  margin-right: 0.5rem;
+}
+.ProjectDetail-tagdiv > p{
+  margin-right: 0.5rem;
+}
+.ProjectDetail-linkdiv > h4{
+text-align: start;
+}
+.ProjectDetail-linkdiv > a {
+  margin-right: 0.3rem;
+}
+.ProjectDetailsmob-members{
+  margin-top: 0.5rem;
+}
+.team{
+  margin-top: 1.3rem;
+}
+.ProjectDetails-imagediv > a >img{
   margin-right: 1.5rem;
   width: 2rem;
 }
@@ -66,6 +90,7 @@ h4 {
 }
 .team h4 {
   text-align: left;
+  padding-bottom: 0;
 }
 .project-description {
   background-color: var(--primaryColor);
@@ -74,12 +99,22 @@ h4 {
   height: 90vh;
   overflow: auto;
 }
+.ProjectDetail-tagdiv{
+  display: flex;
+  align-self: flex-start;
+  margin-top: 1rem;
+}
+
+.ProjectDetail-tagdiv, .ProjectDetailmob-tagdiv > img {
+height: 1.5rem;
+}
 .contents {
   background-color: var(--primaryColor) !important;
   font-family: "Nunito", sans-serif;
   padding: 20px;
   width: 100%;
   overflow: auto;
+  height: 25rem;
 }
 .description {
   //padding: 20px;
@@ -143,7 +178,7 @@ ol li {
   padding: 0.3rem;
   cursor: pointer;
 }
-.ProjectDetailMob-imgdiv > img {
+.ProjectDetailMob-imgdiv > a > img {
   height: 1.2rem;
   margin-right: 0.6rem;
   cursor: pointer;
@@ -169,14 +204,14 @@ ol li {
   margin-top: 2rem;
 }
 .ProjectDetailMob-headerdiv {
-  margin-top: 2rem;
+  margin-top: 4rem;
   display: flex;
   justify-content: space-around;
   align-items: center;
 }
 .ProjectDetailMob-maindiv {
   background-color: var(--primaryColor);
-  // height: 100vh;
+   height: 90vh;
   overflow: auto;
 }
 .ProjectDetailMob-headerRight {
