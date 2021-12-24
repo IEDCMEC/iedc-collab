@@ -57,7 +57,6 @@ export const signOut = () => {
     .auth()
     .signOut()
     .then(function () {
-      // Sign-out successful.
       console.log("Sign out successful");
     })
     .catch(function (error) {
@@ -67,17 +66,18 @@ export const signOut = () => {
 };
 
 export const doCreateProject = (obj) => {
+  const user = firebase.auth().currentUser;
+  if (!user) {
+    alert("Please login to add a project");
+    return;
+  }
+  const leaderPhoto = user.providerData[0]?.photoURL;
   firebase
     .storage()
     .ref(`projectPhoto/${obj.photo.name}`)
     .put(obj.photo)
     .then(({ ref }) => {
       ref.getDownloadURL().then((url) => {
-        let user = firebase.auth().currentUser;
-        if (!user) {
-          alert("Please login to add a project");
-          return;
-        }
         let photo = url;
         const createdAt = Date.now();
         var newProjectID = firebase.database().ref().child("projects").push()
@@ -86,13 +86,13 @@ export const doCreateProject = (obj) => {
           ...obj,
           name: obj.title,
           projectPhoto: photo,
-          available: "true",
+          available: true,
           createdAt,
           updatedAt: createdAt,
           leader_id: user.uid,
           leader_name: user.displayName,
           leaderEmail: user.email,
-          leaderImg: user.photoUrl || null,
+          leaderImg: leaderPhoto || null,
         };
         console.log(projectData);
 

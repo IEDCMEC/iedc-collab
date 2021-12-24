@@ -114,7 +114,7 @@ const ProjectDetails = (props) => {
               <ol>
                 {Array.isArray(selectedProject.teamMembers) &&
                   selectedProject.teamMembers.map((member) => (
-                    <li>{member}</li>
+                    <li key={member}>{member}</li>
                   ))}
               </ol>
             </div>
@@ -122,7 +122,7 @@ const ProjectDetails = (props) => {
               <>
                 <h4>Links</h4>
                 {selectedProject.links.map((link) => (
-                  <>
+                  <div key={link}>
                     <img
                       src={Link}
                       alt="tag icon"
@@ -135,7 +135,7 @@ const ProjectDetails = (props) => {
                     >
                       {link}
                     </a>
-                  </>
+                  </div>
                 ))}
               </>
             ) : (
