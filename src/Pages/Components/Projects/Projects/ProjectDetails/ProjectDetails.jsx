@@ -80,13 +80,17 @@ const ProjectDetails = (props) => {
             <p>{selectedProject.leader_name}</p>
           </div>
           <div className="ProjectDetails-imagediv">
-            <img src={Phoneicon} alt="phone-icon"></img>
+            <img
+              className="d-block d-md-none" // display only on small screns
+              src={Phoneicon}
+              alt="phone-icon"
+            ></img>
             <img src={Mail} alt="mail"></img>
             <img src={Github} alt="github"></img>
           </div>
         </div>
       </div>
-      <div className={"flex-grow-1   description"}>
+      <div className={"flex-grow-1 description"}>
         <div className="ProjectDetails-sidedesc">
           <p>{selectedProject.name}</p>
         </div>
@@ -136,6 +140,12 @@ const ProjectDetails = (props) => {
               </>
             ) : (
               ""
+            )}
+            {selectedProject.contactNo && ( // display only on large screns
+              <div className="d-flex align-items-center d-none d-md-block">
+                <h4 className="font-weight-bolder mr-2">Contact Number: </h4>
+                <h5>{selectedProject.contactNo}</h5>
+              </div>
             )}
           </div>
         </div>
