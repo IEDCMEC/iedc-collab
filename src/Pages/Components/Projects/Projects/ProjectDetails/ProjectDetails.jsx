@@ -72,14 +72,14 @@ const ProjectDetails = (props) => {
           >
             <img
               src={
-                selectedProject.leaderImg ||
+                selectedProject.projectPhoto ||
                 "https://cvbay.com/wp-content/uploads/2017/03/dummy-image.jpg"
               }
             ></img>
             <p>{selectedProject.leader_name}</p>
           </div>
           <div className="ProjectDetails-imagediv">
-          <a href={`tel:${selectedProject.contactNo}`}>
+            <a href={`tel:${selectedProject.contactNo}`}>
               <img src={Phoneicon}></img>
             </a>
             <a href={`mailto: ${selectedProject.leaderEmail}`}>
@@ -115,24 +115,42 @@ const ProjectDetails = (props) => {
               <ol>
                 {Array.isArray(selectedProject.teamMembers) &&
                   selectedProject.teamMembers.map((member) => (
-                   <li>{member}</li>
+                    <li>{member}</li>
                   ))}
               </ol>
             </div>
-            {selectedProject.links.length ? (
-              <div className="ProjectDetail-linkdiv">
-                <img
+            {selectedProject.tags ? (
+              <div className="ProjectDetail-tagdiv">
+               <img
                       src={Link}
                       alt="tag icon"
                       style={{ marginRight: "10px" }}
                     ></img>
+                {selectedProject.tags.map((tag) => (
+                  <>
+                    <p
+                      rel="noopener noreferrer"
+                     
+                      style={{ marginRight: "10" }}
+                      
+                    >
+                      #{tag}
+                    </p>
+                  </>
+                ))}
+              </div>
+            ) : (
+              ""
+            )}
+            {selectedProject.links.length ? (
+              <div className="ProjectDetail-linkdiv">
+               
                 {selectedProject.links.map((link) => (
                   <>
-                   
                     <a
                       rel="noopener noreferrer"
                       target="_blank"
-                      style={{marginRight:"10"}}
+                      style={{ marginRight: "10" }}
                       href={link.startsWith("http") ? link : "http://" + link}
                     >
                       {link}
@@ -215,7 +233,12 @@ export const ProjectDetailMob = ({ setdispmobDetails }) => {
           style={{ display: "flex", alignItems: "center" }}
           className="ProjectDetailsmob-headerLeft"
         >
-          <img src="https://cvbay.com/wp-content/uploads/2017/03/dummy-image.jpg"></img>
+          <img
+            src={
+              selectedProject.projectPhoto ||
+              "https://cvbay.com/wp-content/uploads/2017/03/dummy-image.jpg"
+            }
+          ></img>
           <div className="ProjectDetailMob-imgdiv">
             <p>{selectedProject.leader_name}</p>
 
@@ -246,21 +269,43 @@ export const ProjectDetailMob = ({ setdispmobDetails }) => {
             <h4>TEAM MEMBERS</h4>
           </div>
           <div className="members">
-            <ol>
+            <ol style={{paddingTop:"0"}}>
               {Array.isArray(selectedProject.teamMembers) &&
-                selectedProject.teamMembers.map((member) => <p><li className="ProjectDetailsmob-members">{member}</li></p>)}
+                selectedProject.teamMembers.map((member) => (
+                  <p>
+                    <li className="ProjectDetailsmob-members">{member}</li>
+                  </p>
+                ))}
             </ol>
           </div>
+          {selectedProject.tags ? (
+              <div className="ProjectDetail-tagdiv">
+               <img
+                      src={Link}
+                      alt="tag icon"
+                      style={{ marginRight: "10px" }}
+                    ></img>
+                {selectedProject.tags.map((tag) => (
+                  <>
+                    <p
+                      rel="noopener noreferrer"
+                     
+                      style={{ marginRight: "10" }}
+                      
+                    >
+                      #{tag}
+                    </p>
+                  </>
+                ))}
+              </div>
+            ) : (
+              ""
+            )}
           {selectedProject.links.length ? (
             <div className="ProjectDetail-linkdiv">
-            <img
-                    src={Link}
-                    alt="tag icon"
-                    style={{ marginRight: "10px" }}
-                  ></img>
+            
               {selectedProject.links.map((link) => (
                 <>
-                  
                   <a rel="noopener noreferrer" target="_blank" href={link}>
                     {link}
                   </a>
@@ -272,20 +317,10 @@ export const ProjectDetailMob = ({ setdispmobDetails }) => {
           )}
         </div>
 
-        {canModifyProject ? (
-          <Button
-            variant="danger"
-            className="delete-btn"
-            onClick={() => {
-              deleteProj(selectedProject.id);
-            }}
-          >
-            Delete Project
-          </Button>
-        ) : null}
+       
       </div>
       <div className="ProjectDetailsmob-Bottomdiv">
-      {canModifyProject && (
+        {canModifyProject && (
           <img
             src={Bin}
             style={{ cursor: "pointer" }}
