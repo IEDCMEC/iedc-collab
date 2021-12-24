@@ -3,6 +3,7 @@ import firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/database";
 
+var defaultImage = 'https://images.unsplash.com/photo-1639413665566-2f75adf7b7ca?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyN3x8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60'
 const config = {
   apiKey: process.env.REACT_APP_FB_API_KEY,
   authDomain: process.env.REACT_APP_AUTH_DOMAIN,
@@ -130,7 +131,7 @@ export const doCreateProject = (obj) => {
 
   //in the absence of image
   else{
-    let url = "https://images.unsplash.com/photo-1639413665566-2f75adf7b7ca?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyN3x8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60"
+    let url = defaultImage
     let user = firebase.auth().currentUser;
     if (!user) {
       alert("Please login to add a project");
@@ -288,7 +289,7 @@ export const doEditProject = async (obj,project_id) => {
   let imgDb = await firebase.storage().ref(`projectPhoto/${project_id}`)
   let newimg= await imgDb.put(obj.photo)
     photoUrl = await newimg.ref.getDownloadURL()
-
+   alert()
   let uid = user.uid;
   let leaderName = user.displayName;
   const createdAt = Date.now();

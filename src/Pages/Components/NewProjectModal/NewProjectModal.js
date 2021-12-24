@@ -15,7 +15,7 @@ const NewProjectForm = ({ onClose, project }) => {
   console.log(project);
   const [image, setImage] = useState('');
   var initialValue = {};
-  var defaultImage='';
+  var defaultImage='https://images.unsplash.com/photo-1639413665566-2f75adf7b7ca?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyN3x8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60';
   if(project!==undefined){
   if(project.photo!==undefined){
   defaultImage=project.photo;}
