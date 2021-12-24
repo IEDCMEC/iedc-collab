@@ -22,7 +22,7 @@ const ProjectsView = () => {
 
   return (
     <Container fluid={true} className={"project-container"}>
-      {dispmobDetails == false ? (
+      {!dispmobDetails ? (
         <Row className={"h-100"}>
           <Col md={4} className={"h-100 m-0  p-0 shadow-right"}>
             <Col className={"h-100 m-0 p-0"}>
