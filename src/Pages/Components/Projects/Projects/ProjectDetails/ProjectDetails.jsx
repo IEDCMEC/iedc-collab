@@ -79,9 +79,9 @@ const ProjectDetails = (props) => {
             <p>{selectedProject.leader_name}</p>
           </div>
           <div className="ProjectDetails-imagediv">
-            <img src={Phoneicon}></img>
-            <img src={Mail}></img>
-            <img src={Github}></img>
+            <img src={Phoneicon} alt="phone-icon"></img>
+            <img src={Mail} alt="mail"></img>
+            <img src={Github} alt="github"></img>
           </div>
         </div>
       </div>
@@ -207,19 +207,26 @@ export const ProjectDetailMob = ({ setdispmobDetails }) => {
           style={{ display: "flex", alignItems: "center" }}
           className="ProjectDetailsmob-headerLeft"
         >
-          <img src="https://cvbay.com/wp-content/uploads/2017/03/dummy-image.jpg"></img>
+          <img
+            alt="dummy-image"
+            src="https://cvbay.com/wp-content/uploads/2017/03/dummy-image.jpg"
+          ></img>
           <div className="ProjectDetailMob-imgdiv">
             <p>{selectedProject.leader_name}</p>
-            <img src={Phoneicon}></img>
-            <img src={Mail}></img>
-            <img src={Github}></img>
+            <img alt="phone-icon" src={Phoneicon}></img>
+            <img alt="mail" src={Mail}></img>
+            <img alt="github" src={Github}></img>
           </div>
         </div>
         <div
           className="ProjectDetailmob-Navdiv"
           onClick={() => setdispmobDetails(false)}
         >
-          <img src={Navigate} className="ProjectDetailMob-headerRight"></img>
+          <img
+            alt="navigate"
+            src={Navigate}
+            className="ProjectDetailMob-headerRight"
+          ></img>
         </div>
       </div>
       <div className="contentsmob">
@@ -244,7 +251,7 @@ export const ProjectDetailMob = ({ setdispmobDetails }) => {
               rel="noopener noreferrer"
               target="_blank"
             >
-              <img src={Link} style={{ marginRight: "10px" }}></img>
+              <img alt="bin" src={Link} style={{ marginRight: "10px" }}></img>
               {selectedProject.links}
             </a>
           ) : (
@@ -266,13 +273,14 @@ export const ProjectDetailMob = ({ setdispmobDetails }) => {
       </div>
       <div className="ProjectDetailsmob-Bottomdiv">
         <img
+          alt="bin"
           src={Bin}
           style={{ cursor: "pointer" }}
           onClick={() => {
             deleteProj(selectedProject.id);
           }}
         ></img>
-        <img src={Edit} style={{ cursor: "pointer" }}></img>
+        <img alt="edit" src={Edit} style={{ cursor: "pointer" }}></img>
       </div>
     </div>
   );
