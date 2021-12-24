@@ -116,7 +116,7 @@ const ProjectDetails = (props) => {
               <ol>
                 {Array.isArray(selectedProject.teamMembers) &&
                   selectedProject.teamMembers.map((member) => (
-                    <li>{member}</li>
+                    <li key={member}>{member}</li>
                   ))}
               </ol>
             </div>
@@ -147,7 +147,7 @@ const ProjectDetails = (props) => {
               <div className="ProjectDetail-linkdiv">
                
                 {selectedProject.links.map((link) => (
-                  <>
+                  <div>
                     <a
                       rel="noopener noreferrer"
                       target="_blank"
@@ -156,7 +156,7 @@ const ProjectDetails = (props) => {
                     >
                       {link}
                     </a>
-                  </>
+                  </div>
                 ))}
               </div>
             ) : (
