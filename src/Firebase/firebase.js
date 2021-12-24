@@ -102,6 +102,7 @@ export const doCreateProject = (obj) => {
           .set(projectData)
           .then(function () {
             console.log("Project added sucessfully");
+            window.location.reload();
           })
           .catch(function (error) {
             alert("Something went wrong");
