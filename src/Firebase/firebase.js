@@ -74,14 +74,10 @@ export const signOut = () => {
 // Firebase Realtime Database functions
 
 export const doCreateProject = (obj) => {
-  const getRandomFileName=()=> {
-    var timestamp = new Date().toISOString().replace(/[-:.]/g,"");  
-    var random = ("" + Math.random()).substring(2, 8); 
-    var random_number = timestamp+random;  
-    return random_number;
-    }
-  const fileName = getRandomFileName().toString();
-  firebase.storage().ref(`projectPhoto/${fileName}`).put(obj.photo).then(({ref}) => {
+  
+  var newProjectID = firebase.database().ref().child("projects").push().key;
+  if(obj.photo!==null){
+  firebase.storage().ref(`projectPhoto/${newProjectID}`).put(obj.photo).then(({ref}) => {
     ref.getDownloadURL().then((url)=>{
     let user = firebase.auth().currentUser;
   if (!user) {
@@ -99,7 +95,7 @@ export const doCreateProject = (obj) => {
   let uid = user.uid;
   let leaderName = user.displayName;
   const createdAt = Date.now();
-  var newProjectID = firebase.database().ref().child("projects").push().key;
+  
   var projectData = {
     name: title,
     desc: desc,
@@ -113,6 +109,7 @@ export const doCreateProject = (obj) => {
     updatedAt: createdAt,
     leader_id: uid,
     leader_name: leaderName,
+    createdAt
   };
 
   firebase
@@ -128,7 +125,56 @@ export const doCreateProject = (obj) => {
     });
   });
   }, (error) => {alert("Something went wrong\n"+ error); console.log("something went wrong")})
-  .catch(error => {alert("Something went wrong\n"+ error); console.log("something went wrong")});
+  .catch(error => {alert("Something went wrong\n"+ error); console.log("something went wrong")});}
+
+  //in the absence of image
+  else{
+    let url = "https://images.unsplash.com/photo-1639413665566-2f75adf7b7ca?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyN3x8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60"
+    let user = firebase.auth().currentUser;
+    if (!user) {
+      alert("Please login to add a project");
+      return;
+    }
+    let title = obj.title;
+    let desc = obj.desc;
+    let links = obj.links;
+    let contactNo = obj.contactNo;
+    let githubLink = obj.githubLink;
+    let tags = obj.tags;
+    let teamMembers = obj.teamMembers;
+    let photo = url;
+    let uid = user.uid;
+    let leaderName = user.displayName;
+    const createdAt = Date.now();
+    
+    var projectData = {
+      name: title,
+      desc: desc,
+      links: links,
+      contactNo: contactNo,
+      githubLink: githubLink,
+      tags: tags,
+      teamMembers: teamMembers,
+      photo: photo,
+      available: "true",
+      updatedAt: createdAt,
+      leader_id: uid,
+      leader_name: leaderName,
+      createdAt
+    };
+  
+    firebase
+      .database()
+      .ref("projects/" + newProjectID)
+      .set(projectData)
+      .then(function () {
+        console.log("Project added sucessfully");
+      })
+      .catch(function (error) {
+        alert("Something went wrong");
+        console.log(error);
+      });
+  }
 };
 
 export const doDeleteProject = (project_id) => {
@@ -216,19 +262,57 @@ export const doDeleteInternship = (internship_id) => {
       console.log(error);
     });
 };
-/*export function getImageURL(image) {
-  var storageref = firebase.storage().ref('projectPhoto/' + image);
-var uploadTask = storageref.put(image);
 
-uploadTask.on('state_changed', function(snapshot){
-}, function(error){
-  console.error(error);
-}, function() {
-  uploadTask.snapshot.ref.getDownloadURL().then(function(downloadURL) {
-    console.log('File available at', downloadURL);
-    image = downloadURL;
-    
+
+export const doEditProject = (obj,project_id) => {
+  let user = firebase.auth().currentUser;
+  if (!user) {
+    alert("Please login to add a project");
+    return;
+  }
+  let projectRef = firebase.database().ref("projects/" + project_id);
+  projectRef
+  .child("leader_id")
+  .once("value")
+  .then(function (snapshot) {
+    if (snapshot.val() !== user.uid) {
+      return;
+    }
   });
-});
- 
-} */
+  var photoUrl = projectRef.child("photo").once("value").then(function(snapshot){if(snapshot.val()){return snapshot.val()}
+  else{return 'https://images.unsplash.com/photo-1639413665566-2f75adf7b7ca?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyN3x8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60'}});
+  if(obj.photo!==''){
+  photoUrl=firebase.storage().ref(`projectPhoto/${project_id}`).put(obj.photo).then(({ref}) => {
+    ref.getDownloadURL().then((url)=>{
+   return url;
+}, (error)=>{alert("Something went wrong"); console.log(error); return photoUrl;})});
+  }
+  let uid = user.uid;
+  let leaderName = user.displayName;
+  const createdAt = Date.now();
+projectRef
+  .set( {
+    name: obj.title,
+    desc: obj.desc,
+    links: obj.links,
+    contactNo: obj.contactNo,
+    githubLink: obj.githubLink,
+    tags: obj.tags,
+    teamMembers: obj.teamMembers,
+    photo: photoUrl,
+    available: "true",
+    updatedAt: createdAt,
+    leader_id: uid,
+    leader_name: leaderName,
+  }
+
+  )
+  .then(function () {
+    console.log("Project edited sucessfully");
+  })
+  .catch(function (error) {
+    alert("Something went wrong");
+    console.log(error);
+  });
+};
+

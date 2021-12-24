@@ -9,6 +9,7 @@ const ProjectList = () => {
   return (
     <Col className={" overflow "}>
       {projects.map((x) => {
+        console.log(x)
         return (
           <div
             className="content post-item"
@@ -22,7 +23,7 @@ const ProjectList = () => {
               name={x.name}
               teamLeader={x.leader_name}
               projectId={x.id}
-              project = {x}
+              
             />
           </div>
         );

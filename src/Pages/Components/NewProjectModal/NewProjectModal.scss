@@ -67,16 +67,23 @@
 .photoHead {
   bottom: 15px;
   left: 6px;
-  position: relative;
+  position: absolute;
   background-color: #fff;
   padding: 0px 5px 0px 5px;
   font-size: 1em;
   font-weight: 600;
+  top:0;
 }
 
 .photoIcon {
   right: 0;
+  top:0;
   position: absolute;
+}
+.projectPhoto{
+  right:0;
+  left:0;
+  position:relative;
 }
 
 .helperText {

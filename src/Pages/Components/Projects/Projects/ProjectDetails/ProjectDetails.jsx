@@ -6,13 +6,16 @@ import { ProjectContext } from "../../../../../contexts/ProjectContext";
 import { AuthContext } from "../../../../../Firebase/Auth/Auth";
 import { doDeleteProject, getUser } from "../../../../../Firebase/firebase";
 import { useHistory } from "react-router";
+import NewProjectModal from "../../../NewProjectModal/NewProjectModal";
 const ProjectDetails = (props) => {
   const { selectedProject } = useContext(ProjectContext);
   const { currentUser } = useContext(AuthContext);
   const [deleteProject, setDeleteProject] = useState(false);
+  const [editProject, setEditProject] = useState(false);
   const [email, setEmail] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const history = useHistory();
+  const [showNewProjectModal, setShowNewProjectModal] = useState(false);
   let linkHeading;
   console.log(selectedProject);
   useEffect(() => {
@@ -29,10 +32,10 @@ const ProjectDetails = (props) => {
         });
     }
     if (currentUser?.uid === selectedProject.leader_id) {
-      setDeleteProject(true);
+      setDeleteProject(true); setEditProject(true);
       console.log(deleteProject);
     } else {
-      setDeleteProject(false);
+      setDeleteProject(false); setEditProject(false);
     }
     if (selectedProject.links !== undefined) {
       linkHeading = "Links";
@@ -120,8 +123,25 @@ const ProjectDetails = (props) => {
               Delete Project
             </Button>
           ) : null}
+      
+           {editProject ?
+         <Button
+              variant="danger"
+              className="edit-btn"
+              onClick={() => {
+                setShowNewProjectModal(true);
+              }}
+            >
+              Edit Project
+            </Button> : null}
+          
         </div>
       </Row>
+      <NewProjectModal
+        show={showNewProjectModal}
+        onHide={() => setShowNewProjectModal(false)}
+        project = {selectedProject}
+      />
     </div>
   );
 };
