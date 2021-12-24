@@ -129,7 +129,7 @@ const NewProjectForm = ({ onClose, project }) => {
                 </i>
                
                 
-                <img className="projectPhoto" alt="" width="200px" height="200px" src={image ? image : defaultImage}></img>
+               
                
                 <Form.Control
                   required
@@ -143,6 +143,11 @@ const NewProjectForm = ({ onClose, project }) => {
               </Form.Label>
               
             </InputGroup>
+            <Row className="col-md-12 d-flex justify-content-center">
+              
+            <img className="projectPhoto" alt="" width="200px" height="200px" src={image ? image : defaultImage}></img>
+            
+            </Row>
             <Form.Text className="text-danger">
               {props.touched.photo && props.errors.photo}
             </Form.Text>
