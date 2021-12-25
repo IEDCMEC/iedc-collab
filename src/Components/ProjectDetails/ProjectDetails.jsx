@@ -104,7 +104,7 @@ const ProjectDetails = (props) => {
             ) : (
               ""
             )}
-            {selectedProject.links.length ? (
+            {selectedProject.links?.length ? (
               <div
                 className="ProjectDetail-linkdiv"
                 style={{ display: "flex" }}

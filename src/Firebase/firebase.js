@@ -173,29 +173,28 @@ export const doDeleteProject = (project_id) => {
 };
 
 export const doEditProject = async (obj, project_id) => {
-  let user = firebase.auth().currentUser;
+  const user = firebase.auth().currentUser;
   if (!user) {
     alert("Please login to add a project");
     return;
   }
-  let projectRef = firebase.database().ref("projects/" + project_id);
-  let isUserAuthroized = true;
-  projectRef
-    .child("leader_id")
-    .once("value")
-    .then(function (snapshot) {
-      if (snapshot.val() !== user.uid) {
-        isUserAuthroized = false;
-      }
-    });
-  if (!isUserAuthroized) {
+  const projectRef = firebase.database().ref("projects/" + project_id);
+  const leaderId = (await projectRef.child("leader_id").once("value")).val();
+  if (leaderId !== user.uid) {
     alert("Only the project creator can edit the project!");
     return;
   }
 
+  const storedPhoto = (
+    await projectRef.child("projectPhoto").once("value")
+  ).val();
+
   let photoUrl;
-  if (obj.projectPhoto) {
+  if (!obj.projectPhoto) {
+    photoUrl = defaultPhotoUrl;
+  } else if (obj.projectPhoto !== storedPhoto) {
     try {
+      // todo: delete existing image in firebase db
       let imgDb = firebase.storage().ref(`projectPhoto/${project_id}`);
       let newimg = await imgDb.put(obj.projectPhoto);
       photoUrl = await newimg.ref.getDownloadURL();
@@ -203,7 +202,7 @@ export const doEditProject = async (obj, project_id) => {
       alert("Something went wrong");
     }
   } else {
-    photoUrl = defaultPhotoUrl;
+    photoUrl = obj.projectPhoto;
   }
 
   projectRef

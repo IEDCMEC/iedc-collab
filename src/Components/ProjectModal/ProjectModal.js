@@ -57,16 +57,16 @@ const NewProjectForm = ({ onClose, project }) => {
           const formValues = {
             ...values,
             links: links
-              .trim()
               .split(",")
+              .filter(Boolean)
               .map((link) => link.trim()),
             tags: tags
-              .trim()
               .split(",")
+              .filter(Boolean)
               .map((link) => link.trim()),
             teamMembers: teamMembers
-              .trim()
               .split(",")
+              .filter(Boolean)
               .map((link) => link.trim()),
             projectPhoto: projectPhoto,
             projectPhotoName,
@@ -203,7 +203,7 @@ const NewProjectForm = ({ onClose, project }) => {
                 value={props.values.tags}
                 onChange={props.handleChange("tags")}
                 type="text"
-                placeholder="eg: webdevelopment, appdevelopment"
+                placeholder="eg: webdev, nodejs"
               />
               <Form.Text className="helperText text-right">
                 Please separate the tags using commas
