@@ -115,15 +115,7 @@ const ProjectDetails = (props) => {
                   alt="tag icon"
                   style={{ marginRight: "10px" }}
                 ></img>
-                {selectedProject.tags.map((tag, index) => (
-                  <p
-                    rel="noopener noreferrer"
-                    style={{ marginRight: "10" }}
-                    key={index}
-                  >
-                    #{tag}
-                  </p>
-                ))}
+                <p>#{selectedProject.tags.join(", #")}</p>
               </div>
             ) : (
               ""

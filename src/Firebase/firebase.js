@@ -74,7 +74,6 @@ export const doCreateProject = (obj) => {
     alert("Please login to add a project");
     return;
   }
-  const leaderPhoto = user.providerData[0]?.photoURL;
   var newProjectID = firebase.database().ref().child("projects").push().key;
   if (obj.projectPhoto) {
     firebase
@@ -82,20 +81,20 @@ export const doCreateProject = (obj) => {
       .ref(`projectPhoto/${newProjectID}`)
       .put(obj.projectPhoto)
       .then(({ ref }) => {
-        ref.getDownloadURL().then((url) => {
-          let photo = url;
+        ref.getDownloadURL().then((photoUrl) => {
           const createdAt = Date.now();
           var projectData = {
             ...obj,
             name: obj.title,
-            projectPhoto: photo,
+            projectPhoto: photoUrl,
+            projectPhotoName: obj.projectPhotoName || "",
             available: true,
             createdAt,
             updatedAt: createdAt,
             leader_id: user.uid,
             leader_name: user.displayName,
             leaderEmail: user.email,
-            leaderImg: leaderPhoto || null,
+            leaderImg: user.providerData[0]?.photoURL || null,
           };
           console.log(projectData);
 
@@ -117,15 +116,15 @@ export const doCreateProject = (obj) => {
     const createdAt = Date.now();
     var projectData = {
       ...obj,
-      name: obj.title,
       projectPhoto: defaultPhoto,
+      projectPhotoName: "Default Image",
       available: true,
       createdAt,
       updatedAt: createdAt,
       leader_id: user.uid,
       leader_name: user.displayName,
       leaderEmail: user.email,
-      leaderImg: leaderPhoto || null,
+      leaderImg: user.providerData[0]?.photoURL || null,
     };
     console.log(projectData);
 
@@ -192,47 +191,38 @@ export const doEditProject = async (obj, project_id) => {
   projectRef
     .child("projectPhoto")
     .once("value")
-    .then(
-      await function (snapshot) {
-        if (snapshot.val()) {
-          photoUrl = snapshot.val();
-        } else {
-          return defaultPhoto;
-        }
+    .then((snapshot) => {
+      if (snapshot.val()) {
+        photoUrl = snapshot.val();
+      } else {
+        return defaultPhoto;
       }
-    );
+    });
 
   if (obj.projectPhoto !== "") {
     try {
       let imgDb = await firebase.storage().ref(`projectPhoto/${project_id}`);
       let newimg = await imgDb.put(obj.projectPhoto);
       photoUrl = await newimg.ref.getDownloadURL();
-      window.location.reload();
     } catch (error) {
       alert("Something went wrong");
     }
   }
-  let uid = user.uid;
-  let leaderName = user.displayName;
-  const createdAt = Date.now();
 
   projectRef
     .set({
-      name: obj.title,
-      desc: obj.desc,
-      links: obj.links,
-      contactNo: obj.contactNo,
-      githubLink: obj.githubLink,
-      tags: obj.tags,
-      teamMembers: obj.teamMembers,
+      ...obj,
       projectPhoto: photoUrl,
-      available: "true",
-      updatedAt: createdAt,
-      leader_id: uid,
-      leader_name: leaderName,
+      available: true,
+      updatedAt: new Date(),
+      leader_id: user.uid,
+      leader_name: user.displayName,
+      leaderEmail: user.email,
+      leaderImg: user.providerData[0]?.photoURL || null,
     })
     .then(function () {
       console.log("Project edited sucessfully");
+      window.location.reload();
     })
     .catch(function (error) {
       alert("Something went wrong");

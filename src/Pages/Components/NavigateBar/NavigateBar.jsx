@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import NewProjectModal from "../NewProjectModal/NewProjectModal";
 import "./cards.css";
 import { signOut } from "../../../Firebase/firebase";
@@ -12,14 +12,6 @@ const Navbar = () => {
   const [showProjectModal, setShowProjectModal] = useState(false);
   const { currentUser } = useContext(AuthContext);
   const { handleSearch } = useContext(ProjectContext);
-
-  useEffect(() => {
-    if (currentUser) {
-      console.log("User logged in");
-    } else {
-      console.log("User not logged in");
-    }
-  }, [currentUser]);
 
   const newprojectClick = async () => {
     if (currentUser) {

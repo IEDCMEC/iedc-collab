@@ -12,25 +12,24 @@ import "./NewProjectModal.scss";
 const NewProjectForm = ({ onClose, project }) => {
   console.log(project);
   const [image, setImage] = useState(project?.projectPhoto || "");
+  const [projectPhotoName, setProjectPhotoName] = useState(
+    project?.projectPhotoName
+  );
 
-  // function isFileImage(file) {
-  //   return file && file["type"].split("/")[0] === "image";
-  // }
   const initialValue = {
-    title: project?.name || "",
+    name: project?.name || "",
     desc: project?.desc || "",
-    links: project?.links?.toString() || "",
+    links: project?.links?.join(", ") || "",
     contactNo: project?.contactNo || "",
     githubLink: project?.githubLink || "",
-    tags: project?.tags ? project.tags.toString() : "",
+    tags: project?.tags ? project.tags.join(", ") : "",
     teamMembers: project?.teamMembers ? project.teamMembers.toString() : "",
     projectPhoto: project?.projectPhoto,
   };
 
   const newProjectSchema = yup.object({
-    title: yup.string().required("Please add a valid title").min(3),
+    name: yup.string().required("Please add a valid project name").min(3),
     desc: yup.string().required("Please add a valid description").min(10),
-    links: yup.string().min(4),
     contactNo: yup
       .string()
       .required()
@@ -38,6 +37,7 @@ const NewProjectForm = ({ onClose, project }) => {
         /^[(]?[0-9]{3}[)]?[-\s.]?[0-9]{3}[-\s.]?[0-9]{4,6}$/,
         "Please enter a valid 10 digit phone number"
       ),
+    links: yup.string().min(4),
     githubLink: yup.string().optional().min(4),
     tags: yup.string(),
     teamMembers: yup.string(),
@@ -60,11 +60,11 @@ const NewProjectForm = ({ onClose, project }) => {
             tags: tags.split(",").map((link) => link.trim()),
             teamMembers: teamMembers.split(",").map((link) => link.trim()),
             projectPhoto: projectPhoto,
+            projectPhotoName,
           };
-          if (project === undefined) {
+          if (!project) {
             doCreateProject(formValues);
           } else {
-            console.log(`${project.id}`);
             doEditProject(formValues, project.id);
           }
           onClose();
@@ -77,14 +77,14 @@ const NewProjectForm = ({ onClose, project }) => {
               <Form.Label>Project Name</Form.Label>
               <Form.Control
                 required
-                onBlur={props.handleBlur("title")}
-                value={props.values.title}
-                onChange={props.handleChange("title")}
+                onBlur={props.handleBlur("name")}
+                value={props.values.name}
+                onChange={props.handleChange("name")}
                 type="text"
                 placeholder="Enter Project Title"
               />
               <Form.Text className="text-danger">
-                {props.touched.title && props.errors.title}
+                {props.touched.name && props.errors.name}
               </Form.Text>
             </Form.Group>
 
@@ -111,19 +111,14 @@ const NewProjectForm = ({ onClose, project }) => {
                 <i className="photoIcon">
                   <FontAwesomeIcon icon={faUpload} />
                 </i>
-                {/* <p>
-                  {projectPhoto
-                    ? projectPhoto.name
-                    : image
-                    ? "default Image"
-                    : ""}
-                </p> */}
+                <p>{projectPhotoName}</p>
 
                 <Form.Control
                   required
                   onBlur={props.handleBlur("photo")}
                   onChange={(e) => {
                     setProjectPhoto(e.target.files[0]);
+                    setProjectPhotoName(e.target.files[0].name);
                     setImage(URL.createObjectURL(e.target.files[0]));
                   }}
                   type="file"
