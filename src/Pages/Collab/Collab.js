@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { ProjectContext } from "../../contexts/ProjectContext";
 import ProjectsView from "../Components/Projects/Projects/Projects";
 
-const Collab = () => {
+const Collab = ({ location: { state } }) => {
   const { projects, loading } = useContext(ProjectContext);
 
   if (loading) {
@@ -30,7 +30,7 @@ const Collab = () => {
       </div>
     </div>
   ) : (
-    <ProjectsView />
+    <ProjectsView hideMobileSideNav={state.hideMobileSideNav} />
   );
 };
 

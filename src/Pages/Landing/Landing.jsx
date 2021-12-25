@@ -9,7 +9,7 @@ const Landing = () => {
   const history = useHistory();
 
   const handleClick = (p) => {
-    history.push("/collab");
+    history.push("/collab", { hideMobileSideNav: true });
     setSelectedProject(p);
   };
 
@@ -19,7 +19,11 @@ const Landing = () => {
         <h3 style={{ textAlign: "center" }}>PROJECTS</h3>
 
         {projects.map((project) => (
-          <div className="cards" onClick={() => handleClick(project)}>
+          <div
+            key={project.id}
+            className="cards"
+            onClick={() => handleClick(project)}
+          >
             <div className="card">
               <div className="card__image-holder">
                 <img

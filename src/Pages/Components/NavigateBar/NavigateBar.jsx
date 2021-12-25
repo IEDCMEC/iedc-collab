@@ -6,6 +6,7 @@ import { AuthContext } from "../../../Firebase/Auth/Auth";
 import { ProjectContext } from "../../../contexts/ProjectContext";
 import SignoutLogo from "../../../assets/Signout-Logo.png";
 import { signIn } from "../../../Firebase/firebase";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const [showNewProjectModal, setShowNewProjectModal] = useState(false);
@@ -35,8 +36,8 @@ const Navbar = () => {
         style={{ justifyContent: "space-between", backgroundColor: "white" }}
       >
         <div style={{ cursor: "pointer" }}>
-          <a
-            href="/"
+          <Link
+            to="/"
             style={{ display: "flex", alignItems: "center" }}
             className="Navbar-homebtn"
           >
@@ -59,7 +60,7 @@ const Navbar = () => {
             >
               IEDC MEC COLLAB
             </p>
-          </a>
+          </Link>
         </div>
         <div
           style={{

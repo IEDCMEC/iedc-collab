@@ -23,7 +23,7 @@ export const ProjectProvider = ({ children }) => {
         setSelectedProject(result[0]);
       })
       .catch(function (error) {
-        alert("Something went wrong");
+        alert("Something went wrong. Please try again after some time.");
         console.log(error);
       })
       .finally(() => {
@@ -33,7 +33,7 @@ export const ProjectProvider = ({ children }) => {
 
   const handleSearch = (searchtext) => {
     if (searchtext !== "") {
-      let modified = allProjects.filter(
+      const modified = allProjects.filter(
         (itm) =>
           itm.name && itm.name.toLowerCase().includes(searchtext.toLowerCase())
       );

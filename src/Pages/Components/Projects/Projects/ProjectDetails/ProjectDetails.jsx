@@ -18,24 +18,9 @@ const ProjectDetails = (props) => {
   const { selectedProject } = useContext(ProjectContext);
   const { currentUser } = useContext(AuthContext);
   const [canModifyProject, setCanModifyProject] = useState(false);
-  // const [email, setEmail] = useState("");
-  // const [phoneNumber, setPhoneNumber] = useState("");
   const history = useHistory();
   console.log(selectedProject);
   useEffect(() => {
-    // if (selectedProject.leader_id !== undefined) {
-    //   getUser(selectedProject.leader_id)
-    //     .then(async function (snapshot) {
-    //       let result = snapshot.val();
-    //       setEmail(result.email);
-    //       setPhoneNumber(result.phone_number);
-    //       console.log(result);
-    //     })
-    //     .catch(function (error) {
-    //       alert("Something went wrong");
-    //       console.log(error);
-    //     });
-    // }
     if (currentUser?.uid === selectedProject.leader_id) {
       setCanModifyProject(true);
     } else {
@@ -72,7 +57,7 @@ const ProjectDetails = (props) => {
           >
             <img
               src={
-                selectedProject.projectPhoto ||
+                selectedProject.leaderImg ||
                 "https://cvbay.com/wp-content/uploads/2017/03/dummy-image.jpg"
               }
               alt="Leader profile pic"
@@ -81,13 +66,13 @@ const ProjectDetails = (props) => {
           </div>
           <div className="ProjectDetails-imagediv">
             <a href={`tel:${selectedProject.contactNo}`}>
-              <img src={Phoneicon}   alt="phone-icon"></img>
+              <img src={Phoneicon} alt="phone-icon"></img>
             </a>
             <a href={`mailto: ${selectedProject.leaderEmail}`}>
               <img src={Mail} alt="mail"></img>
             </a>
             <a href={selectedProject.githubLink}>
-              <img src={Github}  alt="github"></img>
+              <img src={Github} alt="github"></img>
             </a>
           </div>
         </div>
@@ -108,19 +93,22 @@ const ProjectDetails = (props) => {
           >
             <h4>PROJECT DESCRIPTION</h4>
             <p>{selectedProject.desc}</p>
-
-            <div className="team">
-              <h4>TEAM MEMBERS</h4>
-            </div>
-            <div className="members">
-              <ol>
-                {Array.isArray(selectedProject.teamMembers) &&
-                  selectedProject.teamMembers.map((member) => (
-                    <li key={member}>{member}</li>
-                  ))}
-              </ol>
-            </div>
-            {selectedProject.tags ? (
+            {selectedProject.teamMembers?.length && (
+              <div>
+                <div className="team">
+                  <h4>TEAM MEMBERS</h4>
+                </div>
+                <div className="members">
+                  <ol>
+                    {Array.isArray(selectedProject.teamMembers) &&
+                      selectedProject.teamMembers.map((member) => (
+                        <li key={member}>{member}</li>
+                      ))}
+                  </ol>
+                </div>
+              </div>
+            )}
+            {selectedProject.tags?.length ? (
               <div className="ProjectDetail-tagdiv">
                 <img
                   src={Link}
@@ -141,7 +129,10 @@ const ProjectDetails = (props) => {
               ""
             )}
             {selectedProject.links.length ? (
-              <div className="ProjectDetail-linkdiv" style={{display:"flex"}}>
+              <div
+                className="ProjectDetail-linkdiv"
+                style={{ display: "flex" }}
+              >
                 {selectedProject.links.map((link) => (
                   <div key={link} className="ProjectDetail-links">
                     <a
@@ -195,35 +186,15 @@ export const ProjectDetailMob = ({ setdispmobDetails }) => {
   const { selectedProject } = useContext(ProjectContext);
   const { currentUser } = useContext(AuthContext);
   const [canModifyProject, setCanModifyProject] = useState(false);
-  //const [email, setEmail] = useState("");
-  //const [phoneNumber, setPhoneNumber] = useState("");
   const history = useHistory();
- // let linkHeading;
 
   console.log(selectedProject);
   useEffect(() => {
-    /* if (selectedProject.leader_id !== undefined) {
-      getUser(selectedProject.leader_id)
-        .then(async function (snapshot) {
-          let result = snapshot.val();
-          setEmail(result.email);
-          setPhoneNumber(result.phone_number);
-        })
-        .catch(function (error) {
-          alert("Something went wrong");
-          console.log(error);
-        });
-    }*/
     if (currentUser?.uid === selectedProject.leader_id) {
       setCanModifyProject(true);
     } else {
       setCanModifyProject(false);
     }
-    /*if (selectedProject.links !== undefined) {
-      //linkHeading = "Links";
-    } else {
-      linkHeading = null;
-    }*/
   }, [currentUser?.uid, selectedProject.leader_id]);
   function deleteProj(id) {
     doDeleteProject(id);
@@ -237,7 +208,7 @@ export const ProjectDetailMob = ({ setdispmobDetails }) => {
           className="ProjectDetailsmob-headerLeft"
         >
           <img
-          alt="Leader profile pic"
+            alt="Leader profile pic"
             src={
               selectedProject.projectPhoto ||
               "https://cvbay.com/wp-content/uploads/2017/03/dummy-image.jpg"
@@ -247,13 +218,13 @@ export const ProjectDetailMob = ({ setdispmobDetails }) => {
             <p>{selectedProject.leader_name}</p>
 
             <a href={`tel:${selectedProject.contactNo}`}>
-              <img src={Phoneicon}   alt="phone-icon"></img>
+              <img src={Phoneicon} alt="phone-icon"></img>
             </a>
             <a href={`mailto: ${selectedProject.leaderEmail}`}>
               <img src={Mail} alt="mail"></img>
             </a>
             <a href={selectedProject.githubLink}>
-              <img src={Github}  alt="github"></img>
+              <img src={Github} alt="github"></img>
             </a>
           </div>
         </div>
@@ -273,20 +244,24 @@ export const ProjectDetailMob = ({ setdispmobDetails }) => {
         <div className="contentsmob-subdiv">
           {selectedProject.desc}
 
-          <div className="team">
-            <h4>TEAM MEMBERS</h4>
-          </div>
-          <div className="members">
-            <ol style={{ paddingTop: "0" }}>
-              {Array.isArray(selectedProject.teamMembers) &&
-                selectedProject.teamMembers.map((member) => (
-                  <p key={member}>
-                    <li className="ProjectDetailsmob-members">{member}</li>
-                  </p>
-                ))}
-            </ol>
-          </div>
-          {selectedProject.tags ? (
+          {selectedProject.teamMembers?.length && (
+            <div>
+              <div className="team">
+                <h4>TEAM MEMBERS</h4>
+              </div>
+              <div className="members">
+                <ol style={{ paddingTop: "0" }}>
+                  {Array.isArray(selectedProject.teamMembers) &&
+                    selectedProject.teamMembers.map((member) => (
+                      <p key={member}>
+                        <li className="ProjectDetailsmob-members">{member}</li>
+                      </p>
+                    ))}
+                </ol>
+              </div>
+            </div>
+          )}
+          {selectedProject.tags?.length ? (
             <div className="ProjectDetail-tagdiv">
               <img
                 src={Link}
@@ -306,8 +281,8 @@ export const ProjectDetailMob = ({ setdispmobDetails }) => {
           ) : (
             ""
           )}
-          {selectedProject.links.length ? (
-            <div className="ProjectDetail-linkdiv" style={{display:"flex"}}>
+          {selectedProject.links?.length ? (
+            <div className="ProjectDetail-linkdiv" style={{ display: "flex" }}>
               {selectedProject.links.map((link) => (
                 <div key={link} className="ProjectDetail-links">
                   <a

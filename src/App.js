@@ -14,8 +14,8 @@ function App() {
   return (
     <AuthProvider>
       <ProjectProvider>
-        <Navbar />
         <BrowserRouter>
+          <Navbar />
           <Switch>
             <Route exact path="/" component={Landing} />
             <Route Route path="/collab" component={Collab} />

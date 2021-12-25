@@ -6,11 +6,12 @@ import ProjectDetails, {
   ProjectDetailMob,
 } from "./ProjectDetails/ProjectDetails";
 
-const ProjectsView = () => {
+const breakpoint = 620;
+const ProjectsView = ({ hideMobileSideNav }) => {
   const [mobileComponentClicked, setMobileComponent] = useState(false);
   const [width, setWidth] = useState(0);
   const [dispmobDetails, setdispmobDetails] = useState(false);
-  const breakpoint = 620;
+
   useLayoutEffect(() => {
     function updateSize() {
       setWidth(window.innerWidth);
@@ -26,7 +27,8 @@ const ProjectsView = () => {
         <Row className={"h-100"}>
           <Col md={4} className={"h-100 m-0  p-0 shadow-right"}>
             <Col className={"h-100 m-0 p-0"}>
-              {width < breakpoint && mobileComponentClicked ? (
+              {width < breakpoint &&
+              (mobileComponentClicked || hideMobileSideNav) ? (
                 <ProjectDetails
                   mobileComponentClicked={mobileComponentClicked}
                   setMobileComponent={setMobileComponent}

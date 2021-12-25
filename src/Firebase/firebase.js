@@ -15,7 +15,7 @@ const initialize = () => {
   if (!firebase.apps.length) {
     firebase.initializeApp(config);
   } else {
-    firebase.app(); // if already initialized, use that one
+    firebase.app(); // if firebase is already initialized, use that instance
   }
 };
 export default initialize;
