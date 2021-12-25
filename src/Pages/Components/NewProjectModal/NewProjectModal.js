@@ -13,9 +13,9 @@ const NewProjectForm = ({ onClose, project }) => {
   console.log(project);
   const [image, setImage] = useState(project?.projectPhoto || "");
 
-  function isFileImage(file) {
-    return file && file["type"].split("/")[0] === "image";
-  }
+  // function isFileImage(file) {
+  //   return file && file["type"].split("/")[0] === "image";
+  // }
   const initialValue = {
     title: project?.name || "",
     desc: project?.desc || "",
@@ -123,12 +123,8 @@ const NewProjectForm = ({ onClose, project }) => {
                   required
                   onBlur={props.handleBlur("photo")}
                   onChange={(e) => {
-                    if (isFileImage(e.target.files[0])) {
-                      setProjectPhoto(e.target.files[0]);
-                      setImage(URL.createObjectURL(e.target.files[0]));
-                    } else {
-                      alert("Please upload an image file");
-                    }
+                    setProjectPhoto(e.target.files[0]);
+                    setImage(URL.createObjectURL(e.target.files[0]));
                   }}
                   type="file"
                   className="customFile"

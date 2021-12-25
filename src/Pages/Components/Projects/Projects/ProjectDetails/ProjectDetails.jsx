@@ -1,11 +1,10 @@
 import React, { useContext, useEffect, useState } from "react";
 import "./ProjectDetails.scss";
 import { Row, Col, Button } from "react-bootstrap";
-// import ProjectContext from "../../../../Collab/ProjectContext";
+import { useHistory } from "react-router";
 import { ProjectContext } from "../../../../../contexts/ProjectContext";
 import { AuthContext } from "../../../../../Firebase/Auth/Auth";
 import { doDeleteProject } from "../../../../../Firebase/firebase";
-import { useHistory } from "react-router";
 import Phoneicon from "../../../../../assets/Phoneicon.png";
 import Mail from "../../../../../assets/Mail.png";
 import Github from "../../../../../assets/Github.png";
@@ -94,7 +93,7 @@ const ProjectDetails = (props) => {
             }}
           >
             <h4>PROJECT DESCRIPTION</h4>
-            <p>{selectedProject.desc}</p>
+            <p style={{ whiteSpace: "pre-line" }}>{selectedProject.desc}</p>
             {selectedProject.teamMembers?.length && (
               <div>
                 <div className="team">
@@ -102,10 +101,9 @@ const ProjectDetails = (props) => {
                 </div>
                 <div className="members">
                   <ol>
-                    {Array.isArray(selectedProject.teamMembers) &&
-                      selectedProject.teamMembers.map((member) => (
-                        <li key={member}>{member}</li>
-                      ))}
+                    {selectedProject.teamMembers.map((member) => (
+                      <li key={member}>{member}</li>
+                    ))}
                   </ol>
                 </div>
               </div>
@@ -252,8 +250,7 @@ export const ProjectDetailMob = ({ setdispmobDetails }) => {
       <div className="contentsmob">
         <h4>{selectedProject.name}</h4>
         <div className="contentsmob-subdiv">
-          {selectedProject.desc}
-
+          <p style={{ whiteSpace: "pre-line" }}>{selectedProject.desc}</p>
           {selectedProject.teamMembers?.length && (
             <div>
               <div className="team">
@@ -261,12 +258,11 @@ export const ProjectDetailMob = ({ setdispmobDetails }) => {
               </div>
               <div className="members">
                 <ol style={{ paddingTop: "0" }}>
-                  {Array.isArray(selectedProject.teamMembers) &&
-                    selectedProject.teamMembers.map((member) => (
-                      <p key={member}>
-                        <li className="ProjectDetailsmob-members">{member}</li>
-                      </p>
-                    ))}
+                  {selectedProject.teamMembers.map((member) => (
+                    <p key={member}>
+                      <li className="ProjectDetailsmob-members">{member}</li>
+                    </p>
+                  ))}
                 </ol>
               </div>
             </div>
