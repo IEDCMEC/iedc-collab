@@ -13,11 +13,12 @@ import Bin from "../../../../../assets/Bin.png";
 import Edit from "../../../../../assets/Edit.png";
 import Link from "../../../../../assets/Link.png";
 import Navigate from "../../../../../assets/Navigate.png";
-
+import NewProjectModal from "../../../NewProjectModal/NewProjectModal";
 const ProjectDetails = (props) => {
   const { selectedProject } = useContext(ProjectContext);
   const { currentUser } = useContext(AuthContext);
   const [canModifyProject, setCanModifyProject] = useState(false);
+  const [showNewProjectModal, setShowNewProjectModal] = useState(false);
   const history = useHistory();
   console.log(selectedProject);
   useEffect(() => {
@@ -174,9 +175,17 @@ const ProjectDetails = (props) => {
             src={Edit}
             alt="Edit Project"
             style={{ cursor: "pointer" }}
+            onClick={() => {
+              setShowNewProjectModal(true);
+            }}
           ></img>
         )}
       </div>
+      <NewProjectModal
+     show={showNewProjectModal}
+     onHide={() => setShowNewProjectModal(false)}
+     project = {selectedProject}
+   />
     </div>
   );
 };
@@ -186,6 +195,7 @@ export const ProjectDetailMob = ({ setdispmobDetails }) => {
   const { selectedProject } = useContext(ProjectContext);
   const { currentUser } = useContext(AuthContext);
   const [canModifyProject, setCanModifyProject] = useState(false);
+  const [showNewProjectModal, setShowNewProjectModal] = useState(false);
   const history = useHistory();
 
   useEffect(() => {
@@ -316,9 +326,18 @@ export const ProjectDetailMob = ({ setdispmobDetails }) => {
             src={Edit}
             alt="Edit Project"
             style={{ cursor: "pointer" }}
+            onClick={() => {
+              setShowNewProjectModal(true);
+            }}
           ></img>
         )}
       </div>
+      <NewProjectModal
+     show={showNewProjectModal}
+     onHide={() => setShowNewProjectModal(false)}
+     project = {selectedProject}
+   />
     </div>
+    
   );
 };
