@@ -76,11 +76,11 @@ export const doCreateProject = (obj) => {
   const leaderPhoto = user.providerData[0]?.photoURL;
   var newProjectID = firebase.database().ref().child("projects").push()
           .key;
-  if(obj.photo) {       
+  if(obj.projectPhoto) {       
   firebase
     .storage()
-    .ref(`projectPhoto/${obj.photo.name}`)
-    .put(obj.photo)
+    .ref(`projectPhoto/${newProjectID}`)
+    .put(obj.projectPhoto)
     .then(({ ref }) => {
       ref.getDownloadURL().then((url) => {
         let photo = url;
@@ -161,7 +161,9 @@ export const doDeleteProject = (project_id) => {
         return;
       }
     });
-
+    firebase
+    .storage()
+    .ref(`projectPhoto/${project_id}`).delete()
   projectRef
     .remove()
     .then(function () {
@@ -189,19 +191,23 @@ export const doEditProject = async (obj,project_id) => {
       return;
     }
   });
-  let photoUrl='';  
-   projectRef.child("photo").once("value").then(await function(snapshot){if(snapshot.val()){photoUrl= snapshot.val()}
+  var photoUrl='';  
+   projectRef.child("projectPhoto").once("value").then(await function(snapshot){if(snapshot.val()){photoUrl= snapshot.val()}
   else{return defaultPhoto}});
-  if(obj.photo!==''){
+
+  if(obj.projectPhoto!==''){
  try{
   let imgDb = await firebase.storage().ref(`projectPhoto/${project_id}`)
-  let newimg= await imgDb.put(obj.photo)
+  let newimg= await imgDb.put(obj.projectPhoto)
     photoUrl = await newimg.ref.getDownloadURL()
-  
+  }
+  catch(error){
+    alert("Something went wrong")
+  }}
   let uid = user.uid;
   let leaderName = user.displayName;
   const createdAt = Date.now();
-  console.log(photoUrl)
+  
 projectRef
   .set( {
     name: obj.title,
@@ -211,7 +217,7 @@ projectRef
     githubLink: obj.githubLink,
     tags: obj.tags,
     teamMembers: obj.teamMembers,
-    photo: photoUrl,
+    projectPhoto: photoUrl,
     available: "true",
     updatedAt: createdAt,
     leader_id: uid,
@@ -221,13 +227,13 @@ projectRef
   )
   .then(function () {
     console.log("Project edited sucessfully");
-  })
+  }).catch(function (error) {
+    alert("Something went wrong");
+    console.log(error);
+  });
 }
-catch(error){
-  alert("Something went wrong");
-  console.log(error);
-};
-  }}
+
+
 
 export const getProjects = () => {
   return firebase.database().ref("projects/").once("value");

@@ -23,21 +23,21 @@ const NewProjectForm = ({ onClose, project}) => {
       return file && file['type'].split('/')[0] === 'image';
   }
   if(project!==undefined){
-  if(project.photo!==undefined){
-  defaultImage=project.photo;}
+  if(project.projectPhoto!==undefined){
+  defaultImage=project.projectPhoto;}
     
      initialValue ={
       title: project.name,
       desc: project.desc,
       links: project.links.toString(),
-      contactNo: project.contactNo,
+      contactNo: project.contactNo ,
       githubLink: project.githubLink,
       tags: project.tags?project.tags.toString():"",
       teamMembers: project.teamMembers.toString(),
-      photo: project.photo,
+      projectPhoto: project.projectPhoto,
     }
   }
-  else{
+ else{
      initialValue = {
       title: "",
       desc: "",
@@ -49,6 +49,7 @@ const NewProjectForm = ({ onClose, project}) => {
 
     };
   }
+  
   const newProjectSchema = yup.object({
     title: yup.string().required("Please add a valid title").min(3),
     desc: yup.string().required("Please add a valid description").min(10),
@@ -79,8 +80,9 @@ const NewProjectForm = ({ onClose, project}) => {
             links: links.split(",").map((link) => link.trim()),
             tags: tags.split(",").map((link) => link.trim()),
             teamMembers: teamMembers.split(",").map((link) => link.trim()),
-            photo: projectPhoto,
+            projectPhoto: projectPhoto,
           };
+          alert(project)
           if(project===undefined){
             doCreateProject(formValues);
             }
@@ -89,7 +91,7 @@ const NewProjectForm = ({ onClose, project}) => {
               doEditProject(formValues,project.id);}
           onClose();
           actions.resetForm();
-         history.go(0);
+       //  history.go(0);
         }}
       >
         {(props) => (
