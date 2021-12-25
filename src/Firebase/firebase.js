@@ -52,6 +52,8 @@ export const signIn = async (onSigninSuccess = () => {}) => {
   }
 };
 
+var defaultPhoto = 'https://images.unsplash.com/photo-1639413665566-2f75adf7b7ca?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyN3x8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60'
+
 export const signOut = () => {
   firebase
     .auth()
@@ -72,16 +74,17 @@ export const doCreateProject = (obj) => {
     return;
   }
   const leaderPhoto = user.providerData[0]?.photoURL;
+  var newProjectID = firebase.database().ref().child("projects").push()
+          .key;
+  if(obj.projectPhoto) {       
   firebase
     .storage()
-    .ref(`projectPhoto/${obj.photo.name}`)
-    .put(obj.photo)
+    .ref(`projectPhoto/${newProjectID}`)
+    .put(obj.projectPhoto)
     .then(({ ref }) => {
       ref.getDownloadURL().then((url) => {
         let photo = url;
         const createdAt = Date.now();
-        var newProjectID = firebase.database().ref().child("projects").push()
-          .key;
         var projectData = {
           ...obj,
           name: obj.title,
@@ -109,7 +112,36 @@ export const doCreateProject = (obj) => {
             console.log(error);
           });
       });
-    });
+    });}
+  else {
+    const createdAt = Date.now();
+    var projectData = {
+      ...obj,
+      name: obj.title,
+      projectPhoto: defaultPhoto,
+      available: true,
+      createdAt,
+      updatedAt: createdAt,
+      leader_id: user.uid,
+      leader_name: user.displayName,
+      leaderEmail: user.email,
+      leaderImg: leaderPhoto || null,
+    };
+    console.log(projectData);
+
+    firebase
+      .database()
+      .ref("projects/" + newProjectID)
+      .set(projectData)
+      .then(function () {
+        console.log("Project added sucessfully");
+        window.location.reload();
+      })
+      .catch(function (error) {
+        alert("Something went wrong");
+        console.log(error);
+      });
+  } 
 };
 
 export const doDeleteProject = (project_id) => {
@@ -129,7 +161,9 @@ export const doDeleteProject = (project_id) => {
         return;
       }
     });
-
+    firebase
+    .storage()
+    .ref(`projectPhoto/${project_id}`).delete()
   projectRef
     .remove()
     .then(function () {
@@ -140,6 +174,66 @@ export const doDeleteProject = (project_id) => {
       console.log(error);
     });
 };
+
+export const doEditProject = async (obj,project_id) => {
+  let user = firebase.auth().currentUser;
+  if (!user) {
+    alert("Please login to add a project");
+    return;
+  }
+  let projectRef = firebase.database().ref("projects/" + project_id);
+  projectRef
+  .child("leader_id")
+  .once("value")
+  .then(function (snapshot) {
+    if (snapshot.val() !== user.uid) {
+      
+      return;
+    }
+  });
+  var photoUrl='';  
+   projectRef.child("projectPhoto").once("value").then(await function(snapshot){if(snapshot.val()){photoUrl= snapshot.val()}
+  else{return defaultPhoto}});
+
+  if(obj.projectPhoto!==''){
+ try{
+  let imgDb = await firebase.storage().ref(`projectPhoto/${project_id}`)
+  let newimg= await imgDb.put(obj.projectPhoto)
+    photoUrl = await newimg.ref.getDownloadURL()
+  }
+  catch(error){
+    alert("Something went wrong")
+  }}
+  let uid = user.uid;
+  let leaderName = user.displayName;
+  const createdAt = Date.now();
+  
+projectRef
+  .set( {
+    name: obj.title,
+    desc: obj.desc,
+    links: obj.links,
+    contactNo: obj.contactNo,
+    githubLink: obj.githubLink,
+    tags: obj.tags,
+    teamMembers: obj.teamMembers,
+    projectPhoto: photoUrl,
+    available: "true",
+    updatedAt: createdAt,
+    leader_id: uid,
+    leader_name: leaderName,
+  }
+
+  )
+  .then(function () {
+    console.log("Project edited sucessfully");
+  }).catch(function (error) {
+    alert("Something went wrong");
+    console.log(error);
+  });
+}
+
+
 
 export const getProjects = () => {
   return firebase.database().ref("projects/").once("value");

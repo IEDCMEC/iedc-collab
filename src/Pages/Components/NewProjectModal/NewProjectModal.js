@@ -3,13 +3,53 @@ import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import { Formik } from "formik";
 import * as yup from "yup";
+import {useHistory} from 'react-router'
 import { Form, Row, Col, InputGroup } from "react-bootstrap";
-import { doCreateProject } from "../../../Firebase/firebase";
+import { doCreateProject, doEditProject } from "../../../Firebase/firebase";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUpload } from "@fortawesome/free-solid-svg-icons";
 import "./NewProjectModal.scss";
 
-const NewProjectForm = ({ onClose }) => {
+
+const NewProjectForm = ({ onClose, project}) => {
+  console.log(onClose);
+  console.log(project);
+  const history = useHistory();
+  const [image, setImage] = useState('');
+  var initialValue = {};
+  var defaultImage='https://images.unsplash.com/photo-1639413665566-2f75adf7b7ca?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyN3x8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60';
+  
+  function isFileImage(file) {
+      return file && file['type'].split('/')[0] === 'image';
+  }
+  if(project!==undefined){
+  if(project.projectPhoto!==undefined){
+  defaultImage=project.projectPhoto;}
+    
+     initialValue ={
+      title: project.name,
+      desc: project.desc,
+      links: project.links.toString(),
+      contactNo: project.contactNo ,
+      githubLink: project.githubLink,
+      tags: project.tags?project.tags.toString():"",
+      teamMembers: project.teamMembers.toString(),
+      projectPhoto: project.projectPhoto,
+    }
+  }
+ else{
+     initialValue = {
+      title: "",
+      desc: "",
+      links: "",
+      contactNo: "",
+      githubLink: "",
+      tags: "",
+      teamMembers: "",
+
+    };
+  }
+  
   const newProjectSchema = yup.object({
     title: yup.string().required("Please add a valid title").min(3),
     desc: yup.string().required("Please add a valid description").min(10),
@@ -31,14 +71,7 @@ const NewProjectForm = ({ onClose }) => {
   return (
     <div className="newProjectForm">
       <Formik
-        initialValues={{
-          title: "",
-          desc: "",
-          links: "",
-          contactNo: "",
-          githubLink: "",
-          tags: "",
-        }}
+        initialValues={initialValue}
         validationSchema={newProjectSchema}
         onSubmit={(values, actions) => {
           const { links, tags, teamMembers } = values;
@@ -47,11 +80,18 @@ const NewProjectForm = ({ onClose }) => {
             links: links.split(",").map((link) => link.trim()),
             tags: tags.split(",").map((link) => link.trim()),
             teamMembers: teamMembers.split(",").map((link) => link.trim()),
-            photo: projectPhoto,
+            projectPhoto: projectPhoto,
           };
-          doCreateProject(formValues);
+          alert(project)
+          if(project===undefined){
+            doCreateProject(formValues);
+            }
+          else{
+               console.log(`${project.id}`);
+              doEditProject(formValues,project.id);}
           onClose();
           actions.resetForm();
+       //  history.go(0);
         }}
       >
         {(props) => (
@@ -94,14 +134,19 @@ const NewProjectForm = ({ onClose }) => {
                 <i className="photoIcon">
                   <FontAwesomeIcon icon={faUpload} />
                 </i>
-                <p>{projectPhoto?.name}</p>
+                <p>{projectPhoto?projectPhoto.name:'default Image'} </p>
 
                 <Form.Control
                   required
                   onBlur={props.handleBlur("photo")}
                   onChange={(e) => {
-                    console.log(e.target.files[0]);
+                    if(isFileImage(e.target.files[0])){
                     setProjectPhoto(e.target.files[0]);
+                    setImage(URL.createObjectURL(e.target.files[0]))
+                    }
+                    else{
+                      alert("Please upload an image file");
+                    }
                   }}
                   type="file"
                   className="customFile"
@@ -111,7 +156,11 @@ const NewProjectForm = ({ onClose }) => {
             <Form.Text className="text-danger">
               {props.touched.photo && props.errors.photo}
             </Form.Text>
-
+            <Row className="col-md-12 d-flex justify-content-center">
+              
+            <img className="projectPhoto" alt="" width="200px" height="200px" src={image ? image : defaultImage}></img>
+            
+            </Row>
             <Form.Group controlId="formTeamMembers">
               <Form.Label>Team Members</Form.Label>
               <Form.Control
@@ -233,7 +282,7 @@ const NewProjectModal = (props) => {
         ></i>
         <Col className="p-md-5">
           <h5 className="modalHead2">Please add details about your project</h5>
-          <NewProjectForm onClose={props.onHide} />
+          <NewProjectForm onClose={props.onHide} project = {props.project} />
         </Col>
       </Modal.Body>
     </Modal>
