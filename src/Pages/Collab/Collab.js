@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
+import ProjectsView from "../../Components/Projects/Projects";
 import { ProjectContext } from "../../contexts/ProjectContext";
-import ProjectsView from "../Components/Projects/Projects/Projects";
 
 const Collab = ({ location: { state } }) => {
   const { projects, loading } = useContext(ProjectContext);

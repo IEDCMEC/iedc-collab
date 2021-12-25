@@ -5,7 +5,7 @@ import "./App.scss";
 import Landing from "./Pages/Landing/Landing";
 import Collab from "./Pages/Collab/Collab";
 import initialize from "./Firebase/firebase";
-import Navbar from "./Pages/Components/NavigateBar/NavigateBar";
+import Navbar from "./Components/NavigateBar/NavigateBar";
 import { ProjectProvider } from "./contexts/ProjectContext";
 
 initialize();

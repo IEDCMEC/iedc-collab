@@ -1,10 +1,10 @@
 import React, { useLayoutEffect, useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
-import ProjectList from "./ProjectList/ProjectList";
+import ProjectList from "../ProjectList/ProjectList";
 import "./Project.scss";
 import ProjectDetails, {
   ProjectDetailMob,
-} from "./ProjectDetails/ProjectDetails";
+} from "../ProjectDetails/ProjectDetails";
 
 const breakPoint = 700;
 const ProjectsView = ({ showDetailsDirectly = false }) => {

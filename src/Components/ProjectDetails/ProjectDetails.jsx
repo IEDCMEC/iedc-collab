@@ -1,18 +1,17 @@
 import React, { useContext, useEffect, useState } from "react";
 import "./ProjectDetails.scss";
-import { Row, Col, Button } from "react-bootstrap";
 import { useHistory } from "react-router";
-import { ProjectContext } from "../../../../../contexts/ProjectContext";
-import { AuthContext } from "../../../../../Firebase/Auth/Auth";
-import { doDeleteProject } from "../../../../../Firebase/firebase";
-import Phoneicon from "../../../../../assets/Phoneicon.png";
-import Mail from "../../../../../assets/Mail.png";
-import Github from "../../../../../assets/Github.png";
-import Bin from "../../../../../assets/Bin.png";
-import Edit from "../../../../../assets/Edit.png";
-import Link from "../../../../../assets/Link.png";
-import Navigate from "../../../../../assets/Navigate.png";
-import ProjectModal from "../../../ProjectModal/ProjectModal";
+import { ProjectContext } from "../../contexts/ProjectContext";
+import { AuthContext } from "../../Firebase/Auth/Auth";
+import { doDeleteProject } from "../../Firebase/firebase";
+import Phoneicon from "../../assets/Phoneicon.png";
+import Mail from "../../assets/Mail.png";
+import Github from "../../assets/Github.png";
+import Bin from "../../assets/Bin.png";
+import Edit from "../../assets/Edit.png";
+import Link from "../../assets/Link.png";
+import Navigate from "../../assets/Navigate.png";
+import ProjectModal from "../ProjectModal/ProjectModal";
 
 const ProjectDetails = (props) => {
   const { selectedProject } = useContext(ProjectContext);

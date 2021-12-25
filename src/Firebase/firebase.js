@@ -52,7 +52,7 @@ export const signIn = async (onSigninSuccess = () => {}) => {
   }
 };
 
-var defaultPhoto =
+const defaultPhotoUrl =
   "https://images.unsplash.com/photo-1639413665566-2f75adf7b7ca?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyN3x8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60";
 
 export const signOut = () => {
@@ -116,7 +116,7 @@ export const doCreateProject = (obj) => {
     const createdAt = Date.now();
     var projectData = {
       ...obj,
-      projectPhoto: defaultPhoto,
+      projectPhoto: defaultPhotoUrl,
       projectPhotoName: "Default Image",
       available: true,
       createdAt,
@@ -179,34 +179,31 @@ export const doEditProject = async (obj, project_id) => {
     return;
   }
   let projectRef = firebase.database().ref("projects/" + project_id);
+  let isUserAuthroized = true;
   projectRef
     .child("leader_id")
     .once("value")
     .then(function (snapshot) {
       if (snapshot.val() !== user.uid) {
-        return;
+        isUserAuthroized = false;
       }
     });
-  var photoUrl = "";
-  projectRef
-    .child("projectPhoto")
-    .once("value")
-    .then((snapshot) => {
-      if (snapshot.val()) {
-        photoUrl = snapshot.val();
-      } else {
-        return defaultPhoto;
-      }
-    });
+  if (!isUserAuthroized) {
+    alert("Only the project creator can edit the project!");
+    return;
+  }
 
-  if (obj.projectPhoto !== "") {
+  let photoUrl;
+  if (obj.projectPhoto) {
     try {
-      let imgDb = await firebase.storage().ref(`projectPhoto/${project_id}`);
+      let imgDb = firebase.storage().ref(`projectPhoto/${project_id}`);
       let newimg = await imgDb.put(obj.projectPhoto);
       photoUrl = await newimg.ref.getDownloadURL();
     } catch (error) {
       alert("Something went wrong");
     }
+  } else {
+    photoUrl = defaultPhotoUrl;
   }
 
   projectRef

@@ -1,11 +1,11 @@
 import React, { useContext, useState } from "react";
 import ProjectModal from "../ProjectModal/ProjectModal";
 import "./cards.css";
-import { signOut } from "../../../Firebase/firebase";
-import { AuthContext } from "../../../Firebase/Auth/Auth";
-import { ProjectContext } from "../../../contexts/ProjectContext";
-import SignoutLogo from "../../../assets/Signout-Logo.png";
-import { signIn } from "../../../Firebase/firebase";
+import { signOut } from "../../Firebase/firebase";
+import { AuthContext } from "../../Firebase/Auth/Auth";
+import { ProjectContext } from "../../contexts/ProjectContext";
+import SignoutLogo from "../../assets/Signout-Logo.png";
+import { signIn } from "../../Firebase/firebase";
 import { Link } from "react-router-dom";
 
 const Navbar = () => {

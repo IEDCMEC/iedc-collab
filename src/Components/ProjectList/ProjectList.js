@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import ProjectBox from "./ProjectBox";
 import { Col } from "react-bootstrap";
-import { ProjectContext } from "../../../../../contexts/ProjectContext";
+import { ProjectContext } from "../../contexts/ProjectContext";
 
 const ProjectList = ({ width, setShowProjectDetailsNotList }) => {
   const { projects, setSelectedProject } = useContext(ProjectContext);

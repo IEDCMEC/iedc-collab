@@ -1,6 +1,6 @@
 import React, { useContext, useMemo } from "react";
 import "./ProjectList.scss";
-import { ProjectContext } from "../../../../../contexts/ProjectContext";
+import { ProjectContext } from "../../contexts/ProjectContext";
 
 const ProjectBox = ({ name, teamLeader, projectId }) => {
   const { selectedProject } = useContext(ProjectContext);
