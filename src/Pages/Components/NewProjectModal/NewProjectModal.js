@@ -3,53 +3,30 @@ import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import { Formik } from "formik";
 import * as yup from "yup";
-import {useHistory} from 'react-router'
 import { Form, Row, Col, InputGroup } from "react-bootstrap";
 import { doCreateProject, doEditProject } from "../../../Firebase/firebase";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUpload } from "@fortawesome/free-solid-svg-icons";
 import "./NewProjectModal.scss";
 
-
-const NewProjectForm = ({ onClose, project}) => {
-  console.log(onClose);
+const NewProjectForm = ({ onClose, project }) => {
   console.log(project);
-  const history = useHistory();
-  const [image, setImage] = useState('');
-  var initialValue = {};
-  var defaultImage='https://images.unsplash.com/photo-1639413665566-2f75adf7b7ca?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyN3x8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60';
-  
-  function isFileImage(file) {
-      return file && file['type'].split('/')[0] === 'image';
-  }
-  if(project!==undefined){
-  if(project.projectPhoto!==undefined){
-  defaultImage=project.projectPhoto;}
-    
-     initialValue ={
-      title: project.name,
-      desc: project.desc,
-      links: project.links.toString(),
-      contactNo: project.contactNo ,
-      githubLink: project.githubLink,
-      tags: project.tags?project.tags.toString():"",
-      teamMembers: project.teamMembers.toString(),
-      projectPhoto: project.projectPhoto,
-    }
-  }
- else{
-     initialValue = {
-      title: "",
-      desc: "",
-      links: "",
-      contactNo: "",
-      githubLink: "",
-      tags: "",
-      teamMembers: "",
+  const [image, setImage] = useState(project?.projectPhoto || "");
 
-    };
+  function isFileImage(file) {
+    return file && file["type"].split("/")[0] === "image";
   }
-  
+  const initialValue = {
+    title: project?.name || "",
+    desc: project?.desc || "",
+    links: project?.links?.toString() || "",
+    contactNo: project?.contactNo || "",
+    githubLink: project?.githubLink || "",
+    tags: project?.tags ? project.tags.toString() : "",
+    teamMembers: project?.teamMembers ? project.teamMembers.toString() : "",
+    projectPhoto: project?.projectPhoto,
+  };
+
   const newProjectSchema = yup.object({
     title: yup.string().required("Please add a valid title").min(3),
     desc: yup.string().required("Please add a valid description").min(10),
@@ -66,7 +43,9 @@ const NewProjectForm = ({ onClose, project}) => {
     teamMembers: yup.string(),
   });
 
-  const [projectPhoto, setProjectPhoto] = useState(null);
+  const [projectPhoto, setProjectPhoto] = useState(
+    project?.projectPhoto || null
+  );
 
   return (
     <div className="newProjectForm">
@@ -82,16 +61,14 @@ const NewProjectForm = ({ onClose, project}) => {
             teamMembers: teamMembers.split(",").map((link) => link.trim()),
             projectPhoto: projectPhoto,
           };
-          alert(project)
-          if(project===undefined){
+          if (project === undefined) {
             doCreateProject(formValues);
-            }
-          else{
-               console.log(`${project.id}`);
-              doEditProject(formValues,project.id);}
+          } else {
+            console.log(`${project.id}`);
+            doEditProject(formValues, project.id);
+          }
           onClose();
           actions.resetForm();
-       //  history.go(0);
         }}
       >
         {(props) => (
@@ -130,21 +107,26 @@ const NewProjectForm = ({ onClose, project}) => {
 
             <InputGroup controlId="formPhoto" className="photoContainer">
               <Form.Label className="photoLabel">
-                <i className="photoHead">Upload Featuring Photo*</i>
+                <i className="photoHead">Upload Featuring Photo</i>
                 <i className="photoIcon">
                   <FontAwesomeIcon icon={faUpload} />
                 </i>
-                <p>{projectPhoto?projectPhoto.name:'default Image'} </p>
+                {/* <p>
+                  {projectPhoto
+                    ? projectPhoto.name
+                    : image
+                    ? "default Image"
+                    : ""}
+                </p> */}
 
                 <Form.Control
                   required
                   onBlur={props.handleBlur("photo")}
                   onChange={(e) => {
-                    if(isFileImage(e.target.files[0])){
-                    setProjectPhoto(e.target.files[0]);
-                    setImage(URL.createObjectURL(e.target.files[0]))
-                    }
-                    else{
+                    if (isFileImage(e.target.files[0])) {
+                      setProjectPhoto(e.target.files[0]);
+                      setImage(URL.createObjectURL(e.target.files[0]));
+                    } else {
                       alert("Please upload an image file");
                     }
                   }}
@@ -157,9 +139,15 @@ const NewProjectForm = ({ onClose, project}) => {
               {props.touched.photo && props.errors.photo}
             </Form.Text>
             <Row className="col-md-12 d-flex justify-content-center">
-              
-            <img className="projectPhoto" alt="" width="200px" height="200px" src={image ? image : defaultImage}></img>
-            
+              {image && (
+                <img
+                  className="projectPhoto"
+                  alt="project banner"
+                  width="200px"
+                  height="200px"
+                  src={image}
+                ></img>
+              )}
             </Row>
             <Form.Group controlId="formTeamMembers">
               <Form.Label>Team Members</Form.Label>
@@ -200,7 +188,7 @@ const NewProjectForm = ({ onClose, project}) => {
                   value={props.values.githubLink}
                   onChange={props.handleChange("githubLink")}
                   type="text"
-                  placeholder="Enter your project link"
+                  placeholder="eg: https://github.com/IEDCMEC/iedc-collab-frontend/"
                 />
                 <Form.Text className="text-danger">
                   {props.touched.githubLink && props.errors.githubLink}
@@ -266,23 +254,23 @@ const NewProjectModal = (props) => {
       aria-labelledby="contained-modal-title-vcenter"
       centered
     >
-      <Modal.Body className="modalbody" style={{ position: "relative" }}>
-        <h3 className="modalHead">Create New Project</h3>
-        <i
-          className="fa fa-close d-block d-md-none"
-          style={{
-            position: "absolute",
-            top: "15px",
-            fontSize: "25px",
-            right: "30px",
-            padding: 10,
-            cursor: "pointer",
-          }}
-          onClick={props.onHide}
-        ></i>
+      <Modal.Body className="modalbody">
+        <div className="d-flex justify-content-between align-items-center">
+          <h3 className="modalHead ml-5">Create New Project</h3>
+          <i
+            className="fa fa-close d-block d-md-none"
+            style={{
+              fontSize: "25px",
+              right: "30px",
+              padding: 10,
+              cursor: "pointer",
+            }}
+            onClick={props.onHide}
+          ></i>
+        </div>
         <Col className="p-md-5">
           <h5 className="modalHead2">Please add details about your project</h5>
-          <NewProjectForm onClose={props.onHide} project = {props.project} />
+          <NewProjectForm onClose={props.onHide} project={props.project} />
         </Col>
       </Modal.Body>
     </Modal>

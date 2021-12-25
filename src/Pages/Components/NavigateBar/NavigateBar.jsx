@@ -9,7 +9,7 @@ import { signIn } from "../../../Firebase/firebase";
 import { Link } from "react-router-dom";
 
 const Navbar = () => {
-  const [showNewProjectModal, setShowNewProjectModal] = useState(false);
+  const [showProjectModal, setShowProjectModal] = useState(false);
   const { currentUser } = useContext(AuthContext);
   const { handleSearch } = useContext(ProjectContext);
 
@@ -23,9 +23,9 @@ const Navbar = () => {
 
   const newprojectClick = async () => {
     if (currentUser) {
-      setShowNewProjectModal(true);
+      setShowProjectModal(true);
     } else {
-      signIn(() => setShowNewProjectModal(true));
+      signIn(() => setShowProjectModal(true));
     }
   };
 
@@ -124,8 +124,8 @@ const Navbar = () => {
         </div>
       </nav>
       <NewProjectModal
-        show={showNewProjectModal}
-        onHide={() => setShowNewProjectModal(false)}
+        show={showProjectModal}
+        onHide={() => setShowProjectModal(false)}
       />
     </div>
   );

@@ -14,13 +14,14 @@ import Edit from "../../../../../assets/Edit.png";
 import Link from "../../../../../assets/Link.png";
 import Navigate from "../../../../../assets/Navigate.png";
 import NewProjectModal from "../../../NewProjectModal/NewProjectModal";
+
 const ProjectDetails = (props) => {
   const { selectedProject } = useContext(ProjectContext);
   const { currentUser } = useContext(AuthContext);
   const [canModifyProject, setCanModifyProject] = useState(false);
   const [showNewProjectModal, setShowNewProjectModal] = useState(false);
   const history = useHistory();
-  console.log(selectedProject);
+
   useEffect(() => {
     if (currentUser?.uid === selectedProject.leader_id) {
       setCanModifyProject(true);
@@ -182,10 +183,10 @@ const ProjectDetails = (props) => {
         )}
       </div>
       <NewProjectModal
-     show={showNewProjectModal}
-     onHide={() => setShowNewProjectModal(false)}
-     project = {selectedProject}
-   />
+        show={showNewProjectModal}
+        onHide={() => setShowNewProjectModal(false)}
+        project={selectedProject}
+      />
     </div>
   );
 };
@@ -333,11 +334,10 @@ export const ProjectDetailMob = ({ setdispmobDetails }) => {
         )}
       </div>
       <NewProjectModal
-     show={showNewProjectModal}
-     onHide={() => setShowNewProjectModal(false)}
-     project = {selectedProject}
-   />
+        show={showNewProjectModal}
+        onHide={() => setShowNewProjectModal(false)}
+        project={selectedProject}
+      />
     </div>
-    
   );
 };
