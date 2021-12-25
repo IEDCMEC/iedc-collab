@@ -82,7 +82,7 @@ const ProjectDetails = (props) => {
           <p>{selectedProject.name}</p>
         </div>
 
-        <div className="contents ">
+        <div className="contents">
           <div
             className="contents-subdiv"
             style={{
@@ -188,7 +188,6 @@ export const ProjectDetailMob = ({ setdispmobDetails }) => {
   const [canModifyProject, setCanModifyProject] = useState(false);
   const history = useHistory();
 
-  console.log(selectedProject);
   useEffect(() => {
     if (currentUser?.uid === selectedProject.leader_id) {
       setCanModifyProject(true);

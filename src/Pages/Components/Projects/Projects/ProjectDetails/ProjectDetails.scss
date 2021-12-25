@@ -8,6 +8,10 @@ h4 {
   font-size: 25px;
   padding-bottom: 15px;
 }
+.contents {
+  height: inherit;
+  flex-grow: 1;
+}
 .contentsmob {
   color: white;
   margin-top: 3rem;
@@ -37,31 +41,33 @@ h4 {
   margin-left: 1rem;
   margin-bottom: 0;
 }
-.team , .members , .ProjectDetail-linkdiv{
-align-self: flex-start;
+.team,
+.members,
+.ProjectDetail-linkdiv {
+  align-self: flex-start;
 }
- .ProjectDetail-linkdiv{
+.ProjectDetail-linkdiv {
   margin-top: 1rem;
 }
-.ProjectDetail-links{
+.ProjectDetail-links {
   margin-right: 0.5rem;
 }
-.ProjectDetail-tagdiv > p{
+.ProjectDetail-tagdiv > p {
   margin-right: 0.5rem;
 }
-.ProjectDetail-linkdiv > h4{
-text-align: start;
+.ProjectDetail-linkdiv > h4 {
+  text-align: start;
 }
 .ProjectDetail-linkdiv > a {
   margin-right: 0.3rem;
 }
-.ProjectDetailsmob-members{
+.ProjectDetailsmob-members {
   margin-top: 0.5rem;
 }
-.team{
+.team {
   margin-top: 1.3rem;
 }
-.ProjectDetails-imagediv > a >img{
+.ProjectDetails-imagediv > a > img {
   margin-right: 1.5rem;
   width: 2rem;
 }
@@ -99,14 +105,15 @@ text-align: start;
   height: 90vh;
   overflow: auto;
 }
-.ProjectDetail-tagdiv{
+.ProjectDetail-tagdiv {
   display: flex;
   align-self: flex-start;
   margin-top: 1rem;
 }
 
-.ProjectDetail-tagdiv, .ProjectDetailmob-tagdiv > img {
-height: 1.5rem;
+.ProjectDetail-tagdiv,
+.ProjectDetailmob-tagdiv > img {
+  height: 1.5rem;
 }
 .contents {
   background-color: var(--primaryColor) !important;
@@ -114,12 +121,12 @@ height: 1.5rem;
   padding: 20px;
   width: 100%;
   overflow: auto;
-  height: 25rem;
+  // height: 25rem;
 }
 .description {
   //padding: 20px;
   //margin: 20px auto;
-  margin-top: 3rem;
+  // margin-top: 3rem;
   display: flex;
   scrollbar-color: white !important;
   color: #fff;
@@ -211,7 +218,7 @@ ol li {
 }
 .ProjectDetailMob-maindiv {
   background-color: var(--primaryColor);
-   height: 90vh;
+  height: 90vh;
   overflow: auto;
 }
 .ProjectDetailMob-headerRight {

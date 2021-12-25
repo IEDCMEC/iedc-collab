@@ -10,7 +10,6 @@ export const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     firebase.auth().onAuthStateChanged((user) => {
-      console.log("uesr changed");
       setCurrentUser(user);
       setPending(false);
       // if(user.email.includes("mec.ac.in"))

@@ -6,7 +6,7 @@ import ProjectDetails, {
   ProjectDetailMob,
 } from "./ProjectDetails/ProjectDetails";
 
-const breakpoint = 620;
+const breakpoint = 700;
 const ProjectsView = ({ hideMobileSideNav }) => {
   const [mobileComponentClicked, setMobileComponent] = useState(false);
   const [width, setWidth] = useState(0);
@@ -14,7 +14,9 @@ const ProjectsView = ({ hideMobileSideNav }) => {
 
   useLayoutEffect(() => {
     function updateSize() {
-      setWidth(window.innerWidth);
+      const w = window.innerWidth;
+      setWidth(w);
+      if (w < 768) setdispmobDetails(true);
     }
     window.addEventListener("resize", updateSize);
     updateSize();
