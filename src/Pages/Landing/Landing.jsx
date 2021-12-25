@@ -9,7 +9,7 @@ const Landing = () => {
   const history = useHistory();
 
   const handleClick = (p) => {
-    history.push("/collab", { hideMobileSideNav: true });
+    history.push("/collab", { showDetailsDirectly: true });
     setSelectedProject(p);
   };
 

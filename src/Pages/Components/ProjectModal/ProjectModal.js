@@ -7,7 +7,7 @@ import { Form, Row, Col, InputGroup } from "react-bootstrap";
 import { doCreateProject, doEditProject } from "../../../Firebase/firebase";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUpload } from "@fortawesome/free-solid-svg-icons";
-import "./NewProjectModal.scss";
+import "./ProjectModal.scss";
 
 const NewProjectForm = ({ onClose, project }) => {
   console.log(project);
@@ -56,9 +56,18 @@ const NewProjectForm = ({ onClose, project }) => {
           const { links, tags, teamMembers } = values;
           const formValues = {
             ...values,
-            links: links.split(",").map((link) => link.trim()),
-            tags: tags.split(",").map((link) => link.trim()),
-            teamMembers: teamMembers.split(",").map((link) => link.trim()),
+            links: links
+              .trim()
+              .split(",")
+              .map((link) => link.trim()),
+            tags: tags
+              .trim()
+              .split(",")
+              .map((link) => link.trim()),
+            teamMembers: teamMembers
+              .trim()
+              .split(",")
+              .map((link) => link.trim()),
             projectPhoto: projectPhoto,
             projectPhotoName,
           };
@@ -237,7 +246,7 @@ const NewProjectForm = ({ onClose, project }) => {
   );
 };
 
-const NewProjectModal = (props) => {
+const ProjectModal = (props) => {
   return (
     <Modal
       {...props}
@@ -267,4 +276,4 @@ const NewProjectModal = (props) => {
     </Modal>
   );
 };
-export default NewProjectModal;
+export default ProjectModal;

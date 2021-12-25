@@ -6,17 +6,16 @@ import ProjectDetails, {
   ProjectDetailMob,
 } from "./ProjectDetails/ProjectDetails";
 
-const breakpoint = 700;
-const ProjectsView = ({ hideMobileSideNav }) => {
-  const [mobileComponentClicked, setMobileComponent] = useState(false);
+const breakPoint = 700;
+const ProjectsView = ({ showDetailsDirectly = false }) => {
   const [width, setWidth] = useState(0);
-  const [dispmobDetails, setdispmobDetails] = useState(false);
+  const [showProjectDetailsNotList, setShowProjectDetailsNotList] = useState(
+    showDetailsDirectly
+  );
 
   useLayoutEffect(() => {
     function updateSize() {
-      const w = window.innerWidth;
-      setWidth(w);
-      if (w < 768) setdispmobDetails(true);
+      setWidth(window.innerWidth);
     }
     window.addEventListener("resize", updateSize);
     updateSize();
@@ -25,33 +24,28 @@ const ProjectsView = ({ hideMobileSideNav }) => {
 
   return (
     <Container fluid={true} className={"project-container"}>
-      {!dispmobDetails ? (
-        <Row className={"h-100"}>
-          <Col md={4} className={"h-100 m-0  p-0 shadow-right"}>
-            <Col className={"h-100 m-0 p-0"}>
-              {width < breakpoint &&
-              (mobileComponentClicked || hideMobileSideNav) ? (
-                <ProjectDetails
-                  mobileComponentClicked={mobileComponentClicked}
-                  setMobileComponent={setMobileComponent}
-                />
-              ) : (
-                <ProjectList
-                  setMobileComponent={setMobileComponent}
-                  setdispmobDetails={setdispmobDetails}
-                  width={width}
-                />
-              )}
-            </Col>
+      {width < breakPoint ? (
+        <div className="">
+          {showProjectDetailsNotList ? (
+            <ProjectDetailMob
+              setShowProjectDetailsNotList={setShowProjectDetailsNotList}
+            ></ProjectDetailMob>
+          ) : (
+            <ProjectList
+              setShowProjectDetailsNotList={setShowProjectDetailsNotList}
+              width={width}
+            />
+          )}
+        </div>
+      ) : (
+        <Row className={""}>
+          <Col md={4} className={" m-0  p-0 shadow-right"}>
+            <ProjectList />
           </Col>
-          <Col className={"h-100 projectDetails"}>
+          <Col className={"projectDetails"}>
             <ProjectDetails />
           </Col>
         </Row>
-      ) : (
-        <ProjectDetailMob
-          setdispmobDetails={setdispmobDetails}
-        ></ProjectDetailMob>
       )}
     </Container>
   );

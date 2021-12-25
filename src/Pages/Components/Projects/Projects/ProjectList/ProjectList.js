@@ -3,7 +3,7 @@ import ProjectBox from "./ProjectBox";
 import { Col } from "react-bootstrap";
 import { ProjectContext } from "../../../../../contexts/ProjectContext";
 
-const ProjectList = ({ width, setdispmobDetails }) => {
+const ProjectList = ({ width, setShowProjectDetailsNotList }) => {
   const { projects, setSelectedProject } = useContext(ProjectContext);
 
   return (
@@ -14,7 +14,7 @@ const ProjectList = ({ width, setdispmobDetails }) => {
           key={x.id}
           onClick={() => {
             setSelectedProject(x);
-            if (width < 768) setdispmobDetails(true);
+            if (width < 768) setShowProjectDetailsNotList(true);
           }}
         >
           <ProjectBox

@@ -12,7 +12,7 @@ import Bin from "../../../../../assets/Bin.png";
 import Edit from "../../../../../assets/Edit.png";
 import Link from "../../../../../assets/Link.png";
 import Navigate from "../../../../../assets/Navigate.png";
-import NewProjectModal from "../../../NewProjectModal/NewProjectModal";
+import ProjectModal from "../../../ProjectModal/ProjectModal";
 
 const ProjectDetails = (props) => {
   const { selectedProject } = useContext(ProjectContext);
@@ -35,21 +35,6 @@ const ProjectDetails = (props) => {
   }
   return (
     <div className={"d-flex  flex-column project-description"}>
-      {props.mobileComponentClicked ? (
-        <Row>
-          <Col
-            className={"  heading col-sm background-color-white"}
-            style={{ padding: "1rem 1rem 1rem 2rem" }}
-          >
-            <Button
-              variant="light"
-              onClick={() => props.setMobileComponent(false)}
-            >
-              Project List
-            </Button>
-          </Col>
-        </Row>
-      ) : null}
       <div>
         <div className="ProjectDetails-header">
           <div
@@ -172,7 +157,7 @@ const ProjectDetails = (props) => {
           ></img>
         )}
       </div>
-      <NewProjectModal
+      <ProjectModal
         show={showNewProjectModal}
         onHide={() => setShowNewProjectModal(false)}
         project={selectedProject}
@@ -182,7 +167,7 @@ const ProjectDetails = (props) => {
 };
 export default ProjectDetails;
 
-export const ProjectDetailMob = ({ setdispmobDetails }) => {
+export const ProjectDetailMob = ({ setShowProjectDetailsNotList }) => {
   const { selectedProject } = useContext(ProjectContext);
   const { currentUser } = useContext(AuthContext);
   const [canModifyProject, setCanModifyProject] = useState(false);
@@ -230,7 +215,7 @@ export const ProjectDetailMob = ({ setdispmobDetails }) => {
         </div>
         <div
           className="ProjectDetailmob-Navdiv"
-          onClick={() => setdispmobDetails(false)}
+          onClick={() => setShowProjectDetailsNotList(false)}
         >
           <img
             alt="navigate"
@@ -321,7 +306,7 @@ export const ProjectDetailMob = ({ setdispmobDetails }) => {
           ></img>
         )}
       </div>
-      <NewProjectModal
+      <ProjectModal
         show={showNewProjectModal}
         onHide={() => setShowNewProjectModal(false)}
         project={selectedProject}

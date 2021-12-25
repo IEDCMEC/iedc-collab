@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import NewProjectModal from "../NewProjectModal/NewProjectModal";
+import ProjectModal from "../ProjectModal/ProjectModal";
 import "./cards.css";
 import { signOut } from "../../../Firebase/firebase";
 import { AuthContext } from "../../../Firebase/Auth/Auth";
@@ -115,7 +115,7 @@ const Navbar = () => {
           )}
         </div>
       </nav>
-      <NewProjectModal
+      <ProjectModal
         show={showProjectModal}
         onHide={() => setShowProjectModal(false)}
       />
