@@ -73,10 +73,10 @@ const ProjectDetails = (props) => {
             style={{
               display: "flex",
               flexDirection: "column",
-              alignItems: "center",
+              alignItems: "flex-start",
             }}
           >
-            <h4>PROJECT DESCRIPTION</h4>
+            <h4 style={{alignSelf:"center"}}>PROJECT DESCRIPTION</h4>
             <p style={{ whiteSpace: "pre-line" }}>{selectedProject.desc}</p>
             {selectedProject.teamMembers?.length && (
               <div>
@@ -194,7 +194,7 @@ export const ProjectDetailMob = ({ setShowProjectDetailsNotList }) => {
           <img
             alt="Leader profile pic"
             src={
-              selectedProject.projectPhoto ||
+              selectedProject.leaderImg ||
               "https://cvbay.com/wp-content/uploads/2017/03/dummy-image.jpg"
             }
           ></img>
@@ -226,7 +226,7 @@ export const ProjectDetailMob = ({ setShowProjectDetailsNotList }) => {
       <div className="contentsmob">
         <h4>{selectedProject.name}</h4>
         <div className="contentsmob-subdiv">
-          <p style={{ whiteSpace: "pre-line" }}>{selectedProject.desc}</p>
+          <p style={{ whiteSpace: "pre-line"}}>{selectedProject.desc}</p>
           {selectedProject.teamMembers?.length && (
             <div>
               <div className="team">
