@@ -77,7 +77,7 @@ const ProjectDetails = (props) => {
             }}
           >
             <h4 style={{alignSelf:"center"}}>PROJECT DESCRIPTION</h4>
-            <p style={{ whiteSpace: "pre-line",alignSelf:"center" }}>{selectedProject.desc}</p>
+            <p style={{ whiteSpace: "pre-line" }}>{selectedProject.desc}</p>
             {selectedProject.teamMembers?.length && (
               <div>
                 <div className="team">
@@ -226,7 +226,7 @@ export const ProjectDetailMob = ({ setShowProjectDetailsNotList }) => {
       <div className="contentsmob">
         <h4>{selectedProject.name}</h4>
         <div className="contentsmob-subdiv">
-          <p style={{ whiteSpace: "pre-line" ,textAlign:"center"}}>{selectedProject.desc}</p>
+          <p style={{ whiteSpace: "pre-line"}}>{selectedProject.desc}</p>
           {selectedProject.teamMembers?.length && (
             <div>
               <div className="team">
