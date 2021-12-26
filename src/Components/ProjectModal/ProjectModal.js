@@ -13,7 +13,10 @@ const NewProjectForm = ({ onClose, project }) => {
   console.log(project);
   const [image, setImage] = useState(project?.projectPhoto || "");
   const [projectPhotoName, setProjectPhotoName] = useState(
-    project?.projectPhotoName
+    project?.projectPhotoName || ""
+  );
+  const [projectPhoto, setProjectPhoto] = useState(
+    project?.projectPhoto || null
   );
 
   const initialValue = {
@@ -23,7 +26,7 @@ const NewProjectForm = ({ onClose, project }) => {
     contactNo: project?.contactNo || "",
     githubLink: project?.githubLink || "",
     tags: project?.tags ? project.tags.join(", ") : "",
-    teamMembers: project?.teamMembers ? project.teamMembers.toString() : "",
+    teamMembers: project?.teamMembers ? project.teamMembers.join(", ") : "",
     projectPhoto: project?.projectPhoto,
   };
 
@@ -42,10 +45,6 @@ const NewProjectForm = ({ onClose, project }) => {
     tags: yup.string(),
     teamMembers: yup.string(),
   });
-
-  const [projectPhoto, setProjectPhoto] = useState(
-    project?.projectPhoto || null
-  );
 
   return (
     <div className="newProjectForm">
@@ -68,7 +67,7 @@ const NewProjectForm = ({ onClose, project }) => {
               .split(",")
               .filter(Boolean)
               .map((link) => link.trim()),
-            projectPhoto: projectPhoto,
+            projectPhoto,
             projectPhotoName,
           };
           if (!project) {
@@ -256,7 +255,7 @@ const ProjectModal = (props) => {
     >
       <Modal.Body className="modalbody">
         <div className="d-flex justify-content-between align-items-center">
-          <h3 className="modalHead ml-5">Create New Project</h3>
+          <h3 className="modalHead ">Create New Project</h3>
           <i
             className="fa fa-close d-block d-md-none"
             style={{

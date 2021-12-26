@@ -194,7 +194,6 @@ export const doEditProject = async (obj, project_id) => {
     photoUrl = defaultPhotoUrl;
   } else if (obj.projectPhoto !== storedPhoto) {
     try {
-      // todo: delete existing image in firebase db
       let imgDb = firebase.storage().ref(`projectPhoto/${project_id}`);
       let newimg = await imgDb.put(obj.projectPhoto);
       photoUrl = await newimg.ref.getDownloadURL();
