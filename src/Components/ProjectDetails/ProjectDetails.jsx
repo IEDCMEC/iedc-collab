@@ -103,24 +103,24 @@ const ProjectDetails = (props) => {
                 </div>
               </div>
             )}
-            {selectedProject.links.map((link) => (
-                  <div key={link} className="ProjectDetail-links">
-                    <a
-                      rel="noopener noreferrer"
-                      target="_blank"
-                      style={{ color:"#ffff" }}
-                      href={link.startsWith("http") ? link : "http://" + link}
-                    >
-                      {link}
-                    </a>
-                  </div>
-                ))}
+            {selectedProject.links?.map((link) => (
+              <div key={link} className="ProjectDetail-links">
+                <a
+                  rel="noopener noreferrer"
+                  target="_blank"
+                  style={{ color: "#ffff" }}
+                  href={link.startsWith("http") ? link : "http://" + link}
+                >
+                  {link}
+                </a>
+              </div>
+            ))}
             {selectedProject.tags?.length ? (
               <div className="ProjectDetail-tagdiv">
                 <img
                   src={Link}
                   alt="tag icon"
-                  style={{ marginRight: "10px",marginRight: "10" }}
+                  style={{ marginRight: "10px" }}
                 ></img>
                 <p>#{selectedProject.tags.join(", #")}</p>
               </div>
@@ -148,7 +148,6 @@ const ProjectDetails = (props) => {
             ) : (
               ""
             )}
-            
           </div>
         </div>
       </div>
@@ -225,9 +224,13 @@ export const ProjectDetailMob = ({ setShowProjectDetailsNotList }) => {
             <a href={`mailto: ${selectedProject.leaderEmail}`}>
               <img src={Mail} alt="mail"></img>
             </a>
-            {selectedProject.githubLink.length > 0 && <a href={selectedProject.githubLink}>
-              <img src={Github} alt="github"></img>
-            </a>}
+            {selectedProject.githubLink.length ? (
+              <a href={selectedProject.githubLink}>
+                <img src={Github} alt="github"></img>
+              </a>
+            ) : (
+              ""
+            )}
           </div>
         </div>
         <div

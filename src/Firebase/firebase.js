@@ -68,7 +68,7 @@ export const signOut = () => {
     });
 };
 
-export const doCreateProject = (obj) => {
+export const doCreateProject = (obj, onSuccess = () => {}) => {
   const user = firebase.auth().currentUser;
   if (!user) {
     alert("Please login to add a project");
@@ -104,7 +104,7 @@ export const doCreateProject = (obj) => {
             .set(projectData)
             .then(function () {
               console.log("Project added sucessfully");
-              window.location.reload();
+              onSuccess("ADD");
             })
             .catch(function (error) {
               alert("Something went wrong");
@@ -134,7 +134,7 @@ export const doCreateProject = (obj) => {
       .set(projectData)
       .then(function () {
         console.log("Project added sucessfully");
-        window.location.reload();
+        onSuccess("ADD");
       })
       .catch(function (error) {
         alert("Something went wrong");
@@ -172,7 +172,7 @@ export const doDeleteProject = (project_id) => {
     });
 };
 
-export const doEditProject = async (obj, project_id) => {
+export const doEditProject = async (obj, project_id, onSuccess = () => {}) => {
   const user = firebase.auth().currentUser;
   if (!user) {
     alert("Please login to add a project");
@@ -203,9 +203,8 @@ export const doEditProject = async (obj, project_id) => {
   } else {
     photoUrl = obj.projectPhoto;
   }
-
-  projectRef
-    .set({
+  try {
+    await projectRef.set({
       ...obj,
       projectPhoto: photoUrl,
       available: true,
@@ -214,15 +213,15 @@ export const doEditProject = async (obj, project_id) => {
       leader_name: user.displayName,
       leaderEmail: user.email,
       leaderImg: user.providerData[0]?.photoURL || null,
-    })
-    .then(function () {
-      console.log("Project edited sucessfully");
-      window.location.reload();
-    })
-    .catch(function (error) {
-      alert("Something went wrong");
-      console.log(error);
     });
+    console.log("Project edited sucessfully");
+    onSuccess("EDIT");
+  } catch (error) {
+    alert(
+      "Something went wrong during edit. Please try againg after some time"
+    );
+    console.log(error);
+  }
 };
 
 export const getProjects = () => {
