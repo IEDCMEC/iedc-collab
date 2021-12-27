@@ -225,9 +225,9 @@ export const ProjectDetailMob = ({ setShowProjectDetailsNotList }) => {
             <a href={`mailto: ${selectedProject.leaderEmail}`}>
               <img src={Mail} alt="mail"></img>
             </a>
-            <a href={selectedProject.githubLink}>
+            {selectedProject.githubLink.length > 0 && <a href={selectedProject.githubLink}>
               <img src={Github} alt="github"></img>
-            </a>
+            </a>}
           </div>
         </div>
         <div
