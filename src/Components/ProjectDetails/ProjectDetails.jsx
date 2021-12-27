@@ -50,7 +50,10 @@ const ProjectDetails = (props) => {
             <p>{selectedProject.leader_name}</p>
           </div>
           <div className="ProjectDetails-imagediv">
-            <a href={`tel:${selectedProject.contactNo}`}>
+            <a
+              className="d-block d-md-none"
+              href={`tel:${selectedProject.contactNo}`}
+            >
               <img src={Phoneicon} alt="phone-icon"></img>
             </a>
             <a href={`mailto: ${selectedProject.leaderEmail}`}>
@@ -76,7 +79,7 @@ const ProjectDetails = (props) => {
               alignItems: "flex-start",
             }}
           >
-            <h4 style={{alignSelf:"center"}}>PROJECT DESCRIPTION</h4>
+            <h4 style={{ alignSelf: "center" }}>PROJECT DESCRIPTION</h4>
             <p style={{ whiteSpace: "pre-line" }}>{selectedProject.desc}</p>
             {selectedProject.teamMembers?.length && (
               <div>
@@ -126,9 +129,11 @@ const ProjectDetails = (props) => {
               ""
             )}
             {selectedProject.contactNo && ( // display only on large screns
-              <div className="d-flex align-self-start d-none d-md-block mt-3">
-                <h4 className="font-weight-bolder mr-2">Contact Number: </h4>
-                <h5>{selectedProject.contactNo}</h5>
+              <div className="">
+                <div className="d-none d-md-block">
+                  <i className="fa fa-phone" style={{ color: "white" }}></i>
+                  <span className="ml-2">{selectedProject.contactNo}</span>
+                </div>
               </div>
             )}
           </div>
@@ -226,7 +231,7 @@ export const ProjectDetailMob = ({ setShowProjectDetailsNotList }) => {
       <div className="contentsmob">
         <h4>{selectedProject.name}</h4>
         <div className="contentsmob-subdiv">
-          <p style={{ whiteSpace: "pre-line"}}>{selectedProject.desc}</p>
+          <p style={{ whiteSpace: "pre-line" }}>{selectedProject.desc}</p>
           {selectedProject.teamMembers?.length && (
             <div>
               <div className="team">
