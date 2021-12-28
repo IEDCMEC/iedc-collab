@@ -48,9 +48,21 @@
     color: #9e0000;
   }
 
-  input[type="file"] {
-    display: none;
+  input[type="file"]:focus {
+    box-shadow: none !important;
   }
+}
+
+.customFile{
+width:40rem;
+}
+
+::-webkit-file-upload-button {
+  display: none;
+}
+
+::file-selector-button {
+  display: none;
 }
 
 .photoContainer {
@@ -76,11 +88,17 @@
 
 .photoIcon {
   right: 15px;
-  top: 5px;
+  top: 10px;
   position: absolute;
   font-size: 23px;
 }
 
 .helperText {
   color: #9e0000;
+}
+
+@media (max-width: 984px){
+  .customFile{
+    width:20rem;
+    }
 }
