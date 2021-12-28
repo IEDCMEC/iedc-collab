@@ -9,7 +9,18 @@ export const ProjectProvider = ({ children }) => {
   const [allProjects, setAllProjects] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  useEffect(() => {
+  const fetchData = (state) => {
+    let index = 0;
+    switch (state) {
+      case "ADD":
+        index = allProjects.length;
+        break;
+      case "EDIT":
+        index = allProjects.indexOf(selectedProject);
+        break;
+      default:
+        index = 0;
+    }
     setLoading(true);
     getProjects()
       .then(async function (snapshot) {
@@ -20,7 +31,7 @@ export const ProjectProvider = ({ children }) => {
         }));
         setProjects(result);
         setAllProjects(result);
-        setSelectedProject(result[0]);
+        setSelectedProject(result[index]);
       })
       .catch(function (error) {
         alert("Something went wrong. Please try again after some time.");
@@ -29,6 +40,11 @@ export const ProjectProvider = ({ children }) => {
       .finally(() => {
         setLoading(false);
       });
+  };
+
+  useEffect(() => {
+    fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleSearch = (searchtext) => {
@@ -50,6 +66,7 @@ export const ProjectProvider = ({ children }) => {
         setSelectedProject,
         loading,
         handleSearch,
+        fetchData,
       }}
     >
       {children}
