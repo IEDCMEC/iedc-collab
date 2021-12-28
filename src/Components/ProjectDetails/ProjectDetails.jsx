@@ -12,6 +12,7 @@ import Edit from "../../assets/Edit.png";
 import Link from "../../assets/Link.png";
 import Navigate from "../../assets/Navigate.png";
 import ProjectModal from "../ProjectModal/ProjectModal";
+import { toast } from "react-toastify";
 
 const ProjectDetails = (props) => {
   const { selectedProject } = useContext(ProjectContext);
@@ -31,6 +32,7 @@ const ProjectDetails = (props) => {
   function deleteProj(id) {
     doDeleteProject(id);
     history.go(0);
+    toast("Project deleted successfully");
   }
   return (
     <div className={"d-flex  flex-column project-description"}>
@@ -200,6 +202,7 @@ export const ProjectDetailMob = ({ setShowProjectDetailsNotList }) => {
   function deleteProj(id) {
     doDeleteProject(id);
     history.go(0);
+    toast("Project deleted successfully");
   }
   return (
     <div className="ProjectDetailMob-maindiv">

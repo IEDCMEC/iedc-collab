@@ -2,8 +2,18 @@ body {
   background-color: white !important;
   --primaryColor: #9e0000;
   --secondaryColor: #fff;
+  --toastify-color-progress-light: linear-gradient(
+    to right,
+    #ff8615,
+    #ff5f15,
+    #ff3815,
+    #ff0202
+  );
 }
-
+.Toastify__close-button:hover,
+.Toastify__close-button:focus {
+  background-color: transparent !important;
+}
 .nav-item {
   cursor: pointer;
 }

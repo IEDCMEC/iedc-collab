@@ -7,6 +7,7 @@ import Collab from "./Pages/Collab/Collab";
 import initialize from "./Firebase/firebase";
 import Navbar from "./Components/NavigateBar/NavigateBar";
 import { ProjectProvider } from "./contexts/ProjectContext";
+import { ToastContainer } from "react-toastify";
 
 initialize();
 
@@ -16,6 +17,7 @@ function App() {
       <ProjectProvider>
         <BrowserRouter>
           <Navbar />
+          <ToastContainer />
           <Switch>
             <Route exact path="/" component={Landing} />
             <Route Route path="/collab" component={Collab} />
