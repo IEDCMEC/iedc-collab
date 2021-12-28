@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import { Formik } from "formik";
@@ -8,6 +8,7 @@ import { doCreateProject, doEditProject } from "../../Firebase/firebase";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUpload } from "@fortawesome/free-solid-svg-icons";
 import "./ProjectModal.scss";
+import { ProjectContext } from "../../contexts/ProjectContext";
 
 const NewProjectForm = ({ onClose, project }) => {
   console.log(project);
@@ -18,7 +19,7 @@ const NewProjectForm = ({ onClose, project }) => {
   const [projectPhoto, setProjectPhoto] = useState(
     project?.projectPhoto || null
   );
-
+  const { fetchData } = useContext(ProjectContext);
   const initialValue = {
     name: project?.name || "",
     desc: project?.desc || "",
@@ -71,9 +72,9 @@ const NewProjectForm = ({ onClose, project }) => {
             projectPhotoName,
           };
           if (!project) {
-            doCreateProject(formValues);
+            doCreateProject(formValues, fetchData);
           } else {
-            doEditProject(formValues, project.id);
+            doEditProject(formValues, project.id, fetchData);
           }
           onClose();
           actions.resetForm();

@@ -108,6 +108,26 @@ const ProjectDetails = (props) => {
                 </div>
               </div>
             )}
+            {selectedProject.contactNo && ( // display only on large screns
+              <div className="">
+                <div className="d-none d-md-block">
+                  <i className="fa fa-phone" style={{ color: "white" }}></i>
+                  <span className="ml-2">{selectedProject.contactNo}</span>
+                </div>
+              </div>
+            )}
+            {selectedProject.links?.map((link) => (
+              <div key={link} className="ProjectDetail-links">
+                <a
+                  rel="noopener noreferrer"
+                  target="_blank"
+                  style={{ color: "#ffff" }}
+                  href={link.startsWith("http") ? link : "http://" + link}
+                >
+                  {link}
+                </a>
+              </div>
+            ))}
             {selectedProject.tags?.length ? (
               <div className="ProjectDetail-tagdiv">
                 <img
@@ -125,7 +145,7 @@ const ProjectDetails = (props) => {
                 className="ProjectDetail-linkdiv"
                 style={{ display: "flex" }}
               >
-                {selectedProject.links.map((link) => (
+                {/* {selectedProject.links.map((link) => (
                   <div key={link} className="ProjectDetail-links">
                     <a
                       rel="noopener noreferrer"
@@ -136,18 +156,10 @@ const ProjectDetails = (props) => {
                       {link}
                     </a>
                   </div>
-                ))}
+                ))} */}
               </div>
             ) : (
               ""
-            )}
-            {selectedProject.contactNo && ( // display only on large screns
-              <div className="">
-                <div className="d-none d-md-block">
-                  <i className="fa fa-phone" style={{ color: "white" }}></i>
-                  <span className="ml-2">{selectedProject.contactNo}</span>
-                </div>
-              </div>
             )}
           </div>
         </div>
@@ -237,9 +249,13 @@ export const ProjectDetailMob = ({ setShowProjectDetailsNotList }) => {
             <a href={`mailto: ${selectedProject.leaderEmail}`}>
               <img src={Mail} alt="mail"></img>
             </a>
-            <a href={selectedProject.githubLink}>
-              <img src={Github} alt="github"></img>
-            </a>
+            {selectedProject.githubLink.length ? (
+              <a href={selectedProject.githubLink}>
+                <img src={Github} alt="github"></img>
+              </a>
+            ) : (
+              ""
+            )}
           </div>
         </div>
         <div
