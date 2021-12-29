@@ -3,7 +3,7 @@ import "./ProjectDetails.scss";
 import { useHistory } from "react-router";
 import { ProjectContext } from "../../contexts/ProjectContext";
 import { AuthContext } from "../../Firebase/Auth/Auth";
-import { doDeleteProject, doEditProject } from "../../Firebase/firebase";
+import { doDeleteProject } from "../../Firebase/firebase";
 import Phoneicon from "../../assets/Phoneicon.png";
 import Mail from "../../assets/Mail.png";
 import Github from "../../assets/Github.png";
@@ -15,8 +15,8 @@ import ProjectModal from "../ProjectModal/ProjectModal";
 import { toast } from "react-toastify";
 import DeleteConfirmation from "../DeleteConfirmationModal/DeleteConfirmation";
 
-const ProjectDetails = (props) => {
-  const { selectedProject } = useContext(ProjectContext);
+const ProjectDetails = () => {
+  const { selectedProject, fetchData } = useContext(ProjectContext);
   const { currentUser } = useContext(AuthContext);
   const [canModifyProject, setCanModifyProject] = useState(false);
   const [showNewProjectModal, setShowNewProjectModal] = useState(false);
@@ -25,7 +25,7 @@ const ProjectDetails = (props) => {
   );
   const history = useHistory();
   const submitDelete = (id) => {
-    doDeleteProject(id);
+    doDeleteProject(id, fetchData);
     setDisplayConfirmationModal(false);
     history.go(0);
     toast("Project deleted successfully");
@@ -144,20 +144,7 @@ const ProjectDetails = (props) => {
               <div
                 className="ProjectDetail-linkdiv"
                 style={{ display: "flex" }}
-              >
-                {/* {selectedProject.links.map((link) => (
-                  <div key={link} className="ProjectDetail-links">
-                    <a
-                      rel="noopener noreferrer"
-                      target="_blank"
-                      style={{ marginRight: "10" }}
-                      href={link.startsWith("http") ? link : "http://" + link}
-                    >
-                      {link}
-                    </a>
-                  </div>
-                ))} */}
-              </div>
+              ></div>
             ) : (
               ""
             )}

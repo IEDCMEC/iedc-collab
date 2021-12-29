@@ -143,7 +143,7 @@ export const doCreateProject = (obj, onSuccess = () => {}) => {
   }
 };
 
-export const doDeleteProject = (project_id) => {
+export const doDeleteProject = (project_id, onSuccess = () => {}) => {
   let user = firebase.auth().currentUser;
   if (!user) {
     alert("Please login to add a project");
@@ -165,6 +165,7 @@ export const doDeleteProject = (project_id) => {
     .remove()
     .then(function () {
       console.log("Project deleted sucessfully");
+      onSuccess();
     })
     .catch(function (error) {
       alert("Something went wrong");

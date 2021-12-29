@@ -30,7 +30,7 @@ const Collab = ({ location: { state } }) => {
       </div>
     </div>
   ) : (
-    <ProjectsView showDetailsDirectly={ state ?.showDetailsDirectly} />
+    <ProjectsView showDetailsDirectly={state?.showDetailsDirectly} />
   );
 };
 
