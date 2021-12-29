@@ -1,6 +1,7 @@
 import { AuthProvider } from "./Firebase/Auth/Auth";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import "./App.scss";
+import "react-toastify/dist/ReactToastify.css";
 
 import Landing from "./Pages/Landing/Landing";
 import Collab from "./Pages/Collab/Collab";

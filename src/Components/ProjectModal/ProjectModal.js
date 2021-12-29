@@ -10,7 +10,6 @@ import { faUpload } from "@fortawesome/free-solid-svg-icons";
 import "./ProjectModal.scss";
 import { ProjectContext } from "../../contexts/ProjectContext";
 import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 
 const NewProjectForm = ({ onClose, project }) => {
   console.log(project);
@@ -124,11 +123,11 @@ const NewProjectForm = ({ onClose, project }) => {
 
             <InputGroup controlId="formPhoto" className="photoContainer">
               <Form.Label className="photoLabel">
-                <i className="photoHead">Upload Featuring Photo</i>
-                <i className="photoIcon">
+                <span className="photoHead">Upload Featuring Photo</span>
+                <span className="photoIcon">
                   <FontAwesomeIcon icon={faUpload} />
-                </i>
-                <p>{projectPhotoName}</p>
+                </span>
+                {/* <span>{projectPhotoName}</span>  */}
 
                 <Form.Control
                   required

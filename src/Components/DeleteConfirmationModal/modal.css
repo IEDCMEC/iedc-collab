@@ -1,0 +1,6 @@
+.modal-header :hover {
+ background-color: white !important;
+}
+.modal-header button {
+    outline: none !important;
+}

@@ -3,7 +3,7 @@ import "./ProjectDetails.scss";
 import { useHistory } from "react-router";
 import { ProjectContext } from "../../contexts/ProjectContext";
 import { AuthContext } from "../../Firebase/Auth/Auth";
-import { doDeleteProject } from "../../Firebase/firebase";
+import { doDeleteProject, doEditProject } from "../../Firebase/firebase";
 import Phoneicon from "../../assets/Phoneicon.png";
 import Mail from "../../assets/Mail.png";
 import Github from "../../assets/Github.png";
@@ -13,14 +13,27 @@ import Link from "../../assets/Link.png";
 import Navigate from "../../assets/Navigate.png";
 import ProjectModal from "../ProjectModal/ProjectModal";
 import { toast } from "react-toastify";
+import DeleteConfirmation from "../DeleteConfirmationModal/DeleteConfirmation";
 
 const ProjectDetails = (props) => {
   const { selectedProject } = useContext(ProjectContext);
   const { currentUser } = useContext(AuthContext);
   const [canModifyProject, setCanModifyProject] = useState(false);
   const [showNewProjectModal, setShowNewProjectModal] = useState(false);
+  const [displayConfirmationModal, setDisplayConfirmationModal] = useState(
+    false
+  );
   const history = useHistory();
+  const submitDelete = (id) => {
+    doDeleteProject(id);
+    setDisplayConfirmationModal(false);
+    history.go(0);
+    toast("Project deleted successfully");
+  };
 
+  const hideConfirmationModal = () => {
+    setDisplayConfirmationModal(false);
+  };
   useEffect(() => {
     if (currentUser?.uid === selectedProject.leader_id) {
       setCanModifyProject(true);
@@ -30,9 +43,7 @@ const ProjectDetails = (props) => {
   }, [currentUser?.uid, selectedProject.leader_id]);
 
   function deleteProj(id) {
-    doDeleteProject(id);
-    history.go(0);
-    toast("Project deleted successfully");
+    setDisplayConfirmationModal(true);
   }
   return (
     <div className={"d-flex  flex-column project-description"}>
@@ -180,17 +191,37 @@ const ProjectDetails = (props) => {
         onHide={() => setShowNewProjectModal(false)}
         project={selectedProject}
       />
+      <DeleteConfirmation
+        showModal={displayConfirmationModal}
+        confirmModal={submitDelete}
+        hideModal={hideConfirmationModal}
+        id={selectedProject.id}
+      />
     </div>
   );
 };
 export default ProjectDetails;
 
 export const ProjectDetailMob = ({ setShowProjectDetailsNotList }) => {
+  const [displayConfirmationModal, setDisplayConfirmationModal] = useState(
+    false
+  );
   const { selectedProject } = useContext(ProjectContext);
   const { currentUser } = useContext(AuthContext);
   const [canModifyProject, setCanModifyProject] = useState(false);
   const [showNewProjectModal, setShowNewProjectModal] = useState(false);
   const history = useHistory();
+
+  const submitDelete = (id) => {
+    doDeleteProject(id);
+    setDisplayConfirmationModal(false);
+    history.go(0);
+    toast("Project deleted successfully");
+  };
+
+  const hideConfirmationModal = () => {
+    setDisplayConfirmationModal(false);
+  };
 
   useEffect(() => {
     if (currentUser?.uid === selectedProject.leader_id) {
@@ -199,10 +230,8 @@ export const ProjectDetailMob = ({ setShowProjectDetailsNotList }) => {
       setCanModifyProject(false);
     }
   }, [currentUser?.uid, selectedProject.leader_id]);
-  function deleteProj(id) {
-    doDeleteProject(id);
-    history.go(0);
-    toast("Project deleted successfully");
+  function deleteProj() {
+    setDisplayConfirmationModal(true);
   }
   return (
     <div className="ProjectDetailMob-maindiv">
@@ -333,6 +362,12 @@ export const ProjectDetailMob = ({ setShowProjectDetailsNotList }) => {
         show={showNewProjectModal}
         onHide={() => setShowNewProjectModal(false)}
         project={selectedProject}
+      />
+      <DeleteConfirmation
+        showModal={displayConfirmationModal}
+        confirmModal={submitDelete}
+        hideModal={hideConfirmationModal}
+        id={selectedProject.id}
       />
     </div>
   );
