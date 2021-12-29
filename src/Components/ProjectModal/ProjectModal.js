@@ -9,6 +9,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUpload } from "@fortawesome/free-solid-svg-icons";
 import "./ProjectModal.scss";
 import { ProjectContext } from "../../contexts/ProjectContext";
+import { toast } from "react-toastify";
 
 const NewProjectForm = ({ onClose, project }) => {
   console.log(project);
@@ -73,8 +74,14 @@ const NewProjectForm = ({ onClose, project }) => {
           };
           if (!project) {
             doCreateProject(formValues, fetchData);
+            toast("Project created successfully", {
+              autoClose: 3000,
+            });
           } else {
             doEditProject(formValues, project.id, fetchData);
+            toast("Project edited successfully", {
+              autoClose: 3000,
+            });
           }
           onClose();
           actions.resetForm();
@@ -120,7 +127,7 @@ const NewProjectForm = ({ onClose, project }) => {
                 <span className="photoIcon">
                   <FontAwesomeIcon icon={faUpload} />
                 </span>
-                 {/* <span>{projectPhotoName}</span>  */}
+                {/* <span>{projectPhotoName}</span>  */}
 
                 <Form.Control
                   required
