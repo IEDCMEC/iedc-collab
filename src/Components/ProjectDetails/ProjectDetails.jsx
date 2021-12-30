@@ -80,7 +80,7 @@ const ProjectDetails = () => {
       </div>
       <div className={"flex-grow-1 description"}>
         <div className="ProjectDetails-sidedesc">
-          <p>{selectedProject.name}</p>
+          <p className="ProjectDetails-name">{selectedProject.name}</p>
         </div>
 
         <div className="contents">
@@ -97,7 +97,7 @@ const ProjectDetails = () => {
             {selectedProject.teamMembers?.length && (
               <div>
                 <div className="team">
-                  <h4>TEAM MEMBERS</h4>
+                  <h5>TEAM MEMBERS</h5>
                 </div>
                 <div className="members">
                   <ol>
@@ -133,7 +133,7 @@ const ProjectDetails = () => {
                 <img
                   src={Link}
                   alt="tag icon"
-                  style={{ marginRight: "10px" }}
+                  style={{ marginRight: "10px",width:"20px",height:"20px" }}
                 ></img>
                 <p>#{selectedProject.tags.join(", #")}</p>
               </div>
