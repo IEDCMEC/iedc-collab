@@ -8,11 +8,14 @@ button:hover {
     background-color: #b1006a;
 }
 
+
+
 .NavigateBar-homeicon{
     padding: 0.3rem;
 }
 .NavigateBar-Newprobtn{
 margin-right: 1rem;
+padding: 0 3px;
 }
 .NavigateBar-homeicondiv{
     border-radius: 0.3rem;
@@ -35,17 +38,17 @@ margin-right: 1rem;
 }
 .NavigateBar-SignoutLogo{
     height: 1.3rem;
-    padding-right: 0.6rem;
+    padding-right: 0.2rem;
 }
 .css-button {
 	font-family: Arial;
 	color: #FFFFFF;
 	font-size: 13px;
 	border-radius: 5px;
-	border: 1px #3866a3 solid;
+	border: 1px  solid;
 	background-color: var(--primaryColor);
-	text-shadow: 1px 1px 1px #528ecc;
-	box-shadow: inset 1px 1px 2px 0px #bbdaf7;
+	/* text-shadow: 1px 1px 1px #528ecc;
+	box-shadow: inset 1px 1px 2px 0px #bbdaf7; */
 	cursor: pointer;
 	display: inline-flex;
 	align-items: center;
@@ -53,13 +56,16 @@ margin-right: 1rem;
 
 .css-button-icon {
 	padding: 0.3rem;
-	border-right: 1px solid rgba(255, 255, 255, 0.16);
-	box-shadow: rgba(0, 0, 0, 0.14) -1px 0px 0px inset;
+	border-right: 1px solid var(--primaryColor);
+	/* box-shadow: rgba(0, 0, 0, 0.14) -1px 0px 0px inset; */
     color: white;
 }
 .css-button-text {
 	padding: 0.3rem;
     color: white;
+    font-size: 15px;
+    font-family: "Nunito";
+    font-weight: 700;
 }
 
 .feature {
