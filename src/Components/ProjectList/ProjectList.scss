@@ -38,12 +38,14 @@
 //   }
 // }
 
+
+
 .projectBox {
   color: var(--primaryColor);
   background-color: white;
- 
-  margin: 40px 20px;
-  padding: 20px;
+//  width:300px;
+  margin: 20px 30px;
+  padding: 20px 30px;
   text-align: center;
   border: 1px solid var(--primaryColor);
   border-radius: 10px;
@@ -51,7 +53,11 @@
 }
 
 h5{
-  font-weight: 700;
+  font-weight: 900;
+  font-size: 25px;
+}
+h6{
+  font-size: 20px;
 }
 .text{
 

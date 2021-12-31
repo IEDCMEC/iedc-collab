@@ -36,9 +36,9 @@ const Landing = () => {
                 />
               </div>
               <div className="card-title">
-                <h2 className="justify-content-center text-capitalize">
+                <h2 className="justify-content-center text-uppercase">
                   {project.name}
-                  <small className="justify-content-center">
+                  <small className="justify-content-center text-capitalize">
                     {project.leader_name}
                   </small>
                 </h2>
