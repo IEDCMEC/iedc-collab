@@ -46,7 +46,10 @@ const ProjectDetails = () => {
     setDisplayConfirmationModal(true);
   }
   return (
-    <div className={"d-flex  flex-column project-description"}>
+    <div
+      style={{ borderRadius: "15px" }}
+      className={"d-flex  flex-column project-description"}
+    >
       <div>
         <div className="ProjectDetails-header">
           <div
@@ -60,7 +63,9 @@ const ProjectDetails = () => {
               }
               alt="Leader profile pic"
             ></img>
-            <p>{selectedProject.leader_name}</p>
+            <p style={{ fontSize: "25px", fontWeight: "900" }}>
+              {selectedProject.leader_name}
+            </p>
           </div>
           <div className="ProjectDetails-imagediv">
             <a
@@ -93,7 +98,10 @@ const ProjectDetails = () => {
             }}
           >
             <h4 style={{ alignSelf: "center" }}>PROJECT DESCRIPTION</h4>
-            <p style={{ whiteSpace: "pre-line" }}>{selectedProject.desc}</p>
+
+            <p style={{ whiteSpace: "pre-line", lineHeight: "34px" }}>
+              {selectedProject.desc}
+            </p>
             {selectedProject.teamMembers?.length && (
               <div>
                 <div className="team">
@@ -116,24 +124,17 @@ const ProjectDetails = () => {
                 </div>
               </div>
             )}
-            {selectedProject.links?.map((link) => (
-              <div key={link} className="ProjectDetail-links">
-                <a
-                  rel="noopener noreferrer"
-                  target="_blank"
-                  style={{ color: "#ffff" }}
-                  href={link.startsWith("http") ? link : "http://" + link}
-                >
-                  {link}
-                </a>
-              </div>
-            ))}
             {selectedProject.tags?.length ? (
               <div className="ProjectDetail-tagdiv">
                 <img
                   src={Link}
                   alt="tag icon"
-                  style={{ marginRight: "10px",width:"20px",height:"20px" }}
+                  style={{
+                    marginRight: "10px",
+                    width: "15px",
+                    height: "15px",
+                    marginTop: "6px",
+                  }}
                 ></img>
                 <p>#{selectedProject.tags.join(", #")}</p>
               </div>
@@ -148,6 +149,18 @@ const ProjectDetails = () => {
             ) : (
               ""
             )}
+            {selectedProject.links?.map((link) => (
+              <div key={link} className="ProjectDetail-links">
+                <a
+                  rel="noopener noreferrer"
+                  target="_blank"
+                  style={{ color: "#ffff" }}
+                  href={link.startsWith("http") ? link : "http://" + link}
+                >
+                  {link}
+                </a>
+              </div>
+            ))}
           </div>
         </div>
       </div>
@@ -235,17 +248,26 @@ export const ProjectDetailMob = ({ setShowProjectDetailsNotList }) => {
             }
           ></img>
           <div className="ProjectDetailMob-imgdiv">
-            <p>{selectedProject.leader_name}</p>
+            <p
+              className="text-capitalize"
+              style={{ fontSize: "20px", fontWeight: "900" }}
+            >
+              {selectedProject.leader_name}
+            </p>
 
             <a href={`tel:${selectedProject.contactNo}`}>
-              <img src={Phoneicon} alt="phone-icon"></img>
+              <img
+                style={{ height: "28px" }}
+                src={Phoneicon}
+                alt="phone-icon"
+              ></img>
             </a>
             <a href={`mailto: ${selectedProject.leaderEmail}`}>
-              <img src={Mail} alt="mail"></img>
+              <img style={{ height: "25px" }} src={Mail} alt="mail"></img>
             </a>
             {selectedProject.githubLink.length ? (
               <a href={selectedProject.githubLink}>
-                <img src={Github} alt="github"></img>
+                <img style={{ height: "28px" }} src={Github} alt="github"></img>
               </a>
             ) : (
               ""
@@ -264,16 +286,19 @@ export const ProjectDetailMob = ({ setShowProjectDetailsNotList }) => {
         </div>
       </div>
       <div className="contentsmob">
-        <h4>{selectedProject.name}</h4>
+        <h4 className="text-uppercase">{selectedProject.name}</h4>
         <div className="contentsmob-subdiv">
-          <p style={{ whiteSpace: "pre-line" }}>{selectedProject.desc}</p>
+          <p style={{ whiteSpace: "pre-line", lineHeight: "30px" }}>
+            {selectedProject.desc}
+          </p>
+
           {selectedProject.teamMembers?.length && (
             <div>
               <div className="team">
                 <h4>TEAM MEMBERS</h4>
               </div>
               <div className="members">
-                <ol style={{ paddingTop: "0" }}>
+                <ol style={{ display: "inline-block", paddingTop: "0" }}>
                   {selectedProject.teamMembers.map((member) => (
                     <p key={member}>
                       <li className="ProjectDetailsmob-members">{member}</li>
@@ -288,7 +313,12 @@ export const ProjectDetailMob = ({ setShowProjectDetailsNotList }) => {
               <img
                 src={Link}
                 alt="tag icon"
-                style={{ marginRight: "10px" }}
+                style={{
+                  marginTop: "4px",
+                  marginRight: "10px",
+                  width: "15px",
+                  height: "15px",
+                }}
               ></img>
               {selectedProject.tags.map((tag, index) => (
                 <p
@@ -310,7 +340,7 @@ export const ProjectDetailMob = ({ setShowProjectDetailsNotList }) => {
                   <a
                     rel="noopener noreferrer"
                     target="_blank"
-                    style={{ marginRight: "10" }}
+                    style={{ marginRight: "10", color: "#fff" }}
                     href={link.startsWith("http") ? link : "http://" + link}
                   >
                     {link}

@@ -39,7 +39,7 @@ const ProjectsView = ({ showDetailsDirectly = false }) => {
         </div>
       ) : (
         <Row className={""}>
-          <Col md={4} className={" m-0  p-0 shadow-right"}>
+          <Col md={4} className={"   p-0 shadow-right"}>
             <ProjectList />
           </Col>
           <Col className={"projectDetails"}>

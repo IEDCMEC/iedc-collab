@@ -1,6 +1,8 @@
 import React, { useContext } from "react";
+import "./Collab.scss";
 import ProjectsView from "../../Components/Projects/Projects";
 import { ProjectContext } from "../../contexts/ProjectContext";
+import notfound from "../../assets/notfound.jpg";
 
 const Collab = ({ location: { state } }) => {
   const { projects, loading } = useContext(ProjectContext);
@@ -18,16 +20,27 @@ const Collab = ({ location: { state } }) => {
   }
 
   return projects.length === 0 ? (
-    <div className="container">
-      <div className="row">
-        <div className="col-md-12">
-          <div className="card">
-            <div className="card-body">
-              <h1>No Projects Available</h1>
-            </div>
-          </div>
-        </div>
-      </div>
+    <div className="container not-found">
+      <img
+        style={{
+          height: "120px",
+          width: "120px",
+          // display: "flex",
+          // justifyContent: "center",
+          // alignItems: "center",
+        }}
+        src={notfound}
+        alt="not-found"
+      />
+      <h2
+        style={{
+          display: "inline-block",
+          paddingLeft: "20px",
+          color: "var(--primaryColor)",
+        }}
+      >
+        NOT FOUND
+      </h2>
     </div>
   ) : (
     <ProjectsView showDetailsDirectly={state?.showDetailsDirectly} />

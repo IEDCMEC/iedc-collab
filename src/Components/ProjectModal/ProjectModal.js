@@ -238,7 +238,13 @@ const NewProjectForm = ({ onClose, project }) => {
             </Form.Group>
             <Row className="col-md-12 d-flex justify-content-center">
               <Button
+                // style={{
+                //   background: "#fff",
+                //   color: "var(--primaryColor)",
+                //   borderColor: "var(--primaryColor)",
+                // }}
                 variant="outline-danger"
+                className="btn"
                 type="submit"
                 size="md"
                 onClick={props.handleSubmit}

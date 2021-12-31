@@ -1,3 +1,16 @@
+.btn{
+  background: #fff;
+ color: var(--primaryColor);
+ border-color: var(--primaryColor);
+}
+
+
+.btn:hover{
+color: #fff;
+background: var(--primaryColor);
+}
+
+
 .modalbody {
   background-color: #fff;
   color: #9e0000;
@@ -36,6 +49,7 @@
   input,
   input[type],
   .uneditable-input {
+    padding-left: 15px;
     border-color: #9e0000 !important;
     border-width: 2px !important;
     border-radius: 10px !important;
@@ -52,6 +66,7 @@
     box-shadow: none !important;
   }
 }
+
 
 .customFile{
 width:40rem;
@@ -73,7 +88,7 @@ width:40rem;
 }
 
 .photoLabel {
-  margin-right: 10;
+  margin-right: 10px;
 }
 
 .photoHead {
@@ -90,12 +105,13 @@ width:40rem;
   right: 15px;
   top: 10px;
   position: absolute;
-  font-size: 23px;
+  font-size: 20px;
 }
 
 .helperText {
   color: #9e0000;
 }
+
 
 @media (max-width: 984px){
   .customFile{
