@@ -24,7 +24,14 @@ h4 {
  
   
 }
-.contentsmob > h4 {
+.project-header > h4 {
+  border-radius: 0 4px 4px 0;
+  display: inline-block;
+  padding:0  20px;
+  
+  // width: 100%;
+  // position: absolute;
+  margin-top: 30px;
   background: white;
   color: var(--primaryColor);
 }
@@ -64,6 +71,7 @@ h4 {
 }
 .ProjectDetail-links {
   margin-right: 0.5rem;
+  // margin-bottom: 10px;
 }
 .ProjectDetail-tagdiv > p {
   margin-right: 0.5rem;
@@ -95,17 +103,19 @@ h4 {
   width: 2rem;
 }
 .ProjectDetails-sidedesc {
-  padding-top: 10px ;
+  padding-top: 30px ;
+  padding-bottom: 20px;
   background-color: white;
   border-radius: 0 10px 10px 0;
   //margin-top: 2.5rem;
   width: 4rem;
   display: flex;
   flex-direction: column;
+  
   justify-content: center;
   align-items: center;
   align-self: center;
-  height: 19rem;
+  height: auto;
  
 }
 .ProjectDetails-sidedesc > p {
@@ -250,6 +260,8 @@ ol  {
   align-items: center;
 }
 .ProjectDetailMob-maindiv {
+  margin-top: 10px;
+  margin-bottom: 10px;
   background-color: var(--primaryColor);
   height: 90vh;
   overflow: auto;
