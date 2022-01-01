@@ -2,7 +2,6 @@ import React, { useContext } from "react";
 import "./Collab.scss";
 import ProjectsView from "../../Components/Projects/Projects";
 import { ProjectContext } from "../../contexts/ProjectContext";
-import notfound from "../../assets/notfound.jpg";
 
 const Collab = ({ location: { state } }) => {
   const { projects, loading } = useContext(ProjectContext);
