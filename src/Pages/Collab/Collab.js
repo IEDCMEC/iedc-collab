@@ -21,17 +21,6 @@ const Collab = ({ location: { state } }) => {
 
   return projects.length === 0 ? (
     <div className="container not-found">
-      <img
-        style={{
-          height: "120px",
-          width: "120px",
-          // display: "flex",
-          // justifyContent: "center",
-          // alignItems: "center",
-        }}
-        src={notfound}
-        alt="not-found"
-      />
       <h2
         style={{
           display: "inline-block",
