@@ -24,7 +24,8 @@ const Landing = () => {
             className="cards"
             onClick={() => handleClick(project)}
           >
-            <div className="card">
+            <div className="col-centered">
+            <div className="card"style={{justifyContent: 'center'}}>
               <div className="card__image-holder">
                 <img
                   className="img-fluid"
@@ -44,6 +45,28 @@ const Landing = () => {
                 </h2>
               </div>
             </div>
+
+            {/* </div> */}
+            {/* <div className="card"style={{justifyContent: 'center'}}>
+              <div className="card__image-holder">
+                <img
+                  className="img-fluid"
+                  src={
+                    project.projectPhoto ||
+                    "https://images.unsplash.com/photo-1639413665566-2f75adf7b7ca?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyN3x8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60"
+                  }
+                  alt="project banner"
+                />
+              </div>
+              <div className="card-title">
+                <h2 className="justify-content-center text-uppercase">
+                  {project.name}
+                  <small className="justify-content-center text-capitalize">
+                    {project.leader_name}
+                  </small>
+                </h2>
+              </div>*/}
+            </div> 
           </div>
         ))}
       </Container>

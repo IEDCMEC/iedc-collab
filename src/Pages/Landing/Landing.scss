@@ -95,10 +95,10 @@ body {
     }
   }
 }
-// @media screen and(max-width: 984px) {
-//   .card{
-//     margin-left: 70%;
-//     // margin-right: 50%;
-//   }
-// }
+@media screen and(max-width: 2000px) {
+  .card{
+    float: none;
+    margin: 0 auto;
+  }
+}
 
