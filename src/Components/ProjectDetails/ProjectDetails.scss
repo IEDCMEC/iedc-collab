@@ -28,8 +28,8 @@ h4 {
   border-radius: 0 4px 4px 0;
   display: inline-block;
   padding:0  20px;
-  
-  // width: 100%;
+  width: 75%;
+  height: 75%;
   // position: absolute;
   margin-top: 30px;
   background: white;
@@ -129,7 +129,7 @@ h4 {
 .ProjectDetails-imagediv {
   display: flex;
   align-items: center;
-  cursor: pointer;
+  
 }
 .team h4 {
   text-align: left;
