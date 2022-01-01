@@ -47,7 +47,7 @@ const ProjectDetails = () => {
   }
   return (
     <div
-      style={{ borderRadius: "15px" }}
+      style={{ borderRadius: "8px" }}
       className={"d-flex  flex-column project-description"}
     >
       <div>
@@ -107,7 +107,8 @@ const ProjectDetails = () => {
               {selectedProject.desc}
             </p>
             {selectedProject.teamMembers?.length && (
-              <div>
+              <div >
+                <div className="netTeam">
                 <div className="team">
                   <h5>TEAM MEMBERS</h5>
                 </div>
@@ -118,6 +119,8 @@ const ProjectDetails = () => {
                     ))}
                   </ol>
                 </div>
+                </div>
+                
               </div>
             )}
             {selectedProject.contactNo && ( // display only on large screns
