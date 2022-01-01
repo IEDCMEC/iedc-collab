@@ -5,9 +5,9 @@ import { useHistory } from "react-router-dom";
 import { ProjectContext } from "../../contexts/ProjectContext";
 
 const Landing = () => {
-  const { projects, setSelectedProject } = useContext(ProjectContext);
+  const { projects, setSelectedProject, allProjects } = useContext(ProjectContext);
   const history = useHistory();
-
+ console.log(projects);
   const handleClick = (p) => {
     history.push("/collab", { showDetailsDirectly: true });
     setSelectedProject(p);
@@ -16,7 +16,7 @@ const Landing = () => {
   return (
     <>
       <Container className="landing">
-        <h3 style={{ textAlign: "center", paddingTop: "20px" }}>PROJECTS</h3>
+        <h3 style={{ textAlign: "center", paddingTop: "20px" }}>{(projects.length===0 && allProjects.length!==0) ?"NOT FOUND":"PROJECTS"}</h3>
 
         {projects.map((project) => (
           <div
