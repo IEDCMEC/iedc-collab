@@ -90,7 +90,7 @@ const NewProjectForm = ({ onClose, project }) => {
         {(props) => (
           <Form>
             <Form.Group controlId="formBasicTitle">
-              <Form.Label>Project Name</Form.Label>
+              <Form.Label>*Project Name</Form.Label>
               <Form.Control
                 required
                 onBlur={props.handleBlur("name")}
@@ -105,7 +105,7 @@ const NewProjectForm = ({ onClose, project }) => {
             </Form.Group>
 
             <Form.Group controlId="formBasicDescription">
-              <Form.Label>Project Description</Form.Label>
+              <Form.Label>*Project Description</Form.Label>
               <Form.Control
                 onBlur={props.handleBlur("desc")}
                 value={props.values.desc}
@@ -175,7 +175,7 @@ const NewProjectForm = ({ onClose, project }) => {
 
             <Row>
               <Form.Group controlId="formContactNo" className="col-md-6">
-                <Form.Label>Contact No</Form.Label>
+                <Form.Label>*Contact No</Form.Label>
                 <Form.Control
                   onBlur={props.handleBlur("contactNo")}
                   value={props.values.contactNo}
@@ -282,7 +282,6 @@ const ProjectModal = (props) => {
           ></i>
         </div>
         <Col className="p-md-5">
-          <h5 className="modalHead2">Please add details about your project</h5>
           <NewProjectForm onClose={props.onHide} project={props.project} />
         </Col>
       </Modal.Body>

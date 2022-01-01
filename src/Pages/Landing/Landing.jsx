@@ -16,7 +16,7 @@ const Landing = () => {
   return (
     <>
       <Container className="landing">
-        <h3 style={{ textAlign: "center" }}>PROJECTS</h3>
+        <h3 style={{ textAlign: "center", paddingTop: "20px" }}>PROJECTS</h3>
 
         {projects.map((project) => (
           <div

@@ -77,9 +77,13 @@ const ProjectDetails = () => {
             <a href={`mailto: ${selectedProject.leaderEmail}`}>
               <img src={Mail} alt="mail"></img>
             </a>
-            <a href={selectedProject.githubLink}>
-              <img src={Github} alt="github"></img>
-            </a>
+            {selectedProject.githubLink.length ? (
+              <a href={selectedProject.githubLink}>
+                <img src={Github} alt="github"></img>
+              </a>
+            ) : (
+              ""
+            )}
           </div>
         </div>
       </div>
@@ -285,8 +289,10 @@ export const ProjectDetailMob = ({ setShowProjectDetailsNotList }) => {
           ></img>
         </div>
       </div>
-      <div className="contentsmob">
+      <div className="project-header">
         <h4 className="text-uppercase">{selectedProject.name}</h4>
+      </div>
+      <div className="contentsmob">
         <div className="contentsmob-subdiv">
           <p style={{ whiteSpace: "pre-line", lineHeight: "30px" }}>
             {selectedProject.desc}
@@ -340,7 +346,10 @@ export const ProjectDetailMob = ({ setShowProjectDetailsNotList }) => {
                   <a
                     rel="noopener noreferrer"
                     target="_blank"
-                    style={{ marginRight: "10", color: "#fff" }}
+                    style={{
+                      marginRight: "10",
+                      color: "#fff",
+                    }}
                     href={link.startsWith("http") ? link : "http://" + link}
                   >
                     {link}
