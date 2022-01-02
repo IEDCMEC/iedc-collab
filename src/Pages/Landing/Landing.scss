@@ -42,7 +42,7 @@ body {
   text-align: center;
   display: inline-block;
   
-  margin: 25px;
+ margin: 25px;
 }
 
 .landing .card {
@@ -57,7 +57,7 @@ body {
   width: 300px;
   z-index: 1;
   border-radius: 10px;
-  cursor: pointer;
+  cursor: pointer;  
 
   img {
     // padding: -10;
@@ -101,4 +101,9 @@ body {
     margin: 0 auto;
   }
 }
+@media (max-width: 1201px) {
+  .landing .cards {
+    display: block !important;
 
+  }
+}

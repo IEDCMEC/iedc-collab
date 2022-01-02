@@ -67,6 +67,7 @@ export const ProjectProvider = ({ children }) => {
         loading,
         handleSearch,
         fetchData,
+        allProjects
       }}
     >
       {children}
