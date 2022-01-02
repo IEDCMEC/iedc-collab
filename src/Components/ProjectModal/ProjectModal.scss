@@ -2,8 +2,10 @@
   background: #fff;
  color: var(--primaryColor);
  border-color: var(--primaryColor);
+ width: 177px !important;
+ height: 54px !important;
+ border-radius: 9px;
 }
-
 
 .btn:hover{
 color: #fff;

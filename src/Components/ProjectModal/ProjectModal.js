@@ -251,7 +251,7 @@ const NewProjectForm = ({ onClose, project }) => {
                 variant="outline-danger"
                 className="btn"
                 type="submit"
-                size="md"
+                size="sm"
                 onClick={props.handleSubmit}
               >
                 <strong>Submit</strong>
