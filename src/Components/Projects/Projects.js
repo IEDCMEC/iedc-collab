@@ -6,7 +6,7 @@ import ProjectDetails, {
   ProjectDetailMob,
 } from "../ProjectDetails/ProjectDetails";
 
-const breakPoint = 700;
+const breakPoint = 771;
 const ProjectsView = ({ showDetailsDirectly = false }) => {
   const [width, setWidth] = useState(0);
   const [showProjectDetailsNotList, setShowProjectDetailsNotList] = useState(

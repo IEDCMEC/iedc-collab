@@ -50,7 +50,7 @@ const Navbar = () => {
               }}
               className=" NavigateBar-title"
             >
-              IEDC MEC COLLAB
+              MEC COLLAB
             </p>
           </Link>
         </div>

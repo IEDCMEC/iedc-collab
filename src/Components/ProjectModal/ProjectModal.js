@@ -122,11 +122,12 @@ const NewProjectForm = ({ onClose, project }) => {
             </Form.Group>
             <br />
 
-            <InputGroup controlId="formPhoto" className="photoContainer">
+            <InputGroup controlId="formPhoto" className="photoContainer" >
              
               <Form.Label className="photoLabel">
                
                 <span className="photoHead">Upload Featuring Photo</span>
+                {/* <span style={{flexDirection:Row}}> */}
                 <span className="photoIcon">
                   <FontAwesomeIcon icon={faUpload} />
                 </span>
@@ -143,6 +144,7 @@ const NewProjectForm = ({ onClose, project }) => {
                   type="file"
                   className="customFile"
                 />
+                {/* </span> */}
               </Form.Label>
             </InputGroup>
             <Form.Text className="text-danger">
