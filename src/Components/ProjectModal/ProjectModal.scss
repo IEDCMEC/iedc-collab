@@ -84,16 +84,31 @@ width:40rem;
 
 .photoContainer {
   border: 2px solid #9e0000;
+  padding-bottom: 20px !important;
+  
   display: inline-block;
   border-radius: 10px !important;
   cursor: pointer;
+  
 }
 
 .photoLabel {
   margin-right: 10px;
   height: 15px;
-  margin-top: 2px;
-  // padding-bottom: 5px;
+ 
+   margin-bottom: 5px !important;
+ 
+}
+
+.photoLabel input {
+  top: 10px !important;
+  position: absolute;
+  margin-top: 5px;
+  
+  left: 15px !important;
+  width: 50% !important;
+  word-wrap: break-word;
+ 
 }
 
 .photoHead {
@@ -112,6 +127,7 @@ width:40rem;
 .photoIcon {
   right: 15px;
   top: 10px;
+  
   position: absolute;
   font-size: 20px;
   // padding-top: 2%;
