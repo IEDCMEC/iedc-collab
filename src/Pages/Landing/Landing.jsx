@@ -5,19 +5,29 @@ import { useHistory } from "react-router-dom";
 import { ProjectContext } from "../../contexts/ProjectContext";
 
 const Landing = () => {
-  const { projects, setSelectedProject, allProjects } = useContext(ProjectContext);
+  const { projects, setSelectedProject, allProjects, loading } = useContext(ProjectContext);
   const history = useHistory();
  console.log(projects);
   const handleClick = (p) => {
     history.push("/collab", { showDetailsDirectly: true });
     setSelectedProject(p);
   };
-
+  if (loading) {
+    return (
+      <div
+        className="d-flex justify-content-center align-items-center flex-column"
+        style={{ height: "90vh" }}
+      >
+        <div className="spinner-border" role="status"></div>
+        <div className="mt-3">Loading projects...</div>
+      </div>
+    );
+  }
   return (
     <>
-      <Container className="landing">
+      <Container className="landing" >
         <h3 style={{ textAlign: "center", paddingTop: "20px" }}>{(projects.length===0 && allProjects.length!==0) ?"NOT FOUND":"PROJECTS"}</h3>
-
+    
         {projects.map((project) => (
           <div
             key={project.id}
@@ -69,6 +79,7 @@ const Landing = () => {
             </div> 
           </div>
         ))}
+       
       </Container>
     </>
   );
