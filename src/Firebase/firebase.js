@@ -85,7 +85,6 @@ export const doCreateProject = (obj, onSuccess = () => {}) => {
           const createdAt = Date.now();
           var projectData = {
             ...obj,
-            
             projectPhoto: photoUrl,
             projectPhotoName: obj.projectPhotoName || "",
             available: true,

@@ -5,9 +5,10 @@ import { useHistory } from "react-router-dom";
 import { ProjectContext } from "../../contexts/ProjectContext";
 
 const Landing = () => {
-  const { projects, setSelectedProject, allProjects, loading } = useContext(ProjectContext);
+  const { projects, setSelectedProject, allProjects, loading } = useContext(
+    ProjectContext
+  );
   const history = useHistory();
- console.log(projects);
   const handleClick = (p) => {
     history.push("/collab", { showDetailsDirectly: true });
     setSelectedProject(p);
@@ -25,9 +26,13 @@ const Landing = () => {
   }
   return (
     <>
-      <Container className="landing" >
-        <h3 style={{ textAlign: "center", paddingTop: "20px" }}>{(projects.length===0 && allProjects.length!==0) ?"NOT FOUND":"PROJECTS"}</h3>
-    
+      <Container className="landing">
+        <h3 style={{ textAlign: "center", paddingTop: "20px" }}>
+          {projects.length === 0 && allProjects.length !== 0
+            ? "NOT FOUND"
+            : "PROJECTS"}
+        </h3>
+
         {projects.map((project) => (
           <div
             key={project.id}
@@ -35,51 +40,29 @@ const Landing = () => {
             onClick={() => handleClick(project)}
           >
             <div className="col-centered">
-            <div className="card"style={{justifyContent: 'center'}}>
-              <div className="card__image-holder">
-                <img
-                  className="img-fluid"
-                  src={
-                    project.projectPhoto ||
-                    "https://images.unsplash.com/photo-1639413665566-2f75adf7b7ca?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyN3x8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60"
-                  }
-                  alt="project banner"
-                />
-              </div>
-              <div className="card-title">
-                <h2 className="justify-content-center text-uppercase">
-                  {project.name}
-                  <small className="justify-content-center text-capitalize">
-                    {project.leader_name}
-                  </small>
-                </h2>
+              <div className="card" style={{ justifyContent: "center" }}>
+                <div className="card__image-holder">
+                  <img
+                    className="img-fluid"
+                    src={
+                      project.projectPhoto ||
+                      "https://images.unsplash.com/photo-1639413665566-2f75adf7b7ca?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyN3x8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60"
+                    }
+                    alt="project banner"
+                  />
+                </div>
+                <div className="card-title">
+                  <h2 className="justify-content-center text-uppercase">
+                    {project.name}
+                    <small className="justify-content-center text-capitalize">
+                      {project.leader_name}
+                    </small>
+                  </h2>
+                </div>
               </div>
             </div>
-
-            {/* </div> */}
-            {/* <div className="card"style={{justifyContent: 'center'}}>
-              <div className="card__image-holder">
-                <img
-                  className="img-fluid"
-                  src={
-                    project.projectPhoto ||
-                    "https://images.unsplash.com/photo-1639413665566-2f75adf7b7ca?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyN3x8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60"
-                  }
-                  alt="project banner"
-                />
-              </div>
-              <div className="card-title">
-                <h2 className="justify-content-center text-uppercase">
-                  {project.name}
-                  <small className="justify-content-center text-capitalize">
-                    {project.leader_name}
-                  </small>
-                </h2>
-              </div>*/}
-            </div> 
           </div>
         ))}
-       
       </Container>
     </>
   );
