@@ -10,9 +10,10 @@ import { faUpload } from "@fortawesome/free-solid-svg-icons";
 import "./ProjectModal.scss";
 import { ProjectContext } from "../../contexts/ProjectContext";
 import { toast } from "react-toastify";
+import Compress from "compress.js";
 
+const compress = new Compress();
 const NewProjectForm = ({ onClose, project }) => {
-  console.log(project);
   const [image, setImage] = useState(project?.projectPhoto || "");
   const [projectPhotoName, setProjectPhotoName] = useState(
     project?.projectPhotoName || ""
@@ -122,28 +123,46 @@ const NewProjectForm = ({ onClose, project }) => {
             </Form.Group>
             <br />
 
-            <InputGroup controlId="formPhoto" className="photoContainer" >
-             
+            <InputGroup controlId="formPhoto" className="photoContainer">
               <Form.Label className="photoLabel">
-               
                 <span className="photoHead">Upload Featuring Photo</span>
-                {/* <span style={{flexDirection:Row}}> */}
                 <span className="photoIcon">
-                <FontAwesomeIcon icon={faUpload} />
+                  <FontAwesomeIcon icon={faUpload} />
                 </span>
-                {/* <span>{projectPhotoName}</span>  */}
 
                 <Form.Control
                   required
                   onBlur={props.handleBlur("photo")}
-                  onChange={(e) => {
-                    setProjectPhoto(e.target.files[0]);
+                  onChange={async (e) => {
+                    let compressedImage = e.target.files[0];
+                    try {
+                      const results = await compress.compress(
+                        [...e.target.files],
+                        {
+                          size: 1.5,
+                          quality: 0.75,
+                          rotate: false,
+                          resize: true,
+                        }
+                      );
+                      const img1 = results[0];
+                      console.log(img1);
+                      const base64str = results[0].data;
+                      const imgExt = img1.ext;
+                      compressedImage = Compress.convertBase64ToFile(
+                        base64str,
+                        imgExt
+                      );
+                    } catch (error) {
+                      console.log("Error in compressing: " + error);
+                    }
+                    setProjectPhoto(compressedImage);
                     setProjectPhotoName(e.target.files[0].name);
-                    setImage(URL.createObjectURL(e.target.files[0]));
+                    setImage(URL.createObjectURL(compressedImage));
                   }}
                   type="file"
                   className="customFile"
-                /> 
+                />
                 {/* </span> */}
               </Form.Label>
             </InputGroup>
@@ -243,11 +262,6 @@ const NewProjectForm = ({ onClose, project }) => {
             </Form.Group>
             <Row className="col-md-12 d-flex justify-content-center">
               <Button
-                // style={{
-                //   background: "#fff",
-                //   color: "var(--primaryColor)",
-                //   borderColor: "var(--primaryColor)",
-                // }}
                 variant="outline-danger"
                 className="btn"
                 type="submit"

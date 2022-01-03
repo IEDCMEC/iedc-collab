@@ -12,6 +12,7 @@
     "@testing-library/user-event": "^12.6.0",
     "axios": "^0.21.1",
     "bootstrap": "^4.5.3",
+    "compress.js": "^1.2.1",
     "firebase": "^8.2.1",
     "formik": "^2.2.6",
     "i": "^0.3.7",
