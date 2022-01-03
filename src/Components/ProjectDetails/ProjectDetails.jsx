@@ -78,7 +78,7 @@ const ProjectDetails = () => {
               <img src={Mail} alt="mail"></img>
             </a>
             {selectedProject.githubLink.length ? (
-              <a href={selectedProject.githubLink}>
+              <a href={selectedProject.githubLink} target="_blank">
                 <img src={Github} alt="github"></img>
               </a>
             ) : (
@@ -273,7 +273,7 @@ export const ProjectDetailMob = ({ setShowProjectDetailsNotList }) => {
               <img style={{ height: "25px" }} src={Mail} alt="mail"></img>
             </a>
             {selectedProject.githubLink.length ? (
-              <a href={selectedProject.githubLink}>
+              <a href={selectedProject.githubLink} target="_blank">
                 <img style={{ height: "28px" }} src={Github} alt="github"></img>
               </a>
             ) : (
