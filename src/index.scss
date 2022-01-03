@@ -38,3 +38,9 @@ $color-2 : #ad1457;
 ::-webkit-scrollbar-thumb:hover {
   // background: #b30000;
 }
+
+@media (max-width: 770px) {
+  ::-webkit-scrollbar-thumb {
+    background: white;
+  }
+}
