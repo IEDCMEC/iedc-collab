@@ -134,13 +134,12 @@ const NewProjectForm = ({ onClose, project }) => {
                   required
                   onBlur={props.handleBlur("photo")}
                   onChange={async (e) => {
-                    let compressedImage = e.target.files[0];
                     try {
                       const results = await compress.compress(
                         [...e.target.files],
                         {
                           size: 1.5,
-                          quality: 0.75,
+                          quality: 0.7,
                           rotate: false,
                           resize: true,
                         }
@@ -149,16 +148,19 @@ const NewProjectForm = ({ onClose, project }) => {
                       console.log(img1);
                       const base64str = results[0].data;
                       const imgExt = img1.ext;
-                      compressedImage = Compress.convertBase64ToFile(
+                      const compressedImage = Compress.convertBase64ToFile(
                         base64str,
                         imgExt
                       );
+                      setProjectPhoto(compressedImage);
+                      setProjectPhotoName(e.target.files[0].name);
+                      setImage(URL.createObjectURL(compressedImage));
                     } catch (error) {
+                      setProjectPhoto(e.target.files[0]);
+                      setProjectPhotoName(e.target.files[0].name);
+                      setImage(URL.createObjectURL(e.target.files[0]));
                       console.log("Error in compressing: " + error);
                     }
-                    setProjectPhoto(compressedImage);
-                    setProjectPhotoName(e.target.files[0].name);
-                    setImage(URL.createObjectURL(compressedImage));
                   }}
                   type="file"
                   className="customFile"
