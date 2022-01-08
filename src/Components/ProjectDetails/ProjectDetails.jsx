@@ -61,7 +61,7 @@ const ProjectDetails = () => {
                 selectedProject.leaderImg ||
                 "https://cvbay.com/wp-content/uploads/2017/03/dummy-image.jpg"
               }
-              alt="Leader profile pic"
+              alt=""
             ></img>
             <p style={{ fontSize: "25px", fontWeight: "900" }}>
               {selectedProject.leader_name}
@@ -78,7 +78,11 @@ const ProjectDetails = () => {
               <img src={Mail} alt="mail"></img>
             </a>
             {selectedProject.githubLink.length ? (
-              <a href={selectedProject.githubLink} target="_blank">
+              <a
+                href={selectedProject.githubLink}
+                target="_blank"
+                rel="noreferrer"
+              >
                 <img src={Github} alt="github"></img>
               </a>
             ) : (
@@ -107,20 +111,19 @@ const ProjectDetails = () => {
               {selectedProject.desc}
             </p>
             {selectedProject.teamMembers?.length && (
-              <div >
+              <div>
                 <div className="netTeam">
-                <div className="team">
-                  <h5>TEAM MEMBERS</h5>
+                  <div className="team">
+                    <h5>TEAM MEMBERS</h5>
+                  </div>
+                  <div className="members">
+                    <ol>
+                      {selectedProject.teamMembers.map((member) => (
+                        <li key={member}>{member}</li>
+                      ))}
+                    </ol>
+                  </div>
                 </div>
-                <div className="members">
-                  <ol>
-                    {selectedProject.teamMembers.map((member) => (
-                      <li key={member}>{member}</li>
-                    ))}
-                  </ol>
-                </div>
-                </div>
-                
               </div>
             )}
             {selectedProject.contactNo && ( // display only on large screns
@@ -248,7 +251,7 @@ export const ProjectDetailMob = ({ setShowProjectDetailsNotList }) => {
           className="ProjectDetailsmob-headerLeft"
         >
           <img
-            alt="Leader profile pic"
+            alt=""
             src={
               selectedProject.leaderImg ||
               "https://cvbay.com/wp-content/uploads/2017/03/dummy-image.jpg"
@@ -273,7 +276,11 @@ export const ProjectDetailMob = ({ setShowProjectDetailsNotList }) => {
               <img style={{ height: "25px" }} src={Mail} alt="mail"></img>
             </a>
             {selectedProject.githubLink.length ? (
-              <a href={selectedProject.githubLink} target="_blank">
+              <a
+                href={selectedProject.githubLink}
+                target="_blank"
+                rel="noreferrer"
+              >
                 <img style={{ height: "28px" }} src={Github} alt="github"></img>
               </a>
             ) : (
