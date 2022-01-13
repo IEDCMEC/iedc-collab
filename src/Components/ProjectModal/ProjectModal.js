@@ -49,44 +49,50 @@ const NewProjectForm = ({ onClose, project }) => {
     teamMembers: yup.string(),
   });
 
+  const handleSubmit = (values, actions) => {
+    const { links, tags, teamMembers } = values;
+    const formValues = {
+      ...values,
+      links: links
+        .split(",")
+        .filter(Boolean)
+        .map((link) => link.trim()),
+      tags: tags
+        .split(",")
+        .filter(Boolean)
+        .map((link) => link.trim()),
+      teamMembers: teamMembers
+        .split(",")
+        .filter(Boolean)
+        .map((link) => link.trim()),
+      projectPhoto,
+      projectPhotoName,
+    };
+    if (!project) {
+      doCreateProject(formValues, () => {
+        fetchData();
+        toast("Project created successfully", {
+          autoClose: 3000,
+        });
+      });
+    } else {
+      doEditProject(formValues, project.id, () => {
+        fetchData();
+        toast("Project edited successfully", {
+          autoClose: 3000,
+        });
+      });
+    }
+    onClose();
+    actions.resetForm();
+  };
+
   return (
     <div className="newProjectForm">
       <Formik
         initialValues={initialValue}
         validationSchema={newProjectSchema}
-        onSubmit={(values, actions) => {
-          const { links, tags, teamMembers } = values;
-          const formValues = {
-            ...values,
-            links: links
-              .split(",")
-              .filter(Boolean)
-              .map((link) => link.trim()),
-            tags: tags
-              .split(",")
-              .filter(Boolean)
-              .map((link) => link.trim()),
-            teamMembers: teamMembers
-              .split(",")
-              .filter(Boolean)
-              .map((link) => link.trim()),
-            projectPhoto,
-            projectPhotoName,
-          };
-          if (!project) {
-            doCreateProject(formValues, fetchData);
-            toast("Project created successfully", {
-              autoClose: 3000,
-            });
-          } else {
-            doEditProject(formValues, project.id, fetchData);
-            toast("Project edited successfully", {
-              autoClose: 3000,
-            });
-          }
-          onClose();
-          actions.resetForm();
-        }}
+        onSubmit={handleSubmit}
       >
         {(props) => (
           <Form>

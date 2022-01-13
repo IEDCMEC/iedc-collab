@@ -25,10 +25,12 @@ const ProjectDetails = () => {
   );
   const history = useHistory();
   const submitDelete = (id) => {
-    doDeleteProject(id, fetchData);
+    doDeleteProject(id, () => {
+      toast("Project deleted successfully");
+      fetchData();
+    });
     setDisplayConfirmationModal(false);
     history.go(0);
-    toast("Project deleted successfully");
   };
 
   const hideConfirmationModal = () => {
