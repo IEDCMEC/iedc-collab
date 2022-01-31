@@ -57,15 +57,13 @@ h4 {
   margin-left: 1rem;
   margin-bottom: 0;
 }
-.team,
-.members{
-  
+.ProjectDetail-tagdivright > p{
+  padding-left: 0.7rem;
 }
 .ProjectDetail-linkdiv {
   display: flex;
   flex-direction: column;
-  // display: flex;
-  // align-self: flex-start;
+ 
   margin-top: 1rem;
 }
 .ProjectDetail-tagdiv {
@@ -151,10 +149,10 @@ h4 {
   // margin-top: 1rem;
 }
 
-.ProjectDetail-tagdiv,
+/*.ProjectDetail-tagdiv,
 .ProjectDetailmob-tagdiv > img {
   height: 1.5rem;
-}
+}*/
 .contents {
   background-color: var(--primaryColor) !important;
   font-family: "Nunito", sans-serif;
@@ -271,7 +269,7 @@ ol  {
   margin-bottom: 10px;
   background-color: var(--primaryColor);
   height: 90vh;
-  overflow: auto;
+  
   border-radius:15px
 }
 .ProjectDetailMob-headerRight {
