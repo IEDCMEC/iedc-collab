@@ -148,11 +148,14 @@ const ProjectDetails = () => {
                     marginTop: "6px",
                   }}
                 ></img>
-                <p>#{selectedProject.tags.join(", #")}</p>
+                <div>
+                  <p>#{selectedProject.tags.join(", #")}</p>
+                </div>
               </div>
             ) : (
               ""
             )}
+
             {selectedProject.links?.length ? (
               <div
                 className="ProjectDetail-linkdiv"
@@ -328,25 +331,29 @@ export const ProjectDetailMob = ({ setShowProjectDetailsNotList }) => {
           )}
           {selectedProject.tags?.length ? (
             <div className="ProjectDetail-tagdiv">
-              <img
-                src={Link}
-                alt="tag icon"
-                style={{
-                  marginTop: "4px",
-                  marginRight: "10px",
-                  width: "15px",
-                  height: "15px",
-                }}
-              ></img>
-              {selectedProject.tags.map((tag, index) => (
-                <p
-                  rel="noopener noreferrer"
-                  style={{ marginRight: "10" }}
-                  key={index}
-                >
-                  #{tag}
-                </p>
-              ))}
+              <div>
+                <img
+                  src={Link}
+                  alt="tag icon"
+                  style={{
+                    marginTop: "4px",
+                    marginRight: "10px",
+                    width: "15px",
+                    height: "15px",
+                  }}
+                ></img>
+              </div>
+              <div style={{display:"flex",flexWrap:"wrap"}} className="ProjectDetail-tagdivright">
+                {selectedProject.tags.map((tag, index) => (
+                  <p
+                    rel="noopener noreferrer"
+                    style={{ marginRight: "10" }}
+                    key={index}
+                  >
+                    #{tag}
+                  </p>
+                ))}
+              </div>
             </div>
           ) : (
             ""
