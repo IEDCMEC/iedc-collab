@@ -1,8 +1,14 @@
 import React from 'react'
+import About from '../../Components/About/About'
+import Mission from '../../Components/Mission/Mission'
+import Vision from '../../Components/Vision/Vision'
 import './Landing.scss'
 const Landing = () => {
-  return (
-    <>Landing</>
+  return (<>
+    <Vision/>
+    <Mission/>
+    <About/>
+    </>
   )
 }
 
