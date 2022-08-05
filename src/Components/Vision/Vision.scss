@@ -3,13 +3,12 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    margin-left: 10%;
-    margin-top: 1%;
+    padding-left: 10%;
+    padding-top: 1%;
 
 }
 
 .paragraph_vision{
-    margin-top: 1%;
     background-color: #9E0000;
     width: 55%;
     line-height: 29px;
@@ -24,6 +23,7 @@
     color: #9E0000;
     font-size: 31px;
     font-weight: 900;
+    padding-bottom: 1%;
 }
 
 .bubble_1 {
@@ -32,4 +32,23 @@
     right: 0;
     height:300px;
     pointer-events: none;
+  }
+  @media (max-width: 760px) {
+    .vision_main {
+      display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 7%;
+    }
+    .paragraph_vision {
+      background-color: #9E0000;
+      width: 100%;
+      line-height: 29px;
+      font-weight: 500;
+      font-size: 18px;
+      color: #fff;
+      border-radius: 15px;
+      padding: 3%
+  }
   }
