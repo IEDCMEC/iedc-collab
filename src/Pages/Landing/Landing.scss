@@ -1,0 +1,118 @@
+
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@300;400&display=swap");
+
+.landing {
+  background-color: white;
+
+  .box {
+    -webkit-box-shadow: 0px 0px 16px 0px rgba(46, 24, 24, 0.16);
+    -moz-box-shadow: 0px 0px 16px 0px rgba(46, 24, 24, 0.16);
+    box-shadow: 0px 0px 16px 0px rgba(46, 24, 24, 0.16);
+    border-radius: 0.5rem;
+    cursor: pointer;
+  }
+  .card-2 {
+    pointer-events: none;
+    opacity: 60%;
+  }
+  h4 {
+    font-weight: 700;
+    color: #4a4a4a;
+  }
+}
+
+h3 {
+  color: var(--primaryColor);
+  font-size: 30px;
+  font-weight: 900;
+}
+
+body {
+  background: #dce1df;
+  // color: #4f585e;
+  font-family: "Nunito";
+  text-rendering: optimizeLegibility;
+  // margin-top: 50px;
+}
+
+.landing .cards {
+  margin: 80px auto;
+  max-width: 960px;
+  text-align: center;
+  display: inline-block;
+  margin: 25px;
+}
+
+.landing .card {
+  background: var(--primaryColor);
+  display: inline-block;
+  margin: 8px;
+  max-width: 300px;
+  perspective: 1000;
+  position: relative;
+  text-align: center;
+  transition: all 0.3s 0s ease-in;
+  width: 300px;
+  z-index: 1;
+  border-radius: 10px;
+  cursor: pointer;
+
+  img {
+    // padding: -10;
+    width: 100%;
+    height: 230px;
+    border-radius: 10px;
+    object-fit: cover;
+  }
+
+  .card__image-holder {
+    background: rgba(0, 0, 0, 0.1);
+    height: 0;
+    padding-bottom: 75%;
+  }
+
+  div.card-title {
+    background: var(--primaryColor);
+    padding: 8px 15px 10px;
+    position: relative;
+    z-index: 0;
+    color: #fff;
+
+    h2 {
+      font-size: 24px;
+      font-weight: 700;
+      letter-spacing: -0.05em;
+      margin: 0;
+      padding: 0;
+
+      small {
+        display: block;
+        font-size: 18px;
+        font-weight: 400;
+        letter-spacing: -0.025em;
+      }
+    }
+  }
+}
+@media screen and (max-width: 2000px) {
+  .card {
+    float: none;
+    margin: 0 auto;
+  }
+}
+@media (max-width: 1201px) {
+  .landing .cards {
+    display: block !important;
+  }
+}
+@media (max-width: 390px) {
+  .landing .cards {
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+  .landing .card {
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+}
+
