@@ -1,5 +1,5 @@
 import "./About.scss";
-import bubble3 from '../../assets/bubble_2.svg';
+import bubble3 from '../../assets/bubble_3.svg';
 const About = () => {
   return (
     

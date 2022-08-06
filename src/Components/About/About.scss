@@ -43,8 +43,8 @@
 .bubble_3 {
   position: absolute;
   top: 90%;
-  transform: rotateY(180deg);
   right: 0;
+  z-index: -1;
   height:300px;
   pointer-events: none;
 }
@@ -68,8 +68,7 @@
 }
 .bubble_3 {
   position: absolute;
-  top: 135%;
-  transform: rotateY(180deg);
+  top: 80%;
   right: 0;
   height:300px;
   pointer-events: none;
