@@ -48,6 +48,15 @@
   height:300px;
   pointer-events: none;
 }
+.bubble_4
+{
+  position: absolute;
+  top: 105%;
+  z-index: -1;
+  right: 50;
+  height:300px;
+  pointer-events: none;
+}
 @media (max-width: 760px) {
   .about_main {
     display: flex;
@@ -68,8 +77,17 @@
 }
 .bubble_3 {
   position: absolute;
-  top: 80%;
+  top: 100%;
   right: 0;
+  height:300px;
+  pointer-events: none;
+}
+.bubble_4
+{
+  position: absolute;
+  top: 145%;
+  z-index: -1;
+  right: 50;
   height:300px;
   pointer-events: none;
 }

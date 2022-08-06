@@ -44,15 +44,7 @@
     color: #9E0000;
     
   }
-  .bubble_4
-  {
-    position: absolute;
-    top: 120%;
-    z-index: -1;
-    right: 50;
-    height:300px;
-    pointer-events: none;
-  }
+ 
   .bubble_5
   {
     position: absolute;
@@ -71,15 +63,6 @@
     justify-content: center;
     padding-top: 7%;
     padding-bottom: 7%;
-    }
-    .bubble_4
-    {
-      position: absolute;
-      top: 145%;
-      z-index: -1;
-      right: 50;
-      height:300px;
-      pointer-events: none;
     }
     .bubble_5
     {
@@ -101,4 +84,8 @@
     width: 100%;
     column-gap: 5rem;
     row-gap: 3rem;
-  }}
+  }
+  .bubble_5
+  {
+    display: none;
+    }}
