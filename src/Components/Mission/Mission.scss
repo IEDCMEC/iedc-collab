@@ -7,9 +7,8 @@
 }
 
 .paragraph_mission {
-    border-right:5px solid rgba(148, 2, 2, 0.2);
+    border-left:5px solid rgba(148, 2, 2, 0.2);
     width: 55%;
-    text-align: right;
     line-height: 29px;
     font-weight: 500;
     font-size: 18px;
@@ -19,6 +18,8 @@
 .heading_mission {
   color: #9e0000;
   font-size: 31px;
+  width: 55%;
+
   font-weight: 900;
   padding-bottom: 1%;
 }
@@ -33,14 +34,19 @@
   .mission_main {
     display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
   padding: 7%;
   }
-  .paragraph_mission {
-    border-right:5px solid rgba(148, 2, 2, 0.2);
+  .heading_mission {
+    align-items: center;
+    justify-content: center;
     width: 100%;
-    text-align: right;
+    color: #9e0000;
+    font-size: 31px;
+    font-weight: 900;
+    padding-bottom: 1%;
+  }
+  .paragraph_mission {
+    width: 100%;
     line-height: 29px;
     font-weight: 500;
     font-size: 18px;

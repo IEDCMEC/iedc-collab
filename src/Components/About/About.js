@@ -1,5 +1,6 @@
 import "./About.scss";
 import bubble3 from '../../assets/bubble_3.svg';
+import bubble4 from '../../assets/bubble_4.svg';
 const About = () => {
   return (
     
@@ -22,6 +23,7 @@ const About = () => {
       
     </div>
     <img src={bubble3} alt="" className="bubble_3" />
+    <img src={bubble4} alt="" className="bubble_4" />
     </div>
   );
 };
