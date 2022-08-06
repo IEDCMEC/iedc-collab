@@ -7,13 +7,13 @@
 }
 
 .paragraph_mission {
-    background-color: #9E0000;
+    border-right:5px solid rgba(148, 2, 2, 0.2);
     width: 55%;
+    text-align: right;
     line-height: 29px;
     font-weight: 500;
     font-size: 18px;
-    color: #fff;
-    border-radius: 15px;
+    color: black;
     padding: 2%;
 }
 .heading_mission {
@@ -24,7 +24,7 @@
 }
 .bubble_2 {
   position: absolute;
-  bottom: 2%;
+  bottom: 10%;
   left: 0;
   height:300px;
   pointer-events: none;
@@ -38,13 +38,20 @@
   padding: 7%;
   }
   .paragraph_mission {
-    background-color: #9E0000;
+    border-right:5px solid rgba(148, 2, 2, 0.2);
     width: 100%;
+    text-align: right;
     line-height: 29px;
     font-weight: 500;
     font-size: 18px;
-    color: #fff;
-    border-radius: 15px;
-    padding: 3%
+    color: black;
+    padding: 2%;
+}
+.bubble_2 {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  height:300px;
+  pointer-events: none;
 }
 }

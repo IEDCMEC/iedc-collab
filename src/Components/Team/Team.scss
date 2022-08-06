@@ -1,0 +1,104 @@
+.team_main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-top: 3%;
+  }
+  
+  .heading_team {
+    color: #9e0000;
+    font-size: 31px;
+    font-weight: 900;
+    padding-bottom: 1%;
+  }
+
+  
+  .team {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    flex-wrap: wrap;
+    padding-right: 18%;
+    padding-bottom: 3%;
+    width: 80%;
+    column-gap: 5rem;
+    row-gap: 3rem;
+  }
+  .team_a{
+    color: black;
+    cursor: pointer;
+  }
+ .team .member img {
+    border-radius: 50%;
+    width: 200px;
+    height: 200px;
+    border: 2px solid #760101;
+  }
+  
+   .team .member .name {
+    padding-top: 7%;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 27px;
+    color: #9E0000;
+    
+  }
+  .bubble_4
+  {
+    position: absolute;
+    top: 120%;
+    z-index: -1;
+    right: 50;
+    height:300px;
+    pointer-events: none;
+  }
+  .bubble_5
+  {
+    position: absolute;
+    top:180% ;
+    z-index: -1;
+    left: 0;
+    height:300px;
+    pointer-events: none;
+  }
+
+  @media (max-width: 760px) {
+    .team_main {
+      display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-top: 7%;
+    padding-bottom: 7%;
+    }
+    .bubble_4
+    {
+      position: absolute;
+      top: 145%;
+      z-index: -1;
+      right: 50;
+      height:300px;
+      pointer-events: none;
+    }
+    .bubble_5
+    {
+      position: absolute;
+      top:350% ;
+      z-index: -1;
+      left: 0;
+      height:300px;
+      pointer-events: none;
+    }
+  }
+  @media (max-width: 1226px) {  .team {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex-wrap: wrap;
+    padding: 3%;
+    width: 100%;
+    column-gap: 5rem;
+    row-gap: 3rem;
+  }}

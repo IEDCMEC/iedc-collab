@@ -1,9 +1,13 @@
 import "./About.scss";
-
+import bubble3 from '../../assets/bubble_3.svg';
 const About = () => {
   return (
+    
     <div className="about_main">
+       
+       <div className="about_container">
       <div className="heading_about">ABOUT</div>
+     
       <div className="paragraph_about">
         The Innovation and Entrepreneurship Development Cell (IEDC) is an active
         student-run cell under MEC Centre for Interdisciplinary Research (CCIR)
@@ -15,7 +19,9 @@ const About = () => {
         in finding the wannabe entrepreneurs the right people to approach for
         any task.
       </div>
-        
+      
+    </div>
+    <img src={bubble3} alt="" className="bubble_3" />
     </div>
   );
 };
