@@ -1,5 +1,6 @@
 import "./Vision.scss";
 import bubble1 from '../../assets/bubble_1.svg';
+
 const Vision = () => {
   return (
     <div className="vision_main">
@@ -15,6 +16,7 @@ const Vision = () => {
         provide common facilities to students working on start-ups.
       </div>
       <img src={bubble1} alt="" className="bubble_1" />
+      
     </div>
   );
 };
