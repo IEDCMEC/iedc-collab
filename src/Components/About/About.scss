@@ -40,6 +40,15 @@
   font-weight: 900;
 }
 
+.abstract
+{
+  position: absolute;
+  top: 155%;
+  z-index: -1;
+  right: 0;
+  pointer-events: none;
+}
+
 .bubble_3 {
   position: absolute;
   top: 90%;
@@ -54,6 +63,15 @@
   top: 105%;
   z-index: -1;
   right: 50;
+  height:300px;
+  pointer-events: none;
+}
+.bubble_5
+{
+  position: absolute;
+  top:170% ;
+  z-index: -1;
+  left: 0;
   height:300px;
   pointer-events: none;
 }
@@ -91,4 +109,25 @@
   height:300px;
   pointer-events: none;
 }
+.bubble_5
+  {
+    position: absolute;
+    top:350% ;
+    z-index: -1;
+    left: 0;
+    height:300px;
+    pointer-events: none;
+  }
 }
+
+ 
+
+@media (max-width: 1226px) { 
+.bubble_5
+{
+  display: none;
+  }
+.abstract
+{
+display: none;
+}}

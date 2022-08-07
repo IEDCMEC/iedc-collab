@@ -45,15 +45,7 @@
     
   }
  
-  .bubble_5
-  {
-    position: absolute;
-    top:180% ;
-    z-index: -1;
-    left: 0;
-    height:300px;
-    pointer-events: none;
-  }
+ 
 
   @media (max-width: 760px) {
     .team_main {
@@ -88,4 +80,8 @@
   .bubble_5
   {
     display: none;
-    }}
+    }
+  .abstract
+{
+  display: none;
+}}
