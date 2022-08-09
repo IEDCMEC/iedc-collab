@@ -4,6 +4,7 @@
   align-items: center;
   justify-content: center;
   padding-top: 3%;
+  position: relative;
 }
 
 .heading_team {
@@ -54,7 +55,7 @@
   width: 30%;
   right: 0;
   position: absolute;
-  top: 150%;
+  bottom: 0;
 }
 .anime-1 {
   display: none;
@@ -74,6 +75,7 @@
   .anime-1 {
     display: flex;
     width: 80%;
+    max-width: 400px;
   }
 }
 @media (max-width: 1226px) {
@@ -96,5 +98,6 @@
   .anime-1 {
     display: flex;
     width: 50%;
+    max-width: 450px;
   }
 }

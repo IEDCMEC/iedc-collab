@@ -1,8 +1,5 @@
 import "./About.scss";
 import bubble3 from "../../assets/bubble_3.svg";
-import bubble4 from "../../assets/bubble_4.svg";
-
-import bubble5 from "../../assets/bubble_5.svg";
 const About = () => {
   return (
     <div className="about_main">
@@ -22,9 +19,6 @@ const About = () => {
         </div>
       </div>
       <img src={bubble3} alt="" className="bubble_3" />
-      <img src={bubble4} alt="" className="bubble_4" />
-
-      <img src={bubble5} alt="" className="bubble_5" />
     </div>
   );
 };
