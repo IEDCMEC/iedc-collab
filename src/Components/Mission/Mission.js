@@ -1,5 +1,5 @@
 import "./Mission.scss";
-import bubble2 from '../../assets/bubble_2.svg';
+import bubble2 from "../../assets/bubble_2.svg";
 const Mission = () => {
   return (
     <div className="mission_main">

@@ -7,13 +7,13 @@
 }
 
 .paragraph_mission {
-    border-left:5px solid rgba(148, 2, 2, 0.2);
-    width: 55%;
-    line-height: 29px;
-    font-weight: 500;
-    font-size: 18px;
-    color: black;
-    padding: 2%;
+  border-left: 5px solid rgba(148, 2, 2, 0.2);
+  width: 55%;
+  line-height: 29px;
+  font-weight: 500;
+  font-size: 18px;
+  color: black;
+  padding: 2%;
 }
 .heading_mission {
   color: #9e0000;
@@ -27,14 +27,14 @@
   position: absolute;
   bottom: 10%;
   left: 0;
-  height:300px;
+  height: 300px;
   pointer-events: none;
 }
 @media (max-width: 760px) {
   .mission_main {
     display: flex;
-  flex-direction: column;
-  padding: 7%;
+    flex-direction: column;
+    padding: 7%;
   }
   .heading_mission {
     align-items: center;
@@ -52,12 +52,12 @@
     font-size: 18px;
     color: black;
     padding: 2%;
-}
-.bubble_2 {
-  position: absolute;
-  top: 50%;
-  left: 0;
-  height:300px;
-  pointer-events: none;
-}
+  }
+  .bubble_2 {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    height: 300px;
+    pointer-events: none;
+  }
 }
