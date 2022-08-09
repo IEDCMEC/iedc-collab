@@ -1,7 +1,7 @@
 import "./Team.scss";
 import TeamCard from "./TeamCard";
 import animation from "../../animations/test.json";
-import Lottie from "react-lottie";
+import Lottie from "lottie-react";
 import bubble4 from "../../assets/bubble_4.svg";
 import bubble5 from "../../assets/bubble_5.svg";
 const Team = () => {
@@ -21,10 +21,20 @@ const Team = () => {
         </div>
         <img src={bubble5} alt="" className="bubble_5" />
         <div className="anime">
-          <Lottie options={defaultOptions} />
+          <Lottie 
+            animationData={animation}
+            loop={true}
+            autoPlay={true}
+            options={defaultOptions} 
+          />
         </div>
         <div className="anime-1">
-          <Lottie options={defaultOptions} />
+          <Lottie 
+            animationData={animation}
+            loop={true}
+            autoPlay={true}
+            options={defaultOptions} 
+          />
         </div>
       </div>
     </>
