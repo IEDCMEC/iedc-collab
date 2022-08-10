@@ -1,7 +1,7 @@
 import "./About.scss";
 import bubble3 from "../../assets/bubble_3.svg";
 const About = () => {
-  return (
+  return (<>
     <div className="about_main">
       <div className="about_container">
         <div className="heading_about">ABOUT</div>
@@ -18,8 +18,10 @@ const About = () => {
           the right people to approach for any task.
         </div>
       </div>
-      <img src={bubble3} alt="" className="bubble_3" />
+      
     </div>
+    <img src={bubble3} alt="" className="bubble_3" />
+    </>
   );
 };
 export default About;

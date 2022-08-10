@@ -46,22 +46,7 @@
   height: 300px;
   pointer-events: none;
 }
-.bubble_4 {
-  position: absolute;
-  top: -150px;
-  z-index: -1;
-  right: 50;
-  height: 300px;
-  pointer-events: none;
-}
-.bubble_5 {
-  position: absolute;
-  bottom: 0;
-  z-index: -1;
-  left: 0;
-  height: 300px;
-  pointer-events: none;
-}
+
 
 @media (max-width: 760px) {
   .about_main {
@@ -88,16 +73,6 @@
     width: 80%;
     pointer-events: none;
   }
-  .bubble_4 {
-    transform: scale(0.7);
-  }
-  .bubble_5 {
-    display: none;
-  }
 }
 
-@media only screen and (min-width: 760px) and (max-width: 1226px) {
-  .bubble_5 {
-    display: none;
-  }
-}
+
