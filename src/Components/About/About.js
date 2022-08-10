@@ -18,9 +18,9 @@ const About = () => {
           the right people to approach for any task.
         </div>
       </div>
-      
+      <img src={bubble3} alt="" className="bubble_3" />
     </div>
-    <img src={bubble3} alt="" className="bubble_3" />
+   
     </>
   );
 };
