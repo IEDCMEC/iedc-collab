@@ -4,6 +4,7 @@
   justify-content: center;
   align-items: center;
   padding-top: 3%;
+  position: relative;
   padding-bottom: 3%;
 }
 .about_container {
@@ -40,7 +41,7 @@
 
 .bubble_3 {
   position: absolute;
-  top: 90%;
+  bottom: -50px;
   right: 0;
   z-index: -1;
   height: 300px;
@@ -67,11 +68,7 @@
     padding: 2%;
   }
   .bubble_3 {
-    position: absolute;
-    top: 100%;
-    right: 0;
-    width: 80%;
-    pointer-events: none;
+    display: none;
   }
 }
 
