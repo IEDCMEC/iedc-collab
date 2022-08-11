@@ -1,7 +1,7 @@
 import "./Team.scss";
 import TeamCard from "./TeamCard";
 import animation from "../../animations/test.json";
-import Lottie from "lottie-react";
+import Lottie from 'react-lottie'
 import bubble4 from "../../assets/bubble_4.svg";
 import bubble5 from "../../assets/bubble_5.svg";
 const Team = () => {
@@ -41,3 +41,5 @@ const Team = () => {
   );
 };
 export default Team;
+
+
