@@ -13,14 +13,14 @@ const Team = () => {
   };
   return (
     <>
-      <div className="team_main">
-        <div className="heading_team">OUR TEAM</div>
+      <div className="team_main" >
+        <div className="heading_team" data-aos="fade-up" data-aos-duration="2000">OUR TEAM</div>
         <img src={bubble4} alt="" className="bubble_4" />
-        <div className="team">
+        <div className="team" data-aos="fade-up" data-aos-duration="2000">
           <TeamCard />
         </div>
         <img src={bubble5} alt="" className="bubble_5" />
-        <div className="anime">
+        <div className="anime" data-aos="fade-up" data-aos-duration="2000">
           <Lottie 
             animationData={animation}
             loop={true}
@@ -28,7 +28,7 @@ const Team = () => {
             options={defaultOptions} 
           />
         </div>
-        <div className="anime-1">
+        <div className="anime-1" data-aos="fade-up" data-aos-duration="2000">
           <Lottie 
             animationData={animation}
             loop={true}

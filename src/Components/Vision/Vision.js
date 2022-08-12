@@ -4,12 +4,12 @@ import Aos from "aos";
 
 const Vision = () => {
     Aos.init({
-      duration : 2000
+      duration : 200
     });
   return (
     <div className="vision_main">
-      <div className="heading_vision">OUR VISION</div>
-      <div className="paragraph_vision" data-aos="fade-up">
+      <div className="heading_vision"  data-aos="fade-right" data-aos-duration="2000">OUR VISION</div>
+      <div className="paragraph_vision"  data-aos="fade-right" data-aos-duration="2000">
         IEDC-MEC shall promote and foster entrepreneurial culture in the college
         and will provide a platform for the students to pursue entrepreneurial
         activities.

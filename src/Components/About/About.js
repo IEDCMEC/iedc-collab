@@ -1,20 +1,13 @@
 import "./About.scss";
 import bubble3 from "../../assets/bubble_3.svg";
-import Aos from 'aos'
-import { useEffect } from "react";
 const About = () => {
-  useEffect(() => {
-    Aos.init({
-      duration : 2000
-    });
-  }, []);
-  
+ 
   return (<>
     <div className="about_main">
-      <div className="about_container">
-        <div className="heading_about">ABOUT</div>
+      <div className="about_container" data-aos="zoom-in" data-aos-duration="2000">
+        <div className="heading_about" >ABOUT</div>
 
-        <div className="paragraph_about"  data-aos="fade-up">
+        <div className="paragraph_about" >
           The Innovation and Entrepreneurship Development Cell (IEDC) is an
           active student-run cell under MEC Centre for Interdisciplinary
           Research (CCIR) that seeks to create and promote innovation and
