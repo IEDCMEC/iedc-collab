@@ -1,11 +1,15 @@
 import "./Vision.scss";
 import bubble1 from "../../assets/bubble_1.svg";
+import Aos from "aos";
 
 const Vision = () => {
+    Aos.init({
+      duration : 2000
+    });
   return (
     <div className="vision_main">
       <div className="heading_vision">OUR VISION</div>
-      <div className="paragraph_vision">
+      <div className="paragraph_vision" data-aos="fade-up">
         IEDC-MEC shall promote and foster entrepreneurial culture in the college
         and will provide a platform for the students to pursue entrepreneurial
         activities.
