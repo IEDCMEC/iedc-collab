@@ -9,10 +9,13 @@ import initialize from "./Firebase/firebase";
 // import Navbar from "./Components/NavigateBar/NavigateBar";
 import { ProjectProvider } from "./contexts/ProjectContext";
 import { ToastContainer } from "react-toastify";
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 initialize();
 
 function App() {
+  AOS.init();
   return (
     <AuthProvider>
       <ProjectProvider>

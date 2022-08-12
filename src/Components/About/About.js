@@ -1,12 +1,13 @@
 import "./About.scss";
 import bubble3 from "../../assets/bubble_3.svg";
 const About = () => {
+ 
   return (<>
     <div className="about_main">
-      <div className="about_container">
-        <div className="heading_about">ABOUT</div>
+      <div className="about_container" data-aos="zoom-in" data-aos-duration="2000">
+        <div className="heading_about" >ABOUT</div>
 
-        <div className="paragraph_about">
+        <div className="paragraph_about" >
           The Innovation and Entrepreneurship Development Cell (IEDC) is an
           active student-run cell under MEC Centre for Interdisciplinary
           Research (CCIR) that seeks to create and promote innovation and
