@@ -28,14 +28,7 @@ const Team = () => {
             options={defaultOptions} 
           />
         </div>
-        <div className="anime-1" data-aos="fade-up" data-aos-duration="2000">
-          <Lottie 
-            animationData={animation}
-            loop={true}
-            autoPlay={true}
-            options={defaultOptions} 
-          />
-        </div>
+        
       </div>
     </>
   );
