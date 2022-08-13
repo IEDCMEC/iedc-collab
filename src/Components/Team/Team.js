@@ -20,7 +20,7 @@ const Team = () => {
           <TeamCard />
         </div>
         <img src={bubble5} alt="" className="bubble_5" />
-        <div className="anime" data-aos="fade-up" data-aos-duration="2000">
+        <div className="team__anime" data-aos="fade-up" data-aos-duration="2000">
           <Lottie 
             animationData={animation}
             loop={true}
@@ -28,7 +28,14 @@ const Team = () => {
             options={defaultOptions} 
           />
         </div>
-        
+        <div className="team__anime-1" data-aos="fade-up" data-aos-duration="2000">
+          <Lottie 
+            animationData={animation}
+            loop={true}
+            autoPlay={true}
+            options={defaultOptions} 
+          />
+        </div>
       </div>
     </>
   );
