@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import "./ProjectDetails.scss";
-import { useHistory } from "react-router";
+import { useHistory } from "react-router-dom";
 import { ProjectContext } from "../../contexts/ProjectContext";
 import { AuthContext } from "../../Firebase/Auth/Auth";
 import { doDeleteProject } from "../../Firebase/firebase";
