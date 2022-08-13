@@ -51,13 +51,13 @@
   justify-content: center;
   align-items: center;
 }
-.anime {
+.team__anime {
   width: 30%;
   right: 0;
   position: absolute;
   bottom: 0;
 }
-.anime-1 {
+.team__anime-1 {
   display: none;
 }
 
@@ -86,10 +86,10 @@
     padding-top: 7%;
     padding-bottom: 7%;
   }
-  .anime {
+  .team__anime {
     display: none;
   }
-  .anime-1 {
+  .team__anime-1 {
     display: flex;
     width: 80%;
     max-width: 400px;
@@ -119,15 +119,20 @@
   }
 }
 @media only screen and (min-width: 760px) and (max-width: 1226px) {
-  .anime {
+  .team__anime {
     display: none;
   }
-  .anime-1 {
+  .team__anime-1 {
     display: flex;
     width: 50%;
     max-width: 450px;
   }
   .bubble_5 {
+    display: none;
+  }
+}
+@media (max-width:320px) {
+  .bubble_4 {
     display: none;
   }
 }
