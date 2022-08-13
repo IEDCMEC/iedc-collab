@@ -7,7 +7,7 @@ import Animation from '../../Components/Animation/Animation'
 import './Landing.scss'
 const Landing = () => {
   return (<>
-    <Animation/>
+     <Animation/>
     <Vision/>
     <Mission/>
     <About/>
