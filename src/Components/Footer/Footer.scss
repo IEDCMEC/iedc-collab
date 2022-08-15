@@ -1,0 +1,43 @@
+.footer_main
+{
+    display: flex;
+    justify-content:space-between ;
+    background-color: #A81A1A;
+}
+.footer_icons
+{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    column-gap: 40px;
+    padding-top: 1%;
+    padding-bottom: 1%;
+}
+.github{cursor: pointer;transform: scale(0.8);}
+.linkedin{cursor: pointer;transform: scale(0.8);}
+.mail{cursor: pointer;transform: scale(0.8);}
+.bubble_6
+{
+    pointer-events: none;
+    max-width: 356px;
+}
+.bubble_7{
+    pointer-events: none;
+}
+@media (max-width:1000px) {
+    .bubble_6
+    {
+        display: none;
+    }
+    .bubble_7
+    {
+        display: none;
+    }
+    .footer_main{
+        justify-content: center;
+    }
+    .footer_icons{
+        padding-top: 3%;
+        padding-bottom: 3%;
+    }
+}

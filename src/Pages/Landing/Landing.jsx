@@ -5,6 +5,7 @@ import Team from '../../Components/Team/Team'
 import Vision from '../../Components/Vision/Vision'
 import Animation from '../../Components/Animation/Animation'
 import './Landing.scss'
+import Footer from '../../Components/Footer/Footer'
 const Landing = () => {
   return (<>
      <Animation/>
@@ -12,6 +13,7 @@ const Landing = () => {
     <Mission/>
     <About/>
     <Team/>
+    <Footer/>
     </>
   )
 }
