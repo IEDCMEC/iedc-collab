@@ -17,13 +17,14 @@
 }
 
 .meclogo {
-    height: 75px;
+    height: 75px;pointer-events: none;
 }
 .meclogo__mob {
     padding-top: auto;
     padding-bottom: 2rem;
     width: 120px;
     flex-shrink: 0;
+    pointer-events: none;
 }
 
 
@@ -51,7 +52,7 @@
 .hamburger {
     font-size: 1.9rem;
     color: #9E0000;
-    ;
+    
 }
 
 .nav_btn {
