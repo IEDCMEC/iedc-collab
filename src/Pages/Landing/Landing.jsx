@@ -6,8 +6,10 @@ import Vision from '../../Components/Vision/Vision'
 import Animation from '../../Components/Animation/Animation'
 import './Landing.scss'
 import Footer from '../../Components/Footer/Footer'
+import NavbarHome from '../../Components/NavbarHome/NavbarHome'
 const Landing = () => {
   return (<>
+  <NavbarHome/>
      <Animation/>
     <Vision/>
     <Mission/>

@@ -3,7 +3,7 @@
   flex-direction: column;
   justify-content: flex-start;
   padding-left: 10%;
-  padding-top: 1%;
+  padding-top: 10%;
   position: relative;
 }
 .paragraph_vision {
@@ -25,7 +25,7 @@
 
 .bubble_1 {
   position: absolute;
-  top: 20px;
+  top: 150px;
   right: 0;
   height: 300px;
   pointer-events: none;
@@ -36,7 +36,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 7%;
+    padding: 10%;
   }
   .heading_vision {
     color: #9e0000;
@@ -54,6 +54,12 @@
     font-size: 18px;
     color: black;
     padding: 2%;
+  }
+}
+@media(max-width:560px)
+{
+  .vision_main{
+    padding-top:20%;
   }
 }
 @media (max-width:320px) {
