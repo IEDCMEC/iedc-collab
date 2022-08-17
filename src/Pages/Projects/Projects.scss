@@ -24,6 +24,7 @@ h3 {
   color: var(--primaryColor);
   font-size: 30px;
   font-weight: 900;
+  padding-top: 20px;
 }
 
 body {
@@ -103,6 +104,9 @@ body {
   .landing .cards {
     display: block !important;
   }
+  .landing h3 {
+    padding-top: 80px;
+  }
 }
 @media (max-width: 390px) {
   .landing .cards {
@@ -113,4 +117,6 @@ body {
     margin-left: 0px;
     margin-right: 0px;
   }
+  
+
 }
