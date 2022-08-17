@@ -32,7 +32,7 @@ const Projects = () => {
     <>
     <Navbar/>
       <Container className="landing">
-        <h3 style={{ textAlign: "center", paddingTop: "20px" }}>
+        <h3 style={{ textAlign: "center" }}>
           {projects.length === 0 && allProjects.length !== 0
             ? "NOT FOUND"
             : "PROJECTS"}
