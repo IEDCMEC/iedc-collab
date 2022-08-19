@@ -1,0 +1,31 @@
+.NavbarItems{
+    display: flex;
+    background-color: #F4E6E6;
+    height: 48px;
+    font-weight: 500;
+    font-size: 21px;
+    justify-content: left;
+    align-items: stretch;
+}
+
+.NavMenu{
+    list-style: none;
+    display: grid;
+    grid-template-columns:repeat(4,auto);
+    grid-gap: 70px;
+    text-align: center;
+}
+
+.NavLinks{
+    text-decoration: none;
+    color: #9E0000;
+    height: 100%;
+    display: flex;
+}
+
+.NavLinks:hover{
+    color: #9E0000;
+    text-decoration: none;
+    background-color: #FFCFCF;
+    font-weight: 700;
+}

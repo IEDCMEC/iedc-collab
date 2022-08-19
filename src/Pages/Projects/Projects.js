@@ -4,6 +4,7 @@ import { Container } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 import { ProjectContext } from "../../contexts/ProjectContext";
 import Navbar from "../../Components/NavigateBar/NavigateBar";
+import Nav from "../../Components/Navbar/Navbar";
 const Projects = () => {
   const { projects, setSelectedProject, allProjects, loading } = useContext(
     ProjectContext
@@ -31,6 +32,7 @@ const Projects = () => {
   return (
     <>
     <Navbar/>
+    <Nav/>
       <Container className="landing">
         <h3 style={{ textAlign: "center", paddingTop: "20px" }}>
           {projects.length === 0 && allProjects.length !== 0
