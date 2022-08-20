@@ -10,7 +10,7 @@ export const Menu = [
         cname: 'NavLinks'
     },
     {
-        label: 'Downloads',
+        label: 'Developers',
         url: '#',
         cname: 'NavLinks'
     },
