@@ -23,104 +23,100 @@
   position: absolute;
   //position: relative;
   bottom: -10px;
-  width: 95%;
+  width: 102%;
   //transform: scale(0.75);
 }
 
 .signin_btn {
-  background-color: #9e0000;
+  background-color: #850000;
   color: white;
   height: 68px;
-  width: 30%;
+  width: 300px;
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 19px;
+  padding: 5px;
   border-radius: 15px;
   font-weight: 600;
-  font-size: 18px;
+  font-size: 20px;
+  border: none;outline: none;
   position: absolute;
-  bottom: -30px;
-  cursor: pointer;
+  gap:5px;
+  bottom: -20px;
   z-index: 2;
 }
-.signin_btn_1 {
-  display: none;
-  background-color: #9e0000;
-  color: white;
-  height: 50px;
-  width: 400px;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 11px;
-  border-radius: 15px;
-  font-weight: 600;
-  font-size: 18px;
-  position: absolute;
-  bottom: -25px;
-  cursor: pointer;
-  z-index: 2;
+.signin_btn:hover {
+background-color:#850000;
 }
-
+.signin_btn:focus{
+  border: none;
+  outline: none;
+}
 .iedc_logo {
-  top: 10%;
-  left: 38%;
+  top: 22%;
+  right: 26%;
   pointer-events: none;
   position: absolute;
   z-index: 2;
 }
 
 @media (max-width: 1065px) {
-  .signin_btn_1 {
-    display: block;
-  }
-  .signin_btn {
-    display: none;
-  }
   .anime {
     width: 80%;
   }
 }
 @media (max-width: 560px) {
-  .signin_btn_1 {
-    width: 300px;
-    font-size: 16px;
-  }
   .animation_main {
     padding-top: 30px;
   }
 }
 @media (max-width: 475px) {
-  .signin_btn_1 {
-    width: 260px;
-    height: 40px;
-    padding: 8px;
-    bottom: -30px;
-  }
   .animation_main {
     padding-top: 30px;
   }
 }
-@media (max-width: 1310px) {
-  .iedc_logo {
-    top:8%;
-left:35%;
-  }
+@media (min-width: 500px) and (max-width: 882px){
+  .signin_btn{top: 90%;position: absolute;}
 }
-@media (max-width: 1200px) {
-  .iedc_logo {
-    transform: scale(0.8);
-  }
-}
-@media (max-width: 790px) {
-  .iedc_logo {
-    transform: scale(0.6);
-    left:30%;
-  }
-}
-@media (max-width: 700px) {
-  .iedc_logo {
+@media (max-width: 882px) {
+  .title_2{
     display: none;
   }
+  .iedc_logo{
+    display: none;
+  }
+  .signin_btn
+  {
+    bottom: -60px;
+    position:absolute;
+  }
+}
+.title_2
+{
+  font-weight: 900;
+font-size: 35px;
+color: #850000;
+text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+ top: 7%;
+ left: 30%;
+position: absolute;
+z-index: 2;
+}
+@media (min-width: 882px) and (max-width: 1352px){
+  .title_2{
+    font-size: 25px;
+    top:9%;
+  }
+
+.iedc_logo {
+  right: 24%;
+  transform: scale(0.7);
+  pointer-events: none;
+  position: absolute;
+  z-index: 2;
+}
+}
+.google_logo
+{
+  pointer-events: none;
 }
