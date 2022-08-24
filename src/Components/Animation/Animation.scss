@@ -35,7 +35,6 @@
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 5px;
   border-radius: 15px;
   font-weight: 600;
   font-size: 20px;
@@ -87,8 +86,16 @@ background-color:#850000;
   }
   .signin_btn
   {
-    bottom: -60px;
+    bottom: -40px;
     position:absolute;
+    padding: 1px;
+    font-size: 17px;
+    height: 57px;
+  width: 250px;
+  }
+  .google_logo
+  {
+    transform: scale(0.7);
   }
 }
 .title_2
