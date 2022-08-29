@@ -34,7 +34,7 @@ function NavbarHome() {
           <Link to="/projects" className="nav_item">
             Projects
           </Link>
-          <Link to="/" className="nav_item">
+          <Link to="/developers" className="nav_item">
             Developers
           </Link>
         </div>

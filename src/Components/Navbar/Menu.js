@@ -6,17 +6,17 @@ export const Menu = [
     },
     {
         label: 'Projects',
-        url: '#',
+        url: '/projects',
         cname: 'NavLinks'
     },
     {
         label: 'Developers',
-        url: '#',
+        url: '/developers',
         cname: 'NavLinks'
     },
     {
         label: 'My Profile',
-        url: '#',
+        url: '/profile',
         cname: 'NavLinks'
     }
 ]
