@@ -3,6 +3,8 @@
     background-color: #F4E6E6;
     height: 48px;
     font-weight: 500;
+    position: fixed;
+    z-index: 20;
     font-size: 21px;
     justify-content: left;
     align-items: stretch;
