@@ -12,6 +12,7 @@ import ProjectDetail from "./Pages/ProjectDetail/ProjectDetail";
 import { ProjectProvider } from "./contexts/ProjectContext";
 import MyProfile from "./Pages/MyProfile/MyProfile";
 import { ToastContainer } from "react-toastify";
+import ScrollToTop from "./Utils/ScrollToTop";
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 
@@ -23,7 +24,7 @@ function App() {
     <AuthProvider>
       <ProjectProvider>
         <BrowserRouter>
-          {/* <Navbar /> */}
+        <ScrollToTop/>
           <ToastContainer />
           <Switch>
             <Route exact path="/" component={Landing} />

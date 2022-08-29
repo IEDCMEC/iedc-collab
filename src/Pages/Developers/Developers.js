@@ -7,6 +7,9 @@ const Developers = () => {
         <NavigateBar/>
         <Navbar/>
         Developers
+
+
+        <h1>Hello</h1>
     </div>
   )
 }

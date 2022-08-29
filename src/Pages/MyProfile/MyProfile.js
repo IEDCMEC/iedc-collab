@@ -1,12 +1,12 @@
 import React from 'react'
-import NavigateBar from '../../Components/NavigateBar/NavigateBar'
 import Navbar from '../../Components/Navbar/Navbar'
+import NavigateBar from '../../Components/NavigateBar/NavigateBar'
 const MyProfile = () => {
   return (
     <div>
-        <NavigateBar/>
-        <Navbar/>
-        MyProfile
+      <NavigateBar/>
+      <Navbar/>
+      
     </div>
   )
 }
