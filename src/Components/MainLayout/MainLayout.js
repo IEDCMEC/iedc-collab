@@ -6,7 +6,11 @@ const MainLayout = ({children}) => {
     <div>
         <NavigateBar/>
         <Navbar/>
-        <div>{children}</div>
+        <div style={{
+          marginTop:"6rem"
+        }}>
+          {children}
+        </div>
     </div>
   )
 }
