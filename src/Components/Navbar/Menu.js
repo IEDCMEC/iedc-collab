@@ -1,7 +1,7 @@
 export const Menu = [
     {
         label: 'Ideas',
-        url: '#',
+        url: '/ideas',
         cname: 'NavLinks'
     },
     {
