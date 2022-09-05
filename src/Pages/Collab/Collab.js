@@ -1,8 +1,11 @@
 import React, { useContext } from "react";
 import "./Collab.scss";
-import ProjectsView from "../../Components/Projects/Projects";
+// import ProjectsView from "../../Components/Projects/Projects";
 import { ProjectContext } from "../../contexts/ProjectContext";
+// import Nav from "../../Components/Navbar/Navbar";
+import MainLayout from "../../Components/MainLayout/MainLayout";
 import Navbar from "../../Components/NavigateBar/NavigateBar";
+import ProjectCarousel from "../../Components/ProjectCarousel/ProjectCarousel";
 const Collab = ({ location: { state } }) => {
   const { projects, loading } = useContext(ProjectContext);
 
@@ -18,7 +21,7 @@ const Collab = ({ location: { state } }) => {
         <div className="mt-3">Loading projects...</div>
       </div>
       </div>
-      
+
     );
   }
 
@@ -38,8 +41,9 @@ const Collab = ({ location: { state } }) => {
     </>
   ) : (
     <>
-    <Navbar/>
-    <ProjectsView showDetailsDirectly={state?.showDetailsDirectly} />
+    <MainLayout/>
+    {/* <ProjectsView showDetailsDirectly={state?.showDetailsDirectly} /> */}
+    <ProjectCarousel/>
     </>
   );
 };
