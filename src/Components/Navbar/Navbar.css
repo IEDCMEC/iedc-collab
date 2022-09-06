@@ -21,7 +21,6 @@
 }
 
 .NavLinks{
-    margin: auto ;
     text-decoration: none;
     color: #9E0000;
     height: 100%;
@@ -32,6 +31,14 @@
 }
 
 .NavLinks:hover{
+    
+    color: #9E0000;
+    text-decoration: none;
+    background-color: #FFCFCF;
+    font-weight: 700;
+    border-bottom: 3px solid #9E0000;
+}
+.NavLinksActive{
     
     color: #9E0000;
     text-decoration: none;

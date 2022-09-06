@@ -4,7 +4,7 @@ const MyProfile = () => {
   return (
     <div>
       <MainLayout>
-        <h1>Hello My MyProfile</h1>
+        <h1>My Profile Page Coming soon....</h1>
       </MainLayout>
     </div>
   )

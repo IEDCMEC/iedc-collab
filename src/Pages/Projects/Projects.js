@@ -11,7 +11,7 @@ const Projects = () => {
   );
   const history = useHistory();
   const handleClick = (p) => {
-    history.push("/collab", { showDetailsDirectly: true });
+    history.push("/project-detail", { showDetailsDirectly: true });
     setSelectedProject(p);
   };
   if (loading) {

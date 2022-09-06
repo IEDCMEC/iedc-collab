@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { NavLink } from "react-router-dom";
 import { Menu } from "./Menu";
 import "./Navbar.css"
 
@@ -10,9 +11,7 @@ class Nav extends Component{
                     {Menu.map((item, index)=>{
                         return(
                             <li key={index}>
-                                <a className={item.cname} href={item.url}>
-                                    {item.label}
-                                </a>
+                                <NavLink exact activeClassName="NavLinksActive" className="NavLinks" to={item.url}>{item.label}</NavLink>
                             </li>
                         )
                     })}

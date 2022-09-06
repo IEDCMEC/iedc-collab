@@ -7,6 +7,7 @@ import { ProjectContext } from "../../contexts/ProjectContext";
 import right from "../../assets/right.svg";
 function ProjectCarousel() {
   const { projects, setSelectedProject } = useContext(ProjectContext);
+  const { selectedProject } = useContext(ProjectContext);
   const [swiperRef, setSwiperRef] = useState();
   const handleLeftClick = useCallback(() => {
     if (!swiperRef) return;
@@ -17,18 +18,29 @@ function ProjectCarousel() {
     if (!swiperRef) return;
     swiperRef.slideNext();
   }, [swiperRef]);
-
+var i=0;
+function getPosition()
+{
+  for(i=0;i<projects.length;i++){
+    const projects_list =projects[i].id;
+    if(projects_list===selectedProject.id)
+      {
+        return i;
+      }
+      }
+      
+}
   return (
     <>
     <div className="project-carousel">
     <div className="left_arrow" onClick={handleLeftClick}>
-    <img src={left} alt="" />
+    <img src={left} className="carousel_arrow"alt="" />
         </div>
     <Swiper
     onSwiper={setSwiperRef}
         slidesPerView={3}
         spaceBetween={30}
-        initialSlide={1}
+        initialSlide={getPosition()}
         loop={true}
         breakpoints={{
           // when window width is >= 640px
@@ -67,7 +79,7 @@ function ProjectCarousel() {
       </Swiper>
       
       <div className="right_arrow" onClick={handleRightClick}>
-          <img src={right} alt="" />
+          <img src={right} className="carousel_arrow" alt="" />
         </div>
       </div>
     </>

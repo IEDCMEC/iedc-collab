@@ -4,7 +4,7 @@ const Ideas = () => {
   return (
     <div>
         <MainLayout>
-            <h1>Coming soon....</h1>
+            <h1>Ideas Page Coming soon....</h1>
         </MainLayout>
     </div>
   )
