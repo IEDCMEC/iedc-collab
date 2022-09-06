@@ -3,14 +3,13 @@ import "./ProjectDetail.scss";
 import MainLayout from '../../Components/MainLayout/MainLayout'
 import { ProjectContext } from "../../contexts/ProjectContext";
 import ProjectCarousel from "../../Components/ProjectCarousel/ProjectCarousel";
-import Navbar from "../../Components/NavigateBar/NavigateBar";
-const ProjectDetail = ({ location: { state } }) => {
+const ProjectDetail = () => {
   const { projects, loading } = useContext(ProjectContext);
 
   if (loading) {
     return (
       <div>
-        <Navbar/>
+        <MainLayout/>
         <div
         className="d-flex justify-content-center align-items-center flex-column"
         style={{ height: "90vh" }}
@@ -24,7 +23,7 @@ const ProjectDetail = ({ location: { state } }) => {
   }
 
   return projects.length === 0 ? (
-    <><Navbar/>
+    <><MainLayout/>
     <div className="container not-found">
       <h2
         style={{
