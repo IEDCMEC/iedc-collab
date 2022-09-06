@@ -4,8 +4,7 @@ const Developers = () => {
   return (
     <div>
         <MainLayout>
-        Developers
-        <h1>Hello</h1>
+        <h1>Developers Page Coming soon....</h1>
         </MainLayout>
         
     </div>
