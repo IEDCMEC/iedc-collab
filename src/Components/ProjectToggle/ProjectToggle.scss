@@ -1,16 +1,26 @@
 .project-toggle__container {
   height: 161px;
-  //transform: rotate(-90deg);
+  transform: rotate(-90deg);
+  width:448px;
+  position: absolute;
+  left: -144px;
+  bottom: 25%;
 }
 
 .project-toggle__title {
-  height: 50%;
+  min-height: 50%;
+  padding-left:25px;
+  padding-right:25px;
+  padding-bottom: 10px;
+  padding-top: 10px;
   width:448px;
   display: flex;
   justify-content: center;
   align-items: center;
   background: linear-gradient(90deg, #9e0000 0%, #6f0000 100%);
   font-weight: 800;
+  text-transform: uppercase;
+  text-align: center;
   font-size: 40px;
   line-height: 55px;
   color: #ffffff;
@@ -21,6 +31,7 @@
   background-color: #FFCFCF;
   height:50%;
   font-weight: 500;
+  border-bottom-left-radius: 12px;
   justify-content:flex-start;
   font-size: 18px;
   width:400px;
