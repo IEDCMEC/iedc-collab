@@ -15,6 +15,8 @@ import { ToastContainer } from "react-toastify";
 import ScrollToTop from "./Utils/ScrollToTop";
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import ProjectToggle from "./Components/ProjectToggle/ProjectToggle"
+import ProjectNav from "./Components/ProjectNav";
 
 initialize();
 
@@ -24,7 +26,7 @@ function App() {
     <AuthProvider>
       <ProjectProvider>
         <BrowserRouter>
-        <ScrollToTop/>
+          <ScrollToTop />
           <ToastContainer />
           <Switch>
             <Route exact path="/" component={Landing} />
@@ -32,7 +34,9 @@ function App() {
             <Route Route path="/projects" component={Projects} />
             <Route Route path="/developers" component={Developers} />
             <Route Route path="/project-detail" component={ProjectDetail} />
-            <Route Route path="/profile" component={MyProfile} />  
+            <Route Route path="/profile" component={MyProfile} />
+            <Route Route path="/test" component={ProjectToggle} />
+            <Route Route path="/test1" component={ProjectNav} />
             {/* endpoint has to be chaged with username */}
           </Switch>
         </BrowserRouter>
