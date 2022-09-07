@@ -1,0 +1,93 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.project-nav__container {
+  background-color: aqua;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.project-nav__title-icon {
+  display: inline-flex;
+}
+
+.project-nav__likes-join {
+  display: inline-flex;
+  justify-content: flex-end;
+}
+
+.project-nav__arrow {
+  max-width: 65px;
+  max-height: 65px;
+
+  padding: 18px 11px 10px 25px;
+}
+
+.project-nav__profile {
+  max-width: 109px;
+  max-height: 54px;
+  padding-top: 4px;
+  padding-left: 60px;
+}
+
+.project-nav__title {
+  display: inline;
+  font-family: "Nunito";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  padding-left: 30px;
+  padding-top: 20px;
+  margin-bottom: 0px;
+}
+
+.project-nav__like {
+  max-height: 39px;
+  max-width: 25px;
+  padding-top: 20px;
+}
+
+.project-nav__number-likes {
+  font-family: Nunito;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 32px;
+  letter-spacing: 0em;
+  text-align: left;
+  padding: 16px 30px 0px 5px;
+
+  color: #9e0000;
+}
+
+button {
+  all: unset;
+  cursor: pointer;
+}
+.project-nav__button {
+  background: #9e0000;
+  border-radius: 9px;
+  font-family: "Nunito";
+  font-style: normal;
+  font-weight: 800;
+  font-size: 15px;
+  line-height: 29px;
+  color: #ffffff;
+
+  margin-top: 7px;
+  margin-bottom: 7px;
+  padding-left: 12px;
+  padding-right: 12px;
+  margin-right: 45px;
+}
+
+@media only screen and (max-width: 620px) {
+  .project-nav__container {
+    background-color: yellow;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+}
