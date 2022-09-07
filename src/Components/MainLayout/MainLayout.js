@@ -1,4 +1,5 @@
 import React from 'react'
+import './MainLayout.scss'
 import Navbar from '../Navbar/Navbar'
 import NavigateBar from '../NavigateBar/NavigateBar'
 const MainLayout = ({children}) => {
@@ -6,9 +7,7 @@ const MainLayout = ({children}) => {
     <div>
         <NavigateBar/>
         <Navbar/>
-        <div style={{
-          marginTop:"6rem"
-        }}>
+        <div className='layout__root'>
           {children}
         </div>
     </div>

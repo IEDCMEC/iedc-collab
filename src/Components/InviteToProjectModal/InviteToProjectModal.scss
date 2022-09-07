@@ -1,0 +1,127 @@
+.invite-to-project-modal {
+  position: relative;
+  height: 600px;
+
+  .triangle_1 {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  .triangle_2 {
+    position: absolute;
+    top: 0;
+    left: 60px;
+  }
+
+  .triangle_3 {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+  }
+
+  .triangle_4 {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+  }
+
+  .close-button {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+  }
+
+  &__body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 50px;
+    padding: 50px;
+
+    h1 {
+      color: #9E0000;
+      text-align: center;
+      font-size: 45px;
+      font-weight: 700;
+    }
+
+    .invite-project-name {
+      position: relative;
+      width: 80%;
+
+      .invite-project-name__label {
+        font-weight: 700;
+        font-size: 31px;
+        color: #9E0000;
+        position: absolute;
+        top: -31px;
+        left: 30px;
+        background: white;
+        padding-inline: 10px;
+      }
+
+      #invite-project-name__text {
+        border: 1px solid #9E0000;
+        border-radius: 10px;
+        background-color: inherit;
+        width: 100%;
+        padding: 20px;
+        color: #9E0000;
+        font-size: 25px;
+        font-weight: 300;
+      }
+    }
+
+    .invite-message {
+      position: relative;
+      width: 80%;
+
+      .invite-message__label {
+        font-weight: 700;
+        font-size: 31px;
+        color: #9E0000;
+        position: absolute;
+        top: -31px;
+        left: 30px;
+        background: white;
+        padding-inline: 10px;
+      }
+
+      #invite-message__text {
+        border: 1px solid #9E0000;
+        border-radius: 10px;
+        background-color: inherit;
+        width: 100%;
+        height: 225px;
+        padding: 20px;
+        color: #9E0000;
+        font-size: 25px;
+        font-weight: 300;
+      }
+    }
+
+    .btn {
+      align-self: flex-end;
+      @media screen and (max-width: 992px) {
+        align-self: center;
+      }
+      margin: 20px 60px;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-evenly;
+      background: #9E0000;
+      color: white;
+
+      p {
+        transform: translateY(8px);
+      }
+
+      img {
+        height: 60%;
+      }
+    }
+  }
+}

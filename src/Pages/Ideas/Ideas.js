@@ -1,14 +1,13 @@
 import React from 'react'
 import MainLayout from '../../Components/MainLayout/MainLayout'
-const Developers = () => {
+const Ideas = () => {
   return (
     <div>
         <MainLayout>
-        <h1>Developers Page Coming soon....</h1>
+            <h1>Ideas Page Coming soon....</h1>
         </MainLayout>
-        
     </div>
   )
 }
 
-export default Developers
+export default Ideas

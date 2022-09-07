@@ -1,12 +1,11 @@
 import React from 'react'
-import Navbar from '../../Components/Navbar/Navbar'
-import NavigateBar from '../../Components/NavigateBar/NavigateBar'
+import MainLayout from '../../Components/MainLayout/MainLayout'
 const MyProfile = () => {
   return (
     <div>
-      <NavigateBar/>
-      <Navbar/>
-      
+      <MainLayout>
+        <h1>My Profile Page Coming soon....</h1>
+      </MainLayout>
     </div>
   )
 }

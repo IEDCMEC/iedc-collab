@@ -28,7 +28,7 @@ function NavbarHome() {
           </div>
         </Link>
         <div className="navbar_items">
-          <Link to="/" className="nav_item">
+          <Link to="/ideas" className="nav_item">
             Ideas
           </Link>
           <Link to="/projects" className="nav_item">

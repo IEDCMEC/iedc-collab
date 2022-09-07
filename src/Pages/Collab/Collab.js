@@ -18,7 +18,7 @@ const Collab = ({ location: { state } }) => {
         <div className="mt-3">Loading projects...</div>
       </div>
       </div>
-      
+
     );
   }
 

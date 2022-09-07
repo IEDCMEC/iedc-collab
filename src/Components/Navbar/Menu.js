@@ -1,22 +1,18 @@
 export const Menu = [
     {
         label: 'Ideas',
-        url: '#',
-        cname: 'NavLinks'
+        url: '/ideas'
     },
     {
         label: 'Projects',
-        url: '/projects',
-        cname: 'NavLinks'
+        url: '/projects'
     },
     {
         label: 'Developers',
-        url: '/developers',
-        cname: 'NavLinks'
+        url: '/developers'
     },
     {
         label: 'My Profile',
-        url: '/profile',
-        cname: 'NavLinks'
+        url: '/profile'
     }
 ]
