@@ -16,6 +16,8 @@ import ScrollToTop from "./Utils/ScrollToTop";
 import Ideas from "./Pages/Ideas/Ideas";
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import ProjectToggle from "./Components/ProjectToggle/ProjectToggle"
+import ProjectNav from "./Components/ProjectNav";
 
 initialize();
 
@@ -25,7 +27,7 @@ function App() {
     <AuthProvider>
       <ProjectProvider>
         <BrowserRouter>
-        <ScrollToTop/>
+          <ScrollToTop />
           <ToastContainer />
           <Switch>
             <Route exact path="/" component={Landing} />
@@ -34,10 +36,11 @@ function App() {
             <Route Route path="/developers" component={Developers} />
             <Route Route path="/project-detail" component={ProjectDetail} />
             {/* also add project name or id */}
-            <Route Route path="/profile" component={MyProfile} /> 
-            {/* endpoint has to be chaged with username */} 
-            <Route Route path="/ideas" component={Ideas} />  
-            
+            <Route Route path="/profile" component={MyProfile} />
+            {/* endpoint has to be chaged with username */}
+            <Route Route path="/ideas" component={Ideas} />
+            <Route Route path="/test" component={ProjectToggle} />
+            <Route Route path="/test1" component={ProjectNav} />
           </Switch>
         </BrowserRouter>
       </ProjectProvider>

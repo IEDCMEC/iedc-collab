@@ -1,0 +1,88 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Nunito";
+  font-style: normal;
+}
+
+.project-toggle__container {
+  width: 480px;
+  height: 161px;
+  // background-color: yellow;
+  transform: rotate(-90deg);
+  position: relative;
+  top: 250px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.project-toggle__container .project-toggle__title {
+  height: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(90deg, #9e0000 0%, #6f0000 100%);
+
+  font-weight: 800;
+  font-size: 40px;
+  line-height: 55px;
+  color: #ffffff;
+}
+
+.project-toggle__container .project-toggle__options {
+  height: 50%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.project-toggle__container .project-toggle__options * {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 33%;
+  height: 100%;
+  font-weight: 700;
+  background: #ffcfcf;
+}
+
+// .project-toggle__desc {
+//   border-bottom-left-radius: 10px;
+//   flex: 1;
+// }
+// .project-toggle__req {
+//   flex: 1;
+// }
+// .project-toggle__disc {
+//   border-bottom-right-radius: 10px;
+//   flex: 1;
+// }
+
+.project-toggle__options div {
+  cursor: pointer;
+}
+
+
+.project-toggle__NavLinks{
+  flex:1
+}
+
+.project-toggle__NavLinks:hover {
+  color: #9e0000;
+  text-decoration: none;
+  background-color: #ffcfcf;
+  font-weight: 700;
+  flex:1;
+}
+
+.project-toggle__NavLinksActive {
+  color: #9e0000;
+  text-decoration: none;
+  background-color: #ffcfcf;
+  font-weight: 700;
+  flex:1;
+}
