@@ -86,8 +86,47 @@ button {
 @media only screen and (max-width: 620px) {
   .project-nav__container {
     background-color: yellow;
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
   }
+  .project-nav__arrow {
+    width: 30px;
+    height: 48px;
+    padding: 25px 0px 0px 8px;
+  }
+  .project-nav__profile {
+    max-width: 99px;
+    max-height: 59px;
+    padding-top: 13px;
+    padding-left: 16px;
+  }
+
+  .project-nav__title {
+    font-size: 14px;
+    padding-left: 14px;
+    padding-top: 17px;
+    margin-top: 5px;
+  }
+  .project-nav__like {
+    max-height: 47px;
+    max-width: 32px;
+    padding-top: 28px;
+    padding-left: 12px;
+}
+
+.project-nav__number-likes {
+  font-size: 14px;
+  line-height: 17px;
+  text-align: left;
+  padding: 17px 8px 0px 5px;
+  margin-top: 13px;
+  white-space: nowrap;
+}
+.project-nav__button {
+  font-size: 14px;
+  line-height: 29px;
+  margin-right: 8px;
+  white-space: nowrap;
+  padding-right: 9px;
+  margin-top: 15px;
+}
+
 }
