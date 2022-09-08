@@ -44,8 +44,10 @@ const Description = () => {
     <>
     <MainLayout/>
     <ProjectCarousel/>
+    <div className="container__details">
     <ProjectToggle/>
     <ProjectNav/>
+    </div>
     <div className="details__container">
     <DescriptionDetails/></div>
     </>
