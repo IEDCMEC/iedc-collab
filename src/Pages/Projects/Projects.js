@@ -2,9 +2,8 @@ import React, { useContext } from "react";
 import "./Projects.scss";
 import { Container } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
+import MainLayout from '../../Components/MainLayout/MainLayout'
 import { ProjectContext } from "../../contexts/ProjectContext";
-import Navbar from "../../Components/NavigateBar/NavigateBar";
-import Nav from "../../Components/Navbar/Navbar";
 const Projects = () => {
   const { projects, setSelectedProject, allProjects, loading } = useContext(
     ProjectContext
@@ -17,7 +16,7 @@ const Projects = () => {
   if (loading) {
     return (
         <div>
-            <Navbar/>
+           <MainLayout/>
       <div
         className="d-flex justify-content-center align-items-center flex-column"
         style={{ height: "90vh" }}
@@ -30,9 +29,7 @@ const Projects = () => {
     );
   }
   return (
-    <>
-    <Navbar/>
-    <Nav/>
+    <><MainLayout/>
       <Container className="landing">
         <h3 style={{ textAlign: "center" }}>
           {projects.length === 0 && allProjects.length !== 0

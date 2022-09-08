@@ -22,14 +22,19 @@
 .project-nav__arrow {
   max-width: 65px;
   max-height: 65px;
-  padding: 18px 11px 10px 25px;
+  padding: 15px 11px 15px 25px;
+  cursor: pointer;
 }
 
-.project-nav__profile {
-  max-width: 159px;
-  max-height: 54px;
-  padding-top: 4px;
-  padding-left: 60px;
+.project-nav__profile
+{
+  padding-left: 3rem;
+  padding-right: 5px;
+}
+.project-nav__profile img {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
 }
 
 .project-nav__title {
@@ -92,18 +97,21 @@ button {
     height: 2.438rem;
     padding: 16px 0px 0px 8px;
   }
-  .project-nav__profile {
-    // max-width: 99px;
-    // max-height: 48px;
-    max-width: 6.188rem;
-    max-height: 3rem ;
-    padding-top: 2px;
-    padding-left: 16px;
+  .project-nav__profile
+  {
+    padding-left: 1rem;
+    padding-right: 1px;
+  }
+  .project-nav__profile img {
+    border-radius: 50%;
+    width: 4rem;
+    height: 4rem;
   }
 
   .project-nav__title {
     font-size: 1rem;
     padding-left: 14px;
+    text-transform: capitalize;
     padding-top: 13px;
     margin-top: 5px;
   }
@@ -133,5 +141,23 @@ button {
     padding-left: 5px;
     padding-right: 5px;
 
+  }
+}
+@media (max-width:450px) {
+  .project-nav__container{
+    padding-top: 38%;
+    padding-bottom: 12%;
+  }
+}
+@media (max-width:380px) {
+  .project-nav__container{
+    padding-top: 42%;
+    padding-bottom: 12%;
+  }
+}
+@media (max-width:340px) {
+  .project-nav__container{
+    padding-top: 45%;
+    padding-bottom: 12%;
   }
 }
