@@ -1,0 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@800&display=swap');
+
+h2{
+    font-family: "Nunito";
+    font-weight: 900;
+    padding-top: 30px;
+    font-size: 30px;
+}
+.not-found{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+@media screen and (min-width: 280px) and (max-width: 768px) {
+    
+  }
+.project-toggle__comp
+{
+    position: fixed;
+    left: 0;
+}
