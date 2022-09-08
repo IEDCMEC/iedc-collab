@@ -4,7 +4,7 @@ import ProjectToggle from "../../Components/ProjectToggle/ProjectToggle";
 import ProjectCarousel from "../../Components/ProjectCarousel/ProjectCarousel";
 import { ProjectContext } from "../../contexts/ProjectContext";
 import DescriptionDetails from "../../Components/DescriptionDetails/DescriptionDetails";
-import ProjectNav from "../../Components/ProjectNav/ProjectNav";
+// import ProjectNav from "../../Components/ProjectNav/ProjectNav";
 import './Description.scss'
 const Description = () => {
 
@@ -45,7 +45,7 @@ const Description = () => {
     <MainLayout/>
     <ProjectCarousel/>
     <ProjectToggle/>
-    <ProjectNav/>
+    {/* <ProjectNav/> */}
     <div className="details__container">
     <DescriptionDetails/></div>
     </>

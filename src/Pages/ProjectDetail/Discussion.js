@@ -4,7 +4,7 @@ import ProjectToggle from "../../Components/ProjectToggle/ProjectToggle";
 import ProjectCarousel from "../../Components/ProjectCarousel/ProjectCarousel";
 import { ProjectContext } from "../../contexts/ProjectContext";
 import DiscussionDetails from "../../Components/DisussionDetails/DiscussionDetails";
-import ProjectNav from "../../Components/ProjectNav/ProjectNav";
+// import ProjectNav from "../../Components/ProjectNav/ProjectNav";
 const Discussion = () => {
 
   const { projects, loading } = useContext(ProjectContext);
@@ -44,7 +44,7 @@ const Discussion = () => {
     <MainLayout/>
     <ProjectCarousel/>
     <ProjectToggle/>
-    <ProjectNav/>
+    {/* <ProjectNav/> */}
     <div className="details__container">
     <DiscussionDetails/></div>
     </>
