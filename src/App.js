@@ -14,8 +14,8 @@ import ScrollToTop from "./Utils/ScrollToTop";
 import Ideas from "./Pages/Ideas/Ideas";
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import Description from "./Pages/ProjectDetail/Description";
 import Requirements from "./Pages/ProjectDetail/Requirements";
+import Description from "./Pages/ProjectDetail/Description";
 import Discussion from "./Pages/ProjectDetail/Discussion";
 
 initialize();
@@ -34,8 +34,8 @@ function App() {
             <Route Route path="/projects" component={Projects} />
             <Route Route path="/developers" component={Developers} />
             <Route Route path="/description" component={Description} />
-            <Route Route path="/discussion" component={Discussion} />
             <Route Route path="/requirements" component={Requirements} />
+            <Route Route path="/discussion" component={Discussion} />
             {/* also add project name or id */}
             <Route Route path="/profile" component={MyProfile} />
             {/* endpoint has to be chaged with username */}

@@ -6,7 +6,8 @@
     position: fixed;
     z-index: 20;
     font-size: 21px;
-    justify-content: left;
+    padding-left: 1%;
+    justify-content: flex-start;
     align-items: stretch;
     width:100%;
 }
@@ -45,4 +46,43 @@
     background-color: #FFCFCF;
     font-weight: 700;
     border-bottom: 3px solid #9E0000;
+}
+
+@media (max-width:865px) {
+
+    .NavbarItems{
+    display: flex;
+    z-index: 20;
+    font-size: 21px;
+    padding-left: 1%;
+    margin-top: 40px;
+    justify-content: space-evenly;
+    align-items: stretch;
+    width:100%;
+}
+.NavMenu{
+    grid-gap: 20px;
+}
+}
+@media (max-width:480px)
+{
+    .NavbarItems
+{
+    font-size: 18px;
+}
+.NavLinks{
+    padding-left:2px ;
+    padding-right:2px ;
+}
+}
+@media (max-width:367px) {
+
+    .NavbarItems
+    {
+        font-size: 15px;
+    }
+    .NavLinks{
+        padding-left:2px ;
+        padding-right:2px ;
+    }
 }

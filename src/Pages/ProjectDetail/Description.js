@@ -1,10 +1,13 @@
 import React, { useContext } from "react";
-import "./Description.scss";
 import MainLayout from '../../Components/MainLayout/MainLayout'
-import { ProjectContext } from "../../contexts/ProjectContext";
-import ProjectCarousel from "../../Components/ProjectCarousel/ProjectCarousel";
 import ProjectToggle from "../../Components/ProjectToggle/ProjectToggle";
+import ProjectCarousel from "../../Components/ProjectCarousel/ProjectCarousel";
+import { ProjectContext } from "../../contexts/ProjectContext";
+import DescriptionDetails from "../../Components/DescriptionDetails/DescriptionDetails";
+// import ProjectNav from "../../Components/ProjectNav/ProjectNav";
+import './Description.scss'
 const Description = () => {
+
   const { projects, loading } = useContext(ProjectContext);
 
   if (loading) {
@@ -42,6 +45,9 @@ const Description = () => {
     <MainLayout/>
     <ProjectCarousel/>
     <ProjectToggle/>
+    {/* <ProjectNav/> */}
+    <div className="details__container">
+    <DescriptionDetails/></div>
     </>
   );
 };

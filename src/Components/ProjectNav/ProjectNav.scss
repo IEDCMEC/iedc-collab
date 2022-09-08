@@ -4,10 +4,10 @@
 }
 
 .project-nav__container {
-  background-color: aqua;
   display: flex;
   justify-content: space-between;
   width: 100%;
+  padding-top: 1%;
 }
 
 .project-nav__title-icon {
@@ -27,7 +27,7 @@
 }
 
 .project-nav__profile {
-  max-width: 109px;
+  max-width: 159px;
   max-height: 54px;
   padding-top: 4px;
   padding-left: 60px;

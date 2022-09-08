@@ -1,11 +1,12 @@
 import React, { useContext } from "react";
-import "./Requirements.scss";
 import MainLayout from '../../Components/MainLayout/MainLayout'
-import { ProjectContext } from "../../contexts/ProjectContext";
-import ProjectCarousel from "../../Components/ProjectCarousel/ProjectCarousel";
 import ProjectToggle from "../../Components/ProjectToggle/ProjectToggle";
-
+import ProjectCarousel from "../../Components/ProjectCarousel/ProjectCarousel";
+import { ProjectContext } from "../../contexts/ProjectContext";
+import RequirementDetails from "../../Components/RequirementDetails/RequirementDetails";
+// import ProjectNav from "../../Components/ProjectNav/ProjectNav";
 const Requirements = () => {
+
   const { projects, loading } = useContext(ProjectContext);
 
   if (loading) {
@@ -43,8 +44,11 @@ const Requirements = () => {
     <MainLayout/>
     <ProjectCarousel/>
     <ProjectToggle/>
+    {/* <ProjectNav/> */}
+    <div className="details__container">
+    <RequirementDetails/></div>
     </>
   );
-  };
+};
 
-export default Requirements
+export default Requirements;
