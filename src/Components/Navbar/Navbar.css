@@ -1,12 +1,13 @@
 .NavbarItems{
     display: flex;
     background-color: #F4E6E6;
-    height: 48px;
+    height: 49px;
     font-weight: 500;
     position: fixed;
     z-index: 20;
     font-size: 21px;
     padding-left: 1%;
+    margin-top: -5px;
     justify-content: flex-start;
     align-items: stretch;
     width:100%;
@@ -80,6 +81,7 @@
     .NavbarItems
     {
         font-size: 15px;
+        padding-left: 0%;
     }
     .NavLinks{
         padding-left:2px ;
