@@ -53,7 +53,12 @@
   max-width: 25px;
   padding-top: 20px;
 }
-
+.project-nav__likes
+{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
 .project-nav__number-likes {
   font-family: Nunito;
   font-size: 1rem;
@@ -110,9 +115,10 @@ button {
 
   .project-nav__title {
     font-size: 1rem;
-    padding-left: 14px;
+    padding-left: 7px;
+    flex-wrap: nowrap;
     text-transform: capitalize;
-    padding-top: 13px;
+    padding-top: 20px;
     margin-top: 5px;
   }
   .project-nav__like {
@@ -132,6 +138,9 @@ button {
     margin-top: 13px;
     white-space: nowrap;
   }
+  .project-nav__likes {
+    padding-top: 5px ;
+  }
   .project-nav__button {
     font-size: 0.875rem;
     line-height: 29px;
@@ -141,23 +150,5 @@ button {
     padding-left: 5px;
     padding-right: 5px;
 
-  }
-}
-@media (max-width:450px) {
-  .project-nav__container{
-    padding-top: 38%;
-    padding-bottom: 12%;
-  }
-}
-@media (max-width:380px) {
-  .project-nav__container{
-    padding-top: 42%;
-    padding-bottom: 12%;
-  }
-}
-@media (max-width:340px) {
-  .project-nav__container{
-    padding-top: 45%;
-    padding-bottom: 12%;
   }
 }

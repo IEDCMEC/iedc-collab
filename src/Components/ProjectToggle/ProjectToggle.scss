@@ -72,6 +72,7 @@
   border-bottom-left-radius: 12px;
   line-height: 29px;
   align-items: center;
+  justify-content: center;
   display: flex;
   padding-top: 15px;
   padding-bottom: 15px;
@@ -84,6 +85,7 @@
   font-weight: 700;
   font-size: 1.313rem;
   transition: 0.5s;
+  justify-content: center;
   padding-left: 15px;
   padding-right: 15px;
   border-bottom-right-radius: 12px;
@@ -115,9 +117,10 @@
   background-color: #ac2727;
 }
 
-@media only screen and (max-width: 450px) {
+@media only screen and (max-width: 650px) {
   .project-toggle__container {
     transform: rotate(0deg);
+    padding-bottom: 1%;
     width: fit-content;
     left: -30px;
     display: block;
@@ -148,13 +151,15 @@
 
   .project-toggle__NavLinks {
     font-size: 1rem;
+    justify-content:center ;
+    align-items: center;
     flex: 1;
     width: 33%;
   }
 }
-@media (max-width:450px) {
+@media (max-width:650px) {
   .project-toggle__container
   {
-    bottom: 50%;
+    position: relative;
   }
 }

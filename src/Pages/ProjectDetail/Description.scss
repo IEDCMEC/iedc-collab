@@ -20,3 +20,13 @@ h2{
   padding-left: 12%;
   padding-right: 2%;
 }
+@media (max-width: 760px) {
+
+.container__details
+{
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+}
+  
