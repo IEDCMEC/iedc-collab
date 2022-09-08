@@ -1,9 +1,9 @@
 import React from 'react'
 import './ProjectNav.scss'
 
-import arrow from '../assets/arrow.png'
-import profile from '../assets/profile.png'
-import like from '../assets/like.png'
+import arrow from '../../assets/arrow.png'
+import profile from '../../assets/profile.png'
+import like from '../../assets/like.png'
 
 const ProjectNav = () => {
     return (

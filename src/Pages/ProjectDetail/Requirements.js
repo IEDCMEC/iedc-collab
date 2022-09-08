@@ -4,6 +4,7 @@ import ProjectToggle from "../../Components/ProjectToggle/ProjectToggle";
 import ProjectCarousel from "../../Components/ProjectCarousel/ProjectCarousel";
 import { ProjectContext } from "../../contexts/ProjectContext";
 import RequirementDetails from "../../Components/RequirementDetails/RequirementDetails";
+import ProjectNav from "../../Components/ProjectNav/ProjectNav";
 const Requirements = () => {
 
   const { projects, loading } = useContext(ProjectContext);
@@ -43,7 +44,9 @@ const Requirements = () => {
     <MainLayout/>
     <ProjectCarousel/>
     <ProjectToggle/>
-    <RequirementDetails/>
+    <ProjectNav/>
+    <div className="details__container">
+    <RequirementDetails/></div>
     </>
   );
 };
