@@ -1,10 +1,11 @@
 import React, { useContext } from "react";
-import "./Discussion.scss";
 import MainLayout from '../../Components/MainLayout/MainLayout'
-import { ProjectContext } from "../../contexts/ProjectContext";
-import ProjectCarousel from "../../Components/ProjectCarousel/ProjectCarousel";
 import ProjectToggle from "../../Components/ProjectToggle/ProjectToggle";
+import ProjectCarousel from "../../Components/ProjectCarousel/ProjectCarousel";
+import { ProjectContext } from "../../contexts/ProjectContext";
+import DiscussionDetails from "../../Components/DisussionDetails/DiscussionDetails";
 const Discussion = () => {
+
   const { projects, loading } = useContext(ProjectContext);
 
   if (loading) {
@@ -42,7 +43,9 @@ const Discussion = () => {
     <MainLayout/>
     <ProjectCarousel/>
     <ProjectToggle/>
+    <DiscussionDetails/>
     </>
   );
-  };
-export default Discussion
+};
+
+export default Discussion;
