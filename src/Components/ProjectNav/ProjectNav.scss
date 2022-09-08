@@ -19,13 +19,6 @@
   justify-content: flex-end;
 }
 
-.project-nav__arrow {
-  max-width: 65px;
-  max-height: 65px;
-  padding: 15px 11px 15px 25px;
-  cursor: pointer;
-}
-
 .project-nav__profile
 {
   padding-left: 3rem;
@@ -71,10 +64,6 @@
   color: #9e0000;
 }
 
-button {
-  all: unset;
-  cursor: pointer;
-}
 .project-nav__button {
   background: #9e0000;
   border-radius: 9px;
@@ -82,11 +71,12 @@ button {
   font-style: normal;
   font-weight: 800;
   font-size: 1rem;
-  line-height: 29px;
+  cursor: pointer;
   color: #ffffff;
 
   margin-top: 7px;
   margin-bottom: 7px;
+  padding-top: 11px;
   padding-left: 12px;
   padding-right: 12px;
   margin-right: 45px;
@@ -117,7 +107,6 @@ button {
     font-size: 1rem;
     padding-left: 7px;
     flex-wrap: nowrap;
-    text-transform: capitalize;
     padding-top: 20px;
     margin-top: 5px;
   }
@@ -147,8 +136,9 @@ button {
     white-space: nowrap;
     margin-top: 13px;
     margin-right: 4px;
-    padding-left: 5px;
-    padding-right: 5px;
+    padding-top: 8px;
+    padding-left: 12px;
+    padding-right: 12px;
 
   }
 }
