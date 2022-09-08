@@ -1,19 +1,22 @@
 .project-toggle__container {
-  height: 161px;
+  // height: 10.063rem;
+  // width: 27rem;
+  height: fit-content;
+  width: fit-content;
   transform: rotate(-90deg);
-  width:448px;
   position: absolute;
-  left: -144px;
-  bottom: 18%;
+  left: -172px;
+  bottom: 3%;
 }
 
 .project-toggle__title {
   min-height: 50%;
-  padding-left:25px;
-  padding-right:25px;
+  padding-left: 25px;
+  padding-right: 25px;
   padding-bottom: 10px;
   padding-top: 10px;
-  width:448px;
+  margin-left: 30px;
+  width: 28rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -21,88 +24,131 @@
   font-weight: 800;
   text-transform: uppercase;
   text-align: center;
-  font-size: 40px;
+  font-size: 2.5rem;
   line-height: 55px;
   color: #ffffff;
 }
 
-.project-toggle__NavbarItems{
+.project-toggle__NavbarItems {
   display: flex;
-  background-color: #FFCFCF;
-  height:50%;
+  background-color: #ffcfcf;
+  height: 50%;
   font-weight: 500;
   border-bottom-left-radius: 12px;
-  justify-content:flex-start;
+  border-bottom-right-radius: 12px;
+  justify-content: flex-start;
   font-size: 18px;
-  width:400px;
+  width: 28rem;
+  margin-left: 30px;
 }
 
-.project-toggle__NavLinks{
+.project-toggle__NavLinks {
   text-decoration: none;
-  color: #9E0000;
-  background-color: #FFCFCF;
+  color: #9e0000;
+  background-color: #ffcfcf;
   height: 100%;
   font-weight: 700;
-font-size: 21px;
-padding-left: 15px;
-padding-right: 15px;
-transition: 0.5s;
-line-height: 29px;
+  font-size: 1.313rem;
+  padding-left: 15px;
+  padding-right: 15px;
+  transition: 0.5s;
+  line-height: 29px;
   align-items: center;
   display: flex;
+  padding-top: 15px;
+  padding-bottom: 15px;
 }
-.project-toggle__NavLinks__desc{
-  text-decoration: none ;
-  color: #9E0000;
-  background-color: #FFCFCF;
+.project-toggle__NavLinks__desc {
+  text-decoration: none;
+  color: #9e0000;
+  background-color: #ffcfcf;
   height: 100%;
   font-weight: 700;
-font-size: 21px;
-padding-left: 15px;
-transition: 0.5s;
-padding-right: 15px;
-border-bottom-left-radius: 12px;
-line-height: 29px;
+  font-size: 1.313rem;
+  padding-left: 15px;
+  transition: 0.5s;
+  padding-right: 15px;
+  border-bottom-left-radius: 12px;
+  line-height: 29px;
   align-items: center;
   display: flex;
+  padding-top: 15px;
+  padding-bottom: 15px;
 }
-.project-toggle__NavLinks__disc{
-  text-decoration: none ;
-  color: #9E0000;
-  background-color: #FFCFCF;
+.project-toggle__NavLinks__disc {
+  text-decoration: none;
+  color: #9e0000;
+  background-color: #ffcfcf;
   height: 100%;
   font-weight: 700;
-font-size: 21px;
-transition: 0.5s;
-padding-left: 15px;
-padding-right: 15px;
-border-bottom-right-radius: 12px;
-line-height: 29px;
+  font-size: 1.313rem;
+  transition: 0.5s;
+  padding-left: 15px;
+  padding-right: 15px;
+  border-bottom-right-radius: 12px;
+  line-height: 29px;
   align-items: center;
   display: flex;
+  padding-top: 15px;
+  padding-bottom: 15px;
 }
-.project-toggle__NavLinks:hover{
-  
-  color: #FFFFFF;
-  text-decoration: none ;
-  background-color: #AC2727;
+.project-toggle__NavLinks:hover {
+  color: #ffffff;
+  text-decoration: none;
+  background-color: #ac2727;
 }
-.project-toggle__NavLinks__desc:hover{
-  
-  color: #FFFFFF;
-  text-decoration: none ;
-  background-color: #AC2727;
+.project-toggle__NavLinks__desc:hover {
+  color: #ffffff;
+  text-decoration: none;
+  background-color: #ac2727;
 }
-.project-toggle__NavLinks__disc:hover{
-  
-  color: #FFFFFF;
-  text-decoration: none ;
-  background-color: #AC2727;
+.project-toggle__NavLinks__disc:hover {
+  color: #ffffff;
+  text-decoration: none;
+  background-color: #ac2727;
 }
-.project-toggle__NavLinksActive{
-  
-  color: #FFFFFF;
+.project-toggle__NavLinksActive {
+  color: #ffffff;
   padding-left: 15px;
   text-decoration: none;
-  background-color:  #AC2727;
+  background-color: #ac2727;
+}
+
+@media only screen and (max-width: 450px) {
+  .project-toggle__container {
+    transform: rotate(0deg);
+    width: fit-content;
+    left: -30px;
+    bottom: 216px;
+    display: block;
+  }
+
+  .project-toggle__title {
+    min-height: 46%;
+    font-size: 25px;
+    width: 100vw;
+  }
+
+  .project-toggle__NavbarItems {
+    width: 100vw;
+    justify-content: space-between;
+    border-bottom-right-radius: 12px;
+  }
+  .project-toggle__NavLinks__desc {
+    font-size: 1rem;
+    flex: 1;
+    width: 33%;
+  }
+  .project-toggle__NavLinks__disc {
+    font-size: 1rem;
+    flex: 1;
+    width: 33%;
+    padding-right: 0;
+  }
+
+  .project-toggle__NavLinks {
+    font-size: 1rem;
+    flex: 1;
+    width: 33%;
+  }
 }
