@@ -4,9 +4,10 @@
   height: fit-content;
   width: fit-content;
   transform: rotate(-90deg);
+  transform-origin: top left;
   position: absolute;
-  left: -172px;
-  bottom: 20%;
+  left: 0;
+  bottom: -140px;
 }
 
 .project-toggle__title {
@@ -123,6 +124,7 @@
     padding-bottom: 1%;
     width: fit-content;
     left: -30px;
+    bottom: 0;
     display: block;
   }
 
