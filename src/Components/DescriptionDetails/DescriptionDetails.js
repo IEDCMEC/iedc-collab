@@ -1,16 +1,79 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { ProjectContext } from "../../contexts/ProjectContext";
 import "./DescriptionDetails.scss";
 import Phoneicon from "../../assets/phone.svg";
 import Mail from "../../assets/mail.svg";
 import Github from "../../assets/github.svg";
 import Tag from '../../assets/tag.svg'
+import { useHistory } from "react-router-dom";
+import { AuthContext } from "../../Firebase/Auth/Auth";
+import { doDeleteProject } from "../../Firebase/firebase";
+import Bin from "../../assets/bin.svg";
+import Edit from "../../assets/edit.svg";
+import ProjectModal from "../ProjectModal/ProjectModal";
+import { toast } from "react-toastify";
+import DeleteConfirmation from "../DeleteConfirmationModal/DeleteConfirmation";
+
+
 const DescriptionDetails = () => {
-    const { selectedProject } = useContext(ProjectContext);
+   const { selectedProject, fetchData } = useContext(ProjectContext);
+    const { currentUser } = useContext(AuthContext);
+    const [canModifyProject, setCanModifyProject] = useState(false);
+    const [showNewProjectModal, setShowNewProjectModal] = useState(false);
+    const [displayConfirmationModal, setDisplayConfirmationModal] = useState(
+      false
+    );
+    const history = useHistory();
+    const submitDelete = (id) => {
+      doDeleteProject(id, () => {
+        toast("Project deleted successfully");
+        fetchData();
+      });
+      setDisplayConfirmationModal(false);
+      history.go(0);
+    };
+  
+    const hideConfirmationModal = () => {
+      setDisplayConfirmationModal(false);
+    };
+    useEffect(() => {
+      if (currentUser?.uid === selectedProject.leader_id) {
+        setCanModifyProject(true);
+      } else {
+        setCanModifyProject(false);
+      }
+    }, [currentUser?.uid, selectedProject.leader_id]);
+  
+    function deleteProj(id) {
+      setDisplayConfirmationModal(true);
+    }
+
 
   return (
     <>
       <div className="description__container">
+      <div className="description-details__headcontrols">
+        {canModifyProject && (
+          <img
+            src={Bin}
+            style={{ cursor: "pointer" }}
+            onClick={() => {
+              deleteProj(selectedProject.id);
+            }}
+            alt="delete project"
+          />
+        )}
+        {canModifyProject && (
+          <img
+            src={Edit}
+            alt="Edit Project"
+            style={{ cursor: "pointer" }}
+            onClick={() => {
+              setShowNewProjectModal(true);
+            }}
+          ></img>
+        )}
+      </div>
         <div className="description__title">PROJECT DESCRIPTION</div>
         <div className="description__content">
           {selectedProject.desc}
@@ -80,6 +143,18 @@ const DescriptionDetails = () => {
               ""
             )}
           </div>
+         
+      <ProjectModal
+        show={showNewProjectModal}
+        onHide={() => setShowNewProjectModal(false)}
+        project={selectedProject}
+      />
+      <DeleteConfirmation
+        showModal={displayConfirmationModal}
+        confirmModal={submitDelete}
+        hideModal={hideConfirmationModal}
+        id={selectedProject.id}
+      />
       </div>
        
     </>

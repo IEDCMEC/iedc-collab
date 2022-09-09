@@ -1,3 +1,11 @@
+:root {
+    --primary-font: 20px;
+    --secondary-font: 18px;
+    --primary-line:30px;
+    --secondary-line: 28px;
+  }
+
+
 .description__container
 {
     display: flex;
@@ -21,8 +29,8 @@ color: #9E0000;
 font-style: normal;
 font-weight: 400;
 padding-top: 30px;
-font-size: 20px;
-line-height: 30px;
+font-size: var(--primary-font);
+line-height: var(--primary-line);
 text-align: justify;
 
 color: #263238;
@@ -69,9 +77,9 @@ color: #9E0000;
 font-family: 'Nunito';
 font-style: normal;
 font-weight: 400;
-font-size: 20px;
+font-size: var(--primary-font);
 flex-wrap: nowrap;
-line-height: 30px;
+line-height: var(--primary-line);
 
 color: #263238;
     justify-content: flex-start;
@@ -83,8 +91,8 @@ color: #263238;
     font-family: 'Nunito';
 font-style: normal;
 font-weight: 400;
-font-size: 20px;
-line-height: 30px;
+font-size: var(--primary-font);
+line-height: var(--primary-line);
 
 color: #263238;
 }
@@ -102,8 +110,8 @@ color: #263238;
     padding-top: 2%;
 font-style: normal;
 font-weight: 400;
-font-size: 20px;
-line-height: 30px;
+font-size: var(--primary-font);
+line-height: var(--primary-line);
 column-gap:40px;
 display: flex;
 flex-direction: row;
@@ -121,6 +129,7 @@ color: #263238;
 .description__other-tag
 {
     padding-top: 2%;
+    pointer-events: none;
 }
 @media (max-width:650px) {
 
@@ -130,6 +139,38 @@ color: #263238;
     row-gap: 5px;
     flex-wrap: wrap;
 }
+
+
+
+.description__content
+{
+font-size: var(--secondary-font);
+line-height: var(--secondary-line);
+
+}
+.description__other-member
+{
+    
+font-size: var(--secondary-font);
+line-height: var(--secondary-line);
+}
+.description__other-references a
+{
+font-size: var(--secondary-font);
+line-height: var(--secondary-line);
+
+}
+.description__tag
+
+{
+font-size: var(--secondary-font);
+line-height: var(--secondary-line);
+
+}
+
+
+
+
 .description__other-tags
 {
     padding-top: 5%;
@@ -186,3 +227,23 @@ color: #9E0000;
             justify-content: flex-end;
             gap:20px;
           }
+.description-details__headcontrols
+{
+    gap:20px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    right: 0;
+    padding-right: 5%;
+    padding-left: 3%;
+    position: absolute;
+}
+@media (max-width:795px) {
+    .description-details__headcontrols
+    {
+        justify-content: center;
+        position: relative;
+        padding-bottom: 1%;
+    }
+    
+}

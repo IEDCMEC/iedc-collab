@@ -4,9 +4,10 @@
   height: fit-content;
   width: fit-content;
   transform: rotate(-90deg);
+  transform-origin: top left;
   position: absolute;
-  left: -172px;
-  bottom: 20%;
+  left: 0;
+  bottom: -140px;
 }
 
 .project-toggle__title {
@@ -17,10 +18,11 @@
   padding-bottom: 10px;
   padding-top: 10px;
   margin-left: 30px;
-  width: 28rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  width: 28rem ;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: block;
   background: linear-gradient(90deg, #9e0000 0%, #6f0000 100%);
   font-weight: 800;
   text-transform: uppercase;
@@ -123,6 +125,7 @@
     padding-bottom: 1%;
     width: fit-content;
     left: -30px;
+    bottom: 0;
     display: block;
   }
 
