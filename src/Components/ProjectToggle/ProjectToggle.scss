@@ -5,8 +5,9 @@
   width: fit-content;
   transform: rotate(-90deg);
   position: absolute;
-  left: -172px;
-  bottom: 10%;
+  left: 0;
+  bottom: -40%;
+  transform-origin: top left;
 }
 
 .project-toggle__title {
@@ -28,6 +29,7 @@
   font-size: 2.5rem;
   line-height: 55px;
   color: #ffffff;
+  // word-spacing: 9999999px;
 }
 
 .project-toggle__NavbarItems {
@@ -151,15 +153,14 @@
 
   .project-toggle__NavLinks {
     font-size: 1rem;
-    justify-content:center ;
+    justify-content: center;
     align-items: center;
     flex: 1;
     width: 33%;
   }
 }
-@media (max-width:650px) {
-  .project-toggle__container
-  {
+@media (max-width: 650px) {
+  .project-toggle__container {
     position: relative;
   }
 }
