@@ -19,7 +19,7 @@ const ProjectNav = () => {
             alt="profile"
           />
         </div>
-        <div className="project-nav__title">{selectedProject.leader_name}</div>
+        <div className="project-nav__title">{selectedProject.leader_name.toLowerCase()}</div>
       </div>
       <div className="project-nav__likes-join">
         <div className="project-nav__likes">
