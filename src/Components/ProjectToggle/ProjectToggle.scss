@@ -7,7 +7,8 @@
   transform-origin: top left;
   position: absolute;
   left: 0;
-  bottom: -140px;
+  bottom: -40%;
+  transform-origin: top left;
 }
 
 .project-toggle__title {
@@ -154,15 +155,14 @@
 
   .project-toggle__NavLinks {
     font-size: 1rem;
-    justify-content:center ;
+    justify-content: center;
     align-items: center;
     flex: 1;
     width: 33%;
   }
 }
-@media (max-width:650px) {
-  .project-toggle__container
-  {
+@media (max-width: 650px) {
+  .project-toggle__container {
     position: relative;
   }
 }
