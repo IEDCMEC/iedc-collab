@@ -6,27 +6,61 @@ h2{
     padding-top: 30px;
     font-size: 30px;
 }
+.details__container
+{
+  padding-top: 1%;
+  padding-left: 12%;
+  padding-right: 5%;
+}
 .not-found{
     display: flex;
     justify-content: center;
     align-items: center;
 }
-@media screen and (min-width: 280px) and (max-width: 768px) {
-    
+@media(max-width: 650px) {
+  .details__container
+  {
+    padding:5%;
+    justify-content: center;
+    align-items: center;
   }
-.details__container
-{
-  padding-top: 2%;
-  padding-left: 12%;
-  padding-right: 2%;
-}
+  }
+
 @media (max-width: 760px) {
 
 .container__details
 {
   display: flex;
-  flex-direction: column;
+  flex-direction: column-reverse;
   flex-wrap: wrap;
 }
 }
   
+@media (min-width: 1040px) and (max-width:1250px){
+
+  .details__container
+  {
+    padding-left: 16%;
+  }
+  }
+  @media (min-width: 920px) and (max-width:1040px){
+
+    .details__container
+    {
+      padding-left: 18%;
+    }
+    }
+    @media (min-width: 780px) and (max-width:920px){
+
+      .details__container
+      {
+        padding-left: 20%;
+      }
+      }
+      @media (min-width: 650px) and (max-width:780px){
+
+        .details__container
+        {
+          padding-left: 25%;
+        }
+        }

@@ -19,13 +19,6 @@
   justify-content: flex-end;
 }
 
-.project-nav__arrow {
-  max-width: 65px;
-  max-height: 65px;
-  padding: 15px 11px 15px 25px;
-  cursor: pointer;
-}
-
 .project-nav__profile
 {
   padding-left: 3rem;
@@ -43,6 +36,7 @@
   font-style: normal;
   font-weight: 700;
   font-size: 1.2rem;
+  text-transform: capitalize;
   padding-left: 30px;
   padding-top: 20px;
   margin-bottom: 0px;
@@ -71,10 +65,6 @@
   color: #9e0000;
 }
 
-button {
-  all: unset;
-  cursor: pointer;
-}
 .project-nav__button {
   background: #9e0000;
   border-radius: 9px;
@@ -82,11 +72,12 @@ button {
   font-style: normal;
   font-weight: 800;
   font-size: 1rem;
-  line-height: 29px;
+  cursor: pointer;
   color: #ffffff;
 
   margin-top: 7px;
   margin-bottom: 7px;
+  padding-top: 11px;
   padding-left: 12px;
   padding-right: 12px;
   margin-right: 45px;
@@ -104,19 +95,21 @@ button {
   }
   .project-nav__profile
   {
-    padding-left: 1rem;
+    padding-left: 0.7rem;
     padding-right: 1px;
+    padding-top:0.8rem
   }
   .project-nav__profile img {
     border-radius: 50%;
-    width: 4rem;
-    height: 4rem;
+    width: 3rem;
+    height: 3rem;
   }
 
   .project-nav__title {
     font-size: 1rem;
     padding-left: 7px;
     flex-wrap: nowrap;
+    text-transform: lowercase;
     text-transform: capitalize;
     padding-top: 20px;
     margin-top: 5px;
@@ -147,8 +140,12 @@ button {
     white-space: nowrap;
     margin-top: 13px;
     margin-right: 4px;
-    padding-left: 5px;
-    padding-right: 5px;
+    padding-top: 8px;
+    padding-left: 12px;
+    padding-right: 12px;
 
+  }
+  .projectnav-likes{
+display: none;
   }
 }

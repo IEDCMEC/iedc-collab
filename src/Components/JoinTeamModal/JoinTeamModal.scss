@@ -1,6 +1,7 @@
 .join-team-modal {
-  position: relative;
-  height: 600px;
+  position: absolute;
+  height: 100vh;
+  overflow-y: hidden;
 
   .bubble_9 {
     position: absolute;
@@ -50,6 +51,8 @@
     position: absolute;
     top: 20px;
     right: 20px;
+    z-index: 10;
+    cursor: pointer;
   }
 
   &__body {

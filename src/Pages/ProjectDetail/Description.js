@@ -9,7 +9,7 @@ import './Description.scss'
 const Description = () => {
 
   const { projects, loading } = useContext(ProjectContext);
-
+ 
   if (loading) {
     return (
       <div>
@@ -45,8 +45,9 @@ const Description = () => {
     <MainLayout/>
     <ProjectCarousel/>
     <div className="container__details">
-    <ProjectToggle/>
+    
     <ProjectNav/>
+    <ProjectToggle/>
     </div>
     <div className="details__container">
     <DescriptionDetails/></div>

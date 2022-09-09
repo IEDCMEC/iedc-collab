@@ -5,7 +5,7 @@ export const Menu = [
     },
     {
         label: 'Projects',
-        url: '/projects'
+        url:'/projects',
     },
     {
         label: 'Developers',
