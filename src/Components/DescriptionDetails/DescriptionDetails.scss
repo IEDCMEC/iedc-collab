@@ -186,3 +186,23 @@ color: #9E0000;
             justify-content: flex-end;
             gap:20px;
           }
+.description-details__headcontrols
+{
+    gap:20px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    right: 0;
+    padding-right: 5%;
+    padding-left: 3%;
+    position: absolute;
+}
+@media (max-width:795px) {
+    .description-details__headcontrols
+    {
+        justify-content: center;
+        position: relative;
+        padding-bottom: 1%;
+    }
+    
+}
