@@ -11,8 +11,10 @@ import bubble11 from "../../assets/bubble_11.svg"
 import sendPaperPlane from "../../assets/sendPaperPlane.svg"
 import closeButton from '../../assets/close.svg'
 
-const JoinTeamModal = () => {
-    return (<Modal.Dialog size="xl" className="join-team-modal">
+
+const JoinTeamModal = (props) => {
+    return (<>
+<Modal show={props.modalShow}  size="xl" className="join-team-modal">
         <img src={bubble9} alt="" className="bubble_9"/>
         <img src={bubble10} alt="" className="bubble_10"/>
         <img src={bubble11} alt="" className="bubble_11"/>
@@ -45,7 +47,7 @@ const JoinTeamModal = () => {
             <div className="rectangle"></div>
         </div>
 
-        <div className="close-button">
+        <div className="close-button" onClick={props.setModalShow(false)}>
             <img alt="close" src={closeButton} className="close-button"/>
         </div>
 
@@ -60,7 +62,8 @@ const JoinTeamModal = () => {
                 <img src={sendPaperPlane} alt="" className=""/>
             </Button>
         </ModalBody>
-    </Modal.Dialog>);
+    </Modal>
+    </>);
 }
 
 export default JoinTeamModal;

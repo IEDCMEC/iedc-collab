@@ -1,10 +1,12 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import './ProjectNav.scss'
 import { ProjectContext } from "../../contexts/ProjectContext";
 import like from '../../assets/like.png'
+import JoinTeamModal from '../JoinTeamModal/JoinTeamModal';
 
 const ProjectNav = () => {
     const { selectedProject } = useContext(ProjectContext);
+    const [modalShow, setModalShow] = useState(false);
     return (
         <div className='project-nav__container'>
 
@@ -20,9 +22,10 @@ const ProjectNav = () => {
                 <div className='project-nav__likes'>
                 <img src={like} alt="like" className='project-nav__like' />
                 <div className='project-nav__number-likes'>15 <span className="projectnav-likes" >Likes</span></div></div>
-                <div className='project-nav__button'>Join Team</div>
+                <div className='project-nav__button' onClick={() => setModalShow(true)}>Join Team</div>
             </div>
-            
+            <JoinTeamModal modalShow={modalShow}
+setModalShow={setModalShow}/>
 
         </div>
 

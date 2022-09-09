@@ -6,10 +6,11 @@ import { ProjectContext } from "../../contexts/ProjectContext";
 import DescriptionDetails from "../../Components/DescriptionDetails/DescriptionDetails";
 import ProjectNav from "../../Components/ProjectNav/ProjectNav";
 import './Description.scss'
+import JoinTeamModal from "../../Components/JoinTeamModal/JoinTeamModal";
 const Description = () => {
 
   const { projects, loading } = useContext(ProjectContext);
-
+ 
   if (loading) {
     return (
       <div>
@@ -50,6 +51,7 @@ const Description = () => {
     </div>
     <div className="details__container">
     <DescriptionDetails/></div>
+    <JoinTeamModal/>
     </>
   );
 };
