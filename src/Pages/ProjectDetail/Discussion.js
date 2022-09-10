@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import './Description.scss'
 import MainLayout from '../../Components/MainLayout/MainLayout'
 import ProjectToggle from "../../Components/ProjectToggle/ProjectToggle";
 import ProjectCarousel from "../../Components/ProjectCarousel/ProjectCarousel";

@@ -38,7 +38,6 @@ function getPosition()
         </div>
     <Swiper
     onSwiper={setSwiperRef}
-        slidesPerView={3}
         spaceBetween={30}
         initialSlide={getPosition()}
         loop={true}
@@ -48,11 +47,11 @@ function getPosition()
             slidesPerView: 2,
           },
           1275: {
-            slidesPerView: 4,
+            slidesPerView: 3,
           },
           // when window width is >= 768px
           882: {
-            slidesPerView: 3,
+            slidesPerView: 2,
 
           },
           280:
