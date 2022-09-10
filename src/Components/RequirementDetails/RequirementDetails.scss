@@ -1,0 +1,116 @@
+:root {
+    --primary-font: 20px;
+    --secondary-font: 18px;
+    --primary-line:30px;
+    --secondary-line: 28px;
+  }
+
+
+.requirement__container
+{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+}
+.requirement__title
+{
+    font-family: "Nunito";
+    font-style: normal;
+     font-weight: 700;
+font-size: 31px;
+flex-wrap: nowrap;
+line-height: 42px;
+color: #9E0000;
+}
+.requirement__content
+{
+    font-family: 'Nunito';
+font-style: normal;
+font-weight: 400;
+padding-top: 30px;
+font-size: var(--primary-font);
+line-height: var(--primary-line);
+text-align: justify;
+
+color: #263238;
+
+}
+.requirement__other
+{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+.requirement__other-hiring
+{
+    font-family: 'Nunito';
+font-style: normal;
+padding-top: 30px;
+font-weight: 800;
+font-size: 25px;
+line-height: 34px;
+color: #9E0000;
+}
+.requirement__other-skills{
+    display: flex;
+    flex-direction: column;
+    row-gap: 5px;
+    flex-wrap: wrap;
+    padding-top: 30px;
+}
+.requirement__other-skill
+{
+    
+font-family: 'Nunito';
+font-style: normal;
+font-weight: 400;
+font-size: var(--primary-font);
+flex-wrap: nowrap;
+line-height: var(--primary-line);
+
+color: #263238;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    display: flex;
+}
+@media (max-width:650px) {
+
+.requirement__content
+{
+font-size: var(--secondary-font);
+line-height: var(--secondary-line);
+
+}
+.requirement__other-skill
+{
+    
+font-size: var(--secondary-font);
+line-height: var(--secondary-line);
+}
+
+}
+
+          @media (max-width:400px) {
+            .requirement__title
+{
+    font-family: "Nunito";
+    font-style: normal;
+     font-weight: 700;
+font-size: 27px;
+flex-wrap: nowrap;
+line-height: 38px;
+color: #9E0000;
+}
+          }
+          .requirement-container__controls
+          {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            padding-top: 20px;
+            padding-bottom: 10px;
+            justify-content: flex-end;
+            gap:20px;
+          }
