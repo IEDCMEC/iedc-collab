@@ -36,10 +36,10 @@ const RequirementDetails = () => {
             </div>
         <div className="requirement-container__controls">
           <a href={`tel:${selectedProject.contactNo}`}>
-            <img src={Phoneicon} alt="phone-icon"></img>
+            <img src={Phoneicon} className="requirement_icon" alt="phone-icon"></img>
           </a>
           <a href={`mailto: ${selectedProject.leaderEmail}`}>
-            <img src={Mail} alt="mail"></img>
+            <img src={Mail} className="requirement_icon" alt="mail"></img>
           </a>
           {selectedProject.githubLink.length ? (
             <a
@@ -47,7 +47,7 @@ const RequirementDetails = () => {
               target="_blank"
               rel="noreferrer"
             >
-              <img src={Github} alt="github"></img>
+              <img src={Github} className="requirement_icon" alt="github"></img>
             </a>
           ) : (
             ""
