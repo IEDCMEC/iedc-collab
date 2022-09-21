@@ -227,6 +227,10 @@ export const doEditProject = async (obj, project_id, onSuccess = () => {}) => {
 export const getProjects = () => {
   return firebase.database().ref("projects/").once("value");
 };
+export const getDevelopers = () => {
+  return firebase.database().ref("users/").once("value");
+};
+
 
 export const getProject = (project_id) => {
   return firebase.database().ref("projects/").child(project_id).once("value");
