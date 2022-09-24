@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import MainLayout from '../../Components/MainLayout/MainLayout'
+import  "./Developers.scss"
 import { getDevelopers } from '../../Firebase/firebase'
 const Developers = () => {
   const [users, setUsers] = useState([]);
@@ -22,10 +23,26 @@ useEffect(() => {fetchData()},[])
   return (
     <div>
         <MainLayout>
-        <h1>Developers Page Coming soon....</h1>
-        {users.map((user)=>{return <h1>{user.name}</h1>})}
+            <h1 className="developer-title">Developers</h1>
+            <div className="container mx-auto" id="developer-details">
+                {
+                    users.map((user) => {
+                        return (
+                            <div className="developer-card">
+                                <img alt="Profile"
+                                     className="developer-card-image"
+                                     src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg"/>
+                                <div>
+                                    <h1 className="developer-card-name">{user.name}</h1>
+                                    <p className="developer-card-email">{user.email}</p>
+                                </div>
+                            </div>
+                        )
+                    })
+                }
+            </div>
         </MainLayout>
-        
+
     </div>
   )
   }
