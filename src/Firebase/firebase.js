@@ -33,6 +33,7 @@ export const signIn = async (onSigninSuccess = () => {}) => {
     const userData = {
       name: user.displayName,
       email: user.email,
+      photoURL: user.photoURL,
     };
     firebase
       .database()

@@ -31,7 +31,7 @@ useEffect(() => {fetchData()},[])
                             <div className="developer-card">
                                 <img alt="Profile"
                                      className="developer-card-image"
-                                     src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg"/>
+                                     src={user.photoURL||"https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg"}/>
                                 <div>
                                     <h1 className="developer-card-name">{user.name}</h1>
                                     <p className="developer-card-email">{user.email}</p>
