@@ -1,0 +1,37 @@
+
+.myProfile_main{
+    
+   display: flex;
+   justify-content: flex-start;
+   align-items: flex-start;
+    
+}
+.myProfile_left{    
+   
+  height: 40rem;
+  padding-left: 0px;
+  
+ 
+  padding-top: 0px;
+  margin-left: 0px;
+  width: 30rem ;
+  
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: flex;
+  background: #7A0202;
+  
+  color: #ffffff;
+
+    }
+.BgVector{
+    width: 30rem;
+    height: 30rem;
+    top: 0rem;
+    padding-top: 0rem;
+}
+
+.myProfile_details{
+    padding-top: 0rem;
+    left: 0px;
+} 
