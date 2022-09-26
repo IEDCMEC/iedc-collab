@@ -12,15 +12,15 @@ import triangle_4 from '../../assets/triangle_4.svg'
 import sendPaperPlane from "../../assets/sendPaperPlane.svg"
 import closeButton from "../../assets/close.svg";
 
-const InviteToProjectModal = () => {
-    return (<Modal.Dialog size="xl" className="invite-to-project-modal">
+const InviteToProjectModal = (props) => {
+    return (<Modal {...props} size="xl" centered className="invite-to-project-modal">
         <img src={triangle_1} alt="" className="triangle_1"/>
         <img src={triangle_2} alt="" className="triangle_2"/>
         <img src={triangle_3} alt="" className="triangle_3"/>
         <img src={triangle_4} alt="" className="triangle_4"/>
 
-        <div className="close-button">
-            <img alt="close" src={closeButton} className="close-button"/>
+        <div className="close-button" onClick={props.onHide}>
+            <img alt="close" src={closeButton} onClick={props.onHide} className="close-button"/>
         </div>
 
         <ModalBody className="invite-to-project-modal__body">
@@ -38,7 +38,7 @@ const InviteToProjectModal = () => {
                 <img src={sendPaperPlane} alt="" className=""/>
             </Button>
         </ModalBody>
-    </Modal.Dialog>);
+    </Modal>);
 }
 
 export default InviteToProjectModal;

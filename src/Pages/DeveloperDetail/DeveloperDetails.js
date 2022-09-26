@@ -1,5 +1,5 @@
 import MainLayout from "../../Components/MainLayout/MainLayout";
-import "./Details.scss";
+import "./DeveloperDetails.scss";
 import classIcon from "../../assets/class.svg";
 import browser from "../../assets/browser.svg";
 import phone from "../../assets/phonecircle.svg";
@@ -7,10 +7,12 @@ import mail from "../../assets/mailnew.svg";
 import linkedin from "../../assets/linkedin.svg";
 import github from "../../assets/githubnew.svg";
 import person from "../../assets/details_left.svg";
-import bubble1 from "../../assets/bubble_12.svg";
-import bubble2 from "../../assets/bubble_13.svg";
+import add from "../../assets/add.svg";
+import InviteToProjectModal from "../../Components/InviteToProjectModal/InviteToProjectModal";
+import { useState } from "react";
 
 function DeveloperDetails() {
+  const [modalShow, setModalShow] = useState(false);
   return (
     <>
       <MainLayout />
@@ -50,8 +52,6 @@ function DeveloperDetails() {
         <div className="developer_details_body">
           <div className="developer_details_body_left">
             <img src={person} alt="" className="developer_details_person" />
-        <img src={bubble1} alt="" className="developer_details_bubble1" />
-        <img src={bubble2} alt="" className="developer_details_bubble2" />
           </div>
           <div className="developer_details_body_right">
           <div className="developer_details_body_right_section">
@@ -110,6 +110,14 @@ function DeveloperDetails() {
               </div>
           </div>
         </div>
+        <div className="developer_details_footer_container">
+              <div className="developer_details_footer" onClick={() => setModalShow(true)}>
+          <img src={add} alt=''/>Invite to Project
+            </div>
+            </div>
+
+      <InviteToProjectModal show={modalShow}
+        onHide={() => setModalShow(false)} />
       </div>
     </>
   );
