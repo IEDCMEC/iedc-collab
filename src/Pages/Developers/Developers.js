@@ -1,25 +1,32 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext  } from 'react'
+import { useHistory } from 'react-router-dom';
 import MainLayout from '../../Components/MainLayout/MainLayout'
+import { UserContext } from '../../contexts/UserContext';
 import  "./Developers.scss"
-import { getDevelopers } from '../../Firebase/firebase'
 const Developers = () => {
-  const [users, setUsers] = useState([]);
-
-  async function fetchData(){await getDevelopers()
-      .then(async function (snapshot) {
-        let messageObject = snapshot.val();
-        const result = Object.keys(messageObject).map((key) => ({
-          ...messageObject[key],
-          id: key,
-        }));
-        setUsers(result);
-      })
-      .catch(function (error) {
-        alert("Something went wrong. Please try again after some time.");
-        console.log(error);
-      })
-    }
-useEffect(() => {fetchData()},[])
+  const { users, setSelectedUser, loading } = useContext(
+    UserContext
+  );
+  const history = useHistory();
+  const handleClick = (u) => {
+    history.push("/developer-details", { showDetailsDirectly: true });
+    setSelectedUser(u);
+  };
+  if (loading) {
+    return (
+        <div>
+           <MainLayout/>
+      <div
+        className="d-flex justify-content-center align-items-center flex-column"
+        style={{ height: "90vh" }}
+      >
+        
+        <div className="spinner-border" role="status"></div>
+        <div className="mt-3">Loading Developers...</div>
+      </div>
+      </div>
+    );
+  }
   return (
     <div>
         <MainLayout>
@@ -30,8 +37,8 @@ useEffect(() => {fetchData()},[])
                 {
                     users.map((user) => {
                         return (
-                          <a href='developer-details'>
-                            <div className="developer-card">
+                            <div className="developer-card" key={user.id}
+                            onClick={() => handleClick(user)}>
                                 <img alt="Profile"
                                      className="developer-card-image"
                                      src={user.photoURL||"https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg"}/>
@@ -39,7 +46,7 @@ useEffect(() => {fetchData()},[])
                                     <h1 className="developer-card-name">{user.name}</h1>
                                     <p className="developer-card-email">{user.email}</p>
                                 </div>
-                            </div></a>
+                            </div>
                         )
                     })
                 }

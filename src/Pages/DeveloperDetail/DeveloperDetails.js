@@ -9,9 +9,13 @@ import github from "../../assets/githubnew.svg";
 import person from "../../assets/details_left.svg";
 import add from "../../assets/add.svg";
 import InviteToProjectModal from "../../Components/InviteToProjectModal/InviteToProjectModal";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { UserContext } from "../../contexts/UserContext";
 
 function DeveloperDetails() {
+  const { selectedUser } = useContext(
+    UserContext
+  );
   const [modalShow, setModalShow] = useState(false);
   return (
     <>
@@ -28,7 +32,7 @@ function DeveloperDetails() {
           </div>
           <div className="developer_details">
             <div className="developer_details_header">
-              <div className="developer_name">Annette Black</div>
+              <div className="developer_name">{selectedUser.name}</div>
               <div className="developer_icons">
                 <img src={browser} alt="" />
                 <img src={phone} alt="" />
