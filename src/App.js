@@ -17,6 +17,7 @@ import 'aos/dist/aos.css';
 import Requirements from "./Pages/ProjectDetail/Requirements";
 import Description from "./Pages/ProjectDetail/Description";
 import Discussion from "./Pages/ProjectDetail/Discussion";
+import Details from "./Pages/DeveloperDetail/Details";
 
 initialize();
 
@@ -36,6 +37,7 @@ function App() {
             <Route Route path="/description" component={Description} />
             <Route Route path="/requirements" component={Requirements} />
             <Route Route path="/discussion" component={Discussion} />
+            <Route Route path="/details" component={Details} />
             {/* also add project name or id */}
             <Route Route path="/profile" component={MyProfile} />
             {/* endpoint has to be chaged with username */}

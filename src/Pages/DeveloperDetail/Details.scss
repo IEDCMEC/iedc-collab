@@ -1,0 +1,227 @@
+.developer_details_container
+{
+  padding-bottom: 5%;
+}
+
+
+.developer_details_navbar {
+  background: rgba(148, 2, 2, 0.2);
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  column-gap: 20%;
+  padding-left: 5%;
+  padding-right: 5%;
+  padding-top: 2%;
+  padding-bottom: 2%;
+  align-items: center;
+  flex-wrap: nowrap;
+}
+.developer_image {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+}
+.developer_details {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  flex-wrap: nowrap;
+}
+.developer_details_header {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+}
+.developer_icons {
+  justify-content: flex-end;
+  column-gap: 15px;
+  align-items: center;
+  display: flex;
+    flex-direction: row;
+    height: 60px;
+    width: 30px;
+flex-wrap: nowrap;
+}
+.developer_name {
+  font-family: "Nunito";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 40px;
+  line-height: 55px;
+  color: #9e0000;
+}
+.developer_bio {
+  font-family: "Nunito";
+  font-style: normal;
+  font-weight: 200;
+  padding-top: 15px;
+  font-size: 18px;
+  color: #000000;
+}
+
+.developer_class {
+  font-family: "Nunito";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 21px;
+  color: #9e0000;
+  display:flex ;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  column-gap: 10px;
+}
+.developer_class img{
+    width:30px;
+}
+.developer_details_body
+{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content:flex-start;
+  column-gap: 10%;
+  height: 100%;
+  align-items: flex-start;
+  padding-left: 5%;
+  padding-right: 5%;
+}
+.developer_details_body_left
+{
+  padding-top: 9%;
+
+}
+.developer_details_person
+{
+  
+}
+.developer_details_bubble1
+{
+ position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
+}
+.developer_details_bubble2
+{
+ position: absolute;
+  left: 13%;
+  z-index: -1;
+}
+.developer_details_body_right
+{
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+.developer_details_body_right_header
+{
+  font-family: 'Nunito';
+font-style: normal;
+font-weight: 700;
+font-size: 31px;
+line-height: 42px;
+
+color: #9E0000;
+}
+.developer_details_body_right_section
+  {
+padding-top: 5%;
+  }
+  .developer_details_body_right_section_1
+  {
+    padding-top: 5%;
+  }
+.developer_details_body_right_content
+{
+font-family: 'Nunito';
+font-style: normal;
+font-weight: 400;
+padding-top: 3%;
+font-size: 21px;
+line-height: 29px;
+/* identical to box height */
+
+
+color: #000000;
+}
+.developer_details_body_right_content_projects
+{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+.developer_details_body_right_content_project
+{
+  width: 203px;
+  height: 172px;
+  display: flex;
+  flex-direction: row;
+  background: #9E0000;
+  border-radius: 10px;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  justify-content: center;
+  row-gap: 10px;
+}
+.developer_details_body_right_content_project img
+{
+  width: 203px;
+height: 96px;
+border-radius: 10px;
+}
+.developer_details_body_right_content_project_title{
+font-family: 'Nunito';
+font-style: normal;
+font-weight: 800;
+font-size: 18px;
+line-height: 25px;
+color: #FFFFFF;
+}
+.developer_details_body_right_content_project_lead{
+font-family: 'Nunito';
+font-style: normal;
+font-weight: 600;
+font-size: 14px;
+line-height: 19px;
+/* identical to box height */
+
+
+color: #FFFFFF;
+}
+@media (max-width:1197px) {
+  .developer_details_body
+  {
+    flex-direction: column-reverse;
+    justify-content: center;
+    align-items: center;
+  }
+  .developer_details_bubble1 {
+    display: none;
+  }
+  .developer_details_bubble2
+  {
+    display: none;
+  }
+  .developer_details_body_right_section
+  {
+    background-color: rgba(148, 2, 2, 0.1);
+border-radius: 10px;
+padding: 5%;
+margin-top: 5%;
+  }
+  .developer_details_body_right_section_1
+  {
+    justify-content: center;
+    align-items: center;
+    padding-top: 5%;
+    display: flex;
+    flex-direction: column;
+  }
+  .developer_details_body_right_content_projects
+{
+  justify-content: center;
+}
+}
