@@ -18,6 +18,7 @@ import Requirements from "./Pages/ProjectDetail/Requirements";
 import Description from "./Pages/ProjectDetail/Description";
 import Discussion from "./Pages/ProjectDetail/Discussion";
 import DeveloperDetails from "./Pages/DeveloperDetail/DeveloperDetails";
+import { UserProvider } from "./contexts/UserContext";
 
 initialize();
 
@@ -26,6 +27,7 @@ function App() {
   return (
     <AuthProvider>
       <ProjectProvider>
+        <UserProvider>
         <BrowserRouter>
           <ScrollToTop />
           <ToastContainer />
@@ -44,6 +46,7 @@ function App() {
             <Route Route path="/ideas" component={Ideas} />
           </Switch>
         </BrowserRouter>
+        </UserProvider>
       </ProjectProvider>
     </AuthProvider>
   );
