@@ -5,6 +5,7 @@ import MainLayout from '../../Components/MainLayout/MainLayout'
 import {BsTelephoneInbound} from 'react-icons/bs'
 import {HiOutlineAcademicCap} from 'react-icons/hi'
 import {MdOutlineEmail} from 'react-icons/md'
+import { Button } from '@mui/material'
 import {TbNetwork} from 'react-icons/tb'
 import {VscGithubInverted} from 'react-icons/vsc'
 import {FaLinkedin} from 'react-icons/fa'
@@ -61,7 +62,14 @@ const MyProfile = () => {
           </div>
 
           <div className="received_sent_box">
+              <div className="received_bpx_header">
+                <p>Project Name</p>
+                <Button variant="outlined">View Projects</Button>
 
+              </div>
+              <div className="req_profile_box">
+                <img className='req_profile_img' src="https://vpnoverview.com/wp-content/uploads/what-is-a-hacker-what-is-hacking-featured-800x400.png" alt="" />
+              </div>
           </div>
           <div className="request__box">
 
