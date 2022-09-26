@@ -31,7 +31,9 @@ const Developers = () => {
     <div>
         <MainLayout>
             <h1 className="developer-title">Developers</h1>
-            <div className="container mx-auto" id="developer-details">
+            <div onClick={(e)=>{
+              window.location.assign('/developer-details')
+            }} style={{cursor:'pointer'}} className="container mx-auto" id="developer-details">
                 {
                     users.map((user) => {
                         return (

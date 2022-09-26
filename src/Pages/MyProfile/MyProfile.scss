@@ -1,37 +1,125 @@
-
-.myProfile_main{
-    
-   display: flex;
-   justify-content: flex-start;
-   align-items: flex-start;
-    
+.my_profile_container{
+    display: flex;
+    flex-direction: row;
+    font-family:'Nunito';
 }
-.myProfile_left{    
-   
-  height: 40rem;
-  padding-left: 0px;
-  
- 
-  padding-top: 0px;
-  margin-left: 0px;
-  width: 30rem ;
-  
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: flex;
-  background: #7A0202;
-  
-  color: #ffffff;
-
-    }
-.BgVector{
-    width: 30rem;
-    height: 30rem;
-    top: 0rem;
-    padding-top: 0rem;
+.profile_board{
+    background-color:#7A0202;
+    padding: 1.5rem;
+    display: flex;
+    color: #ffff;
+    flex-direction: column;
+    gap:2rem;
+}
+.edit_board{
+    
+    height: 100vh;
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
 }
 
-.myProfile_details{
-    padding-top: 0rem;
-    left: 0px;
-} 
+.profile_image{
+    width: 15rem;
+    height: 15rem;
+    border-radius: 15rem;
+}
+.profile_details_header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.profile_details_container{
+    font-size: 1.4rem;
+}
+.phone_class{
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    justify-content:center;
+    align-items: flex-start;
+}
+.profile_phone{
+    display: flex;
+    flex-direction: row;
+    // justify-content: space-between;
+    align-items: flex-start;
+}
+.profile_class{
+    display: flex;
+    flex-direction: row;
+    // justify-content: space-between;
+    align-items: flex-start;
+}
+.profile_email{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 0.25rem;
+}
+.profile_web{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    
+    gap: 0.25rem;
+}
+.profile_github{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    // align-items: center;
+    gap: 0.25rem;
+}
+.profile_linkedin{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    // align-items: center;
+    gap: 0.25rem;
+}
+.edit__pro_box{
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin-top: 2rem;
+    margin-left: 1.5rem;
+    
+}
+.received{
+    display: flex;
+    width: fit-content;
+    padding: 0.25rem;
+    border: 1px solid #9E0000;
+    cursor: pointer;
+    border-radius: 10px 0px 0px 0px;
+
+}
+.edit__header{
+    display:  flex;
+    flex-direction: row;
+
+}
+.sent{
+    display: flex;
+    width: fit-content;
+    padding: 0.25rem;
+    cursor: pointer;
+    border: 1px solid #9E0000;
+    border-radius: 0px 10px 0px 0px;
+}
+.req_profile_img{
+    width: 2rem;
+    border-radius: 1rem;
+}
+.received_sent_box{
+
+}
+.request__box{
+
+}
+.portfolio__box{
+
+}
