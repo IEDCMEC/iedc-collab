@@ -30,6 +30,7 @@ useEffect(() => {fetchData()},[])
                 {
                     users.map((user) => {
                         return (
+                          <a href='developer-details'>
                             <div className="developer-card">
                                 <img alt="Profile"
                                      className="developer-card-image"
@@ -38,7 +39,7 @@ useEffect(() => {fetchData()},[])
                                     <h1 className="developer-card-name">{user.name}</h1>
                                     <p className="developer-card-email">{user.email}</p>
                                 </div>
-                            </div>
+                            </div></a>
                         )
                     })
                 }
