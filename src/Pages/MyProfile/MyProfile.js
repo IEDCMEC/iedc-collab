@@ -10,7 +10,8 @@ const MyProfile = () => {
           <div className='myProfile_left'>
             <div className='myProfile_details'>
               <div className='myProfile_pic'>
-              <img src={bgVector} alt='bg' className='BgVector'/>
+              {/* <img src={bgVector} alt='bg' className='BgVector'/> */}
+              
               </div>
               <h4>Marvin Joy</h4>
             </div>
