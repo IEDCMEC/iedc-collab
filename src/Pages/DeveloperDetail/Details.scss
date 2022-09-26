@@ -92,10 +92,6 @@ flex-wrap: nowrap;
   padding-top: 9%;
 
 }
-.developer_details_person
-{
-  
-}
 .developer_details_bubble1
 {
  position: absolute;
@@ -222,6 +218,33 @@ margin-top: 5%;
   }
   .developer_details_body_right_content_projects
 {
+  justify-content: center;
+}
+.developer_details_navbar {
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+}
+@media (max-width:650px) {
+
+  .developer_details_header {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+.developer_icons{
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  width: 100%;
+}
+.developer_class {
+  justify-content: center;
+}
+.developer_bio {
+  text-align: center;
   justify-content: center;
 }
 }
