@@ -49,17 +49,21 @@ function Details() {
         </div>
         <div className="developer_details_body">
           <div className="developer_details_body_left">
-            <img src={person} alt="" />
+            <img src={person} alt="" className="developer_details_person" />
         <img src={bubble1} alt="" className="developer_details_bubble1" />
         <img src={bubble2} alt="" className="developer_details_bubble2" />
           </div>
           <div className="developer_details_body_right">
+          <div className="developer_details_body_right_section">
             <div className="developer_details_body_right_header">
               Skills
               </div>
               <div className="developer_details_body_right_content">
               Python, C, Java, Competitive Programming, DSA, Communication, Math
               </div>
+              </div>
+
+              <div className="developer_details_body_right_section_1">
               <div className="developer_details_body_right_header">
               Projects
               </div>
@@ -94,11 +98,15 @@ function Details() {
                   </div>
                 </div>
                 </div>
+                </div>
+
+              <div className="developer_details_body_right_section">
               <div className="developer_details_body_right_header">
               Achievements
               </div>
               <div className="developer_details_body_right_content">
               Python, C, Java, Competitive Programming, DSA, Communication, Math
+              </div>
               </div>
           </div>
         </div>

@@ -89,8 +89,12 @@ flex-wrap: nowrap;
 }
 .developer_details_body_left
 {
-  padding-top: 6%;
+  padding-top: 9%;
 
+}
+.developer_details_person
+{
+  
 }
 .developer_details_bubble1
 {
@@ -114,7 +118,6 @@ flex-wrap: nowrap;
 .developer_details_body_right_header
 {
   font-family: 'Nunito';
-  padding-top: 5%;
 font-style: normal;
 font-weight: 700;
 font-size: 31px;
@@ -122,6 +125,14 @@ line-height: 42px;
 
 color: #9E0000;
 }
+.developer_details_body_right_section
+  {
+padding-top: 5%;
+  }
+  .developer_details_body_right_section_1
+  {
+    padding-top: 5%;
+  }
 .developer_details_body_right_content
 {
 font-family: 'Nunito';
@@ -194,5 +205,23 @@ color: #FFFFFF;
   {
     display: none;
   }
-  
+  .developer_details_body_right_section
+  {
+    background-color: rgba(148, 2, 2, 0.1);
+border-radius: 10px;
+padding: 5%;
+margin-top: 5%;
+  }
+  .developer_details_body_right_section_1
+  {
+    justify-content: center;
+    align-items: center;
+    padding-top: 5%;
+    display: flex;
+    flex-direction: column;
+  }
+  .developer_details_body_right_content_projects
+{
+  justify-content: center;
+}
 }
