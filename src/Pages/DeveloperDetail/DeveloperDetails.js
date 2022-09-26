@@ -10,7 +10,7 @@ import person from "../../assets/details_left.svg";
 import bubble1 from "../../assets/bubble_12.svg";
 import bubble2 from "../../assets/bubble_13.svg";
 
-function Details() {
+function DeveloperDetails() {
   return (
     <>
       <MainLayout />
@@ -114,4 +114,4 @@ function Details() {
     </>
   );
 }
-export default Details;
+export default DeveloperDetails;
