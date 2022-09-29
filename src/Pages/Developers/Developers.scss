@@ -8,13 +8,24 @@
   padding-top: 2rem;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  @media screen and (max-width: 1199px) {
+  @media screen and (max-width: 992px) {
     grid-template-columns: 1fr;
   }
   grid-row-gap: 1rem;
 
-  // Offset to compensate for profile picture
-  transform: translateX(5vw);
+  transform: translateX(3.5rem);
+  @media screen and (max-width: 1200px) {
+    transform: translateX(4rem);
+  }
+  @media screen and (max-width: 992px) {
+    transform: translateX(5rem);
+  }
+  @media screen and (max-width: 768px) {
+    transform: translateX(2rem);
+  }
+  @media screen and (max-width: 576px) {
+    transform: translateX(3rem);
+  }
 
   .developer-card {
     height: 5rem;
@@ -22,9 +33,16 @@
     border-radius: 0.5rem;
     width: 28rem;
     cursor: pointer;
-    @media screen and (max-width: 1199px) {
+    @media screen and (max-width: 1200px) {
+      width: 80%;
+    }
+    @media screen and (max-width: 768px) {
       width: 100%;
-      max-width: 90vw;
+    }
+    @media screen and (max-width: 576px) {
+      width: 100%;
+      max-width: 80vw;
+      height: 4.5rem;
     }
     background-color: #9E0000;
 
@@ -36,11 +54,22 @@
       color: white;
       font-size: 2rem;
       padding-top: 1rem;
-      white-space: nowrap;
+      @media screen and (max-width: 576px) {
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        max-width: 14rem;
+      }
     }
 
     &-email {
       color: white;
+      @media screen and (max-width: 576px) {
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        max-width: 14rem;
+      }
     }
 
     &-image {
@@ -49,9 +78,14 @@
       border-radius: 50%;
       border: 1px solid #780101;
       transform: translateX(-50%);
+      @media screen and (max-width: 576px) {
+        height: 5rem;
+        width: 5rem;
+      }
     }
   }
 }
-#developer-details a{
+
+#developer-details a {
   text-decoration: none;
 }
