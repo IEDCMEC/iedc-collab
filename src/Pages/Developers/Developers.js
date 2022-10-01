@@ -42,7 +42,7 @@ const Developers = () => {
                                      className="developer-card-image"
                                      src={user.photoURL||"https://sabt.center/wp-content/uploads/2014/08/avatar-1.png"}/>
                                 <div>
-                                    <h1 className="developer-card-name">{user.name}</h1>
+                                    <h1 className="developer-card-name">{user.name.toLowerCase()}</h1>
                                     <div className="developer-card-email">{user.email}</div>
                                 </div>
                             </div>
