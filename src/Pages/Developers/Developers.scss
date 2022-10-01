@@ -1,57 +1,128 @@
+.developer_container
+{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow-x: hidden;
+  padding-bottom: 5%;
+}
+
 .developer-title {
   text-align: center;
-  margin-top: 2rem;
-  color: #9e0000;
+  margin-top: 2rem;font-family: 'Nunito';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 35px;
+  line-height: 51px;
+  
+  color: #9E0000;
 }
-
-#developer-details {
-  padding-top: 2rem;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  @media screen and (max-width: 1199px) {
-    grid-template-columns: 1fr;
-  }
-  grid-row-gap: 1rem;
-
-  // Offset to compensate for profile picture
-  transform: translateX(5vw);
-
-  .developer-card {
-    height: 5rem;
-    border: 1px solid white;
-    border-radius: 0.5rem;
-    width: 28rem;
-    cursor: pointer;
-    @media screen and (max-width: 1199px) {
-      width: 100%;
-      max-width: 90vw;
-    }
-    background-color: #9E0000;
-
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-
-    &-name {
-      color: white;
-      font-size: 2rem;
-      padding-top: 1rem;
-      white-space: nowrap;
-    }
-
-    &-email {
-      color: white;
-    }
-
-    &-image {
-      height: 5.2rem;
-      width: 5.2rem;
-      border-radius: 50%;
-      border: 1px solid #780101;
-      transform: translateX(-50%);
-    }
-  }
+.developer-details
+{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  row-gap: 30px;
+  column-gap: 10%;
+  padding-top: 2%;
+  justify-content: center;
 }
-#developer-details a{
-  text-decoration: none;
+.developer-card
+{
+  width: 528px;
+
+height: 107px;
+background-color: #9e0000;
+color: white;
+display: flex;
+flex-direction: row;
+row-gap: 10px;
+border-top-left-radius:130px;
+border-bottom-left-radius: 130px;
+border-bottom-right-radius: 30px;
+border-top-right-radius: 30px;
+flex-wrap: nowrap;
+padding-right: 7px;
+padding-top: 7px;
+padding-bottom: 7px;
+justify-content: flex-start;
+
+}
+.developer-card img{
+  width: 120px !important;
+height: 120px !important;
+border-radius: 50%;
+position: relative;
+top:-13px;
+left: -10px;
+}
+.developer-card-name
+{
+  font-family: 'Nunito';
+  flex-wrap: wrap;
+font-style: normal;
+font-weight: 700;
+font-size: 25px;
+line-height: 34px;
+
+width:450px;
+white-space: nowrap;
+overflow: hidden;
+text-overflow: ellipsis;
+color: #FFFFFF;
+}
+.developer-card-email
+{
+
+font-family: 'Nunito';
+width:450px;
+white-space: nowrap;
+overflow: hidden;
+text-overflow: ellipsis;
+font-style: normal;
+font-weight: 400;
+font-size: 21px;
+line-height: 29px;
+/* identical to box height */
+
+
+color: #FFFFFF;
+
+}
+@media (max-width:600px) {
+  .developer-card
+{
+  width: 80%;
+}
+.developer-card-name
+{
+font-size: 21px;
+width: 80%;
+}
+.developer-card-email
+{
+
+font-size: 18px;
+width:83%;
+
+}
+}
+@media (max-width:420px) {
+  .developer-card
+{
+  margin-left: 7px;
+}
+.developer-card-name
+{
+font-size: 18px;
+width: 70%;
+}
+.developer-card-email
+{
+
+font-size: 15px;
+width:70%;
+
+}
 }

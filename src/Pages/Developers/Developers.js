@@ -28,12 +28,11 @@ const Developers = () => {
     );
   }
   return (
-    <div>
         <MainLayout>
-            <h1 className="developer-title">Developers</h1>
-            <div onClick={(e)=>{
-              window.location.assign('/developer-details')
-            }} style={{cursor:'pointer'}} className="container mx-auto" id="developer-details">
+
+    <div className='developer_container'>
+            <h1 className="developer-title">DEVELOPERS</h1>
+            <div className="developer-details">
                 {
                     users.map((user) => {
                         return (
@@ -41,19 +40,19 @@ const Developers = () => {
                             onClick={() => handleClick(user)}>
                                 <img alt="Profile"
                                      className="developer-card-image"
-                                     src={user.photoURL||"https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg"}/>
+                                     src={user.photoURL||"https://sabt.center/wp-content/uploads/2014/08/avatar-1.png"}/>
                                 <div>
                                     <h1 className="developer-card-name">{user.name}</h1>
-                                    <p className="developer-card-email">{user.email}</p>
+                                    <div className="developer-card-email">{user.email}</div>
                                 </div>
                             </div>
                         )
                     })
                 }
             </div>
+    </div>
         </MainLayout>
 
-    </div>
   )
   }
 
