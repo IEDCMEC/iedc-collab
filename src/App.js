@@ -35,11 +35,12 @@ function App() {
             <Route exact path="/" component={Landing} />
             <Route Route path="/collab" component={Collab} />
             <Route Route path="/projects" component={Projects} />
+            <Route Route path="/developers/:id" component={DeveloperDetails} />
             <Route Route path="/developers" component={Developers} />
             <Route Route path="/description" component={Description} />
             <Route Route path="/requirements" component={Requirements} />
             <Route Route path="/discussion" component={Discussion} />
-            <Route Route path="/developer-details" component={DeveloperDetails} />
+            
             {/* also add project name or id */}
             <Route Route path="/profile" component={MyProfile} />
             {/* endpoint has to be chaged with username */}

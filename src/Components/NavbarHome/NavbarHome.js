@@ -2,9 +2,9 @@ import { useState, React } from "react";
 import { Drawer } from "@mui/material";
 import { HiOutlineMenuAlt3 } from "react-icons/hi";
 import { Link } from "react-router-dom";
-import home from "../../assets/home.svg";
 import "./NavbarHome.scss";
 import meclogo from "../../assets/meclogo.png";
+import { FaHome } from "react-icons/fa";
 
 function NavbarHome() {
   const [open, setOpen] = useState(false);
@@ -22,7 +22,7 @@ function NavbarHome() {
         <Link to="/" className="nav_item">
           <div className="logo">
             <div className="home_logo">
-              <img src={home} alt="" className="home__logo" />
+            <FaHome color="white" size={25}/>
             </div>
             <div className="title">IEDC MEC COLLAB</div>
           </div>

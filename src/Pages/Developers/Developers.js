@@ -9,7 +9,7 @@ const Developers = () => {
   );
   const history = useHistory();
   const handleClick = (u) => {
-    history.push("/developer-details", { showDetailsDirectly: true });
+    history.push(`/developers/${u.id}`);
     setSelectedUser(u);
   };
   if (loading) {
