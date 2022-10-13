@@ -9,14 +9,40 @@ import github from "../../assets/githubnew.svg";
 import person from "../../assets/details_left.svg";
 import add from "../../assets/add.svg";
 import InviteToProjectModal from "../../Components/InviteToProjectModal/InviteToProjectModal";
-import { useContext, useState } from "react";
-import { UserContext } from "../../contexts/UserContext";
+import { useContext, useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { getUser } from "../../Firebase/firebase";
 
 function DeveloperDetails() {
-  const { selectedUser } = useContext(
-    UserContext
-  );
+  let {id}=useParams();
+  const [selectedUser, setSelectedUser] = useState({});
+  const [loading, setLoading] = useState(true)
+  const getDev = async (id) => {
+    const user = await getUser(id);
+    setSelectedUser(await user.val())
+    setLoading(false)
+
+  }
+  useEffect(() => {
+    getDev(id);
+    
+  }, [id]);
   const [modalShow, setModalShow] = useState(false);
+  if (loading) {
+    return (
+        <div>
+           <MainLayout/>
+      <div
+        className="d-flex justify-content-center align-items-center flex-column"
+        style={{ height: "90vh" }}
+      >
+        
+        <div className="spinner-border" role="status"></div>
+        <div className="mt-3">Loading Developer...</div>
+      </div>
+      </div>
+    );
+  }
   return (
     <>
       <MainLayout />
@@ -26,8 +52,7 @@ function DeveloperDetails() {
           <div className="developer_image_div">
             <img
               className="developer_image"
-              src="https://s3-alpha-sig.figma.com/img/bd44/db64/e0bbb4f5c9487fb9deaeeb5ccb407c39?Expires=1664755200&Signature=Ze-rK0O3CgVF244-6nFZ1cIZRFIgcjAMFI8KcfP9tS1HTdnYe8H5hFM5jEeHu9lnjkA4LEa9THgdrPVhE9~o~89n~4wyc9dmzp6wQibFwoxFCaSD2o88Ap9I4Z99mmmA5Ew0hIvUUO1YKu6owTBchaDfJ2Vs5x2nK0DLDyYDf9aWjE8jCmepIKFohGjp3Eryk3mfoAsn5ynyHlSARLxtkgRCBezkusR5bTXKypwqrVolDdhjfnxMFbWrWksghROX8M6u6upLk3TCAlzk-M74W8hdG1dp4PqilY3PbT7mi4sSYrvhu9DZBLKgXuvjwa5fzL3~vPUFQV6LYuKIqVC1gA__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"
-              alt=""
+              src={selectedUser.photoURL||"https://sabt.center/wp-content/uploads/2014/08/avatar-1.png"}           alt=""
             />
           </div>
           <div className="developer_details">

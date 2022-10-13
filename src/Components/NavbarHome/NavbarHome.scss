@@ -187,9 +187,10 @@
     background-color: #9E0000;
     width: 48px;
     height:45px;
+    display: flex;
     justify-content: center;
-    padding: 7px;
     border-radius: 9px;
+    align-items: center;
     pointer-events: none;
     cursor: pointer;
 
