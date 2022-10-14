@@ -36,7 +36,7 @@ const Developers = () => {
                 {
                     users.map((user) => {
                         return (
-                            <div className="developer-card" key={user.id}
+                            <div className="developer-card" key={user.id} style={{cursor:"pointer"}}
                             onClick={() => handleClick(user)}>
                                 <img alt="Profile"
                                      className="developer-card-image"

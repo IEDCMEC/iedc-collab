@@ -14,11 +14,9 @@ import ScrollToTop from "./Utils/ScrollToTop";
 import Ideas from "./Pages/Ideas/Ideas";
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import Requirements from "./Pages/ProjectDetail/Requirements";
-import Description from "./Pages/ProjectDetail/Description";
-import Discussion from "./Pages/ProjectDetail/Discussion";
 import DeveloperDetails from "./Pages/DeveloperDetail/DeveloperDetails";
 import { UserProvider } from "./contexts/UserContext";
+import ProjectDetail from "./Pages/ProjectDetail/ProjectDetail";
 
 initialize();
 
@@ -34,12 +32,11 @@ function App() {
           <Switch>
             <Route exact path="/" component={Landing} />
             <Route Route path="/collab" component={Collab} />
+            <Route exact path="/projects/:id" component={ProjectDetail} />
             <Route Route path="/projects" component={Projects} />
-            <Route Route path="/developers/:id" component={DeveloperDetails} />
+            
+            <Route exact path="/developers/:id" component={DeveloperDetails} />
             <Route Route path="/developers" component={Developers} />
-            <Route Route path="/description" component={Description} />
-            <Route Route path="/requirements" component={Requirements} />
-            <Route Route path="/discussion" component={Discussion} />
             
             {/* also add project name or id */}
             <Route Route path="/profile" component={MyProfile} />
