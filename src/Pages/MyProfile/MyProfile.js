@@ -1,6 +1,8 @@
 import React from 'react'
 import './MyProfile.scss'
 import edit_icon from '../../assets/edit_profile_icon.svg'
+import accept_icon from '../../assets/accepticon.svg'
+import decline_icon from '../../assets/declineicon.svg'
 import MainLayout from '../../Components/MainLayout/MainLayout'
 import {BsTelephoneInbound} from 'react-icons/bs'
 import {HiOutlineAcademicCap} from 'react-icons/hi'
@@ -13,8 +15,8 @@ const MyProfile = () => {
   return (
     <MainLayout>
       <div className="my_profile_container">
-        <div className="profile_board">
-          <div className="pro_image_conatiner"><img src="https://vpnoverview.com/wp-content/uploads/what-is-a-hacker-what-is-hacking-featured-800x400.png"className='profile_image' alt="" />
+        <div className="profile_board" >
+          <div className="pro_image_container"><img src="https://vpnoverview.com/wp-content/uploads/what-is-a-hacker-what-is-hacking-featured-800x400.png"className='profile_image' alt="" />
           </div>
               
          
@@ -27,7 +29,7 @@ const MyProfile = () => {
           <div className="phone_class">
             <div className="profile_phone">
               <BsTelephoneInbound style={{width:'3rem'}}/>
-              <p>798789778768</p>
+              <p>7987809778</p>
             </div>
             <div className="profile_class">
               <HiOutlineAcademicCap style={{width:'3rem'}}/>
@@ -56,7 +58,11 @@ const MyProfile = () => {
         
 
         <div className="edit__pro_box">
-
+          <div className='reqs_invite_bar'>
+            <div className='reqs_invite_bar__requests'>Requests</div>
+            <div className='reqs_invite_bar__line'>|</div>
+            <div className='reqs_invite_bar__invite'>Invite</div>
+          </div>
           <div className="edit__header" >
               <div className='received'>Recieved</div><div className='sent'>Sent</div>
           </div>
@@ -69,13 +75,47 @@ const MyProfile = () => {
               </div>
               <div className="req_profile_box">
                 <img className='req_profile_img' src="https://vpnoverview.com/wp-content/uploads/what-is-a-hacker-what-is-hacking-featured-800x400.png" alt="" />
+                <div className='req_profile_details'>
+                  <h4>Guy Hawkins</h4>
+                  <p>Invite Message - Add a default Message if user doesnot customize it</p>
+                </div>
+              </div>
+
+              <div className='received_btns'>
+                <button className='received_btn_accept'>
+                    <img src={accept_icon}  alt="" />
+
+                    Accept
+                </button>
+                <button className='received_btn_decline'>
+                    <img src={decline_icon}  alt="" />
+
+                    Decline
+                </button>
+
               </div>
           </div>
-          <div className="request__box">
+          
+          <div className='edit__pro_abtMe'>
+            <div>About Me</div>
+            <div className='edit__pro_abtMe_bx'>
 
+            </div>
           </div>
 
-          <div className="portfolio__box"></div>
+          <div className='edit__pro_skls'>
+          <div>Skills</div>
+            <div className='edit__pro_skls_bx'>
+
+            </div>
+          </div>
+
+          <div className='edit__pro_achvmts'>
+            <div>Achivements</div>
+            <div className='edit__pro_achvmts_bx'>
+
+            </div>
+          </div>          
         </div>
         </div>
 
