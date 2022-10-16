@@ -15,7 +15,6 @@ import Ideas from "./Pages/Ideas/Ideas";
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import DeveloperDetails from "./Pages/DeveloperDetail/DeveloperDetails";
-import { UserProvider } from "./contexts/UserContext";
 import ProjectDetail from "./Pages/ProjectDetail/ProjectDetail";
 
 initialize();
@@ -25,7 +24,6 @@ function App() {
   return (
     <AuthProvider>
       <ProjectProvider>
-        <UserProvider>
         <BrowserRouter>
           <ScrollToTop />
           <ToastContainer />
@@ -44,7 +42,6 @@ function App() {
             <Route Route path="/ideas" component={Ideas} />
           </Switch>
         </BrowserRouter>
-        </UserProvider>
       </ProjectProvider>
     </AuthProvider>
   );

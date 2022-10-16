@@ -9,7 +9,7 @@ import github from "../../assets/githubnew.svg";
 import person from "../../assets/details_left.svg";
 import add from "../../assets/add.svg";
 import InviteToProjectModal from "../../Components/InviteToProjectModal/InviteToProjectModal";
-import { useEffect, useState } from "react";
+import {  useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getUser } from "../../Firebase/firebase";
 
@@ -19,7 +19,7 @@ function DeveloperDetails() {
   const [loading, setLoading] = useState(true)
   const getDev = async (id) => {
     const user = await getUser(id);
-    setSelectedUser(await user.val());console.log(user.val())
+    setSelectedUser(await user.val())
     setLoading(false)
 
   }
