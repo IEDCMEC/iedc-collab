@@ -1,11 +1,9 @@
 import ProjectCard from "./ProjectCard";
-import React, { useCallback, useContext, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper.min.css";
 import left from "../../assets/left.svg";
-import { ProjectContext } from "../../contexts/ProjectContext";
 import right from "../../assets/right.svg";
-import { getProject } from "../../Firebase/firebase";
 function ProjectCarousel() {
   const [projects, setProjects] = useState(null);
   const getProjects = async () => {
@@ -16,6 +14,7 @@ function ProjectCarousel() {
   };
   useEffect(() => {
     getProjects();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   const [swiperRef, setSwiperRef] = useState();
   const handleLeftClick = useCallback(() => {
@@ -27,7 +26,7 @@ function ProjectCarousel() {
     if (!swiperRef) return;
     swiperRef.slideNext();
   }, [swiperRef]);
-  var i = 0;
+  // var i = 0;
   // function getPosition()
   // {
   //   for(i=0;i<projects.length;i++){

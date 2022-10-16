@@ -9,7 +9,7 @@ import github from "../../assets/githubnew.svg";
 import person from "../../assets/details_left.svg";
 import add from "../../assets/add.svg";
 import InviteToProjectModal from "../../Components/InviteToProjectModal/InviteToProjectModal";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getUser } from "../../Firebase/firebase";
 
@@ -19,7 +19,7 @@ function DeveloperDetails() {
   const [loading, setLoading] = useState(true)
   const getDev = async (id) => {
     const user = await getUser(id);
-    setSelectedUser(await user.val())
+    setSelectedUser(await user.val());console.log(user.val())
     setLoading(false)
 
   }
@@ -100,7 +100,7 @@ function DeveloperDetails() {
                 <div className="developer_details_body_right_content_projects">
                 <div className="developer_details_body_right_content_project">
                 <div className="developer_details_body_right_content_project_img">
-                  <img src="https://s3-alpha-sig.figma.com/img/d72a/1dee/2889d3a3937b43ea0945e6159fed9e03?Expires=1665360000&Signature=BVWYrHk54TxN2hBPsxrOz-D2yfX201YT~ZpPbQjvbPinW3AsQnDr09emNH-hmkgcNur41S80SJ8Cs0bIQHU9SGTOGvmdopiI1Pd-sF1v6sOE6T~TYhxsz9uFgCsylPpFeKzFZI2T4nyIl2BPFDbRZkwjCCnJuq9ciHbbqTqM~BW15Hfzm~-D0l8a9ganPfHrmgENFiABH7keIpP6munFLq5tcTebj~UGxRwhXDlSVCnJu4aUDeuAcQ2lZsQFsPjcDgb9x3D1eSxJ199I4CgXwhY~n0DiT7-IoM9PEeUkLPWBR8qqcH-y-VPxWL6lY2lWBGI9gaE4X1Y1W5c-zRQgzw__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA" alt=""/>
+                  <img src="https://s3-alpha-sig.figma.com/img/d72a/1dee/2889d3a3937b43ea0945e6159fed9e03?Expires=1666569600&Signature=JVC6H3uReIdZf9k6JBF8rBONm5hm5aLOhnv0AUg3tv6lzWsd-yH~j6NUxmWkZnTd2RQC9b3jO0WHk6t2xZVMw0PqLWYYS0qriWQQh6cBGJa4-khHebFKjBwwCtIAfwrMWT8CgkJBmVRtGcPZDuvPN61RYHkV1JzTedOP8BU4jI6kwaFV7bFFEM83FIcUqRwVIMjPLqQrE-GvH5ZUMxx7u3eN7~vop6a-Ja-J78xbNiAo~Z5yEyBxRqUD5ZJlKVDt5nJwaF3aMR~oRKvnQDIZf152t2ejPZPHFxHmguUdyLpSkGGH03PTuIcMmTtHnix~bzv3W3Q6luzuShZ-NUN~PQ__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA" alt=""/>
                   </div>
                   <div className="developer_details_body_right_content_project_title">PROJECT LIFEBOAT
                   </div>
@@ -109,7 +109,7 @@ function DeveloperDetails() {
                   </div>
                   <div className="developer_details_body_right_content_project">
                 <div className="developer_details_body_right_content_project_img">
-                  <img src="https://s3-alpha-sig.figma.com/img/d72a/1dee/2889d3a3937b43ea0945e6159fed9e03?Expires=1665360000&Signature=BVWYrHk54TxN2hBPsxrOz-D2yfX201YT~ZpPbQjvbPinW3AsQnDr09emNH-hmkgcNur41S80SJ8Cs0bIQHU9SGTOGvmdopiI1Pd-sF1v6sOE6T~TYhxsz9uFgCsylPpFeKzFZI2T4nyIl2BPFDbRZkwjCCnJuq9ciHbbqTqM~BW15Hfzm~-D0l8a9ganPfHrmgENFiABH7keIpP6munFLq5tcTebj~UGxRwhXDlSVCnJu4aUDeuAcQ2lZsQFsPjcDgb9x3D1eSxJ199I4CgXwhY~n0DiT7-IoM9PEeUkLPWBR8qqcH-y-VPxWL6lY2lWBGI9gaE4X1Y1W5c-zRQgzw__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA" alt=""/>
+                  <img src="https://s3-alpha-sig.figma.com/img/d72a/1dee/2889d3a3937b43ea0945e6159fed9e03?Expires=1666569600&Signature=JVC6H3uReIdZf9k6JBF8rBONm5hm5aLOhnv0AUg3tv6lzWsd-yH~j6NUxmWkZnTd2RQC9b3jO0WHk6t2xZVMw0PqLWYYS0qriWQQh6cBGJa4-khHebFKjBwwCtIAfwrMWT8CgkJBmVRtGcPZDuvPN61RYHkV1JzTedOP8BU4jI6kwaFV7bFFEM83FIcUqRwVIMjPLqQrE-GvH5ZUMxx7u3eN7~vop6a-Ja-J78xbNiAo~Z5yEyBxRqUD5ZJlKVDt5nJwaF3aMR~oRKvnQDIZf152t2ejPZPHFxHmguUdyLpSkGGH03PTuIcMmTtHnix~bzv3W3Q6luzuShZ-NUN~PQ__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA" alt=""/>
                   </div>
                   <div className="developer_details_body_right_content_project_title">PROJECT LIFEBOAT
                   </div>
@@ -118,7 +118,7 @@ function DeveloperDetails() {
                   </div>
                   <div className="developer_details_body_right_content_project">
                 <div className="developer_details_body_right_content_project_img">
-                  <img src="https://s3-alpha-sig.figma.com/img/d72a/1dee/2889d3a3937b43ea0945e6159fed9e03?Expires=1665360000&Signature=BVWYrHk54TxN2hBPsxrOz-D2yfX201YT~ZpPbQjvbPinW3AsQnDr09emNH-hmkgcNur41S80SJ8Cs0bIQHU9SGTOGvmdopiI1Pd-sF1v6sOE6T~TYhxsz9uFgCsylPpFeKzFZI2T4nyIl2BPFDbRZkwjCCnJuq9ciHbbqTqM~BW15Hfzm~-D0l8a9ganPfHrmgENFiABH7keIpP6munFLq5tcTebj~UGxRwhXDlSVCnJu4aUDeuAcQ2lZsQFsPjcDgb9x3D1eSxJ199I4CgXwhY~n0DiT7-IoM9PEeUkLPWBR8qqcH-y-VPxWL6lY2lWBGI9gaE4X1Y1W5c-zRQgzw__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA" alt=""/>
+                  <img src="https://s3-alpha-sig.figma.com/img/d72a/1dee/2889d3a3937b43ea0945e6159fed9e03?Expires=1666569600&Signature=JVC6H3uReIdZf9k6JBF8rBONm5hm5aLOhnv0AUg3tv6lzWsd-yH~j6NUxmWkZnTd2RQC9b3jO0WHk6t2xZVMw0PqLWYYS0qriWQQh6cBGJa4-khHebFKjBwwCtIAfwrMWT8CgkJBmVRtGcPZDuvPN61RYHkV1JzTedOP8BU4jI6kwaFV7bFFEM83FIcUqRwVIMjPLqQrE-GvH5ZUMxx7u3eN7~vop6a-Ja-J78xbNiAo~Z5yEyBxRqUD5ZJlKVDt5nJwaF3aMR~oRKvnQDIZf152t2ejPZPHFxHmguUdyLpSkGGH03PTuIcMmTtHnix~bzv3W3Q6luzuShZ-NUN~PQ__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA" alt=""/>
                   </div>
                   <div className="developer_details_body_right_content_project_title">PROJECT LIFEBOAT
                   </div>
