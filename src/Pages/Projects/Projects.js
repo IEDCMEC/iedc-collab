@@ -10,7 +10,7 @@ const Projects = () => {
   );
   const history = useHistory();
   const handleClick = (p) => {
-    history.push("/description", { showDetailsDirectly: true });
+    history.push(`/projects/${p.id}`, { showDetailsDirectly: true });
     setSelectedProject(p);
   };
   if (loading) {

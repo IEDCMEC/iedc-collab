@@ -3,7 +3,7 @@ import "./ProjectDetails.scss";
 import { useHistory } from "react-router-dom";
 import { ProjectContext } from "../../contexts/ProjectContext";
 import { AuthContext } from "../../Firebase/Auth/Auth";
-import { doDeleteProject } from "../../Firebase/firebase";
+import { doDeleteProject, getProject } from "../../Firebase/firebase";
 import Phoneicon from "../../assets/Phoneicon.png";
 import Mail from "../../assets/Mail.png";
 import Github from "../../assets/Github.png";
@@ -17,6 +17,7 @@ import DeleteConfirmation from "../DeleteConfirmationModal/DeleteConfirmation";
 
 const ProjectDetails = () => {
   const { selectedProject, fetchData } = useContext(ProjectContext);
+  getProject()
   const { currentUser } = useContext(AuthContext);
   const [canModifyProject, setCanModifyProject] = useState(false);
   const [showNewProjectModal, setShowNewProjectModal] = useState(false);

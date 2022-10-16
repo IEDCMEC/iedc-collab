@@ -47,7 +47,6 @@ export const UserProvider = ({ children }) => {
     fetchData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-console.log(users)
   return (
     <UserContext.Provider
       value={{
