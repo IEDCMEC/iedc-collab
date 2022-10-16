@@ -1,21 +1,13 @@
 import ProjectCard from "./ProjectCard";
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useContext, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper.min.css";
 import left from "../../assets/left.svg";
 import right from "../../assets/right.svg";
+import { ProjectContext } from "../../contexts/ProjectContext";
 function ProjectCarousel() {
-  const [projects, setProjects] = useState(null);
-  const getProjects = async () => {
-    const projects = await getProjects();
-    setProjects(await projects.val());
-
-    console.log(projects);
-  };
-  useEffect(() => {
-    getProjects();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  const { projects, setSelectedProject } = useContext(ProjectContext);
+  const { selectedProject } = useContext(ProjectContext);
   const [swiperRef, setSwiperRef] = useState();
   const handleLeftClick = useCallback(() => {
     if (!swiperRef) return;
@@ -26,18 +18,18 @@ function ProjectCarousel() {
     if (!swiperRef) return;
     swiperRef.slideNext();
   }, [swiperRef]);
-  // var i = 0;
-  // function getPosition()
-  // {
-  //   for(i=0;i<projects.length;i++){
-  //     const projects_list =projects[i].id;
-  //     if(projects_list===selectedProject.id)
-  //       {
-  //         return i;
-  //       }
-  //       }
-
-  // }
+var i=0;
+function getPosition()
+{
+  for(i=0;i<projects.length;i++){
+    const projects_list =projects[i].id;
+    if(projects_list===selectedProject.id)
+      {
+        return i;
+      }
+      }
+      
+}
   return (
     <>
       <div className="project-carousel">
@@ -47,7 +39,7 @@ function ProjectCarousel() {
         <Swiper
           onSwiper={setSwiperRef}
           spaceBetween={30}
-          // initialSlide={getPosition()}
+          initialSlide={getPosition()}
           loop={true}
           breakpoints={{
             // when window width is >= 640px
@@ -71,9 +63,9 @@ function ProjectCarousel() {
             <SwiperSlide>
               <div
                 key={x.id}
-                // onClick={() => {
-                //   setSelectedProject(x);
-                // }}
+                onClick={() => {
+                  setSelectedProject(x);
+                }}
               >
                 <ProjectCard
                   name={x.name}
