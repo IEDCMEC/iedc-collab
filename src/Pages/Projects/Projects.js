@@ -1,17 +1,30 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./Projects.scss";
 import { Container } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 import MainLayout from '../../Components/MainLayout/MainLayout'
-import { ProjectContext } from "../../contexts/ProjectContext";
+import { getProjects } from "../../Firebase/firebase";
+// import { ProjectContext } from "../../contexts/ProjectContext";
 const Projects = () => {
-  const { projects, setSelectedProject, allProjects, loading } = useContext(
-    ProjectContext
-  );
+  const [projects, setProjects] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const getWorks = async () => {
+    await getProjects().then(async function (snapshot) {
+      let messageObject = snapshot.val();
+      const result = Object.keys(messageObject).map((key) => ({
+        ...messageObject[key],
+        id: key,
+      }));
+      setProjects(result); setLoading(false);
+    });
+  };
+  useEffect(() => {
+    getWorks();
+   
+  }, [projects]);
   const history = useHistory();
   const handleClick = (p) => {
-    history.push(`/projects/${p.id}`, { showDetailsDirectly: true });
-    setSelectedProject(p);
+    history.push(`/projects/${p.id}`);
   };
   if (loading) {
     return (
@@ -23,7 +36,7 @@ const Projects = () => {
       >
         
         <div className="spinner-border" role="status"></div>
-        <div className="mt-3">Loading projects...</div>
+        <div className="mt-3">Loading Projects...</div>
       </div>
       </div>
     );
@@ -32,7 +45,7 @@ const Projects = () => {
     <><MainLayout/>
       <Container className="landing">
         <h3 style={{ textAlign: "center" }}>
-          {projects.length === 0 && allProjects.length !== 0
+          {projects.length === 0 && projects.length !== 0
             ? "NOT FOUND"
             : "PROJECTS"}
         </h3>

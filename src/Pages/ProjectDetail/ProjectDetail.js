@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ProjectToggle from "../../Components/ProjectToggle/ProjectToggle";
 import MainLayout from "../../Components/MainLayout/MainLayout";
 import ProjectCarousel from "../../Components/ProjectCarousel/ProjectCarousel";
@@ -7,18 +7,49 @@ import DiscussionDetails from "../../Components/DisussionDetails/DiscussionDetai
 import RequirementDetails from "../../Components/RequirementDetails/RequirementDetails";
 import DescriptionDetails from "../../Components/DescriptionDetails/DescriptionDetails";
 import './ProjectDetail.scss'
+import { useParams } from "react-router-dom";
+import { getProject, getProjects } from "../../Firebase/firebase";
 function ProjectDetail() {
+  let {id}=useParams();
+  const [selectedProject, setSelectedProject] = useState({});
+  const [loading, setLoading] = useState(true)
+  const getWork = async (id) => {
+    const user = await getProject(id);
+    setSelectedProject(await user.val())
+    setLoading(false);
+
+  }
+
+  useEffect(() => {
+    getWork(id);
+    
+  }, [id]);
   const [toggle, setToggle] = useState(1);
+  if (loading) {
+    return (
+        <div>
+           <MainLayout/>
+      <div
+        className="d-flex justify-content-center align-items-center flex-column"
+        style={{ height: "90vh" }}
+      >
+        
+        <div className="spinner-border" role="status"></div>
+        <div className="mt-3">Loading Project...</div>
+      </div>
+      </div>
+    );
+  }
   return (
     <>
       <MainLayout />
-      <ProjectCarousel project/>
-      <ProjectToggle setToggle={setToggle} />
-      <ProjectNav />
+      {/* <ProjectCarousel/> */}
+      <ProjectToggle setToggle={setToggle} selectedProject={selectedProject} />
+      <ProjectNav selectedProject={selectedProject} />
       <div className="details__container">
-        {toggle===1 && <DescriptionDetails/>}
-        {toggle===2 && <RequirementDetails/>}
-        {toggle===3 && <DiscussionDetails />}
+        {toggle===1 && <DescriptionDetails selectedProject={selectedProject}/>}
+        {toggle===2 && <RequirementDetails selectedProject={selectedProject}/>}
+        {toggle===3 && <DiscussionDetails selectedProject={selectedProject}/>}
       </div>
     </>
   );

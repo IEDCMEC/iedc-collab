@@ -15,8 +15,8 @@ import { toast } from "react-toastify";
 import DeleteConfirmation from "../DeleteConfirmationModal/DeleteConfirmation";
 
 
-const DescriptionDetails = () => {
-   const { selectedProject, fetchData } = useContext(ProjectContext);
+const DescriptionDetails = ({selectedProject}) => {
+   const { fetchData } = useContext(ProjectContext);
     const { currentUser } = useContext(AuthContext);
     const [canModifyProject, setCanModifyProject] = useState(false);
     const [showNewProjectModal, setShowNewProjectModal] = useState(false);

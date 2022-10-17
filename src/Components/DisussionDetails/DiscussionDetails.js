@@ -1,5 +1,5 @@
 import './DiscussionDetails.scss';
-const DiscussionDetails = () => {
+const DiscussionDetails = ({selectedProject}) => {
     return(
         <><h1>Coming Soon....</h1>
         </>

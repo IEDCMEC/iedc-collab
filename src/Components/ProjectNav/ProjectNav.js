@@ -4,8 +4,7 @@ import { ProjectContext } from "../../contexts/ProjectContext";
 import like from "../../assets/like.png";
 import JoinTeamModal from "../JoinTeamModal/JoinTeamModal";
 
-const ProjectNav = () => {
-  const { selectedProject } = useContext(ProjectContext);
+const ProjectNav = ({selectedProject}) => {
   const [modalShow, setModalShow] = useState(false);
   return (
     <div className="project-nav__container">
