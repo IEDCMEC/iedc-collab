@@ -2,6 +2,9 @@
     display: flex;
     flex-direction: row;
     font-family:'Nunito';
+    width: 100%;
+    justify-content:flex-start;
+    
 }
 .profile_board{
     background-color:#7A0202;
@@ -10,6 +13,11 @@
     color: #ffff;
     flex-direction: column;
     gap:2rem;
+    background-image: url(../../assets/MyProfBg.svg);
+}
+.pro_image_container{
+    display: flex;
+    justify-content: center;
 }
 .edit_board{
     
@@ -29,9 +37,18 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+
+    p{
+        font-weight: 600;
+        font-size: 40px;
+        padding-left: 3.8rem;
+        margin-bottom: 0px;
+    }
 }
 .profile_details_container{
     font-size: 1.4rem;
+    padding-top: 2.25rem;
+    align-items:center;
 }
 .phone_class{
     display: flex;
@@ -39,12 +56,17 @@
     gap: 0.25rem;
     justify-content:center;
     align-items: flex-start;
+    padding-top: 1rem;
 }
 .profile_phone{
     display: flex;
     flex-direction: row;
     // justify-content: space-between;
     align-items: flex-start;
+    // font-weight: 700;
+font-size: 21px;
+line-height: 29px;
+    
 }
 .profile_class{
     display: flex;
@@ -83,18 +105,52 @@
 .edit__pro_box{
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+   
     margin-top: 2rem;
     margin-left: 1.5rem;
+    width: 100%;
+    padding-right: 1rem;
     
+}
+.reqs_invite_bar{
+    display: flex;
+    flex-direction: row;
+    font-family: 'Nunito';
+    font-style: normal;
+   
+    color: #9E0000;
+    justify-content: center;
+
+}
+.reqs_invite_bar__requests{
+    font-weight: 500;
+    font-size: 31px;
+    line-height: 44px;
+
+}
+.reqs_invite_bar__line{
+    font-weight: 500;
+    font-size: 31px;
+    padding-inline: 1.2rem;
+}
+.reqs_invite_bar__invite{
+    font-weight: 700;
+font-size: 31px;
+
 }
 .received{
     display: flex;
     width: fit-content;
     padding: 0.25rem;
+    padding-inline: .75rem;
     border: 1px solid #9E0000;
     cursor: pointer;
+    background-color: rgba(235, 148, 148, 0.600);
     border-radius: 10px 0px 0px 0px;
+    font-weight: 700;
+    font-size: 21px;
+    color: #9E0000;
+    
 
 }
 .edit__header{
@@ -106,20 +162,165 @@
     display: flex;
     width: fit-content;
     padding: 0.25rem;
+    padding-inline: .75rem;
     cursor: pointer;
+    background-color: rgba(244, 230, 230, .600);
     border: 1px solid #9E0000;
     border-radius: 0px 10px 0px 0px;
+    font-weight: 700;
+    font-size: 21px;
+    color: #9E0000;
+    font-style: normal;
+}
+.received_bpx_header{
+   display: flex;
+   flex-direction: row;
+   justify-content: space-between;
+}
+.received_bpx_header button{
+    border: none;
+    
+    height: 45px;
+    background-color:  #F8D0D0;
+    color: #9E0000;
+    font-family: 'Nunito';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 21px;
+    line-height: 29px;
+
+}
+.received_bpx_header p{
+    font-family: 'Nunito';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 31px;
+    line-height: 42px;
+
+    color: #9E0000;
 }
 .req_profile_img{
-    width: 2rem;
-    border-radius: 1rem;
+     width: 4.75rem;
+     height: 4.75rem;
+    
+    border: 2px solid #780101;
+    border-radius: 2.37rem;
+    
 }
 .received_sent_box{
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #9E0000;
+    border-radius: 0px 10px 10px 10px;
+    padding: 1rem;
+    margin-top: 0px;
+    
+}
+.req_profile_box{
+    display: flex;
+    flex-direction: row;
+    align-items:center;
 
 }
-.request__box{
+.req_profile_details{
+    display: flex;
+    flex-direction:column;
+    align-items: flex-start;
+
+    font-family: 'Nunito';
+    font-style: normal;
+    padding-left: 1rem;
+
+    h4{
+        
+        font-weight: 400;
+        font-size: 25px;
+        line-height: 0px;
+        color: #9E0000;
+    
+    }
+
+    p{
+        
+        font-weight: 200;
+        font-size: 21px;
+        
+        
+        color: #9E0000;
+
+    }
 
 }
-.portfolio__box{
+.received_btns{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    gap: .5rem;
+}
+.received_btn_decline{
+    width: 9rem;
+    height: 3rem;
+    background: #FFFFFF;
+    border: 2px solid #9E0000;
+    border-radius: 25px;
+    color: #9E0000;
+    font-family: 'Nunito';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px; 
+    
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content:center;
+    gap: .75rem;
+    flex-wrap: wrap;
+}
+.received_btn_accept{
+    width: 9rem;
+    height: 3rem;
+    background: linear-gradient(90deg, #FF512F 0%, #DD2476 100%);
+    border: 1px solid #9E0000;
+    box-shadow: inset 0px 4px 4px #F48F8F;
+    border-radius: 25px;
 
+    font-family: 'Nunito';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px; 
+    
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content:center;
+    gap: .75rem;
+    flex-wrap: wrap;
+
+}
+.edit__pro_abtMe,.edit__pro_skls,.edit__pro_achvmts{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    gap: .80rem;
+    
+
+    font-family: 'Nunito';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 31px;
+    line-height: 42px;
+    color: #9E0000;
+
+    padding-top: 1rem;
+
+}
+
+.edit__pro_abtMe_bx,.edit__pro_skls_bx,.edit__pro_achvmts_bx{
+    background: #FFFFFF;
+    border: 0.4px solid #9E0000;
+    border-radius: 10px;
+
+    min-height: 2.5rem;
+    min-width: 100%;
+    
 }
