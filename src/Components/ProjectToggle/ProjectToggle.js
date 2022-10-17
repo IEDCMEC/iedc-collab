@@ -1,37 +1,28 @@
-import React, { useContext } from "react";
+import React from "react";
 import "./ProjectToggle.scss";
-import { NavLink } from "react-router-dom";
-import { ProjectContext } from "../../contexts/ProjectContext";
-const ProjectToggle = ({setToggle,selectedProject}) => {
+const ProjectToggle = ({setToggle,selectedProject,toggle}) => {
   return (
     <div className="project-toggle__container">
       <div className="project-toggle__title">{selectedProject.name}</div>
       <div className="project-toggle__NavbarItems">
-        <NavLink
-          exact
-          activeClassName="project-toggle__NavLinksActive"
-          className="project-toggle__NavLinks__desc"
+        <div className={`project-toggle__NavLinks__desc ${toggle===1 && 'project-toggle__NavLinksActive'}`} 
           to="/description"
           onClick={(e) => {e.preventDefault();setToggle(1)}}
         >
           Description
-        </NavLink>
-        <NavLink
-          exact
-          activeClassName="project-toggle__NavLinksActive"
-          className="project-toggle__NavLinks"
+        </div>
+        <div
+         className={`project-toggle__NavLinks ${toggle===2 && 'project-toggle__NavLinksActive'}`} 
           to="/requirements"onClick={(e) => {e.preventDefault();setToggle(2)}}
         >
           Requirements
-        </NavLink>
-        <NavLink
-          exact
-          activeClassName="project-toggle__NavLinksActive"
-          className="project-toggle__NavLinks__disc"
+        </div>
+        <div
+         className={`project-toggle__NavLinks__disc ${toggle===3 && 'project-toggle__NavLinksActive'}`}
           to="/discussion"onClick={(e) => {e.preventDefault();setToggle(3)}}
         >
           Discussion
-        </NavLink>
+        </div>
       </div>
     </div>
   );
