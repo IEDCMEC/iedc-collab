@@ -10,6 +10,9 @@ body {
     #ff0202
   );
 }
+.App{
+  overflow: hidden;
+}
 .Toastify__close-button:hover,
 .Toastify__close-button:focus {
   background-color: transparent !important;
