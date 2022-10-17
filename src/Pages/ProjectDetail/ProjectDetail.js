@@ -44,7 +44,7 @@ function ProjectDetail() {
     <>
       <MainLayout />
       {/* <ProjectCarousel/> */}
-      <ProjectToggle setToggle={setToggle} selectedProject={selectedProject} />
+      <ProjectToggle toggle={toggle} setToggle={setToggle} selectedProject={selectedProject} />
       <ProjectNav selectedProject={selectedProject} />
       <div className="details__container">
         {toggle===1 && <DescriptionDetails selectedProject={selectedProject}/>}
