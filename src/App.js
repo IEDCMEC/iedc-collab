@@ -22,7 +22,8 @@ initialize();
 function App() {
   AOS.init();
   return (
-    <AuthProvider>
+    <div className="App">
+      <AuthProvider>
       <ProjectProvider>
         <BrowserRouter>
           <ScrollToTop />
@@ -44,6 +45,8 @@ function App() {
         </BrowserRouter>
       </ProjectProvider>
     </AuthProvider>
+    </div>
+    
   );
 }
 export default App;
