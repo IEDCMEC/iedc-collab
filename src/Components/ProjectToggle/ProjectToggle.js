@@ -1,13 +1,6 @@
-import React, { useContext, useState } from "react";
+import React from "react";
 import "./ProjectToggle.scss";
-import { NavLink } from "react-router-dom";
-import { ProjectContext } from "../../contexts/ProjectContext";
 const ProjectToggle = ({setToggle,selectedProject,toggle}) => {
-  const [isActive, setActive] = useState(false);
-
-  const toggleClass = () => {
-    setActive(!isActive);
-  };
   return (
     <div className="project-toggle__container">
       <div className="project-toggle__title">{selectedProject.name}</div>
