@@ -30,7 +30,7 @@ function App() {
           <ToastContainer />
           <Switch>
             <Route exact path="/" component={Landing} />
-            <Route Route path="/collab" component={Collab} />
+            {/* <Route Route path="/collab" component={Collab} /> */}
             <Route exact path="/projects/:id" component={ProjectDetail} />
             <Route Route path="/projects" component={Projects} />
             

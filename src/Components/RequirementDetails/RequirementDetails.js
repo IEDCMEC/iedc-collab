@@ -5,8 +5,7 @@ import Github from "../../assets/github.svg";
 import { ProjectContext } from "../../contexts/ProjectContext";
 import { useContext } from "react";
 
-const RequirementDetails = () => {
-    const { selectedProject } = useContext(ProjectContext);
+const RequirementDetails = ({selectedProject}) => {
   return (
     <>
       <div className="requirement__container">

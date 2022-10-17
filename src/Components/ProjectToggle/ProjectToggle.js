@@ -2,8 +2,7 @@ import React, { useContext } from "react";
 import "./ProjectToggle.scss";
 import { NavLink } from "react-router-dom";
 import { ProjectContext } from "../../contexts/ProjectContext";
-const ProjectToggle = ({setToggle}) => {
-  const { selectedProject } = useContext(ProjectContext);
+const ProjectToggle = ({setToggle,selectedProject}) => {
   return (
     <div className="project-toggle__container">
       <div className="project-toggle__title">{selectedProject.name}</div>
