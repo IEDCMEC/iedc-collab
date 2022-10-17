@@ -187,17 +187,15 @@ font-size: 31px;
     font-family: 'Nunito';
     font-style: normal;
     font-weight: 600;
-    font-size: 21px;
-    line-height: 29px;
+    font-size: 1rem;
+    
 
 }
 .received_bpx_header p{
     font-family: 'Nunito';
     font-style: normal;
     font-weight: 700;
-    font-size: 31px;
-    line-height: 42px;
-
+    font-size: 1rem;
     color: #9E0000;
 }
 .req_profile_img{
@@ -328,6 +326,25 @@ font-size: 31px;
 @media (min-device-width: 20px) and (max-device-width: 500px){
     .my_profile_container{
         flex-direction: column;
+    }
+    .profile_details_header{
+        .p{
+            font-size: 1.5rem;
+        }
+    }
+    .received_bpx_header button{
+        font-size: 0.75rem;
+
+    }
+    .received_btn_accept{
+        width: 8rem;
+        height: 2.5rem;
+        font-size: 1rem;
+    }
+    .received_btn_decline{
+        width: 8rem;
+        height: 2.5rem;
+        font-size: 1rem;
     }
     
 }

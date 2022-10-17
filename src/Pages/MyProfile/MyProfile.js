@@ -23,7 +23,7 @@ const MyProfile = () => {
           <div className="profile_details_container">
           <div className="profile_details_header">
 
-            <p className="profile__name">Marvin Joy</p>
+            <p className="c">Marvin Joy</p>
             <img src={edit_icon} style={{width:'2rem'}} alt="" />
           </div>
           <div className="phone_class">
@@ -70,7 +70,11 @@ const MyProfile = () => {
           <div className="received_sent_box">
               <div className="received_bpx_header">
                 <p>Project Name</p>
-                <Button variant="outlined">View Projects</Button>
+                <Button 
+                sx={{
+                  fontSize:'1rem',
+                  display:'flex'
+                }} variant="outlined">View Projects</Button>
 
               </div>
               <div className="req_profile_box">
