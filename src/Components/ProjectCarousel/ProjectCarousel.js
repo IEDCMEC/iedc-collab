@@ -5,9 +5,10 @@ import "swiper/swiper.min.css";
 import left from "../../assets/left.svg";
 import right from "../../assets/right.svg";
 import { ProjectContext } from "../../contexts/ProjectContext";
-function ProjectCarousel() {
-  const { projects, setSelectedProject } = useContext(ProjectContext);
-  const { selectedProject } = useContext(ProjectContext);
+import { useHistory } from "react-router-dom";
+function ProjectCarousel({project}) {
+  const { projects } = useContext(ProjectContext);
+  const history=useHistory();
   const [swiperRef, setSwiperRef] = useState();
   const handleLeftClick = useCallback(() => {
     if (!swiperRef) return;
@@ -23,7 +24,7 @@ function getPosition()
 {
   for(i=0;i<projects.length;i++){
     const projects_list =projects[i].id;
-    if(projects_list===selectedProject.id)
+    if(projects_list===project.id)
       {
         return i;
       }
@@ -64,13 +65,14 @@ function getPosition()
               <div
                 key={x.id}
                 onClick={() => {
-                  setSelectedProject(x);
+                  history.push(`/projects/${x.id}`)
                 }}
               >
                 <ProjectCard
                   name={x.name}
                   teamLeader={x.leader_name}
                   projectId={x.id}
+                  project={project}
                 />
               </div>
             </SwiperSlide>
