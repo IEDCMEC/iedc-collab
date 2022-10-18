@@ -2,14 +2,12 @@ import React, { useContext, useMemo } from "react";
 import './ProjectCarousel.scss'
 import { ProjectContext } from "../../contexts/ProjectContext";
 
-function ProjectCard({ name, teamLeader, projectId })
+function ProjectCard({ name, teamLeader, projectId,project })
 {
-  const { selectedProject } = useContext(ProjectContext);
-  const isSelected = useMemo(() => projectId === selectedProject.id, [
+  const isSelected = useMemo(() => projectId == project.id, [
     projectId,
-    selectedProject,
+    project,
   ]);
-
     return(<>
     <div className="project-card" style={{
           backgroundColor: isSelected ? '#AC2727' : '#FFFFFF',

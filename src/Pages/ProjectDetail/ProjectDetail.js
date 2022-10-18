@@ -8,14 +8,17 @@ import RequirementDetails from "../../Components/RequirementDetails/RequirementD
 import DescriptionDetails from "../../Components/DescriptionDetails/DescriptionDetails";
 import './ProjectDetail.scss'
 import { useParams } from "react-router-dom";
+
 import { getProject, getProjects } from "../../Firebase/firebase";
 function ProjectDetail() {
   let {id}=useParams();
   const [selectedProject, setSelectedProject] = useState({});
   const [loading, setLoading] = useState(true)
   const getWork = async (id) => {
-    const user = await getProject(id);
-    setSelectedProject(await user.val())
+    const project = await getProject(id);
+    let p=await project.val()
+    p.id = id
+    setSelectedProject(p)
     setLoading(false);
 
   }
@@ -43,7 +46,7 @@ function ProjectDetail() {
   return (
     <>
       <MainLayout />
-      {/* <ProjectCarousel/> */}
+      <ProjectCarousel project={selectedProject} />
       <ProjectToggle toggle={toggle} setToggle={setToggle} selectedProject={selectedProject} />
       <ProjectNav selectedProject={selectedProject} />
       <div className="details__container">
