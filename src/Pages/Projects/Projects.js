@@ -24,7 +24,7 @@ const Projects = () => {
   }, [projects]);
   const history = useHistory();
   const handleClick = (p) => {
-    history.push(`/projects/${p.name.replace(/ /g, '-')}`);
+    history.push(`/projects/${p.id}`);
   };
   if (loading) {
     return (
