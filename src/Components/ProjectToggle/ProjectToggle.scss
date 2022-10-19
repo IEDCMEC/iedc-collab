@@ -1,13 +1,11 @@
 .project-toggle__container {
-  // height: 10.063rem;
-  // width: 27rem;
-  height: fit-content;
-  width: fit-content;
+  height: 2rem;
+  width: 5rem;
   transform: rotate(-90deg);
   transform-origin: top left;
   position: absolute;
   left: 0;
-  bottom: -140px;
+  bottom: -180px;
 }
 
 .project-toggle__title {
