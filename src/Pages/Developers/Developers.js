@@ -3,6 +3,8 @@ import { useHistory } from "react-router-dom";
 import MainLayout from "../../Components/MainLayout/MainLayout";
 import { getDevelopers } from "../../Firebase/firebase";
 import "./Developers.scss";
+
+import Drawer from "./Drawer";
 const Developers = () => {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -40,34 +42,37 @@ const Developers = () => {
   }
   return (
     <MainLayout>
-      <div className="developer_container">
-        <h1 className="developer-title">DEVELOPERS</h1>
-        <div className="developer-details">
-          {users.map((user) => {
-            return (
-              <div
-                className="developer-card"
-                key={user.id}
-                style={{ cursor: "pointer" }}
-                onClick={() => handleClick(user)}
-              >
-                <img
-                  alt="Profile"
-                  className="developer-card-image"
-                  src={
-                    user.photoURL ||
-                    "https://sabt.center/wp-content/uploads/2014/08/avatar-1.png"
-                  }
-                />
-                <div>
-                  <h1 className="developer-card-name">
-                    {user.name.toLowerCase()}
-                  </h1>
-                  <div className="developer-card-email">{user.email}</div>
+      <div className="parent_container">
+          <Drawer/>
+        <div className="developer_container">
+          <h1 className="developer-title">DEVELOPERS</h1>
+          <div className="developer-details">
+            {users.map((user) => {
+              return (
+                <div
+                  className="developer-card"
+                  key={user.id}
+                  style={{ cursor: "pointer" }}
+                  onClick={() => handleClick(user)}
+                >
+                  <img
+                    alt="Profile"
+                    className="developer-card-image"
+                    src={
+                      user.photoURL ||
+                      "https://sabt.center/wp-content/uploads/2014/08/avatar-1.png"
+                    }
+                  />
+                  <div>
+                    <h1 className="developer-card-name">
+                      {user.name.toLowerCase()}
+                    </h1>
+                    <div className="developer-card-email">{user.email}</div>
+                  </div>
                 </div>
-              </div>
-            );
-          })}
+              );
+            })}
+          </div>
         </div>
       </div>
     </MainLayout>
