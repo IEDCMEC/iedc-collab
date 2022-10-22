@@ -31,7 +31,7 @@ function DeveloperDetails() {
   if (loading) {
     return (
         <div>
-           <MainLayout/>
+           <MainLayout route={'Developers'}/>
       <div
         className="d-flex justify-content-center align-items-center flex-column"
         style={{ height: "90vh" }}
@@ -45,7 +45,7 @@ function DeveloperDetails() {
   }
   return (
     <>
-      <MainLayout />
+      <MainLayout route={'Developers'}/>
       <div className="developer_details_container">
 
         <div className="developer_details_navbar">

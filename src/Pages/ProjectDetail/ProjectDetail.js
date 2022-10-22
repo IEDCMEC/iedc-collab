@@ -31,7 +31,7 @@ function ProjectDetail() {
   if (loading) {
     return (
         <div>
-           <MainLayout/>
+           <MainLayout route={'Projects'}/>
       <div
         className="d-flex justify-content-center align-items-center flex-column"
         style={{ height: "90vh" }}
@@ -45,7 +45,7 @@ function ProjectDetail() {
   }
   return (
     <>
-      <MainLayout />
+      <MainLayout route={'Projects'}/>
       <ProjectCarousel project={selectedProject} />
       <ProjectToggle toggle={toggle} setToggle={setToggle} selectedProject={selectedProject} />
       <ProjectNav selectedProject={selectedProject} />

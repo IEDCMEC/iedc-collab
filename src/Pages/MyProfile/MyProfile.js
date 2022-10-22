@@ -12,8 +12,8 @@ import {TbNetwork} from 'react-icons/tb'
 import {VscGithubInverted} from 'react-icons/vsc'
 import {FaLinkedin} from 'react-icons/fa'
 const MyProfile = () => {
-  return (
-    <MainLayout>
+  return (<>
+    <MainLayout route={'My Profile'}/>
       <div className="my_profile_container">
         <div className="profile_board" >
           <div className="pro_image_container"><img src="https://vpnoverview.com/wp-content/uploads/what-is-a-hacker-what-is-hacking-featured-800x400.png"className='profile_image' alt="" />
@@ -122,10 +122,9 @@ const MyProfile = () => {
           </div>          
         </div>
         </div>
-
+        </>
         
       
-    </MainLayout>
   )
 }
 
