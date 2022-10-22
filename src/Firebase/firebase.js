@@ -30,11 +30,15 @@ export const signIn = async (onSigninSuccess = () => {}) => {
   try {
     const result = await firebase.auth().signInWithPopup(provider);
     const user = result.user;
+ 
     const userData = {
-      name: user.displayName,
+      name:user.displayName,
+      first_name:user.displayName.split(' ').shift(),
+      last_name: user.displayName.split(' ').join(' '),
       email: user.email,
       photoURL: user.photoURL,
     };
+    console.log(userData)
     firebase
       .database()
       .ref("users/" + user.uid)

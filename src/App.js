@@ -4,7 +4,7 @@ import "./App.scss";
 import "react-toastify/dist/ReactToastify.css";
 import Projects from "./Pages/Projects/Projects";
 import Landing from "./Pages/Landing/Landing";
-import Collab from "./Pages/Collab/Collab";
+// import Collab from "./Pages/Collab/Collab";
 import initialize from "./Firebase/firebase";
 import Developers from "./Pages/Developers/Developers";
 import { ProjectProvider } from "./contexts/ProjectContext";

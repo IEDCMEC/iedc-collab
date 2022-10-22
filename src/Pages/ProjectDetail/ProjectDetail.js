@@ -9,7 +9,7 @@ import DescriptionDetails from "../../Components/DescriptionDetails/DescriptionD
 import './ProjectDetail.scss'
 import { useParams } from "react-router-dom";
 
-import { getProject, getProjects } from "../../Firebase/firebase";
+import { getProject} from "../../Firebase/firebase";
 function ProjectDetail() {
   let {id}=useParams();
   const [selectedProject, setSelectedProject] = useState({});
