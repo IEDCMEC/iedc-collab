@@ -16,6 +16,7 @@ const Developers = () => {
         id: key,
       }));
       setUsers(result); setLoading(false);
+      console.log(result);
     });
   };
   useEffect(() => {
@@ -64,9 +65,7 @@ const Developers = () => {
                     }
                   />
                   <div>
-                    <h1 className="developer-card-name">
-                      {user.name.toLowerCase()}
-                    </h1>
+                    <h1 className="developer-card-name">{user.name}</h1>
                     <div className="developer-card-email">{user.email}</div>
                   </div>
                 </div>
