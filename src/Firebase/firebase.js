@@ -30,11 +30,18 @@ export const signIn = async (onSigninSuccess = () => {}) => {
   try {
     const result = await firebase.auth().signInWithPopup(provider);
     const user = result.user;
+    const name = user.displayName
+    const parts = name.split(' ')
+    const firstName = parts.shift();  // Paul
+    const lastName = parts.join(' '); // Steve Panakkal
+ 
     const userData = {
-      name: user.displayName,
+      first_name: firstName,
+      last_name: lastName,
       email: user.email,
       photoURL: user.photoURL,
     };
+    console.log(userData)
     firebase
       .database()
       .ref("users/" + user.uid)

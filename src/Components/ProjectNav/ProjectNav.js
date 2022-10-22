@@ -1,6 +1,6 @@
-import React, { useContext, useState } from "react";
+import React, {  useState } from "react";
 import "./ProjectNav.scss";
-import { ProjectContext } from "../../contexts/ProjectContext";
+// import { ProjectContext } from "../../contexts/ProjectContext";
 import like from "../../assets/like.png";
 import JoinTeamModal from "../JoinTeamModal/JoinTeamModal";
 

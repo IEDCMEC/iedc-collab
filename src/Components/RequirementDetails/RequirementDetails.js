@@ -2,8 +2,8 @@ import "./RequirementDetails.scss";
 import Phoneicon from "../../assets/phone.svg";
 import Mail from "../../assets/mail.svg";
 import Github from "../../assets/github.svg";
-import { ProjectContext } from "../../contexts/ProjectContext";
-import { useContext } from "react";
+// import { ProjectContext } from "../../contexts/ProjectContext";
+// import { useContext } from "react";
 
 const RequirementDetails = ({selectedProject}) => {
   return (

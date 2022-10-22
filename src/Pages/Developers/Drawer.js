@@ -87,7 +87,7 @@ export default function PersistentDrawerLeft() {
                       justifyContent:'flex-start',
                       alignItems:'centre',
                       flexDirection:'row'}}>
-                  <img style={{marginRight:'10px'}}src={vector}/><h3 style={{fontFamily:'Nunito', fontWeight: '450',fontSize: '1rem',lineHeight: '42px',color:'white',padding:'0',margin:'0'}}>Hashtags</h3>
+                  <img alt="" style={{marginRight:'10px'}}src={vector}/><h3 style={{fontFamily:'Nunito', fontWeight: '450',fontSize: '1rem',lineHeight: '42px',color:'white',padding:'0',margin:'0'}}>Hashtags</h3>
                 </div>
                 <input type='text' placeholder='Start typing...' className='input_box'/>
                 <div className='skills'>

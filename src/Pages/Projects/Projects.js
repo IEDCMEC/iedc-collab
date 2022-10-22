@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, {  useEffect, useState } from "react";
 import "./Projects.scss";
 import { Container } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
