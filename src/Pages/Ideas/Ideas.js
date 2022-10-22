@@ -3,9 +3,8 @@ import MainLayout from '../../Components/MainLayout/MainLayout'
 const Ideas = () => {
   return (
     <div>
-        <MainLayout>
+        <MainLayout route={'Ideas'}/>
             <h1>Ideas Page Coming soon....</h1>
-        </MainLayout>
     </div>
   )
 }

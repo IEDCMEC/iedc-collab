@@ -29,7 +29,7 @@ const Projects = () => {
   if (loading) {
     return (
         <div>
-           <MainLayout/>
+           <MainLayout route={'Projects'}/>
       <div
         className="d-flex justify-content-center align-items-center flex-column"
         style={{ height: "90vh" }}
@@ -42,7 +42,7 @@ const Projects = () => {
     );
   }
   return (
-    <><MainLayout/>
+    <><MainLayout route={'Projects'}/>
       <Container className="landing">
         <h3 style={{ textAlign: "center" }}>
           {projects.length === 0 && projects.length !== 0

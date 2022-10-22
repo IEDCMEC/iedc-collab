@@ -30,7 +30,7 @@ const Developers = () => {
   if (loading) {
     return (
       <div>
-        <MainLayout />
+        <MainLayout route={'Developers'}/>
         <div
           className="d-flex justify-content-center align-items-center flex-column"
           style={{ height: "90vh" }}
@@ -41,8 +41,8 @@ const Developers = () => {
       </div>
     );
   }
-  return (
-    <MainLayout>
+  return (<>
+    <MainLayout route={'Developers'}/>
       <div className="parent_container">
           <Drawer/>
         <div className="developer_container">
@@ -73,8 +73,7 @@ const Developers = () => {
             })}
           </div>
         </div>
-      </div>
-    </MainLayout>
+      </div></>
   );
 };
 
