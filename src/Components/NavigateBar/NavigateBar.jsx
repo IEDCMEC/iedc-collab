@@ -4,9 +4,9 @@ import "./cards.css";
 import { signOut } from "../../Firebase/firebase";
 import { AuthContext } from "../../Firebase/Auth/Auth";
 import { ProjectContext } from "../../contexts/ProjectContext";
-import SignoutLogo from "../../assets/Signout-Logo.png";
 import { signIn } from "../../Firebase/firebase";
 import { Link } from "react-router-dom";
+import { Avatar, Menu, MenuItem } from "@mui/material";
 
 const Navbar = () => {
   const [showProjectModal, setShowProjectModal] = useState(false);
@@ -20,7 +20,14 @@ const Navbar = () => {
       signIn(() => setShowProjectModal(true));
     }
   };
-
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
   return (
     <div className="Navigate p-2 mb-5 pb-2">
       <nav
@@ -87,33 +94,94 @@ const Navbar = () => {
           </div>
 
           {currentUser && (
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                cursor: "pointer",
-              }}
-              onClick={() => {
-                signOut();
-              }}
-            >
-              <img
-                src={SignoutLogo}
-                alt="Sign-Out btn img"
-                className="NavigateBar-SignoutLogo"
-              ></img>
-              <p
-                style={{
-                  color: "rgba(158, 0, 0, 1)",
-                  fontWeight: "700",
-                  marginBottom: "0",
-                }}
-              >
-                Sign Out
-              </p>
-            </div>
+            <Avatar
+              src={currentUser.photoURL}
+              onClick={handleClick}
+              sx={{ cursor: "pointer",height: "35px", width: "35px" }}
+            />
           )}
         </div>
+        <Menu
+          anchorEl={anchorEl}
+          id="account-menu"
+          open={open}
+          onClose={handleClose}
+          onClick={handleClose}
+          PaperProps={{
+            elevation: 0,
+            sx: {
+              justifyContent: "center",
+              alignItems: "center",
+              textAlign: "center",
+              backgroundColor: "#F4E6E6",
+              overflow: "visible",
+              // filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
+              mt: 1.5,
+              "& .MuiAvatar-root": {
+                width: 32,
+                height: 32,
+                ml: -0.5,
+                mr: 1,
+              },
+              "&:before": {
+                content: '""',
+                display: "block",
+                position: "absolute",
+                top: 0,
+                right: 14,
+                width: 10,
+                height: 10,
+                bgcolor: "#F4E6E6",
+                transform: "translateY(-50%) rotate(45deg)",
+                zIndex: 0,
+              },
+            },
+          }}
+          transformOrigin={{ horizontal: "right", vertical: "top" }}
+          anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
+        >
+          <Link to="/profile" style={{ textDecoration: "none" }}>
+            <MenuItem
+              sx={{
+                justifyContent: "center",
+                alignItems: "center",
+                textAlign: "center",
+                backgroundColor: "#FFCFCF !important",
+                fontFamily: "Nunito",
+                fontStyle: "normal",
+                fontWeight: 600,
+                fontSize: "19px",
+                lineHeight: "29px",
+                /* identical to box height */
+
+                color: "#9E0000",
+              }}
+            >
+              MY PROFILE
+            </MenuItem>
+          </Link>
+          <MenuItem
+            sx={{
+              justifyContent: "center",
+              alignItems: "center",
+              textAlign: "center",
+              backgroundColor: "#F4E6E6 !important",
+              fontFamily: "Nunito",
+              fontStyle: "normal",
+              fontWeight: 600,
+              fontSize: "19px",
+              lineHeight: "29px",
+              /* identical to box height */
+
+              color: "#9E0000",
+            }}
+            onClick={() => {
+              signOut();
+            }}
+          >
+            LOGOUT
+          </MenuItem>
+        </Menu>
       </nav>
       <ProjectModal
         show={showProjectModal}
