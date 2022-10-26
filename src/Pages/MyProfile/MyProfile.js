@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./MyProfile.scss";
 import edit_icon from "../../assets/edit_profile_icon.svg";
 import accept_icon from "../../assets/accepticon.svg";
@@ -11,16 +11,12 @@ import { Button } from "@mui/material";
 import { TbNetwork } from "react-icons/tb";
 import { VscGithubInverted } from "react-icons/vsc";
 import { FaLinkedin } from "react-icons/fa";
-import { AuthContext } from "../../Firebase/Auth/Auth";
-import { signIn } from "../../Firebase/firebase";
 import ProjectModal from "../../Components/ProjectModal/ProjectModal";
+import { AuthContext } from "../../Firebase/Auth/Auth";
+import { getUser, signIn } from "../../Firebase/firebase";
 const MyProfile = () => {
-  const { currentUser } = useContext(AuthContext);
-  console.log(currentUser);
-  let id = currentUser.id;
-  console.log(id);
+ const {currentUser}=useContext(AuthContext)
   const [showProjectModal, setShowProjectModal] = useState(false);
-
   const newprojectClick = async () => {
     if (currentUser) {
       setShowProjectModal(true);
@@ -28,6 +24,34 @@ const MyProfile = () => {
       signIn(() => setShowProjectModal(true));
     }
   };
+  const [selectedUser, setSelectedUser] = useState({});
+  const [loading, setLoading] = useState(true)
+  const getDev = async (id) => {
+    const user = await getUser(id);
+    setSelectedUser(await user.val())
+    setLoading(false)
+
+  }
+  useEffect(() => {
+if(currentUser?.uid)
+    getDev(currentUser?.uid);
+
+  },[currentUser]);
+  if (loading) {
+    return (
+        <div>
+           <MainLayout route={'Developers'}/>
+      <div
+        className="d-flex justify-content-center align-items-center flex-column"
+        style={{ height: "90vh" }}
+      >
+        
+        <div className="spinner-border" role="status"></div>
+        <div className="mt-3">Loading Profile...</div>
+      </div>
+      </div>
+    );
+  }
   return (
     <>
       <MainLayout route={"My Profile"} />
@@ -35,7 +59,7 @@ const MyProfile = () => {
         <div className="profile_board">
           <div className="pro_image_container">
             <img
-              src="https://vpnoverview.com/wp-content/uploads/what-is-a-hacker-what-is-hacking-featured-800x400.png"
+              src={selectedUser.photoURL||"https://sabt.center/wp-content/uploads/2014/08/avatar-1.png"}
               className="profile_image"
               alt=""
             />
@@ -43,7 +67,7 @@ const MyProfile = () => {
 
           <div className="profile_details_container">
             <div className="profile_details_header">
-              <p className="c">Marvin Joy</p>
+              <p className="c">{selectedUser.name}</p>
               <img
                 src={edit_icon}
                 style={{ width: "2rem", cursor: "pointer" }}
@@ -63,7 +87,7 @@ const MyProfile = () => {
             </div>
             <div className="profile_email">
               <MdOutlineEmail style={{ width: "3rem" }} />
-              <p>bhbninjni@gmail.com</p>
+              <p>{selectedUser.email}</p>
             </div>
             <div className="profile_web">
               <TbNetwork style={{ width: "3rem" }} />
