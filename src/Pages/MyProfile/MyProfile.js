@@ -11,17 +11,17 @@ import { Button } from "@mui/material";
 import { TbNetwork } from "react-icons/tb";
 import { VscGithubInverted } from "react-icons/vsc";
 import { FaLinkedin } from "react-icons/fa";
-import ProjectModal from "../../Components/ProjectModal/ProjectModal";
+import EditProfileModal from "./EditProfileModal";
 import { AuthContext } from "../../Firebase/Auth/Auth";
 import { getUser, signIn } from "../../Firebase/firebase";
 const MyProfile = () => {
  const {currentUser}=useContext(AuthContext)
-  const [showProjectModal, setShowProjectModal] = useState(false);
+  const [showProfileModal, setShowProfileModal] = useState(false);
   const newprojectClick = async () => {
     if (currentUser) {
-      setShowProjectModal(true);
+      setShowProfileModal(true);
     } else {
-      signIn(() => setShowProjectModal(true));
+      signIn(() => setShowProfileModal(true));
     }
   };
   const [selectedUser, setSelectedUser] = useState({});
@@ -171,9 +171,9 @@ if(currentUser?.uid)
           </div>
         </div>
       </div>
-      <ProjectModal
-        show={showProjectModal}
-        onHide={() => setShowProjectModal(false)}
+      <EditProfileModal
+        show={showProfileModal}
+        onHide={() => setShowProfileModal(false)}
       />
     </>
   );
