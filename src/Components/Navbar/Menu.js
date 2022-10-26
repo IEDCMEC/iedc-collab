@@ -11,8 +11,4 @@ export const Menu = [
         label: 'Developers',
         url: '/developers'
     },
-    {
-        label: 'My Profile',
-        url: '/profile'
-    }
 ]

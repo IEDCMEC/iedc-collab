@@ -74,7 +74,7 @@ function NavbarHome() {
             </div>
             <div className="navbar_items_mob"  data-aos="fade-right"
               data-aos-duration="600">
-              <Link to="/" className="nav_item_mob" onClick={handleDrawerClose}>
+              <Link to="/ideas" className="nav_item_mob" onClick={handleDrawerClose}>
                 Ideas
               </Link>
               <Link
@@ -87,7 +87,7 @@ function NavbarHome() {
                 Projects
               </Link>
               <Link
-                to="/"
+                to="/developers"
                 className="nav_item_mob"
                 spy={true}
                 smooth={true}
