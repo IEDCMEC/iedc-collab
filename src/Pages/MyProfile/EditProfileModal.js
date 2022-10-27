@@ -4,93 +4,100 @@ import Button from "react-bootstrap/Button";
 import { Formik } from "formik";
 import * as yup from "yup";
 import { Form, Row, Col, InputGroup } from "react-bootstrap";
-import { doCreateProject, doEditProject } from "../../Firebase/firebase";
+import {
+  doCreateUser,
+  doEditProject,
+} from "../../Firebase/firebase";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUpload } from "@fortawesome/free-solid-svg-icons";
 import "./EditModal.scss";
-import { ProjectContext } from "../../contexts/ProjectContext";
 import { toast } from "react-toastify";
 import Compress from "compress.js";
+import { UserContext } from "../../contexts/UserContext";
 
 const compress = new Compress();
-const NewProjectForm = ({ onClose, project }) => {
-  const [image, setImage] = useState(project?.projectPhoto || "");
-  const [projectPhotoName, setProjectPhotoName] = useState(
-    project?.projectPhotoName || ""
+const NewUserForm = ({ onClose, user }) => {
+  const [image, setImage] = useState(user?.profilePhoto || "");
+  const [profilePhotoName, setProfilePhotoName] = useState(
+    user?.profilePhotoName || ""
   );
-  const [projectPhoto, setProjectPhoto] = useState(
-    project?.projectPhoto || null
-  );
-  const { fetchData } = useContext(ProjectContext);
+  const [profilePhoto, setProfilePhoto] = useState(user?.profilePhoto || "");
+  //  const { fetchData } = useContext(UserContext);
   const initialValue = {
-    name: project?.name || "",
-    desc: project?.desc || "",
-    links: project?.links?.join(", ") || "",
-    contactNo: project?.contactNo || "",
-    githubLink: project?.githubLink || "",
-    tags: project?.tags ? project.tags.join(", ") : "",
-    teamMembers: project?.teamMembers ? project.teamMembers.join(", ") : "",
-    projectPhoto: project?.projectPhoto,
+    name: user?.name || "",
+    branch: user?.branch || "",
+    year: user?.year || "",
+    about: user?.about || "",
+    skills: user?.skills?.join(", ") || "",
+    achievements: user?.achievements || "",
+    contact: user?.contact || "",
+    email: user?.email || "",
+    linkedin: user?.linkedin || "",
+    github: user?.github || "",
+    website: user?.website || "",
   };
 
-  const newProjectSchema = yup.object({
-    desc: yup.string().required("Please add a valid description").min(10),
-    contactNo: yup
-      .string()
-      .required()
-      .matches(
-        /^[(]?[0-9]{3}[)]?[-\s.]?[0-9]{3}[-\s.]?[0-9]{4,6}$/,
-        "Please enter a valid 10 digit phone number"
-      ),
-    links: yup.string().min(4),
-    githubLink: yup.string().optional().min(4),
-    tags: yup.string(),
-    teamMembers: yup.string(),
-  });
+  // const newProjectSchema = yup.object({
+  //   desc: yup.string().required("Please add a valid description").min(10),
+  //   contactNo: yup
+  //     .string()
+  //     .required()
+  //     .matches(
+  //       /^[(]?[0-9]{3}[)]?[-\s.]?[0-9]{3}[-\s.]?[0-9]{4,6}$/,
+  //       "Please enter a valid 10 digit phone number"
+  //     ),
+  //   links: yup.string().min(4),
+  //   githubLink: yup.string().optional().min(4),
+  //   tags: yup.string(),
+  //   teamMembers: yup.string(),
+  // });
 
   const handleSubmit = (values, actions) => {
-    const { links, tags, teamMembers } = values;
+    const { skills } = values;
     const formValues = {
       ...values,
-      links: links
+      skills: skills
         .split(",")
         .filter(Boolean)
         .map((link) => link.trim()),
-      tags: tags
-        .split(",")
-        .filter(Boolean)
-        .map((link) => link.trim()),
-      teamMembers: teamMembers
-        .split(",")
-        .filter(Boolean)
-        .map((link) => link.trim()),
-      projectPhoto,
-      projectPhotoName,
+      // tags: tags
+      //   .split(",")
+      //   .filter(Boolean)
+      //   .map((link) => link.trim()),
+      // teamMembers: teamMembers
+      //   .split(",")
+      //   .filter(Boolean)
+      //   .map((link) => link.trim()),
+      profilePhoto,
+      profilePhotoName,
     };
-    if (!project) {
-      doCreateProject(formValues, () => {
-        fetchData();
-        toast("Project created successfully", {
+    // if (user) 
+    // {
+      doCreateUser(formValues, () => {
+        // fetchData();
+        toast("User created successfully", {
           autoClose: 3000,
         });
+        window.location.reload();
       });
-    } else {
-      doEditProject(formValues, project.id, () => {
-        fetchData();
-        toast("Project edited successfully", {
-          autoClose: 3000,
-        });
-      });
-    }
+    // } 
+    // else {
+    //   doEditProject(formValues, user.uid, () => {
+    //     fetchData();
+    //     toast("Project edited successfully", {
+    //       autoClose: 3000,
+    //     });
+    //   });
+    // }
     onClose();
     actions.resetForm();
   };
-
+console.log(image)
   return (
     <div className="newProjectForm">
       <Formik
         initialValues={initialValue}
-        validationSchema={newProjectSchema}
+        // validationSchema={newProjectSchema}
         onSubmit={handleSubmit}
       >
         {(props) => (
@@ -101,7 +108,7 @@ const NewProjectForm = ({ onClose, project }) => {
                 required
                 onBlur={props.handleBlur("name")}
                 value={props.values.name}
-                onChange={props.handleChange("name")}
+                
                 type="text"
                 placeholder="Enter Your Name"
               />
@@ -139,12 +146,12 @@ const NewProjectForm = ({ onClose, project }) => {
                         base64str,
                         imgExt
                       );
-                      setProjectPhoto(compressedImage);
-                      setProjectPhotoName(e.target.files[0].name);
+                      setProfilePhoto(compressedImage);
+                      setProfilePhotoName(e.target.files[0].name);
                       setImage(URL.createObjectURL(compressedImage));
                     } catch (error) {
-                      setProjectPhoto(e.target.files[0]);
-                      setProjectPhotoName(e.target.files[0].name);
+                      setProfilePhoto(e.target.files[0]);
+                      setProfilePhotoName(e.target.files[0].name);
                       setImage(URL.createObjectURL(e.target.files[0]));
                       console.log("Error in compressing: " + error);
                     }
@@ -170,56 +177,56 @@ const NewProjectForm = ({ onClose, project }) => {
               )}
             </Row>
             <Row>
-              <Form.Group controlId="formGithubLink" className="col-md-6">
-                <Form.Label>Branch</Form.Label>
+              <Form.Group controlId="formBranch" className="col-md-6">
+                <Form.Label>Branch*</Form.Label>
                 <Form.Control
-                  onBlur={props.handleBlur("githubLink")}
-                  value={props.values.githubLink}
-                  onChange={props.handleChange("githubLink")}
+                  onBlur={props.handleBlur("branch")}
+                  value={props.values.branch}
+                  onChange={props.handleChange("branch")}
                   type="text"
                   placeholder="eg: CSE,ECE,EEE"
                 />
                 <Form.Text className="text-danger">
-                  {props.touched.githubLink && props.errors.githubLink}
+                  {props.touched.branch && props.errors.branch}
                 </Form.Text>
               </Form.Group>
-              <Form.Group controlId="formGithubLink" className="col-md-6">
-                <Form.Label>Year Of Passing</Form.Label>
+              <Form.Group controlId="formYear" className="col-md-6">
+                <Form.Label>Year Of Passing*</Form.Label>
                 <Form.Control
-                  onBlur={props.handleBlur("githubLink")}
-                  value={props.values.githubLink}
-                  onChange={props.handleChange("githubLink")}
+                  onBlur={props.handleBlur("year")}
+                  value={props.values.year}
+                  onChange={props.handleChange("year")}
                   type="text"
                   placeholder="eg: 2024,2025"
                 />
                 <Form.Text className="text-danger">
-                  {props.touched.githubLink && props.errors.githubLink}
+                  {props.touched.year && props.errors.year}
                 </Form.Text>
               </Form.Group>
             </Row>
-            <Form.Group controlId="formBasicDescription">
+            <Form.Group controlId="formAboutMe">
               <Form.Label>About Me*</Form.Label>
               <Form.Control
-                onBlur={props.handleBlur("desc")}
-                value={props.values.desc}
-                onChange={props.handleChange("desc")}
+                onBlur={props.handleBlur("about")}
+                value={props.values.about}
+                onChange={props.handleChange("about")}
                 as="textarea"
                 placeholder="lorem ipsum dolor si amet..."
                 rows="3"
               />
               <Form.Text className="text-danger">
-                {props.touched.desc && props.errors.desc
+                {props.touched.about && props.errors.about
                   ? "Please enter a description greater than 10 characters"
                   : ""}
               </Form.Text>
             </Form.Group>
 
-            <Form.Group controlId="formTeamMembers">
+            <Form.Group controlId="formSkills">
               <Form.Label>Skills</Form.Label>
               <Form.Control
-                onBlur={props.handleBlur("teamMembers")}
-                value={props.values.teamMembers}
-                onChange={props.handleChange("teamMembers")}
+                onBlur={props.handleBlur("skills")}
+                value={props.values.skills}
+                onChange={props.handleChange("skills")}
                 type="text"
                 placeholder="Enter the skills..."
               />
@@ -227,98 +234,98 @@ const NewProjectForm = ({ onClose, project }) => {
                 Please separate the skills using commas
               </Form.Text>
               <Form.Text className="text-danger">
-                {props.touched.teamMembers && props.errors.teamMembers}
+                {props.touched.skills && props.errors.skills}
               </Form.Text>
             </Form.Group>
 
-            <Form.Group controlId="formBasicTitle">
+            <Form.Group controlId="formAchievements">
               <Form.Label>Achievements*</Form.Label>
               <Form.Control
                 required
-                onBlur={props.handleBlur("name")}
-                value={props.values.name}
-                onChange={props.handleChange("name")}
+                onBlur={props.handleBlur("achievements")}
+                value={props.values.achievements}
+                onChange={props.handleChange("achievements")}
                 type="text"
                 placeholder="Enter Your Achievements"
               />
               <Form.Text className="text-danger">
-                {props.touched.name && props.errors.name}
+                {props.touched.achievements && props.errors.achievements}
               </Form.Text>
             </Form.Group>
 
             <Row>
-              <Form.Group controlId="formGithubLink" className="col-md-6">
+              <Form.Group controlId="formContact" className="col-md-6">
                 <Form.Label>Contact No.</Form.Label>
                 <Form.Control
-                  onBlur={props.handleBlur("contactNo")}
-                  value={props.values.contactNo}
-                  onChange={props.handleChange("contactNo")}
+                  onBlur={props.handleBlur("constact")}
+                  value={props.values.contact}
+                  onChange={props.handleChange("contact")}
                   type="text"
-                  placeholder="Enter your contact no"
+                  placeholder="Enter your Contact No"
                 />
                 <Form.Text className="text-danger">
-                  {props.touched.contactNo && props.errors.contactNo}
+                  {props.touched.contact && props.errors.contact}
                 </Form.Text>
               </Form.Group>
-              <Form.Group controlId="formGithubLink" className="col-md-6">
+              <Form.Group controlId="formMail" className="col-md-6">
                 <Form.Label>Mail ID</Form.Label>
                 <Form.Control
-                  onBlur={props.handleBlur("githubLink")}
-                  value={props.values.githubLink}
-                  onChange={props.handleChange("githubLink")}
+                  onBlur={props.handleBlur("email")}
+                  value={props.values.email}
+                  
                   type="text"
                   placeholder="eg: iedc@mec.ac.in"
                 />
                 <Form.Text className="text-danger">
-                  {props.touched.githubLink && props.errors.githubLink}
+                  {props.touched.email && props.errors.email}
                 </Form.Text>
               </Form.Group>
             </Row>
 
             <Row>
-              <Form.Group controlId="formGithubLink" className="col-md-6">
-                <Form.Label>Linkedin</Form.Label>
+              <Form.Group controlId="formLinkedin" className="col-md-6">
+                <Form.Label>LinkedIn</Form.Label>
                 <Form.Control
-                  onBlur={props.handleBlur("githubLink")}
-                  value={props.values.githubLink}
-                  onChange={props.handleChange("githubLink")}
+                  onBlur={props.handleBlur("linkedin")}
+                  value={props.values.linkedin}
+                  onChange={props.handleChange("linkedin")}
                   type="text"
                   placeholder="eg: https://linkedin.com/in/IEDCMEC"
                 />
                 <Form.Text className="text-danger">
-                  {props.touched.githubLink && props.errors.githubLink}
+                  {props.touched.linkedin && props.errors.linkedin}
                 </Form.Text>
               </Form.Group>
-              <Form.Group controlId="formGithubLink" className="col-md-6">
+              <Form.Group controlId="formGithub" className="col-md-6">
                 <Form.Label>Github</Form.Label>
                 <Form.Control
-                  onBlur={props.handleBlur("githubLink")}
-                  value={props.values.githubLink}
-                  onChange={props.handleChange("githubLink")}
+                  onBlur={props.handleBlur("github")}
+                  value={props.values.github}
+                  onChange={props.handleChange("github")}
                   type="text"
                   placeholder="eg: https://github.com/IEDCMEC/iedc-collab-frontend"
                 />
                 <Form.Text className="text-danger">
-                  {props.touched.githubLink && props.errors.githubLink}
+                  {props.touched.github && props.errors.github}
                 </Form.Text>
               </Form.Group>
             </Row>
 
-            <Form.Group controlId="formBasicTitle">
+            <Form.Group controlId="formWebsite">
               <Form.Label>Website*</Form.Label>
               <Form.Control
                 required
-                onBlur={props.handleBlur("name")}
-                value={props.values.name}
-                onChange={props.handleChange("name")}
+                onBlur={props.handleBlur("website")}
+                value={props.values.website}
+                onChange={props.handleChange("website")}
                 type="text"
                 placeholder="Enter Website Link"
               />
               <Form.Text className="text-danger">
-                {props.touched.name && props.errors.name}
+                {props.touched.website && props.errors.website}
               </Form.Text>
             </Form.Group>
-<br/>
+            <br />
             <Row className="col-md-12 d-flex justify-content-center">
               <Button
                 variant="outline-danger"
@@ -337,7 +344,7 @@ const NewProjectForm = ({ onClose, project }) => {
   );
 };
 
-const ProjectModal = (props) => {
+const EditProfileModal = (props) => {
   return (
     <Modal
       {...props}
@@ -360,10 +367,10 @@ const ProjectModal = (props) => {
           ></i>
         </div>
         <Col className="p-md-5">
-          <NewProjectForm onClose={props.onHide} project={props.project} />
+          <NewUserForm onClose={props.onHide} user={props.user} />
         </Col>
       </Modal.Body>
     </Modal>
   );
 };
-export default ProjectModal;
+export default EditProfileModal;

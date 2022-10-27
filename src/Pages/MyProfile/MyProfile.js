@@ -59,7 +59,7 @@ if(currentUser?.uid)
         <div className="profile_board">
           <div className="pro_image_container">
             <img
-              src={selectedUser.photoURL||"https://sabt.center/wp-content/uploads/2014/08/avatar-1.png"}
+              src={selectedUser.profilePhoto||"https://sabt.center/wp-content/uploads/2014/08/avatar-1.png"}
               className="profile_image"
               alt=""
             />
@@ -78,28 +78,28 @@ if(currentUser?.uid)
             <div className="phone_class">
               <div className="profile_phone">
                 <BsTelephoneInbound style={{ width: "3rem" }} />
-                <p>7987809778</p>
+                <p>{selectedUser?.contact ||"Change in Edit Profile"}</p>
               </div>
               <div className="profile_class">
                 <HiOutlineAcademicCap style={{ width: "3rem" }} />
-                <p>CSA20</p>
+                <p>{selectedUser?.branch ||"Change in Edit Profile"}{selectedUser?.year}</p>
               </div>
             </div>
             <div className="profile_email">
               <MdOutlineEmail style={{ width: "3rem" }} />
-              <p>{selectedUser.email}</p>
+              <p>{selectedUser?.email ||"Change in Edit Profile"}</p>
             </div>
             <div className="profile_web">
               <TbNetwork style={{ width: "3rem" }} />
-              <p>nidnuni.com</p>
+              <p>{selectedUser?.website ||"Change in Edit Profile"}</p>
             </div>
             <div className="profile_github">
               <VscGithubInverted style={{ width: "3rem" }} />
-              <p>github.com/AchyuthMohan/</p>
+              <p>{selectedUser?.github ||"Change in Edit Profile"}</p>
             </div>
             <div className="profile_linkedin">
               <FaLinkedin style={{ width: "3rem" }} />
-              <p>linkedin.com/en/bdbdi.com</p>
+              <p>{selectedUser?.linkedin ||"Change in Edit Profile"}</p>
             </div>
           </div>
         </div>
@@ -157,21 +157,22 @@ if(currentUser?.uid)
 
           <div className="edit__pro_abtMe">
             <div>About Me</div>
-            <div className="edit__pro_abtMe_bx"></div>
+            <div className="edit__pro_abtMe_bx">{selectedUser?.about}</div>
           </div>
 
           <div className="edit__pro_skls">
             <div>Skills</div>
-            <div className="edit__pro_skls_bx"></div>
+            <div className="edit__pro_skls_bx">{selectedUser?.skills}</div>
           </div>
 
           <div className="edit__pro_achvmts">
             <div>Achivements</div>
-            <div className="edit__pro_achvmts_bx"></div>
+            <div className="edit__pro_achvmts_bx">{selectedUser?.achievements}</div>
           </div>
         </div>
       </div>
       <EditProfileModal
+      user={selectedUser}
         show={showProfileModal}
         onHide={() => setShowProfileModal(false)}
       />
