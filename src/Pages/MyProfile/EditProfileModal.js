@@ -34,7 +34,6 @@ const NewProjectForm = ({ onClose, project }) => {
   };
 
   const newProjectSchema = yup.object({
-    name: yup.string().required("Please add a valid project name").min(3),
     desc: yup.string().required("Please add a valid description").min(10),
     contactNo: yup
       .string()
@@ -110,28 +109,10 @@ const NewProjectForm = ({ onClose, project }) => {
                 {props.touched.name && props.errors.name}
               </Form.Text>
             </Form.Group>
-
-            <Form.Group controlId="formBasicDescription">
-              <Form.Label>Project Description*</Form.Label>
-              <Form.Control
-                onBlur={props.handleBlur("desc")}
-                value={props.values.desc}
-                onChange={props.handleChange("desc")}
-                as="textarea"
-                placeholder="lorem ipsum dolor si amet..."
-                rows="3"
-              />
-              <Form.Text className="text-danger">
-                {props.touched.desc && props.errors.desc
-                  ? "Please enter a description greater than 10 characters"
-                  : ""}
-              </Form.Text>
-            </Form.Group>
             <br />
-
             <InputGroup controlId="formPhoto" className="photoContainer">
               <Form.Label className="photoLabel">
-                <span className="photoHead">Upload Featuring Photo</span>
+                <span className="photoHead">Profile Photo*</span>
                 <span className="photoIcon">
                   <FontAwesomeIcon icon={faUpload} />
                 </span>
@@ -188,26 +169,86 @@ const NewProjectForm = ({ onClose, project }) => {
                 ></img>
               )}
             </Row>
+            <Row>
+              <Form.Group controlId="formGithubLink" className="col-md-6">
+                <Form.Label>Branch</Form.Label>
+                <Form.Control
+                  onBlur={props.handleBlur("githubLink")}
+                  value={props.values.githubLink}
+                  onChange={props.handleChange("githubLink")}
+                  type="text"
+                  placeholder="eg: CSE,ECE,EEE"
+                />
+                <Form.Text className="text-danger">
+                  {props.touched.githubLink && props.errors.githubLink}
+                </Form.Text>
+              </Form.Group>
+              <Form.Group controlId="formGithubLink" className="col-md-6">
+                <Form.Label>Year Of Passing</Form.Label>
+                <Form.Control
+                  onBlur={props.handleBlur("githubLink")}
+                  value={props.values.githubLink}
+                  onChange={props.handleChange("githubLink")}
+                  type="text"
+                  placeholder="eg: 2024,2025"
+                />
+                <Form.Text className="text-danger">
+                  {props.touched.githubLink && props.errors.githubLink}
+                </Form.Text>
+              </Form.Group>
+            </Row>
+            <Form.Group controlId="formBasicDescription">
+              <Form.Label>About Me*</Form.Label>
+              <Form.Control
+                onBlur={props.handleBlur("desc")}
+                value={props.values.desc}
+                onChange={props.handleChange("desc")}
+                as="textarea"
+                placeholder="lorem ipsum dolor si amet..."
+                rows="3"
+              />
+              <Form.Text className="text-danger">
+                {props.touched.desc && props.errors.desc
+                  ? "Please enter a description greater than 10 characters"
+                  : ""}
+              </Form.Text>
+            </Form.Group>
+
             <Form.Group controlId="formTeamMembers">
-              <Form.Label>Team Members</Form.Label>
+              <Form.Label>Skills</Form.Label>
               <Form.Control
                 onBlur={props.handleBlur("teamMembers")}
                 value={props.values.teamMembers}
                 onChange={props.handleChange("teamMembers")}
                 type="text"
-                placeholder="Enter Team members name..."
+                placeholder="Enter the skills..."
               />
               <Form.Text className="text-right helperText">
-                Please separate the names using commas
+                Please separate the skills using commas
               </Form.Text>
               <Form.Text className="text-danger">
                 {props.touched.teamMembers && props.errors.teamMembers}
               </Form.Text>
             </Form.Group>
 
+            <Form.Group controlId="formBasicTitle">
+              <Form.Label>Achievements*</Form.Label>
+              <Form.Control
+                required
+                onBlur={props.handleBlur("name")}
+                value={props.values.name}
+                onChange={props.handleChange("name")}
+                type="text"
+                placeholder="Enter Your Achievements"
+              />
+              <Form.Text className="text-danger">
+                {props.touched.name && props.errors.name}
+              </Form.Text>
+            </Form.Group>
+
             <Row>
-              <Form.Group controlId="formContactNo" className="col-md-6">
-                <Form.Label>Contact No*</Form.Label>
+              <Form.Group controlId="formGithubLink" className="col-md-6">
+                <Form.Label>Contact No.</Form.Label>
                 <Form.Control
                   onBlur={props.handleBlur("contactNo")}
                   value={props.values.contactNo}
@@ -219,15 +260,14 @@ const NewProjectForm = ({ onClose, project }) => {
                   {props.touched.contactNo && props.errors.contactNo}
                 </Form.Text>
               </Form.Group>
-
               <Form.Group controlId="formGithubLink" className="col-md-6">
-                <Form.Label>Project Github Link</Form.Label>
+                <Form.Label>Mail ID</Form.Label>
                 <Form.Control
                   onBlur={props.handleBlur("githubLink")}
                   value={props.values.githubLink}
                   onChange={props.handleChange("githubLink")}
                   type="text"
-                  placeholder="eg: https://github.com/IEDCMEC/iedc-collab-frontend/"
+                  placeholder="eg: iedc@mec.ac.in"
                 />
                 <Form.Text className="text-danger">
                   {props.touched.githubLink && props.errors.githubLink}
@@ -235,39 +275,50 @@ const NewProjectForm = ({ onClose, project }) => {
               </Form.Group>
             </Row>
 
-            <Form.Group controlId="formTags">
-              <Form.Label>Add Tags</Form.Label>
-              <Form.Control
-                onBlur={props.handleBlur("tags")}
-                value={props.values.tags}
-                onChange={props.handleChange("tags")}
-                type="text"
-                placeholder="eg: webdev, nodejs"
-              />
-              <Form.Text className="helperText text-right">
-                Please separate the tags using commas
-              </Form.Text>
-              <Form.Text className="text-danger">
-                {props.touched.tags && props.errors.tags}
-              </Form.Text>
-            </Form.Group>
+            <Row>
+              <Form.Group controlId="formGithubLink" className="col-md-6">
+                <Form.Label>Linkedin</Form.Label>
+                <Form.Control
+                  onBlur={props.handleBlur("githubLink")}
+                  value={props.values.githubLink}
+                  onChange={props.handleChange("githubLink")}
+                  type="text"
+                  placeholder="eg: https://linkedin.com/in/IEDCMEC"
+                />
+                <Form.Text className="text-danger">
+                  {props.touched.githubLink && props.errors.githubLink}
+                </Form.Text>
+              </Form.Group>
+              <Form.Group controlId="formGithubLink" className="col-md-6">
+                <Form.Label>Github</Form.Label>
+                <Form.Control
+                  onBlur={props.handleBlur("githubLink")}
+                  value={props.values.githubLink}
+                  onChange={props.handleChange("githubLink")}
+                  type="text"
+                  placeholder="eg: https://github.com/IEDCMEC/iedc-collab-frontend"
+                />
+                <Form.Text className="text-danger">
+                  {props.touched.githubLink && props.errors.githubLink}
+                </Form.Text>
+              </Form.Group>
+            </Row>
 
-            <Form.Group controlId="formLinks">
-              <Form.Label>Add Links</Form.Label>
+            <Form.Group controlId="formBasicTitle">
+              <Form.Label>Website*</Form.Label>
               <Form.Control
-                onBlur={props.handleBlur("links")}
-                value={props.values.links}
-                onChange={props.handleChange("links")}
+                required
+                onBlur={props.handleBlur("name")}
+                value={props.values.name}
+                onChange={props.handleChange("name")}
                 type="text"
-                placeholder="eg: www.example.com"
+                placeholder="Enter Website Link"
               />
-              <Form.Text className="helperText text-right">
-                Please separate the links using commas
-              </Form.Text>
               <Form.Text className="text-danger">
-                {props.touched.links && props.errors.links}
+                {props.touched.name && props.errors.name}
               </Form.Text>
             </Form.Group>
+<br/>
             <Row className="col-md-12 d-flex justify-content-center">
               <Button
                 variant="outline-danger"
