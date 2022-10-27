@@ -10,7 +10,6 @@ const config = {
   storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
   messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
 };
-
 const initialize = () => {
   if (!firebase.apps.length) {
     firebase.initializeApp(config);
@@ -30,27 +29,31 @@ export const signIn = async (onSigninSuccess = () => {}) => {
   try {
     const result = await firebase.auth().signInWithPopup(provider);
     const user = result.user;
- 
-    const userData = {
-      name:user.displayName,
-      first_name:user.displayName.split(' ').shift(),
-      last_name: user.displayName.split(' ').join(' '),
-      email: user.email,
-      photoURL: user.photoURL,
-    };
-    console.log(userData)
-    firebase
-      .database()
-      .ref("users/" + user.uid)
-      .set(userData)
-      .then(function () {
-        console.log("User added sucessfully");
-        onSigninSuccess();
-      })
-      .catch(function (error) {
-        alert("Something went wrong");
-        console.log(error);
-      });
+    const userfromDB = await getUser(user.uid);
+    if (userfromDB.val()) {
+    } else {
+      const userData = {
+        name: user.displayName,
+        first_name: user.displayName.split(" ").shift(),
+        last_name: user.displayName.split(" ").join(" "),
+        email: user.email,
+        profilePhoto: user.photoURL,
+      };
+      console.log(userData);
+
+      firebase
+        .database()
+        .ref("users/" + user.uid)
+        .set(userData)
+        .then(function () {
+          console.log("User added sucessfully");
+          onSigninSuccess();
+        })
+        .catch(function (error) {
+          alert("Something went wrong");
+          console.log(error);
+        });
+    }
   } catch (error) {
     alert("Something is wrong, please check network connection");
     console.log(error);
@@ -229,13 +232,83 @@ export const doEditProject = async (obj, project_id, onSuccess = () => {}) => {
   }
 };
 
+export const doCreateUser = (obj, onSuccess = () => {}) => {
+  const user = firebase.auth().currentUser;
+  if (!user) {
+    alert("Please login to add a project");
+    return;
+  }
+  if (obj.profilePhoto) {
+    firebase
+      .storage()
+      .ref(`profilePhoto/${user.uid}`)
+      .put(obj.profilePhoto)
+      .then(({ ref }) => {
+        ref.getDownloadURL().then((photoUrl) => {
+          const createdAt = Date.now();
+          var userData = {
+            ...obj,
+            profilePhoto: photoUrl,
+            profilePhotoName: obj.profilePhotoName || "",
+            name: user.displayName,
+            first_name: user.displayName.split(" ").shift(),
+            last_name: user.displayName.split(" ").join(" "),
+            available: true,
+            createdAt,
+            updatedAt: createdAt,
+          };
+          console.log(userData);
+
+          firebase
+            .database()
+            .ref("users/" + user.uid)
+            .set(userData)
+            .then(function () {
+              console.log("User added sucessfully");
+              onSuccess("ADD");
+            })
+            .catch(function (error) {
+              alert("Something went wrong");
+              console.log(error);
+            });
+        });
+      });
+  } else {
+    const createdAt = Date.now();
+    var userData = {
+      ...obj,
+      profilePhoto: user.providerData[0]?.photoURL,
+      name: user.displayName,
+      first_name: user.displayName.split(" ").shift(),
+      last_name: user.displayName.split(" ").join(" "),
+      projectPhotoName: "Default Image",
+      available: true,
+      createdAt,
+      updatedAt: createdAt,
+    };
+    console.log(userData);
+
+    firebase
+      .database()
+      .ref("users/" + user.uid)
+      .set(userData)
+      .then(function () {
+        console.log("User added sucessfully");
+        onSuccess("ADD");
+      })
+      .catch(function (error) {
+        alert("Something went wrong");
+        console.log(error);
+      });
+  }
+};
+
 export const getProjects = () => {
   return firebase.database().ref("projects/").once("value");
 };
 export const getDevelopers = () => {
   return firebase.database().ref("users/").once("value");
 };
-
 
 export const getProject = (project_id) => {
   return firebase.database().ref("projects/").child(project_id).once("value");

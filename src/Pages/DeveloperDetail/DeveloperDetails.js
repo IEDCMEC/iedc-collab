@@ -52,7 +52,7 @@ function DeveloperDetails() {
           <div className="developer_image_div">
             <img
               className="developer_image"
-              src={selectedUser.photoURL||"https://sabt.center/wp-content/uploads/2014/08/avatar-1.png"}           alt=""
+              src={selectedUser.profilePhoto||"https://sabt.center/wp-content/uploads/2014/08/avatar-1.png"}           alt=""
             />
           </div>
           <div className="developer_details">
