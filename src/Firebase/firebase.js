@@ -232,7 +232,7 @@ export const doEditProject = async (obj, project_id, onSuccess = () => {}) => {
   }
 };
 
-export const doCreateUser = (obj, onSuccess = () => {}) => {
+export const doEditProfile = (obj, onSuccess = () => {}) => {
   const user = firebase.auth().currentUser;
   if (!user) {
     alert("Please login to add a project");
@@ -276,11 +276,13 @@ export const doCreateUser = (obj, onSuccess = () => {}) => {
         });
       });
   } else {
-    const createdAt = Date.now(); 
-    
+    const createdAt = Date.now();
+
     var userData = {
       ...obj,
-      profilePhoto: obj.profilePhoto?obj.profilePhoto:user.providerData[0]?.photoURL,
+      profilePhoto: obj.profilePhoto
+        ? obj.profilePhoto
+        : user.providerData[0]?.photoURL,
       name: user.displayName,
       first_name: user.displayName.split(" ").shift(),
       last_name: user.displayName.split(" ").slice(1).join(" "),

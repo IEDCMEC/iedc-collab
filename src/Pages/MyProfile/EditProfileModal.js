@@ -1,19 +1,15 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import { Formik } from "formik";
 import * as yup from "yup";
 import { Form, Row, Col, InputGroup } from "react-bootstrap";
-import {
-  doCreateUser,
-  doEditProject,
-} from "../../Firebase/firebase";
+import { doEditProfile } from "../../Firebase/firebase";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUpload } from "@fortawesome/free-solid-svg-icons";
 import "./EditModal.scss";
 import { toast } from "react-toastify";
 import Compress from "compress.js";
-import { UserContext } from "../../contexts/UserContext";
 
 const compress = new Compress();
 const NewUserForm = ({ onClose, user }) => {
@@ -60,39 +56,18 @@ const NewUserForm = ({ onClose, user }) => {
         .split(",")
         .filter(Boolean)
         .map((link) => link.trim()),
-      // tags: tags
-      //   .split(",")
-      //   .filter(Boolean)
-      //   .map((link) => link.trim()),
-      // teamMembers: teamMembers
-      //   .split(",")
-      //   .filter(Boolean)
-      //   .map((link) => link.trim()),
       profilePhoto,
       profilePhotoName,
     };
-    // if (user) 
-    // {
-      doCreateUser(formValues, () => {
-        // fetchData();
-        toast("User created successfully", {
-          autoClose: 3000,
-        });
-        window.location.reload();
+    doEditProfile(formValues, () => {
+      toast("Edited Profile Successfully", {
+        autoClose: 2000,
       });
-    // } 
-    // else {
-    //   doEditProject(formValues, user.uid, () => {
-    //     fetchData();
-    //     toast("Project edited successfully", {
-    //       autoClose: 3000,
-    //     });
-    //   });
-    // }
+      window.location.reload();
+    });
     onClose();
     actions.resetForm();
   };
-console.log(image)
   return (
     <div className="newProjectForm">
       <Formik
@@ -108,7 +83,6 @@ console.log(image)
                 required
                 onBlur={props.handleBlur("name")}
                 value={props.values.name}
-                
                 type="text"
                 placeholder="Enter Your Name"
               />
@@ -272,7 +246,6 @@ console.log(image)
                 <Form.Control
                   onBlur={props.handleBlur("email")}
                   value={props.values.email}
-                  
                   type="text"
                   placeholder="eg: iedc@mec.ac.in"
                 />
