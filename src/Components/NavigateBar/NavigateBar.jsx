@@ -1,7 +1,7 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import ProjectModal from "../ProjectModal/ProjectModal";
 import "./cards.css";
-import { signOut } from "../../Firebase/firebase";
+import { getUser, signOut } from "../../Firebase/firebase";
 import { AuthContext } from "../../Firebase/Auth/Auth";
 import { ProjectContext } from "../../contexts/ProjectContext";
 import { signIn } from "../../Firebase/firebase";
@@ -20,6 +20,17 @@ const Navbar = () => {
       signIn(() => setShowProjectModal(true));
     }
   };
+const [selectedUser,setSelectedUser]=useState(null)
+  const getDev = async (id) => {
+    if(id){
+    const user = await getUser(id);
+    setSelectedUser(await user.val())
+    }
+  }
+  useEffect(() => {
+    getDev(currentUser?.uid);
+    
+  }, [currentUser?.uid]);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -95,7 +106,7 @@ const Navbar = () => {
 
           {currentUser && (
             <Avatar
-              src={currentUser.photoURL}
+              src={selectedUser?.profilePhoto}
               onClick={handleClick}
               sx={{ cursor: "pointer",height: "35px", width: "35px" }}
             />

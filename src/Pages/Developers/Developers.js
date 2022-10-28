@@ -60,7 +60,7 @@ const Developers = () => {
                     alt="Profile"
                     className="developer-card-image"
                     src={
-                      user.photoURL ||
+                      user.profilePhoto ||
                       "https://sabt.center/wp-content/uploads/2014/08/avatar-1.png"
                     }
                   />
