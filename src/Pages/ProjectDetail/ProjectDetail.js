@@ -31,7 +31,7 @@ function ProjectDetail() {
   if (loading) {
     return (
         <div>
-           <MainLayout route={'Projects'}/>
+           <MainLayout route={'Projects'}>
       <div
         className="d-flex justify-content-center align-items-center flex-column"
         style={{ height: "90vh" }}
@@ -40,12 +40,13 @@ function ProjectDetail() {
         <div className="spinner-border" role="status"></div>
         <div className="mt-3">Loading Project...</div>
       </div>
+      </MainLayout>
       </div>
     );
   }
   return (
     <>
-      <MainLayout route={'Projects'}/>
+      <MainLayout route={'Projects'}>
       <ProjectCarousel project={selectedProject} />
       <ProjectToggle toggle={toggle} setToggle={setToggle} selectedProject={selectedProject} />
       <ProjectNav selectedProject={selectedProject} />
@@ -54,6 +55,7 @@ function ProjectDetail() {
         {toggle===2 && <RequirementDetails selectedProject={selectedProject}/>}
         {toggle===3 && <DiscussionDetails selectedProject={selectedProject}/>}
       </div>
+      </MainLayout>
     </>
   );
 }

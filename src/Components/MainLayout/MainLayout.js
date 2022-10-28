@@ -2,12 +2,13 @@ import React from 'react'
 import './MainLayout.scss'
 import Nav from '../Navbar/Navbar'
 import NavigateBar from '../NavigateBar/NavigateBar'
-const MainLayout = ({route}) => {
+const MainLayout = (props) => {
   return (
     <div>
         <NavigateBar/>
-        <Nav route={route}/>
+        <Nav route={props.route}/>
         <div className='layout__root'>
+          {props.children}
         </div>
     </div>
   )

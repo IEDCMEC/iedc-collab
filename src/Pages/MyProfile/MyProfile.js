@@ -40,7 +40,7 @@ if(currentUser?.uid)
   if (loading) {
     return (
         <div>
-           <MainLayout route={'Developers'}/>
+           <MainLayout route={'My Profile'}>
       <div
         className="d-flex justify-content-center align-items-center flex-column"
         style={{ height: "90vh" }}
@@ -49,12 +49,13 @@ if(currentUser?.uid)
         <div className="spinner-border" role="status"></div>
         <div className="mt-3">Loading Profile...</div>
       </div>
+      </MainLayout>
       </div>
     );
   }
   return (
     <>
-      <MainLayout route={"My Profile"} />
+      <MainLayout route={"My Profile"} >
       <div className="my_profile_container">
         <div className="profile_board">
           <div className="pro_image_container">
@@ -176,6 +177,7 @@ if(currentUser?.uid)
         show={showProfileModal}
         onHide={() => setShowProfileModal(false)}
       />
+      </MainLayout>
     </>
   );
 };

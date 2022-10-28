@@ -29,7 +29,7 @@ const Projects = () => {
   if (loading) {
     return (
         <div>
-           <MainLayout route={'Projects'}/>
+           <MainLayout route={'Projects'}>
       <div
         className="d-flex justify-content-center align-items-center flex-column"
         style={{ height: "90vh" }}
@@ -38,11 +38,12 @@ const Projects = () => {
         <div className="spinner-border" role="status"></div>
         <div className="mt-3">Loading Projects...</div>
       </div>
+      </MainLayout>
       </div>
     );
   }
   return (
-    <><MainLayout route={'Projects'}/>
+    <><MainLayout route={'Projects'}>
       <Container className="landing">
         <h3 style={{ textAlign: "center" }}>
           {projects.length === 0 && projects.length !== 0
@@ -81,6 +82,7 @@ const Projects = () => {
           </div>
         ))}
       </Container>
+      </MainLayout>
     </>
   );
 };

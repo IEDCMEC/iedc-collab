@@ -33,20 +33,21 @@ const NewUserForm = ({ onClose, user }) => {
     website: user?.website || "",
   };
 
-  // const newProjectSchema = yup.object({
-  //   desc: yup.string().required("Please add a valid description").min(10),
-  //   contactNo: yup
-  //     .string()
-  //     .required()
-  //     .matches(
-  //       /^[(]?[0-9]{3}[)]?[-\s.]?[0-9]{3}[-\s.]?[0-9]{4,6}$/,
-  //       "Please enter a valid 10 digit phone number"
-  //     ),
-  //   links: yup.string().min(4),
-  //   githubLink: yup.string().optional().min(4),
-  //   tags: yup.string(),
-  //   teamMembers: yup.string(),
-  // });
+  const newUserSchema = yup.object({
+    about: yup.string().required("Please add a valid description").min(10),
+    contact: yup
+      .string()
+      .required()
+      .matches(
+        /^[(]?[0-9]{3}[)]?[-\s.]?[0-9]{3}[-\s.]?[0-9]{4,6}$/,
+        "Please enter a valid 10 digit phone number"
+      ),
+    achievements: yup.string(),
+    github: yup.string().optional().min(4),
+    linkedin: yup.string().optional().min(4),
+    website: yup.string().optional().min(4),
+    skills: yup.string(),
+  });
 
   const handleSubmit = (values, actions) => {
     const { skills } = values;
@@ -72,7 +73,7 @@ const NewUserForm = ({ onClose, user }) => {
     <div className="newProjectForm">
       <Formik
         initialValues={initialValue}
-        // validationSchema={newProjectSchema}
+        validationSchema={newUserSchema}
         onSubmit={handleSubmit}
       >
         {(props) => (
@@ -196,7 +197,7 @@ const NewUserForm = ({ onClose, user }) => {
             </Form.Group>
 
             <Form.Group controlId="formSkills">
-              <Form.Label>Skills</Form.Label>
+              <Form.Label>Skills*</Form.Label>
               <Form.Control
                 onBlur={props.handleBlur("skills")}
                 value={props.values.skills}
@@ -229,7 +230,7 @@ const NewUserForm = ({ onClose, user }) => {
 
             <Row>
               <Form.Group controlId="formContact" className="col-md-6">
-                <Form.Label>Contact No.</Form.Label>
+                <Form.Label>Contact No.*</Form.Label>
                 <Form.Control
                   onBlur={props.handleBlur("constact")}
                   value={props.values.contact}
@@ -242,7 +243,7 @@ const NewUserForm = ({ onClose, user }) => {
                 </Form.Text>
               </Form.Group>
               <Form.Group controlId="formMail" className="col-md-6">
-                <Form.Label>Mail ID</Form.Label>
+                <Form.Label>Mail ID*</Form.Label>
                 <Form.Control
                   onBlur={props.handleBlur("email")}
                   value={props.values.email}
@@ -257,7 +258,7 @@ const NewUserForm = ({ onClose, user }) => {
 
             <Row>
               <Form.Group controlId="formLinkedin" className="col-md-6">
-                <Form.Label>LinkedIn</Form.Label>
+                <Form.Label>LinkedIn*</Form.Label>
                 <Form.Control
                   onBlur={props.handleBlur("linkedin")}
                   value={props.values.linkedin}
@@ -270,7 +271,7 @@ const NewUserForm = ({ onClose, user }) => {
                 </Form.Text>
               </Form.Group>
               <Form.Group controlId="formGithub" className="col-md-6">
-                <Form.Label>Github</Form.Label>
+                <Form.Label>Github*</Form.Label>
                 <Form.Control
                   onBlur={props.handleBlur("github")}
                   value={props.values.github}
