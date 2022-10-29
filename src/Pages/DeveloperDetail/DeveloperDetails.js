@@ -100,7 +100,7 @@ function DeveloperDetails() {
                 <div className="developer_details_body_right_content_projects">
                 <div className="developer_details_body_right_content_project">
                 <div className="developer_details_body_right_content_project_img">
-                  <img src="https://s3-alpha-sig.figma.com/img/d72a/1dee/2889d3a3937b43ea0945e6159fed9e03?Expires=1666569600&Signature=JVC6H3uReIdZf9k6JBF8rBONm5hm5aLOhnv0AUg3tv6lzWsd-yH~j6NUxmWkZnTd2RQC9b3jO0WHk6t2xZVMw0PqLWYYS0qriWQQh6cBGJa4-khHebFKjBwwCtIAfwrMWT8CgkJBmVRtGcPZDuvPN61RYHkV1JzTedOP8BU4jI6kwaFV7bFFEM83FIcUqRwVIMjPLqQrE-GvH5ZUMxx7u3eN7~vop6a-Ja-J78xbNiAo~Z5yEyBxRqUD5ZJlKVDt5nJwaF3aMR~oRKvnQDIZf152t2ejPZPHFxHmguUdyLpSkGGH03PTuIcMmTtHnix~bzv3W3Q6luzuShZ-NUN~PQ__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA" alt=""/>
+                  <img src="https://s3-alpha-sig.figma.com/img/d72a/1dee/2889d3a3937b43ea0945e6159fed9e03?Expires=1667779200&Signature=Nx~KqClWKDniX0jbkqPOJRb~8uUmNmwFnogZ6PNWX21ZK0I7Ffy55Jf8p4Cj7HrifGQ8hU5xGjdqlpSeXuFvZh8B8mjOHF3Gv0N7OEq9SkcOw77-mqmzDtLnhCeeL9DLzk57rTGLDiER-5DJ09T0x325JeB7AckKeZuG6RINSs4PzelRKr5e0MlJ4SHT0TNCRwl0cT9u6oJxGoC0p2h9z3~I6MMfw-NWdwBwsHj8C9to31MoqBS6OgdqOmku2ru-Lz2bhh8kL3dDtUMK0Nyr2F-SNA8ahtFqfSg2ocr5wDwH0RTJSVkmeJHZNBo-wdkL43DaREWaYaKc2RhlertTuw__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA" alt=""/>
                   </div>
                   <div className="developer_details_body_right_content_project_title">PROJECT LIFEBOAT
                   </div>
@@ -109,7 +109,7 @@ function DeveloperDetails() {
                   </div>
                   <div className="developer_details_body_right_content_project">
                 <div className="developer_details_body_right_content_project_img">
-                  <img src="https://s3-alpha-sig.figma.com/img/d72a/1dee/2889d3a3937b43ea0945e6159fed9e03?Expires=1666569600&Signature=JVC6H3uReIdZf9k6JBF8rBONm5hm5aLOhnv0AUg3tv6lzWsd-yH~j6NUxmWkZnTd2RQC9b3jO0WHk6t2xZVMw0PqLWYYS0qriWQQh6cBGJa4-khHebFKjBwwCtIAfwrMWT8CgkJBmVRtGcPZDuvPN61RYHkV1JzTedOP8BU4jI6kwaFV7bFFEM83FIcUqRwVIMjPLqQrE-GvH5ZUMxx7u3eN7~vop6a-Ja-J78xbNiAo~Z5yEyBxRqUD5ZJlKVDt5nJwaF3aMR~oRKvnQDIZf152t2ejPZPHFxHmguUdyLpSkGGH03PTuIcMmTtHnix~bzv3W3Q6luzuShZ-NUN~PQ__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA" alt=""/>
+                  <img src="https://s3-alpha-sig.figma.com/img/d72a/1dee/2889d3a3937b43ea0945e6159fed9e03?Expires=1667779200&Signature=Nx~KqClWKDniX0jbkqPOJRb~8uUmNmwFnogZ6PNWX21ZK0I7Ffy55Jf8p4Cj7HrifGQ8hU5xGjdqlpSeXuFvZh8B8mjOHF3Gv0N7OEq9SkcOw77-mqmzDtLnhCeeL9DLzk57rTGLDiER-5DJ09T0x325JeB7AckKeZuG6RINSs4PzelRKr5e0MlJ4SHT0TNCRwl0cT9u6oJxGoC0p2h9z3~I6MMfw-NWdwBwsHj8C9to31MoqBS6OgdqOmku2ru-Lz2bhh8kL3dDtUMK0Nyr2F-SNA8ahtFqfSg2ocr5wDwH0RTJSVkmeJHZNBo-wdkL43DaREWaYaKc2RhlertTuw__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA" alt=""/>
                   </div>
                   <div className="developer_details_body_right_content_project_title">PROJECT LIFEBOAT
                   </div>
@@ -118,7 +118,7 @@ function DeveloperDetails() {
                   </div>
                   <div className="developer_details_body_right_content_project">
                 <div className="developer_details_body_right_content_project_img">
-                  <img src="https://s3-alpha-sig.figma.com/img/d72a/1dee/2889d3a3937b43ea0945e6159fed9e03?Expires=1666569600&Signature=JVC6H3uReIdZf9k6JBF8rBONm5hm5aLOhnv0AUg3tv6lzWsd-yH~j6NUxmWkZnTd2RQC9b3jO0WHk6t2xZVMw0PqLWYYS0qriWQQh6cBGJa4-khHebFKjBwwCtIAfwrMWT8CgkJBmVRtGcPZDuvPN61RYHkV1JzTedOP8BU4jI6kwaFV7bFFEM83FIcUqRwVIMjPLqQrE-GvH5ZUMxx7u3eN7~vop6a-Ja-J78xbNiAo~Z5yEyBxRqUD5ZJlKVDt5nJwaF3aMR~oRKvnQDIZf152t2ejPZPHFxHmguUdyLpSkGGH03PTuIcMmTtHnix~bzv3W3Q6luzuShZ-NUN~PQ__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA" alt=""/>
+                  <img src="https://s3-alpha-sig.figma.com/img/d72a/1dee/2889d3a3937b43ea0945e6159fed9e03?Expires=1667779200&Signature=Nx~KqClWKDniX0jbkqPOJRb~8uUmNmwFnogZ6PNWX21ZK0I7Ffy55Jf8p4Cj7HrifGQ8hU5xGjdqlpSeXuFvZh8B8mjOHF3Gv0N7OEq9SkcOw77-mqmzDtLnhCeeL9DLzk57rTGLDiER-5DJ09T0x325JeB7AckKeZuG6RINSs4PzelRKr5e0MlJ4SHT0TNCRwl0cT9u6oJxGoC0p2h9z3~I6MMfw-NWdwBwsHj8C9to31MoqBS6OgdqOmku2ru-Lz2bhh8kL3dDtUMK0Nyr2F-SNA8ahtFqfSg2ocr5wDwH0RTJSVkmeJHZNBo-wdkL43DaREWaYaKc2RhlertTuw__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA" alt=""/>
                   </div>
                   <div className="developer_details_body_right_content_project_title">PROJECT LIFEBOAT
                   </div>
