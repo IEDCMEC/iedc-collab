@@ -1,19 +1,15 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import { Formik } from "formik";
 import * as yup from "yup";
 import { Form, Row, Col, InputGroup } from "react-bootstrap";
-import {
-  doCreateUser,
-  doEditProject,
-} from "../../Firebase/firebase";
+import { doEditProfile } from "../../Firebase/firebase";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUpload } from "@fortawesome/free-solid-svg-icons";
 import "./EditModal.scss";
 import { toast } from "react-toastify";
 import Compress from "compress.js";
-import { UserContext } from "../../contexts/UserContext";
 
 const compress = new Compress();
 const NewUserForm = ({ onClose, user }) => {
@@ -37,20 +33,21 @@ const NewUserForm = ({ onClose, user }) => {
     website: user?.website || "",
   };
 
-  // const newProjectSchema = yup.object({
-  //   desc: yup.string().required("Please add a valid description").min(10),
-  //   contactNo: yup
-  //     .string()
-  //     .required()
-  //     .matches(
-  //       /^[(]?[0-9]{3}[)]?[-\s.]?[0-9]{3}[-\s.]?[0-9]{4,6}$/,
-  //       "Please enter a valid 10 digit phone number"
-  //     ),
-  //   links: yup.string().min(4),
-  //   githubLink: yup.string().optional().min(4),
-  //   tags: yup.string(),
-  //   teamMembers: yup.string(),
-  // });
+  const newUserSchema = yup.object({
+    about: yup.string().required("Please add a valid description").min(10),
+    contact: yup
+      .string()
+      .required()
+      .matches(
+        /^[(]?[0-9]{3}[)]?[-\s.]?[0-9]{3}[-\s.]?[0-9]{4,6}$/,
+        "Please enter a valid 10 digit phone number"
+      ),
+    achievements: yup.string(),
+    github: yup.string().optional().min(4),
+    linkedin: yup.string().optional().min(4),
+    website: yup.string().optional().min(4),
+    skills: yup.string(),
+  });
 
   const handleSubmit = (values, actions) => {
     const { skills } = values;
@@ -60,44 +57,23 @@ const NewUserForm = ({ onClose, user }) => {
         .split(",")
         .filter(Boolean)
         .map((link) => link.trim()),
-      // tags: tags
-      //   .split(",")
-      //   .filter(Boolean)
-      //   .map((link) => link.trim()),
-      // teamMembers: teamMembers
-      //   .split(",")
-      //   .filter(Boolean)
-      //   .map((link) => link.trim()),
       profilePhoto,
       profilePhotoName,
     };
-    // if (user) 
-    // {
-      doCreateUser(formValues, () => {
-        // fetchData();
-        toast("User created successfully", {
-          autoClose: 3000,
-        });
-        window.location.reload();
+    doEditProfile(formValues, () => {
+      toast("Edited Profile Successfully", {
+        autoClose: 2000,
       });
-    // } 
-    // else {
-    //   doEditProject(formValues, user.uid, () => {
-    //     fetchData();
-    //     toast("Project edited successfully", {
-    //       autoClose: 3000,
-    //     });
-    //   });
-    // }
+      window.location.reload();
+    });
     onClose();
     actions.resetForm();
   };
-console.log(image)
   return (
     <div className="newProjectForm">
       <Formik
         initialValues={initialValue}
-        // validationSchema={newProjectSchema}
+        validationSchema={newUserSchema}
         onSubmit={handleSubmit}
       >
         {(props) => (
@@ -108,7 +84,6 @@ console.log(image)
                 required
                 onBlur={props.handleBlur("name")}
                 value={props.values.name}
-                
                 type="text"
                 placeholder="Enter Your Name"
               />
@@ -222,7 +197,7 @@ console.log(image)
             </Form.Group>
 
             <Form.Group controlId="formSkills">
-              <Form.Label>Skills</Form.Label>
+              <Form.Label>Skills*</Form.Label>
               <Form.Control
                 onBlur={props.handleBlur("skills")}
                 value={props.values.skills}
@@ -255,7 +230,7 @@ console.log(image)
 
             <Row>
               <Form.Group controlId="formContact" className="col-md-6">
-                <Form.Label>Contact No.</Form.Label>
+                <Form.Label>Contact No.*</Form.Label>
                 <Form.Control
                   onBlur={props.handleBlur("constact")}
                   value={props.values.contact}
@@ -268,11 +243,10 @@ console.log(image)
                 </Form.Text>
               </Form.Group>
               <Form.Group controlId="formMail" className="col-md-6">
-                <Form.Label>Mail ID</Form.Label>
+                <Form.Label>Mail ID*</Form.Label>
                 <Form.Control
                   onBlur={props.handleBlur("email")}
                   value={props.values.email}
-                  
                   type="text"
                   placeholder="eg: iedc@mec.ac.in"
                 />
@@ -284,7 +258,7 @@ console.log(image)
 
             <Row>
               <Form.Group controlId="formLinkedin" className="col-md-6">
-                <Form.Label>LinkedIn</Form.Label>
+                <Form.Label>LinkedIn*</Form.Label>
                 <Form.Control
                   onBlur={props.handleBlur("linkedin")}
                   value={props.values.linkedin}
@@ -297,7 +271,7 @@ console.log(image)
                 </Form.Text>
               </Form.Group>
               <Form.Group controlId="formGithub" className="col-md-6">
-                <Form.Label>Github</Form.Label>
+                <Form.Label>Github*</Form.Label>
                 <Form.Control
                   onBlur={props.handleBlur("github")}
                   value={props.values.github}

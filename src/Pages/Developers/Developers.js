@@ -30,7 +30,7 @@ const Developers = () => {
   if (loading) {
     return (
       <div>
-        <MainLayout route={'Developers'}/>
+        <MainLayout route={'Developers'}>
         <div
           className="d-flex justify-content-center align-items-center flex-column"
           style={{ height: "90vh" }}
@@ -38,11 +38,12 @@ const Developers = () => {
           <div className="spinner-border" role="status"></div>
           <div className="mt-3">Loading Developers...</div>
         </div>
+        </MainLayout>
       </div>
     );
   }
   return (<>
-    <MainLayout route={'Developers'}/>
+    <MainLayout route={'Developers'}>
       <div className="parent_container">
           <Drawer/>
         <div className="developer_container">
@@ -56,14 +57,14 @@ const Developers = () => {
                   style={{ cursor: "pointer" }}
                   onClick={() => handleClick(user)}
                 >
-                  <img
+                  <div className="developer-card-image"><img
                     alt="Profile"
-                    className="developer-card-image"
+                    
                     src={
-                      user.photoURL ||
+                      user.profilePhoto ||
                       "https://sabt.center/wp-content/uploads/2014/08/avatar-1.png"
                     }
-                  />
+                  /></div>
                   <div>
                     <h1 className="developer-card-name">{user.name}</h1>
                     <div className="developer-card-email">{user.email}</div>
@@ -73,7 +74,9 @@ const Developers = () => {
             })}
           </div>
         </div>
-      </div></>
+      </div>
+      </MainLayout>
+      </>
   );
 };
 

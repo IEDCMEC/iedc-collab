@@ -13,7 +13,7 @@ const Description = () => {
   if (loading) {
     return (
       <div>
-        <MainLayout/>
+        <MainLayout>
         <div
         className="d-flex justify-content-center align-items-center flex-column"
         style={{ height: "90vh" }}
@@ -21,13 +21,14 @@ const Description = () => {
         <div className="spinner-border" role="status"></div>
         <div className="mt-3">Loading projects...</div>
       </div>
+      </MainLayout>
       </div>
 
     );
   }
 
   return projects.length === 0 ? (
-    <><MainLayout/>
+    <><MainLayout>
     <div className="container not-found">
       <h2
         style={{
@@ -39,10 +40,11 @@ const Description = () => {
         NOT FOUND
       </h2>
     </div>
+    </MainLayout>
     </>
   ) : (
     <>
-    <MainLayout/>
+    <MainLayout>
     <ProjectCarousel/>
     <div className="container__details">
     
@@ -51,6 +53,7 @@ const Description = () => {
     </div>
     <div className="details__container">
     <DescriptionDetails/></div>
+    </MainLayout>
     </>
   );
 };

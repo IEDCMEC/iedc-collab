@@ -13,7 +13,7 @@ const Requirements = () => {
   if (loading) {
     return (
       <div>
-        <MainLayout/>
+        <MainLayout>
         <div
         className="d-flex justify-content-center align-items-center flex-column"
         style={{ height: "90vh" }}
@@ -21,13 +21,14 @@ const Requirements = () => {
         <div className="spinner-border" role="status"></div>
         <div className="mt-3">Loading projects...</div>
       </div>
+      </MainLayout>
       </div>
 
     );
   }
 
   return projects.length === 0 ? (
-    <><MainLayout/>
+    <><MainLayout>
     <div className="container not-found">
       <h2
         style={{
@@ -39,15 +40,17 @@ const Requirements = () => {
         NOT FOUND
       </h2>
     </div>
+    </MainLayout>
     </>
   ) : (
     <>
-    <MainLayout/>
+    <MainLayout>
     <ProjectCarousel/>
     <ProjectToggle/>
     <ProjectNav/>
     <div className="details__container">
     <RequirementDetails/></div>
+    </MainLayout>
     </>
   );
 };

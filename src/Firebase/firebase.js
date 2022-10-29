@@ -35,7 +35,7 @@ export const signIn = async (onSigninSuccess = () => {}) => {
       const userData = {
         name: user.displayName,
         first_name: user.displayName.split(" ").shift(),
-        last_name: user.displayName.split(" ").join(" "),
+        last_name: user.displayName.split(" ").slice(1).join(" "),
         email: user.email,
         profilePhoto: user.photoURL,
       };
@@ -232,13 +232,15 @@ export const doEditProject = async (obj, project_id, onSuccess = () => {}) => {
   }
 };
 
-export const doCreateUser = (obj, onSuccess = () => {}) => {
+export const doEditProfile = (obj, onSuccess = () => {}) => {
   const user = firebase.auth().currentUser;
   if (!user) {
     alert("Please login to add a project");
     return;
   }
-  if (obj.profilePhoto) {
+  console.log(obj.profilePhoto);
+
+  if (obj.profilePhoto && typeof obj.profilePhoto !== "string") {
     firebase
       .storage()
       .ref(`profilePhoto/${user.uid}`)
@@ -252,7 +254,7 @@ export const doCreateUser = (obj, onSuccess = () => {}) => {
             profilePhotoName: obj.profilePhotoName || "",
             name: user.displayName,
             first_name: user.displayName.split(" ").shift(),
-            last_name: user.displayName.split(" ").join(" "),
+            last_name: user.displayName.split(" ").slice(1).join(" "),
             available: true,
             createdAt,
             updatedAt: createdAt,
@@ -275,12 +277,15 @@ export const doCreateUser = (obj, onSuccess = () => {}) => {
       });
   } else {
     const createdAt = Date.now();
+
     var userData = {
       ...obj,
-      profilePhoto: user.providerData[0]?.photoURL,
+      profilePhoto: obj.profilePhoto
+        ? obj.profilePhoto
+        : user.providerData[0]?.photoURL,
       name: user.displayName,
       first_name: user.displayName.split(" ").shift(),
-      last_name: user.displayName.split(" ").join(" "),
+      last_name: user.displayName.split(" ").slice(1).join(" "),
       projectPhotoName: "Default Image",
       available: true,
       createdAt,

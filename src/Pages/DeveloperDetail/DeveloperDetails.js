@@ -31,7 +31,7 @@ function DeveloperDetails() {
   if (loading) {
     return (
         <div>
-           <MainLayout route={'Developers'}/>
+           <MainLayout route={'Developers'}>
       <div
         className="d-flex justify-content-center align-items-center flex-column"
         style={{ height: "90vh" }}
@@ -40,12 +40,13 @@ function DeveloperDetails() {
         <div className="spinner-border" role="status"></div>
         <div className="mt-3">Loading Developer...</div>
       </div>
+      </MainLayout>
       </div>
     );
   }
   return (
     <>
-      <MainLayout route={'Developers'}/>
+      <MainLayout route={'Developers'}>
       <div className="developer_details_container">
 
         <div className="developer_details_navbar">
@@ -59,22 +60,19 @@ function DeveloperDetails() {
             <div className="developer_details_header">
               <div className="developer_name">{selectedUser.name}</div>
               <div className="developer_icons">
-                <img src={browser} alt="" />
-                <img src={phone} alt="" />
-                <img src={mail} alt="" />
-                <img src={linkedin} alt="" />
-                <img src={github} alt="" />
+                <a href={selectedUser?.website} target="_blank" rel="noreferrer"><img src={browser} alt="" /></a>
+                <a href= {`tel:+91${selectedUser?.contact}`} target="_blank" rel="noreferrer"><img src={phone} alt="" /></a>
+                <a href={`mailto:${selectedUser?.email}`} target="_blank" rel="noreferrer"><img src={mail} alt="" /></a>
+                <a href={selectedUser?.linkedin} target="_blank" rel="noreferrer"><img src={linkedin} alt="" /></a>
+                <a href={selectedUser?.github} target="_blank" rel="noreferrer"><img src={github} alt="" /></a>
               </div>
             </div>
             <div className="developer_class">
               <img src={classIcon} alt="" />
-              CS 2024
+              {selectedUser?.branch} {selectedUser?.year}
             </div>
             <div className="developer_bio">
-              Amet minim mollit non deserunt ullamco est sit aliqua dolor do
-              amet sint. Velit officia consequat duis enim velit mollit.
-              Exercitation veniam consequat sunt nostrud amet. Amet minim mollit
-              non deserunt ullamco est sit aliqua dolor do amet sint.
+             {selectedUser?.about}
             </div>
           </div>
         </div>
@@ -88,7 +86,9 @@ function DeveloperDetails() {
               Skills
               </div>
               <div className="developer_details_body_right_content">
-              Python, C, Java, Competitive Programming, DSA, Communication, Math
+                {selectedUser?.skills?.map((skill, index) => (
+                  <div key={index}>{index+1} . {skill}</div>
+                ))}
               </div>
               </div>
 
@@ -134,7 +134,7 @@ function DeveloperDetails() {
               Achievements
               </div>
               <div className="developer_details_body_right_content">
-              Python, C, Java, Competitive Programming, DSA, Communication, Math
+             {selectedUser?.achievements}
               </div>
               </div>
           </div>
@@ -148,6 +148,7 @@ function DeveloperDetails() {
       <InviteToProjectModal show={modalShow}
         onHide={() => setModalShow(false)} />
       </div>
+      </MainLayout>
     </>
   );
 }
