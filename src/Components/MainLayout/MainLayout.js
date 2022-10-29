@@ -5,7 +5,7 @@ import NavigateBar from '../NavigateBar/NavigateBar'
 const MainLayout = (props) => {
   return (
     <div>
-        <NavigateBar/>
+        <NavigateBar route={props.route}/>
         <Nav route={props.route}/>
         <div className='layout__root'>
           {props.children}

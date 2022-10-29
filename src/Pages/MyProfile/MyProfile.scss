@@ -43,6 +43,14 @@
     margin-bottom: 0px;
   }
 }
+a {
+  text-decoration: none;
+  color: #ffff;
+}
+a:hover{
+  color: #ffff;
+  text-decoration: none;
+}
 .profile_details_container {
   font-size: 1.4rem;
   padding-top: 2.25rem;
@@ -295,10 +303,15 @@
 .edit__pro_abtMe_bx,
 .edit__pro_skls_bx,
 .edit__pro_achvmts_bx {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   background: #ffffff;
   border: 0.4px solid #9e0000;
   border-radius: 10px;
-
+padding: 10px;
+font-weight: 600;
+font-size: 20px;
   min-height: 2.5rem;
   min-width: 15rem;
 }

@@ -8,7 +8,7 @@ import { signIn } from "../../Firebase/firebase";
 import { Link } from "react-router-dom";
 import { Avatar, Menu, MenuItem } from "@mui/material";
 
-const Navbar = () => {
+const Navbar = (props) => {
   const [showProjectModal, setShowProjectModal] = useState(false);
   const { currentUser } = useContext(AuthContext);
   const { handleSearch } = useContext(ProjectContext);
@@ -20,16 +20,15 @@ const Navbar = () => {
       signIn(() => setShowProjectModal(true));
     }
   };
-const [selectedUser,setSelectedUser]=useState(null)
+  const [selectedUser, setSelectedUser] = useState(null);
   const getDev = async (id) => {
-    if(id){
-    const user = await getUser(id);
-    setSelectedUser(await user.val())
+    if (id) {
+      const user = await getUser(id);
+      setSelectedUser(await user.val());
     }
-  }
+  };
   useEffect(() => {
     getDev(currentUser?.uid);
-    
   }, [currentUser?.uid]);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
@@ -72,23 +71,82 @@ const [selectedUser,setSelectedUser]=useState(null)
             </p>
           </Link>
         </div>
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-          }}
-          className="NavigateBar-searchbox mt-2"
-        >
-          <input
-            placeholder="Search projects..."
-            onChange={(e) => handleSearch(e.target.value)}
-            style={{ borderStyle: "none", outline: "none", width: "95%" }}
-          ></input>
-          <i
-            className="fa fa-search fa-lg Navigate-searchicon"
-            style={{ cursor: "pointer" }}
-          ></i>
-        </div>
+        {props.route === "Ideas" && (
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+            }}
+            className="NavigateBar-searchbox mt-2"
+          >
+            <input
+              placeholder="Search ideas..."
+              onChange={(e) => handleSearch(e.target.value)}
+              style={{ borderStyle: "none", outline: "none", width: "95%" }}
+            ></input>
+            <i
+              className="fa fa-search fa-lg Navigate-searchicon"
+              style={{ cursor: "pointer" }}
+            ></i>
+          </div>
+        )}
+         {props.route === "Projects" && (
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+            }}
+            className="NavigateBar-searchbox mt-2"
+          >
+            <input
+              placeholder="Search projects..."
+              onChange={(e) => handleSearch(e.target.value)}
+              style={{ borderStyle: "none", outline: "none", width: "95%" }}
+            ></input>
+            <i
+              className="fa fa-search fa-lg Navigate-searchicon"
+              style={{ cursor: "pointer" }}
+            ></i>
+          </div>
+        )}
+         {props.route === "Developers" && (
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+            }}
+            className="NavigateBar-searchbox mt-2"
+          >
+            <input
+              placeholder="Search developers..."
+              onChange={(e) => handleSearch(e.target.value)}
+              style={{ borderStyle: "none", outline: "none", width: "95%" }}
+            ></input>
+            <i
+              className="fa fa-search fa-lg Navigate-searchicon"
+              style={{ cursor: "pointer" }}
+            ></i>
+          </div>
+        )}
+        {props.route === "My Profile" && (
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+            }}
+            className="NavigateBar-searchbox mt-2"
+          >
+            <input
+              placeholder="Search projects..."
+              onChange={(e) => handleSearch(e.target.value)}
+              style={{ borderStyle: "none", outline: "none", width: "95%" }}
+            ></input>
+            <i
+              className="fa fa-search fa-lg Navigate-searchicon"
+              style={{ cursor: "pointer" }}
+            ></i>
+          </div>
+        )}
 
         <div
           id="navbarSupportedContent"
@@ -108,7 +166,7 @@ const [selectedUser,setSelectedUser]=useState(null)
             <Avatar
               src={selectedUser?.profilePhoto}
               onClick={handleClick}
-              sx={{ cursor: "pointer",height: "35px", width: "35px" }}
+              sx={{ cursor: "pointer", height: "35px", width: "35px" }}
             />
           )}
         </div>
