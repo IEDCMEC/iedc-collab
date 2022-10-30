@@ -11,7 +11,7 @@ import "./EditModal.scss";
 import { toast } from "react-toastify";
 import Compress from "compress.js";
 import "./EditModal.scss";
-import { Autocomplete, Checkbox, TextField } from "@mui/material";
+import { Autocomplete, Checkbox, styled, TextField } from "@mui/material";
 
 import CheckBoxOutlineBlankIcon from "@mui/icons-material/CheckBoxOutlineBlank";
 import CheckBoxIcon from "@mui/icons-material/CheckBox";
@@ -30,7 +30,7 @@ const NewUserForm = ({ onClose, user }) => {
     year: user?.year || "",
     about: user?.about || "",
     skills: user?.skills?.join(", ") || "",
-    projects:user?.projects||"",
+    projects: user?.projects || "",
     achievements: user?.achievements || "",
     contact: user?.contact || "",
     email: user?.email || "",
@@ -52,7 +52,7 @@ const NewUserForm = ({ onClose, user }) => {
   useEffect(() => {
     getWorks();
   }, []);
-  const [acValue, setACValue] = useState(user?.projects||[]);
+  const [acValue, setACValue] = useState(user?.projects || []);
   console.log(acValue);
   const newUserSchema = yup.object({
     about: yup.string().required("Please add a valid description").min(10),
@@ -227,30 +227,7 @@ const NewUserForm = ({ onClose, user }) => {
               </Form.Group>
             </Row>
             <Form.Group controlId="formProjects">
-              {/* <Form.Label>Projects Worked In</Form.Label> */}
-              {/* <Form.Control
-                as="select"
-                multiple
-                value={projects}
-                onChange={(e) => {
-                  setField(e.target.value);
-                }}
-                style={{
-                  color: "#9E0000",
-                  border: "2px solid #9E0000",
-                  borderRadius: "10px",
-                }}
-                onBlur={props.handleBlur("projects")}
-                // value={props.values.projects}
-                // onChange={props.handleChange("projects")}
-              >
-                <option value="">Choose Projects...</option>
-                {projects.map((project) => {
-                  return <option value={project._id}>{project.name}</option>;
-                })}
-              </Form.Control> */}
-
-              <Autocomplete
+                <Autocomplete
                 multiple
                 onChange={(event, value) => {
                   setACValue(value);
@@ -271,14 +248,20 @@ const NewUserForm = ({ onClose, user }) => {
                     {option.name}
                   </li>
                 )}
-                style={{ width: 500 }}
                 renderInput={(params) => (
-                  <TextField {...params} label="Projects Worked In" />
+                  <TextField
+                    size="small"
+                    style={{
+                      color: "#9E0000",
+                    }}
+                    {...params}
+                    label="Projects Worked In"
+                  />
                 )}
               />
 
               <Form.Text className="text-danger">
-                {props.touched.year && props.errors.year}
+                {props.touched.projects && props.errors.projects}
               </Form.Text>
             </Form.Group>
             <Form.Group controlId="formAboutMe">

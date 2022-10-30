@@ -38,6 +38,16 @@
     font-weight: 600;
   }
 
+  textarea,
+  input,select,
+  input[type],
+  .uneditable-input {
+    padding-left: 15px;
+    border-color: #9e0000 !important;
+    border-width: 2px !important;
+    border-radius: 10px !important;
+    color: #9e0000 !important;
+  }
   textarea:focus,
   option:focus,
   select:focus-within,

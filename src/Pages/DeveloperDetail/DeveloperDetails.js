@@ -172,23 +172,29 @@ function DeveloperDetails() {
                     {selectedUser.projects ? (
                       selectedUser.projects.map((project, index) => {
                         return (
-                        <div className="developer_details_body_right_content_project" onClick={()=>{history.push(`/projects/${project.id}`)}}>
-                          <div className="developer_details_body_right_content_project_img">
-                            <img
-                              src={
-                                project.projectPhoto ||
-                                "https://images.unsplash.com/photo-1639413665566-2f75adf7b7ca?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyN3x8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60"
-                              }
-                              alt=""
-                            />
+                          <div
+                            className="developer_details_body_right_content_project"
+                            onClick={() => {
+                              history.push(`/projects/${project.id}`);
+                            }}
+                          >
+                            <div className="developer_details_body_right_content_project_img">
+                              <img
+                                src={
+                                  project.projectPhoto ||
+                                  "https://images.unsplash.com/photo-1639413665566-2f75adf7b7ca?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyN3x8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60"
+                                }
+                                alt=""
+                              />
+                            </div>
+                            <div className="developer_details_body_right_content_project_title">
+                              {project.name}
+                            </div>
+                            <div className="developer_details_body_right_content_project_lead">
+                              {project.leader_name}
+                            </div>
                           </div>
-                          <div className="developer_details_body_right_content_project_title">
-                            {project.name}
-                          </div>
-                          <div className="developer_details_body_right_content_project_lead">
-                            {project.leader_name}
-                          </div>
-                        </div>);
+                        );
                       })
                     ) : (
                       <div className="skill">No Projects Added</div>
@@ -212,21 +218,20 @@ function DeveloperDetails() {
             </div>
           </div>
 
-          {
-            (id===currentUser?.uid)?(""):(
-              <div className="developer_details_footer_container">
-            <div
-              className="developer_details_footer"
-              onClick={() => setModalShow(true)}
-            >
-              <img src={add} alt="" />
-              Invite to Project
+          {id === currentUser?.uid ? (
+            ""
+          ) : (
+            <div className="developer_details_footer_container">
+              <div
+                className="developer_details_footer"
+                onClick={() => setModalShow(true)}
+              >
+                <img src={add} alt="" />
+                Invite to Project
+              </div>
             </div>
-          </div>
+          )}
 
-            )
-          }
-          
           <InviteToProjectModal
             show={modalShow}
             onHide={() => setModalShow(false)}
