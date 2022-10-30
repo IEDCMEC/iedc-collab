@@ -10,6 +10,7 @@ import { faUpload } from "@fortawesome/free-solid-svg-icons";
 import "./EditModal.scss";
 import { toast } from "react-toastify";
 import Compress from "compress.js";
+import './EditModal.scss'
 
 const compress = new Compress();
 const NewUserForm = ({ onClose, user }) => {
@@ -155,12 +156,23 @@ const NewUserForm = ({ onClose, user }) => {
               <Form.Group controlId="formBranch" className="col-md-6">
                 <Form.Label>Branch*</Form.Label>
                 <Form.Control
+                  as="select"
+                  style={{
+                    color: "#9E0000",
+                    border: "2px solid #9E0000",
+                    borderRadius: "10px",
+                  }}
                   onBlur={props.handleBlur("branch")}
                   value={props.values.branch}
                   onChange={props.handleChange("branch")}
-                  type="text"
-                  placeholder="eg: CSE,ECE,EEE"
-                />
+                >
+                   <option value="">Choose Branch...</option>
+                  <option value="CSE">CSE</option>
+                  <option value="ECE">ECE</option>
+                  <option value="EEE">EEE</option>
+                  <option value="MECH">EBE</option>
+                  <option value="MECH">MECH</option>
+                </Form.Control>
                 <Form.Text className="text-danger">
                   {props.touched.branch && props.errors.branch}
                 </Form.Text>
@@ -168,12 +180,22 @@ const NewUserForm = ({ onClose, user }) => {
               <Form.Group controlId="formYear" className="col-md-6">
                 <Form.Label>Year Of Passing*</Form.Label>
                 <Form.Control
+                  as="select"
+                  style={{
+                    color: "#9E0000",
+                    border: "2px solid #9E0000",
+                    borderRadius: "10px",
+                  }}
                   onBlur={props.handleBlur("year")}
                   value={props.values.year}
                   onChange={props.handleChange("year")}
-                  type="text"
-                  placeholder="eg: 2024,2025"
-                />
+                >
+                  <option value="">Choose Passing Year...</option>
+                  <option value="2023">2023</option>
+                  <option value="2024">2024</option>
+                  <option value="2025">2025</option>
+                  <option value="2026">2026</option>
+                </Form.Control>
                 <Form.Text className="text-danger">
                   {props.touched.year && props.errors.year}
                 </Form.Text>

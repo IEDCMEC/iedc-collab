@@ -79,15 +79,16 @@ const MyProfile = () => {
                 <div className="profile_phone">
                   <BsTelephoneInbound style={{ width: "3rem" }} />
                   <p>
-                    {(
+                    {(selectedUser.contact)?
+                    (
                       <a
-                        href={`tel:+91${selectedUser?.contact}`}
+                        href={`tel:+91${selectedUser.contact}`}
                         target="_blank"
                         rel="noreferrer"
                       >
                         {selectedUser.contact}
                       </a>
-                    ) || "Change in Edit Profile"}
+                    ) :("Change in Edit Profile")}
                   </p>
                 </div>
                 <div className="profile_class">
@@ -115,7 +116,7 @@ const MyProfile = () => {
               <div className="profile_web">
                 <TbNetwork style={{ width: "3rem" }} />
                 <p>
-                  {(
+                  {(selectedUser.website)?(
                     <a
                       href={selectedUser?.website}
                       target="_blank"
@@ -123,13 +124,13 @@ const MyProfile = () => {
                     >
                       {selectedUser.website}
                     </a>
-                  ) || "Change in Edit Profile"}
+                  ) : "Change in Edit Profile"}
                 </p>
               </div>
               <div className="profile_github">
                 <VscGithubInverted style={{ width: "3rem" }} />
                 <p>
-                  {(
+                  {(selectedUser.github)?(
                     <a
                       href={selectedUser?.github}
                       target="_blank"
@@ -137,21 +138,21 @@ const MyProfile = () => {
                     >
                       {selectedUser.github}
                     </a>
-                  ) || "Change in Edit Profile"}
+                  ) : "Change in Edit Profile"}
                 </p>
               </div>
               <div className="profile_linkedin">
                 <FaLinkedin style={{ width: "3rem" }} />
                 <p>
-                  {(
+                  {(selectedUser.linkedin)?(
                     <a
-                      href={selectedUser?.linkedin}
+                      href={selectedUser.linkedin}
                       target="_blank"
                       rel="noreferrer"
                     >
                       {selectedUser.linkedin}
                     </a>
-                  ) || "Change in Edit Profile"}
+                  ) : "Change in Edit Profile"}
                 </p>
               </div>
             </div>
@@ -210,7 +211,11 @@ const MyProfile = () => {
 
             <div className="edit__pro_abtMe">
               <div>About Me</div>
-              <div className="edit__pro_abtMe_bx">{selectedUser?.about}</div>
+              <div className="edit__pro_abtMe_bx">{selectedUser.achievements ? (
+                    selectedUser.achievements
+                  ) : (
+                    <div className="skill">About Section Not Added</div>
+                  )}</div>
             </div>
 
             <div className="edit__pro_skls">
@@ -233,7 +238,11 @@ const MyProfile = () => {
             <div className="edit__pro_achvmts">
               <div>Achivements</div>
               <div className="edit__pro_achvmts_bx">
-                {selectedUser?.achievements}
+              {selectedUser.achievements ? (
+                    selectedUser.achievements
+                  ) : (
+                    <div className="skill">No Achievements Added</div>
+                  )}
               </div>
             </div>
           </div>
