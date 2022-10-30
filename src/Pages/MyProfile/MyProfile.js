@@ -217,7 +217,7 @@ const MyProfile = () => {
               <div>Skills</div>
               <div className="edit__pro_skls_bx">
                 {selectedUser.skills ? (
-                  selectedUser?.skills?.map((skill, index) => {
+                  selectedUser.skills.map((skill, index) => {
                     return (
                       <div className="skill" key={index}>
                         {index + 1} . {skill}
