@@ -9,12 +9,15 @@ import github from "../../assets/githubnew.svg";
 import person from "../../assets/details_left.svg";
 import add from "../../assets/add.svg";
 import InviteToProjectModal from "../../Components/InviteToProjectModal/InviteToProjectModal";
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useContext, useEffect, useState } from "react";
+import { useHistory, useParams } from "react-router-dom";
 import { getUser } from "../../Firebase/firebase";
+import { AuthContext } from "../../Firebase/Auth/Auth";
 
 function DeveloperDetails() {
   let { id } = useParams();
+  const history = useHistory();
+  const { currentUser } = useContext(AuthContext);
   const [selectedUser, setSelectedUser] = useState({});
   const [loading, setLoading] = useState(true);
   const getDev = async (id) => {
@@ -166,48 +169,30 @@ function DeveloperDetails() {
                 </div>
                 <div className="developer_details_body_right_content">
                   <div className="developer_details_body_right_content_projects">
-                    <div className="developer_details_body_right_content_project">
-                      <div className="developer_details_body_right_content_project_img">
-                        <img
-                          src="https://s3-alpha-sig.figma.com/img/d72a/1dee/2889d3a3937b43ea0945e6159fed9e03?Expires=1667779200&Signature=Nx~KqClWKDniX0jbkqPOJRb~8uUmNmwFnogZ6PNWX21ZK0I7Ffy55Jf8p4Cj7HrifGQ8hU5xGjdqlpSeXuFvZh8B8mjOHF3Gv0N7OEq9SkcOw77-mqmzDtLnhCeeL9DLzk57rTGLDiER-5DJ09T0x325JeB7AckKeZuG6RINSs4PzelRKr5e0MlJ4SHT0TNCRwl0cT9u6oJxGoC0p2h9z3~I6MMfw-NWdwBwsHj8C9to31MoqBS6OgdqOmku2ru-Lz2bhh8kL3dDtUMK0Nyr2F-SNA8ahtFqfSg2ocr5wDwH0RTJSVkmeJHZNBo-wdkL43DaREWaYaKc2RhlertTuw__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"
-                          alt=""
-                        />
-                      </div>
-                      <div className="developer_details_body_right_content_project_title">
-                        PROJECT LIFEBOAT
-                      </div>
-                      <div className="developer_details_body_right_content_project_lead">
-                        MUHAMMED RAZEEN
-                      </div>
-                    </div>
-                    <div className="developer_details_body_right_content_project">
-                      <div className="developer_details_body_right_content_project_img">
-                        <img
-                          src="https://s3-alpha-sig.figma.com/img/d72a/1dee/2889d3a3937b43ea0945e6159fed9e03?Expires=1667779200&Signature=Nx~KqClWKDniX0jbkqPOJRb~8uUmNmwFnogZ6PNWX21ZK0I7Ffy55Jf8p4Cj7HrifGQ8hU5xGjdqlpSeXuFvZh8B8mjOHF3Gv0N7OEq9SkcOw77-mqmzDtLnhCeeL9DLzk57rTGLDiER-5DJ09T0x325JeB7AckKeZuG6RINSs4PzelRKr5e0MlJ4SHT0TNCRwl0cT9u6oJxGoC0p2h9z3~I6MMfw-NWdwBwsHj8C9to31MoqBS6OgdqOmku2ru-Lz2bhh8kL3dDtUMK0Nyr2F-SNA8ahtFqfSg2ocr5wDwH0RTJSVkmeJHZNBo-wdkL43DaREWaYaKc2RhlertTuw__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"
-                          alt=""
-                        />
-                      </div>
-                      <div className="developer_details_body_right_content_project_title">
-                        PROJECT LIFEBOAT
-                      </div>
-                      <div className="developer_details_body_right_content_project_lead">
-                        MUHAMMED RAZEEN
-                      </div>
-                    </div>
-                    <div className="developer_details_body_right_content_project">
-                      <div className="developer_details_body_right_content_project_img">
-                        <img
-                          src="https://s3-alpha-sig.figma.com/img/d72a/1dee/2889d3a3937b43ea0945e6159fed9e03?Expires=1667779200&Signature=Nx~KqClWKDniX0jbkqPOJRb~8uUmNmwFnogZ6PNWX21ZK0I7Ffy55Jf8p4Cj7HrifGQ8hU5xGjdqlpSeXuFvZh8B8mjOHF3Gv0N7OEq9SkcOw77-mqmzDtLnhCeeL9DLzk57rTGLDiER-5DJ09T0x325JeB7AckKeZuG6RINSs4PzelRKr5e0MlJ4SHT0TNCRwl0cT9u6oJxGoC0p2h9z3~I6MMfw-NWdwBwsHj8C9to31MoqBS6OgdqOmku2ru-Lz2bhh8kL3dDtUMK0Nyr2F-SNA8ahtFqfSg2ocr5wDwH0RTJSVkmeJHZNBo-wdkL43DaREWaYaKc2RhlertTuw__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"
-                          alt=""
-                        />
-                      </div>
-                      <div className="developer_details_body_right_content_project_title">
-                        PROJECT LIFEBOAT
-                      </div>
-                      <div className="developer_details_body_right_content_project_lead">
-                        MUHAMMED RAZEEN
-                      </div>
-                    </div>
+                    {selectedUser.projects ? (
+                      selectedUser.projects.map((project, index) => {
+                        return (
+                        <div className="developer_details_body_right_content_project" onClick={()=>{history.push(`/projects/${project.id}`)}}>
+                          <div className="developer_details_body_right_content_project_img">
+                            <img
+                              src={
+                                project.projectPhoto ||
+                                "https://images.unsplash.com/photo-1639413665566-2f75adf7b7ca?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyN3x8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60"
+                              }
+                              alt=""
+                            />
+                          </div>
+                          <div className="developer_details_body_right_content_project_title">
+                            {project.name}
+                          </div>
+                          <div className="developer_details_body_right_content_project_lead">
+                            {project.leader_name}
+                          </div>
+                        </div>);
+                      })
+                    ) : (
+                      <div className="skill">No Projects Added</div>
+                    )}
                   </div>
                 </div>
               </div>
@@ -226,7 +211,10 @@ function DeveloperDetails() {
               </div>
             </div>
           </div>
-          <div className="developer_details_footer_container">
+
+          {
+            (id===currentUser?.uid)?(""):(
+              <div className="developer_details_footer_container">
             <div
               className="developer_details_footer"
               onClick={() => setModalShow(true)}
@@ -236,6 +224,9 @@ function DeveloperDetails() {
             </div>
           </div>
 
+            )
+          }
+          
           <InviteToProjectModal
             show={modalShow}
             onHide={() => setModalShow(false)}

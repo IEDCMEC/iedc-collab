@@ -16,7 +16,6 @@ const Developers = () => {
         id: key,
       }));
       setUsers(result); setLoading(false);
-      console.log(result);
     });
   };
   useEffect(() => {

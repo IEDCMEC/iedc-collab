@@ -139,34 +139,37 @@ color: #000000;
 .developer_details_body_right_content_project
 {
   width: 203px;
-  height: 172px;
+  height: 182px;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   background: #9E0000;
+  cursor: pointer;
   border-radius: 10px;
   flex-wrap: wrap;
-  align-content: flex-start;
-  justify-content: center;
-  row-gap: 10px;
+  padding-bottom: 10px;
+  align-items: center;
+  justify-content: space-between;
 }
 .developer_details_body_right_content_project img
 {
   width: 203px;
-height: 96px;
+height: 110px;
 border-radius: 10px;
 }
 .developer_details_body_right_content_project_title{
 font-family: 'Nunito';
 font-style: normal;
 font-weight: 800;
+text-transform: uppercase;
 font-size: 18px;
-line-height: 25px;
+line-height: 20px;
 color: #FFFFFF;
 }
 .developer_details_body_right_content_project_lead{
 font-family: 'Nunito';
 font-style: normal;
 font-weight: 600;
+text-transform: uppercase;
 font-size: 14px;
 line-height: 19px;
 /* identical to box height */
