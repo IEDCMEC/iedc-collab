@@ -11,7 +11,7 @@ import "./EditModal.scss";
 import { toast } from "react-toastify";
 import Compress from "compress.js";
 import "./EditModal.scss";
-import { Autocomplete, Checkbox, styled, TextField } from "@mui/material";
+import { Autocomplete, Checkbox, TextField } from "@mui/material";
 
 import CheckBoxOutlineBlankIcon from "@mui/icons-material/CheckBoxOutlineBlank";
 import CheckBoxIcon from "@mui/icons-material/CheckBox";
@@ -53,7 +53,6 @@ const NewUserForm = ({ onClose, user }) => {
     getWorks();
   }, []);
   const [acValue, setACValue] = useState(user?.projects || []);
-  console.log(acValue);
   const newUserSchema = yup.object({
     about: yup.string().required("Please add a valid description").min(10),
     branch: yup.string().required("Please select a branch."),

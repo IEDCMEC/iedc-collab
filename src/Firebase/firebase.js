@@ -101,7 +101,6 @@ export const doCreateProject = (obj, onSuccess = () => {}) => {
             leader_id: user.uid,
             leader_name: user.displayName,
             leaderEmail: user.email,
-            leaderImg: user.providerData[0]?.photoURL || null,
           };
           console.log(projectData);
 
@@ -291,7 +290,6 @@ export const doEditProfile = (obj, onSuccess = () => {}) => {
       createdAt,
       updatedAt: createdAt,
     };
-    console.log(userData);
 
     firebase
       .database()
