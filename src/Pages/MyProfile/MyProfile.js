@@ -215,13 +215,19 @@ const MyProfile = () => {
 
             <div className="edit__pro_skls">
               <div>Skills</div>
-              <div className="edit__pro_skls_bx">{selectedUser?.skills?.map((skill,index)=>{
-                return(
-                  <div className="skill" key={index}>
-                    {index+1} . {skill}
-                  </div>
-                )
-              })}</div>
+              <div className="edit__pro_skls_bx">
+                {selectedUser.skills ? (
+                  selectedUser?.skills?.map((skill, index) => {
+                    return (
+                      <div className="skill" key={index}>
+                        {index + 1} . {skill}
+                      </div>
+                    );
+                  })
+                ) : (
+                  <div className="skill">No Skills Added</div>
+                )}
+              </div>
             </div>
 
             <div className="edit__pro_achvmts">
