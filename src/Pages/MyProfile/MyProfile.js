@@ -85,7 +85,7 @@ const MyProfile = () => {
                         target="_blank"
                         rel="noreferrer"
                       >
-                        {selectedUser?.contact}
+                        {selectedUser.contact}
                       </a>
                     ) || "Change in Edit Profile"}
                   </p>
@@ -121,7 +121,7 @@ const MyProfile = () => {
                       target="_blank"
                       rel="noreferrer"
                     >
-                      {selectedUser?.website}
+                      {selectedUser.website}
                     </a>
                   ) || "Change in Edit Profile"}
                 </p>
@@ -135,7 +135,7 @@ const MyProfile = () => {
                       target="_blank"
                       rel="noreferrer"
                     >
-                      {selectedUser?.github}
+                      {selectedUser.github}
                     </a>
                   ) || "Change in Edit Profile"}
                 </p>
@@ -149,7 +149,7 @@ const MyProfile = () => {
                       target="_blank"
                       rel="noreferrer"
                     >
-                      {selectedUser?.linkedin}
+                      {selectedUser.linkedin}
                     </a>
                   ) || "Change in Edit Profile"}
                 </p>
@@ -215,7 +215,7 @@ const MyProfile = () => {
 
             <div className="edit__pro_skls">
               <div>Skills</div>
-              <div className="edit__pro_skls_bx">{selectedUser?.skills.map((skill,index)=>{
+              <div className="edit__pro_skls_bx">{selectedUser?.skills?.map((skill,index)=>{
                 return(
                   <div className="skill" key={index}>
                     {index+1} . {skill}

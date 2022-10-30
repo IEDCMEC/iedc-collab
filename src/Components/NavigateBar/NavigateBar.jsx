@@ -5,14 +5,14 @@ import { getUser, signOut } from "../../Firebase/firebase";
 import { AuthContext } from "../../Firebase/Auth/Auth";
 import { ProjectContext } from "../../contexts/ProjectContext";
 import { signIn } from "../../Firebase/firebase";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { Avatar, Menu, MenuItem } from "@mui/material";
 
 const Navbar = (props) => {
   const [showProjectModal, setShowProjectModal] = useState(false);
   const { currentUser } = useContext(AuthContext);
   const { handleSearch } = useContext(ProjectContext);
-
+const history=useHistory()
   const newprojectClick = async () => {
     if (currentUser) {
       setShowProjectModal(true);
@@ -245,7 +245,7 @@ const Navbar = (props) => {
               color: "#9E0000",
             }}
             onClick={() => {
-              signOut();
+              signOut();history.push("/projects");
             }}
           >
             LOGOUT
