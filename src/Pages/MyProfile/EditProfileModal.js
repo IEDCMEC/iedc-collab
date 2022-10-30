@@ -1,15 +1,20 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import { Formik } from "formik";
 import * as yup from "yup";
 import { Form, Row, Col, InputGroup } from "react-bootstrap";
-import { doEditProfile } from "../../Firebase/firebase";
+import { doEditProfile, getProjects } from "../../Firebase/firebase";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUpload } from "@fortawesome/free-solid-svg-icons";
 import "./EditModal.scss";
 import { toast } from "react-toastify";
 import Compress from "compress.js";
+import "./EditModal.scss";
+import { Autocomplete, Checkbox, TextField } from "@mui/material";
+
+import CheckBoxOutlineBlankIcon from "@mui/icons-material/CheckBoxOutlineBlank";
+import CheckBoxIcon from "@mui/icons-material/CheckBox";
 
 const compress = new Compress();
 const NewUserForm = ({ onClose, user }) => {
@@ -25,6 +30,7 @@ const NewUserForm = ({ onClose, user }) => {
     year: user?.year || "",
     about: user?.about || "",
     skills: user?.skills?.join(", ") || "",
+    projects: user?.projects || "",
     achievements: user?.achievements || "",
     contact: user?.contact || "",
     email: user?.email || "",
@@ -32,9 +38,25 @@ const NewUserForm = ({ onClose, user }) => {
     github: user?.github || "",
     website: user?.website || "",
   };
-
+  const [projects, setProjects] = useState([]);
+  const getWorks = async () => {
+    await getProjects().then(async function (snapshot) {
+      let messageObject = snapshot.val();
+      const result = Object.keys(messageObject).map((key) => ({
+        ...messageObject[key],
+        id: key,
+      }));
+      setProjects(result);
+    });
+  };
+  useEffect(() => {
+    getWorks();
+  }, []);
+  const [acValue, setACValue] = useState(user?.projects || []);
   const newUserSchema = yup.object({
     about: yup.string().required("Please add a valid description").min(10),
+    branch: yup.string().required("Please select a branch."),
+    year: yup.string().required("Please select a passing year."),
     contact: yup
       .string()
       .required()
@@ -53,6 +75,7 @@ const NewUserForm = ({ onClose, user }) => {
     const { skills } = values;
     const formValues = {
       ...values,
+      projects: acValue,
       skills: skills
         .split(",")
         .filter(Boolean)
@@ -69,6 +92,8 @@ const NewUserForm = ({ onClose, user }) => {
     onClose();
     actions.resetForm();
   };
+  const icon = <CheckBoxOutlineBlankIcon fontSize="small" />;
+  const checkedIcon = <CheckBoxIcon fontSize="small" />;
   return (
     <div className="newProjectForm">
       <Formik
@@ -82,10 +107,10 @@ const NewUserForm = ({ onClose, user }) => {
               <Form.Label>Name*</Form.Label>
               <Form.Control
                 required
+                disabled
+                style={{ cursor: "not-allowed" }}
                 onBlur={props.handleBlur("name")}
                 value={props.values.name}
-                type="text"
-                placeholder="Enter Your Name"
               />
               <Form.Text className="text-danger">
                 {props.touched.name && props.errors.name}
@@ -94,7 +119,7 @@ const NewUserForm = ({ onClose, user }) => {
             <br />
             <InputGroup controlId="formPhoto" className="photoContainer">
               <Form.Label className="photoLabel">
-                <span className="photoHead">Profile Photo*</span>
+                <span className="photoHead">Profile Photo</span>
                 <span className="photoIcon">
                   <FontAwesomeIcon icon={faUpload} />
                 </span>
@@ -155,12 +180,23 @@ const NewUserForm = ({ onClose, user }) => {
               <Form.Group controlId="formBranch" className="col-md-6">
                 <Form.Label>Branch*</Form.Label>
                 <Form.Control
+                  as="select"
+                  style={{
+                    color: "#9E0000",
+                    border: "2px solid #9E0000",
+                    borderRadius: "10px",
+                  }}
                   onBlur={props.handleBlur("branch")}
                   value={props.values.branch}
                   onChange={props.handleChange("branch")}
-                  type="text"
-                  placeholder="eg: CSE,ECE,EEE"
-                />
+                >
+                  <option value="">Choose Branch...</option>
+                  <option value="CSE">CSE</option>
+                  <option value="ECE">ECE</option>
+                  <option value="EEE">EEE</option>
+                  <option value="MECH">EBE</option>
+                  <option value="MECH">MECH</option>
+                </Form.Control>
                 <Form.Text className="text-danger">
                   {props.touched.branch && props.errors.branch}
                 </Form.Text>
@@ -168,17 +204,65 @@ const NewUserForm = ({ onClose, user }) => {
               <Form.Group controlId="formYear" className="col-md-6">
                 <Form.Label>Year Of Passing*</Form.Label>
                 <Form.Control
+                  as="select"
+                  style={{
+                    color: "#9E0000",
+                    border: "2px solid #9E0000",
+                    borderRadius: "10px",
+                  }}
                   onBlur={props.handleBlur("year")}
                   value={props.values.year}
                   onChange={props.handleChange("year")}
-                  type="text"
-                  placeholder="eg: 2024,2025"
-                />
+                >
+                  <option value="">Choose Passing Year...</option>
+                  <option value="2023">2023</option>
+                  <option value="2024">2024</option>
+                  <option value="2025">2025</option>
+                  <option value="2026">2026</option>
+                </Form.Control>
                 <Form.Text className="text-danger">
                   {props.touched.year && props.errors.year}
                 </Form.Text>
               </Form.Group>
             </Row>
+            <Form.Group controlId="formProjects">
+                <Autocomplete
+                multiple
+                onChange={(event, value) => {
+                  setACValue(value);
+                }}
+                id="checkboxes-tags-demo"
+                value={acValue}
+                options={projects}
+                disableCloseOnSelect
+                getOptionLabel={(option) => option.name}
+                renderOption={(props, option, { selected }) => (
+                  <li {...props}>
+                    <Checkbox
+                      icon={icon}
+                      checkedIcon={checkedIcon}
+                      style={{ marginRight: 8 }}
+                      checked={selected}
+                    />
+                    {option.name}
+                  </li>
+                )}
+                renderInput={(params) => (
+                  <TextField
+                    size="small"
+                    style={{
+                      color: "#9E0000",
+                    }}
+                    {...params}
+                    label="Projects Worked In"
+                  />
+                )}
+              />
+
+              <Form.Text className="text-danger">
+                {props.touched.projects && props.errors.projects}
+              </Form.Text>
+            </Form.Group>
             <Form.Group controlId="formAboutMe">
               <Form.Label>About Me*</Form.Label>
               <Form.Control
@@ -197,7 +281,7 @@ const NewUserForm = ({ onClose, user }) => {
             </Form.Group>
 
             <Form.Group controlId="formSkills">
-              <Form.Label>Skills*</Form.Label>
+              <Form.Label>Skills</Form.Label>
               <Form.Control
                 onBlur={props.handleBlur("skills")}
                 value={props.values.skills}
@@ -214,7 +298,7 @@ const NewUserForm = ({ onClose, user }) => {
             </Form.Group>
 
             <Form.Group controlId="formAchievements">
-              <Form.Label>Achievements*</Form.Label>
+              <Form.Label>Achievements</Form.Label>
               <Form.Control
                 required
                 onBlur={props.handleBlur("achievements")}
@@ -247,8 +331,8 @@ const NewUserForm = ({ onClose, user }) => {
                 <Form.Control
                   onBlur={props.handleBlur("email")}
                   value={props.values.email}
-                  type="text"
-                  placeholder="eg: iedc@mec.ac.in"
+                  disabled
+                  required
                 />
                 <Form.Text className="text-danger">
                   {props.touched.email && props.errors.email}
@@ -258,7 +342,7 @@ const NewUserForm = ({ onClose, user }) => {
 
             <Row>
               <Form.Group controlId="formLinkedin" className="col-md-6">
-                <Form.Label>LinkedIn*</Form.Label>
+                <Form.Label>LinkedIn</Form.Label>
                 <Form.Control
                   onBlur={props.handleBlur("linkedin")}
                   value={props.values.linkedin}
@@ -271,7 +355,7 @@ const NewUserForm = ({ onClose, user }) => {
                 </Form.Text>
               </Form.Group>
               <Form.Group controlId="formGithub" className="col-md-6">
-                <Form.Label>Github*</Form.Label>
+                <Form.Label>Github</Form.Label>
                 <Form.Control
                   onBlur={props.handleBlur("github")}
                   value={props.values.github}
@@ -286,7 +370,7 @@ const NewUserForm = ({ onClose, user }) => {
             </Row>
 
             <Form.Group controlId="formWebsite">
-              <Form.Label>Website*</Form.Label>
+              <Form.Label>Website</Form.Label>
               <Form.Control
                 required
                 onBlur={props.handleBlur("website")}

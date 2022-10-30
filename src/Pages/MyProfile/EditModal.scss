@@ -1,154 +1,154 @@
-.btn{
-    background: #fff;
-   color: var(--primaryColor);
-   border-color: var(--primaryColor);
-   width: 177px !important;
-   height: 54px !important;
-   border-radius: 9px;
-   font-size: 23px;
-  }
-  
-  .btn:hover{
+.btn {
+  background: #fff;
+  color: var(--primaryColor);
+  border-color: var(--primaryColor);
+  width: 177px !important;
+  height: 54px !important;
+  border-radius: 9px;
+  font-size: 23px;
+}
+
+.btn:hover {
   color: #fff;
   background: var(--primaryColor);
-  }
-  
-  
-  .modalbody {
-    background-color: #fff;
-    color: #9e0000;
-  }
-  
-  .modalHead {
-    text-align: center;
-    font-weight: 700;
-  }
-  
-  .modalHead2 {
-    font-weight: 500;
-  }
-  
-  .newProjectForm {
-    .form-group > label {
-      top: 18px;
-      left: 6px;
-      position: relative;
-      background-color: #fff;
-      padding: 0px 5px 0px 5px;
-      font-size: 1em;
-      font-weight: 600;
-    }
-  
-    textarea:focus,
-    input:focus,
-    input[type]:focus,
-    .uneditable-input:focus {
-      box-shadow: 0 1px 1px rgba(229, 103, 23, 0.075) inset,
-        0 0 8px rgba(229, 103, 23, 0.6) !important;
-      outline: 0 none;
-    }
-  
-    textarea,
-    input,
-    input[type],
-    .uneditable-input {
-      padding-left: 15px;
-      border-color: #9e0000 !important;
-      border-width: 2px !important;
-      border-radius: 10px !important;
-      color: #9e0000 !important;
-    }
-    .custom-file-input {
-      border-color: #9e0000 !important;
-      width: 70%;
-    }
-    .form-control::-webkit-input-placeholder {
-      color: #9e0000;
-    }
-  
-    input[type="file"]:focus {
-      box-shadow: none !important;
-      
-    }
-  }
-  
-  
-  .customFile{
-  width:40rem;
-  }
-  
-  ::-webkit-file-upload-button {
-    display: none;
-  }
-  
-  ::file-selector-button {
-    display: none;
-  }
-  
-  .photoContainer {
-    border: 2px solid #9e0000;
-    padding-bottom: 20px !important;
-    
-    display: inline-block;
-    border-radius: 10px !important;
-    cursor: pointer;
-    
-  }
-  
-  .photoLabel {
-    margin-right: 10px;
-    height: 15px;
-   
-     margin-bottom: 5px !important;
-   
-  }
-  
-  .photoLabel input {
-    top: 10px !important;
-    position: absolute;
-    margin-top: 5px;
-    
-    left: 15px !important;
-    width: 50% !important;
-    word-wrap: break-word;
-   
-  }
-  
-  .photoHead {
-    bottom: 15px;
+}
+
+.modalbody {
+  background-color: #fff;
+  color: #9e0000;
+}
+
+.modalHead {
+  text-align: center;
+  font-weight: 700;
+}
+
+.modalHead2 {
+  font-weight: 500;
+}
+
+.newProjectForm {
+  .form-group > label {
+    top: 18px;
     left: 6px;
     position: relative;
     background-color: #fff;
     padding: 0px 5px 0px 5px;
     font-size: 1em;
     font-weight: 600;
-    width: 50%;
-    padding-top: 3.8%;
-    margin-top: 2%;
   }
-  
-  .photoIcon {
-    right: 15px;
-    top: 10px;
-    cursor: pointer;
-    position: absolute;
-    font-size: 20px;
-    // padding-top: 2%;
+
+  textarea,
+  input,select,
+  input[type],
+  .uneditable-input {
+    padding-left: 15px;
+    border-color: #9e0000 !important;
+    border-width: 2px !important;
+    border-radius: 10px !important;
+    color: #9e0000 !important;
   }
-  
-  .helperText {
+  textarea:focus,
+  option:focus,
+  select:focus-within,
+  select:focus,
+  input:focus,
+  input[type]:focus,
+  .uneditable-input:focus {
+    box-shadow: 0 1px 1px rgba(229, 103, 23, 0.075) inset,
+      0 0 8px rgba(229, 103, 23, 0.6) !important;
+    outline: 0 none;
+  }
+
+  input:disabled{
+    background-color: #fff !important;
+  }
+
+
+  .custom-file-input {
+    border-color: #9e0000 !important;
+    width: 70%;
+  }
+  .form-control::-webkit-input-placeholder {
     color: #9e0000;
   }
-  
-  
-  @media (max-width: 984px){
-    .customFile{
-      width:20rem;
-      }
-      
+
+  input[type="file"]:focus {
+    box-shadow: none !important;
   }
-  @media screen and (max-width:984px) {
-    .photoIcon{
-      // padding-top: 3.7%;
-    }
+}
+
+.customFile {
+  width: 40rem;
+}
+
+::-webkit-file-upload-button {
+  display: none;
+}
+
+::file-selector-button {
+  display: none;
+}
+
+.photoContainer {
+  border: 2px solid #9e0000;
+  padding-bottom: 20px !important;
+
+  display: inline-block;
+  border-radius: 10px !important;
+  cursor: pointer;
+}
+
+.photoLabel {
+  margin-right: 10px;
+  height: 15px;
+
+  margin-bottom: 5px !important;
+}
+
+.photoLabel input {
+  top: 10px !important;
+  position: absolute;
+  margin-top: 5px;
+
+  left: 15px !important;
+  width: 50% !important;
+  word-wrap: break-word;
+}
+
+.photoHead {
+  bottom: 15px;
+  left: 6px;
+  position: relative;
+  background-color: #fff;
+  padding: 0px 5px 0px 5px;
+  font-size: 1em;
+  font-weight: 600;
+  width: 50%;
+  padding-top: 3.8%;
+  margin-top: 2%;
+}
+
+.photoIcon {
+  right: 15px;
+  top: 10px;
+  cursor: pointer;
+  position: absolute;
+  font-size: 20px;
+  // padding-top: 2%;
+}
+
+.helperText {
+  color: #9e0000;
+}
+
+@media (max-width: 984px) {
+  .customFile {
+    width: 20rem;
   }
+}
+@media screen and (max-width: 984px) {
+  .photoIcon {
+    // padding-top: 3.7%;
+  }
+}

@@ -1,7 +1,7 @@
 import "./Team.scss";
 import TeamData from "./TeamData";
 const TeamCard = () => {
-  return TeamData.map((data) => (<div data-aos="zoom-in" data-aos-duration="2000">
+  return TeamData.map((data) => (<div data-aos="zoom-in" data-aos-duration="2000" key={data.id}>
     <div className="member">
       <img src={data.image} alt={data.name} />
       <div className="name">{data.name}</div>
