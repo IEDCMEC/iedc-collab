@@ -19,23 +19,26 @@ const ProjectNav = ({ selectedProject }) => {
   const [modalShow, setModalShow] = useState(false);
   if (loading) {
     return (
-          <div
-            className="d-flex justify-content-center align-items-center flex-column"
-            style={{ height: "90vh" }}
-          >
-            <div className="spinner-border" role="status"></div>
-            <div className="mt-3">Loading Project...</div>
-          </div>
+      <div
+        className="d-flex justify-content-center align-items-center flex-column"
+        style={{ height: "90vh" }}
+      >
+        <div className="spinner-border" role="status"></div>
+        <div className="mt-3">Loading Project...</div>
+      </div>
     );
   }
   return (
     <div className="project-nav__container">
       <div className="project-nav__title-icon">
         <div className=" project-nav__profile">
-          <img src={
-                  user.profilePhoto ||
-                  "https://sabt.center/wp-content/uploads/2014/08/avatar-1.png"
-                } alt="profile" />
+          <img
+            src={
+              user.profilePhoto ||
+              "https://sabt.center/wp-content/uploads/2014/08/avatar-1.png"
+            }
+            alt="profile"
+          />
         </div>
         <div className="project-nav__title">
           {selectedProject.leader_name.toLowerCase()}
