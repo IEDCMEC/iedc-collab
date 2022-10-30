@@ -50,6 +50,11 @@
     outline: 0 none;
   }
 
+  input:disabled{
+    background-color: #fff !important;
+  }
+
+
   .custom-file-input {
     border-color: #9e0000 !important;
     width: 70%;

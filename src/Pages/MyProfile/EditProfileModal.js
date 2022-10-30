@@ -10,7 +10,7 @@ import { faUpload } from "@fortawesome/free-solid-svg-icons";
 import "./EditModal.scss";
 import { toast } from "react-toastify";
 import Compress from "compress.js";
-import './EditModal.scss'
+import "./EditModal.scss";
 
 const compress = new Compress();
 const NewUserForm = ({ onClose, user }) => {
@@ -36,6 +36,8 @@ const NewUserForm = ({ onClose, user }) => {
 
   const newUserSchema = yup.object({
     about: yup.string().required("Please add a valid description").min(10),
+    branch: yup.string().required("Please select a branch."),
+    year: yup.string().required("Please select a passing year."),
     contact: yup
       .string()
       .required()
@@ -83,10 +85,10 @@ const NewUserForm = ({ onClose, user }) => {
               <Form.Label>Name*</Form.Label>
               <Form.Control
                 required
+                disabled
+                style={{ cursor: "not-allowed" }}
                 onBlur={props.handleBlur("name")}
                 value={props.values.name}
-                type="text"
-                placeholder="Enter Your Name"
               />
               <Form.Text className="text-danger">
                 {props.touched.name && props.errors.name}
@@ -95,7 +97,7 @@ const NewUserForm = ({ onClose, user }) => {
             <br />
             <InputGroup controlId="formPhoto" className="photoContainer">
               <Form.Label className="photoLabel">
-                <span className="photoHead">Profile Photo*</span>
+                <span className="photoHead">Profile Photo</span>
                 <span className="photoIcon">
                   <FontAwesomeIcon icon={faUpload} />
                 </span>
@@ -166,7 +168,7 @@ const NewUserForm = ({ onClose, user }) => {
                   value={props.values.branch}
                   onChange={props.handleChange("branch")}
                 >
-                   <option value="">Choose Branch...</option>
+                  <option value="">Choose Branch...</option>
                   <option value="CSE">CSE</option>
                   <option value="ECE">ECE</option>
                   <option value="EEE">EEE</option>
@@ -219,7 +221,7 @@ const NewUserForm = ({ onClose, user }) => {
             </Form.Group>
 
             <Form.Group controlId="formSkills">
-              <Form.Label>Skills*</Form.Label>
+              <Form.Label>Skills</Form.Label>
               <Form.Control
                 onBlur={props.handleBlur("skills")}
                 value={props.values.skills}
@@ -236,7 +238,7 @@ const NewUserForm = ({ onClose, user }) => {
             </Form.Group>
 
             <Form.Group controlId="formAchievements">
-              <Form.Label>Achievements*</Form.Label>
+              <Form.Label>Achievements</Form.Label>
               <Form.Control
                 required
                 onBlur={props.handleBlur("achievements")}
@@ -269,8 +271,8 @@ const NewUserForm = ({ onClose, user }) => {
                 <Form.Control
                   onBlur={props.handleBlur("email")}
                   value={props.values.email}
-                  type="text"
-                  placeholder="eg: iedc@mec.ac.in"
+                  disabled
+                  required
                 />
                 <Form.Text className="text-danger">
                   {props.touched.email && props.errors.email}
@@ -280,7 +282,7 @@ const NewUserForm = ({ onClose, user }) => {
 
             <Row>
               <Form.Group controlId="formLinkedin" className="col-md-6">
-                <Form.Label>LinkedIn*</Form.Label>
+                <Form.Label>LinkedIn</Form.Label>
                 <Form.Control
                   onBlur={props.handleBlur("linkedin")}
                   value={props.values.linkedin}
@@ -293,7 +295,7 @@ const NewUserForm = ({ onClose, user }) => {
                 </Form.Text>
               </Form.Group>
               <Form.Group controlId="formGithub" className="col-md-6">
-                <Form.Label>Github*</Form.Label>
+                <Form.Label>Github</Form.Label>
                 <Form.Control
                   onBlur={props.handleBlur("github")}
                   value={props.values.github}
@@ -308,7 +310,7 @@ const NewUserForm = ({ onClose, user }) => {
             </Row>
 
             <Form.Group controlId="formWebsite">
-              <Form.Label>Website*</Form.Label>
+              <Form.Label>Website</Form.Label>
               <Form.Control
                 required
                 onBlur={props.handleBlur("website")}
