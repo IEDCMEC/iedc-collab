@@ -14,7 +14,9 @@ import { FaLinkedin } from "react-icons/fa";
 import EditProfileModal from "./EditProfileModal";
 import { AuthContext } from "../../Firebase/Auth/Auth";
 import { getUser, signIn } from "../../Firebase/firebase";
-import {Received,Sent} from "../../Components/Request"
+import Received from "../../Components/Request/Received"
+import Sent from "../../Components/Request/Sent"
+
 const MyProfile = () => {
   const { currentUser } = useContext(AuthContext);
   const [showProfileModal, setShowProfileModal] = useState(false);

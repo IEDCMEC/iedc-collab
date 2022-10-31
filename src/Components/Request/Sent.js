@@ -1,4 +1,8 @@
 import React from "react";
+import "./Request.css"
+import accept_icon from "../../assets/accepticon.svg";
+import decline_icon from "../../assets/declineicon.svg";
+import { Button } from "@mui/material";
 
 function Sent() {
   return (
