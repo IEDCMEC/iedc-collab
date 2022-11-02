@@ -14,6 +14,9 @@ import { FaLinkedin } from "react-icons/fa";
 import EditProfileModal from "./EditProfileModal";
 import { AuthContext } from "../../Firebase/Auth/Auth";
 import { getUser, signIn } from "../../Firebase/firebase";
+import Received from "../../Components/Request/Received"
+import Sent from "../../Components/Request/Sent"
+
 const MyProfile = () => {
   const { currentUser } = useContext(AuthContext);
   const [showProfileModal, setShowProfileModal] = useState(false);
@@ -31,6 +34,7 @@ const MyProfile = () => {
     setSelectedUser(await user.val());
     setLoading(false);
   };
+  const [isReceived, setIsReceived] = useState(true);
   useEffect(() => {
     if (currentUser?.uid) getDev(currentUser?.uid);
   }, [currentUser]);
@@ -172,49 +176,11 @@ const MyProfile = () => {
               <div className="reqs_invite_bar__invite">Invite</div>
             </div>
             <div className="edit__header">
-              <div className="received">Recieved</div>
-              <div className="sent">Sent</div>
+              <div className={isReceived? "rec_active":"received"} onClick={()=> setIsReceived(true)}>Recieved</div>
+              <div className={isReceived? "sent":"sent_active"} onClick={()=> setIsReceived(false)}>Sent</div>
             </div>
 
-            <div className="received_sent_box">
-              <div className="received_bpx_header">
-                <p>Project Name</p>
-                <Button
-                  sx={{
-                    fontSize: "1rem",
-                    display: "flex",
-                  }}
-                  variant="outlined"
-                >
-                  View Projects
-                </Button>
-              </div>
-              <div className="req_profile_box">
-                <img
-                  className="req_profile_img"
-                  src="https://vpnoverview.com/wp-content/uploads/what-is-a-hacker-what-is-hacking-featured-800x400.png"
-                  alt=""
-                />
-                <div className="req_profile_details">
-                  <h4>Guy Hawkins</h4>
-                  <p>
-                    Invite Message - Add a default Message if user doesnot
-                    customize it
-                  </p>
-                </div>
-              </div>
-
-              <div className="received_btns">
-                <button className="received_btn_accept">
-                  <img src={accept_icon} alt="" />
-                  Accept
-                </button>
-                <button className="received_btn_decline">
-                  <img src={decline_icon} alt="" />
-                  Decline
-                </button>
-              </div>
-            </div>
+            {isReceived ? <Received/>:<Sent/>}
 
             <div className="edit__pro_abtMe">
               <div>About Me</div>
