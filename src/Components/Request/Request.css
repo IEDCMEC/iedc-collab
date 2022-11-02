@@ -35,14 +35,14 @@
   border: 2px solid #780101;
   border-radius: 2.37rem;
 }
-h4 {
+.req_profile_details h4 {
   font-weight: 400;
   font-size: 25px;
   line-height: 0px;
   color: #9e0000;
 }
 
-p {
+.req_profile_details p {
   font-weight: 200;
   font-size: 21px;
 

@@ -176,8 +176,8 @@ const MyProfile = () => {
               <div className="reqs_invite_bar__invite">Invite</div>
             </div>
             <div className="edit__header">
-              <div className="received" onClick={()=> setIsReceived(true)}>Recieved</div>
-              <div className="sent" onClick={()=> setIsReceived(false)}>Sent</div>
+              <div className={isReceived? "rec_active":"received"} onClick={()=> setIsReceived(true)}>Recieved</div>
+              <div className={isReceived? "sent":"sent_active"} onClick={()=> setIsReceived(false)}>Sent</div>
             </div>
 
             {isReceived ? <Received/>:<Sent/>}

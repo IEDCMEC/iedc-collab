@@ -1,7 +1,5 @@
 import React from "react";
-import "./Request.css"
-import accept_icon from "../../assets/accepticon.svg";
-import decline_icon from "../../assets/declineicon.svg";
+import "./Request.css";
 import { Button } from "@mui/material";
 
 function Sent() {
@@ -31,17 +29,6 @@ function Sent() {
             Invite Message - Add a default Message if user doesnot customize it
           </p>
         </div>
-      </div>
-
-      <div className="received_btns">
-        <button className="received_btn_accept">
-          <img src={accept_icon} alt="" />
-          Accept
-        </button>
-        <button className="received_btn_decline">
-          <img src={decline_icon} alt="" />
-          Decline
-        </button>
       </div>
     </div>
   );
