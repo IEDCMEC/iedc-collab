@@ -11,10 +11,7 @@ import "./EditModal.scss";
 import { toast } from "react-toastify";
 import Compress from "compress.js";
 import "./EditModal.scss";
-import { Autocomplete, Checkbox, TextField } from "@mui/material";
-
-import CheckBoxOutlineBlankIcon from "@mui/icons-material/CheckBoxOutlineBlank";
-import CheckBoxIcon from "@mui/icons-material/CheckBox";
+import { Autocomplete, TextField } from "@mui/material";
 
 const compress = new Compress();
 const NewUserForm = ({ onClose, user }) => {
@@ -23,6 +20,9 @@ const NewUserForm = ({ onClose, user }) => {
     user?.profilePhotoName || ""
   );
   const [profilePhoto, setProfilePhoto] = useState(user?.profilePhoto || "");
+  const [projects, setProjects] = useState([]);
+  const [acValue, setACValue] = useState(user?.projects || []);
+  const [remainProjects, setRemainProjects] = useState([]);
   //  const { fetchData } = useContext(UserContext);
   const initialValue = {
     name: user?.name || "",
@@ -38,7 +38,7 @@ const NewUserForm = ({ onClose, user }) => {
     github: user?.github || "",
     website: user?.website || "",
   };
-  const [projects, setProjects] = useState([]);
+
   const getWorks = async () => {
     await getProjects().then(async function (snapshot) {
       let messageObject = snapshot.val();
@@ -51,8 +51,23 @@ const NewUserForm = ({ onClose, user }) => {
   };
   useEffect(() => {
     getWorks();
-  }, []);
-  const [acValue, setACValue] = useState(user?.projects || []);
+    getRemainProjects();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [projects,acValue]);
+ 
+  function getRemainProjects() {
+    let temp = [];
+    projects?.forEach((project) => {
+      if (!acValue.find((item) => item.id === project.id))
+        temp.push(project);
+    });
+    setRemainProjects(temp);
+    console.log(acValue)
+   
+    console.log(temp)
+  }
+  console.log(projects)
+ 
   const newUserSchema = yup.object({
     about: yup.string().required("Please add a valid description").min(10),
     branch: yup.string().required("Please select a branch."),
@@ -92,8 +107,6 @@ const NewUserForm = ({ onClose, user }) => {
     onClose();
     actions.resetForm();
   };
-  const icon = <CheckBoxOutlineBlankIcon fontSize="small" />;
-  const checkedIcon = <CheckBoxIcon fontSize="small" />;
   return (
     <div className="newProjectForm">
       <Formik
@@ -226,26 +239,19 @@ const NewUserForm = ({ onClose, user }) => {
               </Form.Group>
             </Row>
             <Form.Group controlId="formProjects">
-                <Autocomplete
+              <Autocomplete
                 multiple
                 onChange={(event, value) => {
                   setACValue(value);
                 }}
                 id="checkboxes-tags-demo"
                 value={acValue}
-                options={projects}
+                options={remainProjects}
+                filterSelectedOptions
                 disableCloseOnSelect
                 getOptionLabel={(option) => option.name}
-                renderOption={(props, option, { selected }) => (
-                  <li {...props}>
-                    <Checkbox
-                      icon={icon}
-                      checkedIcon={checkedIcon}
-                      style={{ marginRight: 8 }}
-                      checked={selected}
-                    />
-                    {option.name}
-                  </li>
+                renderOption={(props, option) => (
+                  <li {...props}>{option.name}</li>
                 )}
                 renderInput={(params) => (
                   <TextField
