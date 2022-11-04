@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState} from "react";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import { Formik } from "formik";
@@ -12,6 +12,7 @@ import { toast } from "react-toastify";
 import Compress from "compress.js";
 import "./EditModal.scss";
 import { Autocomplete, TextField } from "@mui/material";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 const compress = new Compress();
 const NewUserForm = ({ onClose, user }) => {
@@ -62,12 +63,37 @@ const NewUserForm = ({ onClose, user }) => {
         temp.push(project);
     });
     setRemainProjects(temp);
-    console.log(acValue)
+    // console.log(acValue)
    
-    console.log(temp)
+    // console.log(temp)
   }
-  console.log(projects)
- 
+  // console.log(projects)
+  const theme = createTheme({
+    components: {
+      MuiOutlinedInput: {
+        styleOverrides: {
+          root: {
+            "&:hover .MuiOutlinedInput-notchedOutline": {
+              color: "#9E0000",
+              border: "2px solid #9E0000",
+              borderRadius: "10px",
+            },
+            "& .MuiOutlinedInput-notchedOutline": {
+              color: "#9E0000",
+              border: "2px solid #9E0000",
+              borderRadius: "10px",
+            },
+            '&.Mui-focused .MuiOutlinedInput-notchedOutline':{
+              color: "#9E0000",
+              border: "2px solid #9E0000",
+              borderRadius: "10px",
+            },
+            minHeight: "150%"
+          }
+        },
+      }
+    }
+  });
   const newUserSchema = yup.object({
     about: yup.string().required("Please add a valid description").min(10),
     branch: yup.string().required("Please select a branch."),
@@ -152,7 +178,7 @@ const NewUserForm = ({ onClose, user }) => {
                         }
                       );
                       const img1 = results[0];
-                      console.log(img1);
+                      // console.log(img1);
                       const base64str = results[0].data;
                       const imgExt = img1.ext;
                       const compressedImage = Compress.convertBase64ToFile(
@@ -238,7 +264,12 @@ const NewUserForm = ({ onClose, user }) => {
                 </Form.Text>
               </Form.Group>
             </Row>
-            <Form.Group controlId="formProjects">
+            <Form.Group 
+              controlId="formProjects"
+              style={{
+                    border: "none"
+                  }}>
+              <ThemeProvider theme={theme}>
               <Autocomplete
                 multiple
                 onChange={(event, value) => {
@@ -256,14 +287,22 @@ const NewUserForm = ({ onClose, user }) => {
                 renderInput={(params) => (
                   <TextField
                     size="small"
-                    style={{
-                      color: "#9E0000",
-                    }}
                     {...params}
                     label="Projects Worked In"
+                    className={theme.root}
+                    sx={{
+                      "& .MuiInputLabel-root":{
+                        color: "#9E0000",
+                      },
+                      "& label.Mui-focused":{
+                        color: "#9E0000"
+                      }
+                    }}
+                    variant="outlined"
                   />
                 )}
               />
+              </ThemeProvider>
 
               <Form.Text className="text-danger">
                 {props.touched.projects && props.errors.projects}

@@ -1,13 +1,10 @@
 import React, { useContext, useEffect, useState } from "react";
 import "./MyProfile.scss";
 import edit_icon from "../../assets/edit_profile_icon.svg";
-import accept_icon from "../../assets/accepticon.svg";
-import decline_icon from "../../assets/declineicon.svg";
 import MainLayout from "../../Components/MainLayout/MainLayout";
 import { BsTelephoneInbound } from "react-icons/bs";
 import { HiOutlineAcademicCap } from "react-icons/hi";
 import { MdOutlineEmail } from "react-icons/md";
-import { Button } from "@mui/material";
 import { TbNetwork } from "react-icons/tb";
 import { VscGithubInverted } from "react-icons/vsc";
 import { FaLinkedin } from "react-icons/fa";
