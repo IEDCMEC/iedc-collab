@@ -98,7 +98,7 @@ const NewUserForm = ({ onClose, user }) => {
     getSkills?.forEach((skill) => {
       if (!getSkills.find((item) => item.id === skill.id)) temp.push(skill);
     });
-    setRemainSkills(temp);
+    //setRemainSkills(temp);
      console.log(skillsList)
      //console.log(temp)
   }
