@@ -13,7 +13,6 @@ import Compress from "compress.js";
 import "./EditModal.scss";
 import { Autocomplete, TextField } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { NoEncryption } from "@mui/icons-material";
 
 const compress = new Compress();
 const NewUserForm = ({ onClose, user }) => {
@@ -361,28 +360,27 @@ const NewUserForm = ({ onClose, user }) => {
                   : ""}
               </Form.Text>
             </Form.Group>
-
             <Form.Group controlId="formSkills">
               <ThemeProvider theme={theme}>
                 <Autocomplete
                   multiple
+                  
                   onChange={(event, value) => {
                     setSkillsList(value);
                   }}
-                  id="checkboxes-tags-demo"
                   value={skillsList}
                   options={getSkills} // change to getRemainSkills after doing backend
                   filterSelectedOptions
+                  // to add custom user input
+                  // freeSolo
+                  // getOptionLabel={option => option.title || option}
                   disableCloseOnSelect
-                  getOptionLabel={(option) => option.name}
-                  renderOption={(props, getSkills) => (
-                    <li {...props}>{ getSkills }</li>
-                  )}
+                  getOptionLabel={(option) => option}
                   renderInput={(params) => (
                     <TextField
                       size="small"
                       {...params}
-                      label="My Skills"
+                      label="Enter your Skills"
                       className={theme.root}
                       sx={{
                         "& .MuiInputLabel-root": {
@@ -398,9 +396,6 @@ const NewUserForm = ({ onClose, user }) => {
                 />
                 
               </ThemeProvider>
-            {/* <Form.Text className="text-right helperText">
-                Please separate the skills using commas
-                    </Form.Text> */}
               <Form.Text className="text-danger">
                 {props.touched.skills && props.errors.skills}
               </Form.Text>
