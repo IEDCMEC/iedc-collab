@@ -142,6 +142,22 @@
   color: #9e0000;
 }
 
+//skills
+.skill-box{
+  box-sizing: border-box;
+  padding-top: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+#skillz_boxes buttom[style]{
+  margin: 5px;
+  border: 2px splid #E8505B;
+  border-radius: 5px;
+  background-color: #fff;
+}
 @media (max-width: 984px) {
   .customFile {
     width: 20rem;

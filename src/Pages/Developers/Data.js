@@ -1,0 +1,2 @@
+export const Skills=['React Js','Vanilla Js','Vue Js','Angular Js','Arduino','Rasberry Pi','IOT','C++','Python','Django','Flask','Java','Spring','Node JS','MySQL','PostgreSQL','SQLite'];
+export const typeDevs = ['Skills','Projects','Developers'];

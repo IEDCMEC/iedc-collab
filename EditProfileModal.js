@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState} from "react";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import { Formik } from "formik";
@@ -10,10 +10,10 @@ import { faUpload } from "@fortawesome/free-solid-svg-icons";
 import "./EditModal.scss";
 import { toast } from "react-toastify";
 import Compress from "compress.js";
-import "./EditModal.scss";
 import { Autocomplete, TextField } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { NoEncryption } from "@mui/icons-material";
+import Buttons from "../Developers/Button.js"
+// import { Skills } from "../Developers/Data";
 
 const compress = new Compress();
 const NewUserForm = ({ onClose, user }) => {
@@ -24,11 +24,9 @@ const NewUserForm = ({ onClose, user }) => {
   const [profilePhoto, setProfilePhoto] = useState(user?.profilePhoto || "");
   const [projects, setProjects] = useState([]);
   const [acValue, setACValue] = useState(user?.projects || []);
+  const [inputSkill, setInputSkill] = useState([]);
+  const [inputValue, setInputValue] = React.useState('');
   const [remainProjects, setRemainProjects] = useState([]);
-  const [skills, setSkills] = useState([]);
-  const [skillsList, setSkillsList] = useState(user?.skills || []);
-  const [remainSkills, setRemainSkills] = useState([]);
-  const getSkills=['React Js','Vanilla Js','Vue Js','Angular Js','Arduino','Rasberry Pi','IOT','C++','Python','Django','Flask','Java','Spring','Node JS','Kotlin', 'Fluuter','MySQL','PostgreSQL','SQLite'];
   //  const { fetchData } = useContext(UserContext);
   const initialValue = {
     name: user?.name || "",
@@ -55,55 +53,25 @@ const NewUserForm = ({ onClose, user }) => {
       setProjects(result);
     });
   };
-  
   useEffect(() => {
     getWorks();
     getRemainProjects();
+    getRemainSkills();  {/*create this */}
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [projects, acValue]);
-
-
+  }, [projects,acValue]);
+ 
   function getRemainProjects() {
     let temp = [];
     projects?.forEach((project) => {
-      if (!acValue.find((item) => item.id === project.id)) temp.push(project);
+      if (!acValue.find((item) => item.id === project.id))
+        temp.push(project);
     });
     setRemainProjects(temp);
-     //console.log(acValue)
-
-     //console.log(temp)
+     console.log(acValue)
+     console.log(inputSkill)
+    // console.log(temp)
   }
-   //console.log(projects)
-
-   const getAbilities = async () => {
-    await getSkills().then(async function (snapshot) {
-      let messageObject = snapshot.val();
-      const result = Object.keys(messageObject).map((key) => ({
-        ...messageObject[key],
-        id: key,
-      }));
-      setSkills(result);
-    });
-  }; 
-
-
-  useEffect(() => {
-    getAbilities();
-    getRemainSkills();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [skills, skillsList]);
-
-  function getRemainSkills() {
-    let temp = [];
-    getSkills?.forEach((skill) => {
-      if (!getSkills.find((item) => item.id === skill.id)) temp.push(skill);
-    });
-    setRemainSkills(temp);
-     console.log(skillsList)
-     //console.log(temp)
-  }
-   //console.log(skills)
-
+  // console.log(projects)
   const theme = createTheme({
     components: {
       MuiOutlinedInput: {
@@ -119,16 +87,16 @@ const NewUserForm = ({ onClose, user }) => {
               border: "2px solid #9E0000",
               borderRadius: "10px",
             },
-            "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+            '&.Mui-focused .MuiOutlinedInput-notchedOutline':{
               color: "#9E0000",
               border: "2px solid #9E0000",
               borderRadius: "10px",
             },
-            minHeight: "150%",
-          },
+            minHeight: "150%"
+          }
         },
-      },
-    },
+      }
+    }
   });
   const newUserSchema = yup.object({
     about: yup.string().required("Please add a valid description").min(10),
@@ -153,7 +121,7 @@ const NewUserForm = ({ onClose, user }) => {
     const formValues = {
       ...values,
       projects: acValue,
-      skills: skillsList
+      skills: skills
         .split(",")
         .filter(Boolean)
         .map((link) => link.trim()),
@@ -300,45 +268,44 @@ const NewUserForm = ({ onClose, user }) => {
                 </Form.Text>
               </Form.Group>
             </Row>
-            <Form.Group
+            <Form.Group 
               controlId="formProjects"
               style={{
-                border: "none",
-              }}
-            >
+                    border: "none"
+                  }}>
               <ThemeProvider theme={theme}>
-                <Autocomplete
-                  multiple
-                  onChange={(event, value) => {
-                    setACValue(value);
-                  }}
-                  id="checkboxes-tags-demo"
-                  value={acValue}
-                  options={remainProjects}
-                  filterSelectedOptions
-                  disableCloseOnSelect
-                  getOptionLabel={(option) => option.name}
-                  renderOption={(props, option) => (
-                    <li {...props}>{option.name}</li>
-                  )}
-                  renderInput={(params) => (
-                    <TextField
-                      size="small"
-                      {...params}
-                      label="Projects Worked In"
-                      className={theme.root}
-                      sx={{
-                        "& .MuiInputLabel-root": {
-                          color: "#9E0000",
-                        },
-                        "& label.Mui-focused": {
-                          color: "#9E0000",
-                        },
-                      }}
-                      variant="outlined"
-                    />
-                  )}
-                />
+              <Autocomplete
+                multiple
+                onChange={(event, value) => {
+                  setACValue(value);
+                }}
+                id="checkboxes-tags-demo"
+                value={acValue}
+                options={remainProjects}
+                filterSelectedOptions
+                disableCloseOnSelect
+                getOptionLabel={(option) => option.name}
+                renderOption={(props, option) => (
+                  <li {...props}>{option.name}</li>
+                )}
+                renderInput={(params) => (
+                  <TextField
+                    size="small"
+                    {...params}
+                    label="Projects Worked In"
+                    className={theme.root}
+                    sx={{
+                      "& .MuiInputLabel-root":{
+                        color: "#9E0000",
+                      },
+                      "& label.Mui-focused":{
+                        color: "#9E0000"
+                      }
+                    }}
+                    variant="outlined"
+                  />
+                )}
+              />
               </ThemeProvider>
 
               <Form.Text className="text-danger">
@@ -363,48 +330,53 @@ const NewUserForm = ({ onClose, user }) => {
             </Form.Group>
 
             <Form.Group controlId="formSkills">
-              <ThemeProvider theme={theme}>
-                <Autocomplete
+              <Form.Label>Skills</Form.Label>
+              <Form.Control
+                onBlur={props.handleBlur("skills")}
+                value={props.values.skills}
+                onChange={props.handleChange("skills")}
+                type="text"
+                placeholder="Enter the skills..."
+              />
+                <Autocomplete 
                   multiple
-                  onChange={(event, value) => {
-                    setSkillsList(value);
-                  }}
-                  id="checkboxes-tags-demo"
-                  value={skillsList}
-                  options={getSkills} // change to getRemainSkills after doing backend
-                  filterSelectedOptions
+                  freeSolo onChange={(event, value) => {
+                    setACValue(value);
+                  }}     
+                  id="skills-tags-demo"
+                  value = {acValue}
+                  options = {remainProjects}
+                  filterSelectedOptions  
                   disableCloseOnSelect
-                  getOptionLabel={(option) => option.name}
-                  renderOption={(props, getSkills) => (
-                    <li {...props}>{ getSkills }</li>
-                  )}
+                  getOptionLabel={(option) => option.name}   
+                  renderOption={(props, option) => (
+                    <li {...props}>{option.name}</li>    
+                    )}
+                  
                   renderInput={(params) => (
                     <TextField
                       size="small"
                       {...params}
-                      label="My Skills"
+                      label="Projects Worked In"
                       className={theme.root}
                       sx={{
-                        "& .MuiInputLabel-root": {
+                        "& .MuiInputLabel-root":{
                           color: "#9E0000",
                         },
-                        "& label.Mui-focused": {
-                          color: "#9E0000",
-                        },
+                        "& label.Mui-focused":{
+                          color: "#9E0000"
+                        }
                       }}
                       variant="outlined"
-                    />
-                  )}
-                />
-                
-              </ThemeProvider>
-            {/* <Form.Text className="text-right helperText">
-                Please separate the skills using commas
-                    </Form.Text> */}
-              <Form.Text className="text-danger">
-                {props.touched.skills && props.errors.skills}
-              </Form.Text>
-            </Form.Group>
+                      />
+                      )}
+                  <Form.Text className="text-right helperText">
+                    Please separate the skills using commas
+                  </Form.Text>
+                <Form.Text className="text-danger">
+                  {props.touched.skills && props.errors.skills}
+                </Form.Text>)
+              </Form.Group>
 
             <Form.Group controlId="formAchievements">
               <Form.Label>Achievements</Form.Label>

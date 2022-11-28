@@ -91,7 +91,7 @@ export default function PersistentDrawerLeft() {
                 </div>
                 <input type='text' placeholder='Start typing...' className='input_box'/>
                 <div className='skills'>
-                  {skills.map((x,id)=>(<Buttons key={id} name={x} className='skill_boxes'></Buttons>))}
+                  {Skills.map((x,id)=>(<Buttons key={id} name={x} className='skill_boxes'></Buttons>))}
                 </div>
                 <div style={{minWidth:'90%',margin:'25px'}}><h3 style={styles}>Branch/Class</h3></div>
                 <input type='text' className='input_box'/>
