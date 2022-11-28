@@ -7,6 +7,7 @@ export default function Buttons(props){
         color: valueOnClick ? '#9E0000' : 'white'
     }
     return(
-        <button className={props.className} style={styles} onClick={()=>(setValueOnClick(!valueOnClick))}><p>{props.name}</p></button>
+        <button className={props.id} name={props.name} className={props.className}
+        style={styles} onClick={()=>(setValueOnClick(!valueOnClick))}><p>{props.name}</p></button>
     );
 }
