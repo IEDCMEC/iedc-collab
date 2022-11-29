@@ -6,10 +6,23 @@ h2{
     padding-top: 30px;
     font-size: 30px;
 }
+.project_details_flex
+{
+    display: flex;
+    width: 100vw;
+    flex-direction: row;
+    justify-content: space-between;
+    min-height:80vh;
+    align-items:center;
+    gap: 2rem;
+}
 .details__container
 {
-  padding-top: 1%;
-  padding-left: 12%;
+  width: 100vw;
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  padding-left: 10vw;
   padding-right: 5%;
 }
 .not-found{

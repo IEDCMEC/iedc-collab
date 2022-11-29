@@ -48,12 +48,15 @@ function ProjectDetail() {
     <>
       <MainLayout route={'Projects'}>
       <ProjectCarousel project={selectedProject} />
-      <ProjectToggle toggle={toggle} setToggle={setToggle} selectedProject={selectedProject} />
       <ProjectNav selectedProject={selectedProject} />
+      <div className="project_details_flex">
+      <ProjectToggle toggle={toggle} setToggle={setToggle} selectedProject={selectedProject} />
+      
       <div className="details__container">
         {toggle===1 && <DescriptionDetails selectedProject={selectedProject}/>}
         {toggle===2 && <RequirementDetails selectedProject={selectedProject}/>}
         {toggle===3 && <DiscussionDetails selectedProject={selectedProject}/>}
+      </div>
       </div>
       </MainLayout>
     </>
