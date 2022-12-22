@@ -11,8 +11,47 @@ import triangle_4 from "../../assets/triangle_4.svg";
 import sendPaperPlane from "../../assets/sendPaperPlane.svg";
 import closeButton from "../../assets/close.svg";
 import axios from "axios";
+import { useEffect, useState } from "react";
+import { getProjects } from "../../Firebase/firebase";
+import {
+  createTheme,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+  ThemeProvider,
+} from "@mui/material";
 
 const InviteToProjectModal = (props) => {
+  const [projects, setProjects] = useState([]);
+  const [selectedProject, setSelectedProject] = useState("");
+  const [loading, setLoading] = useState(true);
+  const theme = createTheme({
+    components: {
+      MuiOutlinedInput: {
+        styleOverrides: {
+          root: {
+            "&:hover .MuiOutlinedInput-notchedOutline": {
+              color: "#9E0000",
+              border: "2px solid #9E0000",
+              borderRadius: "10px",
+            },
+            "& .MuiOutlinedInput-notchedOutline": {
+              color: "#9E0000",
+              border: "2px solid #9E0000",
+              borderRadius: "10px",
+            },
+            "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+              color: "#9E0000",
+              border: "2px solid #9E0000",
+              borderRadius: "10px",
+            },
+            minHeight: "150%",
+          },
+        },
+      },
+    },
+  });
   async function handleSubmit() {
     await axios.post(
       "https://w2e9j471i2.execute-api.ap-south-1.amazonaws.com/dev/send-email",
@@ -20,10 +59,34 @@ const InviteToProjectModal = (props) => {
         toEmail: ["jaisondennis080@gmail.com", "jaisondennis090@gmail.com"],
         subject: "Successsss.....",
         content: "This mail is sent from IEDC Collab as part of testing....",
+      },
+      {
+        headers: {
+          "Access-Control-Allow-Headers": "Content-Type",
+          "Access-Control-Allow-Origin": "http://local",
+          "Access-Control-Allow-Methods": "OPTIONS,POST,GET",
+        },
       }
     );
   }
 
+  const getWorks = async () => {
+    await getProjects().then(async function (snapshot) {
+      let messageObject = snapshot.val();
+      const result = Object.keys(messageObject).map((key) => ({
+        ...messageObject[key],
+        id: key,
+      }));
+      setProjects(result);
+      setLoading(false);
+    });
+  };
+  useEffect(() => {
+    getWorks();
+  }, [projects]);
+  if (loading) {
+    return <div>Loading...</div>;
+  }
   return (
     <Modal {...props} size="xl" centered className="invite-to-project-modal">
       <img src={triangle_1} alt="" className="triangle_1" />
@@ -43,8 +106,49 @@ const InviteToProjectModal = (props) => {
       <ModalBody className="invite-to-project-modal__body">
         <h1 className="invite-to-project-modal__title">Invite To Project</h1>
         <div className="invite-project-name">
-          <p className="invite-project-name__label">Project Name</p>
-          <input id="invite-project-name__text" type="text" />
+          {/* <p className="invite-project-name__label">Project Name</p> */}
+          {/* <input id="invite-project-name__text" type="text" /> */}
+          <ThemeProvider theme={theme}>
+            <FormControl style={{ width: "100%" }}>
+              <InputLabel
+                id="demo-simple-select-label"
+                style={{
+                  fontWeight: "400",
+                  fontSize: "17px",
+                  lineHeight: "26px",
+                  color: " #622308",
+                }}
+              >
+                Select Project
+              </InputLabel>
+              <Select
+                style={{
+                  fontWeight: "400",
+                  width: "100%",
+                  fontSize: "17px",
+                  lineHeight: "26px",
+                  color: " #622308",
+                }}
+                labelId="demo-simple-select-label"
+                id="demo-simple-select"
+                label="Select Project"
+                value={selectedProject.name || ""}
+                onChange={(e) => {
+                  setSelectedProject(
+                    projects.find((project) => project.name === e.target.value)
+                  );
+                }}
+              >
+                {projects.map((project, index) => {
+                  return (
+                    <MenuItem value={project.name} key={index}>
+                      {project.name}
+                    </MenuItem>
+                  );
+                })}
+              </Select>
+            </FormControl>
+          </ThemeProvider>
         </div>
         <div className="invite-message">
           <p className="invite-message__label">Message</p>
@@ -57,7 +161,6 @@ const InviteToProjectModal = (props) => {
           onClick={(event) => {
             event.preventDefault();
             handleSubmit();
-            props.onHide();
           }}
         >
           <p>Send</p>

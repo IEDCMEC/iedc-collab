@@ -86,7 +86,7 @@ const DescriptionDetails = ({selectedProject}) => {
           <div className="description__other-team">TEAM MEMBERS</div>
              <div className="description__other-members">
              {selectedProject.teamMembers.map((member,index) => (
-               <div className="description__other-member">{index+1}. {member}</div>
+               <div className="description__other-member" key={index}>{index+1}. {member}</div>
                ))}</div>
       </div>)}
       {selectedProject.links?.length ? (  
@@ -101,11 +101,12 @@ const DescriptionDetails = ({selectedProject}) => {
               ""
             )}
             <div className="description__other-references">
-            {selectedProject.links?.map((link) => (
+            {selectedProject.links?.map((link,index) => (
               
                 <a
                   rel="noopener noreferrer"
                   target="_blank"
+                  key={index}
                   href={link.startsWith("http") ? link : "http://" + link}
                 >
                   {link}
@@ -115,8 +116,8 @@ const DescriptionDetails = ({selectedProject}) => {
         {selectedProject.tags?.length ? (
           <div className="description__other-tags"> <div className="description__other-tag"><img src={Tag} alt="tag"  /></div>
               <div className="description__tag">
-                    {selectedProject.tags.map((tag) => (
-                  <p>#{tag}</p>))}
+                    {selectedProject.tags.map((tag,index) => (
+                  <p key={index}>#{tag}</p>))}
               </div>
               </div>
             ) : (
