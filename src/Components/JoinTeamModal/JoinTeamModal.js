@@ -7,11 +7,22 @@ import bubble10 from "../../assets/bubble_10.svg";
 import bubble11 from "../../assets/bubble_11.svg";
 import sendPaperPlane from "../../assets/sendPaperPlane.svg";
 import closeButton from "../../assets/close.svg";
+import axios from "axios";
 
 const JoinTeamModal = (props) => {
+  async function handleSubmit() {
+    await axios.post(
+      "https://w2e9j471i2.execute-api.ap-south-1.amazonaws.com/dev/send-email",
+      {
+        toEmail: ["jaisondennis080@gmail.com", "jaisondennis090@gmail.com"],
+        subject: "Successsss.....",
+        content: "This mail is sent from IEDC Collab as part of testing....",
+      }
+    );
+  }
   return (
     <>
-      <Modal  {...props} size="xl" className="join-team-modal" centered >
+      <Modal {...props} size="xl" className="join-team-modal" centered>
         <img src={bubble9} alt="" className="bubble_9" />
         <img src={bubble10} alt="" className="bubble_10" />
         <img src={bubble11} alt="" className="bubble_11" />
@@ -44,7 +55,7 @@ const JoinTeamModal = (props) => {
           <div className="rectangle"></div>
         </div>
 
-        <div className="close-button"  onClick={props.onHide}>
+        <div className="close-button" onClick={props.onHide}>
           <img
             alt="close"
             src={closeButton}
@@ -59,7 +70,16 @@ const JoinTeamModal = (props) => {
             <p className="message__label">Message</p>
             <textarea id="message__text"></textarea>
           </div>
-          <Button variant="" type="submit" className="btn">
+          <Button
+            variant=""
+            type="submit"
+            className="btn"
+            onClick={(event) => {
+              event.preventDefault();
+              handleSubmit();
+              props.onHide();
+            }}
+          >
             <p>Send</p>
             <img src={sendPaperPlane} alt="" className="" />
           </Button>
