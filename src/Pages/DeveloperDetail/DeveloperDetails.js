@@ -174,6 +174,7 @@ function DeveloperDetails() {
                         return (
                           <div
                             className="developer_details_body_right_content_project"
+                            key={index}
                             onClick={() => {
                               history.push(`/projects/${project.id}`);
                             }}

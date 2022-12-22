@@ -61,7 +61,7 @@ function getPosition()
           className="mySwiper"
         >
           {projects.map((x) => (
-            <SwiperSlide>
+            <SwiperSlide key={x.id}>
               <div
                 key={x.id}
                 onClick={() => {

@@ -74,20 +74,20 @@ const NewUserForm = ({ onClose, user }) => {
   }
    //console.log(projects)
 
-   const getAbilities = async () => {
-    await getSkills().then(async function (snapshot) {
-      let messageObject = snapshot.val();
-      const result = Object.keys(messageObject).map((key) => ({
-        ...messageObject[key],
-        id: key,
-      }));
-      setSkills(result);
-    });
-  }; 
+  //  const getAbilities = async () => {
+  //   await getSkills().then(async function (snapshot) {
+  //     let messageObject = snapshot.val();
+  //     const result = Object.keys(messageObject).map((key) => ({
+  //       ...messageObject[key],
+  //       id: key,
+  //     }));
+  //     setSkills(result);
+  //   });
+  // }; 
 
 
   useEffect(() => {
-    getAbilities();
+    // getAbilities();
     getRemainSkills();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [skills, skillsList]);
