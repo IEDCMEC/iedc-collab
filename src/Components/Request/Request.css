@@ -5,6 +5,7 @@
   border-radius: 0px 10px 10px 10px;
   padding: 1rem;
   margin-top: 0px;
+  min-width:50%;
 }
 
 .received_bpx_header p {
