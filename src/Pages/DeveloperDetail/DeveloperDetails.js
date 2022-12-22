@@ -21,8 +21,10 @@ function DeveloperDetails() {
   const [selectedUser, setSelectedUser] = useState({});
   const [loading, setLoading] = useState(true);
   const getDev = async (id) => {
-    const user = await getUser(id);
-    setSelectedUser(await user.val());
+    let  user = await getUser(id);
+    user= await user.val();
+    user = {...user, _id: id}
+    setSelectedUser(user);
     setLoading(false);
   };
   useEffect(() => {
@@ -236,6 +238,8 @@ function DeveloperDetails() {
           <InviteToProjectModal
             show={modalShow}
             onHide={() => setModalShow(false)}
+            user={currentUser}
+            selectedUser={selectedUser}
           />
         </div>
       </MainLayout>

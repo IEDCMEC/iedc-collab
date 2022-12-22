@@ -21,11 +21,13 @@ import {
   Select,
   ThemeProvider,
 } from "@mui/material";
+import { sendInvite } from "../../Firebase/firebase";
 
-const InviteToProjectModal = (props) => {
+const InviteToProjectModal = ({user,selectedUser,...props}) => {
   const [projects, setProjects] = useState([]);
-  const [selectedProject, setSelectedProject] = useState("");
+  const [project, setProject] = useState("");
   const [loading, setLoading] = useState(true);
+  const [message, setMessage] = useState("");
   const theme = createTheme({
     components: {
       MuiOutlinedInput: {
@@ -53,6 +55,7 @@ const InviteToProjectModal = (props) => {
     },
   });
   async function handleSubmit() {
+    try{
     await axios.post(
       "https://w2e9j471i2.execute-api.ap-south-1.amazonaws.com/dev/send-email",
       {
@@ -68,6 +71,22 @@ const InviteToProjectModal = (props) => {
         },
       }
     );
+    }catch(err){
+      console.log(err);
+    }
+
+    let data = {
+      sender:user.displayName,
+      sender_id:user.uid,
+      receiver: selectedUser.name,
+      receiver_id:selectedUser._id,
+      project_id: project.id,
+      project: project.name,
+      status: "pending",
+      message:message,
+      createdAt:Date.now()
+    }
+    await sendInvite(data);
   }
 
   const getWorks = async () => {
@@ -132,9 +151,9 @@ const InviteToProjectModal = (props) => {
                 labelId="demo-simple-select-label"
                 id="demo-simple-select"
                 label="Select Project"
-                value={selectedProject.name || ""}
+                value={project.name || ""}
                 onChange={(e) => {
-                  setSelectedProject(
+                  setProject(
                     projects.find((project) => project.name === e.target.value)
                   );
                 }}
@@ -152,7 +171,7 @@ const InviteToProjectModal = (props) => {
         </div>
         <div className="invite-message">
           <p className="invite-message__label">Message</p>
-          <textarea id="invite-message__text"></textarea>
+          <textarea id="invite-message__text" onChange={(e)=>setMessage(e.target.value)}></textarea>
         </div>
         <Button
           variant=""

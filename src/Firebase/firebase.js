@@ -322,17 +322,14 @@ export const getUser = (user_id) => {
 };
 
 
-export const sendInvite = (sender, receiver, project, message) =>{
-  return firebase.database().ref("invites/").set(
+export const sendInvite = async (data) =>{
+  await firebase.database().ref(`projects/${data.project_id}/members/${data.sender_id}`).set({name:data.receiver, id:data.receiver_id, status:"pending"});
+  var requestId = firebase.database().ref().child("requests").push().key;
+  return firebase.database().ref("requests/" + requestId).set(
     {
-      sender:sender.name,
-      sender_id:sender.id,
-      receiver: sender.name,
-      receiver_id:receiver.id,
-      project_id: project.id,
-      project: project.name,
+      ...data,
       status: "pending",
-      message:message,
+      type:"invite",
       createdAt:Date.now()
     }
   ).then(()=>{
@@ -345,10 +342,10 @@ export const sendInvite = (sender, receiver, project, message) =>{
 
 export const acceptInvite = async (invite) =>{
  try{ 
-  let addMember = await firebase.database().ref("projects/").update({members: firebase.firestore.FieldValue.arrayUnion({name:invite.receiver, id:invite.receiver_id})});
+   await firebase.database().ref(`projects/${invite.project_id}/members/${invite.sender_id}`).update({status:"accepted"});
   //let addProject = await firebase.database().ref("users/").update({projects: firebase.firestore.FieldValue.arrayUnion({name:invite.project, id:invite.project_id})});
-  firebase.database().ref("invites/").update({
-     [`/user/${invite._id}/status`]:"accepted",
+  firebase.database().ref(`requests/${invite._id}`).update({
+     [`status`]:"accepted",
   }).then(()=>{
 
     console.log("invite accepted successfully");
@@ -397,6 +394,7 @@ export const acceptRequest = async (invite) =>{
 export const getRequests = async (uid)=>{
   let data = await firebase.database().ref("requests/").orderByChild("sender_id").equalTo(uid).once("value")
   let objval = data.val()
+  
   let requests = Object.keys(objval).map((key) => ({
     ...objval[key],
     id: key,
