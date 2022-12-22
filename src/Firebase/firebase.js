@@ -320,3 +320,57 @@ export const getProject = (project_id) => {
 export const getUser = (user_id) => {
   return firebase.database().ref("users/").child(user_id).once("value");
 };
+
+
+export const sendInvite = (sender, receiver, project, message) =>{
+  return firebase.database().ref("/invites").set(
+    {
+      sender:sender.name,
+      sender_id:sender.id,
+      receiver: sender.name,
+      receiver_id:receiver.id,
+      project_id: project.id,
+      project: project.name,
+      status: "pending",
+      message:message,
+      createdAt:Date.now()
+    }
+  ).then(()=>{
+    console.log("invite send successfully");
+  }).catch((error)=>{
+     console.log("Oops! invite wasn't sent \n more info:", error)
+    }
+  )
+}
+
+export const acceptInvite = async (invite) =>{
+ try{ 
+  let addMember = await firebase.database().ref("projects/").update({members: firebase.firestore.FieldValue.arrayUnion({name:invite.receiver, id:invite.receiver_id})});
+  //let addProject = await firebase.database().ref("users/").update({projects: firebase.firestore.FieldValue.arrayUnion({name:invite.project, id:invite.project_id})});
+  firebase.database().ref("/invites").update({
+     [`/user/${invite._id}/status`]:"accepted",
+  }).then(()=>{
+
+    console.log("invite accepted successfully");
+  })
+}
+  catch(error){
+     console.log("Oops! counldn't accept invite \n more info:", error)
+    }
+  
+}
+
+export const sendRequest = (data) =>{
+  return firebase.database().ref("/requests").set(
+    {
+      ...data,
+      status: "pending",
+      createdAt:Date.now()
+    }
+  ).then(()=>{
+    console.log("invite send successfully");
+  }).catch((error)=>{
+     console.log("Oops! invite wasn't sent \n more info:", error)
+    }
+  )
+}
