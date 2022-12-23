@@ -21,11 +21,14 @@ import {
   Select,
   ThemeProvider,
 } from "@mui/material";
+import { sendInvite } from "../../Firebase/firebase";
 
-const InviteToProjectModal = (props) => {
+const InviteToProjectModal = ({user,selectedUser,...props}) => {
+    console.log(selectedUser)
   const [projects, setProjects] = useState([]);
-  const [selectedProject, setSelectedProject] = useState("");
+  const [project, setProject] = useState("");
   const [loading, setLoading] = useState(true);
+  const [message, setMessage] = useState("");
   const theme = createTheme({
     components: {
       MuiOutlinedInput: {
@@ -53,19 +56,21 @@ const InviteToProjectModal = (props) => {
     },
   });
   async function handleSubmit() {
-    let body = {
-      "toEmail": "jaisondennis080@gmail.com",
-      "subject": "Successsss.....",
-      "content": "This mail is sent from IEDC Collab as part of testing....",
-    };
-    await axios
-      .post(
-        "https://w2e9j471i2.execute-api.ap-south-1.amazonaws.com/dev/send-email",
-        body
-      )
-      .then((res) => {
-        console.log(res);
-      });
+    await axios.post(
+      "https://w2e9j471i2.execute-api.ap-south-1.amazonaws.com/dev/send-email",
+      {
+        toEmail: ["jaisondennis080@gmail.com", "jaisondennis090@gmail.com"],
+        subject: "Successsss.....",
+        content: "This mail is sent from IEDC Collab as part of testing....",
+      },
+      {
+        headers: {
+          "Access-Control-Allow-Headers": "Content-Type",
+          "Access-Control-Allow-Origin": "http://local",
+          "Access-Control-Allow-Methods": "OPTIONS,POST,GET",
+        },
+      }
+    );
   }
 
   const getWorks = async () => {
@@ -130,9 +135,9 @@ const InviteToProjectModal = (props) => {
                 labelId="demo-simple-select-label"
                 id="demo-simple-select"
                 label="Select Project"
-                value={selectedProject.name || ""}
+                value={project.name || ""}
                 onChange={(e) => {
-                  setSelectedProject(
+                  setProject(
                     projects.find((project) => project.name === e.target.value)
                   );
                 }}
@@ -150,7 +155,7 @@ const InviteToProjectModal = (props) => {
         </div>
         <div className="invite-message">
           <p className="invite-message__label">Message</p>
-          <textarea id="invite-message__text"></textarea>
+          <textarea id="invite-message__text" onChange={(e)=>setMessage(e.target.value)}></textarea>
         </div>
         <Button
           variant=""

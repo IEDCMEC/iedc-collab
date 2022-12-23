@@ -1,14 +1,20 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./Request.css"
 import accept_icon from "../../assets/accepticon.svg";
 import decline_icon from "../../assets/declineicon.svg";
 import { Button } from "@mui/material";
+import {acceptRequest, getRequests} from "../../Firebase/firebase"
+import { useContext } from "react";
+import { AuthContext } from "../../Firebase/Auth/Auth";
+import { ControlCameraSharp } from "@mui/icons-material";
 
-function Received() {
+function Received({request}) {
+
+
   return (
     <div className="received_sent_box">
       <div className="received_bpx_header">
-        <p>Project Name</p>
+        <p>{request.project}</p>
         <Button
           sx={{
             fontSize: "1rem",
@@ -26,15 +32,16 @@ function Received() {
           alt=""
         />
         <div className="req_profile_details">
-          <h4>Guy Hawkins</h4>
+          <h4>{request.sender}</h4>
           <p>
-            Invite Message - Add a default Message if user doesnot customize it
+            {/* Invite Message - Add a default Message if user doesnot customize it */}
+            {request.message}
           </p>
         </div>
       </div>
 
       <div className="received_btns">
-        <button className="received_btn_accept">
+        <button className="received_btn_accept" onClick = {()=>acceptRequest(request)}>
           <img src={accept_icon} alt="" />
           Accept
         </button>

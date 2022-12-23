@@ -1,14 +1,15 @@
 .join-team-modal {
   position: absolute;
-  height: 100vh;
-  overflow-y: hidden;
+  height: 90vh;
 
   .bubble_9 {
     position: absolute;
     top: 0;
     left: 0;
   }
-
+.join-team-modal__title{
+  font-size: 2rem;
+}
   .bubble_10 {
     position: absolute;
     top: 0;
@@ -121,4 +122,10 @@
     }
   }
 
+}
+@media (min-device-width: 20px) and (max-device-width: 500px) {
+ 
+.join-team-modal .close-button{
+  right: 7px;
+}
 }
