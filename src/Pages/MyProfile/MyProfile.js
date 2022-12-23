@@ -13,10 +13,16 @@ import { AuthContext } from "../../Firebase/Auth/Auth";
 import { getUser, signIn } from "../../Firebase/firebase";
 import Received from "../../Components/Request/Received"
 import Sent from "../../Components/Request/Sent"
+import {getRequests} from "../../Firebase/firebase"
+
 
 const MyProfile = () => {
   const { currentUser } = useContext(AuthContext);
   const [showProfileModal, setShowProfileModal] = useState(false);
+  const [requests, setRequests] = useState([])
+  const [selectedUser, setSelectedUser] = useState({});
+  const [loading, setLoading] = useState(true);
+  const [isReceived, setIsReceived] = useState(true);
   const newprojectClick = async () => {
     if (currentUser) {
       setShowProfileModal(true);
@@ -24,17 +30,30 @@ const MyProfile = () => {
       signIn(() => setShowProfileModal(true));
     }
   };
-  const [selectedUser, setSelectedUser] = useState({});
-  const [loading, setLoading] = useState(true);
+ 
   const getDev = async (id) => {
     const user = await getUser(id);
     setSelectedUser(await user.val());
     setLoading(false);
   };
-  const [isReceived, setIsReceived] = useState(true);
+
+   
+  const fetchRequests = async () => {
+    setRequests(await getRequests(currentUser.uid))
+  }
+ 
   useEffect(() => {
-    if (currentUser?.uid) getDev(currentUser?.uid);
+    if (currentUser?.uid!=undefined) {
+      getDev(currentUser?.uid)
+      fetchRequests(currentUser?.uid)
+    }
   }, [currentUser]);
+
+
+
+  
+
+
   if (loading) {
     return (
       <div>
@@ -177,7 +196,13 @@ const MyProfile = () => {
               <div className={isReceived? "sent":"sent_active"} onClick={()=> setIsReceived(false)}>Sent</div>
             </div>
 
-            {isReceived ? <Received/>:<Sent/>}
+            {isReceived ?
+            requests.map((request)=> 
+            <Received request = {request}/>
+            )
+            :
+            <Sent/>
+            }
 
             <div className="edit__pro_abtMe">
               <div>About Me</div>

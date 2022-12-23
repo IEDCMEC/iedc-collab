@@ -4,10 +4,14 @@ import "./ProjectNav.scss";
 import like from "../../assets/like.png";
 import JoinTeamModal from "../JoinTeamModal/JoinTeamModal";
 import { getUser } from "../../Firebase/firebase";
+import { AuthContext } from "../../Firebase/Auth/Auth";
+import {useContext} from "react"
+
 
 const ProjectNav = ({ selectedProject }) => {
   const [user, setUser] = useState({});
   const [loading, setLoading] = useState(true);
+  const { currentUser } = useContext(AuthContext);
   const getDev = async (id) => {
     const user = await getUser(id);
     setUser(await user.val());
@@ -55,7 +59,7 @@ const ProjectNav = ({ selectedProject }) => {
           Join Team
         </div>
       </div>
-      <JoinTeamModal show={modalShow} onHide={() => setModalShow(false)} />
+      <JoinTeamModal show={modalShow} onHide={() => setModalShow(false)} user={currentUser} project={selectedProject}/>
     </div>
   );
 };
