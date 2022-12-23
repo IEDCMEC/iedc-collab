@@ -4,7 +4,7 @@ import Button from "react-bootstrap/Button";
 import { Formik } from "formik";
 import * as yup from "yup";
 import { Form, Row, Col, InputGroup } from "react-bootstrap";
-import { doEditProfile, getProjects } from "../../Firebase/firebase";
+import { doEditProfile, getProjects, getSkills } from "../../Firebase/firebase";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUpload } from "@fortawesome/free-solid-svg-icons";
 import "./EditModal.scss";
@@ -24,17 +24,17 @@ const NewUserForm = ({ onClose, user }) => {
   const [projects, setProjects] = useState([]);
   const [acValue, setACValue] = useState(user?.projects || []);
   const [remainProjects, setRemainProjects] = useState([]);
-  const [skills, setSkills] = useState([]);
-  const [skillsList, setSkillsList] = useState(user?.skills || []);
-  const [remainSkills, setRemainSkills] = useState([]);
-  const getSkills=['React Js','Vanilla Js','Vue Js','Angular Js','Arduino','Rasberry Pi','IOT','C++','Python','Django','Flask','Java','Spring','Node JS','Kotlin', 'Fluuter','MySQL','PostgreSQL','SQLite'];
+  // const [skills, setSkills] = useState([]);
+  // const [acValue1, setACValue1] = useState(user?.skills || []);
+  // const [remainSkills, setRemainSkills] = useState([]);
+  // const getSkills=['React Js','Vanilla Js','Vue Js','Angular Js','Arduino','Rasberry Pi','IOT','C++','Python','Django','Flask','Java','Spring','Node JS','Kotlin', 'Fluuter','MySQL','PostgreSQL','SQLite'];
   //  const { fetchData } = useContext(UserContext);
   const initialValue = {
     name: user?.name || "",
     branch: user?.branch || "",
     year: user?.year || "",
     about: user?.about || "",
-    skills: user?.skills?.join(", ") || "",
+    skills: user?.skills || "",
     projects: user?.projects || "",
     achievements: user?.achievements || "",
     contact: user?.contact || "",
@@ -54,13 +54,12 @@ const NewUserForm = ({ onClose, user }) => {
       setProjects(result);
     });
   };
-  
+
   useEffect(() => {
     getWorks();
     getRemainProjects();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [projects, acValue]);
-
 
   function getRemainProjects() {
     let temp = [];
@@ -68,13 +67,23 @@ const NewUserForm = ({ onClose, user }) => {
       if (!acValue.find((item) => item.id === project.id)) temp.push(project);
     });
     setRemainProjects(temp);
-     //console.log(acValue)
+    //console.log(acValue)
 
-     //console.log(temp)
+    //console.log(temp)
   }
-   //console.log(projects)
+  // function getRemainSkills() {
+  //   let temp1 = [];
+  //   skills?.forEach((skill) => {
+  //     if (!acValue1.find((item) => item.id === skill.id)) temp1.push(skill);
+  //   });
+  //   setRemainSkills(temp1);
+  //   //console.log(acValue)
 
-  //  const getAbilities = async () => {
+  //   //console.log(temp)
+  // }
+  //console.log(projects)
+
+  // const getAbilities = async () => {
   //   await getSkills().then(async function (snapshot) {
   //     let messageObject = snapshot.val();
   //     const result = Object.keys(messageObject).map((key) => ({
@@ -82,26 +91,26 @@ const NewUserForm = ({ onClose, user }) => {
   //       id: key,
   //     }));
   //     setSkills(result);
+      
   //   });
-  // }; 
+  // };
 
+  // useEffect(() => {
+  //   getAbilities();
+  //   getRemainSkills();
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [skills, acValue1]);
 
-  useEffect(() => {
-    // getAbilities();
-    getRemainSkills();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [skills, skillsList]);
-
-  function getRemainSkills() {
-    let temp = [];
-    getSkills?.forEach((skill) => {
-      if (!getSkills.find((item) => item.id === skill.id)) temp.push(skill);
-    });
-    //setRemainSkills(temp);
-     console.log(skillsList)
-     //console.log(temp)
-  }
-   //console.log(skills)
+  // function getRemainSkills() {
+  //   let temp = [];
+  //   getSkills?.forEach((skill) => {
+  //     if (!getSkills.find((item) => item.id === skill.id)) temp.push(skill);
+  //   });
+  //   //setRemainSkills(temp);
+  //    console.log(skillsList)
+  //    //console.log(temp)
+  // }
+  //  //console.log(skills)
 
   const theme = createTheme({
     components: {
@@ -144,18 +153,18 @@ const NewUserForm = ({ onClose, user }) => {
     github: yup.string().optional().min(4),
     linkedin: yup.string().optional().min(4),
     website: yup.string().optional().min(4),
-    skills: yup.string(),
+    
   });
 
   const handleSubmit = (values, actions) => {
-    const { skills } = values;
+    // const { skills } = values;
     const formValues = {
       ...values,
       projects: acValue,
-      skills: skillsList
-        .split(",")
-        .filter(Boolean)
-        .map((link) => link.trim()),
+      // skills: acValue1,
+        // .split(",")
+        // .filter(Boolean)
+        // .map((link) => link.trim()),
       profilePhoto,
       profilePhotoName,
     };
@@ -362,25 +371,25 @@ const NewUserForm = ({ onClose, user }) => {
             </Form.Group>
             <Form.Group controlId="formSkills">
               <ThemeProvider theme={theme}>
-                <Autocomplete
+                {/* <Autocomplete
                   multiple
-                  
                   onChange={(event, value) => {
-                    setSkillsList(value);
+                    setACValue1(value);
                   }}
-                  value={skillsList}
-                  options={getSkills} // change to getRemainSkills after doing backend
+                  id="checkboxes-tags-demo"
+                  value={acValue1}
+                  options={remainSkills}
                   filterSelectedOptions
-                  // to add custom user input
-                  // freeSolo
-                  // getOptionLabel={option => option.title || option}
                   disableCloseOnSelect
                   getOptionLabel={(option) => option}
+                  renderOption={(props, option) => (
+                    <li {...props}>{option}</li>
+                  )}
                   renderInput={(params) => (
                     <TextField
                       size="small"
                       {...params}
-                      label="Enter your Skills"
+                      label="Projects Worked In"
                       className={theme.root}
                       sx={{
                         "& .MuiInputLabel-root": {
@@ -393,8 +402,7 @@ const NewUserForm = ({ onClose, user }) => {
                       variant="outlined"
                     />
                   )}
-                />
-                
+                /> */}
               </ThemeProvider>
               <Form.Text className="text-danger">
                 {props.touched.skills && props.errors.skills}
