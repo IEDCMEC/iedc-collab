@@ -53,21 +53,19 @@ const InviteToProjectModal = (props) => {
     },
   });
   async function handleSubmit() {
-    await axios.post(
-      "https://w2e9j471i2.execute-api.ap-south-1.amazonaws.com/dev/send-email",
-      {
-        toEmail: ["jaisondennis080@gmail.com", "jaisondennis090@gmail.com"],
-        subject: "Successsss.....",
-        content: "This mail is sent from IEDC Collab as part of testing....",
-      },
-      {
-        headers: {
-          "Access-Control-Allow-Headers": "Content-Type",
-          "Access-Control-Allow-Origin": "http://local",
-          "Access-Control-Allow-Methods": "OPTIONS,POST,GET",
-        },
-      }
-    );
+    let body = {
+      "toEmail": "jaisondennis080@gmail.com",
+      "subject": "Successsss.....",
+      "content": "This mail is sent from IEDC Collab as part of testing....",
+    };
+    await axios
+      .post(
+        "https://w2e9j471i2.execute-api.ap-south-1.amazonaws.com/dev/send-email",
+        body
+      )
+      .then((res) => {
+        console.log(res);
+      });
   }
 
   const getWorks = async () => {
@@ -158,8 +156,7 @@ const InviteToProjectModal = (props) => {
           variant=""
           type="submit"
           className="btn"
-          onClick={(event) => {
-            event.preventDefault();
+          onClick={() => {
             handleSubmit();
           }}
         >
