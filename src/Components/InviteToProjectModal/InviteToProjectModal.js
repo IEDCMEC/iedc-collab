@@ -24,6 +24,7 @@ import {
 import { sendInvite } from "../../Firebase/firebase";
 
 const InviteToProjectModal = ({user,selectedUser,...props}) => {
+    console.log(selectedUser)
   const [projects, setProjects] = useState([]);
   const [project, setProject] = useState("");
   const [loading, setLoading] = useState(true);
@@ -59,17 +60,11 @@ const InviteToProjectModal = ({user,selectedUser,...props}) => {
     await axios.post(
       "https://w2e9j471i2.execute-api.ap-south-1.amazonaws.com/dev/send-email",
       {
-        toEmail: ["jaisondennis080@gmail.com", "jaisondennis090@gmail.com"],
+        toEmail: selectedUser.email,
         subject: "Successsss.....",
         content: "This mail is sent from IEDC Collab as part of testing....",
       },
-      {
-        headers: {
-          "Access-Control-Allow-Headers": "Content-Type",
-          "Access-Control-Allow-Origin": "http://local",
-          "Access-Control-Allow-Methods": "OPTIONS,POST,GET",
-        },
-      }
+      
     );
     }catch(err){
       console.log(err);
