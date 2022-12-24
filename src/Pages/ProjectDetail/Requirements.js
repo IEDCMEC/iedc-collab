@@ -6,6 +6,7 @@ import ProjectCarousel from "../../../Components/ProjectCarousel/ProjectCarousel
 import { ProjectContext } from "../../../contexts/ProjectContext";
 import RequirementDetails from "../../../Components/RequirementDetails/RequirementDetails";
 import ProjectNav from "../../../Components/ProjectNav/ProjectNav";
+import SuspenseLoader from "../../Components/SuspenseLoader/SuspenseLoader";
 const Requirements = () => {
 
   const { projects, loading } = useContext(ProjectContext);
@@ -14,13 +15,7 @@ const Requirements = () => {
     return (
       <div>
         <MainLayout>
-        <div
-        className="d-flex justify-content-center align-items-center flex-column"
-        style={{ height: "90vh" }}
-      >
-        <div className="spinner-border" role="status"></div>
-        <div className="mt-3">Loading projects...</div>
-      </div>
+        <SuspenseLoader />
       </MainLayout>
       </div>
 
