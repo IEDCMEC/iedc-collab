@@ -98,9 +98,9 @@ const JoinTeamModal = ({ user, project, ...props }) => {
               type="submit"
               className="btn"
               onClick={(event) => {
-                event.preventDefault();
-                onSubmit();
-                props.onHide();
+                onSubmit(event).then(() => {
+                  props.onHide();
+                });
               }}
             >
               <p>Send</p>

@@ -11,7 +11,7 @@ import sendPaperPlane from "../../assets/sendPaperPlane.svg";
 import closeButton from "../../assets/close.svg";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { getProjects } from "../../Firebase/firebase";
+import { getProjects, sendRequest } from "../../Firebase/firebase";
 import {
   createTheme,
   FormControl,
@@ -76,7 +76,7 @@ const InviteToProjectModal = ({ user, selectedUser, ...props }) => {
       message: message,
       createdAt: Date.now(),
     };
-    await sendInvite(data);
+    await sendRequest(data);
   }
 
   const getWorks = async () => {
