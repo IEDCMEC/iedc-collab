@@ -32,7 +32,7 @@ function Sent({request}) {
         />
         </div>
         <div className="req_profile_details">
-          <div className="req_profile_details_h4">{request.sender}</div>
+          <div className="req_profile_details_h4">{request.receiver}</div>
           <div className="req_profile_details_p">
             {request.message}
           </div>

@@ -392,6 +392,9 @@ export const acceptRequest = async (invite) =>{
  }
 
 export const getRequests = async (uid)=>{
+  try{
+
+ 
   let data = await firebase.database().ref("requests/").orderByChild("sender_id").equalTo(uid).once("value")
   let objval = data.val()
   
@@ -399,5 +402,9 @@ export const getRequests = async (uid)=>{
     ...objval[key],
     id: key,
   }));
-  return requests ? requests : []
+  return requests;
+}
+catch(error){
+  console.log(error)
+}
 }

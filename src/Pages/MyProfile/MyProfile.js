@@ -37,11 +37,12 @@ const MyProfile = () => {
   };
 
   const fetchRequests = async () => {
+    
     setRequests(await getRequests(currentUser.uid));
   };
 
   useEffect(() => {
-    if (currentUser?.uid!==undefined) {
+    if (currentUser?.uid!=undefined) {
       getDev(currentUser?.uid)
       fetchRequests(currentUser?.uid)
     }
@@ -191,6 +192,7 @@ const MyProfile = () => {
                   className={isReceived ? "rec_active" : "received"}
                   onClick={() => setIsReceived(true)}
                 >
+
                   Recieved
                 </div>
                 <div
@@ -204,7 +206,7 @@ const MyProfile = () => {
               {isReceived ? (
                 <Received />
               ) : (
-                requests.map((request, index) => (
+                requests?.map((request, index) => (
                   <Sent request={request} key={index} />
                 ))
               )}
