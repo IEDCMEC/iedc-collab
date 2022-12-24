@@ -197,11 +197,11 @@ const MyProfile = () => {
             </div>
 
             {isReceived ?
-            requests.map((request)=> 
-            <Received request = {request}/>
-            )
+            <Received />
             :
-            <Sent/>
+            requests.map((request,index)=> 
+            <Sent request={request} key={index}/>
+            )
             }
 
             <div className="edit__pro_abtMe">
