@@ -384,10 +384,20 @@ export const sendRequest = (data, type) => {
 
 export const acceptRequest = async (invite) => {
   try {
-    await firebase
-      .database()
-      .ref(`projects/${invite.project_id}/members/${invite.sender_id}`)
-      .set({ name: invite.sender, id: invite.sender_id, status: "accepted" });
+    let p = {};
+    await getProject(invite.project_id).then((project) => {
+      console.log(project.val());
+      p = project.val();
+      let users=p.teamMembers;
+      users.push(invite.sender);
+      firebase
+        .database()
+        // .ref(`projects/${invite.project_id}/members/${invite.sender_id}`)
+        // .set({ name: invite.sender});
+        .ref(`projects/${invite.project_id}/teamMembers/`)
+        .set(users);
+    });
+
     //let addProject = await firebase.database().ref("users/").update({projects: firebase.firestore.FieldValue.arrayUnion({name:invite.project, id:invite.project_id})});
     await firebase
       .database()

@@ -3,7 +3,7 @@ import "./Request.css";
 import accept_icon from "../../assets/accepticon.svg";
 import decline_icon from "../../assets/declineicon.svg";
 import { Button } from "@mui/material";
-import { acceptRequest, getRequests } from "../../Firebase/firebase";
+import { acceptRequest, getProject, getRequests } from "../../Firebase/firebase";
 import { useContext } from "react";
 import { AuthContext } from "../../Firebase/Auth/Auth";
 import { ControlCameraSharp } from "@mui/icons-material";
@@ -11,7 +11,6 @@ import { useHistory } from "react-router-dom";
 
 function Received({ request }) {
   const history = useHistory();
-
   return (
     <div className="received_sent_box">
       <div className="received_bpx_header">
