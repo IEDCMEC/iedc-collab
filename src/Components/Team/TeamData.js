@@ -1,21 +1,21 @@
 const TeamData = [
   {
     id: 1,
-    name: "Ramchandra Rajiv",
+    name: "Pranoy Santhosh",
     image:
       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQehqf-mD0TAjtGLGfeL6YSNlVOAJh6AnSRYQ&usqp=CAU",
     linkedin: "https://www.linkedin.com/in/achyuth-mohan/",
   },
   {
     id: 2,
-    name: "Shyama Jagadish",
+    name: "Aldrin Jenson",
     image:
       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmltWezxuth8TrEhwhog6C-8D6KW6LaQILFw&usqp=CAU",
     linkedin: "https://www.linkedin.com/in/jagannath-e-shahi-3b0525202/",
   },
   {
     id: 3,
-    name: "Karthik Shahrukh",
+    name: "Achyuth Mohan",
     image:
       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSHJcPG69wVxa687oBRoSpd9HxDOc2MONuwHg&usqp=CAU",
     linkedin: "https://www.linkedin.com/in/achyuth-mohan/",
