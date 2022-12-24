@@ -1,4 +1,4 @@
-import { lazy } from 'react'
+// import { lazy } from "react";
 
 // export const Collab = lazy(() => import("./Collab/Collab"));
 // export const DeveloperDetails = lazy(() => import("./DeveloperDetail/DeveloperDetails"));
@@ -19,3 +19,11 @@ export { default as DeveloperDetails }from './DeveloperDetail/DeveloperDetails'
 
 
 
+// export { default as Collab } from "./Collab/Collab";
+// export { default as DeveloperDetails } from "./DeveloperDetail/DeveloperDetails";
+// export { default as Developers } from "./Developers/Developers";
+// export { default as Ideas } from "./Ideas/Ideas";
+// export { default as Landing } from "./Landing/Landing";
+// export { default as MyProfile } from "./MyProfile/MyProfile";
+// export { default as ProjectDetail } from "./ProjectDetail/ProjectDetail";
+// export { default as Projects } from "./Projects/Projects";

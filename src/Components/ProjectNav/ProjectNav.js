@@ -6,6 +6,7 @@ import JoinTeamModal from "../JoinTeamModal/JoinTeamModal";
 import { getUser } from "../../Firebase/firebase";
 import { AuthContext } from "../../Firebase/Auth/Auth";
 import { useContext } from "react";
+import SuspenseLoader from "../SuspenseLoader/SuspenseLoader";
 
 const ProjectNav = ({ selectedProject }) => {
   const [user, setUser] = useState({});
@@ -21,15 +22,7 @@ const ProjectNav = ({ selectedProject }) => {
   }, [selectedProject.leader_id]);
   const [modalShow, setModalShow] = useState(false);
   if (loading) {
-    return (
-      <div
-        className="d-flex justify-content-center align-items-center flex-column"
-        style={{ height: "90vh" }}
-      >
-        <div className="spinner-border" role="status"></div>
-        <div className="mt-3">Loading Project...</div>
-      </div>
-    );
+    return <SuspenseLoader />
   }
   return (
     <div className="project-nav__container">

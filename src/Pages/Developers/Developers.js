@@ -6,6 +6,7 @@ import "./Developers.scss";
 import DeveloperCard from "./DeveloperCard";
 import Drawer from "./Drawer";
 import { IndeterminateCheckBox } from "@mui/icons-material";
+import SuspenseLoader from "../../Components/SuspenseLoader/SuspenseLoader";
 const Developers = () => {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -16,12 +17,12 @@ const Developers = () => {
         ...messageObject[key],
         id: key,
       }));
-      setUsers(result); setLoading(false);
+      setUsers(result);
+      setLoading(false);
     });
   };
   useEffect(() => {
     getDevs();
-   
   }, [users]);
   const history = useHistory();
   const handleClick = (u) => {
@@ -30,36 +31,34 @@ const Developers = () => {
   if (loading) {
     return (
       <div>
-        <MainLayout route={'Developers'}>
-        <div
-          className="d-flex justify-content-center align-items-center flex-column"
-          style={{ height: "90vh" }}
-        >
-          <div className="spinner-border" role="status"></div>
-          <div className="mt-3">Loading Developers...</div>
-        </div>
+        <MainLayout route={"Developers"}>
+          <SuspenseLoader />
         </MainLayout>
       </div>
     );
   }
-  return (<>
-    <MainLayout route={'Developers'}>
-      <div className="parent_container">
-          <Drawer/>
-        <div className="developer_container">
-          <h1 className="developer-title">DEVELOPERS</h1>
-          <div className="developer-details">
-            {users.map((user,index) => {
-              return (
-                
-                <DeveloperCard key={index} handleClick={handleClick} user={user}/>
-              );
-            })}
+  return (
+    <>
+      <MainLayout route={"Developers"}>
+        <div className="parent_container">
+          <Drawer />
+          <div className="developer_container">
+            <h1 className="developer-title">DEVELOPERS</h1>
+            <div className="developer-details">
+              {users.map((user, index) => {
+                return (
+                  <DeveloperCard
+                    key={index}
+                    handleClick={handleClick}
+                    user={user}
+                  />
+                );
+              })}
+            </div>
           </div>
         </div>
-      </div>
       </MainLayout>
-      </>
+    </>
   );
 };
 

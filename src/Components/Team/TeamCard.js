@@ -6,7 +6,7 @@ const TeamCard = () => {
       <img src={data.image} alt={data.name} />
       <div className="name">{data.name}</div>
       <a href={data.linkedin} target="blank" className="team_a">
-        <span>LinkedIn</span>
+        <p>LinkedIn</p>
       </a>
     </div>
     </div>

@@ -13,6 +13,7 @@ import { useContext, useEffect, useState } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import { getUser } from "../../Firebase/firebase";
 import { AuthContext } from "../../Firebase/Auth/Auth";
+import SuspenseLoader from "../../Components/SuspenseLoader/SuspenseLoader";
 
 function DeveloperDetails() {
   let { id } = useParams();
@@ -35,13 +36,7 @@ function DeveloperDetails() {
     return (
       <div>
         <MainLayout route={"Developers"}>
-          <div
-            className="d-flex justify-content-center align-items-center flex-column"
-            style={{ height: "90vh" }}
-          >
-            <div className="spinner-border" role="status"></div>
-            <div className="mt-3">Loading Developer...</div>
-          </div>
+        <SuspenseLoader />
         </MainLayout>
       </div>
     );

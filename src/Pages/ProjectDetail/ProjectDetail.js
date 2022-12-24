@@ -10,6 +10,7 @@ import './ProjectDetail.scss'
 import { useParams } from "react-router-dom";
 
 import { getProject} from "../../Firebase/firebase";
+import SuspenseLoader from "../../Components/SuspenseLoader/SuspenseLoader";
 function ProjectDetail() {
   let {id}=useParams();
   const [selectedProject, setSelectedProject] = useState({});
@@ -32,14 +33,7 @@ function ProjectDetail() {
     return (
         <div>
            <MainLayout route={'Projects'}>
-      <div
-        className="d-flex justify-content-center align-items-center flex-column"
-        style={{ height: "90vh" }}
-      >
-        
-        <div className="spinner-border" role="status"></div>
-        <div className="mt-3">Loading Project...</div>
-      </div>
+           <SuspenseLoader />
       </MainLayout>
       </div>
     );
