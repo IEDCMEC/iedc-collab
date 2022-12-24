@@ -45,7 +45,7 @@ export default function PersistentDrawerLeft() {
   return (
     <div>
         <IconButton
-        color="#ffff"
+        color="inherit"
         aria-label="open drawer"
         onClick={handleDrawerOpen}
         edge="start"
