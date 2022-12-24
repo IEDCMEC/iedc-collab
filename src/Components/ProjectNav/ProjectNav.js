@@ -51,9 +51,9 @@ const ProjectNav = ({ selectedProject }) => {
       <div className="project-nav__likes-join">
         <div className="project-nav__likes">
           <img src={like} alt="like" className="project-nav__like" />
-          <div className="project-nav__number-likes">
+          {/* <div className="project-nav__number-likes">
             15 <span className="projectnav-likes">Likes</span>
-          </div>
+          </div> */}
         </div>
         <div className="project-nav__button" onClick={() => setModalShow(true)}>
           Join Team

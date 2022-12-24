@@ -10,7 +10,7 @@ import { VscGithubInverted } from "react-icons/vsc";
 import { FaLinkedin } from "react-icons/fa";
 import EditProfileModal from "./EditProfileModal";
 import { AuthContext } from "../../Firebase/Auth/Auth";
-import { getUser, signIn } from "../../Firebase/firebase";
+import { getRequestsRecieved, getUser, signIn } from "../../Firebase/firebase";
 import Received from "../../Components/Request/Received";
 import Sent from "../../Components/Request/Sent";
 import { getRequests } from "../../Firebase/firebase";
@@ -22,6 +22,7 @@ const MyProfile = () => {
   const [selectedUser, setSelectedUser] = useState({});
   const [loading, setLoading] = useState(true);
   const [isReceived, setIsReceived] = useState(true);
+  const [requestsRecieved, setRequestsRecieved] = useState([]);
   const newprojectClick = async () => {
     if (currentUser) {
       setShowProfileModal(true);
@@ -39,12 +40,17 @@ const MyProfile = () => {
   const fetchRequests = async () => {
     setRequests(await getRequests(currentUser.uid));
   };
+  const fetchRequestsRecieved = async () => {
+    setRequestsRecieved(await getRequestsRecieved(currentUser.uid));
+  };
 
   useEffect(() => {
-    if (currentUser?.uid!==undefined) {
-      getDev(currentUser?.uid)
-      fetchRequests(currentUser?.uid)
+    if (currentUser?.uid !== undefined) {
+      getDev(currentUser?.uid);
+      fetchRequests(currentUser?.uid);
+      fetchRequestsRecieved(currentUser?.uid);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentUser]);
 
   if (loading) {
@@ -179,13 +185,12 @@ const MyProfile = () => {
           </div>
 
           <div className="edit__pro_box">
-            
-              <div className="reqs_invite_bar">
+            {/* <div className="reqs_invite_bar">
                 <div className="reqs_invite_bar__requests">Requests</div>
                 <div className="reqs_invite_bar__line">|</div>
                 <div className="reqs_invite_bar__invite">Invite</div>
-              </div>
-              <div className="edit__pro_box_1">
+              </div> */}
+            <div className="edit__pro_box_1">
               <div className="edit__header">
                 <div
                   className={isReceived ? "rec_active" : "received"}
@@ -200,14 +205,14 @@ const MyProfile = () => {
                   Sent
                 </div>
               </div>
-<div className="requests__cards"> 
-              {isReceived ? (
-                <Received />
-              ) : (
-                requests.map((request, index) => (
-                  <Sent request={request} key={index} />
-                ))
-              )}
+              <div className="requests__cards">
+                {isReceived
+                  ? requestsRecieved?.map((request, index) => (
+                      <Received key={index} request={request} />
+                    ))
+                  : requests?.map((request, index) => (
+                      <Sent request={request} key={index} />
+                    ))}
               </div>
             </div>
             <div className="edit__pro_abtMe">

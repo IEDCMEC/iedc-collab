@@ -27,12 +27,12 @@ function Sent({request}) {
         <div>
         <img
           className="req_profile_img"
-          src="https://vpnoverview.com/wp-content/uploads/what-is-a-hacker-what-is-hacking-featured-800x400.png"
+          src={request.reciever_img||"https://sabt.center/wp-content/uploads/2014/08/avatar-1.png"}
           alt=""
         />
         </div>
         <div className="req_profile_details">
-          <div className="req_profile_details_h4">{request.sender}</div>
+          <div className="req_profile_details_h4">{request.receiver}</div>
           <div className="req_profile_details_p">
             {request.message}
           </div>

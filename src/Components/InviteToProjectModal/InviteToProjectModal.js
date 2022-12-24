@@ -26,7 +26,6 @@ const InviteToProjectModal = ({ user, selectedUser, ...props }) => {
   console.log(selectedUser);
   const [projects, setProjects] = useState([]);
   const [project, setProject] = useState("");
-  const [loading, setLoading] = useState(true);
   const [message, setMessage] = useState("");
   const theme = createTheme({
     components: {
@@ -56,14 +55,11 @@ const InviteToProjectModal = ({ user, selectedUser, ...props }) => {
   });
   async function handleSubmit() {
     try {
-      await axios.post(
-        emailUrl,
-        {
-          toEmail: selectedUser.email,
-          subject: `Invite to ${project.name} from IEDC Collab`,
-          content: message,
-        }
-      );
+      await axios.post(emailUrl, {
+        toEmail: selectedUser.email,
+        subject: `Invite to ${project.name} from IEDC Collab`,
+        content: message,
+      });
     } catch (err) {
       console.log(err);
     }
@@ -72,6 +68,7 @@ const InviteToProjectModal = ({ user, selectedUser, ...props }) => {
       sender: user.displayName,
       sender_id: user.uid,
       receiver: selectedUser.name,
+      reciever_img: selectedUser.photoURL||"https://sabt.center/wp-content/uploads/2014/08/avatar-1.png",
       receiver_id: selectedUser._id,
       project_id: project.id,
       project: project.name,
@@ -89,16 +86,23 @@ const InviteToProjectModal = ({ user, selectedUser, ...props }) => {
         ...messageObject[key],
         id: key,
       }));
-      setProjects(result);
-      setLoading(false);
+      let temp = [];
+      result.forEach((project, index) => {
+        if (project.leaderEmail === user.email) {
+          temp.push(project);
+        }
+      });
+      if (temp.length === 0) {
+        temp.push({ name: "No Projects Found" });
+      }
+      setProjects(temp);
     });
   };
   useEffect(() => {
     getWorks();
-  }, [projects]);
-  if (loading) {
-    return <div>Loading...</div>;
-  }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   return (
     <Modal {...props} size="xl" centered className="invite-to-project-modal">
       <img src={triangle_1} alt="" className="triangle_1" />
