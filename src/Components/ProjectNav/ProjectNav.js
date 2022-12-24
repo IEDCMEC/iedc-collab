@@ -5,8 +5,7 @@ import like from "../../assets/like.png";
 import JoinTeamModal from "../JoinTeamModal/JoinTeamModal";
 import { getUser } from "../../Firebase/firebase";
 import { AuthContext } from "../../Firebase/Auth/Auth";
-import {useContext} from "react"
-
+import { useContext } from "react";
 
 const ProjectNav = ({ selectedProject }) => {
   const [user, setUser] = useState({});
@@ -50,16 +49,34 @@ const ProjectNav = ({ selectedProject }) => {
       </div>
       <div className="project-nav__likes-join">
         {/* <div className="project-nav__likes"> */}
-          {/* <img src={like} alt="like" className="project-nav__like" /> */}
-          {/* <div className="project-nav__number-likes">
+        {/* <img src={like} alt="like" className="project-nav__like" /> */}
+        {/* <div className="project-nav__number-likes">
             15 <span className="projectnav-likes">Likes</span>
           </div> */}
         {/* </div> */}
-        <div className="project-nav__button" onClick={() => setModalShow(true)}>
+        <div
+          className="project-nav__button"
+          onClick={() => {
+            if (currentUser) {
+              setModalShow(true);
+            } else {
+              window.alert("Please Login to continue");
+            }
+          }}
+        >
           Join Team
         </div>
       </div>
-      <JoinTeamModal show={modalShow} onHide={() => setModalShow(false)} user={currentUser} project={selectedProject}/>
+      {currentUser ? (
+        <JoinTeamModal
+          show={modalShow}
+          onHide={() => setModalShow(false)}
+          user={currentUser}
+          project={selectedProject}
+        />
+      ) : (
+        ""
+      )}
     </div>
   );
 };
