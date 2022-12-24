@@ -156,10 +156,10 @@ const history=useHistory()
             className="NavigateBar-Newprobtn css-button"
             onClick={newprojectClick}
           >
-            <span className="css-button-icon">
+            <div className="css-button-icon">
               <i className="fa fa-plus-square"></i>
-            </span>
-            <span className="css-button-text">New Project</span>
+            </div>
+            <div className="css-button-text">New Project</div>
           </div>
 
           {currentUser && (
