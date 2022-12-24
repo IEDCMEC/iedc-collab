@@ -180,11 +180,11 @@ const MyProfile = () => {
 
           <div className="edit__pro_box">
             
-              <div className="reqs_invite_bar">
+              {/* <div className="reqs_invite_bar">
                 <div className="reqs_invite_bar__requests">Requests</div>
                 <div className="reqs_invite_bar__line">|</div>
                 <div className="reqs_invite_bar__invite">Invite</div>
-              </div>
+              </div> */}
               <div className="edit__pro_box_1">
               <div className="edit__header">
                 <div
