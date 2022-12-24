@@ -11,7 +11,7 @@ export default function Buttons(props) {
       name={props.name}
       className={props.className}
       style={styles}
-      onClick={() => setValueOnClick(!valueOnClick)}
+      onClick={() => {props.addSkills(props.name);setValueOnClick(!valueOnClick)}}
     >
       <p>{props.name}</p>
     </button>

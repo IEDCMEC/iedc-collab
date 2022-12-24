@@ -11,7 +11,7 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import vector from '../../assets/Vector.svg';
 
 // const typeDevs = ['Skills','Projects','Developers']
-const skills=['React Js','Vanilla Js','Vue Js','Angular Js','Arduino','Rasberry Pi','IOT','C++','Python','Django','Flask','Java','Spring','Node JS','MySQL','PostgreSQL','SQLite']
+const skills=['React Js','Vanilla Js','Vue Js','Angular Js','Arduino','Rasberry Pi','IOT','C++','Python','Django','Flask','Java','Spring','Node JS','MySQL','PostgreSQL','SQLite', 'CSS']
 const DrawerHeader = styled('div')(({ theme }) => ({
   display: 'flex',
   alignItems: 'center',
@@ -25,7 +25,7 @@ const styles={
   fontFamily:'Nunito', fontWeight: '450',fontSize: '1.6rem',lineHeight: '42px',color:'white',padding:'0',margin:'0'
 }
 
-export default function PersistentDrawerLeft() {
+export default function PersistentDrawerLeft({selectedSkills, setSelectedSkills}) {
   const matches1 = useMediaQuery('(max-width:600px)');
   const matches2 = useMediaQuery('(max-width:800px)');
   const matches3 = useMediaQuery('(max-width:865px)');
@@ -33,7 +33,6 @@ export default function PersistentDrawerLeft() {
   const drawerWidth = matches2 ? matches1 ? '60vw' : '70vw' : '35vw';
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
-
   const handleDrawerOpen = () => {
     setOpen(true);
   };
@@ -41,6 +40,18 @@ export default function PersistentDrawerLeft() {
   const handleDrawerClose = () => {
     setOpen(false);
   };
+  const addSkill = (skill)=>{
+    let oldSkills = selectedSkills
+    console.log(oldSkills)
+    if(oldSkills.find((s)=>s===skill)){
+     oldSkills= oldSkills.filter((s)=>s!==skill)
+    }
+    else{
+      oldSkills = [...oldSkills, skill]
+    }
+    console.log(oldSkills)
+    setSelectedSkills(oldSkills)
+  }
 
   return (
     <div>
@@ -92,7 +103,7 @@ export default function PersistentDrawerLeft() {
                 </div>
                 <input type='text' placeholder='Start typing...' className='input_box'/>
                 <div className='skills'>
-                  {skills.map((x,id)=>(<Buttons key={id} name={x} className='skill_boxes'></Buttons>))}
+                  {skills.map((x,id)=>(<Buttons key={id} name={x}  className="skill_boxes" addSkills= {addSkill}></Buttons>))}
                 </div>
                 <div style={{minWidth:'90%',margin:'25px'}}><h3 style={styles}>Branch/Class</h3></div>
                 <input type='text' className='input_box'/>
