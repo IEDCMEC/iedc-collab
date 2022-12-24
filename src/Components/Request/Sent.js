@@ -8,31 +8,34 @@ function Sent({request}) {
   return (
     <div className="received_sent_box">
       <div className="received_bpx_header">
-        <p>{request.project}</p>
-        <Button
+        <div className="received_bpx_header_para">{request.project}</div>
+        <div
           sx={{
             fontSize: "1rem",
             display: "flex",
           }}
+          className="view_project_btn"
           variant="outlined"
           onClick={()=>{
             history.push(`/projects/${request.project_id}`)
           }}
         >
           View Project
-        </Button>
+        </div>
       </div>
       <div className="req_profile_box">
+        <div>
         <img
           className="req_profile_img"
           src="https://vpnoverview.com/wp-content/uploads/what-is-a-hacker-what-is-hacking-featured-800x400.png"
           alt=""
         />
+        </div>
         <div className="req_profile_details">
-          <h4>{request.sender}</h4>
-          <p>
+          <div className="req_profile_details_h4">{request.sender}</div>
+          <div className="req_profile_details_p">
             {request.message}
-          </p>
+          </div>
         </div>
       </div>
     </div>
