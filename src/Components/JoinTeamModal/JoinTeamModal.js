@@ -8,7 +8,7 @@ import bubble11 from "../../assets/bubble_11.svg";
 import sendPaperPlane from "../../assets/sendPaperPlane.svg";
 import closeButton from "../../assets/close.svg";
 import { useEffect, useState } from "react";
-import { getUser, sendRequest } from "../../Firebase/firebase";
+import { acceptRequest, getUser, sendRequest } from "../../Firebase/firebase";
 import axios from "axios";
 
 const JoinTeamModal = ({ user, project, ...props }) => {
@@ -29,7 +29,7 @@ const JoinTeamModal = ({ user, project, ...props }) => {
       message: message,
       createdAt: Date.now(),
     };
-    sendRequest(data);
+    await sendRequest(data);
     await axios.post(
       "https://w2e9j471i2.execute-api.ap-south-1.amazonaws.com/dev/send-email",
       {
