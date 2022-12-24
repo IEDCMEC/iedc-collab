@@ -11,15 +11,14 @@ import { FaLinkedin } from "react-icons/fa";
 import EditProfileModal from "./EditProfileModal";
 import { AuthContext } from "../../Firebase/Auth/Auth";
 import { getUser, signIn } from "../../Firebase/firebase";
-import Received from "../../Components/Request/Received"
-import Sent from "../../Components/Request/Sent"
-import {getRequests} from "../../Firebase/firebase"
-
+import Received from "../../Components/Request/Received";
+import Sent from "../../Components/Request/Sent";
+import { getRequests } from "../../Firebase/firebase";
 
 const MyProfile = () => {
   const { currentUser } = useContext(AuthContext);
   const [showProfileModal, setShowProfileModal] = useState(false);
-  const [requests, setRequests] = useState([])
+  const [requests, setRequests] = useState([]);
   const [selectedUser, setSelectedUser] = useState({});
   const [loading, setLoading] = useState(true);
   const [isReceived, setIsReceived] = useState(true);
@@ -30,29 +29,23 @@ const MyProfile = () => {
       signIn(() => setShowProfileModal(true));
     }
   };
- 
+
   const getDev = async (id) => {
     const user = await getUser(id);
     setSelectedUser(await user.val());
     setLoading(false);
   };
 
-   
   const fetchRequests = async () => {
-    setRequests(await getRequests(currentUser.uid))
-  }
- 
+    setRequests(await getRequests(currentUser.uid));
+  };
+
   useEffect(() => {
-    if (currentUser?.uid!=undefined) {
+    if (currentUser?.uid!==undefined) {
       getDev(currentUser?.uid)
       fetchRequests(currentUser?.uid)
     }
   }, [currentUser]);
-
-
-
-  
-
 
   if (loading) {
     return (
@@ -97,7 +90,7 @@ const MyProfile = () => {
               </div>
               <div className="phone_class">
                 <div className="profile_phone">
-                  <BsTelephoneInbound style={{ width: "3rem" }} />
+                  <BsTelephoneInbound size={15} style={{ width: "3rem" }} />
                   <p>
                     {selectedUser.contact ? (
                       <a
@@ -113,7 +106,7 @@ const MyProfile = () => {
                   </p>
                 </div>
                 <div className="profile_class">
-                  <HiOutlineAcademicCap style={{ width: "3rem" }} />
+                  <HiOutlineAcademicCap size={15} style={{ width: "3rem" }} />
                   <p>
                     {selectedUser?.branch || "Change in Edit Profile"}
                     {selectedUser?.year}
@@ -121,7 +114,7 @@ const MyProfile = () => {
                 </div>
               </div>
               <div className="profile_email">
-                <MdOutlineEmail style={{ width: "3rem" }} />
+                <MdOutlineEmail size={15} style={{ width: "3rem" }} />
                 <p>
                   {(
                     <a
@@ -186,24 +179,37 @@ const MyProfile = () => {
           </div>
 
           <div className="edit__pro_box">
-            <div className="reqs_invite_bar">
-              <div className="reqs_invite_bar__requests">Requests</div>
-              <div className="reqs_invite_bar__line">|</div>
-              <div className="reqs_invite_bar__invite">Invite</div>
+            
+              <div className="reqs_invite_bar">
+                <div className="reqs_invite_bar__requests">Requests</div>
+                <div className="reqs_invite_bar__line">|</div>
+                <div className="reqs_invite_bar__invite">Invite</div>
+              </div>
+              <div className="edit__pro_box_1">
+              <div className="edit__header">
+                <div
+                  className={isReceived ? "rec_active" : "received"}
+                  onClick={() => setIsReceived(true)}
+                >
+                  Recieved
+                </div>
+                <div
+                  className={isReceived ? "sent" : "sent_active"}
+                  onClick={() => setIsReceived(false)}
+                >
+                  Sent
+                </div>
+              </div>
+<div className="requests__cards"> 
+              {isReceived ? (
+                <Received />
+              ) : (
+                requests.map((request, index) => (
+                  <Sent request={request} key={index} />
+                ))
+              )}
+              </div>
             </div>
-            <div className="edit__header">
-              <div className={isReceived? "rec_active":"received"} onClick={()=> setIsReceived(true)}>Recieved</div>
-              <div className={isReceived? "sent":"sent_active"} onClick={()=> setIsReceived(false)}>Sent</div>
-            </div>
-
-            {isReceived ?
-            requests.map((request)=> 
-            <Received request = {request}/>
-            )
-            :
-            <Sent/>
-            }
-
             <div className="edit__pro_abtMe">
               <div>About Me</div>
               <div className="edit__pro_abtMe_bx">

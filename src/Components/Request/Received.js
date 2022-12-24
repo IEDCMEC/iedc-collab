@@ -1,54 +1,60 @@
 import React, { useEffect, useState } from "react";
-import "./Request.css"
+import "./Request.css";
 import accept_icon from "../../assets/accepticon.svg";
 import decline_icon from "../../assets/declineicon.svg";
 import { Button } from "@mui/material";
-import {acceptRequest, getRequests} from "../../Firebase/firebase"
+import { acceptRequest, getRequests } from "../../Firebase/firebase";
 import { useContext } from "react";
 import { AuthContext } from "../../Firebase/Auth/Auth";
 import { ControlCameraSharp } from "@mui/icons-material";
+import { useHistory } from "react-router-dom";
 
-function Received({request}) {
-
+function Received() {
+  const history = useHistory();
 
   return (
     <div className="received_sent_box">
       <div className="received_bpx_header">
-        <p>{request.project}</p>
-        <Button
+        <div className="received_bpx_header_para">Project Name</div>
+        <div
           sx={{
             fontSize: "1rem",
             display: "flex",
           }}
+          className="view_project_btn"
           variant="outlined"
+          onClick={() => {
+            history.push(`/projects/`);
+          }}
         >
-          View Projects
-        </Button>
+          View Project
+        </div>
       </div>
       <div className="req_profile_box">
-        <img
-          className="req_profile_img"
-          src="https://vpnoverview.com/wp-content/uploads/what-is-a-hacker-what-is-hacking-featured-800x400.png"
-          alt=""
-        />
+        <div>
+          <img
+            className="req_profile_img"
+            src="https://vpnoverview.com/wp-content/uploads/what-is-a-hacker-what-is-hacking-featured-800x400.png"
+            alt=""
+          />
+        </div>
         <div className="req_profile_details">
-          <h4>{request.sender}</h4>
-          <p>
-            {/* Invite Message - Add a default Message if user doesnot customize it */}
-            {request.message}
-          </p>
+          <div className="req_profile_details_h4">Guy Hawkins</div>
+          <div className="req_profile_details_p">
+            This Message can be customized..
+          </div>
         </div>
       </div>
 
       <div className="received_btns">
-        <button className="received_btn_accept" onClick = {()=>acceptRequest(request)}>
+        <div className="received_btn_accept" onClick={() => acceptRequest()}>
           <img src={accept_icon} alt="" />
           Accept
-        </button>
-        <button className="received_btn_decline">
+        </div>
+        <div className="received_btn_decline">
           <img src={decline_icon} alt="" />
           Decline
-        </button>
+        </div>
       </div>
     </div>
   );
