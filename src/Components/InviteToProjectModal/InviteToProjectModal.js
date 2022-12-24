@@ -63,6 +63,10 @@ const InviteToProjectModal = ({ user, selectedUser, ...props }) => {
           toEmail: selectedUser.email,
           subject: `Invite to ${project.name} from IEDC Collab`,
           content: message,
+        },{
+          headers: {
+            authorizationToken:"493b5a01"
+          },
         }
       );
     } catch (err) {
