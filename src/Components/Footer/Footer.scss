@@ -1,6 +1,5 @@
 .footer_main {
   display: flex;
-  justify-content: space-between;
   background-color: #a81a1a;
 }
 .footer_icons {
@@ -10,6 +9,16 @@
   column-gap: 40px;
   padding-top: 1%;
   padding-bottom: 1%;
+}
+.footer__made{
+  color:#ffffff;
+}
+.footer__content{
+  display: flex;
+  width: 100vw;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 .github {
   cursor: pointer;

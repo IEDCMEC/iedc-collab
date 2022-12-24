@@ -37,13 +37,14 @@ const MyProfile = () => {
   };
 
   const fetchRequests = async () => {
+    
     setRequests(await getRequests(currentUser.uid));
   };
 
   useEffect(() => {
-    if (currentUser?.uid != undefined) {
-      getDev(currentUser?.uid);
-      fetchRequests(currentUser?.uid);
+    if (currentUser?.uid!=undefined) {
+      getDev(currentUser?.uid)
+      fetchRequests(currentUser?.uid)
     }
   }, [currentUser]);
 
@@ -90,7 +91,7 @@ const MyProfile = () => {
               </div>
               <div className="phone_class">
                 <div className="profile_phone">
-                  <BsTelephoneInbound style={{ width: "3rem" }} />
+                  <BsTelephoneInbound size={15} style={{ width: "3rem" }} />
                   <p>
                     {selectedUser.contact ? (
                       <a
@@ -106,7 +107,7 @@ const MyProfile = () => {
                   </p>
                 </div>
                 <div className="profile_class">
-                  <HiOutlineAcademicCap style={{ width: "3rem" }} />
+                  <HiOutlineAcademicCap size={15} style={{ width: "3rem" }} />
                   <p>
                     {selectedUser?.branch || "Change in Edit Profile"}
                     {selectedUser?.year}
@@ -114,7 +115,7 @@ const MyProfile = () => {
                 </div>
               </div>
               <div className="profile_email">
-                <MdOutlineEmail style={{ width: "3rem" }} />
+                <MdOutlineEmail size={15} style={{ width: "3rem" }} />
                 <p>
                   {(
                     <a
@@ -180,17 +181,18 @@ const MyProfile = () => {
 
           <div className="edit__pro_box">
             
-              <div className="reqs_invite_bar">
+              {/* <div className="reqs_invite_bar">
                 <div className="reqs_invite_bar__requests">Requests</div>
                 <div className="reqs_invite_bar__line">|</div>
                 <div className="reqs_invite_bar__invite">Invite</div>
-              </div>
+              </div> */}
               <div className="edit__pro_box_1">
               <div className="edit__header">
                 <div
                   className={isReceived ? "rec_active" : "received"}
                   onClick={() => setIsReceived(true)}
                 >
+
                   Recieved
                 </div>
                 <div
@@ -204,7 +206,7 @@ const MyProfile = () => {
               {isReceived ? (
                 <Received />
               ) : (
-                requests.map((request, index) => (
+                requests?.map((request, index) => (
                   <Sent request={request} key={index} />
                 ))
               )}

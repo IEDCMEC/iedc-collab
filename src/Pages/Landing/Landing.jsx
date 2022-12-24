@@ -14,7 +14,7 @@ const Landing = () => {
     <Vision/>
     <Mission/>
     <About/>
-    <Team/>
+    {/* <Team/> */}
     <Footer/>
     </>
   )
