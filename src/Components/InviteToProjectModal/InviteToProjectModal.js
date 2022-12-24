@@ -11,7 +11,11 @@ import sendPaperPlane from "../../assets/sendPaperPlane.svg";
 import closeButton from "../../assets/close.svg";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { acceptRequest, getProjects, sendRequest } from "../../Firebase/firebase";
+import {
+  acceptRequest,
+  getProjects,
+  sendRequest,
+} from "../../Firebase/firebase";
 import {
   createTheme,
   FormControl,
@@ -68,7 +72,9 @@ const InviteToProjectModal = ({ user, selectedUser, ...props }) => {
       sender: user.displayName,
       sender_id: user.uid,
       receiver: selectedUser.name,
-      reciever_img: selectedUser.photoURL||"https://sabt.center/wp-content/uploads/2014/08/avatar-1.png",
+      reciever_img:
+        selectedUser.photoURL ||
+        "https://sabt.center/wp-content/uploads/2014/08/avatar-1.png",
       receiver_id: selectedUser._id,
       project_id: project.id,
       project: project.name,
@@ -76,7 +82,7 @@ const InviteToProjectModal = ({ user, selectedUser, ...props }) => {
       message: message,
       createdAt: Date.now(),
     };
-    await sendRequest(data);
+    await sendInvite(data);
   }
 
   const getWorks = async () => {
