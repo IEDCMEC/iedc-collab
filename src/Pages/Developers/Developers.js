@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 import MainLayout from "../../Components/MainLayout/MainLayout";
 import { getDevelopers } from "../../Firebase/firebase";
 import "./Developers.scss";
-
+import DeveloperCard from "./DeveloperCard";
 import Drawer from "./Drawer";
 const Developers = () => {
   const [users, setUsers] = useState([]);
@@ -50,25 +50,8 @@ const Developers = () => {
           <div className="developer-details">
             {users.map((user) => {
               return (
-                <div
-                  className="developer-card"
-                  key={user.id}
-                  style={{ cursor: "pointer" }}
-                  onClick={() => handleClick(user)}
-                >
-                  <div className="developer-card-image"><img
-                    alt="Profile"
-                    
-                    src={
-                      user.profilePhoto ||
-                      "https://sabt.center/wp-content/uploads/2014/08/avatar-1.png"
-                    }
-                  /></div>
-                  <div>
-                    <h1 className="developer-card-name">{user.name}</h1>
-                    <div className="developer-card-email">{user.email}</div>
-                  </div>
-                </div>
+                
+                <DeveloperCard handleClick={handleClick} user={user}/>
               );
             })}
           </div>

@@ -1,11 +1,15 @@
 import React, {  useEffect, useState } from "react";
 import "./Projects.scss";
 import { Container } from "react-bootstrap";
+import Aos from "aos";
 import { useHistory } from "react-router-dom";
 import MainLayout from '../../Components/MainLayout/MainLayout'
 import { getProjects } from "../../Firebase/firebase";
 // import { ProjectContext } from "../../contexts/ProjectContext";
 const Projects = () => {
+  useEffect(()=>{
+    Aos.init({duration:1100})
+},[])
   const [projects, setProjects] = useState([]);
   const [loading, setLoading] = useState(true);
   const getWorks = async () => {
@@ -52,7 +56,7 @@ const Projects = () => {
         </h3>
 
         {projects.map((project) => (
-          <div
+          <div data-aos='zoom-in'
             key={project.id}
             className="cards"
             onClick={() => handleClick(project)}
