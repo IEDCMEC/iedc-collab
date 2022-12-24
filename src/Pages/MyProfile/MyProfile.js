@@ -45,7 +45,7 @@ const MyProfile = () => {
   };
 
   useEffect(() => {
-    if (currentUser?.uid !== undefined) {
+    if (currentUser?.uid!== undefined) {
       getDev(currentUser?.uid);
       fetchRequests(currentUser?.uid);
       fetchRequestsRecieved(currentUser?.uid);
