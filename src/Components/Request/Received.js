@@ -4,6 +4,7 @@ import accept_icon from "../../assets/accepticon.svg";
 import decline_icon from "../../assets/declineicon.svg";
 import { Button } from "@mui/material";
 import {
+  acceptInvite,
   acceptRequest,
   declineRequest,
   getProject,
@@ -62,7 +63,12 @@ function Received({ request }) {
             <div
               className="received_btn_accept"
               onClick={() => {
-                acceptRequest(request).then(() => {
+                if (request.type === "request") {
+                  acceptRequest(request).then(() => {
+                    window.location.reload();
+                  });
+                }
+                acceptInvite(request).then(() => {
                   window.location.reload();
                 });
               }}
