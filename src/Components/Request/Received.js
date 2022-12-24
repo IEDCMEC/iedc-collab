@@ -9,13 +9,13 @@ import { AuthContext } from "../../Firebase/Auth/Auth";
 import { ControlCameraSharp } from "@mui/icons-material";
 import { useHistory } from "react-router-dom";
 
-function Received() {
+function Received({ request }) {
   const history = useHistory();
 
   return (
     <div className="received_sent_box">
       <div className="received_bpx_header">
-        <div className="received_bpx_header_para">Project Name</div>
+        <div className="received_bpx_header_para">{request.project}</div>
         <div
           sx={{
             fontSize: "1rem",
@@ -24,7 +24,7 @@ function Received() {
           className="view_project_btn"
           variant="outlined"
           onClick={() => {
-            history.push(`/projects/`);
+            history.push(`/projects/${request.project_id}`);
           }}
         >
           View Project
@@ -34,20 +34,21 @@ function Received() {
         <div>
           <img
             className="req_profile_img"
-            src="https://vpnoverview.com/wp-content/uploads/what-is-a-hacker-what-is-hacking-featured-800x400.png"
+            src={
+              request.sender_img ||
+              "https://sabt.center/wp-content/uploads/2014/08/avatar-1.png"
+            }
             alt=""
           />
         </div>
         <div className="req_profile_details">
-          <div className="req_profile_details_h4">Guy Hawkins</div>
-          <div className="req_profile_details_p">
-            This Message can be customized..
-          </div>
+          <div className="req_profile_details_h4">{request.sender}</div>
+          <div className="req_profile_details_p">{request.message}</div>
         </div>
       </div>
 
       <div className="received_btns">
-        <div className="received_btn_accept" onClick={() => acceptRequest()}>
+        <div className="received_btn_accept" onClick={() => acceptRequest(request)}>
           <img src={accept_icon} alt="" />
           Accept
         </div>
