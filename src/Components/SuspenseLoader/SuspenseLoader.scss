@@ -3,15 +3,17 @@
     padding: 0;
     box-sizing: border-box;
   }
-  body {
-  /*   background: #012; */
+.loader__enwrapper {
     height: 100vh;
-    display: grid;
-    place-items: center;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
-  .container {
+  .loader__suspense_container {
     position: relative;
     width: 200px;
+    margin: 0 auto;
     height: 200px;
   }
   span {
