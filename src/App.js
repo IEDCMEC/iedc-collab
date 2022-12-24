@@ -4,7 +4,7 @@ import "./App.scss";
 import React,{ Suspense } from "react";
 import "react-toastify/dist/ReactToastify.css";
 import { Projects ,Landing,Developers,MyProfile,Ideas,DeveloperDetails,ProjectDetail} from "./Pages/index";
-import SuspenseLoader from "./Components/SuspenseLoader/SuspenseLoader";
+// import SuspenseLoader from "./Components/SuspenseLoader/SuspenseLoader";
 import initialize from "./Firebase/firebase";
 import { ProjectProvider } from "./contexts/ProjectContext";
 import { ToastContainer } from "react-toastify";
@@ -20,7 +20,7 @@ function App() {
     <div className="App">
       <AuthProvider>
       <ProjectProvider>
-        <Suspense fallback={<SuspenseLoader/>}>
+        {/* <Suspense fallback={<SuspenseLoader/>}> */}
         <BrowserRouter>
           <ScrollToTop />
           <ToastContainer />
@@ -34,7 +34,7 @@ function App() {
             <Route Route path="/ideas" component={Ideas} />
           </Switch>
         </BrowserRouter>
-        </Suspense>
+        {/* </Suspense> */}
       </ProjectProvider>
     </AuthProvider>
     </div>
