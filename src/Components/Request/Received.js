@@ -14,7 +14,7 @@ function Received({request}) {
   return (
     <div className="received_sent_box">
       <div className="received_bpx_header">
-        <p>{request.project}</p>
+        <p>PROJECT NAME</p>
         <Button
           sx={{
             fontSize: "1rem",
@@ -22,7 +22,7 @@ function Received({request}) {
           }}
           variant="outlined"
         >
-          View Projects
+          View Project
         </Button>
       </div>
       <div className="req_profile_box">
@@ -32,10 +32,10 @@ function Received({request}) {
           alt=""
         />
         <div className="req_profile_details">
-          <h4>{request.sender}</h4>
+          <h4>Guy Hawkins</h4>
           <p>
-            {/* Invite Message - Add a default Message if user doesnot customize it */}
-            {request.message}
+            Invite Message - Add a default Message if user doesnot customize it
+            {/* {request.message} */}
           </p>
         </div>
       </div>

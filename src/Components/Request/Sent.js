@@ -1,20 +1,25 @@
 import React from "react";
 import "./Request.css";
 import { Button } from "@mui/material";
+import { useHistory } from "react-router-dom";
 
-function Sent() {
+function Sent({request}) {
+  const history = useHistory();
   return (
     <div className="received_sent_box">
       <div className="received_bpx_header">
-        <p>Project Name</p>
+        <p>{request.project}</p>
         <Button
           sx={{
             fontSize: "1rem",
             display: "flex",
           }}
           variant="outlined"
+          onClick={()=>{
+            history.push(`/projects/${request.project_id}`)
+          }}
         >
-          View Projects
+          View Project
         </Button>
       </div>
       <div className="req_profile_box">
@@ -24,9 +29,9 @@ function Sent() {
           alt=""
         />
         <div className="req_profile_details">
-          <h4>Guy Hawkins</h4>
+          <h4>{request.sender}</h4>
           <p>
-            Invite Message - Add a default Message if user doesnot customize it
+            {request.message}
           </p>
         </div>
       </div>
