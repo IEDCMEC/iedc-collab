@@ -47,7 +47,7 @@ a {
   text-decoration: none;
   color: #ffff;
 }
-a:hover{
+a:hover {
   color: #ffff;
   text-decoration: none;
 }
@@ -117,6 +117,11 @@ a:hover{
   gap: 1.25rem;
   padding: 1rem;
 }
+.edit__pro_box_1 {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
 .reqs_invite_bar {
   display: flex;
   flex-direction: row;
@@ -140,31 +145,49 @@ a:hover{
   font-weight: 700;
   font-size: 31px;
 }
+.requests__cards {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
 .received {
   display: flex;
-  width: fit-content;
-  padding: 0.25rem;
-  padding-inline: 0.75rem;
-  border: 1px solid #9e0000;
+  justify-content: center;
+  align-items: center;
+  width: 132px;
+  height: 54px;
   cursor: pointer;
-  background-color: rgba(244, 230, 230, 0.6);
+  background: #f4e6e6;
+  border: 1px solid #9e0000;
+  border-bottom-style: none;
   border-radius: 10px 0px 0px 0px;
+  font-family: "Nunito";
+  font-style: normal;
   font-weight: 700;
   font-size: 21px;
+  line-height: 29px;
+
   color: #9e0000;
 }
-.rec_active{
-  
+.rec_active {
   display: flex;
-  width: fit-content;
-  padding: 0.25rem;
-  padding-inline: 0.75rem;
-  border: 1px solid #9e0000;
+  width: 132px;
   cursor: pointer;
-  background-color: rgba(235, 148, 148, 0.6);
+
+  height: 54px;
+  background: #ebaeae;
+  border: 1px solid #9e0000;
   border-radius: 10px 0px 0px 0px;
+  align-items: center;
+  justify-content: center;
+  font-family: "Nunito";
+  font-style: normal;
   font-weight: 700;
   font-size: 21px;
+  line-height: 29px;
+
+  /* identical to box height */
+
   color: #9e0000;
 }
 .edit__header {
@@ -173,31 +196,45 @@ a:hover{
 }
 .sent {
   display: flex;
-  width: fit-content;
-  padding: 0.25rem;
-  padding-inline: 0.75rem;
+  justify-content: center;
+  align-items: center;
+  width: 117px;
   cursor: pointer;
-  background-color: rgba(244, 230, 230, 0.6);
+
+  height: 54px;
+
+  background: #f4e6e6;
   border: 1px solid #9e0000;
+  border-bottom-style: none;
   border-radius: 0px 10px 0px 0px;
+  font-family: "Nunito";
+  font-style: normal;
   font-weight: 700;
   font-size: 21px;
+  line-height: 29px;
+
+  /* identical to box height */
+
   color: #9e0000;
-  font-style: normal;
 }
-.sent_active{
+.sent_active {
   display: flex;
-  width: fit-content;
-  padding: 0.25rem;
-  padding-inline: 0.75rem;
+  width: 117px;
   cursor: pointer;
-  background-color: rgba(235, 148, 148, 0.6);
+
+  height: 54px;
+  background: #ebaeae;
   border: 1px solid #9e0000;
   border-radius: 0px 10px 0px 0px;
+  align-items: center;
+  justify-content: center;
+  font-family: "Nunito";
+  font-style: normal;
   font-weight: 700;
   font-size: 21px;
+
   color: #9e0000;
-  font-style: normal;
+  line-height: 29px;
 }
 .received_bpx_header {
   display: flex;
@@ -236,34 +273,6 @@ a:hover{
   border-radius: 0px 10px 10px 10px;
   padding: 1rem;
   margin-top: 0px;
-}
-.req_profile_box {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-}
-.req_profile_details {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-
-  font-family: "Nunito";
-  font-style: normal;
-  padding-left: 1rem;
-
-  h4 {
-    font-weight: 400;
-    font-size: 25px;
-    line-height: 0px;
-    color: #9e0000;
-  }
-
-  p {
-    font-weight: 200;
-    font-size: 21px;
-
-    color: #9e0000;
-  }
 }
 .received_btns {
   display: flex;
@@ -337,9 +346,9 @@ a:hover{
   background: #ffffff;
   border: 0.4px solid #9e0000;
   border-radius: 10px;
-padding: 10px;
-font-weight: 600;
-font-size: 20px;
+  padding: 10px;
+  font-weight: 600;
+  font-size: 20px;
   min-height: 2.5rem;
   min-width: 15rem;
 }
@@ -381,6 +390,12 @@ font-size: 20px;
 @media screen and (max-width: 800px) {
   .my_profile_container {
     flex-direction: column;
+  }
+  .edit__pro_box
+  {
+    width: 100%;
+    justify-content: center;
+    align-items: center;
   }
 }
 
