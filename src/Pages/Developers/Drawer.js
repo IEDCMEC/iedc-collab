@@ -10,7 +10,7 @@ import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import vector from '../../assets/Vector.svg';
 
-const typeDevs = ['Skills','Projects','Developers']
+// const typeDevs = ['Skills','Projects','Developers']
 const skills=['React Js','Vanilla Js','Vue Js','Angular Js','Arduino','Rasberry Pi','IOT','C++','Python','Django','Flask','Java','Spring','Node JS','MySQL','PostgreSQL','SQLite']
 const DrawerHeader = styled('div')(({ theme }) => ({
   display: 'flex',
@@ -30,7 +30,7 @@ export default function PersistentDrawerLeft() {
   const matches2 = useMediaQuery('(max-width:800px)');
   const matches3 = useMediaQuery('(max-width:865px)');
   const matches4 = useMediaQuery('(max-width:380px)');
-  const drawerWidth = matches2 ? matches1 ? '90vw' : '60vw' : '40vw';
+  const drawerWidth = matches2 ? matches1 ? '60vw' : '70vw' : '35vw';
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
 
@@ -77,10 +77,10 @@ export default function PersistentDrawerLeft() {
         </DrawerHeader>
         <Divider />
             <div className="filter_box">
-                <div style={{minWidth: '90%', margin:'15px'}}><h3 style={styles}>Search By:</h3></div>
+                {/* <div style={{minWidth: '90%', margin:'15px'}}><h3 style={styles}>Search By:</h3></div>
                 <div className="buttons">
                 {typeDevs.map((x,id)=>(<Buttons key={id} name={x} className='buttons'/>))}
-                </div>
+                </div> */}
                 <div style={{minWidth: '90%', margin:'25px'}}><h3 style={styles}>Filter By:</h3></div>
                   <div style={{
                       minWidth: '90%',

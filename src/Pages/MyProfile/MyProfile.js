@@ -41,9 +41,9 @@ const MyProfile = () => {
   };
 
   useEffect(() => {
-    if (currentUser?.uid != undefined) {
-      getDev(currentUser?.uid);
-      fetchRequests(currentUser?.uid);
+    if (currentUser?.uid!==undefined) {
+      getDev(currentUser?.uid)
+      fetchRequests(currentUser?.uid)
     }
   }, [currentUser]);
 
@@ -90,7 +90,7 @@ const MyProfile = () => {
               </div>
               <div className="phone_class">
                 <div className="profile_phone">
-                  <BsTelephoneInbound style={{ width: "3rem" }} />
+                  <BsTelephoneInbound size={15} style={{ width: "3rem" }} />
                   <p>
                     {selectedUser.contact ? (
                       <a
@@ -106,7 +106,7 @@ const MyProfile = () => {
                   </p>
                 </div>
                 <div className="profile_class">
-                  <HiOutlineAcademicCap style={{ width: "3rem" }} />
+                  <HiOutlineAcademicCap size={15} style={{ width: "3rem" }} />
                   <p>
                     {selectedUser?.branch || "Change in Edit Profile"}
                     {selectedUser?.year}
@@ -114,7 +114,7 @@ const MyProfile = () => {
                 </div>
               </div>
               <div className="profile_email">
-                <MdOutlineEmail style={{ width: "3rem" }} />
+                <MdOutlineEmail size={15} style={{ width: "3rem" }} />
                 <p>
                   {(
                     <a
