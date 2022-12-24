@@ -96,7 +96,7 @@ const MyProfile = () => {
               </div>
               <div className="phone_class">
                 <div className="profile_phone">
-                  <BsTelephoneInbound size={15} style={{ width: "3rem" }} />
+                  <BsTelephoneInbound size={20}  />
                   <p>
                     {selectedUser.contact ? (
                       <a
@@ -112,7 +112,7 @@ const MyProfile = () => {
                   </p>
                 </div>
                 <div className="profile_class">
-                  <HiOutlineAcademicCap size={15} style={{ width: "3rem" }} />
+                  <HiOutlineAcademicCap size={20}  />
                   <p>
                     {selectedUser?.branch || "Change in Edit Profile"}
                     {selectedUser?.year}
@@ -120,7 +120,7 @@ const MyProfile = () => {
                 </div>
               </div>
               <div className="profile_email">
-                <MdOutlineEmail size={15} style={{ width: "3rem" }} />
+                <MdOutlineEmail size={20} />
                 <p>
                   {(
                     <a
@@ -134,7 +134,7 @@ const MyProfile = () => {
                 </p>
               </div>
               <div className="profile_web">
-                <TbNetwork style={{ width: "3rem" }} />
+                <TbNetwork size={20}  />
                 <p>
                   {selectedUser.website ? (
                     <a
@@ -150,7 +150,7 @@ const MyProfile = () => {
                 </p>
               </div>
               <div className="profile_github">
-                <VscGithubInverted style={{ width: "3rem" }} />
+                <VscGithubInverted size={20}  />
                 <p>
                   {selectedUser.github ? (
                     <a

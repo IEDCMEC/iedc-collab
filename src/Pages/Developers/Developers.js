@@ -5,6 +5,7 @@ import { getDevelopers } from "../../Firebase/firebase";
 import "./Developers.scss";
 import DeveloperCard from "./DeveloperCard";
 import Drawer from "./Drawer";
+import { IndeterminateCheckBox } from "@mui/icons-material";
 const Developers = () => {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -48,10 +49,10 @@ const Developers = () => {
         <div className="developer_container">
           <h1 className="developer-title">DEVELOPERS</h1>
           <div className="developer-details">
-            {users.map((user) => {
+            {users.map((user,index) => {
               return (
                 
-                <DeveloperCard handleClick={handleClick} user={user}/>
+                <DeveloperCard key={index} handleClick={handleClick} user={user}/>
               );
             })}
           </div>
