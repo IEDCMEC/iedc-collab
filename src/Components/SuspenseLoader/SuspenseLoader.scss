@@ -1,0 +1,58 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  body {
+  /*   background: #012; */
+    height: 100vh;
+    display: grid;
+    place-items: center;
+  }
+  .container {
+    position: relative;
+    width: 200px;
+    height: 200px;
+  }
+  span {
+    position: absolute;
+    display: block;
+    width: 40%;
+    height: 40%;
+    border-radius: 50%;
+    animation: speed 2s infinite ease-in-out;
+  }
+  .one {
+    background: #9e0000;
+    animation-delay: 1.5s;
+  }
+  .two {
+    background: #ea4335;
+    animation-delay: 1s;
+  }
+  .three {
+    background: #9e0000;
+    animation-delay: 0.5s;
+  }
+  .four {
+    background: #ea4335;
+  }
+  @keyframes speed {
+    0% {
+      transform: translate(0%);
+      border-radius: 50%;
+    }
+    25% {
+      transform: translate(150%) scale(0.5);
+      border-radius: 0%;
+    }
+    50% {
+      transform: translate(150%, 150%);
+      border-radius: 50%;
+    }
+    75% {
+      transform: translate(0, 150%) scale(0.5);
+      border-radius: 0%;
+    }
+  }
+  
