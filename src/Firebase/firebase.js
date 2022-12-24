@@ -384,12 +384,11 @@ export const sendRequest = async (data) => {
 
 export const acceptRequest = async (invite) => {
   try {
-    let p = {};
     await getProject(invite.project_id).then((project) => {
       console.log(project.val());
-      p = project.val();
-      let users=[]
-      users.push(invite.sender);
+      let p = project.val();
+      let users=p.teamMembers;
+      users.push(invite.receiver);
        firebase
         .database()
         // .ref(`projects/${invite.project_id}/members/${invite.sender_id}`)
