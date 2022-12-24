@@ -14,6 +14,7 @@ import { getRequestsRecieved, getUser, signIn } from "../../Firebase/firebase";
 import Received from "../../Components/Request/Received";
 import Sent from "../../Components/Request/Sent";
 import { getRequests } from "../../Firebase/firebase";
+import SuspenseLoader from "../../Components/SuspenseLoader/SuspenseLoader";
 
 const MyProfile = () => {
   const { currentUser } = useContext(AuthContext);
@@ -57,13 +58,7 @@ const MyProfile = () => {
     return (
       <div>
         <MainLayout route={"My Profile"}>
-          <div
-            className="d-flex justify-content-center align-items-center flex-column"
-            style={{ height: "90vh" }}
-          >
-            <div className="spinner-border" role="status"></div>
-            <div className="mt-3">Loading Profile...</div>
-          </div>
+        <SuspenseLoader />
         </MainLayout>
       </div>
     );
