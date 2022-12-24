@@ -46,7 +46,7 @@ const NewProjectForm = ({ onClose, project }) => {
     links: yup.string().min(4),
     githubLink: yup.string().optional().min(4),
     tags: yup.string(),
-    teamMembers: yup.string(),
+    teamMembers: yup.string().required("Please add team members"),
   });
 
   const handleSubmit = (values, actions) => {
