@@ -21,9 +21,9 @@ function DeveloperDetails() {
   const [selectedUser, setSelectedUser] = useState({});
   const [loading, setLoading] = useState(true);
   const getDev = async (id) => {
-    let  user = await getUser(id);
-    user= await user.val();
-    user = {...user, _id: id}
+    let user = await getUser(id);
+    user = await user.val();
+    user = { ...user, _id: id };
     setSelectedUser(user);
     setLoading(false);
   };
@@ -227,20 +227,29 @@ function DeveloperDetails() {
             <div className="developer_details_footer_container">
               <div
                 className="developer_details_footer"
-                onClick={() => setModalShow(true)}
+                onClick={() => {
+                  if (currentUser) {
+                    setModalShow(true);
+                  } else {
+                    window.alert("Please Login to continue");
+                  }
+                }}
               >
                 <img src={add} alt="" />
                 Invite to Project
               </div>
             </div>
           )}
-
-          <InviteToProjectModal
-            show={modalShow}
-            onHide={() => setModalShow(false)}
-            user={currentUser}
-            selectedUser={selectedUser}
-          />
+          {currentUser ? (
+            <InviteToProjectModal
+              show={modalShow}
+              onHide={() => setModalShow(false)}
+              user={currentUser}
+              selectedUser={selectedUser}
+            />
+          ) : (
+            ""
+          )}
         </div>
       </MainLayout>
     </>

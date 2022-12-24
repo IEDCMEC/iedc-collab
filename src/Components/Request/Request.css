@@ -23,6 +23,22 @@
 
   color: #9e0000;
 }
+.received_bpx_header_para_1 {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 26px;
+  line-height: 30px;
+
+  color: #ff1313;
+}
+.received_bpx_header_para_2 {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 26px;
+  line-height: 30px;
+
+  color: #009e61;
+}
 .req_profile_box {
   display: flex;
   flex-direction: row;

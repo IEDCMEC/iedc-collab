@@ -388,7 +388,7 @@ export const acceptRequest = async (invite) => {
     await getProject(invite.project_id).then((project) => {
       console.log(project.val());
       p = project.val();
-      let users=p.teamMembers;
+      let users = p.teamMembers;
       users.push(invite.sender);
       firebase
         .database()
@@ -412,7 +412,22 @@ export const acceptRequest = async (invite) => {
     console.log("Oops! counldn't accept invite \n more info:", error);
   }
 };
-
+export const declineRequest = async (invite) => {
+  try {
+    //let addProject = await firebase.database().ref("users/").update({projects: firebase.firestore.FieldValue.arrayUnion({name:invite.project, id:invite.project_id})});
+    await firebase
+      .database()
+      .ref("requests/")
+      .update({
+        [`/${invite.id}/status`]: "declined",
+      })
+      .then(() => {
+        console.log("invite declined successfully");
+      });
+  } catch (error) {
+    console.log("Oops! counldn't decline invite \n more info:", error);
+  }
+};
 export const getRequests = async (uid) => {
   try {
     let data = await firebase

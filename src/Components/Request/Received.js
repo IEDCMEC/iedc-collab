@@ -3,7 +3,12 @@ import "./Request.css";
 import accept_icon from "../../assets/accepticon.svg";
 import decline_icon from "../../assets/declineicon.svg";
 import { Button } from "@mui/material";
-import { acceptRequest, getProject, getRequests } from "../../Firebase/firebase";
+import {
+  acceptRequest,
+  declineRequest,
+  getProject,
+  getRequests,
+} from "../../Firebase/firebase";
 import { useContext } from "react";
 import { AuthContext } from "../../Firebase/Auth/Auth";
 import { ControlCameraSharp } from "@mui/icons-material";
@@ -45,16 +50,38 @@ function Received({ request }) {
           <div className="req_profile_details_p">{request.message}</div>
         </div>
       </div>
-
       <div className="received_btns">
-        <div className="received_btn_accept" onClick={() => acceptRequest(request)}>
-          <img src={accept_icon} alt="" />
-          Accept
-        </div>
-        <div className="received_btn_decline">
-          <img src={decline_icon} alt="" />
-          Decline
-        </div>
+        {request.status === "accepted" && (
+          <div className="received_bpx_header_para_2">Accepted</div>
+        )}
+        {request.status === "declined" && (
+          <div className="received_bpx_header_para_1">Declined</div>
+        )}
+        {request.status === "pending" && (
+          <>
+            <div
+              className="received_btn_accept"
+              onClick={() => {
+                acceptRequest(request).then(() => {
+                  window.location.reload();
+                });
+              }}
+            >
+              <img src={accept_icon} alt="" />
+              Accept
+            </div>
+            <div
+              className="received_btn_decline"
+              onClick={() => {
+                declineRequest(request);
+                window.location.reload();
+              }}
+            >
+              <img src={decline_icon} alt="" />
+              Decline
+            </div>
+          </>
+        )}
       </div>
     </div>
   );
