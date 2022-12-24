@@ -3,7 +3,7 @@ import Button from "react-bootstrap/Button";
 import { ModalBody } from "react-bootstrap";
 
 import "./InviteToProjectModal.scss";
-
+import { emailUrl } from "../../Utils/urls";
 import triangle_1 from "../../assets/triangle_1.svg";
 import triangle_2 from "../../assets/triangle_2.svg";
 import triangle_3 from "../../assets/triangle_3.svg";
@@ -58,7 +58,7 @@ const InviteToProjectModal = ({user,selectedUser,...props}) => {
   async function handleSubmit() {
     try{
     await axios.post(
-      "https://w2e9j471i2.execute-api.ap-south-1.amazonaws.com/dev/send-email",
+      emailUrl,
       {
         toEmail: selectedUser.email,
         subject: "Successsss.....",
