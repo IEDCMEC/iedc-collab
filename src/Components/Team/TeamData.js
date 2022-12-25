@@ -1,25 +1,24 @@
-import adithya from '../../assets/team/adithya.jpg'
-import jaison from '../../assets/team/jaison.jpeg'
+import { adithya,pranoy,lisa ,jaison,gokul,aldrin, achyuth} from "../../assets/team";
 const TeamData = [
   {
     id: 1,
     name: "Pranoy Santhosh M",
     role:'Project Lead',
-    image:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQehqf-mD0TAjtGLGfeL6YSNlVOAJh6AnSRYQ&usqp=CAU",
+    image:pranoy,
     linkedin: "https://www.linkedin.com/in/achyuth-mohan/",
   },
   {
     id: 2,
     name: "Aldrin Jenson",
     role:'Project Lead',
-    image:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQehqf-mD0TAjtGLGfeL6YSNlVOAJh6AnSRYQ&usqp=CAU",
+    image:aldrin,
     linkedin: "https://www.linkedin.com/in/achyuth-mohan/",
   },
   {
     id: 3,
     name: "Lisa V C",
     role:'Operations Lead',
-    image:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQehqf-mD0TAjtGLGfeL6YSNlVOAJh6AnSRYQ&usqp=CAU",
+    image:lisa,
     linkedin: "https://www.linkedin.com/in/achyuth-mohan/",
   },
   {
@@ -33,14 +32,14 @@ const TeamData = [
     id: 5,
     name: "Gokulnath M Prabhu",
     role:'Operations Team',
-    image:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQehqf-mD0TAjtGLGfeL6YSNlVOAJh6AnSRYQ&usqp=CAU",
+    image:gokul,
     linkedin: "https://www.linkedin.com/in/achyuth-mohan/",
   },
   {
     id: 6,
     name: "Achyuth Mohan",
     role:'Tech Lead',
-    image:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQehqf-mD0TAjtGLGfeL6YSNlVOAJh6AnSRYQ&usqp=CAU",
+    image:achyuth,
     linkedin: "https://www.linkedin.com/in/achyuth-mohan/",
   },
   {
