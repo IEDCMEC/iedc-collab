@@ -131,10 +131,10 @@ const NewProjectForm = ({ onClose, project }) => {
 
             <InputGroup controlId="formPhoto" className="photoContainer">
               <Form.Label className="photoLabel">
-                <div className="photoHead">Upload Featuring Photo</div>
-                <div className="photoIcon">
+                <span className="photoHead">Upload Featuring Photo</span>
+                <span className="photoIcon">
                   <FontAwesomeIcon icon={faUpload} />
-                </div>
+                </span>
 
                 <Form.Control
                   required
