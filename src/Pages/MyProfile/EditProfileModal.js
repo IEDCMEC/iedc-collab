@@ -202,10 +202,10 @@ const NewUserForm = ({ onClose, user }) => {
             <br />
             <InputGroup controlId="formPhoto" className="photoContainer">
               <Form.Label className="photoLabel">
-                <div className="photoHead">Profile Photo</div>
-                <div className="photoIcon">
+                <span className="photoHead">Profile Photo</span>
+                <span className="photoIcon">
                   <FontAwesomeIcon icon={faUpload} />
-                </div>
+                </span>
 
                 <Form.Control
                   required
