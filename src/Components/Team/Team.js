@@ -4,7 +4,9 @@ import animation from "../../animations/test.json";
 import Lottie from 'react-lottie'
 import bubble4 from "../../assets/bubble_4.svg";
 import bubble5 from "../../assets/bubble_5.svg";
+import { useHistory } from "react-router-dom";
 const Team = () => {
+  const history=useHistory();
   const defaultOptions = {
     loop: true,
     autoplay: true,
@@ -36,6 +38,7 @@ const Team = () => {
             options={defaultOptions} 
           />
         </div>
+        <button onClick={()=>{history.push('/team')}} type="button" style={{marginBottom:'2rem'}} class="btn btn-danger">View All</button>
       </div>
     </>
   );

@@ -1,74 +1,75 @@
-import { adithya,pranoy,lisa ,jaison,gokul,aldrin, achyuth} from "../../assets/team";
+import { adithya,pranoy,lisa ,jaison,gokul,aldrin, achyuth,aniva,jemma,devika,hanna} from "../../assets/team";
 const TeamData = [
   {
     id: 1,
     name: "Pranoy Santhosh M",
     role:'Project Lead',
     image:pranoy,
-    linkedin: "https://www.linkedin.com/in/achyuth-mohan/",
+    linkedin: "https://www.linkedin.com/in/pranoy-santhosh-m-902924a4/",
   },
   {
     id: 2,
     name: "Aldrin Jenson",
     role:'Project Lead',
     image:aldrin,
-    linkedin: "https://www.linkedin.com/in/achyuth-mohan/",
+    linkedin: "https://www.linkedin.com/in/aldrinjenson/",
   },
   {
     id: 3,
-    name: "Lisa V C",
-    role:'Operations Lead',
-    image:lisa,
-    linkedin: "https://www.linkedin.com/in/achyuth-mohan/",
-  },
-  {
-    id: 4,
-    name: "Adithya Anilkumar",
-    role:'Operations Team',
-    image:adithya,
-    linkedin: "https://www.linkedin.com/in/achyuth-mohan/",
-  },
-  {
-    id: 5,
-    name: "Gokulnath M Prabhu",
-    role:'Operations Team',
-    image:gokul,
-    linkedin: "https://www.linkedin.com/in/achyuth-mohan/",
-  },
-  {
-    id: 6,
     name: "Achyuth Mohan",
     role:'Tech Lead',
     image:achyuth,
     linkedin: "https://www.linkedin.com/in/achyuth-mohan/",
   },
   {
-    id: 7,
+    id: 4,
     name: "Jagannath E Shahi",
     role:'Tech Lead',
     image:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQehqf-mD0TAjtGLGfeL6YSNlVOAJh6AnSRYQ&usqp=CAU",
-    linkedin: "https://www.linkedin.com/in/achyuth-mohan/",
+    linkedin: "https://www.linkedin.com/in/jagannath-e-shahi-3b0525202/",
   },
   {
-    id: 8,
+    id: 5,
     name: "Jaison Dennis",
     role:'Tech Lead',
     image:jaison,
-    linkedin: "https://www.linkedin.com/in/achyuth-mohan/",
+    linkedin: "https://www.linkedin.com/in/jaison080/",
+  },
+  {
+    id: 6,
+    name: "Lisa V C",
+    role:'Operations Lead',
+    image:lisa,
+    linkedin: "https://www.linkedin.com/in/lisa-v-cherian/",
+  },
+  {
+    id: 7,
+    name: "Adithya Anilkumar",
+    role:'Operations Team',
+    image:adithya,
+    linkedin: "https://www.linkedin.com/in/adithyaanilkumar/",
+  },
+  {
+    id: 8,
+    name: "Gokulnath M Prabhu",
+    role:'Operations Team',
+    image:gokul,
+    linkedin: "linkedin.com/in/gokulnath-m-prabhu-612a55202/",
+  },
+  
+  {
+    id: 9,
+    name: "Jemma Mariya George",
+    role:'Design Lead',
+    image:jemma,
+    linkedin: "https://www.linkedin.com/in/jemma-mariya-george/",
   },
   {
     id: 10,
-    name: "Jemma Maria George",
-    role:'Design Lead',
-    image:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQehqf-mD0TAjtGLGfeL6YSNlVOAJh6AnSRYQ&usqp=CAU",
-    linkedin: "https://www.linkedin.com/in/achyuth-mohan/",
-  },
-  {
-    id: 11,
     name: "Aniva Maria D'Souza",
     role:'Content Head',
-    image:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQehqf-mD0TAjtGLGfeL6YSNlVOAJh6AnSRYQ&usqp=CAU",
-    linkedin: "https://www.linkedin.com/in/achyuth-mohan/",
-  },
+    image:aniva,
+    linkedin: "https://www.linkedin.com/in/aniva-maria-dsouza-06047b243/",
+  }
 ];
-export default TeamData;
+ export default TeamData

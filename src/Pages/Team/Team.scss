@@ -1,0 +1,43 @@
+.team__data_page_container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 2rem;
+    gap: 3rem;
+    width: 100%;
+    align-items: center;
+}
+.tech_team_info{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.design_team_info{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.team__title{
+    color: #9e0000;
+    font-size: 3rem;
+}
+.team__member_image{
+    border: #9e0000;
+    border-radius: 70px;
+    width: 9rem;
+}
+.team__member_card{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.members__div{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 3rem;
+    justify-content: center;
+}

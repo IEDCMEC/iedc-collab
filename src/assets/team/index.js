@@ -9,3 +9,8 @@ export { default as nazim } from './nazim.jpeg'
 export { default as pranoy } from './pranoy.jpeg'
 export { default as subramani } from './subramani.jpeg'
 export { default as aldrin } from './aldrin.jpg'
+export { default as aniva } from './aniva.jpg'
+export { default as jemma } from './jemma.jpeg'
+export { default as devika } from './devika.jpeg'
+export { default as hanna } from './hanna.jpeg'
+
