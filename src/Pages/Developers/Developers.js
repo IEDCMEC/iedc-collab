@@ -5,7 +5,7 @@ import { getDevelopers } from "../../Firebase/firebase";
 import "./Developers.scss";
 import DeveloperCard from "./DeveloperCard";
 import Drawer from "./Drawer";
-import { IndeterminateCheckBox } from "@mui/icons-material";
+// import { IndeterminateCheckBox } from "@mui/icons-material";
 import SuspenseLoader from "../../Components/SuspenseLoader/SuspenseLoader";
 const Developers = () => {
   const [users, setUsers] = useState([]);
@@ -40,7 +40,7 @@ const Developers = () => {
       developers.forEach(dev=>{
         for(let s in skills){
           console.log(s)
-        if(dev.skills && dev?.skills?.find((sk)=>sk==skills[s]))
+        if(dev.skills && dev?.skills?.find((sk)=>sk===skills[s]))
         {
           devs=[...devs, dev]
           break;

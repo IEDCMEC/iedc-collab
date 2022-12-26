@@ -1,4 +1,4 @@
-import { adithya,pranoy,lisa ,jaison,gokul,aldrin, achyuth,aniva,jemma,devika,hanna} from "../../assets/team";
+import { adithya,pranoy,lisa ,jaison,gokul,aldrin, achyuth,aniva,jemma,jagannath} from "../../assets/team";
 const TeamData = [
   {
     id: 1,
@@ -25,7 +25,7 @@ const TeamData = [
     id: 4,
     name: "Jagannath E Shahi",
     role:'Tech Lead',
-    image:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQehqf-mD0TAjtGLGfeL6YSNlVOAJh6AnSRYQ&usqp=CAU",
+    image:jagannath,
     linkedin: "https://www.linkedin.com/in/jagannath-e-shahi-3b0525202/",
   },
   {

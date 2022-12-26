@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./Team.scss";
 import NavbarHome from "../../Components/NavbarHome/NavbarHome";
 import designers from "../../data/designers";
@@ -6,8 +6,12 @@ import developers from "../../data/developers";
 import bubble2 from '../../assets/bubble_2.svg'
 import bubble3 from '../../assets/bubble_3.svg'
 import bubble5 from '../../assets/bubble_5.svg'
+import Aos from "aos";
 import bubble1 from '../../assets/bubble_1.svg'
 const Team = () => {
+  useEffect(()=>{
+    Aos.init({duration:1100})
+  },[])
   return (
     <div>
       <NavbarHome />
@@ -21,7 +25,7 @@ const Team = () => {
           <div className="members__div">
             {developers.map((developer,index) => {
               return (
-                <div className="team__member_card" key={index}>
+                <div data-aos='zoom-in' aos-delay='150' className="team__member_card" key={index}>
                   <img
                     className="team__member_image"
                     src={developer.image}
@@ -38,7 +42,7 @@ const Team = () => {
           <div className="members__div">
             {designers.map((designer,index) => {
               return (
-                <div className="team__member_card" key={index}>
+                <div data-aos='zoom-in' aos-delay='150' className="team__member_card" key={index}>
                   <img
                     className="team__member_image"
                     src={designer.image}

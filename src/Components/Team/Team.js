@@ -30,7 +30,9 @@ const Team = () => {
             options={defaultOptions} 
           />
         </div>
+        <button onClick={()=>{history.push('/team')}} type="button" style={{marginBottom:'2rem'}} class="btn btn-danger">View All</button>
         <div className="team__anime-1" data-aos="fade-up" data-aos-duration="2000">
+          
           <Lottie 
             animationData={animation}
             loop={true}
@@ -38,7 +40,7 @@ const Team = () => {
             options={defaultOptions} 
           />
         </div>
-        <button onClick={()=>{history.push('/team')}} type="button" style={{marginBottom:'2rem'}} class="btn btn-danger">View All</button>
+        {/* <button onClick={()=>{history.push('/team')}} type="button" style={{marginBottom:'2rem'}} class="btn btn-danger">View All</button> */}
       </div>
     </>
   );

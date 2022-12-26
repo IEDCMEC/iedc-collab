@@ -6,7 +6,7 @@ import phone from "../../assets/phonecircle.svg";
 import mail from "../../assets/mailnew.svg";
 import linkedin from "../../assets/linkedin.svg";
 import github from "../../assets/githubnew.svg";
-import person from "../../assets/details_left.svg";
+// import person from "../../assets/details_left.svg";
 import add from "../../assets/add.svg";
 import InviteToProjectModal from "../../Components/InviteToProjectModal/InviteToProjectModal";
 import { useContext, useEffect, useState } from "react";

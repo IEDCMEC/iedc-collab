@@ -4,7 +4,7 @@ import Button from "react-bootstrap/Button";
 import { Formik } from "formik";
 import * as yup from "yup";
 import { Form, Row, Col, InputGroup } from "react-bootstrap";
-import { doEditProfile, getProjects, getSkills } from "../../Firebase/firebase";
+import { doEditProfile, getProjects} from "../../Firebase/firebase";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUpload } from "@fortawesome/free-solid-svg-icons";
 import "./EditModal.scss";

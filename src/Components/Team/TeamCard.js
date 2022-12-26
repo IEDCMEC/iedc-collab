@@ -8,7 +8,7 @@ const TeamCard = () => {
       <a href={data.linkedin} target="blank" className="team_a">
         <p>LinkedIn</p>
       </a>
-      <p>Role: {data.role}</p>
+      <p>{data.role}</p>
     </div>
     </div>
   ));
