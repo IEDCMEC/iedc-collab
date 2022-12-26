@@ -24,8 +24,10 @@
     font-size: 3rem;
 }
 .team__member_image{
-    border: #9e0000;
-    border-radius: 70px;
+    border:3px solid  #9e0000;
+    border-radius:50%;
+    height: 9rem;
+    object-fit: cover;
     width: 9rem;
 }
 .team__member_card{
@@ -33,6 +35,13 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+.team__member_card p{
+    padding-top: 7%;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 27px;
+  color: #9e0000;
 }
 .members__div{
     display: flex;

@@ -31,6 +31,7 @@
 }
 .team .member img {
   border-radius: 50%;
+  object-fit: cover;
   pointer-events: none;
   width: 200px;
   height: 200px;
@@ -98,13 +99,12 @@
 
   .bubble_4 {
     transform: scale(0.7);
-    top:-60px;
+    top: -60px;
   }
 
   .bubble_5 {
     display: none;
   }
-
 }
 @media (max-width: 1226px) {
   .team {
@@ -132,7 +132,7 @@
     display: none;
   }
 }
-@media (max-width:320px) {
+@media (max-width: 320px) {
   .bubble_4 {
     display: none;
   }
