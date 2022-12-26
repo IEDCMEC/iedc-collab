@@ -11,7 +11,6 @@ const Team = () => {
   return (
     <div>
       <NavbarHome />
-      
       <div className="team__data_page_container">
       <img src={bubble2} alt="" className="bubble_2_1" />
       <img src={bubble3} alt="" className="bubble_3" />
