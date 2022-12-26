@@ -14,6 +14,8 @@ import { useHistory, useParams } from "react-router-dom";
 import { getUser } from "../../Firebase/firebase";
 import { AuthContext } from "../../Firebase/Auth/Auth";
 import SuspenseLoader from "../../Components/SuspenseLoader/SuspenseLoader";
+import animation from '../../animations/developers.json'
+import Lottie from "react-lottie";
 
 function DeveloperDetails() {
   let { id } = useParams();
@@ -21,6 +23,12 @@ function DeveloperDetails() {
   const { currentUser } = useContext(AuthContext);
   const [selectedUser, setSelectedUser] = useState({});
   const [loading, setLoading] = useState(true);
+  const defaultOptions = {
+    loop: true,
+    autoplay: true,
+    animationData: animation,
+    rendererSettings: { preserveAspectRatio: "xMidYMid slice" },
+  };
   const getDev = async (id) => {
     let user = await getUser(id);
     user = await user.val();
@@ -138,7 +146,12 @@ function DeveloperDetails() {
           </div>
           <div className="developer_details_body">
             <div className="developer_details_body_left">
-              <img src={person} alt="" className="developer_details_person" />
+            <Lottie 
+            animationData={animation}
+            loop={true}
+            autoPlay={true}
+            options={defaultOptions} 
+          />
             </div>
             <div className="developer_details_body_right">
               <div className="developer_details_body_right_section">
