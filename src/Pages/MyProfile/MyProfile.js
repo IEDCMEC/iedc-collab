@@ -15,10 +15,10 @@ import Received from "../../Components/Request/Received";
 import Sent from "../../Components/Request/Sent";
 import { getRequests } from "../../Firebase/firebase";
 import SuspenseLoader from "../../Components/SuspenseLoader/SuspenseLoader";
-import bubble2 from '../../assets/bubble_2.svg'
-import bubble3 from '../../assets/bubble_3.svg'
-import bubble1 from '../../assets/bubble_1.svg'
-import bubble5 from '../../assets/bubble_5.svg'
+import bubble2 from "../../assets/bubble_2.svg";
+import bubble3 from "../../assets/bubble_3.svg";
+import bubble1 from "../../assets/bubble_1.svg";
+import bubble5 from "../../assets/bubble_5.svg";
 const MyProfile = () => {
   const { currentUser } = useContext(AuthContext);
   const [showProfileModal, setShowProfileModal] = useState(false);
@@ -49,7 +49,7 @@ const MyProfile = () => {
   };
 
   useEffect(() => {
-    if (currentUser?.uid!== undefined) {
+    if (currentUser?.uid !== undefined) {
       getDev(currentUser?.uid);
       fetchRequests(currentUser?.uid);
       fetchRequestsRecieved(currentUser?.uid);
@@ -61,11 +61,11 @@ const MyProfile = () => {
     return (
       <div>
         <MainLayout route={"My Profile"}>
-        <img src={bubble2} alt="" className="bubble_2_1" />
-      <img src={bubble3} alt="" className="bubble_3" />
-      <img src={bubble5} alt="" className="bubble_5" />
-      <img src={bubble1} alt="" className="bubble_1" />
-        <SuspenseLoader />
+          <img src={bubble2} alt="" className="bubble_2_1" />
+          <img src={bubble3} alt="" className="bubble_3" />
+          <img src={bubble5} alt="" className="bubble_5" />
+          <img src={bubble1} alt="" className="bubble_1" />
+          <SuspenseLoader />
         </MainLayout>
       </div>
     );
@@ -98,7 +98,7 @@ const MyProfile = () => {
               </div>
               <div className="phone_class">
                 <div className="profile_phone">
-                  <BsTelephoneInbound size={20}  />
+                  <BsTelephoneInbound size={20} />
                   <p>
                     {selectedUser.contact ? (
                       <a
@@ -114,7 +114,7 @@ const MyProfile = () => {
                   </p>
                 </div>
                 <div className="profile_class">
-                  <HiOutlineAcademicCap size={20}  />
+                  <HiOutlineAcademicCap size={20} />
                   <p>
                     {selectedUser?.branch || "Change in Edit Profile"}
                     {selectedUser?.year}
@@ -136,7 +136,7 @@ const MyProfile = () => {
                 </p>
               </div>
               <div className="profile_web">
-                <TbNetwork size={20}  />
+                <TbNetwork size={20} />
                 <p>
                   {selectedUser.website ? (
                     <a
@@ -152,7 +152,7 @@ const MyProfile = () => {
                 </p>
               </div>
               <div className="profile_github">
-                <VscGithubInverted size={20}  />
+                <VscGithubInverted size={20} />
                 <p>
                   {selectedUser.github ? (
                     <a
@@ -187,36 +187,6 @@ const MyProfile = () => {
           </div>
 
           <div className="edit__pro_box">
-            {/* <div className="reqs_invite_bar">
-                <div className="reqs_invite_bar__requests">Requests</div>
-                <div className="reqs_invite_bar__line">|</div>
-                <div className="reqs_invite_bar__invite">Invite</div>
-              </div> */}
-            <div className="edit__pro_box_1">
-              <div className="edit__header">
-                <div
-                  className={isReceived ? "rec_active" : "received"}
-                  onClick={() => setIsReceived(true)}
-                >
-                  Recieved
-                </div>
-                <div
-                  className={isReceived ? "sent" : "sent_active"}
-                  onClick={() => setIsReceived(false)}
-                >
-                  Sent
-                </div>
-              </div>
-              <div className="requests__cards">
-                {isReceived
-                  ? requestsRecieved?.map((request, index) => (
-                      <Received key={index} request={request} />
-                    ))
-                  : requests?.map((request, index) => (
-                      <Sent request={request} key={index} />
-                    ))}
-              </div>
-            </div>
             <div className="edit__pro_abtMe">
               <div>About Me</div>
               <div className="edit__pro_abtMe_bx">
@@ -253,6 +223,37 @@ const MyProfile = () => {
                 ) : (
                   <div className="skill">No Achievements Added</div>
                 )}
+              </div>
+            </div>
+            <div className="edit__pro_achvmts">Requests | Invites</div>
+            <div className="edit__pro_box_1">
+              {/* <div className="reqs_invite_bar">
+                <div className="reqs_invite_bar__requests">Requests</div>
+                <div className="reqs_invite_bar__line">|</div>
+                <div className="reqs_invite_bar__invite">Invite</div>
+              </div> */}
+              <div className="edit__header">
+                <div
+                  className={isReceived ? "rec_active" : "received"}
+                  onClick={() => setIsReceived(true)}
+                >
+                  Recieved
+                </div>
+                <div
+                  className={isReceived ? "sent" : "sent_active"}
+                  onClick={() => setIsReceived(false)}
+                >
+                  Sent
+                </div>
+              </div>
+              <div className="requests__cards">
+                {isReceived
+                  ? requestsRecieved?.map((request, index) => (
+                      <Received key={index} request={request} />
+                    ))
+                  : requests?.map((request, index) => (
+                      <Sent request={request} key={index} />
+                    ))}
               </div>
             </div>
           </div>
