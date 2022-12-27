@@ -39,6 +39,15 @@
 
   color: #009e61;
 }
+.received_bpx_header_para_3
+{
+  font-style: normal;
+  font-weight: 700;
+  font-size: 26px;
+  line-height: 30px;
+
+  color: #cf9d12;
+}
 .req_profile_box {
   display: flex;
   flex-direction: row;
