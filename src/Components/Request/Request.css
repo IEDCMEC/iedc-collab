@@ -27,7 +27,7 @@
 .received_bpx_header_para_1 {
   font-style: normal;
   font-weight: 700;
-  font-size: 26px;
+  font-size: 1rem;
   line-height: 30px;
 
   color: #ff1313;
@@ -35,7 +35,7 @@
 .received_bpx_header_para_2 {
   font-style: normal;
   font-weight: 700;
-  font-size: 26px;
+  font-size: 1rem;
   line-height: 30px;
 
   color: #009e61;
@@ -73,7 +73,7 @@
 }
 .req_profile_details_h4 {
   font-weight: 400;
-  font-size: 22px;
+  font-size: 1rem;
   line-height: 34px;
 
   color: #9e0000;
@@ -130,8 +130,8 @@
   justify-content: center;
 }
 .view_project_btn {
-  width: 170px;
-  height: 45px;
+  width: 8rem;
+  height: 30px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -151,6 +151,17 @@
     width: 570px;
   }
 }
+@media screen and (max-width: 500px) {
+  .req_profile_details_p{
+    width: 15rem;
+  }
+}
+@media screen and (max-width: 400px) {
+  .req_profile_details_p{
+    width: 10rem;
+  }
+}
+
 @media (max-width: 1020px) {
   .received_sent_box {
     width: 400px;
