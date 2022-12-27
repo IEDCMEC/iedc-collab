@@ -11,6 +11,7 @@ import SuspenseLoader from "../SuspenseLoader/SuspenseLoader";
 const ProjectNav = ({ selectedProject }) => {
   const [user, setUser] = useState({});
   const [loading, setLoading] = useState(true);
+  const [display, setDisplay] = useState(true);
   const { currentUser } = useContext(AuthContext);
   const getDev = async (id) => {
     const user = await getUser(id);
@@ -47,9 +48,9 @@ const ProjectNav = ({ selectedProject }) => {
             15 <span className="projectnav-likes">Likes</span>
           </div> */}
         {/* </div> */}
-        {selectedProject.teamMembers
-          .toLowerCase()
-          ?.includes(currentUser.displayName.toLowerCase()) ? (
+        {selectedProject.teamMembers?.some(
+          (x) => x.toLowerCase() === currentUser.displayName.toLowerCase()
+        ) || selectedProject.leader_id === currentUser.uid ? (
           ""
         ) : (
           <div

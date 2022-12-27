@@ -25,6 +25,7 @@ import {
   ThemeProvider,
 } from "@mui/material";
 import { sendInvite } from "../../Firebase/firebase";
+import { toast } from "react-toastify";
 
 const InviteToProjectModal = ({ user, selectedUser, ...props }) => {
   console.log(selectedUser);
@@ -82,7 +83,9 @@ const InviteToProjectModal = ({ user, selectedUser, ...props }) => {
       message: message,
       createdAt: Date.now(),
     };
-    await sendInvite(data);
+    await sendInvite(data).then(() => {
+      toast("Invite Sent Successfully");
+    });
   }
 
   const getWorks = async () => {

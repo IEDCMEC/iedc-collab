@@ -14,6 +14,7 @@ import { useContext } from "react";
 import { AuthContext } from "../../Firebase/Auth/Auth";
 import { ControlCameraSharp } from "@mui/icons-material";
 import { useHistory } from "react-router-dom";
+import { toast } from "react-toastify";
 
 function Received({ request }) {
   const history = useHistory();
@@ -65,10 +66,12 @@ function Received({ request }) {
               onClick={() => {
                 if (request.type === "request") {
                   acceptRequest(request).then(() => {
+                    toast("Request Accepted");
                     window.location.reload();
                   });
                 }
                 acceptInvite(request).then(() => {
+                  toast("Invite Accepted");
                   window.location.reload();
                 });
               }}
@@ -79,8 +82,10 @@ function Received({ request }) {
             <div
               className="received_btn_decline"
               onClick={() => {
-                declineRequest(request);
-                window.location.reload();
+                declineRequest(request).then(() => {
+                  toast("Request Declined");
+                  window.location.reload();
+                });
               }}
             >
               <img src={decline_icon} alt="" />

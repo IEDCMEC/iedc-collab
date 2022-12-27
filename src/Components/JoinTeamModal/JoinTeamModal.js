@@ -10,6 +10,7 @@ import closeButton from "../../assets/close.svg";
 import { useEffect, useState } from "react";
 import { acceptRequest, getUser, sendRequest } from "../../Firebase/firebase";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 const JoinTeamModal = ({ user, project, ...props }) => {
   console.log(user);
@@ -100,6 +101,7 @@ const JoinTeamModal = ({ user, project, ...props }) => {
               onClick={(event) => {
                 onSubmit(event).then(() => {
                   props.onHide();
+                  toast("Request Sent Successfully");
                 });
               }}
             >
