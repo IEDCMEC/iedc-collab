@@ -48,8 +48,8 @@ const ProjectNav = ({ selectedProject }) => {
           </div> */}
         {/* </div> */}
         {selectedProject.teamMembers?.some(
-          (x) => x.toLowerCase() === currentUser.displayName.toLowerCase()
-        ) || selectedProject.leader_id === currentUser.uid ? (
+          (x) => x.toLowerCase() === currentUser?.displayName.toLowerCase()
+        ) || selectedProject.leader_id === currentUser?.uid ? (
           ""
         ) : (
           <div
