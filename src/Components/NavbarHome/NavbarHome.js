@@ -22,7 +22,7 @@ function NavbarHome() {
         <Link to="/" className="nav_item">
           <div className="logo">
             <div className="home_logo">
-            <FaHome color="white" size={25}/>
+              <FaHome color="white" size={25} />
             </div>
             <div className="title">IEDC MEC COLLAB</div>
           </div>
@@ -72,9 +72,16 @@ function NavbarHome() {
             >
               IEDC MEC COLLAB
             </div>
-            <div className="navbar_items_mob"  data-aos="fade-right"
-              data-aos-duration="600">
-              <Link to="/ideas" className="nav_item_mob" onClick={handleDrawerClose}>
+            <div
+              className="navbar_items_mob"
+              data-aos="fade-right"
+              data-aos-duration="600"
+            >
+              <Link
+                to="/ideas"
+                className="nav_item_mob"
+                onClick={handleDrawerClose}
+              >
                 Ideas
               </Link>
               <Link
@@ -97,7 +104,7 @@ function NavbarHome() {
               </Link>
             </div>
           </div>
-          <a href="https://www.mec.ac.in/" target="_blank" rel="noreferrer" >
+          <a href="https://www.mec.ac.in/" target="_blank" rel="noreferrer">
             <img src={meclogo} alt="" className="meclogo__mob" />
           </a>
         </div>

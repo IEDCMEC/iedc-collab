@@ -17,7 +17,7 @@ const history=useHistory()
     if (currentUser) {
       setShowProjectModal(true);
     } else {
-      signIn(() => setShowProjectModal(true));
+     alert("Please Login to Continue.")
     }
   };
   const [selectedUser, setSelectedUser] = useState(null);
@@ -153,7 +153,7 @@ const history=useHistory()
           style={{ flexGrow: "0", display: "flex" }}
         >
           <div
-            className="NavigateBar-Newprobtn css-button"
+            className="NavigateBar-Newprobtn-1 css-button"
             onClick={newprojectClick}
           >
             <div className="css-button-icon">
@@ -162,12 +162,19 @@ const history=useHistory()
             <div className="css-button-text">New Project</div>
           </div>
 
-          {currentUser && (
+          {(currentUser)?  (
             <Avatar
               src={selectedUser?.profilePhoto}
               onClick={handleClick}
               sx={{ cursor: "pointer", height: "35px", width: "35px" }}
             />
+          ):(
+            <div
+            className="NavigateBar-Newprobtn css-button"
+            onClick={signIn}
+          >
+            <div className="css-button-text">Sign In To Collab</div>
+          </div>
           )}
         </div>
         <Menu

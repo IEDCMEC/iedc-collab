@@ -25,6 +25,7 @@ import {
   ThemeProvider,
 } from "@mui/material";
 import { sendInvite } from "../../Firebase/firebase";
+import { toast } from "react-toastify";
 
 const InviteToProjectModal = ({ user, selectedUser, ...props }) => {
   console.log(selectedUser);
@@ -71,6 +72,8 @@ const InviteToProjectModal = ({ user, selectedUser, ...props }) => {
     let data = {
       sender: user.displayName,
       sender_id: user.uid,
+      sender_email: user.email,
+      reciever_email: selectedUser.email,
       receiver: selectedUser.name,
       reciever_img:
         selectedUser.photoURL ||
@@ -82,7 +85,9 @@ const InviteToProjectModal = ({ user, selectedUser, ...props }) => {
       message: message,
       createdAt: Date.now(),
     };
-    await sendInvite(data);
+    await sendInvite(data).then(() => {
+      toast("Invite Sent Successfully");
+    });
   }
 
   const getWorks = async () => {
@@ -95,7 +100,12 @@ const InviteToProjectModal = ({ user, selectedUser, ...props }) => {
       let temp = [];
       result.forEach((project, index) => {
         if (project.leaderEmail === user.email) {
-          temp.push(project);
+          if (
+            !project.teamMembers?.some(
+              (x) => x.toLowerCase() === selectedUser.name.toLowerCase()
+            )
+          )
+            temp.push(project);
         }
       });
       if (temp.length === 0) {

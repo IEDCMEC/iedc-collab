@@ -1,23 +1,21 @@
-@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@800&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@800&display=swap");
 
-h2{
-    font-family: "Nunito";
-    font-weight: 900;
-    padding-top: 30px;
-    font-size: 30px;
+h2 {
+  font-family: "Nunito";
+  font-weight: 900;
+  padding-top: 30px;
+  font-size: 30px;
 }
-.project_details_flex
-{
-    display: flex;
-    width: 100vw;
-    flex-direction: row;
-    justify-content: space-between;
-    min-height:80vh;
-    align-items:center;
-    gap: 2rem;
+.project_details_flex {
+  display: flex;
+  width: 100vw;
+  flex-direction: row;
+  justify-content: space-between;
+  min-height: 80vh;
+  align-items: center;
+  gap: 2rem;
 }
-.details__container
-{
+.details__container {
   width: 100vw;
   min-height: 80vh;
   display: flex;
@@ -25,59 +23,48 @@ h2{
   padding-left: 10vw;
   padding-right: 5%;
 }
-.not-found{
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.not-found {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-@media(max-width: 650px) {
-  .details__container
-  {
-    padding:5%;
+@media (max-width: 650px) {
+  .details__container {
+    padding: 5%;
     justify-content: center;
     align-items: center;
   }
 
-  .project_details_flex{
+  .project_details_flex {
     display: block;
   }
-  }
+}
 
 @media (max-width: 760px) {
-
-.container__details
-{
-  display: flex;
-  flex-direction: column-reverse;
-  flex-wrap: wrap;
+  .container__details {
+    display: flex;
+    flex-direction: column-reverse;
+    flex-wrap: wrap;
+  }
 }
-}
-  
-@media (min-width: 1040px) and (max-width:1250px){
 
-  .details__container
-  {
+@media (min-width: 1040px) and (max-width: 1250px) {
+  .details__container {
     padding-left: 16%;
   }
+}
+@media (min-width: 920px) and (max-width: 1040px) {
+  .details__container {
+    padding-left: 18%;
   }
-  @media (min-width: 920px) and (max-width:1040px){
-
-    .details__container
-    {
-      padding-left: 18%;
-    }
-    }
-    @media (min-width: 780px) and (max-width:920px){
-      
-      .details__container
-      {
-        padding-left: 20%;
-      }
-      }
-      @media (min-width: 650px) and (max-width:780px){
-
-        .details__container
-        {
-          padding-left: 25%;
-        }
-        }
+}
+@media (min-width: 780px) and (max-width: 920px) {
+  .details__container {
+    padding-left: 20%;
+  }
+}
+@media (min-width: 650px) and (max-width: 780px) {
+  .details__container {
+    padding-left: 25%;
+  }
+}

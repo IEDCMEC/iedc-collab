@@ -44,11 +44,11 @@
     margin-bottom: 0px;
   }
 }
-a {
+.profile_details_container a {
   text-decoration: none;
   color: #ffff;
 }
-a:hover {
+.profile_details_container a:hover {
   color: #ffff;
   text-decoration: none;
 }
@@ -392,8 +392,7 @@ a:hover {
   .my_profile_container {
     flex-direction: column;
   }
-  .edit__pro_box
-  {
+  .edit__pro_box {
     width: 100%;
     justify-content: center;
     align-items: center;

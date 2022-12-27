@@ -3,20 +3,21 @@
   flex-direction: column;
   justify-content: center;
   padding: 2rem;
-    padding-top: 8rem;
+  padding-top: 8rem;
   gap: 3rem;
-  width: 100%;
   align-items: center;
 }
 .tech_team_info {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  row-gap: 2rem;
   align-items: center;
 }
 .design_team_info {
   display: flex;
   flex-direction: column;
+  row-gap: 2rem;
   justify-content: center;
   align-items: center;
 }
@@ -50,17 +51,24 @@
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  gap: 3rem;
+  padding-left: 10rem;
+  padding-right: 10rem;
+  gap: 5rem;
   justify-content: center;
 }
 .bubble_2_1 {
   position: absolute;
-  top: 3;
+  top: 100px;
   left: 0;
   z-index: -2;
 }
 @media (max-width: 650px) {
   .bubble_2_1 {
     top: 60%;
+  }
+  .members__div {
+    padding-left: 0rem;
+    padding-right: 0rem;
+    gap: 3rem;
   }
 }

@@ -33,6 +33,13 @@ function Nav({ route }) {
         ) : (
           " "
         )}
+        <NavLink
+          activeClassName={route === "Ideas" ? "NavLinksActive" : ""}
+          className="NavLinks"
+          to="/ideas"
+        >
+          Ideas
+        </NavLink>
       </ul>
     </nav>
   );
