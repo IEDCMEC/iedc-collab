@@ -475,3 +475,24 @@ export const getRequestsRecieved = async (uid) => {
     console.log(error);
   }
 };
+
+export const getSkills = () => {
+  return firebase.database().ref("skills/").once("value");
+};
+
+export const addSkills = async (skill)=>{
+  // var skillId = firebase.database().ref().child("skills").push().key;
+   let skills = await getSkills();
+    let skillsArray = skills.val();
+    if(!skillsArray){
+      skillsArray = []
+    }
+    skillsArray.push(skill);
+   
+  return firebase
+  .database()
+  .ref("skills/")
+  .set({
+    ...skillsArray,
+  })
+}
