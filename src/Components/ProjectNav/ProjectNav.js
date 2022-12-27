@@ -11,7 +11,6 @@ import SuspenseLoader from "../SuspenseLoader/SuspenseLoader";
 const ProjectNav = ({ selectedProject }) => {
   const [user, setUser] = useState({});
   const [loading, setLoading] = useState(true);
-  const [display, setDisplay] = useState(true);
   const { currentUser } = useContext(AuthContext);
   const getDev = async (id) => {
     const user = await getUser(id);

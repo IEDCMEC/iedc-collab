@@ -98,7 +98,12 @@ const InviteToProjectModal = ({ user, selectedUser, ...props }) => {
       let temp = [];
       result.forEach((project, index) => {
         if (project.leaderEmail === user.email) {
-          temp.push(project);
+          if (
+            !project.teamMembers?.some(
+              (x) => x.toLowerCase() === selectedUser.name.toLowerCase()
+            )
+          )
+            temp.push(project);
         }
       });
       if (temp.length === 0) {
