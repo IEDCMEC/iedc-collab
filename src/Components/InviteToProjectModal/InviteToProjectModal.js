@@ -72,6 +72,8 @@ const InviteToProjectModal = ({ user, selectedUser, ...props }) => {
     let data = {
       sender: user.displayName,
       sender_id: user.uid,
+      sender_email: user.email,
+      reciever_email: selectedUser.email,
       receiver: selectedUser.name,
       reciever_img:
         selectedUser.photoURL ||

@@ -21,6 +21,8 @@ const JoinTeamModal = ({ user, project, ...props }) => {
       sender: user.displayName,
       sender_id: user.uid,
       sender_img: user.photoURL,
+      sender_email: user.email,
+      receiver_email: project.leaderEmail,
       receiver: project.leader_name,
       receiver_id: project.leader_id,
       receiver_img: project.leaderImg,
