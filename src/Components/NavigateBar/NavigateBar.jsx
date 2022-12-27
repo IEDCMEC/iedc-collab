@@ -67,7 +67,7 @@ const history=useHistory()
               }}
               className=" NavigateBar-title"
             >
-              MEC COLLAB
+              IEDC MEC COLLAB
             </p>
           </Link>
         </div>
