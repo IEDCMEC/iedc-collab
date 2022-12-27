@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import About from "../../Components/About/About";
 import Mission from "../../Components/Mission/Mission";
-import Team from '../../Components/Team/Team'
+import Team from "../../Components/Team/Team";
 import Vision from "../../Components/Vision/Vision";
 import Animation from "../../Components/Animation/Animation";
 import "./Landing.scss";
@@ -11,7 +11,7 @@ import SuspenseLoader from "../../Components/SuspenseLoader/SuspenseLoader";
 const Landing = () => {
   const [spinner, setSpinner] = useState(true);
   useEffect(() => {
-    setTimeout(() => setSpinner(false), 1500);
+    setTimeout(() => setSpinner(false), 2000);
   }, []);
   return spinner ? (
     <SuspenseLoader />
@@ -22,7 +22,7 @@ const Landing = () => {
       <Vision />
       <Mission />
       <About />
-      <Team/>
+      <Team />
       <Footer />
     </>
   );

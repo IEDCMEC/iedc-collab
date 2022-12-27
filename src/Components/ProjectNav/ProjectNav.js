@@ -22,7 +22,7 @@ const ProjectNav = ({ selectedProject }) => {
   }, [selectedProject.leader_id]);
   const [modalShow, setModalShow] = useState(false);
   if (loading) {
-    return <SuspenseLoader />
+    return <SuspenseLoader />;
   }
   return (
     <div className="project-nav__container">
@@ -47,18 +47,24 @@ const ProjectNav = ({ selectedProject }) => {
             15 <span className="projectnav-likes">Likes</span>
           </div> */}
         {/* </div> */}
-        <div
-          className="project-nav__button"
-          onClick={() => {
-            if (currentUser) {
-              setModalShow(true);
-            } else {
-              window.alert("Please Login to continue");
-            }
-          }}
-        >
-          Join Team
-        </div>
+        {selectedProject.teamMembers
+          .toLowerCase()
+          ?.includes(currentUser.displayName.toLowerCase()) ? (
+          ""
+        ) : (
+          <div
+            className="project-nav__button"
+            onClick={() => {
+              if (currentUser) {
+                setModalShow(true);
+              } else {
+                window.alert("Please Login to continue");
+              }
+            }}
+          >
+            Join Team
+          </div>
+        )}
       </div>
       {currentUser ? (
         <JoinTeamModal

@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import "./Team.scss";
 import NavbarHome from "../../Components/NavbarHome/NavbarHome";
+import Footer from "../../Components/Footer/Footer";
 import designers from "../../data/designers";
 import developers from "../../data/developers";
 import bubble2 from '../../assets/bubble_2.svg'
@@ -21,7 +22,7 @@ const Team = () => {
       <img src={bubble5} alt="" className="bubble_5" />
       <img src={bubble1} alt="" className="bubble_1" />
         <div className="tech_team_info">
-          <p className="team__title">TECH TEAM</p>
+          <div className="team__title">TECH TEAM</div>
           <div className="members__div">
             {developers.map((developer,index) => {
               return (
@@ -55,6 +56,7 @@ const Team = () => {
           </div>
         </div>
       </div>
+      <Footer/>
     </div>
   );
 };

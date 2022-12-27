@@ -1,12 +1,12 @@
 import "./Team.scss";
 import TeamCard from "./TeamCard";
 import animation from "../../animations/test.json";
-import Lottie from 'react-lottie'
+import Lottie from "react-lottie";
 import bubble4 from "../../assets/bubble_4.svg";
 import bubble5 from "../../assets/bubble_5.svg";
 import { useHistory } from "react-router-dom";
 const Team = () => {
-  const history=useHistory();
+  const history = useHistory();
   const defaultOptions = {
     loop: true,
     autoplay: true,
@@ -15,29 +15,51 @@ const Team = () => {
   };
   return (
     <>
-      <div className="team_main" >
-        <div className="heading_team" data-aos="fade-up" data-aos-duration="2000">OUR TEAM</div>
+      <div className="team_main">
+        <div
+          className="heading_team"
+          data-aos="fade-up"
+          data-aos-duration="2000"
+        >
+          OUR TEAM
+        </div>
         <img src={bubble4} alt="" className="bubble_4" />
         <div className="team" data-aos="fade-up" data-aos-duration="2000">
           <TeamCard />
         </div>
         <img src={bubble5} alt="" className="bubble_5" />
-        <div className="team__anime" data-aos="fade-up" data-aos-duration="2000">
-          <Lottie 
+        <div
+          className="team__anime"
+          data-aos="fade-up"
+          data-aos-duration="2000"
+        >
+          <Lottie
             animationData={animation}
             loop={true}
             autoPlay={true}
-            options={defaultOptions} 
+            options={defaultOptions}
           />
         </div>
-        <button onClick={()=>{history.push('/team')}} type="button" style={{marginBottom:'2rem'}} class="btn btn-danger">View All</button>
-        <div className="team__anime-1" data-aos="fade-up" data-aos-duration="2000">
-          
-          <Lottie 
+        <button
+          onClick={() => {
+            history.push("/team");
+          }}
+          type="button"
+          style={{ marginBottom: "2rem" }}
+          class="btn btn-danger"
+        >
+          View All
+        </button>
+        <div
+          className="team__anime-1"
+          data-aos="fade-up"
+          data-aos-duration="2000"
+        >
+          <Lottie
             animationData={animation}
             loop={true}
             autoPlay={true}
-            options={defaultOptions} 
+            options={defaultOptions}
           />
         </div>
         {/* <button onClick={()=>{history.push('/team')}} type="button" style={{marginBottom:'2rem'}} class="btn btn-danger">View All</button> */}
@@ -46,5 +68,3 @@ const Team = () => {
   );
 };
 export default Team;
-
-
