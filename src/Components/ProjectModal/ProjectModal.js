@@ -25,11 +25,13 @@ const NewProjectForm = ({ onClose, project }) => {
   const initialValue = {
     name: project?.name || "",
     desc: project?.desc || "",
+    req: project?.req || "",
     links: project?.links?.join(", ") || "",
     contactNo: project?.contactNo || "",
     githubLink: project?.githubLink || "",
     tags: project?.tags ? project.tags.join(", ") : "",
     teamMembers: project?.teamMembers ? project.teamMembers.join(", ") : "",
+    hiring: project?.hiring ? project.hiring.join(", ") : "",
     projectPhoto: project?.projectPhoto,
   };
 
@@ -50,7 +52,7 @@ const NewProjectForm = ({ onClose, project }) => {
   });
 
   const handleSubmit = (values, actions) => {
-    const { links, tags, teamMembers } = values;
+    const { links, tags, teamMembers, hiring } = values;
     const formValues = {
       ...values,
       links: links
@@ -62,6 +64,10 @@ const NewProjectForm = ({ onClose, project }) => {
         .filter(Boolean)
         .map((link) => link.trim()),
       teamMembers: teamMembers
+        .split(",")
+        .filter(Boolean)
+        .map((link) => link.trim()),
+      hiring: hiring
         .split(",")
         .filter(Boolean)
         .map((link) => link.trim()),
@@ -125,6 +131,33 @@ const NewProjectForm = ({ onClose, project }) => {
                 {props.touched.desc && props.errors.desc
                   ? "Please enter a description greater than 10 characters"
                   : ""}
+              </Form.Text>
+            </Form.Group>
+            <Form.Group controlId="formBasicDescription">
+              <Form.Label>Project Requirements*</Form.Label>
+              <Form.Control
+                onBlur={props.handleBlur("req")}
+                value={props.values.req}
+                onChange={props.handleChange("req")}
+                as="textarea"
+                placeholder="lorem ipsum dolor si amet..."
+                rows="3"
+              />
+              <Form.Text className="text-danger">
+                {props.touched.req && props.errors.req ? "" : ""}
+              </Form.Text>
+            </Form.Group>
+            <Form.Group controlId="formTeamMembers">
+              <Form.Label>Hiring Roles</Form.Label>
+              <Form.Control
+                onBlur={props.handleBlur("hiring")}
+                value={props.values.hiring}
+                onChange={props.handleChange("hiring")}
+                type="text"
+                placeholder="Enter Hiring Roles..."
+              />
+              <Form.Text className="text-right helperText">
+                Please separate the roles using commas
               </Form.Text>
             </Form.Group>
             <br />
