@@ -2,10 +2,11 @@
   display: flex;
   flex-direction: column;
   border: 1px solid #9e0000;
-  row-gap: 1.5rem;
+  row-gap: 0.5rem;
   border-radius: 0px 10px 10px 10px;
-  padding: 1rem;
-  width: 768px;
+  padding: 0.5rem;
+  /* height: 10rem; */
+  width: 35rem;
 }
 .received_bpx_header {
   display: flex;
@@ -55,8 +56,8 @@
   font-style: normal;
 }
 .req_profile_img {
-  width: 80px;
-  height: 80px;
+  width: 40px;
+  height: 40px;
 
   border: 2px solid #780101;
   border-radius: 50%;
@@ -72,8 +73,11 @@
 .req_profile_details_p {
   font-weight: 200;
   font-size: 18px;
-  line-height: 29px;
-
+  line-height: 20px;
+  width: 20rem;
+  /* ::-webkit-scrollbar: { display: "none" }; */
+  height: 4rem;
+  overflow-y: scroll;
   color: #9e0000;
 }
 
