@@ -220,8 +220,8 @@ const MyProfile = () => {
             <div className="edit__pro_abtMe">
               <div>About Me</div>
               <div className="edit__pro_abtMe_bx">
-                {selectedUser.achievements ? (
-                  selectedUser.achievements
+                {selectedUser.about ? (
+                  selectedUser.about
                 ) : (
                   <div className="skill">About Section Not Added</div>
                 )}

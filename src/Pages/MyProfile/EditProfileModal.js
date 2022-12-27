@@ -4,7 +4,7 @@ import Button from "react-bootstrap/Button";
 import { Formik } from "formik";
 import * as yup from "yup";
 import { Form, Row, Col, InputGroup } from "react-bootstrap";
-import { doEditProfile, getProjects} from "../../Firebase/firebase";
+import { doEditProfile, getProjects, getSkills } from "../../Firebase/firebase";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUpload } from "@fortawesome/free-solid-svg-icons";
 import "./EditModal.scss";
@@ -24,9 +24,9 @@ const NewUserForm = ({ onClose, user }) => {
   const [projects, setProjects] = useState([]);
   const [acValue, setACValue] = useState(user?.projects || []);
   const [remainProjects, setRemainProjects] = useState([]);
-  // const [skills, setSkills] = useState([]);
-  // const [acValue1, setACValue1] = useState(user?.skills || []);
-  // const [remainSkills, setRemainSkills] = useState([]);
+  const [skills, setSkills] = useState([]);
+  const [acValue1, setACValue1] = useState(user?.skills || []);
+  const [remainSkills, setRemainSkills] = useState([]);
   // const getSkills=['React Js','Vanilla Js','Vue Js','Angular Js','Arduino','Rasberry Pi','IOT','C++','Python','Django','Flask','Java','Spring','Node JS','Kotlin', 'Fluuter','MySQL','PostgreSQL','SQLite'];
   //  const { fetchData } = useContext(UserContext);
   const initialValue = {
@@ -74,24 +74,19 @@ const NewUserForm = ({ onClose, user }) => {
   // function getRemainSkills() {
   //   let temp1 = [];
   //   skills?.forEach((skill) => {
-  //     if (!acValue1.find((item) => item.id === skill.id)) temp1.push(skill);
+  //     if (!acValue1.find((item) => item === skill)) temp1.push(skill);
   //   });
   //   setRemainSkills(temp1);
   //   //console.log(acValue)
 
   //   //console.log(temp)
   // }
-  //console.log(projects)
+  console.log(projects);
 
   // const getAbilities = async () => {
   //   await getSkills().then(async function (snapshot) {
   //     let messageObject = snapshot.val();
-  //     const result = Object.keys(messageObject).map((key) => ({
-  //       ...messageObject[key],
-  //       id: key,
-  //     }));
-  //     setSkills(result);
-      
+  //     setSkills(messageObject);
   //   });
   // };
 
@@ -101,16 +96,7 @@ const NewUserForm = ({ onClose, user }) => {
   //   // eslint-disable-next-line react-hooks/exhaustive-deps
   // }, [skills, acValue1]);
 
-  // function getRemainSkills() {
-  //   let temp = [];
-  //   getSkills?.forEach((skill) => {
-  //     if (!getSkills.find((item) => item.id === skill.id)) temp.push(skill);
-  //   });
-  //   //setRemainSkills(temp);
-  //    console.log(skillsList)
-  //    //console.log(temp)
-  // }
-  //  //console.log(skills)
+  console.log(skills);
 
   const theme = createTheme({
     components: {
@@ -153,7 +139,6 @@ const NewUserForm = ({ onClose, user }) => {
     github: yup.string().optional().min(4),
     linkedin: yup.string().optional().min(4),
     website: yup.string().optional().min(4),
-    
   });
 
   const handleSubmit = (values, actions) => {
@@ -161,10 +146,10 @@ const NewUserForm = ({ onClose, user }) => {
     const formValues = {
       ...values,
       projects: acValue,
-      // skills: acValue1,
-        // .split(",")
-        // .filter(Boolean)
-        // .map((link) => link.trim()),
+      skills: acValue1
+        .split(",")
+        .filter(Boolean)
+        .map((link) => link.trim()),
       profilePhoto,
       profilePhotoName,
     };
@@ -369,9 +354,9 @@ const NewUserForm = ({ onClose, user }) => {
                   : ""}
               </Form.Text>
             </Form.Group>
-            <Form.Group controlId="formSkills">
+            {/* <Form.Group controlId="formSkills">
               <ThemeProvider theme={theme}>
-                {/* <Autocomplete
+                <Autocomplete
                   multiple
                   onChange={(event, value) => {
                     setACValue1(value);
@@ -381,15 +366,11 @@ const NewUserForm = ({ onClose, user }) => {
                   options={remainSkills}
                   filterSelectedOptions
                   disableCloseOnSelect
-                  getOptionLabel={(option) => option}
-                  renderOption={(props, option) => (
-                    <li {...props}>{option}</li>
-                  )}
                   renderInput={(params) => (
                     <TextField
                       size="small"
                       {...params}
-                      label="Projects Worked In"
+                      label="Skills"
                       className={theme.root}
                       sx={{
                         "& .MuiInputLabel-root": {
@@ -402,12 +383,12 @@ const NewUserForm = ({ onClose, user }) => {
                       variant="outlined"
                     />
                   )}
-                /> */}
+                />
               </ThemeProvider>
               <Form.Text className="text-danger">
                 {props.touched.skills && props.errors.skills}
               </Form.Text>
-            </Form.Group>
+            </Form.Group> */}
 
             <Form.Group controlId="formAchievements">
               <Form.Label>Achievements</Form.Label>
