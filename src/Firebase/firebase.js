@@ -329,7 +329,7 @@ export const sendInvite = async (data) => {
     .set({
       ...data,
       status: "pending",
-      type:"invite",
+      type: "invite",
       createdAt: Date.now(),
     })
     .then(() => {
@@ -348,7 +348,7 @@ export const sendRequest = async (data) => {
     .set({
       ...data,
       status: "pending",
-      type:"request",
+      type: "request",
       createdAt: Date.now(),
     })
     .then(() => {
@@ -364,9 +364,9 @@ export const acceptRequest = async (invite) => {
     await getProject(invite.project_id).then((project) => {
       console.log(project.val());
       let p = project.val();
-      let users=p.teamMembers;
+      let users = p.teamMembers;
       users.push(invite.sender);
-       firebase
+      firebase
         .database()
         // .ref(`projects/${invite.project_id}/members/${invite.sender_id}`)
         // .set({ name: invite.sender});
@@ -393,9 +393,9 @@ export const acceptInvite = async (invite) => {
     await getProject(invite.project_id).then((project) => {
       console.log(project.val());
       let p = project.val();
-      let users=p.teamMembers;
+      let users = p.teamMembers;
       users.push(invite.receiver);
-       firebase
+      firebase
         .database()
         // .ref(`projects/${invite.project_id}/members/${invite.sender_id}`)
         // .set({ name: invite.sender});
@@ -447,7 +447,9 @@ export const getRequests = async (uid) => {
       ...objval[key],
       id: key,
     }));
-    return requests;
+    let orderedRequests = requests.reverse();
+
+    return orderedRequests;
   } catch (error) {
     console.log(error);
   }
@@ -466,7 +468,9 @@ export const getRequestsRecieved = async (uid) => {
       ...objval[key],
       id: key,
     }));
-    return requests;
+    let orderedRequests = requests.reverse();
+
+    return orderedRequests;
   } catch (error) {
     console.log(error);
   }

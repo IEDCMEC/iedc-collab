@@ -16,6 +16,7 @@
   font-style: normal;
   font-weight: 700;
   font-size: 31px;
+  text-align: center;
   flex-wrap: nowrap;
   line-height: 42px;
   color: #9e0000;
@@ -33,6 +34,7 @@
 }
 .description__other {
   display: flex;
+  width: 100%;
   flex-direction: column;
   flex-wrap: wrap;
   justify-content: flex-start;
@@ -62,6 +64,24 @@
   column-gap: 30px;
   row-gap: 5px;
   flex-wrap: wrap;
+}
+.description__tag_phone {
+  display: block;
+  font-family: "Nunito";
+  font-style: normal;
+  padding-top: 3rem;
+  font-weight: 400;
+  font-size: var(--primary-font);
+  line-height: var(--primary-line);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: nowrap;
+  color: #263238;
+}
+.description__tag_phone_mobile {
+  display: none;
 }
 .description__other-member {
   font-family: "Nunito";
@@ -141,6 +161,12 @@
 
   .description__other-tags {
     padding-top: 5%;
+  }
+  .description__tag_phone {
+    display: none;
+  }
+  .description__tag_phone_mobile {
+    display: block;
   }
 }
 

@@ -14,9 +14,66 @@ import { useContext } from "react";
 import { AuthContext } from "../../Firebase/Auth/Auth";
 import { ControlCameraSharp } from "@mui/icons-material";
 import { useHistory } from "react-router-dom";
+import { toast } from "react-toastify";
+import axios from "axios";
+import { emailUrl } from "../../Utils/urls";
 
 function Received({ request }) {
   const history = useHistory();
+  async function handleRequest() {
+    await acceptRequest(request);
+    axios
+      .post(emailUrl, {
+        toEmail: request.sender_email,
+        subject: `Request Accepted from IEDC Collab`,
+        content: `${request.receiver} accepted the request for ${request.project}.`,
+      })
+      .then(() => {
+        toast("Request Accepted");
+        window.location.reload();
+      });
+  }
+  async function handleInvite() {
+    await acceptInvite(request);
+    axios
+      .post(emailUrl, {
+        toEmail: request.sender_email,
+        subject: `Invite Accepted by ${request.receiver} from IEDC Collab`,
+        content: `${request.receiver} accepted the invite for ${request.project}.`,
+      })
+      .then(() => {
+        toast("Invite Accepted");
+        window.location.reload();
+      });
+  }
+  async function handleDeclineRequest() {
+    await declineRequest(request);
+    if (request.type === "invite") {
+      await axios
+
+        .post(emailUrl, {
+          toEmail: request.sender_email,
+          subject: `Invite Declined from IEDC Collab`,
+          content: `${request.receiver} declined the invite for ${request.project}`,
+        })
+        .then(() => {
+          toast("Invite Declined");
+          window.location.reload();
+        });
+    }
+    if (request.type === "request")
+      await axios
+
+        .post(emailUrl, {
+          toEmail: request.sender_email,
+          subject: `Request Declined from IEDC Collab`,
+          content: `${request.receiver} declined the request for ${request.project}.`,
+        })
+        .then(() => {
+          toast("Request Declined");
+          window.location.reload();
+        });
+  }
   return (
     <div className="received_sent_box">
       <div className="received_bpx_header">
@@ -64,13 +121,11 @@ function Received({ request }) {
               className="received_btn_accept"
               onClick={() => {
                 if (request.type === "request") {
-                  acceptRequest(request).then(() => {
-                    window.location.reload();
-                  });
+                  handleRequest();
                 }
-                acceptInvite(request).then(() => {
-                  window.location.reload();
-                });
+                if (request.type === "invite") {
+                  handleInvite();
+                }
               }}
             >
               <img src={accept_icon} alt="" />
@@ -79,8 +134,7 @@ function Received({ request }) {
             <div
               className="received_btn_decline"
               onClick={() => {
-                declineRequest(request);
-                window.location.reload();
+                handleDeclineRequest();
               }}
             >
               <img src={decline_icon} alt="" />

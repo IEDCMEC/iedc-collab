@@ -8,6 +8,7 @@ import { signIn } from "../../Firebase/firebase";
 import { useContext } from "react";
 import { AuthContext } from "../../Firebase/Auth/Auth";
 import { useHistory } from "react-router-dom";
+import { useEffect } from "react";
 
 const Animation = () => {
   const defaultOptions = {
@@ -19,12 +20,9 @@ const Animation = () => {
   const { currentUser } = useContext(AuthContext);
   const history = useHistory();
   const newprojectClick = async () => {
-    if (currentUser) {
-      history.push("/projects");
-    } else {
-      signIn(() => history.push("/projects"));
-    }
+    signIn(() => history.push("/projects"));
   };
+
   return (
     <>
       <div className="animation_main">
@@ -47,15 +45,19 @@ const Animation = () => {
             options={defaultOptions}
           />
         </div>
-        <button
-          className="signin_btn"
-          data-aos="zoom-in"
-          data-aos-duration="2000"
-          onClick={newprojectClick}
-        >
-          <img src={googleLogo} alt="" className="google_logo" /> Sign in with
-          Google
-        </button>
+        {currentUser ? (
+          ""
+        ) : (
+          <button
+            className="signin_btn"
+            data-aos="zoom-in"
+            data-aos-duration="2000"
+            onClick={newprojectClick}
+          >
+            <img src={googleLogo} alt="" className="google_logo" /> Sign in with
+            Google
+          </button>
+        )}
       </div>
     </>
   );
