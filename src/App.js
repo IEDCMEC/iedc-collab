@@ -11,9 +11,12 @@ import ScrollToTop from "./Utils/ScrollToTop";
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 
+
 initialize();
 
 function App() {
+
+ 
   AOS.init();
   return (
     <div className="App">
