@@ -10,7 +10,7 @@ import { VscGithubInverted } from "react-icons/vsc";
 import { FaLinkedin } from "react-icons/fa";
 import EditProfileModal from "./EditProfileModal";
 import { AuthContext } from "../../Firebase/Auth/Auth";
-import {  signIn } from "../../Firebase/firebase";
+import { signIn } from "../../Firebase/firebase";
 import Received from "../../Components/Request/Received";
 import Sent from "../../Components/Request/Sent";
 import SuspenseLoader from "../../Components/SuspenseLoader/SuspenseLoader";
@@ -23,13 +23,13 @@ import { useHistory } from "react-router-dom";
 const MyProfile = () => {
   const { currentUser } = useContext(AuthContext);
   const [showProfileModal, setShowProfileModal] = useState(false);
-  const {profile,loading}=useContext(ProjectContext);
+  const { profile, loading } = useContext(ProjectContext);
   // const [requests, setRequests] = useState([]);
   // const [profile, setSelectedUser] = useState({});
   // const [loading, setLoading] = useState(true);
   const [isReceived, setIsReceived] = useState(true);
   // const [requestsRecieved, setRequestsRecieved] = useState([]);
-  const {requests,requestsRecieved}=useContext(ProjectContext);
+  const { requests, requestsRecieved } = useContext(ProjectContext);
   const history = useHistory();
   const newprojectClick = async () => {
     if (currentUser) {
@@ -57,6 +57,9 @@ const MyProfile = () => {
   };
   const getLinkedinUsername = (url) => {
     const urlArray = url.split("/");
+    if (urlArray[urlArray.length - 1] === "") {
+      return urlArray[urlArray.length - 2];
+    }
     return urlArray[urlArray.length - 1];
   };
   // useEffect(() => {
@@ -67,7 +70,7 @@ const MyProfile = () => {
   //   }
   //   // eslint-disable-next-line react-hooks/exhaustive-deps
   // }, [currentUser]);
-  if (loading||!profile) {
+  if (loading || !profile) {
     return (
       <div>
         <MainLayout route={"My Profile"}>
@@ -117,9 +120,7 @@ const MyProfile = () => {
                 />
               </div>
 
-              <div className="profile_details_header_name">
-                {profile.name}
-              </div>
+              <div className="profile_details_header_name">{profile.name}</div>
 
               <div className="phone_class">
                 <div className="profile_phone">
@@ -134,14 +135,15 @@ const MyProfile = () => {
                         {profile.contact}
                       </a>
                     ) : (
-                      "Change in Edit Profile"
+                      <div className="change-in-edit">{"<empty>"}</div>
                     )}
                   </div>
                 </div>
                 <div className="profile_phone">
                   <HiOutlineAcademicCap size={25} />
                   <div>
-                    {profile?.branch || "Change in Edit Profile"}
+                    {profile?.branch ||  <div className="change-in-edit">{"<empty>"}</div>}
+                    {"  "}
                     {profile?.year}
                   </div>
                 </div>
@@ -157,7 +159,7 @@ const MyProfile = () => {
                       >
                         {profile?.email}
                       </a>
-                    ) || "Change in Edit Profile"}
+                    ) || <div className="change-in-edit">{"<empty>"}</div>}
                   </div>
                 </div>
                 <div className="profile_phone">
@@ -172,7 +174,7 @@ const MyProfile = () => {
                         Portfolio Website
                       </a>
                     ) : (
-                      "Change in Edit Profile"
+                      <div className="change-in-edit">{"<empty>"}</div>
                     )}
                   </div>
                 </div>
@@ -188,7 +190,7 @@ const MyProfile = () => {
                         @ {getGithubUsername(profile.github)}
                       </a>
                     ) : (
-                      "Change in Edit Profile"
+                      <div className="change-in-edit">{"<empty>"}</div>
                     )}
                   </div>
                 </div>
@@ -204,7 +206,7 @@ const MyProfile = () => {
                         @ {getLinkedinUsername(profile.linkedin)}
                       </a>
                     ) : (
-                      "Change in Edit Profile"
+                      <div className="change-in-edit">{"<empty>"}</div>
                     )}
                   </div>
                 </div>
@@ -257,42 +259,42 @@ const MyProfile = () => {
             </div>
             <div className="edit__pro_projects">
               <div>Projects</div>
-                <div className="developer_details_body_right_content_1">
-                  <div className="developer_details_body_right_content_projects_1">
-                    {profile.projects ? (
-                      profile.projects.map((project, index) => {
-                        return (
-                          <div
-                            className="developer_details_body_right_content_project"
-                            key={index}
-                            onClick={() => {
-                              history.push(`/projects/${project.id}`);
-                            }}
-                          >
-                            <div className="developer_details_body_right_content_project_img">
-                              <img
-                                src={
-                                  project.projectPhoto ||
-                                  "https://images.unsplash.com/photo-1639413665566-2f75adf7b7ca?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyN3x8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60"
-                                }
-                                alt=""
-                              />
-                            </div>
-                            <div className="developer_details_body_right_content_project_title">
-                              {project.name}
-                            </div>
-                            <div className="developer_details_body_right_content_project_lead">
-                              {project.leader_name}
-                            </div>
+              <div className="developer_details_body_right_content_1">
+                <div className="developer_details_body_right_content_projects_1">
+                  {profile.projects ? (
+                    profile.projects.map((project, index) => {
+                      return (
+                        <div
+                          className="developer_details_body_right_content_project"
+                          key={index}
+                          onClick={() => {
+                            history.push(`/projects/${project.id}`);
+                          }}
+                        >
+                          <div className="developer_details_body_right_content_project_img">
+                            <img
+                              src={
+                                project.projectPhoto ||
+                                "https://images.unsplash.com/photo-1639413665566-2f75adf7b7ca?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyN3x8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60"
+                              }
+                              alt=""
+                            />
                           </div>
-                        );
-                      })
-                    ) : (
-                      <div className="skill">No Projects Added</div>
-                    )}
-                  </div>
+                          <div className="developer_details_body_right_content_project_title">
+                            {project.name}
+                          </div>
+                          <div className="developer_details_body_right_content_project_lead">
+                            {project.leader_name}
+                          </div>
+                        </div>
+                      );
+                    })
+                  ) : (
+                    <div className="skill">No Projects Added</div>
+                  )}
                 </div>
               </div>
+            </div>
             <div className="edit__pro_achvmts">Requests</div>
             <div className="edit__pro_box_1">
               {/* <div className="reqs_invite_bar">
