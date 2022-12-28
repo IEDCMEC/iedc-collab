@@ -21,7 +21,6 @@ const Developers = () => {
 
   const addYop = (selectedYop) => {
     let oldYop = yop;
-    console.log(oldYop);
     if (oldYop.find((s) => s === selectedYop)) {
       oldYop = oldYop.filter((s) => s !== selectedYop);
     } else {
@@ -30,9 +29,7 @@ const Developers = () => {
     setYop(oldYop);
   };
   const addBranch = (b) => {
-    console.log("hello");
     let oldBranch = branch;
-    console.log(oldBranch);
     if (oldBranch.find((s) => s === b)) {
       oldBranch = oldBranch.filter((s) => s !== b);
     } else {
@@ -40,8 +37,6 @@ const Developers = () => {
     }
     setBranch(oldBranch);
   };
-  console.log(branch);
-  console.log(yop);
   // const getDevs = async () => {
   //   // await getDevelopers().then(async function (snapshot) {
   //   //   let messageObject = snapshot.val();
@@ -71,7 +66,6 @@ const Developers = () => {
     } else {
       developers1.forEach((dev) => {
         for (let s in skills) {
-          console.log(s);
           if (dev.skills && dev?.skills?.find((sk) => sk === skills[s])) {
             devs = [...devs, dev];
             break;
@@ -93,7 +87,6 @@ const Developers = () => {
           return true;
         } else return false;
       });
-    console.log(devs);
     setUsers(devs);
   };
   useEffect(() => {
