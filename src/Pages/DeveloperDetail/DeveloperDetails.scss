@@ -77,18 +77,21 @@
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+
   justify-content: flex-start;
-  column-gap: 10%;
-  height: 100%;
+  column-gap: 2rem;
   align-items: flex-start;
-  padding-left: 5%;
   padding-right: 5%;
 }
 .developer_details_body_left {
   padding-top: 9%;
+  width: 30vw;
 }
 .developer_details_body_right {
   display: flex;
+  width: 60vw;
+  padding-top: 2rem;
+  row-gap: 1rem;
   flex-direction: column;
   flex-wrap: wrap;
 }
@@ -102,10 +105,10 @@
   color: #9e0000;
 }
 .developer_details_body_right_section {
-  padding-top: 5%;
+  padding: 1rem;
 }
 .developer_details_body_right_section_1 {
-  padding-top: 5%;
+  padding: 1rem;
 }
 .developer_details_body_right_content {
   font-family: "Nunito";
@@ -192,7 +195,7 @@
   padding-right: 5%;
   padding-top: 3%;
 }
-@media (max-width: 1197px) {
+@media (max-width: 1000px) {
   .developer_details_body {
     flex-direction: column-reverse;
     justify-content: center;
@@ -201,8 +204,6 @@
   .developer_details_body_right_section {
     background-color: rgba(148, 2, 2, 0.1);
     border-radius: 10px;
-    padding: 5%;
-    margin-top: 5%;
   }
   .developer_details_body_right_section_1 {
     justify-content: center;
@@ -218,6 +219,10 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+  }
+  .developer_details_body_left
+  {
+    width: 50vw;
   }
 }
 @media (max-width: 650px) {
@@ -242,5 +247,9 @@
   }
   .developer_details_footer_container {
     justify-content: center;
+  }
+  .developer_details_body_left
+  {
+    width: 90vw;
   }
 }

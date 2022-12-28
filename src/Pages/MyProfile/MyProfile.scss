@@ -54,8 +54,7 @@
   text-decoration: none;
   color: #ffff;
 }
-.change-in-edit
-{
+.change-in-edit {
   color: #ffff;
   text-decoration: none;
   font-size: 1.4rem;
@@ -315,13 +314,11 @@
 
   padding-top: 1rem;
 }
-.edit__pro_projects
-{
+.edit__pro_projects {
   padding: 3rem;
   justify-content: center;
 }
-.developer_details_body_right_content_projects_1
-{
+.developer_details_body_right_content_projects_1 {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -368,6 +365,12 @@
 
   color: #171e22;
   width: 80%;
+}
+.skill {
+  font-size: var(--primary-font);
+  line-height: var(--primary-line);
+
+  color: #171e22;
 }
 @media (min-device-width: 20px) and (max-device-width: 500px) {
   .my_profile_container {

@@ -154,24 +154,33 @@ function DeveloperDetails() {
           />
             </div>
             <div className="developer_details_body_right">
-              <div className="developer_details_body_right_section">
-                <div className="developer_details_body_right_header">
-                  Skills
+            <div className="developer_details_body_right_section">
+              <div className="developer_details_body_right_header">Skills</div>
+              <div style={{
+                display: "flex",
+                flexWrap: "wrap",
+                paddingTop: "0.5rem",
+                gap: "0.5rem",
+              }}
+              className="developer_details_body_right_content"
+              >
+                {selectedUser.skills ? (
+                  selectedUser.skills.map((skill, index) =>
+                    index === selectedUser.skills.length - 1 ? (
+                      <div className="skill" key={index}>
+                        {skill}
+                      </div>
+                    ) : (
+                      <div className="skill" key={index}>
+                        {skill} ,
+                      </div>
+                    )
+                  )
+                ) : (
+                  <div className="skill">No Skills Added</div>
+                )}
                 </div>
-                <div className="developer_details_body_right_content">
-                  {selectedUser.skills ? (
-                    selectedUser.skills.map((skill, index) => {
-                      return (
-                        <div className="skill" key={index}>
-                          {index + 1} . {skill}
-                        </div>
-                      );
-                    })
-                  ) : (
-                    <div className="skill">No Skills Added</div>
-                  )}
-                </div>
-              </div>
+            </div>
 
               <div className="developer_details_body_right_section_1">
                 <div className="developer_details_body_right_header">
