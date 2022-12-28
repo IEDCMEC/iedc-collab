@@ -25,7 +25,7 @@ const NewUserForm = ({ onClose, user }) => {
   const [acValue, setACValue] = useState(user?.projects || []);
   const [remainProjects, setRemainProjects] = useState([]);
   const [skills, setSkills] = useState([]);
-  const [skill, setSkill] = useState("");
+  const [skill, setSkill] = useState();
   const [acValue1, setACValue1] = useState(user?.skills || []);
   const [remainSkills, setRemainSkills] = useState([]);
   // const getSkills=['React Js','Vanilla Js','Vue Js','Angular Js','Arduino','Rasberry Pi','IOT','C++','Python','Django','Flask','Java','Spring','Node JS','Kotlin', 'Fluuter','MySQL','PostgreSQL','SQLite'];
@@ -93,10 +93,12 @@ const NewUserForm = ({ onClose, user }) => {
 
   useEffect(() => {
     getAbilities();
-    getRemainSkills();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [skills, acValue1]);
-
+  }, [skill,acValue1]);
+useEffect(() => {
+  getRemainSkills();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+}, [skills,acValue1]);
   console.log(skills);
 
   const theme = createTheme({
@@ -363,7 +365,6 @@ const NewUserForm = ({ onClose, user }) => {
                   value={acValue1}
                   options={remainSkills}
                   filterSelectedOptions
-                  disableCloseOnSelect
                   renderInput={(params) => (
                     <TextField
                       size="small"
@@ -398,6 +399,8 @@ const NewUserForm = ({ onClose, user }) => {
                 />
               </Form.Group>
               <div className="add-skill-btn" onClick={()=>{
+                if(skill.length===0)
+                  return;
                 addSkills(skill);
                 setSkill("");
                 setACValue1([...acValue1,skill]);

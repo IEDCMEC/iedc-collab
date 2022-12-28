@@ -12,12 +12,12 @@ const Navbar = (props) => {
   const [showProjectModal, setShowProjectModal] = useState(false);
   const { currentUser } = useContext(AuthContext);
   const { handleSearch } = useContext(ProjectContext);
-const history=useHistory()
+  const history = useHistory();
   const newprojectClick = async () => {
     if (currentUser) {
       setShowProjectModal(true);
     } else {
-     alert("Please Login to Continue.")
+      alert("Please Login to Continue.");
     }
   };
   const [selectedUser, setSelectedUser] = useState(null);
@@ -90,7 +90,7 @@ const history=useHistory()
             ></i>
           </div>
         )}
-         {props.route === "Projects" && (
+        {props.route === "Projects" && (
           <div
             style={{
               display: "flex",
@@ -109,7 +109,7 @@ const history=useHistory()
             ></i>
           </div>
         )}
-         {props.route === "Developers" && (
+        {props.route === "Developers" && (
           <div
             style={{
               display: "flex",
@@ -162,19 +162,16 @@ const history=useHistory()
             <div className="css-button-text">New Project</div>
           </div>
 
-          {(currentUser)?  (
+          {currentUser ? (
             <Avatar
               src={selectedUser?.profilePhoto}
               onClick={handleClick}
               sx={{ cursor: "pointer", height: "35px", width: "35px" }}
             />
-          ):(
-            <div
-            className="NavigateBar-Newprobtn css-button"
-            onClick={signIn}
-          >
-            <div className="css-button-text">Sign In To Collab</div>
-          </div>
+          ) : (
+            <div className="NavigateBar-Newprobtn css-button" onClick={signIn}>
+              <div className="css-button-text">Sign In To Collab</div>
+            </div>
           )}
         </div>
         <Menu
@@ -252,7 +249,8 @@ const history=useHistory()
               color: "#9E0000",
             }}
             onClick={() => {
-              signOut();history.push("/projects");
+              signOut();
+              history.push("/projects");
             }}
           >
             LOGOUT

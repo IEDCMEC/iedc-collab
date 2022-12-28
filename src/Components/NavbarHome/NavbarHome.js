@@ -28,14 +28,15 @@ function NavbarHome() {
           </div>
         </Link>
         <div className="navbar_items">
-          <Link to="/ideas" className="nav_item">
-            Ideas
-          </Link>
+         
           <Link to="/projects" className="nav_item">
             Projects
           </Link>
           <Link to="/developers" className="nav_item">
             Developers
+          </Link>
+          <Link to="/ideas" className="nav_item">
+            Ideas
           </Link>
         </div>
         <a href="https://www.mec.ac.in/" target="_blank" rel="noreferrer">
@@ -77,13 +78,7 @@ function NavbarHome() {
               data-aos="fade-right"
               data-aos-duration="600"
             >
-              <Link
-                to="/ideas"
-                className="nav_item_mob"
-                onClick={handleDrawerClose}
-              >
-                Ideas
-              </Link>
+             
               <Link
                 to="/projects"
                 className="nav_item_mob"
@@ -101,6 +96,13 @@ function NavbarHome() {
                 onClick={handleDrawerClose}
               >
                 Developers
+              </Link>
+              <Link
+                to="/ideas"
+                className="nav_item_mob"
+                onClick={handleDrawerClose}
+              >
+                Ideas
               </Link>
             </div>
           </div>
