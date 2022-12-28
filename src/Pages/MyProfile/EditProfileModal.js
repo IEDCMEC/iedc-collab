@@ -6,7 +6,7 @@ import * as yup from "yup";
 import { Form, Row, Col, InputGroup } from "react-bootstrap";
 import {
   doEditProfile,
-  getProjects,
+  // getProjects,
   getSkills,
   addSkills,
 } from "../../Firebase/firebase";
@@ -28,7 +28,7 @@ const NewUserForm = ({ onClose, user }) => {
   );
   const [profilePhoto, setProfilePhoto] = useState(user?.profilePhoto || "");
   // const [projects, setProjects] = useState([]);
-  const {projects}=useContext(ProjectContext);
+  const { projects } = useContext(ProjectContext);
   const [acValue, setACValue] = useState(user?.projects || []);
   const [remainProjects, setRemainProjects] = useState([]);
   const [skills, setSkills] = useState([]);
@@ -89,7 +89,6 @@ const NewUserForm = ({ onClose, user }) => {
 
     //console.log(temp)
   }
-  console.log(projects);
 
   const getAbilities = async () => {
     await getSkills().then(async function (snapshot) {
@@ -106,7 +105,6 @@ const NewUserForm = ({ onClose, user }) => {
     getRemainSkills();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [skills, acValue1]);
-  console.log(skills);
 
   const theme = createTheme({
     components: {
@@ -178,7 +176,7 @@ const NewUserForm = ({ onClose, user }) => {
       >
         {(props) => (
           <Form>
-            <Form.Group controlId="formBasicTitle">
+            <Form.Group controlid="formBasicTitle">
               <Form.Label>Name*</Form.Label>
               <Form.Control
                 required
@@ -192,7 +190,7 @@ const NewUserForm = ({ onClose, user }) => {
               </Form.Text>
             </Form.Group>
             <br />
-            <InputGroup controlId="formPhoto" className="photoContainer">
+            <InputGroup controlid="formPhoto" className="photoContainer">
               <Form.Label className="photoLabel">
                 <span className="photoHead">Profile Photo</span>
                 <span className="photoIcon">
@@ -258,7 +256,7 @@ const NewUserForm = ({ onClose, user }) => {
               )}
             </Row>
             <Row>
-              <Form.Group controlId="formBranch" className="col-md-6">
+              <Form.Group controlid="formBranch" className="col-md-6">
                 <Form.Label>Branch*</Form.Label>
                 <Form.Control
                   as="select"
@@ -282,7 +280,7 @@ const NewUserForm = ({ onClose, user }) => {
                   {props.touched.branch && props.errors.branch}
                 </Form.Text>
               </Form.Group>
-              <Form.Group controlId="formYear" className="col-md-6">
+              <Form.Group controlid="formYear" className="col-md-6">
                 <Form.Label>Year Of Passing*</Form.Label>
                 <Form.Control
                   as="select"
@@ -307,7 +305,7 @@ const NewUserForm = ({ onClose, user }) => {
               </Form.Group>
             </Row>
             <Form.Group
-              controlId="formProjects"
+              controlid="formProjects"
               style={{
                 border: "none",
               }}
@@ -351,7 +349,7 @@ const NewUserForm = ({ onClose, user }) => {
                 {props.touched.projects && props.errors.projects}
               </Form.Text>
             </Form.Group>
-            <Form.Group controlId="formAboutMe">
+            <Form.Group controlid="formAboutMe">
               <Form.Label>About Me*</Form.Label>
               <Form.Control
                 onBlur={props.handleBlur("about")}
@@ -367,7 +365,7 @@ const NewUserForm = ({ onClose, user }) => {
                   : ""}
               </Form.Text>
             </Form.Group>
-            <Form.Group controlId="formSkills">
+            <Form.Group controlid="formSkills">
               <ThemeProvider theme={theme}>
                 <Autocomplete
                   multiple
@@ -402,7 +400,7 @@ const NewUserForm = ({ onClose, user }) => {
               </Form.Text>
             </Form.Group>
             <div className="add-skill-row">
-              <Form.Group controlId="formContact" className="col-md-6">
+              <Form.Group controlid="formContact" className="col-md-6">
                 <Form.Label>
                   Enter Skill (If not present in skills list)
                 </Form.Label>
@@ -416,16 +414,28 @@ const NewUserForm = ({ onClose, user }) => {
               <div
                 className="add-skill-btn"
                 onClick={() => {
-                  if (skill.length === 0) return;
-                  addSkills(skill);
-                  setSkill("");
-                  setACValue1([...acValue1, skill]);
+                  if (!skill) 
+                  toast("Please enter a skill.");
+                  else {
+                    if (skill && skill.length > 0) {
+                      for (let i = 0; i < skills.length; i++) {
+                        if (skills[i].toLowerCase() === skill.toLowerCase()) {
+                          toast("Skill already present in list.");
+                          break;
+                        }
+                      }
+                    } else {
+                      addSkills(skill);
+                      setSkill("");
+                      setACValue1([...acValue1, skill]);
+                    }
+                  }
                 }}
               >
                 Add Skill
               </div>
             </div>
-            <Form.Group controlId="formAchievements">
+            <Form.Group controlid="formAchievements">
               <Form.Label>Achievements</Form.Label>
               <Form.Control
                 required
@@ -443,7 +453,7 @@ const NewUserForm = ({ onClose, user }) => {
             </Form.Group>
 
             <Row>
-              <Form.Group controlId="formContact" className="col-md-6">
+              <Form.Group controlid="formContact" className="col-md-6">
                 <Form.Label>Contact No.*</Form.Label>
                 <Form.Control
                   onBlur={props.handleBlur("constact")}
@@ -456,7 +466,7 @@ const NewUserForm = ({ onClose, user }) => {
                   {props.touched.contact && props.errors.contact}
                 </Form.Text>
               </Form.Group>
-              <Form.Group controlId="formMail" className="col-md-6">
+              <Form.Group controlid="formMail" className="col-md-6">
                 <Form.Label>Mail ID*</Form.Label>
                 <Form.Control
                   onBlur={props.handleBlur("email")}
@@ -471,7 +481,7 @@ const NewUserForm = ({ onClose, user }) => {
             </Row>
 
             <Row>
-              <Form.Group controlId="formLinkedin" className="col-md-6">
+              <Form.Group controlid="formLinkedin" className="col-md-6">
                 <Form.Label>LinkedIn</Form.Label>
                 <Form.Control
                   onBlur={props.handleBlur("linkedin")}
@@ -484,7 +494,7 @@ const NewUserForm = ({ onClose, user }) => {
                   {props.touched.linkedin && props.errors.linkedin}
                 </Form.Text>
               </Form.Group>
-              <Form.Group controlId="formGithub" className="col-md-6">
+              <Form.Group controlid="formGithub" className="col-md-6">
                 <Form.Label>Github</Form.Label>
                 <Form.Control
                   onBlur={props.handleBlur("github")}
@@ -499,7 +509,7 @@ const NewUserForm = ({ onClose, user }) => {
               </Form.Group>
             </Row>
 
-            <Form.Group controlId="formWebsite">
+            <Form.Group controlid="formWebsite">
               <Form.Label>Website</Form.Label>
               <Form.Control
                 required

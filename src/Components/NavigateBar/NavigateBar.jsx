@@ -19,7 +19,6 @@ const Navbar = () => {
   const history = useHistory();
   const [open1, setOpen1] = useState(false);
   const location = useLocation();
-  console.log(location.pathname);
   const handleDrawerOpen = () => {
     setOpen1(true);
   };

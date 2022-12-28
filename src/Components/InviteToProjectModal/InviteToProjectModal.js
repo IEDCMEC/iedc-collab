@@ -11,9 +11,9 @@ import sendPaperPlane from "../../assets/sendPaperPlane.svg";
 import closeButton from "../../assets/close.svg";
 import axios from "axios";
 import { useContext, useEffect, useState } from "react";
-import {
-  getProjects,
-} from "../../Firebase/firebase";
+// import {
+//   getProjects,
+// } from "../../Firebase/firebase";
 import {
   createTheme,
   FormControl,

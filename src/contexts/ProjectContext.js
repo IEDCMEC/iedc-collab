@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from "react";
-import { getDevelopers, getProjects } from "../Firebase/firebase";
+import React, { useContext, useEffect, useState } from "react";
+import { AuthContext } from "../Firebase/Auth/Auth";
+import { getDevelopers, getProjects, getRequests, getRequestsRecieved, getUser } from "../Firebase/firebase";
 
 export const ProjectContext = React.createContext();
 
@@ -9,7 +10,11 @@ export const ProjectProvider = ({ children }) => {
   const [allProjects, setAllProjects] = useState([]);
   const [developers, setDevelopers] = useState([]);
   const [selectedDevelopers, setSelectedDevelopers] = useState();
+  const [profile, setProfile] = useState();
   const [allDevelopers, setAllDevelopers] = useState([]);
+  const { currentUser } = useContext(AuthContext);
+  const [requests, setRequests] = useState([]);
+  const [requestsRecieved, setRequestsRecieved] = useState([]);
   const [loading, setLoading] = useState(false);
 
   const fetchData = (state) => {
@@ -43,6 +48,14 @@ export const ProjectProvider = ({ children }) => {
       .finally(() => {
         setLoading(false);
       });
+  };
+  const fetchUserProfile = async () => {
+    if (currentUser) {
+      setLoading(true);
+      const profileUser = await getUser(currentUser?.uid);
+      setProfile(await profileUser.val());
+      setLoading(false);
+    }
   };
   const fetchDevelpersData = (state1) => {
     let index1 = 0;
@@ -79,9 +92,33 @@ export const ProjectProvider = ({ children }) => {
   useEffect(() => {
     fetchData();
     fetchDevelpersData();
+    if (currentUser) {
+      fetchUserProfile();
+      fetchRequests();
+      fetchRequestsRecieved();
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
+  useEffect(() => {
+    fetchUserProfile();
+    fetchRequests();
+    fetchRequestsRecieved();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentUser]);
+  const fetchRequests = async () => {
+    if (currentUser) {
+      setLoading(true);
+      setRequests(await getRequests(currentUser.uid))
+      setLoading(false);
+    }
+  };
+  const fetchRequestsRecieved = async () => {
+    if (currentUser) {
+      setLoading(true);
+      setRequestsRecieved(await getRequestsRecieved(currentUser.uid));
+      setLoading(false);
+    }
+  };
   const handleSearch = (searchtext) => {
     if (searchtext !== "") {
       const modified = allProjects.filter(
@@ -98,6 +135,9 @@ export const ProjectProvider = ({ children }) => {
       value={{
         projects,
         developers,
+        profile,
+        requests,
+        requestsRecieved,
         selectedDevelopers,
         allDevelopers,
         setSelectedDevelopers,
