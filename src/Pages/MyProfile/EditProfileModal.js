@@ -356,6 +356,7 @@ const NewUserForm = ({ onClose, user }) => {
                 value={props.values.about}
                 onChange={props.handleChange("about")}
                 as="textarea"
+                style={{whiteSpace: "pre-wrap"}}
                 placeholder="lorem ipsum dolor si amet..."
                 rows="3"
               />
@@ -414,8 +415,7 @@ const NewUserForm = ({ onClose, user }) => {
               <div
                 className="add-skill-btn"
                 onClick={() => {
-                  if (!skill) 
-                  toast("Please enter a skill.");
+                  if (!skill) toast("Please enter a skill.");
                   else {
                     if (skill && skill.length > 0) {
                       for (let i = 0; i < skills.length; i++) {
@@ -427,7 +427,7 @@ const NewUserForm = ({ onClose, user }) => {
                       addSkills(skill);
                       setSkill("");
                       setACValue1([...acValue1, skill]);
-                    } 
+                    }
                   }
                 }}
               >
@@ -442,6 +442,7 @@ const NewUserForm = ({ onClose, user }) => {
                 value={props.values.achievements}
                 onChange={props.handleChange("achievements")}
                 type="text"
+                style={{whiteSpace: "pre-wrap"}}
                 as="textarea"
                 rows="3"
                 placeholder="Enter Your Achievements"

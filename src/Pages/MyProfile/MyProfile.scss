@@ -336,7 +336,7 @@
   padding: 1.2rem;
   font-size: var(--primary-font);
   line-height: var(--primary-line);
-  text-align: center;
+  text-align: left;
   color: #171e22;
   justify-content: center;
   background: #ffffff;
@@ -350,7 +350,6 @@
   flex-direction: row;
   flex-wrap: wrap;
   gap: 0.5rem;
-  justify-content: center;
   background: #ffffff;
   border: 0.4px solid #9e0000;
   border-radius: 10px;
@@ -361,7 +360,7 @@
 
   font-size: var(--primary-font);
   line-height: var(--primary-line);
-  text-align: center;
+  text-align: left;
 
   color: #171e22;
   width: 80%;

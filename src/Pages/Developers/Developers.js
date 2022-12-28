@@ -83,13 +83,13 @@ const Developers = () => {
     }
     if (branch.length > 0)
       devs = devs.filter((d) => {
-        if (branch.find((br) => br == d.branch)) {
+        if (branch.find((br) => br === d.branch)) {
           return true;
         } else return false;
       });
     if (yop.length > 0)
       devs = devs.filter((d) => {
-        if (yop.find((yp) => yp == d.year)) {
+        if (yop.find((yp) => yp === d.year)) {
           return true;
         } else return false;
       });
