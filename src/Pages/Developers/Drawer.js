@@ -41,8 +41,12 @@ const styles1 = {
 export default function PersistentDrawerLeft({
   selectedSkills,
   setSelectedSkills,
+  addBranch,
+  addYop
 }) {
   const [skills, setSkills] = React.useState([]);
+  const [branch, setBranch] =  React.useState('')
+  const [yop, setYop] = React.useState('')
   const getAbilities = async () => {
     await getSkills().then(async function (snapshot) {
       let messageObject = snapshot.val();
@@ -171,7 +175,7 @@ export default function PersistentDrawerLeft({
                 key={id}
                 name={x}
                 className="skill_boxes"
-                addSkills={addSkill}
+                addSkills={addBranch}
               ></Buttons>
             ))}
           </div>
@@ -186,7 +190,7 @@ export default function PersistentDrawerLeft({
                 key={id}
                 name={x}
                 className="skill_boxes"
-                addSkills={addSkill}
+                addSkills={addYop}
               ></Buttons>
             ))}
           </div>
