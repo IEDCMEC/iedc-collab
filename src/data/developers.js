@@ -1,52 +1,37 @@
-import { achyuth, jaison,sona,jagannath,nazim,joshua, allen, subramani, mrinalini, karthik} from '../assets/team/index'
+import {sona,nazim,joshua, allen, subramani, mrinalini, karthik} from '../assets/team/index'
 const developers=[
     {
         id:1,
-        name:'Achyuth Mohan',
-        image:achyuth
-    },
-    {
-        id:2,
-        name:'Jagannath E Shahi',
-        image:jagannath
-    },
-    {
-        id:3,
-        name:'Jaison Dennis',
-        image:jaison
-    },
-    {
-        id:4,
         name:'Sona Martin',
         image:sona
     },
     {
-        id:5,
+        id:2,
         name:'Joshua Joy Reji',
         image:joshua
     },
     {
-        id:6,
+        id:3,
         name:'Nazim Filzer',
         image:nazim
     },
     {
-        id:7,
+        id:4,
         name:'Allen Shibu',
         image:allen
     },
     {
-        id:8,
+        id:5,
         name:'Subramani E',
         image:subramani
     },
     {
-        id:9,
+        id:6,
         name:'Mrinalini Nair',
         image:mrinalini
     },
     {
-        id:10,
+        id:7,
         name:'Karthik G Kumar',
         image:karthik
     },

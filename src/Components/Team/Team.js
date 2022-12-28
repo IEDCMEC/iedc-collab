@@ -5,6 +5,7 @@ import Lottie from "react-lottie";
 import bubble4 from "../../assets/bubble_4.svg";
 import bubble5 from "../../assets/bubble_5.svg";
 import { useHistory } from "react-router-dom";
+import core from '../../data/core'
 const Team = () => {
   const history = useHistory();
   const defaultOptions = {
@@ -25,7 +26,7 @@ const Team = () => {
         </div>
         <img src={bubble4} alt="" className="bubble_4" />
         <div className="team" data-aos="fade-up" data-aos-duration="2000">
-          <TeamCard />
+          <TeamCard data={core}/>
         </div>
         <img src={bubble5} alt="" className="bubble_5" />
         <div
