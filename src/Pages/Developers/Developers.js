@@ -16,8 +16,30 @@ const Developers = () => {
   const [selectedSkills, setSelectedSkills] = useState([]);
   const [allUsers, setAllUsers] = useState();
   const [loading1, setLoading1] = useState(true);
-  const [branch, setBranch] = useState("");
-  const [yop, setYop] = useState("");
+  const [branch, setBranch] = useState([]);
+  const [yop, setYop] = useState([]);
+
+  const addYop = (selectedYop) => {
+    let oldYop = yop;
+    console.log(oldYop);
+    if (oldYop.find((s) => s === selectedYop)) {
+      oldYop = oldYop.filter((s) => s !== selectedYop);
+    } else {
+      oldYop = [...oldYop, selectedYop];
+    }
+    setYop(oldYop);
+  };
+  const addBranch = (b) => {
+    console.log("hello");
+    let oldBranch = branch;
+    console.log(oldBranch);
+    if (oldBranch.find((s) => s === b)) {
+      oldBranch = oldBranch.filter((s) => s !== b);
+    } else {
+      oldBranch = [...oldBranch, b];
+    }
+    setBranch(oldBranch);
+  };
   console.log(branch);
   console.log(yop);
   // const getDevs = async () => {
@@ -43,10 +65,10 @@ const Developers = () => {
     setAllUsers(developers);
     let developers1 = allUsers;
     let skills = selectedSkills;
+    let devs = [];
     if (skills.length <= 0) {
-      setUsers(allUsers);
+      devs = allUsers;
     } else {
-      let devs = [];
       developers1.forEach((dev) => {
         for (let s in skills) {
           console.log(s);
@@ -56,14 +78,28 @@ const Developers = () => {
           }
         }
       });
-      setUsers(devs);
+
       // setLoading(false);
     }
+    if (branch.length > 0)
+      devs = devs.filter((d) => {
+        if (branch.find((br) => br == d.branch)) {
+          return true;
+        } else return false;
+      });
+    if (yop.length > 0)
+      devs = devs.filter((d) => {
+        if (yop.find((yp) => yp == d.year)) {
+          return true;
+        } else return false;
+      });
+      console.log(devs)
+    setUsers(devs);
   };
   useEffect(() => {
     filterDevelopers();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [selectedSkills]);
+  }, [selectedSkills, branch, yop]);
   useEffect(() => {
     if (users?.length > 0) setLoading1(false);
   }, [users]);
@@ -87,8 +123,8 @@ const Developers = () => {
           <Drawer
             selectedSkills={selectedSkills}
             setSelectedSkills={setSelectedSkills}
-            setBranch={setBranch}
-            setYop={setYop}
+            addBranch={addBranch}
+            addYop={addYop}
           />
           <div className="developer_container">
             <h3 style={{ textAlign: "center" }}>DEVELOPERS</h3>
