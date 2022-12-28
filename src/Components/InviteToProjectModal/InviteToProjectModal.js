@@ -29,7 +29,7 @@ import { ProjectContext } from "../../contexts/ProjectContext";
 const InviteToProjectModal = ({ user, selectedUser, ...props }) => {
   // const [projects, setProjects] = useState([]);
   const [project, setProject] = useState("");
-  const { projects } = useContext(ProjectContext);
+  const { projects, fetchRequests } = useContext(ProjectContext);
   const [listProjects, setListProjects] = useState([]);
   const [message, setMessage] = useState("");
   const theme = createTheme({
@@ -87,6 +87,7 @@ const InviteToProjectModal = ({ user, selectedUser, ...props }) => {
     };
     await sendInvite(data).then(() => {
       toast("Invite Sent Successfully");
+      fetchRequests();
     });
   }
 

@@ -7,13 +7,15 @@ import bubble10 from "../../assets/bubble_10.svg";
 import bubble11 from "../../assets/bubble_11.svg";
 import sendPaperPlane from "../../assets/sendPaperPlane.svg";
 import closeButton from "../../assets/close.svg";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { sendRequest } from "../../Firebase/firebase";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { ProjectContext } from "../../contexts/ProjectContext";
 
 const JoinTeamModal = ({ user, project, ...props }) => {
   const [message, setMessage] = useState("");
+  const { fetchRequests } = useContext(ProjectContext);
   const onSubmit = async () => {
     try {
       await axios.post(
@@ -43,6 +45,7 @@ const JoinTeamModal = ({ user, project, ...props }) => {
       createdAt: Date.now(),
     };
     await sendRequest(data).then(() => {
+      fetchRequests();
       toast("Request Sent Successfully");
     });
   };
