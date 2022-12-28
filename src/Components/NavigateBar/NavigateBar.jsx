@@ -15,7 +15,7 @@ import { HiOutlineMenuAlt3 } from "react-icons/hi";
 const Navbar = () => {
   const [showProjectModal, setShowProjectModal] = useState(false);
   const { currentUser } = useContext(AuthContext);
-  const { handleSearch ,handleSearchDevelopers} = useContext(ProjectContext);
+  const { handleSearch, handleSearchDevelopers } = useContext(ProjectContext);
   const history = useHistory();
   const [open1, setOpen1] = useState(false);
   const location = useLocation();

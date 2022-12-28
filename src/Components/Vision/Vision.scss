@@ -20,7 +20,6 @@
   font-size: 31px;
   font-weight: 900;
   padding-bottom: 1%;
-
 }
 
 .bubble_1 {
@@ -56,15 +55,14 @@
     padding: 2%;
   }
 }
-@media(max-width:560px)
-{
-  .vision_main{
-    padding-top:20%;
+@media (max-width: 560px) {
+  .vision_main {
+    padding-top: 20%;
   }
 }
-@media (max-width:320px) {
+@media (max-width: 320px) {
   .bubble_1 {
     top: 80px;
-  height: 250px;
+    height: 250px;
   }
 }

@@ -1,19 +1,19 @@
-$color-1 : #880e4f;
-$color-2 : #ad1457;
+$color-1: #880e4f;
+$color-2: #ad1457;
 
-.col1{
+.col1 {
   color: $color-1;
 }
 
-.col2{
+.col2 {
   color: $color-2;
 }
 
-.font-weight-bold{
-  font-weight: 500!important;
+.font-weight-bold {
+  font-weight: 500 !important;
 }
 
-.overflow{
+.overflow {
   height: inherit;
   overflow: auto;
 }

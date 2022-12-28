@@ -93,7 +93,7 @@ const Developers = () => {
           return true;
         } else return false;
       });
-      console.log(devs)
+    console.log(devs);
     setUsers(devs);
   };
   useEffect(() => {

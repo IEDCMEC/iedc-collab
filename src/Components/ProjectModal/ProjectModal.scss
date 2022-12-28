@@ -1,18 +1,17 @@
-.btn{
+.btn {
   background: #fff;
- color: var(--primaryColor);
- border-color: var(--primaryColor);
- width: 177px !important;
- height: 54px !important;
- border-radius: 9px;
- font-size: 23px;
+  color: var(--primaryColor);
+  border-color: var(--primaryColor);
+  width: 177px !important;
+  height: 54px !important;
+  border-radius: 9px;
+  font-size: 23px;
 }
 
-.btn:hover{
-color: #fff;
-background: var(--primaryColor);
+.btn:hover {
+  color: #fff;
+  background: var(--primaryColor);
 }
-
 
 .modalbody {
   background-color: #fff;
@@ -68,13 +67,11 @@ background: var(--primaryColor);
 
   input[type="file"]:focus {
     box-shadow: none !important;
-    
   }
 }
 
-
-.customFile{
-width:40rem;
+.customFile {
+  width: 40rem;
 }
 
 ::-webkit-file-upload-button {
@@ -88,30 +85,27 @@ width:40rem;
 .photoContainer {
   border: 2px solid #9e0000;
   padding-bottom: 20px !important;
-  
+
   display: inline-block;
   border-radius: 10px !important;
   cursor: pointer;
-  
 }
 
 .photoLabel {
   margin-right: 10px;
   height: 15px;
- 
-   margin-bottom: 5px !important;
- 
+
+  margin-bottom: 5px !important;
 }
 
 .photoLabel input {
   top: 10px !important;
   position: absolute;
   margin-top: 5px;
-  
+
   left: 15px !important;
   width: 50% !important;
   word-wrap: break-word;
- 
 }
 
 .photoHead {
@@ -140,15 +134,13 @@ width:40rem;
   color: #9e0000;
 }
 
-
-@media (max-width: 984px){
-  .customFile{
-    width:20rem;
-    }
-    
+@media (max-width: 984px) {
+  .customFile {
+    width: 20rem;
+  }
 }
-@media screen and (max-width:984px) {
-  .photoIcon{
+@media screen and (max-width: 984px) {
+  .photoIcon {
     // padding-top: 3.7%;
   }
 }

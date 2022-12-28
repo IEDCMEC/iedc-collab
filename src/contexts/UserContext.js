@@ -39,7 +39,6 @@ export const UserProvider = ({ children }) => {
       })
       .finally(() => {
         setLoading(false);
-        
       });
   };
 
@@ -55,7 +54,7 @@ export const UserProvider = ({ children }) => {
         setSelectedUser,
         loading,
         fetchData,
-        allUsers
+        allUsers,
       }}
     >
       {children}

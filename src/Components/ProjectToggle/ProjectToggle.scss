@@ -4,7 +4,7 @@
   height: fit-content;
   width: fit-content;
   transform: rotate(-90deg);
-  left:-11rem;
+  left: -11rem;
   position: absolute;
 }
 
@@ -16,7 +16,7 @@
   padding-bottom: 10px;
   padding-top: 10px;
   margin-left: 30px;
-  width: 28rem ;
+  width: 28rem;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -47,7 +47,8 @@
   text-decoration: none;
   color: #9e0000;
   background-color: #ffcfcf;
-  height: 100%;cursor: pointer;
+  height: 100%;
+  cursor: pointer;
   font-weight: 700;
   font-size: 1.313rem;
   padding-left: 15px;
@@ -62,7 +63,8 @@
 .project-toggle__NavLinks__desc {
   text-decoration: none;
   color: #9e0000;
-  background-color: #ffcfcf;cursor: pointer;
+  background-color: #ffcfcf;
+  cursor: pointer;
   height: 100%;
   font-weight: 700;
   font-size: 1.313rem;
@@ -80,7 +82,8 @@
 .project-toggle__NavLinks__disc {
   text-decoration: none;
   color: #9e0000;
-  background-color: #ffcfcf;cursor: pointer;
+  background-color: #ffcfcf;
+  cursor: pointer;
   height: 100%;
   font-weight: 700;
   font-size: 1.313rem;
@@ -152,15 +155,14 @@
 
   .project-toggle__NavLinks {
     font-size: 1rem;
-    justify-content:center ;
+    justify-content: center;
     align-items: center;
     flex: 1;
     width: 33%;
   }
 }
-@media (max-width:650px) {
-  .project-toggle__container
-  {
+@media (max-width: 650px) {
+  .project-toggle__container {
     position: relative;
   }
 }

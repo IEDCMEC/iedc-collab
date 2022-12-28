@@ -3,16 +3,13 @@ import { Route, Redirect } from "react-router-dom";
 import { AuthContext } from "./Auth";
 
 const PrivateRoute = ({ component: RouteComponent, ...rest }) => {
-  const {currentUser} = useContext(AuthContext);
-  if(currentUser)
-    console.log("current user" + currentUser.email)
-  else
-    console.log("current user is None")
+  const { currentUser } = useContext(AuthContext);
+  if (currentUser) console.log("current user" + currentUser.email);
+  else console.log("current user is None");
   return (
-   
     <Route
       {...rest}
-      render={routeProps =>
+      render={(routeProps) =>
         !!currentUser ? (
           <RouteComponent {...routeProps} />
         ) : (
@@ -23,8 +20,7 @@ const PrivateRoute = ({ component: RouteComponent, ...rest }) => {
   );
 };
 
-
-export default PrivateRoute
+export default PrivateRoute;
 
 /*
 <Route

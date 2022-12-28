@@ -28,7 +28,6 @@ function NavbarHome() {
           </div>
         </Link>
         <div className="navbar_items">
-         
           <Link to="/projects" className="nav_item">
             Projects
           </Link>
@@ -78,7 +77,6 @@ function NavbarHome() {
               data-aos="fade-right"
               data-aos-duration="600"
             >
-             
               <Link
                 to="/projects"
                 className="nav_item_mob"

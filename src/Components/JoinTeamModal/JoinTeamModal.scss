@@ -2,18 +2,17 @@
   position: absolute;
   height: 90vh;
   flex-direction: column;
-      align-items: center;
-      justify-content: center;
+  align-items: center;
+  justify-content: center;
 
   .bubble_9 {
     position: absolute;
     top: 0;
     left: 0;
   }
-.join-team-modal__title{
-  font-size: 2rem;
-  
-}
+  .join-team-modal__title {
+    font-size: 2rem;
+  }
   .bubble_10 {
     position: absolute;
     top: 0;
@@ -39,7 +38,7 @@
   .rectangle {
     height: 9.6px;
     width: 9.6px;
-    background-color: #EACCCC;
+    background-color: #eacccc;
   }
 
   .top-rectangles {
@@ -69,7 +68,7 @@
     padding: 50px;
 
     h1 {
-      color: #9E0000;
+      color: #9e0000;
       text-align: center;
       font-size: 45px;
       font-weight: 700;
@@ -82,29 +81,26 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      
+
       .message__label {
         font-weight: 700;
         font-size: 31px;
-        color: #9E0000;
+        color: #9e0000;
         text-align: center;
         top: -31px;
         left: 20px;
-        
-        
       }
 
       #message__text {
-        border: 1px solid #9E0000;
+        border: 1px solid #9e0000;
         border-radius: 10px;
         background-color: inherit;
-       
-        
+
         width: 100%;
         height: 225px;
         padding: 20px;
 
-        color: #9E0000;
+        color: #9e0000;
         font-size: 18px;
         font-weight: 300;
         @media (max-width: 500px) {
@@ -127,7 +123,7 @@
       flex-direction: row;
       align-items: center;
       justify-content: space-evenly;
-      background: #9E0000;
+      background: #9e0000;
       color: white;
 
       p {
@@ -139,13 +135,12 @@
       }
     }
   }
-
 }
 @media (min-device-width: 20px) and (max-device-width: 500px) {
-      .message__text {
-        width: 6rem;
-      }
-.join-team-modal .close-button{
-  right: 7px;
-}
+  .message__text {
+    width: 6rem;
+  }
+  .join-team-modal .close-button {
+    right: 7px;
+  }
 }

@@ -6,9 +6,9 @@ import left from "../../assets/left.svg";
 import right from "../../assets/right.svg";
 import { ProjectContext } from "../../contexts/ProjectContext";
 import { useHistory } from "react-router-dom";
-function ProjectCarousel({project}) {
+function ProjectCarousel({ project }) {
   const { projects } = useContext(ProjectContext);
-  const history=useHistory();
+  const history = useHistory();
   const [swiperRef, setSwiperRef] = useState();
   const handleLeftClick = useCallback(() => {
     if (!swiperRef) return;
@@ -19,18 +19,15 @@ function ProjectCarousel({project}) {
     if (!swiperRef) return;
     swiperRef.slideNext();
   }, [swiperRef]);
-var i=0;
-function getPosition()
-{
-  for(i=0;i<projects.length;i++){
-    const projects_list =projects[i].id;
-    if(projects_list===project.id)
-      {
+  var i = 0;
+  function getPosition() {
+    for (i = 0; i < projects.length; i++) {
+      const projects_list = projects[i].id;
+      if (projects_list === project.id) {
         return i;
       }
-      }
-      
-}
+    }
+  }
   return (
     <>
       <div className="project-carousel">
@@ -65,7 +62,7 @@ function getPosition()
               <div
                 key={x.id}
                 onClick={() => {
-                  history.push(`/projects/${x.id}`)
+                  history.push(`/projects/${x.id}`);
                 }}
               >
                 <ProjectCard

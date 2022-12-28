@@ -21,8 +21,12 @@ const RequirementDetails = ({ selectedProject }) => {
           <>
             <div className="requirement__other-hiring">HIRING</div>
             <div className="requirement__other-skills">
-              {selectedProject?.hiring?.map((role,index) => {
-                return <div className="requirement__other-skill" key={index}>o {role}</div>;
+              {selectedProject?.hiring?.map((role, index) => {
+                return (
+                  <div className="requirement__other-skill" key={index}>
+                    o {role}
+                  </div>
+                );
               })}
             </div>
           </>

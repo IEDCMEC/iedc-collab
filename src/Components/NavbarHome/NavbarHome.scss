@@ -1,212 +1,207 @@
 .navbar_1 {
-    height: 90px;
-    background-color: #ffffff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding:1rem;
-    position: fixed;
-    width: 100%;
-    top: 0;
-    z-index: 999;
+  height: 90px;
+  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 999;
 }
 
 .nav__desktop {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
 }
 
 .meclogo {
-    height: 75px;pointer-events: none;
+  height: 75px;
+  pointer-events: none;
 }
 .meclogo__mob {
-    padding-top: auto;
-    padding-bottom: 2rem;
-    width: 120px;
-    flex-shrink: 0;
-    pointer-events: none;
+  padding-top: auto;
+  padding-bottom: 2rem;
+  width: 120px;
+  flex-shrink: 0;
+  pointer-events: none;
 }
 
-
 .navbar_items {
-    display: flex;
-    gap:10rem;
-    padding :0.75rem 1.75rem;
+  display: flex;
+  gap: 10rem;
+  padding: 0.75rem 1.75rem;
 }
 
 .nav_item {
-    cursor: pointer;
-    text-decoration: none;
-    color: #9E0000;
-    font-size: 21px;
-    font-weight: 400;
+  cursor: pointer;
+  text-decoration: none;
+  color: #9e0000;
+  font-size: 21px;
+  font-weight: 400;
 }
-.nav_item:hover{
-    text-decoration: none;
-    color: #9E0000;
+.nav_item:hover {
+  text-decoration: none;
+  color: #9e0000;
 }
-.nav_item_mob:hover{
-    text-decoration: none;
-    color: #9E0000;
+.nav_item_mob:hover {
+  text-decoration: none;
+  color: #9e0000;
 }
 .hamburger {
-    font-size: 1.9rem;
-    color: #9E0000;
-    
+  font-size: 1.9rem;
+  color: #9e0000;
 }
 
 .nav_btn {
-    outline: none;
-    border: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    width: 50px;
-    z-index: 999;
-    height: 50px;
-    border-radius: 50%;
-    background-color: #ffffff;
-    box-shadow: -2px -2px 4px rgba(241, 87, 87, 0.459), 2px 2px 4px rgba(0, 0, 0, 0.3);
-    padding-left: auto;
+  outline: none;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  width: 50px;
+  z-index: 999;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #ffffff;
+  box-shadow: -2px -2px 4px rgba(241, 87, 87, 0.459),
+    2px 2px 4px rgba(0, 0, 0, 0.3);
+  padding-left: auto;
 }
 
 .nav__mob {
-    display: none;
-    width: 100%;}
+  display: none;
+  width: 100%;
+}
 
 .nav__mob_container {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-   
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
 }
 
 .nav__drawer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    height: 100%;
-    width: 330px;
-    padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+  width: 330px;
+  padding: 1.5rem;
 }
 
 .nav__drawer_header {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
 }
 
 .navbar_items_mob {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-evenly;
-    gap: 1rem;
-    padding-top: 3rem;
-    z-index: 9;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  gap: 1rem;
+  padding-top: 3rem;
+  z-index: 9;
 }
 
 .nav_item_mob {
-    cursor: pointer;
-    text-decoration: none;
-    color: #9E0000;
-    font-size: 21px;
-    font-weight: 400;
+  cursor: pointer;
+  text-decoration: none;
+  color: #9e0000;
+  font-size: 21px;
+  font-weight: 400;
 }
-.title_mob
-{
-    font-weight: 700;
-    font-size: 25px;
-    color: #9E0000;
-    cursor: pointer;
-    }
-    .title_mob_1
-{
-    padding-left:9%;
-    font-weight: 700;
-    font-size: 25px;
-    justify-content: center;
-    color: #9E0000;
-    cursor: pointer;
-    }
+.title_mob {
+  font-weight: 700;
+  font-size: 25px;
+  color: #9e0000;
+  cursor: pointer;
+}
+.title_mob_1 {
+  padding-left: 9%;
+  font-weight: 700;
+  font-size: 25px;
+  justify-content: center;
+  color: #9e0000;
+  cursor: pointer;
+}
 @media (min-width: 992px) and (max-width: 1380px) {
-    .navbar_items {
-        gap: 1.75rem;
-    }
+  .navbar_items {
+    gap: 1.75rem;
+  }
 }
-
 
 @media screen and (max-width: 992px) {
-    .navbar_items {
-        gap: 1rem;
-    }
+  .navbar_items {
+    gap: 1rem;
+  }
 
-    .nav_item {
-        font-size: 15px;
-        padding: 0.75rem 1.1rem;
-    }
+  .nav_item {
+    font-size: 15px;
+    padding: 0.75rem 1.1rem;
+  }
 }
 
 @media screen and (max-width: 882px) {
-    .navbar {
-        background-color: transparent;
-        box-shadow: none;
-    }
+  .navbar {
+    background-color: transparent;
+    box-shadow: none;
+  }
 
-    .nav__mob {
-        display: block;
-        background-color: white;
-    }
+  .nav__mob {
+    display: block;
+    background-color: white;
+  }
 
-    .nav__desktop {
-        display: none;
-    }
+  .nav__desktop {
+    display: none;
+  }
 
-    .nav__drawer {
-        width: 300px;
-    }
+  .nav__drawer {
+    width: 300px;
+  }
 }
 
 @media screen and (max-width: 600px) {
-    .meclogo__mob {
-        padding-bottom: 3.25rem;
-    }
+  .meclogo__mob {
+    padding-bottom: 3.25rem;
+  }
 }
 
 @media screen and (max-width: 400px) {
-    .meclogo__mob {
-        padding-bottom: 2.25rem;
-    }
+  .meclogo__mob {
+    padding-bottom: 2.25rem;
+  }
 }
 
-.home_logo
-{
-    background-color: #9E0000;
-    width: 48px;
-    height:45px;
-    display: flex;
-    justify-content: center;
-    border-radius: 9px;
-    align-items: center;
-    pointer-events: none;
-    cursor: pointer;
-
+.home_logo {
+  background-color: #9e0000;
+  width: 48px;
+  height: 45px;
+  display: flex;
+  justify-content: center;
+  border-radius: 9px;
+  align-items: center;
+  pointer-events: none;
+  cursor: pointer;
 }
-.logo{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    flex-wrap: nowrap;
-    }
-    .title{
-    padding-left: 20px;
-    font-weight: 700;
-    padding-top: 10px;
-    font-size: 25px;
-    color: #9E0000;
-    cursor: pointer;
-    }
+.logo {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: nowrap;
+}
+.title {
+  padding-left: 20px;
+  font-weight: 700;
+  padding-top: 10px;
+  font-size: 25px;
+  color: #9e0000;
+  cursor: pointer;
+}

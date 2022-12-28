@@ -12,7 +12,7 @@ const Projects = () => {
     Aos.init({ duration: 1100 });
   }, []);
   // const [projects, setProjects] = useState([]);
-  const { projects,loading } = useContext(ProjectContext);
+  const { projects, loading } = useContext(ProjectContext);
   // const [loading, setLoading] = useState(true);
   // const getWorks = async () => {
   //   await getProjects().then(async function (snapshot) {
@@ -34,10 +34,10 @@ const Projects = () => {
   };
   if (loading) {
     return (
-        <div>
-           <MainLayout route={'Projects'}>
-     <SuspenseLoader/>
-      </MainLayout>
+      <div>
+        <MainLayout route={"Projects"}>
+          <SuspenseLoader />
+        </MainLayout>
       </div>
     );
   }

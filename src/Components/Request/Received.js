@@ -96,49 +96,47 @@ function Received({ request }) {
             }
             alt=""
           />
-       
-        <div className="req_profile_details">
-          <div className="req_profile_details_h4">{request.sender}</div>
-          <div className="req_profile_details_p">{request.message}</div>
-        </div>
 
-      </div>
-      <div className="received_btns">
-        {request.status === "accepted" && (
-          <div className="received_bpx_header_para_2">Accepted</div>
-        )}
-        {request.status === "declined" && (
-          <div className="received_bpx_header_para_1">Declined</div>
-        )}
-        {request.status === "pending" && (
-          <>
-            <div
-              className="received_btn_accept"
-              onClick={() => {
-                if (request.type === "request") {
-                  handleRequest();
-                }
-                if (request.type === "invite") {
-                  handleInvite();
-                }
-              }}
-            >
-              <img src={accept_icon} className="req-box-icon" alt="" />
-              Accept
-            </div>
-            <div
-              className="received_btn_decline"
-              onClick={() => {
-                handleDeclineRequest();
-              }}
-            >
-              <img src={decline_icon}  className="req-box-icon" alt="" />
-              Decline
-            </div>
-            
-          </>
-        )}
-      </div>
+          <div className="req_profile_details">
+            <div className="req_profile_details_h4">{request.sender}</div>
+            <div className="req_profile_details_p">{request.message}</div>
+          </div>
+        </div>
+        <div className="received_btns">
+          {request.status === "accepted" && (
+            <div className="received_bpx_header_para_2">Accepted</div>
+          )}
+          {request.status === "declined" && (
+            <div className="received_bpx_header_para_1">Declined</div>
+          )}
+          {request.status === "pending" && (
+            <>
+              <div
+                className="received_btn_accept"
+                onClick={() => {
+                  if (request.type === "request") {
+                    handleRequest();
+                  }
+                  if (request.type === "invite") {
+                    handleInvite();
+                  }
+                }}
+              >
+                <img src={accept_icon} className="req-box-icon" alt="" />
+                Accept
+              </div>
+              <div
+                className="received_btn_decline"
+                onClick={() => {
+                  handleDeclineRequest();
+                }}
+              >
+                <img src={decline_icon} className="req-box-icon" alt="" />
+                Decline
+              </div>
+            </>
+          )}
+        </div>
       </div>
     </div>
   );
