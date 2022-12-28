@@ -414,6 +414,8 @@ useEffect(() => {
                 value={props.values.achievements}
                 onChange={props.handleChange("achievements")}
                 type="text"
+                as="textarea"
+                rows="3"
                 placeholder="Enter Your Achievements"
               />
               <Form.Text className="text-danger">
