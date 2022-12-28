@@ -8,14 +8,25 @@ import bubble11 from "../../assets/bubble_11.svg";
 import sendPaperPlane from "../../assets/sendPaperPlane.svg";
 import closeButton from "../../assets/close.svg";
 import { useState } from "react";
-import {sendRequest } from "../../Firebase/firebase";
+import { sendRequest } from "../../Firebase/firebase";
 import axios from "axios";
 import { toast } from "react-toastify";
 
 const JoinTeamModal = ({ user, project, ...props }) => {
   const [message, setMessage] = useState("");
-  const onSubmit = async (e) => {
-    e.preventDefault();
+  const onSubmit = async () => {
+    try {
+      await axios.post(
+        "https://w2e9j471i2.execute-api.ap-south-1.amazonaws.com/dev/send-email",
+        {
+          toEmail: project.leaderEmail,
+          subject: `Request to Join Team of ${project.name} from IEDC Collab`,
+          content: message,
+        }
+      );
+    } catch (err) {
+      console.log(err);
+    }
     let data = {
       sender: user.displayName,
       sender_id: user.uid,
@@ -31,15 +42,9 @@ const JoinTeamModal = ({ user, project, ...props }) => {
       message: message,
       createdAt: Date.now(),
     };
-    await sendRequest(data);
-    await axios.post(
-      "https://w2e9j471i2.execute-api.ap-south-1.amazonaws.com/dev/send-email",
-      {
-        toEmail: project.leaderEmail,
-        subject: `Request to Join Team of ${project.name} from IEDC Collab`,
-        content: message,
-      }
-    );
+    await sendRequest(data).then(() => {
+      toast("Request Sent Successfully");
+    });
   };
   return (
     <>
@@ -100,10 +105,9 @@ const JoinTeamModal = ({ user, project, ...props }) => {
               type="submit"
               className="btn"
               onClick={(event) => {
-                onSubmit(event).then(() => {
-                  props.onHide();
-                  toast("Request Sent Successfully");
-                });
+                event.preventDefault();
+                onSubmit();
+                props.onHide();
               }}
             >
               <p>Send</p>

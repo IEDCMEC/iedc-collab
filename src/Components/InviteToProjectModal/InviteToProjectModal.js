@@ -29,8 +29,8 @@ import { ProjectContext } from "../../contexts/ProjectContext";
 const InviteToProjectModal = ({ user, selectedUser, ...props }) => {
   // const [projects, setProjects] = useState([]);
   const [project, setProject] = useState("");
-  const {projects}=useContext(ProjectContext);
-  const [listProjects,setListProjects]=useState([]);
+  const { projects } = useContext(ProjectContext);
+  const [listProjects, setListProjects] = useState([]);
   const [message, setMessage] = useState("");
   const theme = createTheme({
     components: {
@@ -97,22 +97,22 @@ const InviteToProjectModal = ({ user, selectedUser, ...props }) => {
     //     ...messageObject[key],
     //     id: key,
     //   }));
-      let temp = [];
-      projects.forEach((project, index) => {
-        if (project.leaderEmail === user.email) {
-          if (
-            !project.teamMembers?.some(
-              (x) => x.toLowerCase() === selectedUser.name.toLowerCase()
-            )
+    let temp = [];
+    projects.forEach((project, index) => {
+      if (project.leaderEmail === user.email) {
+        if (
+          !project.teamMembers?.some(
+            (x) => x.toLowerCase() === selectedUser.name.toLowerCase()
           )
-            temp.push(project);
-        }
-      });
-      if (temp.length === 0) {
-        temp.push({ name: "No Projects Found" });
+        )
+          temp.push(project);
       }
-      setListProjects(temp);
-    };
+    });
+    if (temp.length === 0) {
+      temp.push({ name: "No Projects Found" });
+    }
+    setListProjects(temp);
+  };
   useEffect(() => {
     getWorks();
 
@@ -166,7 +166,9 @@ const InviteToProjectModal = ({ user, selectedUser, ...props }) => {
                 value={project.name || ""}
                 onChange={(e) => {
                   setProject(
-                    listProjects.find((project) => project.name === e.target.value)
+                    listProjects.find(
+                      (project) => project.name === e.target.value
+                    )
                   );
                 }}
               >

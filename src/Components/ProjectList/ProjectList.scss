@@ -38,12 +38,10 @@
 //   }
 // }
 
-
-
 .projectBox {
   color: var(--primaryColor);
   background-color: white;
-//  width:300px;
+  //  width:300px;
   margin: 20px 30px;
   padding: 20px 30px;
   text-align: center;
@@ -53,15 +51,14 @@
   cursor: pointer;
 }
 
-h5{
+h5 {
   font-weight: 900;
   font-size: 25px;
 }
-h6{
+h6 {
   font-size: 20px;
 }
-.text{
-
+.text {
   flex: 1;
   text-align: center;
 }

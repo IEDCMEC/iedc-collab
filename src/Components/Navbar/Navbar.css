@@ -1,57 +1,54 @@
-.NavbarItems{
-    display: flex;
-    background-color: #F4E6E6;
-    height: 49px;
-    font-weight: 500;
-    position: fixed;
-    z-index: 20;
-    font-size: 21px;
-    padding-left: 1%;
-    margin-top: -5px;
-    justify-content: flex-start;
-    align-items: stretch;
-    width:100%;
+.NavbarItems {
+  display: flex;
+  background-color: #f4e6e6;
+  height: 49px;
+  font-weight: 500;
+  position: fixed;
+  z-index: 20;
+  font-size: 21px;
+  padding-left: 1%;
+  margin-top: -5px;
+  justify-content: flex-start;
+  align-items: stretch;
+  width: 100%;
 }
 
-.NavMenu{
-    list-style: none;
-    display: grid;
-    grid-template-columns:repeat(4,auto);
-    grid-gap: 70px;
-    text-align: center;
-    height:100%
+.NavMenu {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(4, auto);
+  grid-gap: 70px;
+  text-align: center;
+  height: 100%;
 }
 
-.NavLinks{
-    text-decoration: none;
-    color: #9E0000;
-    height: 100%;
-    align-items: center;
-    display: flex;
-    padding-left: 10px;
-    padding-right: 10px;
+.NavLinks {
+  text-decoration: none;
+  color: #9e0000;
+  height: 100%;
+  align-items: center;
+  display: flex;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
-.NavLinks:hover{
-    
-    color: #9E0000;
-    text-decoration: none;
-    background-color: #FFCFCF;
-    font-weight: 700;
-    border-bottom: 3px solid #9E0000;
+.NavLinks:hover {
+  color: #9e0000;
+  text-decoration: none;
+  background-color: #ffcfcf;
+  font-weight: 700;
+  border-bottom: 3px solid #9e0000;
 }
-.NavLinksActive{
-    
-    color: #9E0000;
-    text-decoration: none;
-    background-color: #FFCFCF;
-    font-weight: 700;
-    border-bottom: 3px solid #9E0000;
+.NavLinksActive {
+  color: #9e0000;
+  text-decoration: none;
+  background-color: #ffcfcf;
+  font-weight: 700;
+  border-bottom: 3px solid #9e0000;
 }
 
-@media (max-width:865px) {
-
-    .NavbarItems{
+@media (max-width: 865px) {
+  .NavbarItems {
     display: flex;
     z-index: 20;
     font-size: 21px;
@@ -59,32 +56,28 @@
     margin-top: 40px;
     justify-content: space-evenly;
     align-items: stretch;
-    width:100%;
-}
-.NavMenu{
+    width: 100%;
+  }
+  .NavMenu {
     grid-gap: 20px;
+  }
 }
-}
-@media (max-width:480px)
-{
-    .NavbarItems
-{
+@media (max-width: 480px) {
+  .NavbarItems {
     font-size: 18px;
+  }
+  .NavLinks {
+    padding-left: 2px;
+    padding-right: 2px;
+  }
 }
-.NavLinks{
-    padding-left:2px ;
-    padding-right:2px ;
-}
-}
-@media (max-width:367px) {
-
-    .NavbarItems
-    {
-        font-size: 15px;
-        padding-left: 0%;
-    }
-    .NavLinks{
-        padding-left:2px ;
-        padding-right:2px ;
-    }
+@media (max-width: 367px) {
+  .NavbarItems {
+    font-size: 15px;
+    padding-left: 0%;
+  }
+  .NavLinks {
+    padding-left: 2px;
+    padding-right: 2px;
+  }
 }

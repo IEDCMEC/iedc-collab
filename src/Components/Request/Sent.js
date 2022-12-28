@@ -23,7 +23,7 @@ function Sent({ request }) {
         </div>
       </div>
       <div className="req_profile_box">
-        <div  className="req_profile_box_1">
+        <div className="req_profile_box_1">
           <img
             className="req_profile_img"
             src={
@@ -32,24 +32,24 @@ function Sent({ request }) {
             }
             alt=""
           />
-        
-        <div className="req_profile_details">
-          <div className="req_profile_details_h4">{request.receiver}</div>
-          <div className="req_profile_details_p">{request.message}</div>
+
+          <div className="req_profile_details">
+            <div className="req_profile_details_h4">{request.receiver}</div>
+            <div className="req_profile_details_p">{request.message}</div>
+          </div>
         </div>
+
+        <div className="received_btns">
+          {request.status === "accepted" && (
+            <div className="received_bpx_header_para_2">Accepted</div>
+          )}
+          {request.status === "declined" && (
+            <div className="received_bpx_header_para_1">Declined</div>
+          )}
+          {request.status === "pending" && (
+            <div className="received_bpx_header_para_3">Pending</div>
+          )}
         </div>
-      
-      <div className="received_btns">
-        {request.status === "accepted" && (
-          <div className="received_bpx_header_para_2">Accepted</div>
-        )}
-        {request.status === "declined" && (
-          <div className="received_bpx_header_para_1">Declined</div>
-        )}
-        {request.status === "pending" && (
-          <div className="received_bpx_header_para_3">Pending</div>
-        )}
-      </div>
       </div>
     </div>
   );

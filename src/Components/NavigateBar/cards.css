@@ -404,10 +404,8 @@ section .section-title {
     background-color: white;
   }
 }
-@media (max-width:410px) {
-  .NavigateBar-homeicon
-  {
+@media (max-width: 410px) {
+  .NavigateBar-homeicon {
     display: none;
   }
-  
 }

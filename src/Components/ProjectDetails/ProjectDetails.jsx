@@ -17,7 +17,7 @@ import DeleteConfirmation from "../DeleteConfirmationModal/DeleteConfirmation";
 
 const ProjectDetails = () => {
   const { selectedProject, fetchData } = useContext(ProjectContext);
-  getProject()
+  getProject();
   const { currentUser } = useContext(AuthContext);
   const [canModifyProject, setCanModifyProject] = useState(false);
   const [showNewProjectModal, setShowNewProjectModal] = useState(false);
@@ -344,7 +344,10 @@ export const ProjectDetailMob = ({ setShowProjectDetailsNotList }) => {
                   }}
                 ></img>
               </div>
-              <div style={{display:"flex",flexWrap:"wrap"}} className="ProjectDetail-tagdivright">
+              <div
+                style={{ display: "flex", flexWrap: "wrap" }}
+                className="ProjectDetail-tagdivright"
+              >
                 {selectedProject.tags.map((tag, index) => (
                   <p
                     rel="noopener noreferrer"

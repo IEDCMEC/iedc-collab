@@ -19,8 +19,7 @@
   justify-content: flex-end;
 }
 
-.project-nav__profile
-{
+.project-nav__profile {
   padding-left: 3rem;
   padding-right: 5px;
 }
@@ -47,8 +46,7 @@
   max-width: 25px;
   padding-top: 20px;
 }
-.project-nav__likes
-{
+.project-nav__likes {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
@@ -84,7 +82,6 @@
 }
 
 @media only screen and (max-width: 650px) {
-  
   .project-nav__arrow {
     // width: 30px;
     // height: 39px;
@@ -92,11 +89,10 @@
     height: 2.438rem;
     padding: 16px 0px 0px 8px;
   }
-  .project-nav__profile
-  {
+  .project-nav__profile {
     padding-left: 0.7rem;
     padding-right: 1px;
-    padding-top:0.8rem
+    padding-top: 0.8rem;
   }
   .project-nav__profile img {
     border-radius: 50%;
@@ -131,7 +127,7 @@
     white-space: nowrap;
   }
   .project-nav__likes {
-    padding-top: 5px ;
+    padding-top: 5px;
   }
   .project-nav__button {
     font-size: 0.875rem;
@@ -142,9 +138,8 @@
     padding-top: 8px;
     padding-left: 12px;
     padding-right: 12px;
-
   }
-  .projectnav-likes{
-display: none;
+  .projectnav-likes {
+    display: none;
   }
 }

@@ -219,7 +219,10 @@ const MyProfile = () => {
           <div className="edit__pro_box">
             <div className="edit__pro_abtMe">
               <div>About Me</div>
-              <div className="edit__pro_abtMe_bx" style={{whiteSpace:"pre-wrap"}}> 
+              <div
+                className="edit__pro_abtMe_bx"
+                style={{ whiteSpace: "pre-wrap" }}
+              >
                 {profile.about ? (
                   profile.about
                 ) : (
@@ -251,7 +254,10 @@ const MyProfile = () => {
 
             <div className="edit__pro_achvmts">
               <div>Achivements</div>
-              <div className="edit__pro_achvmts_bx" style={{whiteSpace:"pre-wrap"}}>
+              <div
+                className="edit__pro_achvmts_bx"
+                style={{ whiteSpace: "pre-wrap" }}
+              >
                 {profile.achievements ? (
                   profile.achievements
                 ) : (
@@ -320,7 +326,7 @@ const MyProfile = () => {
               </div>
               <div className="requests__cards">
                 {isReceived ? (
-                  (!requestsRecieved)? (
+                  !requestsRecieved ? (
                     <div className="received_sent_box skill">
                       No Requests Recieved
                     </div>
@@ -329,7 +335,7 @@ const MyProfile = () => {
                       <Received key={index} request={request} />
                     ))
                   )
-                ) : (!requests) ? (
+                ) : !requests ? (
                   <div className="received_sent_box skill">
                     No Requests Sent
                   </div>

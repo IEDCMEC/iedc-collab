@@ -42,7 +42,7 @@ export default function PersistentDrawerLeft({
   selectedSkills,
   setSelectedSkills,
   addBranch,
-  addYop
+  addYop,
 }) {
   const [skills, setSkills] = React.useState([]);
   // const [branch, setBranch] =  React.useState('')
@@ -56,8 +56,8 @@ export default function PersistentDrawerLeft({
   React.useEffect(() => {
     getAbilities();
   }, []);
-  const branches=["CSE","ECE","EEE","EBE","MECH"]
-  const years=["2023","2024","2025","2026"]
+  const branches = ["CSE", "ECE", "EEE", "EBE", "MECH"];
+  const years = ["2023", "2024", "2025", "2026"];
   const matches1 = useMediaQuery("(max-width:600px)");
   const matches2 = useMediaQuery("(max-width:800px)");
   const matches3 = useMediaQuery("(max-width:865px)");
@@ -146,9 +146,7 @@ export default function PersistentDrawerLeft({
               flexDirection: "row",
             }}
           >
-            <h3 style={styles}>
-              Skills
-            </h3>
+            <h3 style={styles}>Skills</h3>
           </div>
           {/* <input
             type="text"

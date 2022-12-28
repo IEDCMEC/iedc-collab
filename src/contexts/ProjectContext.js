@@ -1,6 +1,12 @@
 import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../Firebase/Auth/Auth";
-import { getDevelopers, getProjects, getRequests, getRequestsRecieved, getUser } from "../Firebase/firebase";
+import {
+  getDevelopers,
+  getProjects,
+  getRequests,
+  getRequestsRecieved,
+  getUser,
+} from "../Firebase/firebase";
 
 export const ProjectContext = React.createContext();
 
@@ -108,7 +114,7 @@ export const ProjectProvider = ({ children }) => {
   const fetchRequests = async () => {
     if (currentUser) {
       setLoading(true);
-      setRequests(await getRequests(currentUser.uid))
+      setRequests(await getRequests(currentUser.uid));
       setLoading(false);
     }
   };

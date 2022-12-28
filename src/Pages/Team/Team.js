@@ -28,19 +28,19 @@ const Team = () => {
             CORE TEAM
           </div>
           <div className="members__div" data-aos="zoom-in" aos-delay="150">
-            <TeamCard data={core}/>
+            <TeamCard data={core} />
           </div>
         </div>
         <div className="tech_team_info">
           <div className="team__title">TECH TEAM</div>
           <div className="members__div">
-          <TeamCard data={developers}/>
+            <TeamCard data={developers} />
           </div>
         </div>
         <div className="design_team_info">
           <p className="team__title">DESIGN TEAM</p>
           <div className="members__div">
-          <TeamCard data={designers}/>
+            <TeamCard data={designers} />
           </div>
         </div>
       </div>
