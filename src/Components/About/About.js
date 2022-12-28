@@ -8,15 +8,9 @@ const About = () => {
         <div className="heading_about" >ABOUT</div>
 
         <div className="paragraph_about" >
-          The Innovation and Entrepreneurship Development Cell (IEDC) is an
-          active student-run cell under MEC Centre for Interdisciplinary
-          Research (CCIR) that seeks to create and promote innovation and
-          entrepreneurship skills among the students of MEC. The cell works in
-          close association with Kerala Startup Mission. It envisions fostering
-          innovative thinking and becoming a facilitator between the students
-          inside the campus and the industry outside by acting as a hub of
-          contacts and network that helps in finding the wannabe entrepreneurs
-          the right people to approach for any task.
+        The Innovation and Entrepreneurship Development Cell (IEDC) is an active student-run cell under MEC Centre for Interdisciplinary Research (CCIR) 
+        that seeks to create, promote and nurture innovation and entrepreneurship skills among the students of MEC. MEC Collab, a major venture and flagship
+         of IEDC MEC, is a responsible approach to solve a relevant problem; that of project leads being unable to find proficient developers and vice versa, developers looking for experience, but unable to find projects to work on. Collab MEC is an online platform that connects similar minded developers and project leads together.
         </div>
       </div>
       <img src={bubble3} alt="" className="bubble_3" />
