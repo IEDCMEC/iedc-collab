@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import { Formik } from "formik";
@@ -18,6 +18,7 @@ import Compress from "compress.js";
 import "./EditModal.scss";
 import { Autocomplete, TextField } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { ProjectContext } from "../../contexts/ProjectContext";
 
 const compress = new Compress();
 const NewUserForm = ({ onClose, user }) => {
@@ -26,7 +27,8 @@ const NewUserForm = ({ onClose, user }) => {
     user?.profilePhotoName || ""
   );
   const [profilePhoto, setProfilePhoto] = useState(user?.profilePhoto || "");
-  const [projects, setProjects] = useState([]);
+  // const [projects, setProjects] = useState([]);
+  const {projects}=useContext(ProjectContext);
   const [acValue, setACValue] = useState(user?.projects || []);
   const [remainProjects, setRemainProjects] = useState([]);
   const [skills, setSkills] = useState([]);
@@ -50,19 +52,19 @@ const NewUserForm = ({ onClose, user }) => {
     website: user?.website || "",
   };
 
-  const getWorks = async () => {
-    await getProjects().then(async function (snapshot) {
-      let messageObject = snapshot.val();
-      const result = Object.keys(messageObject).map((key) => ({
-        ...messageObject[key],
-        id: key,
-      }));
-      setProjects(result);
-    });
-  };
+  // const getWorks = async () => {
+  //   await getProjects().then(async function (snapshot) {
+  //     let messageObject = snapshot.val();
+  //     const result = Object.keys(messageObject).map((key) => ({
+  //       ...messageObject[key],
+  //       id: key,
+  //     }));
+  //     setProjects(result);
+  //   });
+  // };
 
   useEffect(() => {
-    getWorks();
+    // getWorks();
     getRemainProjects();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [projects, acValue]);
