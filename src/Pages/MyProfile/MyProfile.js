@@ -19,6 +19,7 @@ import bubble3 from "../../assets/bubble_3.svg";
 import bubble1 from "../../assets/bubble_1.svg";
 import bubble5 from "../../assets/bubble_5.svg";
 import { ProjectContext } from "../../contexts/ProjectContext";
+import { useHistory } from "react-router-dom";
 const MyProfile = () => {
   const { currentUser } = useContext(AuthContext);
   const [showProfileModal, setShowProfileModal] = useState(false);
@@ -29,6 +30,7 @@ const MyProfile = () => {
   const [isReceived, setIsReceived] = useState(true);
   // const [requestsRecieved, setRequestsRecieved] = useState([]);
   const {requests,requestsRecieved}=useContext(ProjectContext);
+  const history = useHistory();
   const newprojectClick = async () => {
     if (currentUser) {
       setShowProfileModal(true);
@@ -253,6 +255,44 @@ const MyProfile = () => {
                 )}
               </div>
             </div>
+            <div className="edit__pro_projects">
+              <div>Projects</div>
+                <div className="developer_details_body_right_content_1">
+                  <div className="developer_details_body_right_content_projects_1">
+                    {profile.projects ? (
+                      profile.projects.map((project, index) => {
+                        return (
+                          <div
+                            className="developer_details_body_right_content_project"
+                            key={index}
+                            onClick={() => {
+                              history.push(`/projects/${project.id}`);
+                            }}
+                          >
+                            <div className="developer_details_body_right_content_project_img">
+                              <img
+                                src={
+                                  project.projectPhoto ||
+                                  "https://images.unsplash.com/photo-1639413665566-2f75adf7b7ca?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyN3x8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60"
+                                }
+                                alt=""
+                              />
+                            </div>
+                            <div className="developer_details_body_right_content_project_title">
+                              {project.name}
+                            </div>
+                            <div className="developer_details_body_right_content_project_lead">
+                              {project.leader_name}
+                            </div>
+                          </div>
+                        );
+                      })
+                    ) : (
+                      <div className="skill">No Projects Added</div>
+                    )}
+                  </div>
+                </div>
+              </div>
             <div className="edit__pro_achvmts">Requests</div>
             <div className="edit__pro_box_1">
               {/* <div className="reqs_invite_bar">

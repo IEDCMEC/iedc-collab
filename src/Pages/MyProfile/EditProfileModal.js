@@ -424,11 +424,10 @@ const NewUserForm = ({ onClose, user }) => {
                           break;
                         }
                       }
-                    } else {
                       addSkills(skill);
                       setSkill("");
                       setACValue1([...acValue1, skill]);
-                    }
+                    } 
                   }
                 }}
               >

@@ -290,6 +290,7 @@
   flex-wrap: wrap;
 }
 .edit__pro_abtMe,
+.edit__pro_projects,
 .edit__pro_skls,
 .edit__pro_achvmts {
   display: flex;
@@ -305,6 +306,20 @@
   color: #9e0000;
 
   padding-top: 1rem;
+}
+.edit__pro_projects
+{
+  padding: 3rem;
+  justify-content: center;
+}
+.developer_details_body_right_content_projects_1
+{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding-top: 2rem;
+  gap: 30px;
+  justify-content: center;
 }
 .edit__pro_abtMe_bx,
 .edit__pro_achvmts_bx {
