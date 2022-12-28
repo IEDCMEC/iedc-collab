@@ -1,17 +1,12 @@
-import { jemma, devika, hanna} from '../assets/team/index'
+import { devika, hanna} from '../assets/team/index'
 const designers=[
     {
       id:1,
-      name:'Jemma Mariya George',
-      image:jemma
-    },
-    {
-      id:2,
       name:'Devika Ajith',
       image:devika
     },
     {
-      id:3,
+      id:2,
       name:'Hanna Ashraf',
       image:hanna
     },

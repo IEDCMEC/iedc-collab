@@ -29,16 +29,19 @@
   color: black;
   cursor: pointer;
 }
-.team .member img {
+.team_a:hover {
+  color: #9e0000;
+}
+.member img {
   border-radius: 50%;
   object-fit: cover;
   pointer-events: none;
-  width: 200px;
-  height: 200px;
+  width: 9rem;
+  height: 9rem;
   border: 3px solid #760101;
 }
 
-.team .member .name {
+.member .name {
   padding-top: 7%;
   font-weight: 700;
   font-size: 20px;

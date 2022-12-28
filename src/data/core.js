@@ -1,5 +1,5 @@
-import { adithya,pranoy,lisa ,jaison,gokul,aldrin, achyuth,aniva,jemma,jagannath} from "../../assets/team";
-const TeamData = [
+import { adithya,pranoy,lisa ,jaison,gokul,aldrin, achyuth,aniva,jemma,jagannath} from "../assets/team";
+const core = [
   {
     id: 1,
     name: "Pranoy Santhosh M",
@@ -72,4 +72,4 @@ const TeamData = [
     linkedin: "https://www.linkedin.com/in/aniva-maria-dsouza-06047b243/",
   }
 ];
- export default TeamData
+ export default core
