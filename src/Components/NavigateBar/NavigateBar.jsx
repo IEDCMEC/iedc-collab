@@ -92,7 +92,7 @@ const Navbar = () => {
                 </p>
               </Link>
             </div>
-            {location.pathname === "/ideas" && (
+            {location.pathname.split("/")[1] === "ideas" && (
               <div
                 style={{
                   display: "flex",
@@ -130,8 +130,7 @@ const Navbar = () => {
                 ></i>
               </div>
             )}
-            {(location.pathname === "/developers" ||
-              location.pathname === "/developers/") && (
+            {location.pathname.split("/")[1] === "developers" && (
               <div
                 style={{
                   display: "flex",
@@ -150,7 +149,7 @@ const Navbar = () => {
                 ></i>
               </div>
             )}
-            {location.pathname === "/profile" && (
+            {location.pathname.split("/")[1] === "profile" && (
               <div
                 style={{
                   display: "flex",
