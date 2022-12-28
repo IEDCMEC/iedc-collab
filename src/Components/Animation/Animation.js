@@ -8,6 +8,8 @@ import { signIn } from "../../Firebase/firebase";
 import { useContext } from "react";
 import { AuthContext } from "../../Firebase/Auth/Auth";
 import { useHistory } from "react-router-dom";
+import { useEffect } from "react";
+import { useState } from "react";
 
 const Animation = () => {
   const defaultOptions = {
@@ -17,10 +19,22 @@ const Animation = () => {
     rendererSettings: { preserveAspectRatio: "xMidYMid slice" },
   };
   const { currentUser } = useContext(AuthContext);
+  const [clicked, setClicked] = useState(false);
   const history = useHistory();
   const newprojectClick = async () => {
-    signIn(() => history.push("/projects"));
+    setClicked(true);
+    try {
+      await signIn();
+    } catch (error) {
+      console.log(error);
+    }
   };
+  useEffect(() => {
+    if (currentUser && clicked) {
+      history.push("/projects");
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentUser]);
 
   return (
     <>

@@ -53,6 +53,9 @@ const MyProfile = () => {
   // };
   const getGithubUsername = (url) => {
     const urlArray = url.split("/");
+    if (urlArray[urlArray.length - 1] === "") {
+      return urlArray[urlArray.length - 2];
+    }
     return urlArray[urlArray.length - 1];
   };
   const getLinkedinUsername = (url) => {
