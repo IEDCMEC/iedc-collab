@@ -47,7 +47,14 @@ const MyProfile = () => {
   const fetchRequestsRecieved = async () => {
     setRequestsRecieved(await getRequestsRecieved(currentUser.uid));
   };
-
+  const getGithubUsername = (url) => {
+    const urlArray = url.split("/");
+    return urlArray[urlArray.length - 1];
+  };
+  const getLinkedinUsername = (url) => {
+    const urlArray = url.split("/");
+    return urlArray[urlArray.length - 1];
+  };
   useEffect(() => {
     if (currentUser?.uid !== undefined) {
       getDev(currentUser?.uid);
@@ -87,19 +94,32 @@ const MyProfile = () => {
             </div>
 
             <div className="profile_details_container">
-              <div className="profile_details_header">
-                <p className="c">{selectedUser.name}</p>
+              <div  style={{
+                    width: "100%",
+                    display: "flex",
+                    justifyContent: "flex-end",
+                    alignItems: "flex-end",
+                  }}>
                 <img
                   src={edit_icon}
-                  style={{ width: "2rem", cursor: "pointer" }}
+                  style={{
+                    width: "2rem",
+                    cursor: "pointer",
+                    alignItems: "flex-end",
+                  }}
                   alt=""
                   onClick={newprojectClick}
                 />
               </div>
+
+              <div className="profile_details_header_name">
+                {selectedUser.name}
+              </div>
+
               <div className="phone_class">
                 <div className="profile_phone">
-                  <BsTelephoneInbound size={20} />
-                  <p>
+                  <BsTelephoneInbound size={25} />
+                  <div>
                     {selectedUser.contact ? (
                       <a
                         href={`tel:+91${selectedUser.contact}`}
@@ -111,77 +131,78 @@ const MyProfile = () => {
                     ) : (
                       "Change in Edit Profile"
                     )}
-                  </p>
+                  </div>
                 </div>
-                <div className="profile_class">
-                  <HiOutlineAcademicCap size={20} />
-                  <p>
+                <div className="profile_phone">
+                  <HiOutlineAcademicCap size={25} />
+                  <div>
                     {selectedUser?.branch || "Change in Edit Profile"}
                     {selectedUser?.year}
-                  </p>
+                  </div>
                 </div>
-              </div>
-              <div className="profile_email">
-                <MdOutlineEmail size={20} />
-                <p>
-                  {(
-                    <a
-                      href={`mailto:${selectedUser?.email}`}
-                      target="_blank"
-                      rel="noreferrer"
-                    >
-                      {selectedUser?.email}
-                    </a>
-                  ) || "Change in Edit Profile"}
-                </p>
-              </div>
-              <div className="profile_web">
-                <TbNetwork size={20} />
-                <p>
-                  {selectedUser.website ? (
-                    <a
-                      href={selectedUser?.website}
-                      target="_blank"
-                      rel="noreferrer"
-                    >
-                      {selectedUser.website}
-                    </a>
-                  ) : (
-                    "Change in Edit Profile"
-                  )}
-                </p>
-              </div>
-              <div className="profile_github">
-                <VscGithubInverted size={20} />
-                <p>
-                  {selectedUser.github ? (
-                    <a
-                      href={selectedUser?.github}
-                      target="_blank"
-                      rel="noreferrer"
-                    >
-                      {selectedUser.github}
-                    </a>
-                  ) : (
-                    "Change in Edit Profile"
-                  )}
-                </p>
-              </div>
-              <div className="profile_linkedin">
-                <FaLinkedin style={{ width: "3rem" }} />
-                <p>
-                  {selectedUser.linkedin ? (
-                    <a
-                      href={selectedUser.linkedin}
-                      target="_blank"
-                      rel="noreferrer"
-                    >
-                      {selectedUser.linkedin}
-                    </a>
-                  ) : (
-                    "Change in Edit Profile"
-                  )}
-                </p>
+
+                <div className="profile_phone">
+                  <MdOutlineEmail size={25} />
+                  <div>
+                    {(
+                      <a
+                        href={`mailto:${selectedUser?.email}`}
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        {selectedUser?.email}
+                      </a>
+                    ) || "Change in Edit Profile"}
+                  </div>
+                </div>
+                <div className="profile_phone">
+                  <TbNetwork size={25} />
+                  <div>
+                    {selectedUser.website ? (
+                      <a
+                        href={selectedUser?.website}
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        Portfolio Website
+                      </a>
+                    ) : (
+                      "Change in Edit Profile"
+                    )}
+                  </div>
+                </div>
+                <div className="profile_phone">
+                  <VscGithubInverted size={25} />
+                  <div>
+                    {selectedUser.github ? (
+                      <a
+                        href={selectedUser?.github}
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        @ {getGithubUsername(selectedUser.github)}
+                      </a>
+                    ) : (
+                      "Change in Edit Profile"
+                    )}
+                  </div>
+                </div>
+                <div className="profile_phone">
+                  <FaLinkedin size={25} />
+                  <div>
+                    {selectedUser.linkedin ? (
+                      <a
+                        href={selectedUser.linkedin}
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        @ {getLinkedinUsername(selectedUser.linkedin)}
+                      </a>
+                    ) : (
+                      "Change in Edit Profile"
+                    )}
+                  </div>
+                </div>
               </div>
             </div>
           </div>
