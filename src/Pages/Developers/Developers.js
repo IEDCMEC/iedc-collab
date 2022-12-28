@@ -22,7 +22,8 @@ const Developers = () => {
   const addYop = (selectedYop) => {
     let oldYop = yop;
     if (oldYop.find((s) => s === selectedYop)) {
-      oldYop = oldYop.filter((s) => s !== selectedYop);
+      if(oldYop.length==1)oldYop=[]
+     else oldYop = oldYop.filter((s) => s !== selectedYop);
     } else {
       oldYop = [...oldYop, selectedYop];
     }
@@ -36,6 +37,7 @@ const Developers = () => {
       oldBranch = [...oldBranch, b];
     }
     setBranch(oldBranch);
+    
   };
   // const getDevs = async () => {
   //   // await getDevelopers().then(async function (snapshot) {
@@ -52,16 +54,17 @@ const Developers = () => {
   useEffect(() => {
     setUsers(developers);
     setAllUsers(developers);
+    setLoading1(false);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [developers, allUsers]);
+  }, [developers]);
   const filterDevelopers = () => {
-    // setLoading(true);
-    setUsers(developers);
-    setAllUsers(developers);
+    
+     setUsers(developers);
+   // setAllUsers(developers);
     let developers1 = allUsers;
     let skills = selectedSkills;
     let devs = [];
-    if (skills.length <= 0) {
+    if (skills.length === 0 ) {
       devs = allUsers;
     } else {
       developers1.forEach((dev) => {
@@ -74,28 +77,34 @@ const Developers = () => {
       });
 
       // setLoading(false);
+      setUsers(devs)
     }
-    if (branch.length > 0)
+    if (branch.length > 0){
       devs = devs.filter((d) => {
         if (branch.find((br) => br === d.branch)) {
           return true;
         } else return false;
       });
-    if (yop.length > 0)
+      setUsers(devs)
+    }
+    if (yop.length > 0){
       devs = devs.filter((d) => {
         if (yop.find((yp) => yp === d.year)) {
           return true;
         } else return false;
       });
     setUsers(devs);
+    }
   };
   useEffect(() => {
+    console.log(branch);
     filterDevelopers();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedSkills, branch, yop]);
+
   useEffect(() => {
-    if (users?.length > 0) setLoading1(false);
-  }, [users]);
+    alert(users)}, [users])
+ 
   const history = useHistory();
   const handleClick = (u) => {
     history.push(`/developers/${u.id}`);
