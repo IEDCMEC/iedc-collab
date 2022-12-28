@@ -11,7 +11,7 @@ import SuspenseLoader from "../../Components/SuspenseLoader/SuspenseLoader";
 const Landing = () => {
   const [spinner, setSpinner] = useState(true);
   useEffect(() => {
-    setTimeout(() => setSpinner(false), 2000);
+    setTimeout(() => setSpinner(false), 1000);
   }, []);
   return spinner ? (
     <SuspenseLoader />
