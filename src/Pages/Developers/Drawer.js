@@ -8,7 +8,6 @@ import MenuIcon from "@mui/icons-material/Menu";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import useMediaQuery from "@mui/material/useMediaQuery";
-import vector from "../../assets/Vector.svg";
 import { getSkills } from "../../Firebase/firebase";
 
 // const typeDevs = ['Skills','Projects','Developers']

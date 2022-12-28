@@ -1,3 +1,9 @@
+:root {
+  --primary-font: 20px;
+  --secondary-font: 18px;
+  --primary-line: 30px;
+  --secondary-line: 28px;
+}
 .my_profile_container {
   display: flex;
   flex-direction: row;
@@ -37,7 +43,6 @@
   width: 100%;
   justify-content: space-between;
   align-items: center;
- 
 }
 .profile_details_header_name {
   font-weight: 600;
@@ -80,7 +85,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 95%;
+  width: 100%;
   gap: 1.25rem;
   padding: 1rem;
 }
@@ -153,9 +158,6 @@
   font-weight: 700;
   font-size: 21px;
   line-height: 29px;
-
-  /* identical to box height */
-
   color: #9e0000;
 }
 .edit__header {
@@ -294,7 +296,7 @@
   flex-direction: column;
   align-items: center;
   gap: 0.8rem;
-
+  width: 100%;
   font-family: "Nunito";
   font-style: normal;
   font-weight: 700;
@@ -304,21 +306,45 @@
 
   padding-top: 1rem;
 }
-
 .edit__pro_abtMe_bx,
-.edit__pro_skls_bx,
 .edit__pro_achvmts_bx {
   display: flex;
   flex-direction: column;
+  font-family: "Nunito";
+  font-style: normal;
+  font-weight: 400;
+  padding: 1.2rem;
+  font-size: var(--primary-font);
+  line-height: var(--primary-line);
+  text-align: center;
+  color: #171e22;
+  justify-content: center;
+  background: #ffffff;
+  border: 0.4px solid #9e0000;
+  border-radius: 10px;
+  width: 80%;
+  min-height: 3rem;
+}
+.edit__pro_skls_bx {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 0.5rem;
   justify-content: center;
   background: #ffffff;
   border: 0.4px solid #9e0000;
   border-radius: 10px;
   padding: 10px;
-  font-weight: 600;
-  font-size: 20px;
-  min-height: 2.5rem;
-  min-width: 15rem;
+  font-family: "Nunito";
+  font-style: normal;
+  font-weight: 400;
+
+  font-size: var(--primary-font);
+  line-height: var(--primary-line);
+  text-align: center;
+
+  color: #171e22;
+  width: 80%;
 }
 @media (min-device-width: 20px) and (max-device-width: 500px) {
   .my_profile_container {

@@ -1,7 +1,7 @@
 import { AuthProvider } from "./Firebase/Auth/Auth";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import "./App.scss";
-import React,{ Suspense } from "react";
+import React from "react";
 import "react-toastify/dist/ReactToastify.css";
 import { Projects ,Landing,Developers,MyProfile,Ideas,DeveloperDetails,ProjectDetail,Team} from "./Pages/index";
 import initialize from "./Firebase/firebase";

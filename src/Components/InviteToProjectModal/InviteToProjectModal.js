@@ -12,9 +12,7 @@ import closeButton from "../../assets/close.svg";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import {
-  acceptRequest,
   getProjects,
-  sendRequest,
 } from "../../Firebase/firebase";
 import {
   createTheme,

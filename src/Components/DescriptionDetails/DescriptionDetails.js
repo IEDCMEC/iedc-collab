@@ -18,7 +18,6 @@ const DescriptionDetails = ({ selectedProject }) => {
   const { fetchData } = useContext(ProjectContext);
   const { currentUser } = useContext(AuthContext);
   const [canModifyProject, setCanModifyProject] = useState(false);
-  const [mobile, setMobile] = useState(false);
   const [showNewProjectModal, setShowNewProjectModal] = useState(false);
   const [displayConfirmationModal, setDisplayConfirmationModal] = useState(
     false
