@@ -27,7 +27,6 @@ import { toast } from "react-toastify";
 import { ProjectContext } from "../../contexts/ProjectContext";
 
 const InviteToProjectModal = ({ user, selectedUser, ...props }) => {
-  console.log(selectedUser);
   // const [projects, setProjects] = useState([]);
   const [project, setProject] = useState("");
   const {projects}=useContext(ProjectContext);
