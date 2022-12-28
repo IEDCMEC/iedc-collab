@@ -4,7 +4,12 @@ import Button from "react-bootstrap/Button";
 import { Formik } from "formik";
 import * as yup from "yup";
 import { Form, Row, Col, InputGroup } from "react-bootstrap";
-import { doEditProfile, getProjects, getSkills ,addSkills} from "../../Firebase/firebase";
+import {
+  doEditProfile,
+  getProjects,
+  getSkills,
+  addSkills,
+} from "../../Firebase/firebase";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUpload } from "@fortawesome/free-solid-svg-icons";
 import "./EditModal.scss";
@@ -94,11 +99,11 @@ const NewUserForm = ({ onClose, user }) => {
   useEffect(() => {
     getAbilities();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [skill,acValue1]);
-useEffect(() => {
-  getRemainSkills();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-}, [skills,acValue1]);
+  }, [skill, acValue1]);
+  useEffect(() => {
+    getRemainSkills();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [skills, acValue1]);
   console.log(skills);
 
   const theme = createTheme({
@@ -196,32 +201,38 @@ useEffect(() => {
                   required
                   onBlur={props.handleBlur("photo")}
                   onChange={async (e) => {
-                    try {
-                      const results = await compress.compress(
-                        [...e.target.files],
-                        {
-                          size: 1.5,
-                          quality: 0.7,
-                          rotate: false,
-                          resize: true,
-                        }
-                      );
-                      const img1 = results[0];
-                      // console.log(img1);
-                      const base64str = results[0].data;
-                      const imgExt = img1.ext;
-                      const compressedImage = Compress.convertBase64ToFile(
-                        base64str,
-                        imgExt
-                      );
-                      setProfilePhoto(compressedImage);
-                      setProfilePhotoName(e.target.files[0].name);
-                      setImage(URL.createObjectURL(compressedImage));
-                    } catch (error) {
-                      setProfilePhoto(e.target.files[0]);
-                      setProfilePhotoName(e.target.files[0].name);
-                      setImage(URL.createObjectURL(e.target.files[0]));
-                      console.log("Error in compressing: " + error);
+                    if (e.target.files[0].size > 1048576) {
+                      toast("File size should be less than 1MB", {
+                        autoClose: 2000,
+                      });
+                    } else {
+                      try {
+                        const results = await compress.compress(
+                          [...e.target.files],
+                          {
+                            size: 1.5,
+                            quality: 0.7,
+                            rotate: false,
+                            resize: true,
+                          }
+                        );
+                        const img1 = results[0];
+                        // console.log(img1);
+                        const base64str = results[0].data;
+                        const imgExt = img1.ext;
+                        const compressedImage = Compress.convertBase64ToFile(
+                          base64str,
+                          imgExt
+                        );
+                        setProfilePhoto(compressedImage);
+                        setProfilePhotoName(e.target.files[0].name);
+                        setImage(URL.createObjectURL(compressedImage));
+                      } catch (error) {
+                        setProfilePhoto(e.target.files[0]);
+                        setProfilePhotoName(e.target.files[0].name);
+                        setImage(URL.createObjectURL(e.target.files[0]));
+                        console.log("Error in compressing: " + error);
+                      }
                     }
                   }}
                   type="file"
@@ -390,21 +401,27 @@ useEffect(() => {
             </Form.Group>
             <div className="add-skill-row">
               <Form.Group controlId="formContact" className="col-md-6">
-                <Form.Label>Enter Skill (If not present in skills list)</Form.Label>
+                <Form.Label>
+                  Enter Skill (If not present in skills list)
+                </Form.Label>
                 <Form.Control
                   value={skill}
-                  onChange={(e)=>setSkill(e.target.value)}
+                  onChange={(e) => setSkill(e.target.value)}
                   type="text"
                   placeholder="Enter Skill"
                 />
               </Form.Group>
-              <div className="add-skill-btn" onClick={()=>{
-                if(skill.length===0)
-                  return;
-                addSkills(skill);
-                setSkill("");
-                setACValue1([...acValue1,skill]);
-              }}>Add Skill</div>
+              <div
+                className="add-skill-btn"
+                onClick={() => {
+                  if (skill.length === 0) return;
+                  addSkills(skill);
+                  setSkill("");
+                  setACValue1([...acValue1, skill]);
+                }}
+              >
+                Add Skill
+              </div>
             </div>
             <Form.Group controlId="formAchievements">
               <Form.Label>Achievements</Form.Label>
