@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./ProjectNav.scss";
 // import { ProjectContext } from "../../contexts/ProjectContext";
-import like from "../../assets/like.png";
+// import like from "../../assets/like.png";
 import JoinTeamModal from "../JoinTeamModal/JoinTeamModal";
 import { getUser } from "../../Firebase/firebase";
 import { AuthContext } from "../../Firebase/Auth/Auth";

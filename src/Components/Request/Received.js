@@ -1,18 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import "./Request.css";
 import accept_icon from "../../assets/accepticon.svg";
 import decline_icon from "../../assets/declineicon.svg";
-import { Button } from "@mui/material";
 import {
   acceptInvite,
   acceptRequest,
   declineRequest,
-  getProject,
-  getRequests,
 } from "../../Firebase/firebase";
-import { useContext } from "react";
-import { AuthContext } from "../../Firebase/Auth/Auth";
-import { ControlCameraSharp } from "@mui/icons-material";
 import { useHistory } from "react-router-dom";
 import { toast } from "react-toastify";
 import axios from "axios";

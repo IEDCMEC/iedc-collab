@@ -7,8 +7,8 @@ import bubble10 from "../../assets/bubble_10.svg";
 import bubble11 from "../../assets/bubble_11.svg";
 import sendPaperPlane from "../../assets/sendPaperPlane.svg";
 import closeButton from "../../assets/close.svg";
-import { useEffect, useState } from "react";
-import { acceptRequest, getUser, sendRequest } from "../../Firebase/firebase";
+import { useState } from "react";
+import {sendRequest } from "../../Firebase/firebase";
 import axios from "axios";
 import { toast } from "react-toastify";
 
