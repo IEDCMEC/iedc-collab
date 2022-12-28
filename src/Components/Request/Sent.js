@@ -1,6 +1,5 @@
 import React from "react";
 import "./Request.css";
-import { Button } from "@mui/material";
 import { useHistory } from "react-router-dom";
 
 function Sent({ request }) {

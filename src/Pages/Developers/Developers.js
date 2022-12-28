@@ -14,6 +14,8 @@ const Developers = () => {
   const [loading, setLoading] = useState(true);
   const [branch, setBranch] = useState('')
   const [yop, setYop] = useState('')
+  console.log(branch);
+  console.log(yop);
   const getDevs = async () => {
     await getDevelopers().then(async function (snapshot) {
       let messageObject = snapshot.val();
@@ -56,6 +58,7 @@ const Developers = () => {
   }
   useEffect(()=>{
    filterDevelopers()
+   // eslint-disable-next-line react-hooks/exhaustive-deps
   },[selectedSkills])
   useEffect(()=>{
     if(users.length>0)

@@ -8,7 +8,6 @@ import { signIn } from "../../Firebase/firebase";
 import { useContext } from "react";
 import { AuthContext } from "../../Firebase/Auth/Auth";
 import { useHistory } from "react-router-dom";
-import { useEffect } from "react";
 
 const Animation = () => {
   const defaultOptions = {
