@@ -46,7 +46,6 @@ const Developers = () => {
     if (skills.length <= 0) {
       setUsers(allUsers);
     } else {
-      console.log(skills);
       let devs = [];
       developers1.forEach((dev) => {
         for (let s in skills) {
@@ -57,7 +56,6 @@ const Developers = () => {
           }
         }
       });
-      console.log(devs);
       setUsers(devs);
       // setLoading(false);
     }
