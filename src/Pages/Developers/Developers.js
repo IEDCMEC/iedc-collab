@@ -89,10 +89,11 @@ const Developers = () => {
       });
     if (yop.length > 0)
       devs = devs.filter((d) => {
-        if (yop.find((yp) => yp == d.yop)) {
+        if (yop.find((yp) => yp == d.year)) {
           return true;
         } else return false;
       });
+      console.log(devs)
     setUsers(devs);
   };
   useEffect(() => {
