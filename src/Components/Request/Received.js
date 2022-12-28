@@ -93,7 +93,7 @@ function Received({ request }) {
         </div>
       </div>
       <div className="req_profile_box">
-        <div>
+        <div className="req_profile_box_1">
           <img
             className="req_profile_img"
             src={
@@ -102,11 +102,12 @@ function Received({ request }) {
             }
             alt=""
           />
-        </div>
+       
         <div className="req_profile_details">
           <div className="req_profile_details_h4">{request.sender}</div>
           <div className="req_profile_details_p">{request.message}</div>
         </div>
+
       </div>
       <div className="received_btns">
         {request.status === "accepted" && (
@@ -128,7 +129,7 @@ function Received({ request }) {
                 }
               }}
             >
-              <img src={accept_icon} alt="" />
+              <img src={accept_icon} className="req-box-icon" alt="" />
               Accept
             </div>
             <div
@@ -137,11 +138,13 @@ function Received({ request }) {
                 handleDeclineRequest();
               }}
             >
-              <img src={decline_icon} alt="" />
+              <img src={decline_icon}  className="req-box-icon" alt="" />
               Decline
             </div>
+            
           </>
         )}
+      </div>
       </div>
     </div>
   );
