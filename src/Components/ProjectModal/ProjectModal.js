@@ -13,7 +13,7 @@ import { toast } from "react-toastify";
 import Compress from "compress.js";
 
 const compress = new Compress();
-const NewProjectForm = ({ onClose, project }) => {
+const NewProjectForm = ({ onClose, project,setVariable,variable }) => {
   const [image, setImage] = useState(project?.projectPhoto || "");
   const [projectPhotoName, setProjectPhotoName] = useState(
     project?.projectPhotoName || ""
@@ -84,6 +84,7 @@ const NewProjectForm = ({ onClose, project }) => {
     } else {
       doEditProject(formValues, project.id, () => {
         fetchData();
+        setVariable(!variable);
         toast("Project edited successfully", {
           autoClose: 3000,
         });
@@ -348,7 +349,7 @@ const ProjectModal = (props) => {
           ></i>
         </div>
         <Col className="p-md-5">
-          <NewProjectForm onClose={props.onHide} project={props.project} />
+          <NewProjectForm onClose={props.onHide} project={props.project} setVariable={props.setVariable} variable={props.variable}/>
         </Col>
       </Modal.Body>
     </Modal>

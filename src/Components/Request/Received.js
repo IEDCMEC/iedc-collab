@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./Request.css";
 import accept_icon from "../../assets/accepticon.svg";
 import decline_icon from "../../assets/declineicon.svg";
@@ -11,9 +11,11 @@ import { useHistory } from "react-router-dom";
 import { toast } from "react-toastify";
 import axios from "axios";
 import { emailUrl } from "../../Utils/urls";
+import { ProjectContext } from "../../contexts/ProjectContext";
 
 function Received({ request }) {
   const history = useHistory();
+  const { fetchRequestsRecieved } = useContext(ProjectContext);
   async function handleRequest() {
     await acceptRequest(request);
     axios
@@ -23,8 +25,8 @@ function Received({ request }) {
         content: `${request.receiver} accepted the request for ${request.project}.`,
       })
       .then(() => {
+        fetchRequestsRecieved();
         toast("Request Accepted");
-        window.location.reload();
       });
   }
   async function handleInvite() {
@@ -36,8 +38,8 @@ function Received({ request }) {
         content: `${request.receiver} accepted the invite for ${request.project}.`,
       })
       .then(() => {
+        fetchRequestsRecieved();
         toast("Invite Accepted");
-        window.location.reload();
       });
   }
   async function handleDeclineRequest() {
@@ -51,8 +53,8 @@ function Received({ request }) {
           content: `${request.receiver} declined the invite for ${request.project}`,
         })
         .then(() => {
+          fetchRequestsRecieved();
           toast("Invite Declined");
-          window.location.reload();
         });
     }
     if (request.type === "request")
@@ -64,8 +66,8 @@ function Received({ request }) {
           content: `${request.receiver} declined the request for ${request.project}.`,
         })
         .then(() => {
+          fetchRequestsRecieved();
           toast("Request Declined");
-          window.location.reload();
         });
   }
   return (

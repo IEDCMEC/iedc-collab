@@ -14,6 +14,7 @@ import SuspenseLoader from "../../Components/SuspenseLoader/SuspenseLoader";
 function ProjectDetail() {
   let { id } = useParams();
   const [selectedProject, setSelectedProject] = useState({});
+  const [variable, setVariable] = useState(true);
   const [loading, setLoading] = useState(true);
   const getWork = async (id) => {
     const project = await getProject(id);
@@ -25,7 +26,7 @@ function ProjectDetail() {
 
   useEffect(() => {
     getWork(id);
-  }, [id]);
+  }, [id, variable]);
   const [toggle, setToggle] = useState(1);
   if (loading) {
     return (
@@ -50,7 +51,11 @@ function ProjectDetail() {
 
           <div className="details__container">
             {toggle === 1 && (
-              <DescriptionDetails selectedProject={selectedProject} />
+              <DescriptionDetails
+                selectedProject={selectedProject}
+                setVariable={setVariable}
+                variable={variable}
+              />
             )}
             {toggle === 2 && (
               <RequirementDetails selectedProject={selectedProject} />
