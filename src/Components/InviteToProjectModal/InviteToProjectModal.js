@@ -10,10 +10,10 @@ import triangle_4 from "../../assets/triangle_4.svg";
 import sendPaperPlane from "../../assets/sendPaperPlane.svg";
 import closeButton from "../../assets/close.svg";
 import axios from "axios";
-import { useEffect, useState } from "react";
-import {
-  getProjects,
-} from "../../Firebase/firebase";
+import { useContext, useEffect, useState } from "react";
+// import {
+//   getProjects,
+// } from "../../Firebase/firebase";
 import {
   createTheme,
   FormControl,
@@ -24,11 +24,14 @@ import {
 } from "@mui/material";
 import { sendInvite } from "../../Firebase/firebase";
 import { toast } from "react-toastify";
+import { ProjectContext } from "../../contexts/ProjectContext";
 
 const InviteToProjectModal = ({ user, selectedUser, ...props }) => {
   console.log(selectedUser);
-  const [projects, setProjects] = useState([]);
+  // const [projects, setProjects] = useState([]);
   const [project, setProject] = useState("");
+  const {projects}=useContext(ProjectContext);
+  const [listProjects,setListProjects]=useState([]);
   const [message, setMessage] = useState("");
   const theme = createTheme({
     components: {
@@ -89,14 +92,14 @@ const InviteToProjectModal = ({ user, selectedUser, ...props }) => {
   }
 
   const getWorks = async () => {
-    await getProjects().then(async function (snapshot) {
-      let messageObject = snapshot.val();
-      const result = Object.keys(messageObject).map((key) => ({
-        ...messageObject[key],
-        id: key,
-      }));
+    // await getProjects().then(async function (snapshot) {
+    //   let messageObject = snapshot.val();
+    //   const result = Object.keys(messageObject).map((key) => ({
+    //     ...messageObject[key],
+    //     id: key,
+    //   }));
       let temp = [];
-      result.forEach((project, index) => {
+      projects.forEach((project, index) => {
         if (project.leaderEmail === user.email) {
           if (
             !project.teamMembers?.some(
@@ -109,9 +112,8 @@ const InviteToProjectModal = ({ user, selectedUser, ...props }) => {
       if (temp.length === 0) {
         temp.push({ name: "No Projects Found" });
       }
-      setProjects(temp);
-    });
-  };
+      setListProjects(temp);
+    };
   useEffect(() => {
     getWorks();
 
@@ -165,11 +167,11 @@ const InviteToProjectModal = ({ user, selectedUser, ...props }) => {
                 value={project.name || ""}
                 onChange={(e) => {
                   setProject(
-                    projects.find((project) => project.name === e.target.value)
+                    listProjects.find((project) => project.name === e.target.value)
                   );
                 }}
               >
-                {projects.map((project, index) => {
+                {listProjects.map((project, index) => {
                   return (
                     <MenuItem value={project.name} key={index}>
                       {project.name}

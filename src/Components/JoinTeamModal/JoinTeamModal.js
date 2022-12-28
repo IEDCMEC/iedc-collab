@@ -13,7 +13,6 @@ import axios from "axios";
 import { toast } from "react-toastify";
 
 const JoinTeamModal = ({ user, project, ...props }) => {
-  console.log(user);
   const [message, setMessage] = useState("");
   const onSubmit = async (e) => {
     e.preventDefault();

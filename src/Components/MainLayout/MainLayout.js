@@ -1,17 +1,13 @@
-import React from 'react'
-import './MainLayout.scss'
-import Nav from '../Navbar/Navbar'
-import NavigateBar from '../NavigateBar/NavigateBar'
+import React from "react";
+import "./MainLayout.scss";
+import Nav from "../Navbar/Navbar";
 const MainLayout = (props) => {
   return (
     <div>
-        <NavigateBar route={props.route}/>
-        <Nav route={props.route}/>
-        <div className='layout__root'>
-          {props.children}
-        </div>
+      <Nav route={props.route} />
+      <div className="layout__root">{props.children}</div>
     </div>
-  )
-}
+  );
+};
 
-export default MainLayout
+export default MainLayout;
