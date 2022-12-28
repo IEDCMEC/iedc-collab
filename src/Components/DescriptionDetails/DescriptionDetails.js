@@ -14,7 +14,7 @@ import ProjectModal from "../ProjectModal/ProjectModal";
 import { toast } from "react-toastify";
 import DeleteConfirmation from "../DeleteConfirmationModal/DeleteConfirmation";
 
-const DescriptionDetails = ({ selectedProject }) => {
+const DescriptionDetails = (props) => {
   const { fetchData } = useContext(ProjectContext);
   const { currentUser } = useContext(AuthContext);
   const [canModifyProject, setCanModifyProject] = useState(false);
@@ -36,13 +36,13 @@ const DescriptionDetails = ({ selectedProject }) => {
     setDisplayConfirmationModal(false);
   };
   useEffect(() => {
-    if (currentUser?.uid === selectedProject.leader_id) {
+    if (currentUser?.uid === props.selectedProject.leader_id) {
       setCanModifyProject(true);
     } else {
       setCanModifyProject(false);
     }
-  }, [currentUser?.uid, selectedProject.leader_id]);
-  function deleteProj(id) {
+  }, [currentUser?.uid, props.selectedProject.leader_id]);
+  function deleteProj() {
     setDisplayConfirmationModal(true);
   }
 
@@ -55,7 +55,7 @@ const DescriptionDetails = ({ selectedProject }) => {
               src={Bin}
               style={{ cursor: "pointer" }}
               onClick={() => {
-                deleteProj(selectedProject.id);
+                deleteProj();
               }}
               alt="delete project"
             />
@@ -72,14 +72,14 @@ const DescriptionDetails = ({ selectedProject }) => {
           )}
         </div>
         <div className="description__title">PROJECT DESCRIPTION</div>
-        <div className="description__content">{selectedProject.desc}</div>
+        <div className="description__content">{props.selectedProject.desc}</div>
       </div>
       <div className="description__other">
-        {selectedProject.teamMembers?.length && (
+        {props.selectedProject.teamMembers?.length && (
           <div>
             <div className="description__other-team">TEAM MEMBERS</div>
             <div className="description__other-members">
-              {selectedProject.teamMembers.map((member, index) => (
+              {props.selectedProject.teamMembers.map((member, index) => (
                 <div className="description__other-member" key={index}>
                   {index + 1}. {member}
                 </div>
@@ -87,7 +87,7 @@ const DescriptionDetails = ({ selectedProject }) => {
             </div>
           </div>
         )}
-        {selectedProject.links?.length ? (
+        {props.selectedProject.links?.length ? (
           <div>
             <div className="description__other-reference">REFERENCES</div>
 
@@ -100,7 +100,7 @@ const DescriptionDetails = ({ selectedProject }) => {
           ""
         )}
         <div className="description__other-references">
-          {selectedProject.links?.map((link, index) => (
+          {props.selectedProject.links?.map((link, index) => (
             <a
               rel="noopener noreferrer"
               target="_blank"
@@ -112,14 +112,14 @@ const DescriptionDetails = ({ selectedProject }) => {
           ))}
         </div>
 
-        {selectedProject.tags?.length ? (
+        {props.selectedProject.tags?.length ? (
           <div className="description__other-tags">
             {" "}
             <div className="description__other-tag">
               <img src={Tag} alt="tag" />
             </div>
             <div className="description__tag">
-              {selectedProject.tags.map((tag, index) => (
+              {props.selectedProject.tags.map((tag, index) => (
                 <p key={index}>#{tag}</p>
               ))}
             </div>
@@ -129,26 +129,26 @@ const DescriptionDetails = ({ selectedProject }) => {
         )}
         <div className="description__tag_phone">
           <i className="fa fa-phone"></i>
-          <span className="ml-2">{selectedProject.contactNo}</span>
+          <span className="ml-2">{props.selectedProject.contactNo}</span>
         </div>
         <div className="description-container__controls">
           <div>
             <a
-              href={`tel:${selectedProject.contactNo}`}
+              href={`tel:${props.selectedProject.contactNo}`}
               className="description__tag_phone_mobile"
             >
               <img src={Phoneicon} alt="phone-icon"></img>
             </a>
           </div>
           <div>
-            <a href={`mailto: ${selectedProject.leaderEmail}`}>
+            <a href={`mailto: ${props.selectedProject.leaderEmail}`}>
               <img src={Mail} alt="mail"></img>
             </a>
           </div>
-          {selectedProject.githubLink.length ? (
+          {props.selectedProject.githubLink.length ? (
             <div>
               <a
-                href={selectedProject.githubLink}
+                href={props.selectedProject.githubLink}
                 target="_blank"
                 rel="noreferrer"
               >
@@ -163,13 +163,15 @@ const DescriptionDetails = ({ selectedProject }) => {
         <ProjectModal
           show={showNewProjectModal}
           onHide={() => setShowNewProjectModal(false)}
-          project={selectedProject}
+          project={props.selectedProject}
+          setVariable={props.setVariable}
+          variable={props.variable}
         />
         <DeleteConfirmation
           showModal={displayConfirmationModal}
           confirmModal={submitDelete}
           hideModal={hideConfirmationModal}
-          id={selectedProject.id}
+          id={props.selectedProject.id}
         />
       </div>
     </>

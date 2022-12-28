@@ -164,6 +164,10 @@ export const ProjectProvider = ({ children }) => {
         handleSearch,
         handleSearchDevelopers,
         fetchData,
+        fetchDevelpersData,
+        fetchUserProfile,
+        fetchRequests,
+        fetchRequestsRecieved,
         allProjects,
       }}
     >

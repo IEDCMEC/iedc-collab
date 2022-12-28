@@ -28,7 +28,7 @@ const NewUserForm = ({ onClose, user }) => {
   );
   const [profilePhoto, setProfilePhoto] = useState(user?.profilePhoto || "");
   // const [projects, setProjects] = useState([]);
-  const { projects } = useContext(ProjectContext);
+  const { projects,fetchUserProfile } = useContext(ProjectContext);
   const [acValue, setACValue] = useState(user?.projects || []);
   const [remainProjects, setRemainProjects] = useState([]);
   const [skills, setSkills] = useState([]);
@@ -159,10 +159,11 @@ const NewUserForm = ({ onClose, user }) => {
       profilePhotoName,
     };
     doEditProfile(formValues, () => {
+      fetchUserProfile();
       toast("Edited Profile Successfully", {
         autoClose: 2000,
       });
-      window.location.reload();
+      
     });
     onClose();
     actions.resetForm();
