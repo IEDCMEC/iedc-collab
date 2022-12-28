@@ -158,6 +158,29 @@
   border-radius: 5px;
   background-color: #fff;
 }
+.add-skill-btn
+{
+  border-radius: 5px;
+  background-color: #9e0000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  width: 150px;
+  color: white;
+  font-size: 1.1rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+.add-skill-row
+{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
 @media (max-width: 984px) {
   .customFile {
     width: 20rem;
