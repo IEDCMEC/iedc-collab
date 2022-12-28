@@ -1,0 +1,88 @@
+.ideas__container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  min-height: 80vh;
+}
+.ideas__animation {
+  margin-top: 20%;
+  display: inline-block;
+  margin-bottom: 5%;
+}
+
+.ideas__box h1 {
+  text-transform: uppercase;
+  text-align: center;
+  font-weight: 700;
+  padding-top: 2rem;
+  font-size: 30px;
+  color: #9e0000;
+  margin: 0;
+}
+.ideas__one,
+.ideas__two,
+.ideas__three {
+  display: block;
+  float: left;
+}
+
+.ideas__one {
+  background: url("../../assets/gear.svg");
+  width: 80px;
+  height: 80px;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  margin-top: -10px;
+  margin-right: 8px;
+}
+
+.ideas__two {
+  background: url("../../assets/orangegear.svg");
+  width: 100px;
+  height: 100px;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+
+.ideas__three {
+  background: url("../../assets/gear.svg");
+  width: 80px;
+  height: 80px;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  margin-top: -50px;
+  margin-left: -10px;
+}
+
+@keyframes ideas__spin-one {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(-359deg);
+    transform: rotate(-359deg);
+  }
+}
+
+.ideas__spin-one {
+  -webkit-animation: ideas__spin-one 1.5s infinite linear;
+  animation: ideas__spin-one 1.5s infinite linear;
+}
+
+@keyframes ideas__spin-two {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(-359deg);
+    transform: rotate(359deg);
+  }
+}
+
+.ideas__spin-two {
+  -webkit-animation: ideas__spin-two 2s infinite linear;
+  animation: ideas__spin-two 2s infinite linear;
+}

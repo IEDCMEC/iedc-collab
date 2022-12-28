@@ -94,12 +94,14 @@ const MyProfile = () => {
             </div>
 
             <div className="profile_details_container">
-              <div  style={{
-                    width: "100%",
-                    display: "flex",
-                    justifyContent: "flex-end",
-                    alignItems: "flex-end",
-                  }}>
+              <div
+                style={{
+                  width: "100%",
+                  display: "flex",
+                  justifyContent: "flex-end",
+                  alignItems: "flex-end",
+                }}
+              >
                 <img
                   src={edit_icon}
                   style={{
