@@ -22,7 +22,6 @@ const Ideas = () => {
               <div class="ideas__three ideas__spin-one"></div>
             </div>
             <h1>Coming Soon....</h1>
-            
           </div>
         </div>
       </MainLayout>

@@ -43,6 +43,7 @@ export const ProjectProvider = ({ children }) => {
   };
 
   useEffect(() => {
+    console.log("ProjectContext useEffect");
     fetchData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -67,7 +68,7 @@ export const ProjectProvider = ({ children }) => {
         loading,
         handleSearch,
         fetchData,
-        allProjects
+        allProjects,
       }}
     >
       {children}
