@@ -323,9 +323,6 @@ section .section-title {
   .NavigateBar-mainNav {
     flex-wrap: wrap;
   }
-  .NavigateBar-title {
-    display: none;
-  }
   .NavigateBar-Newprobtn-1 {
     display: none;
   }
@@ -406,4 +403,11 @@ section .section-title {
   button:hover {
     background-color: white;
   }
+}
+@media (max-width:410px) {
+  .NavigateBar-homeicon
+  {
+    display: none;
+  }
+  
 }

@@ -225,7 +225,7 @@ const MyProfile = () => {
                 )}
               </div>
             </div>
-            <div className="edit__pro_achvmts">Requests | Invites</div>
+            <div className="edit__pro_achvmts">Requests</div>
             <div className="edit__pro_box_1">
               {/* <div className="reqs_invite_bar">
                 <div className="reqs_invite_bar__requests">Requests</div>
