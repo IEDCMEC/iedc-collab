@@ -15,7 +15,7 @@ import { HiOutlineMenuAlt3 } from "react-icons/hi";
 const Navbar = () => {
   const [showProjectModal, setShowProjectModal] = useState(false);
   const { currentUser } = useContext(AuthContext);
-  const { handleSearch } = useContext(ProjectContext);
+  const { handleSearch ,handleSearchDevelopers} = useContext(ProjectContext);
   const history = useHistory();
   const [open1, setOpen1] = useState(false);
   const location = useLocation();
@@ -139,7 +139,8 @@ const Navbar = () => {
               >
                 <input
                   placeholder="Search developers..."
-                  onChange={(e) => handleSearch(e.target.value)}
+                  onChange={(e1) => handleSearchDevelopers(e1.target.value)}
+                  defaultValue=""
                   style={{ borderStyle: "none", outline: "none", width: "95%" }}
                 ></input>
                 <i

@@ -130,6 +130,17 @@ export const ProjectProvider = ({ children }) => {
       setProjects(allProjects);
     }
   };
+  const handleSearchDevelopers = (searchtext) => {
+    if (searchtext !== "") {
+      const modified = allDevelopers.filter(
+        (itm) =>
+          itm.name && itm.name.toLowerCase().includes(searchtext.toLowerCase())
+      );
+      setDevelopers(modified);
+    } else {
+      setDevelopers(allDevelopers);
+    }
+  };
   return (
     <ProjectContext.Provider
       value={{
@@ -145,6 +156,7 @@ export const ProjectProvider = ({ children }) => {
         setSelectedProject,
         loading,
         handleSearch,
+        handleSearchDevelopers,
         fetchData,
         allProjects,
       }}
