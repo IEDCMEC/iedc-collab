@@ -142,7 +142,9 @@ const MyProfile = () => {
                 <div className="profile_phone">
                   <HiOutlineAcademicCap size={25} />
                   <div>
-                    {profile?.branch ||  <div className="change-in-edit">{"<empty>"}</div>}
+                    {profile?.branch || (
+                      <div className="change-in-edit">{"<empty>"}</div>
+                    )}
                     {"  "}
                     {profile?.year}
                   </div>
@@ -217,7 +219,7 @@ const MyProfile = () => {
           <div className="edit__pro_box">
             <div className="edit__pro_abtMe">
               <div>About Me</div>
-              <div className="edit__pro_abtMe_bx">
+              <div className="edit__pro_abtMe_bx" style={{whiteSpace:"pre-wrap"}}> 
                 {profile.about ? (
                   profile.about
                 ) : (
@@ -249,7 +251,7 @@ const MyProfile = () => {
 
             <div className="edit__pro_achvmts">
               <div>Achivements</div>
-              <div className="edit__pro_achvmts_bx">
+              <div className="edit__pro_achvmts_bx" style={{whiteSpace:"pre-wrap"}}>
                 {profile.achievements ? (
                   profile.achievements
                 ) : (
@@ -317,13 +319,25 @@ const MyProfile = () => {
                 </div>
               </div>
               <div className="requests__cards">
-                {isReceived
-                  ? requestsRecieved?.map((request, index) => (
+                {isReceived ? (
+                  (!requestsRecieved)? (
+                    <div className="received_sent_box skill">
+                      No Requests Recieved
+                    </div>
+                  ) : (
+                    requestsRecieved?.map((request, index) => (
                       <Received key={index} request={request} />
                     ))
-                  : requests?.map((request, index) => (
-                      <Sent request={request} key={index} />
-                    ))}
+                  )
+                ) : (!requests) ? (
+                  <div className="received_sent_box skill">
+                    No Requests Sent
+                  </div>
+                ) : (
+                  requests?.map((request, index) => (
+                    <Sent request={request} key={index} />
+                  ))
+                )}
               </div>
             </div>
           </div>

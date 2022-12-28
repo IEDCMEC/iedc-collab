@@ -45,8 +45,8 @@ export default function PersistentDrawerLeft({
   addYop
 }) {
   const [skills, setSkills] = React.useState([]);
-  const [branch, setBranch] =  React.useState('')
-  const [yop, setYop] = React.useState('')
+  // const [branch, setBranch] =  React.useState('')
+  // const [yop, setYop] = React.useState('')
   const getAbilities = async () => {
     await getSkills().then(async function (snapshot) {
       let messageObject = snapshot.val();
