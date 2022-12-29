@@ -2,7 +2,7 @@
   display: flex;
   background-color: #f4e6e6;
   height: 49px;
-  font-weight: 500;
+  font-weight: 600;
   position: fixed;
   z-index: 20;
   font-size: 21px;
@@ -36,14 +36,14 @@
   color: #9e0000;
   text-decoration: none;
   background-color: #ffcfcf;
-  font-weight: 700;
+  font-weight: 800;
   border-bottom: 3px solid #9e0000;
 }
 .NavLinksActive {
   color: #9e0000;
   text-decoration: none;
   background-color: #ffcfcf;
-  font-weight: 700;
+  font-weight: 800;
   border-bottom: 3px solid #9e0000;
 }
 

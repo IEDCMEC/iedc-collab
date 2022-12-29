@@ -17,7 +17,7 @@
 }
 .received_bpx_header_para {
   font-style: normal;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 20px;
   line-height: 30px;
 
@@ -66,7 +66,6 @@
   flex-direction: column;
   align-items: flex-start;
   row-gap: 0.5rem;
-  font-family: "Nunito";
   font-style: normal;
 }
 .req_profile_img {
@@ -77,7 +76,7 @@
   border-radius: 50%;
 }
 .req_profile_details_h4 {
-  font-weight: 400;
+  font-weight: 600;
   font-size: 18px;
   line-height: 29px;
 
@@ -85,7 +84,7 @@
 }
 
 .req_profile_details_p {
-  font-weight: 200;
+  font-weight: 400;
   font-size: 15px;
   line-height: 25px;
   max-height: 50px;
@@ -105,7 +104,6 @@
   border: 2px solid #9e0000;
   border-radius: 25px;
   color: #9e0000;
-  font-family: "Nunito";
   font-style: normal;
   font-weight: 500;
   font-size: 15px;
@@ -121,7 +119,6 @@
   border: 1px solid #9e0000;
   border-radius: 25px;
   color: #ffffff;
-  font-family: "Nunito";
   font-style: normal;
   font-weight: 500;
   font-size: 15px;
@@ -140,7 +137,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: "Nunito";
   font-style: normal;
   font-weight: 500;
   font-size: 17px;

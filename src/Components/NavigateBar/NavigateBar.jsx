@@ -95,7 +95,7 @@ const Navbar = () => {
                   style={{
                     marginTop: "0",
                     marginBottom: "0",
-                    fontWeight: "700",
+                    fontWeight: "800",
                   }}
                   className=" NavigateBar-title"
                 >

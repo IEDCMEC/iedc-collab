@@ -12,18 +12,17 @@
   align-items: center;
 }
 .requirement__title {
-  font-family: "Nunito";
   font-style: normal;
-  font-weight: 700;
+  font-weight: 800;
   font-size: 31px;
   flex-wrap: nowrap;
   line-height: 42px;
   color: #9e0000;
 }
 .requirement__content {
-  font-family: "Nunito";
   font-style: normal;
   font-weight: 400;
+  white-space: pre-wrap;
   padding-top: 30px;
   font-size: var(--primary-font);
   line-height: var(--primary-line);
@@ -38,7 +37,6 @@
   justify-content: flex-start;
 }
 .requirement__other-hiring {
-  font-family: "Nunito";
   font-style: normal;
   padding-top: 30px;
   font-weight: 800;
@@ -54,7 +52,6 @@
   padding-top: 30px;
 }
 .requirement__other-skill {
-  font-family: "Nunito";
   font-style: normal;
   font-weight: 400;
   font-size: var(--primary-font);
@@ -79,7 +76,7 @@
 
 @media (max-width: 400px) {
   .requirement__title {
-    font-family: "Nunito";
+
     font-style: normal;
     font-weight: 700;
     font-size: 27px;
