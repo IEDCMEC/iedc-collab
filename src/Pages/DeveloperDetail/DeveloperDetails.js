@@ -84,7 +84,7 @@ function DeveloperDetails() {
                       rel="noreferrer"
                     >
                       <FaPhoneAlt
-                        color="white"
+                        color="#deb8b8"
                         size={35}
                         style={{
                           backgroundColor: "#9e0000",
