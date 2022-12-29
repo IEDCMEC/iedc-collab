@@ -1,6 +1,5 @@
-import Modal from "react-bootstrap/Modal";
+
 import Button from "react-bootstrap/Button";
-import { ModalBody } from "react-bootstrap";
 import "./InviteToProjectModal.scss";
 import { emailUrl } from "../../Utils/urls";
 import triangle_1 from "../../assets/triangle_1.svg";
@@ -9,11 +8,14 @@ import triangle_3 from "../../assets/triangle_3.svg";
 import triangle_4 from "../../assets/triangle_4.svg";
 import axios from "axios";
 import { useContext, useEffect, useState } from "react";
+import '../JoinTeamModal/JoinTeamModal.scss'
 // import {
 //   getProjects,
 // } from "../../Firebase/firebase";
 import {
   createTheme,
+  Dialog,
+  DialogContent,
   FormControl,
   InputLabel,
   MenuItem,
@@ -120,87 +122,100 @@ const InviteToProjectModal = ({ user, selectedUser, ...props }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
-    <Modal {...props} size="xl" centered className="invite-to-project-modal">
+    <Dialog
+      onClose={props.handleClose}
+      open={props.open}
+      PaperProps={{
+        sx: {
+          width: "95vw",
+          position: "absolute",
+        },
+      }}
+      fullWidth={true}
+      maxWidth="md"
+      className="invite-to-project-modal"
+    >
       <img src={triangle_1} alt="" className="triangle_1" />
       <img src={triangle_2} alt="" className="triangle_2" />
       <img src={triangle_3} alt="" className="triangle_3" />
       <img src={triangle_4} alt="" className="triangle_4" />
-
-      <div className="close-button" onClick={props.onHide}>
+      <div className="close-button" onClick={props.onClose}>
         <RiCloseLine size={38} color="#9e0000" />
       </div>
-
-      <ModalBody className="invite-to-project-modal__body">
-        <h1 className="invite-to-project-modal__title">Invite To Project</h1>
-        <div className="invite-project-name">
-          {/* <p className="invite-project-name__label">Project Name</p> */}
-          {/* <input id="invite-project-name__text" type="text" /> */}
-          <ThemeProvider theme={theme}>
-            <FormControl style={{ width: "100%" }}>
-              <InputLabel
-                id="demo-simple-select-label"
-                style={{
-                  fontWeight: "400",
-                  fontSize: "17px",
-                  lineHeight: "26px",
-                  color: " #622308",
-                }}
-              >
-                Select Project
-              </InputLabel>
-              <Select
-                style={{
-                  fontWeight: "400",
-                  width: "100%",
-                  fontSize: "17px",
-                  lineHeight: "26px",
-                  color: " #622308",
-                }}
-                labelId="demo-simple-select-label"
-                id="demo-simple-select"
-                label="Select Project"
-                value={project.name || ""}
-                onChange={(e) => {
-                  setProject(
-                    listProjects.find(
-                      (project) => project.name === e.target.value
-                    )
-                  );
-                }}
-              >
-                {listProjects.map((project, index) => {
-                  return (
-                    <MenuItem value={project.name} key={index}>
-                      {project.name}
-                    </MenuItem>
-                  );
-                })}
-              </Select>
-            </FormControl>
-          </ThemeProvider>
-        </div>
-        <div className="invite-message">
-          <p className="invite-message__label">Message</p>
-          <textarea
-            id="invite-message__text"
-            onChange={(e) => setMessage(e.target.value)}
-          ></textarea>
-        </div>
-        <Button
-          variant=""
-          type="submit"
-          className="btn"
-          onClick={(event) => {
-            event.preventDefault();
-            handleSubmit();
-            props.onHide();
-          }}
-        >
-          <p>Send</p>
-          <IoPaperPlaneSharp size={30} color="white" />
-        </Button>
-      </ModalBody>
-    </Modal>
+      <DialogContent className="invite-to-project-modal__body">
+        <form onSubmit={handleSubmit}>
+          <h1 className="join-team-modal__title">Invite To Project</h1>
+          <div className="invite-project-name">
+            <ThemeProvider theme={theme}>
+              <FormControl>
+                <InputLabel
+                  id="demo-simple-select-label"
+                  
+                  style={{
+                    fontWeight: "400",
+                    fontSize: "17px",
+                    lineHeight: "26px",
+                    color: " #622308",
+                  }}
+                >
+                  Select Project
+                </InputLabel>
+                <Select
+                className="invite-project-name__label"
+                  style={{
+                    fontWeight: "400",
+                    fontSize: "17px",
+                    
+                    lineHeight: "26px",
+                    color: " #622308",
+                  }}
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  label="Select Project"
+                  value={project.name || ""}
+                  onChange={(e) => {
+                    setProject(
+                      listProjects.find(
+                        (project) => project.name === e.target.value
+                      )
+                    );
+                  }}
+                >
+                  {listProjects.map((project, index) => {
+                    return (
+                      <MenuItem value={project.name} key={index}>
+                        {project.name}
+                      </MenuItem>
+                    );
+                  })}
+                </Select>
+              </FormControl>
+            </ThemeProvider>
+          </div>
+          <div className="message">
+            <p className="message__label">Message</p>
+            <textarea
+              className="message__text"
+              style={{whiteSpace: "pre-wrap"}}
+              onChange={(e) => setMessage(e.target.value)}
+            ></textarea>
+          </div>
+          <Button
+            variant=""
+            type="submit"
+            className="btn"
+            onClick={(event) => {
+              event.preventDefault();
+              handleSubmit();
+              props.onClose();
+            }}
+          >
+            <p>Send</p>
+            <IoPaperPlaneSharp size={30} color="white" />
+          </Button>
+        </form>
+      </DialogContent>
+    </Dialog>
   );
 };
 

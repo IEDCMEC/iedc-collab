@@ -201,7 +201,9 @@ const NewUserForm = ({ onClose, user }) => {
             <br />
             <InputGroup controlid="formPhoto" className="photoContainer">
               <Form.Label className="photoLabel">
-                <span className="photoHead" style={{fontWeight:"800"}}>Profile Photo</span>
+                <span className="photoHead" style={{ fontWeight: "800" }}>
+                  Profile Photo
+                </span>
                 <span className="photoIcon">
                   <FontAwesomeIcon icon={faUpload} />
                 </span>
@@ -332,7 +334,10 @@ const NewUserForm = ({ onClose, user }) => {
                   filterSelectedOptions
                   getOptionLabel={(option) => option.name}
                   renderOption={(props, option) => (
-                    <li style={{ fontFamily: "Nunito",color:"#9e0000" }} {...props}>
+                    <li
+                      style={{ fontFamily: "Nunito", color: "#9e0000" }}
+                      {...props}
+                    >
                       {option.name}
                     </li>
                   )}
@@ -393,7 +398,13 @@ const NewUserForm = ({ onClose, user }) => {
                   options={remainSkills}
                   filterSelectedOptions
                   renderOption={(props, option) => (
-                    <li style={{ fontFamily: "Nunito",color:"#9e0000" }} {...props}>{option}</li>)}
+                    <li
+                      style={{ fontFamily: "Nunito", color: "#9e0000" }}
+                      {...props}
+                    >
+                      {option}
+                    </li>
+                  )}
                   renderInput={(params) => (
                     <TextField
                       size="small"

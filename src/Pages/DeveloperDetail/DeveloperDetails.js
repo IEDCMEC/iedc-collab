@@ -21,6 +21,8 @@ function DeveloperDetails() {
   const { currentUser } = useContext(AuthContext);
   const [selectedUser, setSelectedUser] = useState({});
   const [loading, setLoading] = useState(true);
+
+  const [open, setOpen] = useState(false);
   const defaultOptions = {
     loop: true,
     autoplay: true,
@@ -37,7 +39,6 @@ function DeveloperDetails() {
   useEffect(() => {
     getDev(id);
   }, [id]);
-  const [modalShow, setModalShow] = useState(false);
   if (loading) {
     return (
       <div>
@@ -258,7 +259,7 @@ function DeveloperDetails() {
                 className="developer_details_footer"
                 onClick={() => {
                   if (currentUser) {
-                    setModalShow(true);
+                    setOpen(true);
                   } else {
                     window.alert("Please Login to continue");
                   }
@@ -271,8 +272,8 @@ function DeveloperDetails() {
           )}
           {currentUser ? (
             <InviteToProjectModal
-              show={modalShow}
-              onHide={() => setModalShow(false)}
+              open={open}
+              onClose={() => setOpen(false)}
               user={currentUser}
               selectedUser={selectedUser}
             />
