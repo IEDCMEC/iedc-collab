@@ -138,13 +138,17 @@ export const ProjectProvider = ({ children }) => {
   };
   const handleSearchDevelopers = (searchtext) => {
     if (searchtext !== "") {
+      setLoading(true);
       const modified = allDevelopers.filter(
         (itm) =>
           itm.name && itm.name.toLowerCase().includes(searchtext.toLowerCase())
       );
       setDevelopers(modified);
+      setLoading(false);
     } else {
+      setLoading(true);
       setDevelopers(allDevelopers);
+      setLoading(false);
     }
   };
   return (
