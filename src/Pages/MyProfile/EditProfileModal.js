@@ -28,7 +28,7 @@ const NewUserForm = ({ onClose, user }) => {
   );
   const [profilePhoto, setProfilePhoto] = useState(user?.profilePhoto || "");
   // const [projects, setProjects] = useState([]);
-  const { projects,fetchUserProfile } = useContext(ProjectContext);
+  const { projects, fetchUserProfile } = useContext(ProjectContext);
   const [acValue, setACValue] = useState(user?.projects || []);
   const [remainProjects, setRemainProjects] = useState([]);
   const [skills, setSkills] = useState([]);
@@ -114,18 +114,27 @@ const NewUserForm = ({ onClose, user }) => {
             "&:hover .MuiOutlinedInput-notchedOutline": {
               color: "#9E0000",
               border: "2px solid #9E0000",
+              outline: "none",
               borderRadius: "10px",
             },
             "& .MuiOutlinedInput-notchedOutline": {
               color: "#9E0000",
               border: "2px solid #9E0000",
+              outline: "none",
               borderRadius: "10px",
             },
             "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
               color: "#9E0000",
               border: "2px solid #9E0000",
+              outline: "none",
               borderRadius: "10px",
             },
+            "& .MuiChip-root": {
+              fontFamily: "Nunito",
+              backgroundColor: "#9E0000",
+              color: "white",
+            },
+            "& .MuiChip-deleteIcon": { color: "#fff !important" },
             minHeight: "150%",
           },
         },
@@ -163,7 +172,6 @@ const NewUserForm = ({ onClose, user }) => {
       toast("Edited Profile Successfully", {
         autoClose: 2000,
       });
-      
     });
     onClose();
     actions.resetForm();
@@ -193,7 +201,7 @@ const NewUserForm = ({ onClose, user }) => {
             <br />
             <InputGroup controlid="formPhoto" className="photoContainer">
               <Form.Label className="photoLabel">
-                <span className="photoHead">Profile Photo</span>
+                <span className="photoHead" style={{fontWeight:"800"}}>Profile Photo</span>
                 <span className="photoIcon">
                   <FontAwesomeIcon icon={faUpload} />
                 </span>
@@ -305,6 +313,7 @@ const NewUserForm = ({ onClose, user }) => {
                 </Form.Text>
               </Form.Group>
             </Row>
+            <br />
             <Form.Group
               controlid="formProjects"
               style={{
@@ -321,11 +330,13 @@ const NewUserForm = ({ onClose, user }) => {
                   value={acValue}
                   options={remainProjects}
                   filterSelectedOptions
-                  disableCloseOnSelect
                   getOptionLabel={(option) => option.name}
                   renderOption={(props, option) => (
-                    <li {...props}>{option.name}</li>
+                    <li style={{ fontFamily: "Nunito",color:"#9e0000" }} {...props}>
+                      {option.name}
+                    </li>
                   )}
+                  sx={{ fontFamily: "Nunito" }}
                   renderInput={(params) => (
                     <TextField
                       size="small"
@@ -335,6 +346,8 @@ const NewUserForm = ({ onClose, user }) => {
                       sx={{
                         "& .MuiInputLabel-root": {
                           color: "#9E0000",
+                          fontFamily: "Nunito",
+                          fontWeight: "600",
                         },
                         "& label.Mui-focused": {
                           color: "#9E0000",
@@ -367,6 +380,7 @@ const NewUserForm = ({ onClose, user }) => {
                   : ""}
               </Form.Text>
             </Form.Group>
+            <br />
             <Form.Group controlid="formSkills">
               <ThemeProvider theme={theme}>
                 <Autocomplete
@@ -378,6 +392,8 @@ const NewUserForm = ({ onClose, user }) => {
                   value={acValue1}
                   options={remainSkills}
                   filterSelectedOptions
+                  renderOption={(props, option) => (
+                    <li style={{ fontFamily: "Nunito",color:"#9e0000" }} {...props}>{option}</li>)}
                   renderInput={(params) => (
                     <TextField
                       size="small"
@@ -387,9 +403,12 @@ const NewUserForm = ({ onClose, user }) => {
                       sx={{
                         "& .MuiInputLabel-root": {
                           color: "#9E0000",
+                          fontFamily: "Nunito",
+                          fontWeight: "600",
                         },
                         "& label.Mui-focused": {
                           color: "#9E0000",
+                          outline: "none",
                         },
                       }}
                       variant="outlined"

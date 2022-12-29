@@ -63,8 +63,8 @@ button:hover {
 .css-button-text {
   padding: 0.3rem;
   color: white;
+  font-family: "Nunito", sans-serif;
   font-size: 15px;
-  font-family: "Nunito";
   font-weight: 700;
 }
 

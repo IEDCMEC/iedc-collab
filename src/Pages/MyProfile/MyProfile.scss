@@ -7,7 +7,6 @@
 .my_profile_container {
   display: flex;
   flex-direction: row;
-  font-family: "Nunito";
   width: 100%;
   justify-content: flex-start;
 }
@@ -45,7 +44,7 @@
   align-items: center;
 }
 .profile_details_header_name {
-  font-weight: 600;
+  font-weight: 700;
   font-size: 2rem;
   padding-top: 2rem;
   text-align: center;
@@ -105,7 +104,6 @@
 .reqs_invite_bar {
   display: flex;
   flex-direction: row;
-  font-family: "Nunito";
   font-style: normal;
 
   color: #9e0000;
@@ -141,7 +139,6 @@
   border: 1px solid #9e0000;
   border-bottom-style: none;
   border-radius: 10px 0px 0px 0px;
-  font-family: "Nunito";
   font-style: normal;
   font-weight: 700;
   font-size: 21px;
@@ -160,7 +157,6 @@
   border-radius: 10px 0px 0px 0px;
   align-items: center;
   justify-content: center;
-  font-family: "Nunito";
   font-style: normal;
   font-weight: 700;
   font-size: 21px;
@@ -184,7 +180,6 @@
   border: 1px solid #9e0000;
   border-bottom-style: none;
   border-radius: 0px 10px 0px 0px;
-  font-family: "Nunito";
   font-style: normal;
   font-weight: 700;
   font-size: 21px;
@@ -205,7 +200,6 @@
   border-radius: 0px 10px 0px 0px;
   align-items: center;
   justify-content: center;
-  font-family: "Nunito";
   font-style: normal;
   font-weight: 700;
   font-size: 21px;
@@ -224,13 +218,11 @@
   height: 45px;
   background-color: #f8d0d0;
   color: #9e0000;
-  font-family: "Nunito";
   font-style: normal;
   font-weight: 600;
   font-size: 1rem;
 }
 .received_bpx_header p {
-  font-family: "Nunito";
   font-style: normal;
   font-weight: 700;
   font-size: 1rem;
@@ -264,7 +256,6 @@
   border: 2px solid #9e0000;
   border-radius: 25px;
   color: #9e0000;
-  font-family: "Nunito";
   font-style: normal;
   font-weight: 600;
   font-size: 20px;
@@ -284,7 +275,6 @@
   box-shadow: inset 0px 4px 4px #f48f8f;
   border-radius: 25px;
 
-  font-family: "Nunito";
   font-style: normal;
   font-weight: 700;
   font-size: 20px;
@@ -305,7 +295,6 @@
   align-items: center;
   gap: 0.8rem;
   width: 100%;
-  font-family: "Nunito";
   font-style: normal;
   font-weight: 700;
   font-size: 31px;
@@ -330,7 +319,6 @@
 .edit__pro_achvmts_bx {
   display: flex;
   flex-direction: column;
-  font-family: "Nunito";
   font-style: normal;
   font-weight: 400;
   padding: 1.2rem;
@@ -354,7 +342,6 @@
   border: 0.4px solid #9e0000;
   border-radius: 10px;
   padding: 10px;
-  font-family: "Nunito";
   font-style: normal;
   font-weight: 400;
 

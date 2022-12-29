@@ -54,7 +54,9 @@
   font-size: 1.9rem;
   color: #9e0000;
 }
-
+.hamburger:focus {
+  outline: none;
+}
 .nav_btn {
   outline: none;
   border: none;
@@ -71,7 +73,9 @@
     2px 2px 4px rgba(0, 0, 0, 0.3);
   padding-left: auto;
 }
-
+.nav_btn:focus {
+  outline: none;
+}
 .nav__mob {
   display: none;
   width: 100%;
@@ -199,7 +203,7 @@
 }
 .title {
   padding-left: 20px;
-  font-weight: 700;
+  font-weight: 800;
   padding-top: 10px;
   font-size: 25px;
   color: #9e0000;

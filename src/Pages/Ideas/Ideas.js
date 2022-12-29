@@ -21,7 +21,7 @@ const Ideas = () => {
               <div className="ideas__two ideas__spin-two"></div>
               <div className="ideas__three ideas__spin-one"></div>
             </div>
-            <h1>Coming Soon....</h1>
+            <h1 style={{fontWeight:"800"}}>Coming Soon....</h1>
           </div>
         </div>
       </MainLayout>

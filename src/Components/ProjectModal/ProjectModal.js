@@ -125,6 +125,7 @@ const NewProjectForm = ({ onClose, project,setVariable,variable }) => {
                 value={props.values.desc}
                 onChange={props.handleChange("desc")}
                 as="textarea"
+                style={{whiteSpace: "pre-wrap"}}
                 placeholder="lorem ipsum dolor si amet..."
                 rows="3"
               />
@@ -135,10 +136,11 @@ const NewProjectForm = ({ onClose, project,setVariable,variable }) => {
               </Form.Text>
             </Form.Group>
             <Form.Group controlId="formBasicDescription">
-              <Form.Label>Project Requirements*</Form.Label>
+              <Form.Label>Project Requirements</Form.Label>
               <Form.Control
                 onBlur={props.handleBlur("req")}
                 value={props.values.req}
+                style={{whiteSpace: "pre-wrap"}}
                 onChange={props.handleChange("req")}
                 as="textarea"
                 placeholder="lorem ipsum dolor si amet..."
@@ -165,7 +167,7 @@ const NewProjectForm = ({ onClose, project,setVariable,variable }) => {
 
             <InputGroup controlId="formPhoto" className="photoContainer">
               <Form.Label className="photoLabel">
-                <span className="photoHead">Upload Featuring Photo</span>
+                <span className="photoHead" style={{fontWeight:"800"}}>Upload Featuring Photo</span>
                 <span className="photoIcon">
                   <FontAwesomeIcon icon={faUpload} />
                 </span>

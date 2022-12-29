@@ -98,11 +98,12 @@ const MyProfile = () => {
                   "https://sabt.center/wp-content/uploads/2014/08/avatar-1.png"
                 }
                 className="profile_image"
+                data-aos="fade-up"
                 alt=""
               />
             </div>
 
-            <div className="profile_details_container">
+            <div className="profile_details_container" data-aos="fade-up" data-aos-duration="1500">
               <div
                 style={{
                   width: "100%",
@@ -219,7 +220,7 @@ const MyProfile = () => {
           </div>
 
           <div className="edit__pro_box">
-            <div className="edit__pro_abtMe">
+            <div className="edit__pro_abtMe" data-aos="fade-up" data-aos-duration="1500">
               <div>About Me</div>
               <div
                 className="edit__pro_abtMe_bx"
@@ -233,7 +234,7 @@ const MyProfile = () => {
               </div>
             </div>
 
-            <div className="edit__pro_skls">
+            <div className="edit__pro_skls" data-aos="fade-up" data-aos-duration="1500">
               <div>Skills</div>
               <div className="edit__pro_skls_bx">
                 {profile.skills ? (
@@ -254,7 +255,7 @@ const MyProfile = () => {
               </div>
             </div>
 
-            <div className="edit__pro_achvmts">
+            <div className="edit__pro_achvmts" data-aos="fade-up" data-aos-duration="1500">
               <div>Achivements</div>
               <div
                 className="edit__pro_achvmts_bx"
@@ -267,7 +268,7 @@ const MyProfile = () => {
                 )}
               </div>
             </div>
-            <div className="edit__pro_projects">
+            <div className="edit__pro_projects" data-aos="fade-up" data-aos-duration="1500">
               <div>Projects</div>
               <div className="developer_details_body_right_content_1">
                 <div className="developer_details_body_right_content_projects_1">
@@ -277,6 +278,7 @@ const MyProfile = () => {
                         <div
                           className="developer_details_body_right_content_project"
                           key={index}
+                          data-aos="fade-up" data-aos-duration="1500"
                           onClick={() => {
                             history.push(`/projects/${project.id}`);
                           }}
@@ -305,14 +307,14 @@ const MyProfile = () => {
                 </div>
               </div>
             </div>
-            <div className="edit__pro_achvmts">Requests</div>
+            <div className="edit__pro_achvmts" data-aos="fade-up" data-aos-duration="1500">Requests</div>
             <div className="edit__pro_box_1">
               {/* <div className="reqs_invite_bar">
                 <div className="reqs_invite_bar__requests">Requests</div>
                 <div className="reqs_invite_bar__line">|</div>
                 <div className="reqs_invite_bar__invite">Invite</div>
               </div> */}
-              <div className="edit__header">
+              <div className="edit__header" data-aos="fade-up" data-aos-duration="1500">
                 <div
                   className={isReceived ? "rec_active" : "received"}
                   onClick={() => setIsReceived(true)}
@@ -326,7 +328,7 @@ const MyProfile = () => {
                   Sent
                 </div>
               </div>
-              <div className="requests__cards">
+              <div className="requests__cards" >
                 {isReceived ? (
                   !requestsRecieved ? (
                     <div className="received_sent_box skill">
@@ -334,7 +336,9 @@ const MyProfile = () => {
                     </div>
                   ) : (
                     requestsRecieved?.map((request, index) => (
+                      <div data-aos="fade-up" data-aos-duration="1500" >
                       <Received key={index} request={request} />
+                      </div>
                     ))
                   )
                 ) : !requests ? (
@@ -343,7 +347,9 @@ const MyProfile = () => {
                   </div>
                 ) : (
                   requests?.map((request, index) => (
-                    <Sent request={request} key={index} />
+                    <div data-aos="fade-up" data-aos-duration="1500" >
+                    <Sent request={request} key={index} data-aos="fade-up" data-aos-duration="1500" />
+                    </div>
                   ))
                 )}
               </div>

@@ -6,10 +6,11 @@
   overflow-x: hidden;
   padding-bottom: 5%;
 }
-
+.drawer__container button:focus {
+  outline: none;
+}
 .developer-title {
   text-align: center;
-  font-family: "Nunito";
   font-style: normal;
   font-weight: 700;
   font-size: 35px;
@@ -56,11 +57,10 @@
   left: -10px;
 }
 .developer-card-name {
-  font-family: "Nunito";
   text-transform: capitalize;
   flex-wrap: wrap;
   font-style: normal;
-  font-weight: 700;
+  font-weight: 800;
   font-size: 25px;
   line-height: 34px;
 
@@ -71,7 +71,6 @@
   color: #ffffff;
 }
 .developer-card-email {
-  font-family: "Nunito";
   width: 450px;
   white-space: nowrap;
   overflow: hidden;

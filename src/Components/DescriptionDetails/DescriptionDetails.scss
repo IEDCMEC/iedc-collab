@@ -12,9 +12,8 @@
   align-items: center;
 }
 .description__title {
-  font-family: "Nunito";
   font-style: normal;
-  font-weight: 700;
+  font-weight: 800;
   font-size: 31px;
   text-align: center;
   flex-wrap: nowrap;
@@ -22,9 +21,9 @@
   color: #9e0000;
 }
 .description__content {
-  font-family: "Nunito";
   font-style: normal;
   font-weight: 400;
+  white-space: pre-wrap;
   padding-top: 30px;
   font-size: var(--primary-font);
   line-height: var(--primary-line);
@@ -40,7 +39,6 @@
   justify-content: flex-start;
 }
 .description__other-team {
-  font-family: "Nunito";
   font-style: normal;
   padding-top: 30px;
   font-weight: 800;
@@ -49,7 +47,6 @@
   color: #9e0000;
 }
 .description__other-reference {
-  font-family: "Nunito";
   font-style: normal;
   padding-top: 30px;
   font-weight: 800;
@@ -67,7 +64,6 @@
 }
 .description__tag_phone {
   display: block;
-  font-family: "Nunito";
   font-style: normal;
   padding-top: 3rem;
   font-weight: 400;
@@ -84,7 +80,6 @@
   display: none;
 }
 .description__other-member {
-  font-family: "Nunito";
   font-style: normal;
   font-weight: 400;
   font-size: var(--primary-font);
@@ -97,7 +92,6 @@
   display: flex;
 }
 .description__other-references a {
-  font-family: "Nunito";
   font-style: normal;
   font-weight: 400;
   font-size: var(--primary-font);
@@ -112,7 +106,6 @@
   row-gap: 5px;
 }
 .description__tag {
-  font-family: "Nunito";
   padding-top: 2%;
   font-style: normal;
   font-weight: 400;
@@ -172,7 +165,7 @@
 
 @media (max-width: 400px) {
   .description__title {
-    font-family: "Nunito";
+
     font-style: normal;
     font-weight: 700;
     font-size: 27px;
