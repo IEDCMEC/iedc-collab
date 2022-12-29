@@ -9,6 +9,7 @@ import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { getSkills } from "../../Firebase/firebase";
+import "./Developers.scss";
 
 // const typeDevs = ['Skills','Projects','Developers']
 const DrawerHeader = styled("div")(({ theme }) => ({
@@ -85,7 +86,7 @@ export default function PersistentDrawerLeft({
   };
 
   return (
-    <div>
+    <div className="drawer__container">
       <IconButton
         color="inherit"
         aria-label="open drawer"
@@ -98,6 +99,7 @@ export default function PersistentDrawerLeft({
           top: matches3 ? "184px" : "140px",
           ...(open && { display: "none" }),
         }}
+        className="menu_button"
       >
         <MenuIcon sx={{ fontSize: "2rem" }} />
       </IconButton>
@@ -120,7 +122,7 @@ export default function PersistentDrawerLeft({
         open={open}
       >
         <DrawerHeader>
-          <IconButton onClick={handleDrawerClose}>
+          <IconButton onClick={handleDrawerClose} className="menu_button">
             {theme.direction === "ltr" ? (
               <ChevronLeftIcon sx={{ fontSize: "2rem", color: "white" }} />
             ) : (
@@ -158,7 +160,7 @@ export default function PersistentDrawerLeft({
               <Buttons
                 key={id}
                 name={x}
-                className="skill_boxes"
+                className="skill_boxes menu_button"
                 addSkills={addSkill}
               ></Buttons>
             ))}
@@ -172,7 +174,7 @@ export default function PersistentDrawerLeft({
               <Buttons
                 key={id}
                 name={x}
-                className="skill_boxes"
+                className="skill_boxes menu_button"
                 addSkills={addBranch}
               ></Buttons>
             ))}
@@ -187,7 +189,7 @@ export default function PersistentDrawerLeft({
               <Buttons
                 key={id}
                 name={x}
-                className="skill_boxes"
+                className="skill_boxes menu_button"
                 addSkills={addYop}
               ></Buttons>
             ))}

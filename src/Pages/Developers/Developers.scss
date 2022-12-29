@@ -6,7 +6,9 @@
   overflow-x: hidden;
   padding-bottom: 5%;
 }
-
+.drawer__container button:focus {
+  outline: none;
+}
 .developer-title {
   text-align: center;
   font-family: "Nunito";
