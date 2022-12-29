@@ -1,7 +1,7 @@
 import "./RequirementDetails.scss";
-import Phoneicon from "../../assets/phone.svg";
-import Mail from "../../assets/mail.svg";
-import Github from "../../assets/github.svg";
+import { FaPhoneAlt } from "react-icons/fa";
+import { IoMdMail } from "react-icons/io";
+import { GoMarkGithub } from "react-icons/go";
 // import { ProjectContext } from "../../contexts/ProjectContext";
 // import { useContext } from "react";
 
@@ -33,15 +33,22 @@ const RequirementDetails = ({ selectedProject }) => {
         )}
 
         <div className="requirement-container__controls">
-          <a href={`tel:${selectedProject.contactNo}`}>
-            <img
-              src={Phoneicon}
-              className="requirement_icon"
-              alt="phone-icon"
-            ></img>
+          <a
+            href={`tel:${selectedProject.contactNo}`}
+            className="description__tag_phone_mobile"
+          >
+            <FaPhoneAlt
+              color="white"
+              size={40}
+              style={{
+                backgroundColor: "#9e0000",
+                borderRadius: "50%",
+                padding: "8px",
+              }}
+            />
           </a>
           <a href={`mailto: ${selectedProject.leaderEmail}`}>
-            <img src={Mail} className="requirement_icon" alt="mail"></img>
+            <IoMdMail color="#9e0000" size={49} style={{ marginTop: "3px" }} />
           </a>
           {selectedProject.githubLink.length ? (
             <a
@@ -49,7 +56,7 @@ const RequirementDetails = ({ selectedProject }) => {
               target="_blank"
               rel="noreferrer"
             >
-              <img src={Github} className="requirement_icon" alt="github"></img>
+              <GoMarkGithub color="#9e0000" size={40} />
             </a>
           ) : (
             ""

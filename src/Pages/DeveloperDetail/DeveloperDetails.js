@@ -1,13 +1,6 @@
 import MainLayout from "../../Components/MainLayout/MainLayout";
 import "./DeveloperDetails.scss";
-import classIcon from "../../assets/class.svg";
-import browser from "../../assets/browser.svg";
-import phone from "../../assets/phonecircle.svg";
-import mail from "../../assets/mailnew.svg";
-import linkedin from "../../assets/linkedin.svg";
-import github from "../../assets/githubnew.svg";
 // import person from "../../assets/details_left.svg";
-import add from "../../assets/add.svg";
 import InviteToProjectModal from "../../Components/InviteToProjectModal/InviteToProjectModal";
 import { useContext, useEffect, useState } from "react";
 import { useHistory, useParams } from "react-router-dom";
@@ -16,6 +9,11 @@ import { AuthContext } from "../../Firebase/Auth/Auth";
 import SuspenseLoader from "../../Components/SuspenseLoader/SuspenseLoader";
 import animation from "../../animations/developers.json";
 import Lottie from "react-lottie";
+import { IoMdMail } from "react-icons/io";
+import { FaGraduationCap, FaLinkedin, FaPhoneAlt } from "react-icons/fa";
+import { TbNetwork } from "react-icons/tb";
+import { GoMarkGithub } from "react-icons/go";
+import { HiUserAdd } from "react-icons/hi";
 
 function DeveloperDetails() {
   let { id } = useParams();
@@ -74,7 +72,7 @@ function DeveloperDetails() {
                       target="_blank"
                       rel="noreferrer"
                     >
-                      <img src={browser} alt="" />
+                      <TbNetwork size={33} color="#9e0000" />
                     </a>
                   ) : (
                     ""
@@ -85,7 +83,15 @@ function DeveloperDetails() {
                       target="_blank"
                       rel="noreferrer"
                     >
-                      <img src={phone} alt="" />
+                      <FaPhoneAlt
+                        color="white"
+                        size={35}
+                        style={{
+                          backgroundColor: "#9e0000",
+                          borderRadius: "50%",
+                          padding: "8px",
+                        }}
+                      />
                     </a>
                   ) : (
                     ""
@@ -96,7 +102,7 @@ function DeveloperDetails() {
                       target="_blank"
                       rel="noreferrer"
                     >
-                      <img src={mail} alt="" />
+                      <IoMdMail color="#9e0000" size={45} />
                     </a>
                   ) : (
                     ""
@@ -107,7 +113,7 @@ function DeveloperDetails() {
                       target="_blank"
                       rel="noreferrer"
                     >
-                      <img src={linkedin} alt="" />
+                      <FaLinkedin color="#9e0000" size={35} />
                     </a>
                   ) : (
                     ""
@@ -118,7 +124,7 @@ function DeveloperDetails() {
                       target="_blank"
                       rel="noreferrer"
                     >
-                      <img src={github} alt="" />
+                      <GoMarkGithub color="#9e0000" size={35} />
                     </a>
                   ) : (
                     " "
@@ -128,7 +134,7 @@ function DeveloperDetails() {
               <div className="developer_class">
                 {selectedUser.branch || selectedUser.year ? (
                   <>
-                    <img src={classIcon} alt="" />
+                    <FaGraduationCap size={28} />
                     <div>
                       {selectedUser.branch} {selectedUser.year}
                     </div>
@@ -230,7 +236,10 @@ function DeveloperDetails() {
                 <div className="developer_details_body_right_header">
                   Achievements
                 </div>
-                <div className="developer_details_body_right_content">
+                <div
+                  className="developer_details_body_right_content"
+                  style={{ whiteSpace: "pre-wrap" }}
+                >
                   {selectedUser.achievements ? (
                     selectedUser.achievements
                   ) : (
@@ -255,7 +264,7 @@ function DeveloperDetails() {
                   }
                 }}
               >
-                <img src={add} alt="" />
+                <HiUserAdd size={30} />
                 Invite to Project
               </div>
             </div>

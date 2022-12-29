@@ -2,10 +2,9 @@ import ProjectCard from "./ProjectCard";
 import React, { useCallback, useContext, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper.min.css";
-import left from "../../assets/left.svg";
-import right from "../../assets/right.svg";
 import { ProjectContext } from "../../contexts/ProjectContext";
 import { useHistory } from "react-router-dom";
+import { BsArrowLeftCircleFill, BsArrowRightCircleFill } from "react-icons/bs";
 function ProjectCarousel({ project }) {
   const { projects } = useContext(ProjectContext);
   const history = useHistory();
@@ -32,7 +31,7 @@ function ProjectCarousel({ project }) {
     <>
       <div className="project-carousel">
         <div className="left_arrow" onClick={handleLeftClick}>
-          <img src={left} className="carousel_arrow" alt="" />
+          <BsArrowLeftCircleFill color="#9e0000" size={30} />
         </div>
         <Swiper
           onSwiper={setSwiperRef}
@@ -77,7 +76,7 @@ function ProjectCarousel({ project }) {
         </Swiper>
 
         <div className="right_arrow" onClick={handleRightClick}>
-          <img src={right} className="carousel_arrow" alt="" />
+          <BsArrowRightCircleFill color="#9e0000" size={30} />
         </div>
       </div>
     </>

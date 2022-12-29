@@ -1,18 +1,18 @@
 import { useContext, useEffect, useState } from "react";
 import { ProjectContext } from "../../contexts/ProjectContext";
 import "./DescriptionDetails.scss";
-import Phoneicon from "../../assets/phone.svg";
-import Mail from "../../assets/mail.svg";
-import Github from "../../assets/github.svg";
-import Tag from "../../assets/tag.svg";
 import { useHistory } from "react-router-dom";
 import { AuthContext } from "../../Firebase/Auth/Auth";
 import { doDeleteProject } from "../../Firebase/firebase";
-import Bin from "../../assets/bin.svg";
-import Edit from "../../assets/edit.svg";
 import ProjectModal from "../ProjectModal/ProjectModal";
 import { toast } from "react-toastify";
 import DeleteConfirmation from "../DeleteConfirmationModal/DeleteConfirmation";
+import { IoMdMail } from "react-icons/io";
+import { GoMarkGithub } from "react-icons/go";
+import { IoPricetagsOutline } from "react-icons/io5";
+import { RiDeleteBin7Line } from "react-icons/ri";
+import { FaPhoneAlt } from "react-icons/fa";
+import { FiEdit } from "react-icons/fi";
 
 const DescriptionDetails = (props) => {
   const { fetchData } = useContext(ProjectContext);
@@ -51,8 +51,8 @@ const DescriptionDetails = (props) => {
       <div className="description__container">
         <div className="description-details__headcontrols">
           {canModifyProject && (
-            <img
-              src={Bin}
+            <RiDeleteBin7Line
+              size={38}
               style={{ cursor: "pointer" }}
               onClick={() => {
                 deleteProj();
@@ -61,14 +61,13 @@ const DescriptionDetails = (props) => {
             />
           )}
           {canModifyProject && (
-            <img
-              src={Edit}
-              alt="Edit Project"
+            <FiEdit
+              size={36}
               style={{ cursor: "pointer" }}
               onClick={() => {
                 setShowNewProjectModal(true);
               }}
-            ></img>
+            />
           )}
         </div>
         <div className="description__title">PROJECT DESCRIPTION</div>
@@ -116,7 +115,7 @@ const DescriptionDetails = (props) => {
           <div className="description__other-tags">
             {" "}
             <div className="description__other-tag">
-              <img src={Tag} alt="tag" />
+              <IoPricetagsOutline size={26} />
             </div>
             <div className="description__tag">
               {props.selectedProject.tags.map((tag, index) => (
@@ -132,29 +131,31 @@ const DescriptionDetails = (props) => {
           <span className="ml-2">{props.selectedProject.contactNo}</span>
         </div>
         <div className="description-container__controls">
-          <div>
-            <a
-              href={`tel:${props.selectedProject.contactNo}`}
-              className="description__tag_phone_mobile"
-            >
-              <img src={Phoneicon} alt="phone-icon"></img>
-            </a>
-          </div>
-          <div>
-            <a href={`mailto: ${props.selectedProject.leaderEmail}`}>
-              <img src={Mail} alt="mail"></img>
-            </a>
-          </div>
+          <a
+            href={`tel:${props.selectedProject.contactNo}`}
+            className="description__tag_phone_mobile"
+          >
+            <FaPhoneAlt
+              color="white"
+              size={40}
+              style={{
+                backgroundColor: "#9e0000",
+                borderRadius: "50%",
+                padding: "8px",
+              }}
+            />
+          </a>
+          <a href={`mailto: ${props.selectedProject.leaderEmail}`}>
+            <IoMdMail color="#9e0000" size={49} style={{ marginTop: "3px" }} />
+          </a>
           {props.selectedProject.githubLink.length ? (
-            <div>
-              <a
-                href={props.selectedProject.githubLink}
-                target="_blank"
-                rel="noreferrer"
-              >
-                <img src={Github} alt="github"></img>
-              </a>
-            </div>
+            <a
+              href={props.selectedProject.githubLink}
+              target="_blank"
+              rel="noreferrer"
+            >
+              <GoMarkGithub color="#9e0000" size={40} />
+            </a>
           ) : (
             ""
           )}

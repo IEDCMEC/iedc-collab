@@ -1,6 +1,5 @@
 import React, { useContext, useState } from "react";
 import "./MyProfile.scss";
-import edit_icon from "../../assets/edit_profile_icon.svg";
 import MainLayout from "../../Components/MainLayout/MainLayout";
 import { BsTelephoneInbound } from "react-icons/bs";
 import { HiOutlineAcademicCap } from "react-icons/hi";
@@ -20,6 +19,7 @@ import bubble1 from "../../assets/bubble_1.svg";
 import bubble5 from "../../assets/bubble_5.svg";
 import { ProjectContext } from "../../contexts/ProjectContext";
 import { useHistory } from "react-router-dom";
+import { FiEdit } from "react-icons/fi";
 const MyProfile = () => {
   const { currentUser } = useContext(AuthContext);
   const [showProfileModal, setShowProfileModal] = useState(false);
@@ -111,10 +111,9 @@ const MyProfile = () => {
                   alignItems: "flex-end",
                 }}
               >
-                <img
-                  src={edit_icon}
+                <FiEdit
+                  size={36}
                   style={{
-                    width: "2rem",
                     cursor: "pointer",
                     alignItems: "flex-end",
                   }}

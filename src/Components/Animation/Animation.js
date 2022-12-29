@@ -1,7 +1,6 @@
 import "./Animation.scss";
 import bubble8 from "../../assets/bubble_8.svg";
 import iedclogo from "../../assets/logo_1.svg";
-import googleLogo from "../../assets/google.svg";
 import animation from "../../animations/landing.json";
 import Lottie from "react-lottie";
 import { signIn } from "../../Firebase/firebase";
@@ -9,6 +8,7 @@ import { useContext } from "react";
 import { AuthContext } from "../../Firebase/Auth/Auth";
 import { useHistory } from "react-router-dom";
 import { useEffect } from "react";
+import { FcGoogle } from "react-icons/fc";
 import { useState } from "react";
 
 const Animation = () => {
@@ -61,15 +61,14 @@ const Animation = () => {
         {currentUser ? (
           ""
         ) : (
-          <button
+          <div
             className="signin_btn"
             data-aos="zoom-in"
             data-aos-duration="2000"
             onClick={newprojectClick}
           >
-            <img src={googleLogo} alt="" className="google_logo" /> Sign in with
-            Google
-          </button>
+            <FcGoogle size={35} /> Sign in with Google
+          </div>
         )}
       </div>
     </>

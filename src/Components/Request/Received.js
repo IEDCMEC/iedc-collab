@@ -1,7 +1,5 @@
 import React, { useContext } from "react";
 import "./Request.css";
-import accept_icon from "../../assets/accepticon.svg";
-import decline_icon from "../../assets/declineicon.svg";
 import {
   acceptInvite,
   acceptRequest,
@@ -12,6 +10,8 @@ import { toast } from "react-toastify";
 import axios from "axios";
 import { emailUrl } from "../../Utils/urls";
 import { ProjectContext } from "../../contexts/ProjectContext";
+import { HiUserAdd } from "react-icons/hi";
+import { RiDeleteBin6Line } from "react-icons/ri";
 
 function Received({ request }) {
   const history = useHistory();
@@ -124,7 +124,7 @@ function Received({ request }) {
                   }
                 }}
               >
-                <img src={accept_icon} className="req-box-icon" alt="" />
+                <HiUserAdd size={25} />
                 Accept
               </div>
               <div
@@ -133,7 +133,7 @@ function Received({ request }) {
                   handleDeclineRequest();
                 }}
               >
-                <img src={decline_icon} className="req-box-icon" alt="" />
+                <RiDeleteBin6Line size={25} />
                 Decline
               </div>
             </>

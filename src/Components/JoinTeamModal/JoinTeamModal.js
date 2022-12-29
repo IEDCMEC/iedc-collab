@@ -5,13 +5,13 @@ import "./JoinTeamModal.scss";
 import bubble9 from "../../assets/bubble_9.svg";
 import bubble10 from "../../assets/bubble_10.svg";
 import bubble11 from "../../assets/bubble_11.svg";
-import sendPaperPlane from "../../assets/sendPaperPlane.svg";
-import closeButton from "../../assets/close.svg";
 import { useContext, useState } from "react";
 import { sendRequest } from "../../Firebase/firebase";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { ProjectContext } from "../../contexts/ProjectContext";
+import { RiCloseLine } from "react-icons/ri";
+import { IoPaperPlaneSharp } from "react-icons/io5";
 
 const JoinTeamModal = ({ user, project, ...props }) => {
   const [message, setMessage] = useState("");
@@ -85,12 +85,7 @@ const JoinTeamModal = ({ user, project, ...props }) => {
         </div>
 
         <div className="close-button" onClick={props.onHide}>
-          <img
-            alt="close"
-            src={closeButton}
-            onClick={props.onHide}
-            className="close-button"
-          />
+          <RiCloseLine size={38} color="#9e0000" />
         </div>
 
         <ModalBody className="join-team-modal__body">
@@ -114,7 +109,7 @@ const JoinTeamModal = ({ user, project, ...props }) => {
               }}
             >
               <p>Send</p>
-              <img src={sendPaperPlane} alt="" className="" />
+              <IoPaperPlaneSharp size={30} color="white" />
             </Button>
           </form>
         </ModalBody>

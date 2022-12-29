@@ -7,8 +7,6 @@ import triangle_1 from "../../assets/triangle_1.svg";
 import triangle_2 from "../../assets/triangle_2.svg";
 import triangle_3 from "../../assets/triangle_3.svg";
 import triangle_4 from "../../assets/triangle_4.svg";
-import sendPaperPlane from "../../assets/sendPaperPlane.svg";
-import closeButton from "../../assets/close.svg";
 import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 // import {
@@ -25,6 +23,8 @@ import {
 import { sendInvite } from "../../Firebase/firebase";
 import { toast } from "react-toastify";
 import { ProjectContext } from "../../contexts/ProjectContext";
+import { RiCloseLine } from "react-icons/ri";
+import { IoPaperPlaneSharp } from "react-icons/io5";
 
 const InviteToProjectModal = ({ user, selectedUser, ...props }) => {
   // const [projects, setProjects] = useState([]);
@@ -127,12 +127,7 @@ const InviteToProjectModal = ({ user, selectedUser, ...props }) => {
       <img src={triangle_4} alt="" className="triangle_4" />
 
       <div className="close-button" onClick={props.onHide}>
-        <img
-          alt="close"
-          src={closeButton}
-          onClick={props.onHide}
-          className="close-button"
-        />
+        <RiCloseLine size={38} color="#9e0000" />
       </div>
 
       <ModalBody className="invite-to-project-modal__body">
@@ -202,7 +197,7 @@ const InviteToProjectModal = ({ user, selectedUser, ...props }) => {
           }}
         >
           <p>Send</p>
-          <img src={sendPaperPlane} alt="" className="" />
+          <IoPaperPlaneSharp size={30} color="white" />
         </Button>
       </ModalBody>
     </Modal>
