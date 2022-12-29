@@ -20,7 +20,7 @@ const ProjectNav = ({ selectedProject }) => {
   useEffect(() => {
     getDev(selectedProject.leader_id);
   }, [selectedProject.leader_id]);
-  const [modalShow, setModalShow] = useState(false);
+  const [open, setOpen] = useState(false);
   if (loading) {
     return <SuspenseLoader />;
   }
@@ -56,7 +56,7 @@ const ProjectNav = ({ selectedProject }) => {
             className="project-nav__button"
             onClick={() => {
               if (currentUser) {
-                setModalShow(true);
+                setOpen(true);
               } else {
                 window.alert("Please Login to continue");
               }
@@ -68,8 +68,8 @@ const ProjectNav = ({ selectedProject }) => {
       </div>
       {currentUser ? (
         <JoinTeamModal
-          show={modalShow}
-          onHide={() => setModalShow(false)}
+          open={open}
+          onClose={() => setOpen(false)}
           user={currentUser}
           project={selectedProject}
         />

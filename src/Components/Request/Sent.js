@@ -35,7 +35,7 @@ function Sent({ request }) {
 
           <div className="req_profile_details">
             <div className="req_profile_details_h4">{request.receiver}</div>
-            <div className="req_profile_details_p">{request.message}</div>
+            <div className="req_profile_details_p" style={{whiteSpace: "pre-wrap"}}>{request.message}</div>
           </div>
         </div>
 

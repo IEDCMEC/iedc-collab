@@ -1,6 +1,4 @@
-import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
-import { ModalBody } from "react-bootstrap";
 import "./JoinTeamModal.scss";
 import bubble9 from "../../assets/bubble_9.svg";
 import bubble10 from "../../assets/bubble_10.svg";
@@ -12,10 +10,12 @@ import { toast } from "react-toastify";
 import { ProjectContext } from "../../contexts/ProjectContext";
 import { RiCloseLine } from "react-icons/ri";
 import { IoPaperPlaneSharp } from "react-icons/io5";
+import { Dialog, DialogContent } from "@mui/material";
 
 const JoinTeamModal = ({ user, project, ...props }) => {
   const [message, setMessage] = useState("");
   const { fetchRequests } = useContext(ProjectContext);
+
   const onSubmit = async () => {
     try {
       await axios.post(
@@ -51,7 +51,19 @@ const JoinTeamModal = ({ user, project, ...props }) => {
   };
   return (
     <>
-      <Modal {...props} size="xl" className="join-team-modal" centered>
+      <Dialog
+        onClose={props.handleClose}
+        open={props.open}
+        PaperProps={{
+          sx: {
+            width: "95vw",
+            position: "absolute",
+          },
+        }}
+        fullWidth={true}
+        maxWidth="md"
+        className="join-team-modal"
+      >
         <img src={bubble9} alt="" className="bubble_9" />
         <img src={bubble10} alt="" className="bubble_10" />
         <img src={bubble11} alt="" className="bubble_11" />
@@ -83,18 +95,17 @@ const JoinTeamModal = ({ user, project, ...props }) => {
           <div className="rectangle"></div>
           <div className="rectangle"></div>
         </div>
-
-        <div className="close-button" onClick={props.onHide}>
+        <div className="close-button" onClick={props.onClose}>
           <RiCloseLine size={38} color="#9e0000" />
         </div>
-
-        <ModalBody className="join-team-modal__body">
+        <DialogContent className="join-team-modal__body">
           <form onSubmit={onSubmit}>
             <h1 className="join-team-modal__title">Join Project Request</h1>
             <div className="message">
               <p className="message__label">Message</p>
               <textarea
-                id="message__text"
+                className="message__text"
+                style={{whiteSpace: "pre-wrap"}}
                 onChange={(e) => setMessage(e.target.value)}
               ></textarea>
             </div>
@@ -105,15 +116,15 @@ const JoinTeamModal = ({ user, project, ...props }) => {
               onClick={(event) => {
                 event.preventDefault();
                 onSubmit();
-                props.onHide();
+                props.onClose();
               }}
             >
               <p>Send</p>
               <IoPaperPlaneSharp size={30} color="white" />
             </Button>
           </form>
-        </ModalBody>
-      </Modal>
+        </DialogContent>
+      </Dialog>
     </>
   );
 };
