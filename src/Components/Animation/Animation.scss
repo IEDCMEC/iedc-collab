@@ -32,6 +32,7 @@
   color: white;
   height: 68px;
   width: 300px;
+  display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
@@ -41,7 +42,7 @@
   border: none;
   outline: none;
   position: absolute;
-  gap: 5px;
+  gap: 0.6rem;
   bottom: -20px;
   z-index: 2;
 }
