@@ -10,25 +10,16 @@ import { toast } from "react-toastify";
 import { ProjectContext } from "../../contexts/ProjectContext";
 import { RiCloseLine } from "react-icons/ri";
 import { IoPaperPlaneSharp } from "react-icons/io5";
-import { Dialog, DialogContent } from "@mui/material";
+import { Dialog, DialogContent, useMediaQuery, useTheme } from "@mui/material";
+import { renderEmail } from "react-html-email";
+import Email from "../Email/Email";
 
 const JoinTeamModal = ({ user, project, ...props }) => {
   const [message, setMessage] = useState("");
+  const fullScreen = useMediaQuery(useTheme().breakpoints.down("sm"));
   const { fetchRequests } = useContext(ProjectContext);
 
   const onSubmit = async () => {
-    try {
-      await axios.post(
-        "https://w2e9j471i2.execute-api.ap-south-1.amazonaws.com/dev/send-email",
-        {
-          toEmail: project.leaderEmail,
-          subject: `Request to Join Team of ${project.name} from IEDC Collab`,
-          content: message,
-        }
-      );
-    } catch (err) {
-      console.log(err);
-    }
     let data = {
       sender: user.displayName,
       sender_id: user.uid,
@@ -48,18 +39,25 @@ const JoinTeamModal = ({ user, project, ...props }) => {
       fetchRequests();
       toast("Request Sent Successfully");
     });
+    try {
+      await axios.post(
+        "https://w2e9j471i2.execute-api.ap-south-1.amazonaws.com/dev/send-email",
+        {
+          toEmail: project.leaderEmail,
+          subject: `Request to Join Team of ${project.name} from IEDC Collab`,
+          content: renderEmail(<Email request={data} />),
+        }
+      );
+    } catch (err) {
+      console.log(err);
+    }
   };
   return (
     <>
       <Dialog
         onClose={props.handleClose}
         open={props.open}
-        PaperProps={{
-          sx: {
-            width: "95vw",
-            position: "absolute",
-          },
-        }}
+        fullScreen={fullScreen}
         fullWidth={true}
         maxWidth="md"
         className="join-team-modal"
@@ -105,7 +103,7 @@ const JoinTeamModal = ({ user, project, ...props }) => {
               <p className="message__label">Message</p>
               <textarea
                 className="message__text"
-                style={{whiteSpace: "pre-wrap"}}
+                style={{ whiteSpace: "pre-wrap" }}
                 onChange={(e) => setMessage(e.target.value)}
               ></textarea>
             </div>

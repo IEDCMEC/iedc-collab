@@ -1,4 +1,4 @@
-import React, { useContext} from "react";
+import React, { useContext } from "react";
 import About from "../../Components/About/About";
 import Mission from "../../Components/Mission/Mission";
 import Team from "../../Components/Team/Team";
@@ -10,7 +10,7 @@ import NavbarHome from "../../Components/NavbarHome/NavbarHome";
 import SuspenseLoader from "../../Components/SuspenseLoader/SuspenseLoader";
 import { ProjectContext } from "../../contexts/ProjectContext";
 const Landing = () => {
-  const {loading }=useContext(ProjectContext);
+  const { loading } = useContext(ProjectContext);
   return loading ? (
     <SuspenseLoader />
   ) : (

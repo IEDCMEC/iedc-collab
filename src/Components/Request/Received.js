@@ -12,63 +12,68 @@ import { emailUrl } from "../../Utils/urls";
 import { ProjectContext } from "../../contexts/ProjectContext";
 import { HiUserAdd } from "react-icons/hi";
 import { RiDeleteBin6Line } from "react-icons/ri";
+import { renderEmail } from "react-html-email";
+import ConfirmEmail from "../ConfirmEmail/ConfirmEmail";
 
 function Received({ request }) {
   const history = useHistory();
   const { fetchRequestsRecieved } = useContext(ProjectContext);
   async function handleRequest() {
-    await acceptRequest(request);
-    axios
-      .post(emailUrl, {
-        toEmail: request.sender_email,
-        subject: `Request Accepted from IEDC Collab`,
-        content: `${request.receiver} accepted the request for ${request.project}.`,
-      })
-      .then(() => {
-        fetchRequestsRecieved();
-        toast("Request Accepted");
+    await acceptRequest(request).then(() => {
+      toast("Request Accepted");
+      fetchRequestsRecieved().then(() => {
+        axios.post(emailUrl, {
+          toEmail: request.sender_email,
+          subject: `Request Accepted by ${request.receiver} from IEDC Collab`,
+          content: renderEmail(
+            <ConfirmEmail request={request} status={"accepted"} />
+          ),
+        });
       });
+    });
   }
   async function handleInvite() {
-    await acceptInvite(request);
-    axios
-      .post(emailUrl, {
-        toEmail: request.sender_email,
-        subject: `Invite Accepted by ${request.receiver} from IEDC Collab`,
-        content: `${request.receiver} accepted the invite for ${request.project}.`,
-      })
-      .then(() => {
-        fetchRequestsRecieved();
-        toast("Invite Accepted");
+    await acceptInvite(request).then(() => {
+      toast("Invite Accepted");
+      fetchRequestsRecieved().then(() => {
+        axios.post(emailUrl, {
+          toEmail: request.sender_email,
+          subject: `Invite Accepted by ${request.receiver} from IEDC Collab`,
+          content: renderEmail(
+            <ConfirmEmail request={request} status={"accepted"} />
+          ),
+        });
       });
+    });
   }
   async function handleDeclineRequest() {
-    await declineRequest(request);
     if (request.type === "invite") {
-      await axios
-
-        .post(emailUrl, {
-          toEmail: request.sender_email,
-          subject: `Invite Declined from IEDC Collab`,
-          content: `${request.receiver} declined the invite for ${request.project}`,
-        })
-        .then(() => {
-          fetchRequestsRecieved();
-          toast("Invite Declined");
+      await declineRequest(request).then(() => {
+        toast("Invite Declined");
+        fetchRequestsRecieved().then(() => {
+          axios.post(emailUrl, {
+            toEmail: request.sender_email,
+            subject: `Invite Declined by ${request.receiver} from IEDC Collab`,
+            content: renderEmail(
+              <ConfirmEmail request={request} status={"declined"} />
+            ),
+          });
         });
+      });
     }
     if (request.type === "request")
-      await axios
-
-        .post(emailUrl, {
-          toEmail: request.sender_email,
-          subject: `Request Declined from IEDC Collab`,
-          content: `${request.receiver} declined the request for ${request.project}.`,
-        })
-        .then(() => {
-          fetchRequestsRecieved();
-          toast("Request Declined");
+      await declineRequest(request).then(() => {
+        toast("Request Declined");
+        fetchRequestsRecieved().then(() => {
+          axios.post(emailUrl, {
+            toEmail: request.sender_email,
+            subject: `Request Declined by ${request.receiver} from IEDC Collab`,
+            content: renderEmail(
+              <ConfirmEmail request={request} status={"declined"} />
+            ),
+          });
         });
+      });
   }
   return (
     <div className="received_sent_box">
@@ -101,7 +106,12 @@ function Received({ request }) {
 
           <div className="req_profile_details">
             <div className="req_profile_details_h4">{request.sender}</div>
-            <div className="req_profile_details_p" style={{whiteSpace: "pre-wrap"}}>{request.message}</div>
+            <div
+              className="req_profile_details_p"
+              style={{ whiteSpace: "pre-wrap" }}
+            >
+              {request.message}
+            </div>
           </div>
         </div>
         <div className="received_btns">
