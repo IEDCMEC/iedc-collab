@@ -336,8 +336,8 @@ const MyProfile = () => {
                     </div>
                   ) : (
                     requestsRecieved?.map((request, index) => (
-                      <div data-aos="fade-up" data-aos-duration="1500" >
-                      <Received key={index} request={request} />
+                      <div data-aos="fade-up" key={index} data-aos-duration="1500" >
+                      <Received  request={request} />
                       </div>
                     ))
                   )
@@ -347,8 +347,8 @@ const MyProfile = () => {
                   </div>
                 ) : (
                   requests?.map((request, index) => (
-                    <div data-aos="fade-up" data-aos-duration="1500" >
-                    <Sent request={request} key={index} data-aos="fade-up" data-aos-duration="1500" />
+                    <div data-aos="fade-up" key={index} data-aos-duration="1500" >
+                    <Sent request={request}  data-aos="fade-up" data-aos-duration="1500" />
                     </div>
                   ))
                 )}

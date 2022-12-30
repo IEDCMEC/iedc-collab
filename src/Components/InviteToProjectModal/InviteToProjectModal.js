@@ -1,4 +1,3 @@
-
 import Button from "react-bootstrap/Button";
 import "./InviteToProjectModal.scss";
 import { emailUrl } from "../../Utils/urls";
@@ -8,7 +7,7 @@ import triangle_3 from "../../assets/triangle_3.svg";
 import triangle_4 from "../../assets/triangle_4.svg";
 import axios from "axios";
 import { useContext, useEffect, useState } from "react";
-import '../JoinTeamModal/JoinTeamModal.scss'
+import "../JoinTeamModal/JoinTeamModal.scss";
 // import {
 //   getProjects,
 // } from "../../Firebase/firebase";
@@ -21,12 +20,16 @@ import {
   MenuItem,
   Select,
   ThemeProvider,
+  useMediaQuery,
 } from "@mui/material";
 import { sendInvite } from "../../Firebase/firebase";
 import { toast } from "react-toastify";
 import { ProjectContext } from "../../contexts/ProjectContext";
 import { RiCloseLine } from "react-icons/ri";
 import { IoPaperPlaneSharp } from "react-icons/io5";
+import { useTheme } from "@emotion/react";
+import Email from "../Email/Email";
+import { renderEmail } from "react-html-email";
 
 const InviteToProjectModal = ({ user, selectedUser, ...props }) => {
   // const [projects, setProjects] = useState([]);
@@ -34,6 +37,7 @@ const InviteToProjectModal = ({ user, selectedUser, ...props }) => {
   const { projects, fetchRequests } = useContext(ProjectContext);
   const [listProjects, setListProjects] = useState([]);
   const [message, setMessage] = useState("");
+  const fullScreen = useMediaQuery(useTheme().breakpoints.down("sm"));
   const theme = createTheme({
     components: {
       MuiOutlinedInput: {
@@ -61,20 +65,11 @@ const InviteToProjectModal = ({ user, selectedUser, ...props }) => {
     },
   });
   async function handleSubmit() {
-    try {
-      await axios.post(emailUrl, {
-        toEmail: selectedUser.email,
-        subject: `Invite to ${project.name} from IEDC Collab`,
-        content: message,
-      });
-    } catch (err) {
-      console.log(err);
-    }
-
     let data = {
       sender: user.displayName,
       sender_id: user.uid,
       sender_email: user.email,
+      sender_img: user.photoURL,
       reciever_email: selectedUser.email,
       receiver: selectedUser.name,
       reciever_img:
@@ -90,6 +85,12 @@ const InviteToProjectModal = ({ user, selectedUser, ...props }) => {
     await sendInvite(data).then(() => {
       toast("Invite Sent Successfully");
       fetchRequests();
+    });
+    await axios.post(emailUrl, {
+      toEmail: selectedUser.email,
+      subject: `Invite to join project ${project.name} from IEDC Collab`,
+      // content: message,
+      content: renderEmail(<Email request={data} />),
     });
   }
 
@@ -125,13 +126,8 @@ const InviteToProjectModal = ({ user, selectedUser, ...props }) => {
     <Dialog
       onClose={props.handleClose}
       open={props.open}
-      PaperProps={{
-        sx: {
-          width: "95vw",
-          position: "absolute",
-        },
-      }}
       fullWidth={true}
+      fullScreen={fullScreen}
       maxWidth="md"
       className="invite-to-project-modal"
     >
@@ -150,7 +146,6 @@ const InviteToProjectModal = ({ user, selectedUser, ...props }) => {
               <FormControl>
                 <InputLabel
                   id="demo-simple-select-label"
-                  
                   style={{
                     fontWeight: "400",
                     fontSize: "17px",
@@ -161,11 +156,11 @@ const InviteToProjectModal = ({ user, selectedUser, ...props }) => {
                   Select Project
                 </InputLabel>
                 <Select
-                className="invite-project-name__label"
+                  className="invite-project-name__label"
                   style={{
                     fontWeight: "400",
                     fontSize: "17px",
-                    
+
                     lineHeight: "26px",
                     color: " #622308",
                   }}
@@ -196,7 +191,7 @@ const InviteToProjectModal = ({ user, selectedUser, ...props }) => {
             <p className="message__label">Message</p>
             <textarea
               className="message__text"
-              style={{whiteSpace: "pre-wrap"}}
+              style={{ whiteSpace: "pre-wrap" }}
               onChange={(e) => setMessage(e.target.value)}
             ></textarea>
           </div>
