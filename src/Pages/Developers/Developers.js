@@ -15,7 +15,7 @@ const Developers = () => {
   );
   const [selectedSkills, setSelectedSkills] = useState([]);
   const [allUsers, setAllUsers] = useState();
-  const [loading1, setLoading1] = useState(true);
+  const [loading1, setLoading1] = useState(false);
   const [branch, setBranch] = useState([]);
   const [yop, setYop] = useState([]);
 
@@ -59,7 +59,7 @@ const Developers = () => {
   }, [developers]);
   const filterDevelopers = () => {
     
-     setUsers(developers);
+     setLoading1(true)
    // setAllUsers(developers);
     let developers1 = allUsers;
     let skills = selectedSkills;
@@ -76,16 +76,18 @@ const Developers = () => {
         }
       });
 
-      // setLoading(false);
-      setUsers(devs)
+      
+     
     }
+
+    
     if (branch.length > 0){
       devs = devs.filter((d) => {
         if (branch.find((br) => br === d.branch)) {
           return true;
         } else return false;
       });
-      setUsers(devs)
+     
     }
     if (yop.length > 0){
       devs = devs.filter((d) => {
@@ -93,23 +95,39 @@ const Developers = () => {
           return true;
         } else return false;
       });
-    setUsers(devs);
+   
     }
+    
+    if(devs)
+{   setUsers([])
+   for(let i = 0; i < devs.length+10;i+=10){
+      
+      setTimeout(() => {
+        if(i>devs.length)i = devs.length;
+      setUsers((prev)=>[...prev, ...devs.slice(i,i+10)])  
+      }, 100);
+    }
+  }   
+  
   };
+
+  useEffect(()=>{
+    setLoading1(false)
+  },[users])  
+
   useEffect(() => {
     console.log(branch);
     filterDevelopers();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedSkills, branch, yop]);
 
-  useEffect(() => {
-    alert(users)}, [users])
+ 
  
   const history = useHistory();
   const handleClick = (u) => {
     history.push(`/developers/${u.id}`);
   };
-  if (loading || loading1) {
+  if (loading) {
     return (
       <div>
         <MainLayout route={"Developers"}>
@@ -131,6 +149,13 @@ const Developers = () => {
           <div className="developer_container">
             <h3 style={{ textAlign: "center" }}>DEVELOPERS</h3>
             <div className="developer-details">
+            {/* {loading1 ? <div
+          className="d-flex justify-content-center align-items-center flex-column"
+          style={{ height: "90vh" }}
+        >
+          <div className="spinner-border" role="status"></div>
+          <div className="mt-3">Loading Developers...</div>
+        </div>:null} */}
               {users?.map((user, index) => {
                 return (
                   <div key={index} onClick={() => setSelectedDevelopers(user)}>
