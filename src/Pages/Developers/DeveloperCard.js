@@ -2,7 +2,13 @@ import React from "react";
 import "./Developers.scss";
 
 const DeveloperCard = ({ user, handleClick }) => {
-
+  const getLinkedinUsername = (url) => {
+    const urlArray = url.split("/");
+    if (urlArray[urlArray.length - 1] === "") {
+      return urlArray[urlArray.length - 2];
+    }
+    return urlArray[urlArray.length - 1];
+  };
   return (
     <div
       data-aos="zoom-in"
@@ -20,9 +26,16 @@ const DeveloperCard = ({ user, handleClick }) => {
           }
         />
       </div>
-      <div>
+      <div style={{
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "flex-start",
+      }}>
         <h1 className="developer-card-name">{user.name}</h1>
-        <div className="developer-card-email">{user.email}</div>
+        <div className="developer-card-email">
+          {user.linkedin ? "@" + getLinkedinUsername(user.linkedin) : null}
+        </div>
       </div>
     </div>
   );

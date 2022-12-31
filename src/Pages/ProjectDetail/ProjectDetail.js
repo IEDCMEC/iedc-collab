@@ -58,10 +58,18 @@ function ProjectDetail() {
               />
             )}
             {toggle === 2 && (
-              <RequirementDetails selectedProject={selectedProject} />
+              <RequirementDetails
+                selectedProject={selectedProject}
+                setVariable={setVariable}
+                variable={variable}
+              />
             )}
             {toggle === 3 && (
-              <DiscussionDetails selectedProject={selectedProject} />
+              <DiscussionDetails
+                selectedProject={selectedProject}
+                setVariable={setVariable}
+                variable={variable}
+              />
             )}
           </div>
         </div>

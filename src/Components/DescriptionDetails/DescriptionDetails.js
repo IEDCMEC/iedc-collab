@@ -126,28 +126,47 @@ const DescriptionDetails = (props) => {
         ) : (
           ""
         )}
-        <div className="description__tag_phone">
-          <i className="fa fa-phone"></i>
-          <span className="ml-2">{props.selectedProject.contactNo}</span>
-        </div>
+        {currentUser ? (
+          <div className="description__tag_phone">
+            <i className="fa fa-phone"></i>
+            <span className="ml-2">{props.selectedProject.contactNo}</span>
+          </div>
+        ) : (
+          ""
+        )}
+
         <div className="description-container__controls">
-          <a
-            href={`tel:${props.selectedProject.contactNo}`}
-            className="description__tag_phone_mobile"
-          >
-            <FaPhoneAlt
-              color="white"
-              size={40}
-              style={{
-                backgroundColor: "#9e0000",
-                borderRadius: "50%",
-                padding: "8px",
-              }}
-            />
-          </a>
-          <a href={`mailto: ${props.selectedProject.leaderEmail}`}>
-            <IoMdMail color="#9e0000" size={49} style={{ marginTop: "3px" }} />
-          </a>
+          {currentUser ? (
+            <a
+              href={`tel:${props.selectedProject.contactNo}`}
+              className="description__tag_phone_mobile"
+            >
+              <FaPhoneAlt
+                color="white"
+                size={40}
+                style={{
+                  backgroundColor: "#9e0000",
+                  borderRadius: "50%",
+                  padding: "8px",
+                }}
+              />
+            </a>
+          ) : (
+            ""
+          )}
+
+          {currentUser ? (
+            <a href={`mailto: ${props.selectedProject.leaderEmail}`}>
+              <IoMdMail
+                color="#9e0000"
+                size={49}
+                style={{ marginTop: "3px" }}
+              />
+            </a>
+          ) : (
+            ""
+          )}
+
           {props.selectedProject.githubLink.length ? (
             <a
               href={props.selectedProject.githubLink}

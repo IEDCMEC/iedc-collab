@@ -1,4 +1,4 @@
-function ConfirmEmail({ request,status }) {
+function ConfirmEmail({ request, status }) {
   return (
     <>
       <div>
@@ -18,7 +18,7 @@ function ConfirmEmail({ request,status }) {
           their team for the project{"  "}
           <i>
             <a
-              href={`https://iedc-collab-frontend.pages.dev/${request.project_id}`}
+              href={`https://iedc-collab-frontend.pages.dev/projects/${request.project_id}`}
               target="_blank"
               rel="noreferrer"
             >
@@ -39,9 +39,6 @@ function ConfirmEmail({ request,status }) {
             </a>
           </p>
         </div>
-        <br />
-        <p>Thank You</p>
-        <br />
         <p>Regards</p>
         <p>IEDC MEC Collab Team</p>
         <br />

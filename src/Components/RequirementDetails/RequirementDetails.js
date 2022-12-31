@@ -2,26 +2,87 @@ import "./RequirementDetails.scss";
 import { FaPhoneAlt } from "react-icons/fa";
 import { IoMdMail } from "react-icons/io";
 import { GoMarkGithub } from "react-icons/go";
-// import { ProjectContext } from "../../contexts/ProjectContext";
+import { useHistory } from "react-router-dom";
+import { doDeleteProject } from "../../Firebase/firebase";
+import { toast } from "react-toastify";
+import { useContext, useEffect, useState } from "react";
+import { RiDeleteBin7Line } from "react-icons/ri";
+import { FiEdit } from "react-icons/fi";
+import { AuthContext } from "../../Firebase/Auth/Auth";
+import { ProjectContext } from "../../contexts/ProjectContext";
+import ProjectModal from "../ProjectModal/ProjectModal";
+import DeleteConfirmation from "../DeleteConfirmationModal/DeleteConfirmation";
 // import { useContext } from "react";
 
-const RequirementDetails = ({ selectedProject }) => {
+const RequirementDetails = (props) => {
+  const { fetchData } = useContext(ProjectContext);
+  const { currentUser } = useContext(AuthContext);
+  const [canModifyProject, setCanModifyProject] = useState(false);
+  const [showNewProjectModal, setShowNewProjectModal] = useState(false);
+  const [displayConfirmationModal, setDisplayConfirmationModal] = useState(
+    false
+  );
+  const history = useHistory();
+  const submitDelete = (id) => {
+    doDeleteProject(id, () => {
+      toast("Project deleted successfully");
+      fetchData();
+    });
+    setDisplayConfirmationModal(false);
+    history.go(0);
+  };
+
+  const hideConfirmationModal = () => {
+    setDisplayConfirmationModal(false);
+  };
+  useEffect(() => {
+    if (currentUser?.uid === props.selectedProject.leader_id) {
+      setCanModifyProject(true);
+    } else {
+      setCanModifyProject(false);
+    }
+  }, [currentUser?.uid, props.selectedProject.leader_id]);
+  function deleteProj() {
+    setDisplayConfirmationModal(true);
+  }
   return (
     <>
       <div className="requirement__container">
+        <div className="description-details__headcontrols">
+          {canModifyProject && (
+            <RiDeleteBin7Line
+              size={38}
+              style={{ cursor: "pointer" }}
+              onClick={() => {
+                deleteProj();
+              }}
+              alt="delete project"
+            />
+          )}
+          {canModifyProject && (
+            <FiEdit
+              size={36}
+              style={{ cursor: "pointer" }}
+              onClick={() => {
+                setShowNewProjectModal(true);
+              }}
+            />
+          )}
+        </div>
         <div className="requirement__title">PROJECT REQUIREMENTS</div>
         <div className="requirement__content">
-          {selectedProject?.req || "No Details Entered..."}
+          {props.selectedProject?.req || "No Details Entered..."}
         </div>
       </div>
       <div className="requirement__other">
-        {selectedProject?.hiring?.length === 0 || !selectedProject.hiring ? (
+        {props.selectedProject?.hiring?.length === 0 ||
+        !props.selectedProject.hiring ? (
           ""
         ) : (
           <>
             <div className="requirement__other-hiring">HIRING</div>
             <div className="requirement__other-skills">
-              {selectedProject?.hiring?.map((role, index) => {
+              {props.selectedProject?.hiring?.map((role, index) => {
                 return (
                   <div className="requirement__other-skill" key={index}>
                     o {role}
@@ -33,26 +94,39 @@ const RequirementDetails = ({ selectedProject }) => {
         )}
 
         <div className="requirement-container__controls">
-          <a
-            href={`tel:${selectedProject.contactNo}`}
-            className="description__tag_phone_mobile"
-          >
-            <FaPhoneAlt
-              color="white"
-              size={40}
-              style={{
-                backgroundColor: "#9e0000",
-                borderRadius: "50%",
-                padding: "8px",
-              }}
-            />
-          </a>
-          <a href={`mailto: ${selectedProject.leaderEmail}`}>
-            <IoMdMail color="#9e0000" size={49} style={{ marginTop: "3px" }} />
-          </a>
-          {selectedProject.githubLink.length ? (
+          {currentUser ? (
             <a
-              href={selectedProject.githubLink}
+              href={`tel:${props.selectedProject.contactNo}`}
+              className="description__tag_phone_mobile"
+            >
+              <FaPhoneAlt
+                color="white"
+                size={40}
+                style={{
+                  backgroundColor: "#9e0000",
+                  borderRadius: "50%",
+                  padding: "8px",
+                }}
+              />
+            </a>
+          ) : (
+            ""
+          )}
+          {currentUser ? (
+            <a href={`mailto: ${props.selectedProject.leaderEmail}`}>
+              <IoMdMail
+                color="#9e0000"
+                size={49}
+                style={{ marginTop: "3px" }}
+              />
+            </a>
+          ) : (
+            ""
+          )}
+
+          {props.selectedProject.githubLink.length ? (
+            <a
+              href={props.selectedProject.githubLink}
               target="_blank"
               rel="noreferrer"
             >
@@ -63,6 +137,19 @@ const RequirementDetails = ({ selectedProject }) => {
           )}
         </div>
       </div>
+      <ProjectModal
+        show={showNewProjectModal}
+        onHide={() => setShowNewProjectModal(false)}
+        project={props.selectedProject}
+        setVariable={props.setVariable}
+        variable={props.variable}
+      />
+      <DeleteConfirmation
+        showModal={displayConfirmationModal}
+        confirmModal={submitDelete}
+        hideModal={hideConfirmationModal}
+        id={props.selectedProject.id}
+      />
     </>
   );
 };

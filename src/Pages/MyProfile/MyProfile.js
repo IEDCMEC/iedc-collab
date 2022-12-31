@@ -192,7 +192,7 @@ const MyProfile = () => {
                         target="_blank"
                         rel="noreferrer"
                       >
-                        @ {getGithubUsername(profile.github)}
+                        @{getGithubUsername(profile.github)}
                       </a>
                     ) : (
                       <div className="change-in-edit">{"<empty>"}</div>
@@ -208,7 +208,7 @@ const MyProfile = () => {
                         target="_blank"
                         rel="noreferrer"
                       >
-                        @ {getLinkedinUsername(profile.linkedin)}
+                        @{getLinkedinUsername(profile.linkedin)}
                       </a>
                     ) : (
                       <div className="change-in-edit">{"<empty>"}</div>

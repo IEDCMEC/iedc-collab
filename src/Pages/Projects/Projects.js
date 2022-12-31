@@ -1,16 +1,12 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import "./Projects.scss";
 import { Container } from "react-bootstrap";
-import Aos from "aos";
 import { useHistory } from "react-router-dom";
 import MainLayout from "../../Components/MainLayout/MainLayout";
 // import { getProjects } from "../../Firebase/firebase";
 import SuspenseLoader from "../../Components/SuspenseLoader/SuspenseLoader";
 import { ProjectContext } from "../../contexts/ProjectContext";
 const Projects = () => {
-  useEffect(() => {
-    Aos.init({ duration: 1100 });
-  }, []);
   // const [projects, setProjects] = useState([]);
   const { projects, loading } = useContext(ProjectContext);
   // const [loading, setLoading] = useState(true);
@@ -32,6 +28,7 @@ const Projects = () => {
   const handleClick = (p) => {
     history.push(`/projects/${p.id}`);
   };
+  
   if (loading) {
     return (
       <div>
@@ -46,9 +43,7 @@ const Projects = () => {
       <MainLayout route={"Projects"}>
         <Container className="landing">
           <h3 style={{ textAlign: "center" }}>
-            {projects.length === 0 && projects.length !== 0
-              ? "NOT FOUND"
-              : "PROJECTS"}
+            {projects.length === 0 ? "NOT FOUND" : "PROJECTS"}
           </h3>
 
           {projects.map((project) => (

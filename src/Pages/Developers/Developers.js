@@ -10,9 +10,7 @@ import SuspenseLoader from "../../Components/SuspenseLoader/SuspenseLoader";
 import { ProjectContext } from "../../contexts/ProjectContext";
 import { Pagination } from "@mui/material";
 
-
-
-let devs = []
+let devs = [];
 
 const Developers = () => {
   const [users, setUsers] = useState([]);
@@ -20,8 +18,8 @@ const Developers = () => {
     ProjectContext
   );
   const [selectedSkills, setSelectedSkills] = useState([]);
-  const [pages, setPages ] = useState(0)
-  const [page, setPage] = useState(0)
+  const [pages, setPages] = useState(0);
+  const [page, setPage] = useState(0);
   const [loading1, setLoading1] = useState(false);
   const [branch, setBranch] = useState([]);
   const [yop, setYop] = useState([]);
@@ -29,8 +27,8 @@ const Developers = () => {
   const addYop = (selectedYop) => {
     let oldYop = yop;
     if (oldYop.find((s) => s === selectedYop)) {
-      if(oldYop.length==1)oldYop=[]
-     else oldYop = oldYop.filter((s) => s !== selectedYop);
+      if (oldYop.length === 1) oldYop = [];
+      else oldYop = oldYop.filter((s) => s !== selectedYop);
     } else {
       oldYop = [...oldYop, selectedYop];
     }
@@ -44,7 +42,6 @@ const Developers = () => {
       oldBranch = [...oldBranch, b];
     }
     setBranch(oldBranch);
-    
   };
   // const getDevs = async () => {
   //   // await getDevelopers().then(async function (snapshot) {
@@ -60,23 +57,21 @@ const Developers = () => {
   // };
   useEffect(() => {
     devs = developers;
-     setPage(0)
-    setPages(Math.ceil(developers.length/10))
-    setUsers(developers.slice(page*10,(page*10)+10))
-    
-    
-  
+    setPage(0);
+    setPages(Math.ceil(developers.length / 10));
+    setUsers(developers.slice(page * 10, page * 10 + 10));
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [developers]);
   const filterDevelopers = () => {
-//if(branch.length==0 && yop.length==0 && selectedSkills.length==0 && developers.length == users.length){alert("hello");return;}
-     setLoading1(true)
-   // setAllUsers(developers);
+    //if(branch.length==0 && yop.length==0 && selectedSkills.length==0 && developers.length == users.length){alert("hello");return;}
+    setLoading1(true);
+    // setAllUsers(developers);
     let developers1 = developers;
     let skills = selectedSkills;
-    devs = []
-    setPage(0)
-    if (skills.length === 0 ) {
+    devs = [];
+    setPage(0);
+    if (skills.length === 0) {
       devs = developers;
     } else {
       developers1.forEach((dev) => {
@@ -87,63 +82,52 @@ const Developers = () => {
           }
         }
       });
-
-      
-     
     }
 
-    
-    if (branch.length > 0){
+    if (branch.length > 0) {
       devs = devs.filter((d) => {
         if (branch.find((br) => br === d.branch)) {
           return true;
         } else return false;
       });
-     
     }
-    if (yop.length > 0){
+    if (yop.length > 0) {
       devs = devs.filter((d) => {
         if (yop.find((yp) => yp === d.year)) {
           return true;
         } else return false;
       });
-   
     }
-    
-    if(devs)
-{  
-  //  setUsers([])
-  // for(let i = 0; i < devs.length+10;i+=10){
-      
+
+    if (devs) {
+      //  setUsers([])
+      // for(let i = 0; i < devs.length+10;i+=10){
+
       //etTimeout(() => {
-        let count = 15
-        setPages(Math.ceil(devs.length/10));
-      setUsers(devs.slice(page*10,(page*10)+10))  
+      setPages(Math.ceil(devs.length / 10));
+      setUsers(devs.slice(page * 10, page * 10 + 10));
       //}, 100);
     }
-   
-  
-  setLoading1(false)
+
+    setLoading1(false);
   };
 
-  useEffect(()=>{
-      setUsers(devs.slice(page*10, (page*10)+10))
-  }, [page])
+  useEffect(() => {
+    setUsers(devs.slice(page * 10, page * 10 + 10));
+  }, [page]);
 
   useEffect(() => {
     console.log(branch);
-    
+
     filterDevelopers();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedSkills, branch, yop]);
 
- 
- 
   const history = useHistory();
   const handleClick = (u) => {
     history.push(`/developers/${u.id}`);
   };
-  if (loading||loading1) {
+  if (loading || loading1) {
     return (
       <div>
         <MainLayout route={"Developers"}>
@@ -163,9 +147,11 @@ const Developers = () => {
             addYop={addYop}
           />
           <div className="developer_container">
-            <h3 style={{ textAlign: "center" }}>DEVELOPERS</h3>
+            <h3 style={{ textAlign: "center" }}>
+              {users.length === 0 ? "NOT FOUND" : "DEVELOPERS"}
+            </h3>
+
             <div className="developer-details">
-            
               {users?.map((user, index) => {
                 return (
                   <div key={index} onClick={() => setSelectedDevelopers(user)}>
@@ -174,12 +160,18 @@ const Developers = () => {
                 );
               })}
             </div>
-            <Pagination count={pages}  page = {page+1} onChange={(e, val)=>{setPage(val-1)}} color="primary" sx={{
-              paddingTop:"5rem",
-            }} />
+            <Pagination
+              count={pages}
+              page={page + 1}
+              onChange={(e, val) => {
+                setPage(val - 1);
+              }}
+              color="primary"
+              sx={{
+                paddingTop: "5rem",
+              }}
+            />
           </div>
-          
-
         </div>
       </MainLayout>
     </>
