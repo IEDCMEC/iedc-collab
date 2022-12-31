@@ -15,7 +15,7 @@ const Developers = () => {
     ProjectContext
   );
   const [selectedSkills, setSelectedSkills] = useState([]);
-  const [allUsers, setAllUsers] = useState();
+  
   const [loading1, setLoading1] = useState(false);
   const [branch, setBranch] = useState([]);
   const [yop, setYop] = useState([]);
@@ -53,20 +53,34 @@ const Developers = () => {
   //   setAllUsers(developers);
   // };
   useEffect(() => {
-    setUsers(developers);
-    setAllUsers(developers);
-    setLoading1(false);
+    setLoading1(true)
+    if(developers.length>0 && users.length!=developers.length)
+    {   setUsers([])
+      alert(developers.length)
+      alert(users)
+       for(let i = 0; i < developers.length+20;i+=20){
+          
+          setTimeout(() => {
+            if(i>developers.length)i = developers.length;
+          setUsers((prev)=>[...prev, ...developers.slice(i,i+20)])  
+          }, 200);
+        }
+      }   
+    setLoading1(false)
+    
+    
+  
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [developers]);
   const filterDevelopers = () => {
-    
+//if(branch.length==0 && yop.length==0 && selectedSkills.length==0 && developers.length == users.length){alert("hello");return;}
      setLoading1(true)
    // setAllUsers(developers);
-    let developers1 = allUsers;
+    let developers1 = developers;
     let skills = selectedSkills;
     let devs = [];
     if (skills.length === 0 ) {
-      devs = allUsers;
+      devs = developers;
     } else {
       developers1.forEach((dev) => {
         for (let s in skills) {
@@ -109,15 +123,14 @@ const Developers = () => {
       }, 100);
     }
   }   
-  
+  setLoading1(false)
   };
 
-  useEffect(()=>{
-    setLoading1(false)
-  },[users])  
+  
 
   useEffect(() => {
     console.log(branch);
+    
     filterDevelopers();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedSkills, branch, yop]);
@@ -150,13 +163,7 @@ const Developers = () => {
           <div className="developer_container">
             <h3 style={{ textAlign: "center" }}>DEVELOPERS</h3>
             <div className="developer-details">
-            {/* {loading1 ? <div
-          className="d-flex justify-content-center align-items-center flex-column"
-          style={{ height: "90vh" }}
-        >
-          <div className="spinner-border" role="status"></div>
-          <div className="mt-3">Loading Developers...</div>
-        </div>:null} */}
+            
               {users?.map((user, index) => {
                 return (
                   <div key={index} onClick={() => setSelectedDevelopers(user)}>
