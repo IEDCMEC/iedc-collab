@@ -15,6 +15,7 @@ import { TbNetwork } from "react-icons/tb";
 import { GoMarkGithub } from "react-icons/go";
 import { HiUserAdd } from "react-icons/hi";
 import { BsArrowLeftCircleFill } from "react-icons/bs";
+import { ProjectContext } from "../../contexts/ProjectContext";
 
 function DeveloperDetails() {
   let { id } = useParams();
@@ -22,7 +23,7 @@ function DeveloperDetails() {
   const { currentUser } = useContext(AuthContext);
   const [selectedUser, setSelectedUser] = useState({});
   const [loading, setLoading] = useState(true);
-
+  const {projects}=useContext(ProjectContext)
   const [open, setOpen] = useState(false);
   const defaultOptions = {
     loop: true,
@@ -214,37 +215,35 @@ function DeveloperDetails() {
                 </div>
                 <div className="developer_details_body_right_content">
                   <div className="developer_details_body_right_content_projects">
-                    {selectedUser.projects ? (
-                      selectedUser.projects.map((project, index) => {
-                        return (
-                          <div
-                            className="developer_details_body_right_content_project"
-                            key={index}
-                            onClick={() => {
-                              history.push(`/projects/${project.id}`);
-                            }}
-                          >
-                            <div className="developer_details_body_right_content_project_img">
-                              <img
-                                src={
-                                  project.projectPhoto ||
-                                  "https://images.unsplash.com/photo-1639413665566-2f75adf7b7ca?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyN3x8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60"
-                                }
-                                alt=""
-                              />
-                            </div>
-                            <div className="developer_details_body_right_content_project_title">
-                              {project.name}
-                            </div>
-                            <div className="developer_details_body_right_content_project_lead">
-                              {project.leader_name}
-                            </div>
+                    {projects.map((project, index) => {
+                      return project.teamMembers?.find(
+                        (member) => member === selectedUser.email
+                      ) ? (
+                        <div
+                          className="developer_details_body_right_content_project"
+                          key={index}
+                          onClick={() => {
+                            history.push(`/projects/${project.id}`);
+                          }}
+                        >
+                          <div className="developer_details_body_right_content_project_img">
+                            <img
+                              src={
+                                project.projectPhoto ||
+                                "https://images.unsplash.com/photo-1639413665566-2f75adf7b7ca?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyN3x8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60"
+                              }
+                              alt=""
+                            />
                           </div>
-                        );
-                      })
-                    ) : (
-                      <div className="skill">No Projects Added</div>
-                    )}
+                          <div className="developer_details_body_right_content_project_title">
+                            {project.name}
+                          </div>
+                          <div className="developer_details_body_right_content_project_lead">
+                            {project.leader_name}
+                          </div>
+                        </div>
+                      ) : null;
+                    })}
                   </div>
                 </div>
               </div>

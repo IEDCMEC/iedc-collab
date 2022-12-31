@@ -365,7 +365,7 @@ export const acceptRequest = async (invite) => {
       console.log(project.val());
       let p = project.val();
       let users = p.teamMembers;
-      users.push(invite.sender);
+      users.push(invite.sender_email);
       firebase
         .database()
         // .ref(`projects/${invite.project_id}/members/${invite.sender_id}`)
@@ -394,7 +394,7 @@ export const acceptInvite = async (invite) => {
       console.log(project.val());
       let p = project.val();
       let users = p.teamMembers;
-      users.push(invite.receiver);
+      users.push(invite.receiver_email);
       firebase
         .database()
         // .ref(`projects/${invite.project_id}/members/${invite.sender_id}`)

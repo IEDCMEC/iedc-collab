@@ -28,9 +28,7 @@ const NewUserForm = ({ onClose, user }) => {
   );
   const [profilePhoto, setProfilePhoto] = useState(user?.profilePhoto || "");
   // const [projects, setProjects] = useState([]);
-  const { projects, fetchUserProfile } = useContext(ProjectContext);
-  const [acValue, setACValue] = useState(user?.projects || []);
-  const [remainProjects, setRemainProjects] = useState([]);
+  const { fetchUserProfile } = useContext(ProjectContext);
   const [skills, setSkills] = useState([]);
   const [skill, setSkill] = useState();
   const [acValue1, setACValue1] = useState(user?.skills || []);
@@ -43,7 +41,6 @@ const NewUserForm = ({ onClose, user }) => {
     year: user?.year || "",
     about: user?.about || "",
     skills: user?.skills || "",
-    projects: user?.projects || "",
     achievements: user?.achievements || "",
     contact: user?.contact || "",
     email: user?.email || "",
@@ -63,22 +60,6 @@ const NewUserForm = ({ onClose, user }) => {
   //   });
   // };
 
-  useEffect(() => {
-    // getWorks();
-    getRemainProjects();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [projects, acValue]);
-
-  function getRemainProjects() {
-    let temp = [];
-    projects?.forEach((project) => {
-      if (!acValue.find((item) => item.id === project.id)) temp.push(project);
-    });
-    setRemainProjects(temp);
-    //console.log(acValue)
-
-    //console.log(temp)
-  }
   function getRemainSkills() {
     let temp1 = [];
     skills?.forEach((skill) => {
@@ -172,7 +153,6 @@ const NewUserForm = ({ onClose, user }) => {
 
     const formValues = {
       ...values,
-      projects: acValue,
       skills: acValue1,
       profilePhoto,
       profilePhotoName,
@@ -325,59 +305,6 @@ const NewUserForm = ({ onClose, user }) => {
                 </Form.Text>
               </Form.Group>
             </Row>
-            <br />
-            <Form.Group
-              controlid="formProjects"
-              style={{
-                border: "none",
-              }}
-            >
-              <ThemeProvider theme={theme}>
-                <Autocomplete
-                  multiple
-                  onChange={(event, value) => {
-                    setACValue(value);
-                  }}
-                  id="checkboxes-tags-demo"
-                  value={acValue}
-                  options={remainProjects}
-                  filterSelectedOptions
-                  getOptionLabel={(option) => option.name}
-                  renderOption={(props, option) => (
-                    <li
-                      style={{ fontFamily: "Nunito", color: "#9e0000" }}
-                      {...props}
-                    >
-                      {option.name}
-                    </li>
-                  )}
-                  sx={{ fontFamily: "Nunito" }}
-                  renderInput={(params) => (
-                    <TextField
-                      size="small"
-                      {...params}
-                      label="Projects Worked In"
-                      className={theme.root}
-                      sx={{
-                        "& .MuiInputLabel-root": {
-                          color: "#9E0000",
-                          fontFamily: "Nunito",
-                          fontWeight: "600",
-                        },
-                        "& label.Mui-focused": {
-                          color: "#9E0000",
-                        },
-                      }}
-                      variant="outlined"
-                    />
-                  )}
-                />
-              </ThemeProvider>
-
-              <Form.Text className="text-danger">
-                {props.touched.projects && props.errors.projects}
-              </Form.Text>
-            </Form.Group>
             <Form.Group controlid="formAboutMe">
               <Form.Label>About Me*</Form.Label>
               <Form.Control
