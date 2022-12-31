@@ -143,7 +143,7 @@ const Developers = () => {
   const handleClick = (u) => {
     history.push(`/developers/${u.id}`);
   };
-  if (loading) {
+  if (loading||loading1) {
     return (
       <div>
         <MainLayout route={"Developers"}>

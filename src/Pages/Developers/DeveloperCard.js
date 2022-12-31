@@ -1,11 +1,8 @@
-import React, { useEffect } from "react";
+import React from "react";
 import "./Developers.scss";
-import Aos from "aos";
 
 const DeveloperCard = ({ user, handleClick }) => {
-  useEffect(() => {
-    Aos.init({ duration: 500 });
-  }, []);
+
   return (
     <div
       data-aos="zoom-in"
