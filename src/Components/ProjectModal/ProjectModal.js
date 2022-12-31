@@ -11,9 +11,11 @@ import "./ProjectModal.scss";
 import { ProjectContext } from "../../contexts/ProjectContext";
 import { toast } from "react-toastify";
 import Compress from "compress.js";
+import axios from "axios";
+import { emailUrl } from "../../Utils/urls";
 
 const compress = new Compress();
-const NewProjectForm = ({ onClose, project,setVariable,variable }) => {
+const NewProjectForm = ({ onClose, project, setVariable, variable }) => {
   const [image, setImage] = useState(project?.projectPhoto || "");
   const [projectPhotoName, setProjectPhotoName] = useState(
     project?.projectPhotoName || ""
@@ -21,7 +23,7 @@ const NewProjectForm = ({ onClose, project,setVariable,variable }) => {
   const [projectPhoto, setProjectPhoto] = useState(
     project?.projectPhoto || null
   );
-  const { fetchData } = useContext(ProjectContext);
+  const { fetchData, developers } = useContext(ProjectContext);
   const initialValue = {
     name: project?.name || "",
     desc: project?.desc || "",
@@ -76,13 +78,50 @@ const NewProjectForm = ({ onClose, project,setVariable,variable }) => {
     };
     if (!project) {
       doCreateProject(formValues, () => {
+        formValues.teamMembers.forEach((member) => {
+          let sent = false;
+          developers.forEach((dev) => {
+            if (dev.email === member) {
+              sent = true;
+            }
+          });
+
+          if (sent === false) {
+            axios.post(emailUrl, {
+              toEmail: member,
+              subject: "New Project",
+              content:
+                "A new project has been added to the website. Please check it out.",
+            });
+          } else {
+          }
+        });
         fetchData();
+        setVariable(!variable);
         toast("Project created successfully", {
           autoClose: 3000,
         });
       });
     } else {
       doEditProject(formValues, project.id, () => {
+        formValues.teamMembers.forEach((member) => {
+          let sent = false;
+          developers.forEach((dev) => {
+            if (dev.email === member) {
+              sent = true;
+            }
+          });
+
+          if (sent === false) {
+            axios.post(emailUrl, {
+              toEmail: member,
+              subject: "New Project",
+              content:
+                "A new project has been added to the website. Please check it out.",
+            });
+          } else {
+          }
+        });
         fetchData();
         setVariable(!variable);
         toast("Project edited successfully", {
@@ -125,7 +164,7 @@ const NewProjectForm = ({ onClose, project,setVariable,variable }) => {
                 value={props.values.desc}
                 onChange={props.handleChange("desc")}
                 as="textarea"
-                style={{whiteSpace: "pre-wrap"}}
+                style={{ whiteSpace: "pre-wrap" }}
                 placeholder="lorem ipsum dolor si amet..."
                 rows="3"
               />
@@ -140,7 +179,7 @@ const NewProjectForm = ({ onClose, project,setVariable,variable }) => {
               <Form.Control
                 onBlur={props.handleBlur("req")}
                 value={props.values.req}
-                style={{whiteSpace: "pre-wrap"}}
+                style={{ whiteSpace: "pre-wrap" }}
                 onChange={props.handleChange("req")}
                 as="textarea"
                 placeholder="lorem ipsum dolor si amet..."
@@ -167,7 +206,9 @@ const NewProjectForm = ({ onClose, project,setVariable,variable }) => {
 
             <InputGroup controlId="formPhoto" className="photoContainer">
               <Form.Label className="photoLabel">
-                <span className="photoHead" style={{fontWeight:"800"}}>Upload Featuring Photo</span>
+                <span className="photoHead" style={{ fontWeight: "800" }}>
+                  Upload Featuring Photo
+                </span>
                 <span className="photoIcon">
                   <FontAwesomeIcon icon={faUpload} />
                 </span>
@@ -240,7 +281,8 @@ const NewProjectForm = ({ onClose, project,setVariable,variable }) => {
                 placeholder="Enter Team members name..."
               />
               <Form.Text className="text-right helperText">
-                Please separate the emails using commas and include your email too.
+                Please separate the emails using commas and include your email
+                too.
               </Form.Text>
               <Form.Text className="text-danger">
                 {props.touched.teamMembers && props.errors.teamMembers}
@@ -351,7 +393,12 @@ const ProjectModal = (props) => {
           ></i>
         </div>
         <Col className="p-md-5">
-          <NewProjectForm onClose={props.onHide} project={props.project} setVariable={props.setVariable} variable={props.variable}/>
+          <NewProjectForm
+            onClose={props.onHide}
+            project={props.project}
+            setVariable={props.setVariable}
+            variable={props.variable}
+          />
         </Col>
       </Modal.Body>
     </Modal>
