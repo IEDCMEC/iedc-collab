@@ -16,8 +16,6 @@ const Navbar = () => {
   const [showProjectModal, setShowProjectModal] = useState(false);
   const { currentUser } = useContext(AuthContext);
   const { handleSearch, handleSearchDevelopers } = useContext(ProjectContext);
-  const [query, setQuery] = useState("");
-  const [query1, setQuery1] = useState("");
   const history = useHistory();
   const [open1, setOpen1] = useState(false);
   const location = useLocation();
@@ -34,16 +32,6 @@ const Navbar = () => {
       alert("Please Login to Continue.");
     }
   };
-  useEffect(() => {
-    const timeOutId = setTimeout(() => handleSearch(query), 500);
-    return () => clearTimeout(timeOutId);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [query]);
-  useEffect(() => {
-    const timeOutId = setTimeout(() => handleSearchDevelopers(query1), 500);
-    return () => clearTimeout(timeOutId);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [query1]);
   const [selectedUser, setSelectedUser] = useState(null);
   const getDev = async (id) => {
     if (id) {
@@ -132,8 +120,10 @@ const Navbar = () => {
               >
                 <input
                   placeholder="Search projects..."
-                  value={query}
-                  onChange={(e) => setQuery(e.target.value)}
+                  onChange={(e) => {
+                    e.preventDefault();
+                    handleSearch(e.target.value);
+                  }}
                   style={{ borderStyle: "none", outline: "none", width: "95%" }}
                 ></input>
                 <i
@@ -152,8 +142,10 @@ const Navbar = () => {
               >
                 <input
                   placeholder="Search developers..."
-                  value={query1}
-                  onChange={(e1) => setQuery1(e1.target.value)}
+                  onChange={(e1) => {
+                    e1.preventDefault();
+                    handleSearchDevelopers(e1.target.value);
+                  }}
                   style={{ borderStyle: "none", outline: "none", width: "95%" }}
                 ></input>
                 <i
@@ -172,7 +164,10 @@ const Navbar = () => {
               >
                 <input
                   placeholder="Search projects..."
-                  onChange={(e) => handleSearch(e.target.value)}
+                  onChange={(e) => {
+                    history.push(`/projects`);
+                    handleSearch(e.target.value);
+                  }}
                   style={{ borderStyle: "none", outline: "none", width: "95%" }}
                 ></input>
                 <i

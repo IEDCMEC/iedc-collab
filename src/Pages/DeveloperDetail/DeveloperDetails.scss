@@ -5,12 +5,20 @@
 .developer_details_navbar {
   background: rgba(148, 2, 2, 0.2);
   display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding-left: 2%;
+  padding-right: 5%;
+  padding-top: 2%;
+  flex-wrap: nowrap;
+}
+.developer_details_navbar_1 {
+  display: flex;
   flex-direction: row;
   justify-content: flex-start;
   column-gap: 20%;
   padding-left: 5%;
   padding-right: 5%;
-  padding-top: 2%;
   padding-bottom: 2%;
   align-items: center;
   flex-wrap: nowrap;
@@ -211,13 +219,17 @@
   .developer_details_navbar {
     flex-direction: column;
     justify-content: center;
+  }
+  .developer_details_navbar_1 {
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
   }
   .developer_details_body_left {
     width: 50vw;
   }
 }
-@media (max-width: 650px) {
+@media (max-width: 1000px) {
   .developer_details_header {
     display: flex;
     justify-content: center;

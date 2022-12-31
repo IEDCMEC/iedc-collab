@@ -14,6 +14,7 @@ import { FaGraduationCap, FaLinkedin, FaPhoneAlt } from "react-icons/fa";
 import { TbNetwork } from "react-icons/tb";
 import { GoMarkGithub } from "react-icons/go";
 import { HiUserAdd } from "react-icons/hi";
+import { BsArrowLeftCircleFill } from "react-icons/bs";
 
 function DeveloperDetails() {
   let { id } = useParams();
@@ -53,6 +54,15 @@ function DeveloperDetails() {
       <MainLayout route={"Developers"}>
         <div className="developer_details_container">
           <div className="developer_details_navbar">
+            <BsArrowLeftCircleFill
+              color="#9e0000"
+              size={40}
+              onClick={() => history.goBack()}
+              style={{
+                cursor: "pointer",
+              }}
+            />
+            <div className="developer_details_navbar_1">
             <div className="developer_image_div">
               <img
                 className="developer_image"
@@ -78,36 +88,45 @@ function DeveloperDetails() {
                   ) : (
                     ""
                   )}
-                  {selectedUser.contact ? (
-                    <a
-                      href={`tel:+91${selectedUser?.contact}`}
-                      target="_blank"
-                      rel="noreferrer"
-                    >
-                      <FaPhoneAlt
-                        color="#deb8b8"
-                        size={35}
-                        style={{
-                          backgroundColor: "#9e0000",
-                          borderRadius: "50%",
-                          padding: "8px",
-                        }}
-                      />
-                    </a>
+                  {currentUser ? (
+                    selectedUser.contact ? (
+                      <a
+                        href={`tel:+91${selectedUser?.contact}`}
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        <FaPhoneAlt
+                          color="#deb8b8"
+                          size={35}
+                          style={{
+                            backgroundColor: "#9e0000",
+                            borderRadius: "50%",
+                            padding: "8px",
+                          }}
+                        />
+                      </a>
+                    ) : (
+                      ""
+                    )
                   ) : (
-                    ""
+                    null
                   )}
-                  {selectedUser.email ? (
-                    <a
-                      href={`mailto:${selectedUser?.email}`}
-                      target="_blank"
-                      rel="noreferrer"
-                    >
-                      <IoMdMail color="#9e0000" size={45} />
-                    </a>
+                  {currentUser ? (
+                    selectedUser.email ? (
+                      <a
+                        href={`mailto:${selectedUser?.email}`}
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        <IoMdMail color="#9e0000" size={45} />
+                      </a>
+                    ) : (
+                      ""
+                    )
                   ) : (
-                    ""
+                    null
                   )}
+
                   {selectedUser.linkedin ? (
                     <a
                       href={selectedUser?.linkedin}
@@ -150,6 +169,7 @@ function DeveloperDetails() {
                 ""
               )}
             </div>
+          </div>
           </div>
           <div className="developer_details_body">
             <div className="developer_details_body_left">

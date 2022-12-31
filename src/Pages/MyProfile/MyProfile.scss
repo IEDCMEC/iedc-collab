@@ -15,10 +15,21 @@
   padding: 2.5rem;
   display: flex;
   color: #ffff;
+  position: fixed;
   flex-direction: column;
   gap: 2rem;
   min-height: 100vh;
   // background-image: url(../../assets/MyProfBg.svg);
+}
+.edit__pro_box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  gap: 1.25rem;
+  padding: 1rem;
+  margin-left: 25rem;
 }
 .pro_image_container {
   display: flex;
@@ -86,15 +97,7 @@
   font-size: 1.25rem;
   line-height: 29px;
 }
-.edit__pro_box {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  gap: 1.25rem;
-  padding: 1rem;
-}
+
 .edit__pro_box_1 {
   display: flex;
   justify-content: center;
@@ -393,12 +396,16 @@
 @media screen and (max-width: 992px) {
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 860px) {
   .my_profile_container {
     flex-direction: column;
   }
+  .profile_board {
+    position: relative;
+  }
   .edit__pro_box {
     width: 100%;
+    margin-left: 0rem;
     justify-content: center;
     align-items: center;
   }

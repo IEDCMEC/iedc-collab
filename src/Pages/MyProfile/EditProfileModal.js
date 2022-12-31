@@ -160,6 +160,16 @@ const NewUserForm = ({ onClose, user }) => {
 
   const handleSubmit = (values, actions) => {
     // const { skills } = values;
+    const { github, linkedin } = values;
+    if (!linkedin.includes("https://www.linkedin.com/in/")) {
+      toast("Please enter a valid linkedin url");
+      return;
+    }
+    if (!github.includes("https://github.com/")) {
+      toast("Please enter a valid github url");
+      return;
+    }
+
     const formValues = {
       ...values,
       projects: acValue,
