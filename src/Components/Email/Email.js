@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-target-blank */
 function Email({ request }) {
   return (
     <>
@@ -18,7 +19,6 @@ function Email({ request }) {
             <a
               href={`https://iedc-collab-frontend.pages.dev/${request.project_id}`}
               target="_blank"
-              rel="noreferrer"
             >
               {request.project}
             </a>
@@ -55,7 +55,6 @@ function Email({ request }) {
             <a
               href="https://iedc-collab-frontend.pages.dev"
               target="_blank"
-              rel="noreferrer"
             >
               https://iedc-collab-frontend.pages.dev
             </a>
@@ -74,7 +73,7 @@ function Email({ request }) {
         <p>
           <i>
             For any queries please visit{" "}
-            <a href="https://iedcmec.in">https://iedcmec.in</a>
+            <a href="https://iedcmec.in" target="_blank">https://iedcmec.in</a>
           </i>
         </p>
       </div>

@@ -8,6 +8,7 @@ import Drawer from "./Drawer";
 // import { IndeterminateCheckBox } from "@mui/icons-material";
 import SuspenseLoader from "../../Components/SuspenseLoader/SuspenseLoader";
 import { ProjectContext } from "../../contexts/ProjectContext";
+import { Pagination } from "@mui/material";
 const Developers = () => {
   const [users, setUsers] = useState([]);
   const { developers, loading, setSelectedDevelopers } = useContext(
@@ -164,7 +165,12 @@ const Developers = () => {
                 );
               })}
             </div>
+            <Pagination count={10} color="primary" sx={{
+              paddingTop:"5rem",
+            }} />
           </div>
+          
+
         </div>
       </MainLayout>
     </>
