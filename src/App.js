@@ -28,6 +28,14 @@ const theme = createTheme({
       fontFamily: 'Nunito',
     },
   },
+  palette: {
+    primary: {
+      main: "#9e0000",
+    },
+    secondary: {
+      main: "#F9F9F9",
+    },
+  },
 });
 initialize();
 

@@ -184,3 +184,16 @@
 .skills .skill_boxes p {
   margin: 0;
 }
+.developer_container button:focus {
+  outline: none;
+
+}
+.developer_container button
+{
+  color: #9e0000;
+  font-size: 1rem;
+}
+.developer_container button:hover
+{
+  background-color: #e77e7e4d;
+}
