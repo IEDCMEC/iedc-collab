@@ -22,6 +22,7 @@ export const ProjectProvider = ({ children }) => {
   const [requests, setRequests] = useState([]);
   const [requestsRecieved, setRequestsRecieved] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [devHash, setDevHash] = useState({});
 
   const fetchData = (state) => {
     let index = 0;
@@ -63,6 +64,7 @@ export const ProjectProvider = ({ children }) => {
       setLoading(false);
     }
   };
+  let devMap = {};
   const fetchDevelpersData = (state1) => {
     let index1 = 0;
     switch (state1) {
@@ -86,6 +88,11 @@ export const ProjectProvider = ({ children }) => {
         setDevelopers(result1);
         setAllDevelopers(result1);
         setSelectedDevelopers(result1[index1]);
+        result1.forEach((itm) => {
+          devMap[itm.email] = itm.name;
+        }
+        );
+        setDevHash(devMap);
       })
       .catch(function (error) {
         alert("Something went wrong. Please try again after some time.");
@@ -156,6 +163,7 @@ export const ProjectProvider = ({ children }) => {
       value={{
         projects,
         developers,
+        devHash,
         profile,
         requests,
         requestsRecieved,

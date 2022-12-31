@@ -15,13 +15,14 @@ import { FaPhoneAlt } from "react-icons/fa";
 import { FiEdit } from "react-icons/fi";
 
 const DescriptionDetails = (props) => {
-  const { fetchData } = useContext(ProjectContext);
+  const { fetchData, devHash } = useContext(ProjectContext);
   const { currentUser } = useContext(AuthContext);
   const [canModifyProject, setCanModifyProject] = useState(false);
   const [showNewProjectModal, setShowNewProjectModal] = useState(false);
   const [displayConfirmationModal, setDisplayConfirmationModal] = useState(
     false
   );
+
   const history = useHistory();
   const submitDelete = (id) => {
     doDeleteProject(id, () => {
@@ -31,6 +32,7 @@ const DescriptionDetails = (props) => {
     setDisplayConfirmationModal(false);
     history.go(0);
   };
+  //create a map of developers with their email as key and name as value
 
   const hideConfirmationModal = () => {
     setDisplayConfirmationModal(false);
@@ -45,7 +47,6 @@ const DescriptionDetails = (props) => {
   function deleteProj() {
     setDisplayConfirmationModal(true);
   }
-
   return (
     <>
       <div className="description__container">
@@ -80,7 +81,7 @@ const DescriptionDetails = (props) => {
             <div className="description__other-members">
               {props.selectedProject.teamMembers.map((member, index) => (
                 <div className="description__other-member" key={index}>
-                  {index + 1}. {member}
+                  {index + 1}. {devHash[member] || member}
                 </div>
               ))}
             </div>

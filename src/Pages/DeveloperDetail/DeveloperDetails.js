@@ -15,6 +15,7 @@ import { TbNetwork } from "react-icons/tb";
 import { GoMarkGithub } from "react-icons/go";
 import { HiUserAdd } from "react-icons/hi";
 import { BsArrowLeftCircleFill } from "react-icons/bs";
+import { ProjectContext } from "../../contexts/ProjectContext";
 
 function DeveloperDetails() {
   let { id } = useParams();
@@ -22,7 +23,7 @@ function DeveloperDetails() {
   const { currentUser } = useContext(AuthContext);
   const [selectedUser, setSelectedUser] = useState({});
   const [loading, setLoading] = useState(true);
-
+  const {projects}=useContext(ProjectContext)
   const [open, setOpen] = useState(false);
   const defaultOptions = {
     loop: true,
@@ -63,113 +64,109 @@ function DeveloperDetails() {
               }}
             />
             <div className="developer_details_navbar_1">
-            <div className="developer_image_div">
-              <img
-                className="developer_image"
-                src={
-                  selectedUser.profilePhoto ||
-                  "https://sabt.center/wp-content/uploads/2014/08/avatar-1.png"
-                }
-                alt=""
-              />
-            </div>
-            <div className="developer_details">
-              <div className="developer_details_header">
-                <div className="developer_name">{selectedUser.name}</div>
-                <div className="developer_icons">
-                  {selectedUser.website ? (
-                    <a
-                      href={selectedUser.website}
-                      target="_blank"
-                      rel="noreferrer"
-                    >
-                      <TbNetwork size={33} color="#9e0000" />
-                    </a>
-                  ) : (
-                    ""
-                  )}
-                  {currentUser ? (
-                    selectedUser.contact ? (
+              <div className="developer_image_div">
+                <img
+                  className="developer_image"
+                  src={
+                    selectedUser.profilePhoto ||
+                    "https://sabt.center/wp-content/uploads/2014/08/avatar-1.png"
+                  }
+                  alt=""
+                />
+              </div>
+              <div className="developer_details">
+                <div className="developer_details_header">
+                  <div className="developer_name">{selectedUser.name}</div>
+                  <div className="developer_icons">
+                    {selectedUser.website ? (
                       <a
-                        href={`tel:+91${selectedUser?.contact}`}
+                        href={selectedUser.website}
                         target="_blank"
                         rel="noreferrer"
                       >
-                        <FaPhoneAlt
-                          color="#deb8b8"
-                          size={35}
-                          style={{
-                            backgroundColor: "#9e0000",
-                            borderRadius: "50%",
-                            padding: "8px",
-                          }}
-                        />
+                        <TbNetwork size={33} color="#9e0000" />
                       </a>
                     ) : (
                       ""
-                    )
-                  ) : (
-                    null
-                  )}
-                  {currentUser ? (
-                    selectedUser.email ? (
-                      <a
-                        href={`mailto:${selectedUser?.email}`}
-                        target="_blank"
-                        rel="noreferrer"
-                      >
-                        <IoMdMail color="#9e0000" size={45} />
-                      </a>
-                    ) : (
-                      ""
-                    )
-                  ) : (
-                    null
-                  )}
+                    )}
+                    {currentUser ? (
+                      selectedUser.contact ? (
+                        <a
+                          href={`tel:+91${selectedUser?.contact}`}
+                          target="_blank"
+                          rel="noreferrer"
+                        >
+                          <FaPhoneAlt
+                            color="#deb8b8"
+                            size={35}
+                            style={{
+                              backgroundColor: "#9e0000",
+                              borderRadius: "50%",
+                              padding: "8px",
+                            }}
+                          />
+                        </a>
+                      ) : (
+                        ""
+                      )
+                    ) : null}
+                    {currentUser ? (
+                      selectedUser.email ? (
+                        <a
+                          href={`mailto:${selectedUser?.email}`}
+                          target="_blank"
+                          rel="noreferrer"
+                        >
+                          <IoMdMail color="#9e0000" size={45} />
+                        </a>
+                      ) : (
+                        ""
+                      )
+                    ) : null}
 
-                  {selectedUser.linkedin ? (
-                    <a
-                      href={selectedUser?.linkedin}
-                      target="_blank"
-                      rel="noreferrer"
-                    >
-                      <FaLinkedin color="#9e0000" size={35} />
-                    </a>
+                    {selectedUser.linkedin ? (
+                      <a
+                        href={selectedUser?.linkedin}
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        <FaLinkedin color="#9e0000" size={35} />
+                      </a>
+                    ) : (
+                      ""
+                    )}
+                    {selectedUser.github ? (
+                      <a
+                        href={selectedUser?.github}
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        <GoMarkGithub color="#9e0000" size={35} />
+                      </a>
+                    ) : (
+                      " "
+                    )}
+                  </div>
+                </div>
+                <div className="developer_class">
+                  {selectedUser.branch || selectedUser.year ? (
+                    <>
+                      <FaGraduationCap size={28} />
+                      <div>
+                        {selectedUser.branch} {selectedUser.year}
+                      </div>
+                    </>
                   ) : (
                     ""
-                  )}
-                  {selectedUser.github ? (
-                    <a
-                      href={selectedUser?.github}
-                      target="_blank"
-                      rel="noreferrer"
-                    >
-                      <GoMarkGithub color="#9e0000" size={35} />
-                    </a>
-                  ) : (
-                    " "
                   )}
                 </div>
-              </div>
-              <div className="developer_class">
-                {selectedUser.branch || selectedUser.year ? (
-                  <>
-                    <FaGraduationCap size={28} />
-                    <div>
-                      {selectedUser.branch} {selectedUser.year}
-                    </div>
-                  </>
+                {selectedUser.about ? (
+                  <div className="developer_bio">{selectedUser.about}</div>
                 ) : (
                   ""
                 )}
               </div>
-              {selectedUser.about ? (
-                <div className="developer_bio">{selectedUser.about}</div>
-              ) : (
-                ""
-              )}
             </div>
-          </div>
           </div>
           <div className="developer_details_body">
             <div className="developer_details_body_left">
@@ -218,37 +215,35 @@ function DeveloperDetails() {
                 </div>
                 <div className="developer_details_body_right_content">
                   <div className="developer_details_body_right_content_projects">
-                    {selectedUser.projects ? (
-                      selectedUser.projects.map((project, index) => {
-                        return (
-                          <div
-                            className="developer_details_body_right_content_project"
-                            key={index}
-                            onClick={() => {
-                              history.push(`/projects/${project.id}`);
-                            }}
-                          >
-                            <div className="developer_details_body_right_content_project_img">
-                              <img
-                                src={
-                                  project.projectPhoto ||
-                                  "https://images.unsplash.com/photo-1639413665566-2f75adf7b7ca?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyN3x8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60"
-                                }
-                                alt=""
-                              />
-                            </div>
-                            <div className="developer_details_body_right_content_project_title">
-                              {project.name}
-                            </div>
-                            <div className="developer_details_body_right_content_project_lead">
-                              {project.leader_name}
-                            </div>
+                    {projects.map((project, index) => {
+                      return project.teamMembers?.find(
+                        (member) => member === selectedUser.email
+                      ) ? (
+                        <div
+                          className="developer_details_body_right_content_project"
+                          key={index}
+                          onClick={() => {
+                            history.push(`/projects/${project.id}`);
+                          }}
+                        >
+                          <div className="developer_details_body_right_content_project_img">
+                            <img
+                              src={
+                                project.projectPhoto ||
+                                "https://images.unsplash.com/photo-1639413665566-2f75adf7b7ca?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyN3x8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60"
+                              }
+                              alt=""
+                            />
                           </div>
-                        );
-                      })
-                    ) : (
-                      <div className="skill">No Projects Added</div>
-                    )}
+                          <div className="developer_details_body_right_content_project_title">
+                            {project.name}
+                          </div>
+                          <div className="developer_details_body_right_content_project_lead">
+                            {project.leader_name}
+                          </div>
+                        </div>
+                      ) : null;
+                    })}
                   </div>
                 </div>
               </div>

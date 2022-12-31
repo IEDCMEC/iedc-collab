@@ -1,22 +1,22 @@
 import "./Team.scss";
 import TeamCard from "./TeamCard";
-import animation from "../../animations/test.json";
-import Lottie from "react-lottie";
+// import animation from "../../animations/test.json";
+// import Lottie from "react-lottie";
 import bubble4 from "../../assets/bubble_4.svg";
 import bubble5 from "../../assets/bubble_5.svg";
 import { useHistory } from "react-router-dom";
 import core from "../../data/core";
 const Team = () => {
   const history = useHistory();
-  const defaultOptions = {
-    loop: true,
-    autoplay: true,
-    animationData: animation,
-    rendererSettings: { preserveAspectRatio: "xMidYMid slice" },
-  };
+  // const defaultOptions = {
+  //   loop: true,
+  //   autoplay: true,
+  //   animationData: animation,
+  //   rendererSettings: { preserveAspectRatio: "xMidYMid slice" },
+  // };
   return (
     <>
-      <div className="team_main">
+      <div className="tech_team_info">
         <div
           className="heading_team"
           data-aos="fade-up"
@@ -24,12 +24,17 @@ const Team = () => {
         >
           OUR TEAM
         </div>
-        <img src={bubble4} alt="" className="bubble_4" />
-        <div className="team" data-aos="fade-up" data-aos-duration="2000">
+        <div
+          className="members__div"
+          data-aos="fade-up"
+          data-aos-duration="2000"
+        >
+          <img src={bubble4} alt="" className="bubble_4" />
           <TeamCard data={core} />
         </div>
+
         <img src={bubble5} alt="" className="bubble_5" />
-        <div
+        {/* <div
           className="team__anime"
           data-aos="fade-up"
           data-aos-duration="2000"
@@ -40,18 +45,17 @@ const Team = () => {
             autoPlay={true}
             options={defaultOptions}
           />
-        </div>
-        <button
+        </div> */}
+        <div
           onClick={() => {
             history.push("/team");
           }}
-          type="button"
-          style={{ marginBottom: "2rem" }}
+          style={{ marginBottom: "2rem", marginTop: "2rem", cursor: "pointer" }}
           className="btn btn-danger"
         >
           View All
-        </button>
-        <div
+        </div>
+        {/* <div
           className="team__anime-1"
           data-aos="fade-up"
           data-aos-duration="2000"
@@ -62,7 +66,7 @@ const Team = () => {
             autoPlay={true}
             options={defaultOptions}
           />
-        </div>
+        </div> */}
       </div>
     </>
   );

@@ -23,7 +23,7 @@ import { FiEdit } from "react-icons/fi";
 const MyProfile = () => {
   const { currentUser } = useContext(AuthContext);
   const [showProfileModal, setShowProfileModal] = useState(false);
-  const { profile, loading } = useContext(ProjectContext);
+  const { profile, loading, projects } = useContext(ProjectContext);
   // const [requests, setRequests] = useState([]);
   // const [profile, setSelectedUser] = useState({});
   // const [loading, setLoading] = useState(true);
@@ -103,7 +103,11 @@ const MyProfile = () => {
               />
             </div>
 
-            <div className="profile_details_container" data-aos="fade-up" data-aos-duration="1500">
+            <div
+              className="profile_details_container"
+              data-aos="fade-up"
+              data-aos-duration="1500"
+            >
               <div
                 style={{
                   width: "100%",
@@ -220,7 +224,11 @@ const MyProfile = () => {
           </div>
 
           <div className="edit__pro_box">
-            <div className="edit__pro_abtMe" data-aos="fade-up" data-aos-duration="1500">
+            <div
+              className="edit__pro_abtMe"
+              data-aos="fade-up"
+              data-aos-duration="1500"
+            >
               <div>About Me</div>
               <div
                 className="edit__pro_abtMe_bx"
@@ -234,7 +242,11 @@ const MyProfile = () => {
               </div>
             </div>
 
-            <div className="edit__pro_skls" data-aos="fade-up" data-aos-duration="1500">
+            <div
+              className="edit__pro_skls"
+              data-aos="fade-up"
+              data-aos-duration="1500"
+            >
               <div>Skills</div>
               <div className="edit__pro_skls_bx">
                 {profile.skills ? (
@@ -255,7 +267,11 @@ const MyProfile = () => {
               </div>
             </div>
 
-            <div className="edit__pro_achvmts" data-aos="fade-up" data-aos-duration="1500">
+            <div
+              className="edit__pro_achvmts"
+              data-aos="fade-up"
+              data-aos-duration="1500"
+            >
               <div>Achivements</div>
               <div
                 className="edit__pro_achvmts_bx"
@@ -268,53 +284,66 @@ const MyProfile = () => {
                 )}
               </div>
             </div>
-            <div className="edit__pro_projects" data-aos="fade-up" data-aos-duration="1500">
+            <div
+              className="edit__pro_projects"
+              data-aos="fade-up"
+              data-aos-duration="1500"
+            >
               <div>Projects</div>
               <div className="developer_details_body_right_content_1">
                 <div className="developer_details_body_right_content_projects_1">
-                  {profile.projects ? (
-                    profile.projects.map((project, index) => {
-                      return (
-                        <div
-                          className="developer_details_body_right_content_project"
-                          key={index}
-                          data-aos="fade-up" data-aos-duration="1500"
-                          onClick={() => {
-                            history.push(`/projects/${project.id}`);
-                          }}
-                        >
-                          <div className="developer_details_body_right_content_project_img">
-                            <img
-                              src={
-                                project.projectPhoto ||
-                                "https://images.unsplash.com/photo-1639413665566-2f75adf7b7ca?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyN3x8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60"
-                              }
-                              alt=""
-                            />
-                          </div>
-                          <div className="developer_details_body_right_content_project_title">
-                            {project.name}
-                          </div>
-                          <div className="developer_details_body_right_content_project_lead">
-                            {project.leader_name}
-                          </div>
+                  {projects.map((project, index) => {
+                    return project.teamMembers?.find(
+                      (member) => member===currentUser.email
+                    ) ? (
+                      <div
+                        className="developer_details_body_right_content_project"
+                        key={index}
+                        data-aos="fade-up"
+                        data-aos-duration="1500"
+                        onClick={() => {
+                          history.push(`/projects/${project.id}`);
+                        }}
+                      >
+                        <div className="developer_details_body_right_content_project_img">
+                          <img
+                            src={
+                              project.projectPhoto ||
+                              "https://images.unsplash.com/photo-1639413665566-2f75adf7b7ca?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyN3x8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60"
+                            }
+                            alt=""
+                          />
                         </div>
-                      );
-                    })
-                  ) : (
-                    <div className="skill">No Projects Added</div>
-                  )}
+                        <div className="developer_details_body_right_content_project_title">
+                          {project.name}
+                        </div>
+                        <div className="developer_details_body_right_content_project_lead">
+                          {project.leader_name}
+                        </div>
+                      </div>
+                    ) : null;
+                  })}
                 </div>
               </div>
             </div>
-            <div className="edit__pro_achvmts" data-aos="fade-up" data-aos-duration="1500">Requests</div>
+            <div
+              className="edit__pro_achvmts"
+              data-aos="fade-up"
+              data-aos-duration="1500"
+            >
+              Requests
+            </div>
             <div className="edit__pro_box_1">
               {/* <div className="reqs_invite_bar">
                 <div className="reqs_invite_bar__requests">Requests</div>
                 <div className="reqs_invite_bar__line">|</div>
                 <div className="reqs_invite_bar__invite">Invite</div>
               </div> */}
-              <div className="edit__header" data-aos="fade-up" data-aos-duration="1500">
+              <div
+                className="edit__header"
+                data-aos="fade-up"
+                data-aos-duration="1500"
+              >
                 <div
                   className={isReceived ? "rec_active" : "received"}
                   onClick={() => setIsReceived(true)}
@@ -328,7 +357,7 @@ const MyProfile = () => {
                   Sent
                 </div>
               </div>
-              <div className="requests__cards" >
+              <div className="requests__cards">
                 {isReceived ? (
                   !requestsRecieved ? (
                     <div className="received_sent_box skill">
@@ -336,8 +365,12 @@ const MyProfile = () => {
                     </div>
                   ) : (
                     requestsRecieved?.map((request, index) => (
-                      <div data-aos="fade-up" key={index} data-aos-duration="1500" >
-                      <Received  request={request} />
+                      <div
+                        data-aos="fade-up"
+                        key={index}
+                        data-aos-duration="1500"
+                      >
+                        <Received request={request} />
                       </div>
                     ))
                   )
@@ -347,8 +380,16 @@ const MyProfile = () => {
                   </div>
                 ) : (
                   requests?.map((request, index) => (
-                    <div data-aos="fade-up" key={index} data-aos-duration="1500" >
-                    <Sent request={request}  data-aos="fade-up" data-aos-duration="1500" />
+                    <div
+                      data-aos="fade-up"
+                      key={index}
+                      data-aos-duration="1500"
+                    >
+                      <Sent
+                        request={request}
+                        data-aos="fade-up"
+                        data-aos-duration="1500"
+                      />
                     </div>
                   ))
                 )}

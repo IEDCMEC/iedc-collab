@@ -240,7 +240,7 @@ const NewProjectForm = ({ onClose, project,setVariable,variable }) => {
                 placeholder="Enter Team members name..."
               />
               <Form.Text className="text-right helperText">
-                Please separate the names using commas
+                Please separate the emails using commas and include your email too.
               </Form.Text>
               <Form.Text className="text-danger">
                 {props.touched.teamMembers && props.errors.teamMembers}
