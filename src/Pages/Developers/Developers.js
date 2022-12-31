@@ -9,13 +9,19 @@ import Drawer from "./Drawer";
 import SuspenseLoader from "../../Components/SuspenseLoader/SuspenseLoader";
 import { ProjectContext } from "../../contexts/ProjectContext";
 import { Pagination } from "@mui/material";
+
+
+
+let devs = []
+
 const Developers = () => {
   const [users, setUsers] = useState([]);
   const { developers, loading, setSelectedDevelopers } = useContext(
     ProjectContext
   );
   const [selectedSkills, setSelectedSkills] = useState([]);
-  
+  const [pages, setPages ] = useState(0)
+  const [page, setPage] = useState(0)
   const [loading1, setLoading1] = useState(false);
   const [branch, setBranch] = useState([]);
   const [yop, setYop] = useState([]);
@@ -53,20 +59,10 @@ const Developers = () => {
   //   setAllUsers(developers);
   // };
   useEffect(() => {
-    setLoading1(true)
-    if(developers.length>0 && users.length!=developers.length)
-    {   setUsers([])
-      alert(developers.length)
-      alert(users)
-       for(let i = 0; i < developers.length+20;i+=20){
-          
-          setTimeout(() => {
-            if(i>developers.length)i = developers.length;
-          setUsers((prev)=>[...prev, ...developers.slice(i,i+20)])  
-          }, 200);
-        }
-      }   
-    setLoading1(false)
+    devs = developers;
+     setPage(0)
+    setPages(Math.ceil(developers.length/10))
+    setUsers(developers.slice(page*10,(page*10)+10))
     
     
   
@@ -78,7 +74,8 @@ const Developers = () => {
    // setAllUsers(developers);
     let developers1 = developers;
     let skills = selectedSkills;
-    let devs = [];
+    devs = []
+    setPage(0)
     if (skills.length === 0 ) {
       devs = developers;
     } else {
@@ -114,19 +111,24 @@ const Developers = () => {
     }
     
     if(devs)
-{   setUsers([])
-   for(let i = 0; i < devs.length+10;i+=10){
+{  
+  //  setUsers([])
+  // for(let i = 0; i < devs.length+10;i+=10){
       
-      setTimeout(() => {
-        if(i>devs.length)i = devs.length;
-      setUsers((prev)=>[...prev, ...devs.slice(i,i+10)])  
-      }, 100);
+      //etTimeout(() => {
+        let count = 15
+        setPages(Math.ceil(devs.length/10));
+      setUsers(devs.slice(page*10,(page*10)+10))  
+      //}, 100);
     }
-  }   
+   
+  
   setLoading1(false)
   };
 
-  
+  useEffect(()=>{
+      setUsers(devs.slice(page*10, (page*10)+10))
+  }, [page])
 
   useEffect(() => {
     console.log(branch);
@@ -172,7 +174,7 @@ const Developers = () => {
                 );
               })}
             </div>
-            <Pagination count={10} color="primary" sx={{
+            <Pagination count={pages}  page = {page+1} onChange={(e, val)=>{setPage(val-1)}} color="primary" sx={{
               paddingTop:"5rem",
             }} />
           </div>
