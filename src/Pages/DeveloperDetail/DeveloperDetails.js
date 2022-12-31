@@ -63,113 +63,109 @@ function DeveloperDetails() {
               }}
             />
             <div className="developer_details_navbar_1">
-            <div className="developer_image_div">
-              <img
-                className="developer_image"
-                src={
-                  selectedUser.profilePhoto ||
-                  "https://sabt.center/wp-content/uploads/2014/08/avatar-1.png"
-                }
-                alt=""
-              />
-            </div>
-            <div className="developer_details">
-              <div className="developer_details_header">
-                <div className="developer_name">{selectedUser.name}</div>
-                <div className="developer_icons">
-                  {selectedUser.website ? (
-                    <a
-                      href={selectedUser.website}
-                      target="_blank"
-                      rel="noreferrer"
-                    >
-                      <TbNetwork size={33} color="#9e0000" />
-                    </a>
-                  ) : (
-                    ""
-                  )}
-                  {currentUser ? (
-                    selectedUser.contact ? (
+              <div className="developer_image_div">
+                <img
+                  className="developer_image"
+                  src={
+                    selectedUser.profilePhoto ||
+                    "https://sabt.center/wp-content/uploads/2014/08/avatar-1.png"
+                  }
+                  alt=""
+                />
+              </div>
+              <div className="developer_details">
+                <div className="developer_details_header">
+                  <div className="developer_name">{selectedUser.name}</div>
+                  <div className="developer_icons">
+                    {selectedUser.website ? (
                       <a
-                        href={`tel:+91${selectedUser?.contact}`}
+                        href={selectedUser.website}
                         target="_blank"
                         rel="noreferrer"
                       >
-                        <FaPhoneAlt
-                          color="#deb8b8"
-                          size={35}
-                          style={{
-                            backgroundColor: "#9e0000",
-                            borderRadius: "50%",
-                            padding: "8px",
-                          }}
-                        />
+                        <TbNetwork size={33} color="#9e0000" />
                       </a>
                     ) : (
                       ""
-                    )
-                  ) : (
-                    null
-                  )}
-                  {currentUser ? (
-                    selectedUser.email ? (
-                      <a
-                        href={`mailto:${selectedUser?.email}`}
-                        target="_blank"
-                        rel="noreferrer"
-                      >
-                        <IoMdMail color="#9e0000" size={45} />
-                      </a>
-                    ) : (
-                      ""
-                    )
-                  ) : (
-                    null
-                  )}
+                    )}
+                    {currentUser ? (
+                      selectedUser.contact ? (
+                        <a
+                          href={`tel:+91${selectedUser?.contact}`}
+                          target="_blank"
+                          rel="noreferrer"
+                        >
+                          <FaPhoneAlt
+                            color="#deb8b8"
+                            size={35}
+                            style={{
+                              backgroundColor: "#9e0000",
+                              borderRadius: "50%",
+                              padding: "8px",
+                            }}
+                          />
+                        </a>
+                      ) : (
+                        ""
+                      )
+                    ) : null}
+                    {currentUser ? (
+                      selectedUser.email ? (
+                        <a
+                          href={`mailto:${selectedUser?.email}`}
+                          target="_blank"
+                          rel="noreferrer"
+                        >
+                          <IoMdMail color="#9e0000" size={45} />
+                        </a>
+                      ) : (
+                        ""
+                      )
+                    ) : null}
 
-                  {selectedUser.linkedin ? (
-                    <a
-                      href={selectedUser?.linkedin}
-                      target="_blank"
-                      rel="noreferrer"
-                    >
-                      <FaLinkedin color="#9e0000" size={35} />
-                    </a>
+                    {selectedUser.linkedin ? (
+                      <a
+                        href={selectedUser?.linkedin}
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        <FaLinkedin color="#9e0000" size={35} />
+                      </a>
+                    ) : (
+                      ""
+                    )}
+                    {selectedUser.github ? (
+                      <a
+                        href={selectedUser?.github}
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        <GoMarkGithub color="#9e0000" size={35} />
+                      </a>
+                    ) : (
+                      " "
+                    )}
+                  </div>
+                </div>
+                <div className="developer_class">
+                  {selectedUser.branch || selectedUser.year ? (
+                    <>
+                      <FaGraduationCap size={28} />
+                      <div>
+                        {selectedUser.branch} {selectedUser.year}
+                      </div>
+                    </>
                   ) : (
                     ""
-                  )}
-                  {selectedUser.github ? (
-                    <a
-                      href={selectedUser?.github}
-                      target="_blank"
-                      rel="noreferrer"
-                    >
-                      <GoMarkGithub color="#9e0000" size={35} />
-                    </a>
-                  ) : (
-                    " "
                   )}
                 </div>
-              </div>
-              <div className="developer_class">
-                {selectedUser.branch || selectedUser.year ? (
-                  <>
-                    <FaGraduationCap size={28} />
-                    <div>
-                      {selectedUser.branch} {selectedUser.year}
-                    </div>
-                  </>
+                {selectedUser.about ? (
+                  <div className="developer_bio">{selectedUser.about}</div>
                 ) : (
                   ""
                 )}
               </div>
-              {selectedUser.about ? (
-                <div className="developer_bio">{selectedUser.about}</div>
-              ) : (
-                ""
-              )}
             </div>
-          </div>
           </div>
           <div className="developer_details_body">
             <div className="developer_details_body_left">
