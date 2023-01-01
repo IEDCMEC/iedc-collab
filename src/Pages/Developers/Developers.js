@@ -111,13 +111,11 @@ const Developers = () => {
 
     setLoading1(false);
   };
-
   useEffect(() => {
     setUsers(devs.slice(page * 10, page * 10 + 10));
   }, [page]);
 
   useEffect(() => {
-
     filterDevelopers();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedSkills, branch, yop]);
@@ -146,10 +144,9 @@ const Developers = () => {
             addYop={addYop}
           />
           <div className="developer_container">
-            <h3 style={{ textAlign: "center" }}>
+            <h3 style={{ textAlign: "center", paddingTop: "3rem" }}>
               {users.length === 0 ? "NOT FOUND" : "DEVELOPERS"}
             </h3>
-
             <div className="developer-details">
               {users?.map((user, index) => {
                 return (

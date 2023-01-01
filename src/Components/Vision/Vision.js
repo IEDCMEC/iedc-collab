@@ -1,11 +1,7 @@
 import "./Vision.scss";
 import bubble1 from "../../assets/bubble_1.svg";
-import Aos from "aos";
 
 const Vision = () => {
-  Aos.init({
-    duration: 200,
-  });
   return (
     <div className="vision_main">
       <div

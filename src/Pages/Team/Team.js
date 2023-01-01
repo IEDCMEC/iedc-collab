@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import "./Team.scss";
 import NavbarHome from "../../Components/NavbarHome/NavbarHome";
 import Footer from "../../Components/Footer/Footer";
@@ -7,21 +7,17 @@ import developers from "../../data/developers";
 import bubble2 from "../../assets/bubble_2.svg";
 import bubble3 from "../../assets/bubble_3.svg";
 import bubble5 from "../../assets/bubble_5.svg";
-import Aos from "aos";
 import bubble1 from "../../assets/bubble_1.svg";
 import TeamCard from "../../Components/Team/TeamCard";
 import core from "../../data/core";
 const Team = () => {
-  useEffect(() => {
-    Aos.init({ duration: 1100 });
-  }, []);
   return (
     <div>
       <NavbarHome />
-      <div className="team__data_page_container">
+      <div className="team__data_page_container_1">
         <img src={bubble2} alt="" className="bubble_2_1" />
         <img src={bubble3} alt="" className="bubble_3" />
-        <img src={bubble5} alt="" className="bubble_5" />
+
         <img src={bubble1} alt="" className="bubble_1" />
         <div className="tech_team_info">
           <div className="team__title" data-aos="zoom-in" aos-delay="150">
@@ -44,6 +40,7 @@ const Team = () => {
           </div>
         </div>
       </div>
+      <img src={bubble5} alt="" className="bubble_5" />
       <Footer />
     </div>
   );
