@@ -75,13 +75,11 @@ export default function PersistentDrawerLeft({
   };
   const addSkill = (skill) => {
     let oldSkills = selectedSkills;
-    console.log(oldSkills);
     if (oldSkills.find((s) => s === skill)) {
       oldSkills = oldSkills.filter((s) => s !== skill);
     } else {
       oldSkills = [...oldSkills, skill];
     }
-    console.log(oldSkills);
     setSelectedSkills(oldSkills);
   };
 

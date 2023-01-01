@@ -39,7 +39,6 @@ export const signIn = async (onSigninSuccess = () => {}) => {
         email: user.email,
         profilePhoto: user.photoURL,
       };
-      console.log(userData);
 
       firebase
         .database()
