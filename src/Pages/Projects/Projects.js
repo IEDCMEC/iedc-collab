@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
 import "./Projects.scss";
-import { Container } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 import MainLayout from "../../Components/MainLayout/MainLayout";
 // import { getProjects } from "../../Firebase/firebase";
@@ -37,6 +36,7 @@ const Projects = () => {
   }, [projects]);
   useEffect(() => {
     setWorks(projects.slice(page * 12, page * 12 + 12));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [page]);
   const history = useHistory();
   const handleClick = (p) => {
