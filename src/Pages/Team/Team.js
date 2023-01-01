@@ -12,16 +12,13 @@ import bubble1 from "../../assets/bubble_1.svg";
 import TeamCard from "../../Components/Team/TeamCard";
 import core from "../../data/core";
 const Team = () => {
-  useEffect(() => {
-    Aos.init({ duration: 1100 });
-  }, []);
   return (
     <div>
       <NavbarHome />
-      <div className="team__data_page_container">
+      <div className="team__data_page_container_1">
         <img src={bubble2} alt="" className="bubble_2_1" />
         <img src={bubble3} alt="" className="bubble_3" />
-        <img src={bubble5} alt="" className="bubble_5" />
+       
         <img src={bubble1} alt="" className="bubble_1" />
         <div className="tech_team_info">
           <div className="team__title" data-aos="zoom-in" aos-delay="150">
@@ -44,6 +41,7 @@ const Team = () => {
           </div>
         </div>
       </div>
+       <img src={bubble5} alt="" className="bubble_5" />
       <Footer />
     </div>
   );
