@@ -11,10 +11,6 @@ import "./ProjectModal.scss";
 import { ProjectContext } from "../../contexts/ProjectContext";
 import { toast } from "react-toastify";
 import Compress from "compress.js";
-import axios from "axios";
-import { emailUrl } from "../../Utils/urls";
-import { renderEmail } from "react-html-email";
-import InviteEmail from "../InviteEmail/InviteEmail";
 import { FormControlLabel, Radio, RadioGroup } from "@mui/material";
 
 const compress = new Compress();
@@ -27,7 +23,7 @@ const NewProjectForm = ({ onClose, project, setVariable, variable }) => {
   const [projectPhoto, setProjectPhoto] = useState(
     project?.projectPhoto || null
   );
-  const { fetchData, developers } = useContext(ProjectContext);
+  const { fetchData, developers, projects } = useContext(ProjectContext);
   const initialValue = {
     name: project?.name || "",
     desc: project?.desc || "",
@@ -81,56 +77,16 @@ const NewProjectForm = ({ onClose, project, setVariable, variable }) => {
       projectPhotoName,
     };
     if (!project) {
-      doCreateProject(formValues, () => {
-        formValues.teamMembers.forEach((member) => {
-          let sent = false;
-          developers.forEach((dev) => {
-            if (dev.email === member) {
-              sent = true;
-            }
-          });
-
-          if (sent === false) {
-            axios.post(emailUrl, {
-              toEmail: member,
-              subject: "New Project",
-              content: renderEmail(
-                <InviteEmail data={formValues} member={member} />
-              ),
-            });
-          } else {
-          }
-        });
+      doCreateProject(formValues, developers, () => {
         fetchData();
+        console.log(projects);
+
         toast("Project created successfully", {
           autoClose: 3000,
         });
       });
     } else {
-      doEditProject(formValues, project.id, () => {
-        formValues.teamMembers.forEach((member) => {
-          let sent = false;
-          developers.forEach((dev) => {
-            if (dev.email === member) {
-              sent = true;
-            }
-          });
-
-          if (sent === false) {
-            axios.post(emailUrl, {
-              toEmail: member,
-              subject: "Invitation to join IEDC Collab",
-              content: renderEmail(
-                <InviteEmail
-                  data={formValues}
-                  member={member}
-                  id={project.id}
-                />
-              ),
-            });
-          } else {
-          }
-        });
+      doEditProject(formValues, project.id, developers, () => {
         fetchData();
         setVariable(!variable);
         toast("Project edited successfully", {
