@@ -23,7 +23,9 @@ import { FiEdit } from "react-icons/fi";
 const MyProfile = () => {
   const { currentUser } = useContext(AuthContext);
   const [showProfileModal, setShowProfileModal] = useState(false);
-  const { profile, loading, projects } = useContext(ProjectContext);
+  const { profile, loading, projects, fetchUserProfile } = useContext(
+    ProjectContext
+  );
   const [count, setCount] = useState(false);
   // const [requests, setRequests] = useState([]);
   // const [profile, setSelectedUser] = useState({});
@@ -81,6 +83,10 @@ const MyProfile = () => {
   //   }
   //   // eslint-disable-next-line react-hooks/exhaustive-deps
   // }, [currentUser]);
+  useEffect(() => {
+    if (!profile) fetchUserProfile();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentUser]);
   if (loading || !profile) {
     return (
       <div>
@@ -353,9 +359,7 @@ const MyProfile = () => {
                 <div className="reqs_invite_bar__line">|</div>
                 <div className="reqs_invite_bar__invite">Invite</div>
               </div> */}
-              <div
-                className="edit__header"
-              >
+              <div className="edit__header">
                 <div
                   className={isReceived ? "rec_active" : "received"}
                   onClick={() => setIsReceived(true)}

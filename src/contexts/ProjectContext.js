@@ -108,11 +108,6 @@ export const ProjectProvider = ({ children }) => {
   useEffect(() => {
     fetchData();
     fetchDevelpersData();
-    if (currentUser) {
-      fetchUserProfile();
-      fetchRequests();
-      fetchRequestsRecieved();
-    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   useEffect(() => {

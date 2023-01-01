@@ -50,7 +50,7 @@ export const signIn = async (onSigninSuccess = () => {}) => {
         .set(userData)
         .then(function () {
           console.log("User added sucessfully");
-          onSigninSuccess();
+          if (onSigninSuccess.typeOf === "function") onSigninSuccess();
         })
         .catch(function (error) {
           alert("Something went wrong");
