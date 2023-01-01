@@ -50,7 +50,7 @@ export const signIn = async (onSigninSuccess = () => {}) => {
         .set(userData)
         .then(function () {
           console.log("User added sucessfully");
-          onSigninSuccess();
+          if (onSigninSuccess.typeOf === "function") onSigninSuccess();
         })
         .catch(function (error) {
           alert("Something went wrong");
@@ -455,7 +455,7 @@ export const acceptInvite = async (invite) => {
       console.log(project.val());
       let p = project.val();
       let users = p.teamMembers;
-      users.push(invite.receiver_email);
+      users.push(invite.reciever_email);
       firebase
         .database()
         // .ref(`projects/${invite.project_id}/members/${invite.sender_id}`)

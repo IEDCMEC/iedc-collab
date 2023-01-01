@@ -23,7 +23,9 @@ import { FiEdit } from "react-icons/fi";
 const MyProfile = () => {
   const { currentUser } = useContext(AuthContext);
   const [showProfileModal, setShowProfileModal] = useState(false);
-  const { profile, loading, projects } = useContext(ProjectContext);
+  const { profile, loading, projects, fetchUserProfile } = useContext(
+    ProjectContext
+  );
   const [count, setCount] = useState(false);
   // const [requests, setRequests] = useState([]);
   // const [profile, setSelectedUser] = useState({});
@@ -81,6 +83,10 @@ const MyProfile = () => {
   //   }
   //   // eslint-disable-next-line react-hooks/exhaustive-deps
   // }, [currentUser]);
+  useEffect(() => {
+    if (!profile) fetchUserProfile();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentUser]);
   if (loading || !profile) {
     return (
       <div>
@@ -353,11 +359,7 @@ const MyProfile = () => {
                 <div className="reqs_invite_bar__line">|</div>
                 <div className="reqs_invite_bar__invite">Invite</div>
               </div> */}
-              <div
-                className="edit__header"
-                data-aos="fade-up"
-                data-aos-duration="1500"
-              >
+              <div className="edit__header">
                 <div
                   className={isReceived ? "rec_active" : "received"}
                   onClick={() => setIsReceived(true)}
@@ -379,11 +381,7 @@ const MyProfile = () => {
                     </div>
                   ) : (
                     requestsRecieved?.map((request, index) => (
-                      <div
-                        data-aos="fade-up"
-                        key={index}
-                        data-aos-duration="1500"
-                      >
+                      <div key={index}>
                         <Received request={request} />
                       </div>
                     ))
@@ -394,16 +392,8 @@ const MyProfile = () => {
                   </div>
                 ) : (
                   requests?.map((request, index) => (
-                    <div
-                      data-aos="fade-up"
-                      key={index}
-                      data-aos-duration="1500"
-                    >
-                      <Sent
-                        request={request}
-                        data-aos="fade-up"
-                        data-aos-duration="1500"
-                      />
+                    <div key={index}>
+                      <Sent request={request} />
                     </div>
                   ))
                 )}

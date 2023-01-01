@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import ProjectModal from "../ProjectModal/ProjectModal";
 import "./cards.css";
-import { getUser, signOut } from "../../Firebase/firebase";
+import { signOut } from "../../Firebase/firebase";
 import { AuthContext } from "../../Firebase/Auth/Auth";
 import { ProjectContext } from "../../contexts/ProjectContext";
 import { signIn } from "../../Firebase/firebase";
@@ -18,7 +18,7 @@ import { HiOutlineMenuAlt3 } from "react-icons/hi";
 const Navbar = () => {
   const [showProjectModal, setShowProjectModal] = useState(false);
   const { currentUser } = useContext(AuthContext);
-  const { handleSearch, handleSearchDevelopers } = useContext(ProjectContext);
+  const { handleSearch, handleSearchDevelopers,profile,fetchUserProfile } = useContext(ProjectContext);
   const history = useHistory();
   const [open1, setOpen1] = useState(false);
   const location = useLocation();
@@ -35,16 +35,24 @@ const Navbar = () => {
       alert("Please Login to Continue.");
     }
   };
-  const [selectedUser, setSelectedUser] = useState(null);
-  const getDev = async (id) => {
-    if (id) {
-      const user = await getUser(id);
-      setSelectedUser(await user.val());
-    }
-  };
+  // const [selectedUser, setSelectedUser] = useState(null);
+  // const getDev = async (id) => {
+  //   if (id) {
+  //     const user = await getUser(id);
+  //     setSelectedUser(await user.val());
+  //   }
+  // };
+  // useEffect(() => {
+  //   getDev(currentUser?.uid);
+  // }, [currentUser?.uid]);
   useEffect(() => {
-    getDev(currentUser?.uid);
-  }, [currentUser?.uid]);
+    if(!profile)
+    {
+      fetchUserProfile();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentUser]);
+
   return (
     <>
       {(location.pathname.split("/")[1] === "ideas" ||
@@ -191,7 +199,7 @@ const Navbar = () => {
                   menuButton={
                     <MenuButton>
                       <Avatar
-                        src={selectedUser?.profilePhoto}
+                        src={profile?.profilePhoto}
                         sx={{
                           cursor: "pointer",
                           height: "35px",

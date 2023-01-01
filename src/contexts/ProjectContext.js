@@ -91,7 +91,7 @@ export const ProjectProvider = ({ children }) => {
         result1.forEach((itm) => {
           devMap[itm.email] = {
             name: itm.name,
-            linkedin: itm.linkedin,
+            id: itm.id,
           };
         }
         );
@@ -108,11 +108,6 @@ export const ProjectProvider = ({ children }) => {
   useEffect(() => {
     fetchData();
     fetchDevelpersData();
-    if (currentUser) {
-      fetchUserProfile();
-      fetchRequests();
-      fetchRequestsRecieved();
-    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   useEffect(() => {

@@ -80,26 +80,27 @@ const DescriptionDetails = (props) => {
             <div className="description__other-team">TEAM MEMBERS</div>
             <div className="description__other-members">
               {props.selectedProject.teamMembers.map((member, index) =>
-                devHash[member]?.linkedin ? (
+                devHash[member]?.id ? (
                   <div className="description__other-member" key={index}>
                     {index + 1}
                     {"."}
-                    <div style={{width:"6px"}}></div>
+                    <div style={{ width: "6px" }}></div>
                     <a
-                      href={devHash[member].linkedin}
-                      target="_blank"
-                      rel="noreferrer"
+                      href={`https://iedc-collab-frontend.pages.dev/developers/${devHash[member].id}`}
                       style={{
                         color: "#263238",
+                        textDecoration: "underline",
                       }}
                     >
                       {devHash[member].name}
                     </a>
                   </div>
                 ) : (
-                  <div className="description__other-member" key={index}>
-                    {index + 1}. {devHash[member]?.name || member}
-                  </div>
+                  <a href={`mailto:${member}`}>
+                    <div className="description__other-member" key={index}>
+                      {index + 1}. {member}
+                    </div>
+                  </a>
                 )
               )}
             </div>
