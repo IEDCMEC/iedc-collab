@@ -215,7 +215,11 @@ section .section-title {
   transition: 1s;
   transform-style: preserve-3d;
 }
-
+.navbar button{
+  outline: none;
+  background: transparent;
+  border: none;
+}
 .frontside .card,
 .backside .card {
   min-height: 312px;
@@ -331,6 +335,7 @@ section .section-title {
   }
   .mobile__only {
     display: block !important;
+    height: 40px;
   }
 }
 

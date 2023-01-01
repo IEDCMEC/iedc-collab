@@ -135,7 +135,9 @@ const MyProfile = () => {
                 />
               </div>
 
-              <div className="profile_details_header_name">{profile.name}</div>
+              <div className="profile_details_header_name">
+                {profile.name.toUpperCase()}
+              </div>
 
               <div className="phone_class">
                 <div className="profile_phone">
