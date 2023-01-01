@@ -85,7 +85,7 @@ const Projects = () => {
                       <h2 className="justify-content-center text-uppercase">
                         {project.name}
                         <small className="justify-content-center text-capitalize">
-                          {project.leader_name}
+                          {project.leader_name.toLowerCase()}
                         </small>
                       </h2>
                     </div>

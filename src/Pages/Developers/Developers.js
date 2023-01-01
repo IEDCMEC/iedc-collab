@@ -114,6 +114,7 @@ const Developers = () => {
   };
   useEffect(() => {
     if (developers === null) return;
+    setUsers(devs.slice(page * 10, page * 10 + 10));
     //eslint-disable-next-line react-hooks/exhaustive-deps
   }, [page]);
 
