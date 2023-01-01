@@ -6,8 +6,11 @@ import { AuthContext } from "../../Firebase/Auth/Auth";
 import { ProjectContext } from "../../contexts/ProjectContext";
 import { signIn } from "../../Firebase/firebase";
 import { Link, useHistory, useLocation } from "react-router-dom";
-import { Avatar, Drawer, Menu, MenuItem } from "@mui/material";
+import { Avatar, Drawer } from "@mui/material";
 import { FaHome } from "react-icons/fa";
+import { Menu, MenuItem, MenuButton } from "@szhsin/react-menu";
+import "@szhsin/react-menu/dist/index.css";
+import "@szhsin/react-menu/dist/transitions/slide.css";
 
 import meclogo from "../../assets/meclogo.png";
 import { HiOutlineMenuAlt3 } from "react-icons/hi";
@@ -42,14 +45,6 @@ const Navbar = () => {
   useEffect(() => {
     getDev(currentUser?.uid);
   }, [currentUser?.uid]);
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const open = Boolean(anchorEl);
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
   return (
     <>
       {(location.pathname.split("/")[1] === "ideas" ||
@@ -192,11 +187,49 @@ const Navbar = () => {
               </div>
 
               {currentUser ? (
-                <Avatar
-                  src={selectedUser?.profilePhoto}
-                  onClick={handleClick}
-                  sx={{ cursor: "pointer", height: "35px", width: "35px" }}
-                />
+                <Menu
+                  menuButton={
+                    <MenuButton>
+                      <Avatar
+                        src={selectedUser?.profilePhoto}
+                        sx={{
+                          cursor: "pointer",
+                          height: "35px",
+                          width: "35px",
+                        }}
+                      />
+                    </MenuButton>
+                  }
+                  transition
+                >
+                  <MenuItem onClick={newprojectClick} className="mobile__only" style={{
+                    color:"#9e0000"
+                  }}>
+                    Create A Project
+                  </MenuItem>
+                  <MenuItem
+                    onClick={() => {
+                      history.push(`/profile`);
+                    }}
+                    style={{
+                      color:"#9e0000"
+                    }}
+                  >
+                    {" "}
+                    My Profile
+                  </MenuItem>
+                  <MenuItem
+                    onClick={() => {
+                      signOut();
+                      history.push("/projects");
+                    }}
+                    style={{
+                      color:"#9e0000"
+                    }}
+                  >
+                    Logout
+                  </MenuItem>
+                </Menu>
               ) : (
                 <div
                   className="NavigateBar-Newprobtn css-button"
@@ -206,109 +239,6 @@ const Navbar = () => {
                 </div>
               )}
             </div>
-            <Menu
-              anchorEl={anchorEl}
-              id="account-menu"
-              open={open}
-              onClose={handleClose}
-              onClick={handleClose}
-              PaperProps={{
-                elevation: 0,
-                sx: {
-                  justifyContent: "center",
-                  alignItems: "center",
-                  textAlign: "center",
-                  backgroundColor: "#F4E6E6",
-                  overflow: "visible",
-                  // filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
-                  mt: 1.5,
-                  "& .MuiAvatar-root": {
-                    width: 32,
-                    height: 32,
-                    ml: -0.5,
-                    mr: 1,
-                  },
-                  "&:before": {
-                    content: '""',
-                    display: "block",
-                    position: "absolute",
-                    top: 0,
-                    right: 14,
-                    width: 10,
-                    height: 10,
-                    bgcolor: "#F4E6E6",
-                    transform: "translateY(-50%) rotate(45deg)",
-                    zIndex: 0,
-                  },
-                },
-              }}
-              transformOrigin={{ horizontal: "right", vertical: "top" }}
-              anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
-            >
-              <MenuItem
-                className="mobile__only"
-                sx={{
-                  justifyContent: "center",
-                  alignItems: "center",
-                  textAlign: "center",
-                  fontFamily: "Nunito",
-                  fontStyle: "normal",
-                  backgroundColor: "#FFCFCF !important",
-                  fontWeight: 600,
-                  fontSize: "15px",
-                  lineHeight: "20px",
-                  /* identical to box height */
-
-                  color: "#9E0000",
-                }}
-                onClick={newprojectClick}
-              >
-                Create a Project
-              </MenuItem>
-              <Link to="/profile" style={{ textDecoration: "none" }}>
-                <MenuItem
-                  sx={{
-                    justifyContent: "center",
-                    alignItems: "center",
-                    textAlign: "center",
-
-                    fontFamily: "Nunito",
-                    fontStyle: "normal",
-                    fontWeight: 600,
-                    fontSize: "15px",
-                    lineHeight: "20px",
-                    /* identical to box height */
-
-                    color: "#9E0000",
-                  }}
-                >
-                  My Profile
-                </MenuItem>
-              </Link>
-
-              <MenuItem
-                sx={{
-                  justifyContent: "center",
-                  alignItems: "center",
-                  textAlign: "center",
-                  backgroundColor: "#F4E6E6 !important",
-                  fontFamily: "Nunito",
-                  fontStyle: "normal",
-                  fontWeight: 600,
-                  fontSize: "15px",
-                  lineHeight: "20px",
-                  /* identical to box height */
-
-                  color: "#9E0000",
-                }}
-                onClick={() => {
-                  signOut();
-                  history.push("/projects");
-                }}
-              >
-                Logout
-              </MenuItem>
-            </Menu>
           </nav>
           <ProjectModal
             show={showProjectModal}
