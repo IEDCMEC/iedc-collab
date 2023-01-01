@@ -33,6 +33,9 @@ button:hover {
 .Navigate-searchicon {
   color: var(--primaryColor);
 }
+.mobile__only {
+  display: none !important;
+}
 .NavigateBar-searchbox > input::placeholder {
   color: var(--primaryColor);
 }
@@ -325,6 +328,9 @@ section .section-title {
   }
   .NavigateBar-Newprobtn-1 {
     display: none;
+  }
+  .mobile__only {
+    display: block !important;
   }
 }
 

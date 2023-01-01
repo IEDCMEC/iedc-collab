@@ -32,7 +32,7 @@ const DeveloperCard = ({ user, handleClick }) => {
         justifyContent: "center",
         alignItems: "flex-start",
       }}>
-        <h1 className="developer-card-name">{user.name}</h1>
+        <h1 className="developer-card-name">{user.name.toLowerCase()}</h1>
         <div className="developer-card-email">
           {user.linkedin ? "@" + getLinkedinUsername(user.linkedin) : null}
         </div>

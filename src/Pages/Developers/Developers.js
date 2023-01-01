@@ -144,7 +144,7 @@ const Developers = () => {
             addYop={addYop}
           />
           <div className="developer_container">
-            <h3 style={{ textAlign: "center", paddingTop: "3rem" }}>
+            <h3 className="developer-title">
               {users.length === 0 ? "NOT FOUND" : "DEVELOPERS"}
             </h3>
             <div className="developer-details">
