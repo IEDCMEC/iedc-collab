@@ -245,26 +245,47 @@ const Navbar = () => {
               transformOrigin={{ horizontal: "right", vertical: "top" }}
               anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
             >
+              <MenuItem
+                className="mobile__only"
+                sx={{
+                  justifyContent: "center",
+                  alignItems: "center",
+                  textAlign: "center",
+                  fontFamily: "Nunito",
+                  fontStyle: "normal",
+                  backgroundColor: "#FFCFCF !important",
+                  fontWeight: 600,
+                  fontSize: "15px",
+                  lineHeight: "20px",
+                  /* identical to box height */
+
+                  color: "#9E0000",
+                }}
+                onClick={newprojectClick}
+              >
+                Create a Project
+              </MenuItem>
               <Link to="/profile" style={{ textDecoration: "none" }}>
                 <MenuItem
                   sx={{
                     justifyContent: "center",
                     alignItems: "center",
                     textAlign: "center",
-                    backgroundColor: "#FFCFCF !important",
+
                     fontFamily: "Nunito",
                     fontStyle: "normal",
                     fontWeight: 600,
-                    fontSize: "19px",
-                    lineHeight: "29px",
+                    fontSize: "15px",
+                    lineHeight: "20px",
                     /* identical to box height */
 
                     color: "#9E0000",
                   }}
                 >
-                  MY PROFILE
+                  My Profile
                 </MenuItem>
               </Link>
+
               <MenuItem
                 sx={{
                   justifyContent: "center",
@@ -274,8 +295,8 @@ const Navbar = () => {
                   fontFamily: "Nunito",
                   fontStyle: "normal",
                   fontWeight: 600,
-                  fontSize: "19px",
-                  lineHeight: "29px",
+                  fontSize: "15px",
+                  lineHeight: "20px",
                   /* identical to box height */
 
                   color: "#9E0000",
@@ -285,7 +306,7 @@ const Navbar = () => {
                   history.push("/projects");
                 }}
               >
-                LOGOUT
+                Logout
               </MenuItem>
             </Menu>
           </nav>

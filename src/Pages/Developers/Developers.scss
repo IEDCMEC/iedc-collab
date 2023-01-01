@@ -12,10 +12,10 @@
 .developer-title {
   text-align: center;
   font-style: normal;
-  font-weight: 700;
-  font-size: 35px;
-  line-height: 51px;
-
+  font-weight: 800;
+  font-size: 30px;
+  line-height: 40px;
+  padding-top: 5rem;
   color: #9e0000;
 }
 .developer-details {
@@ -56,18 +56,16 @@
   top: -13px;
   left: -10px;
 }
-.developer-card-name {
+.developer-card h1 {
   text-transform: capitalize;
   flex-wrap: wrap;
   font-style: normal;
+  width: fit-content;
+
   font-weight: 800;
   font-size: 25px;
   line-height: 34px;
-
-  width: 450px;
-  white-space: nowrap;
   overflow: hidden;
-  text-overflow: ellipsis;
   color: #ffffff;
 }
 .developer-card-email {
@@ -83,29 +81,45 @@
   .developer_container {
     padding-top: 4rem;
   }
+  .developer-title {
+    padding-top: 1rem;
+  }
   .developer-card {
     width: 80vw;
   }
-  .developer-card-name {
+  .developer-card h1 {
     font-size: 21px;
-    width: 90%;
   }
   .developer-card-email {
     font-size: 18px;
-    width: 90%;
   }
 }
 @media (max-width: 420px) {
   .developer-card {
     margin-left: 7px;
+    width:90vw;
+
+    height: 89px;
   }
-  .developer-card-name {
+  .developer-card img {
+    width: 100px !important;
+    height: 100px !important;
+    border-radius: 50%;
+    position: relative;
+    object-fit: cover;
+    top: -13px;
+    left: -10px;
+  }
+  .developer-card h1 {
     font-size: 18px;
-    width: 70%;
+    width: 53vw;
+    text-overflow: ellipsis;
+    overflow: hidden;
+
+    white-space: nowrap;
   }
   .developer-card-email {
     font-size: 15px;
-    width: 70%;
   }
 }
 
@@ -182,14 +196,11 @@
 }
 .developer_container button:focus {
   outline: none;
-
 }
-.developer_container button
-{
+.developer_container button {
   color: #9e0000;
   font-size: 1rem;
 }
-.developer_container button:hover
-{
+.developer_container button:hover {
   background-color: #e77e7e4d;
 }
