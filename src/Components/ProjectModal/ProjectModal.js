@@ -12,11 +12,13 @@ import { ProjectContext } from "../../contexts/ProjectContext";
 import { toast } from "react-toastify";
 import Compress from "compress.js";
 import { FormControlLabel, Radio, RadioGroup } from "@mui/material";
+import { AuthContext } from "../../Firebase/Auth/Auth";
 
 const compress = new Compress();
 const NewProjectForm = ({ onClose, project, setVariable, variable }) => {
   const [image, setImage] = useState(project?.projectPhoto || "");
   const [isReq, setIsReq] = useState(project?.isReq || true);
+  const { currentUser } = useContext(AuthContext);
   const [projectPhotoName, setProjectPhotoName] = useState(
     project?.projectPhotoName || ""
   );
@@ -50,7 +52,6 @@ const NewProjectForm = ({ onClose, project, setVariable, variable }) => {
     links: yup.string().min(4),
     githubLink: yup.string().optional().min(4),
     tags: yup.string(),
-    teamMembers: yup.string().required("Please add team members"),
   });
 
   const handleSubmit = (values, actions) => {
@@ -76,6 +77,12 @@ const NewProjectForm = ({ onClose, project, setVariable, variable }) => {
       projectPhoto,
       projectPhotoName,
     };
+    if (!formValues.teamMembers.includes(currentUser?.email)) {
+      formValues.teamMembers.push(currentUser?.email);
+    }
+    formValues.teamMembers = formValues.teamMembers.filter(
+      (item, index) => formValues.teamMembers.indexOf(item) === index
+    );
     if (!project) {
       doCreateProject(formValues, developers, () => {
         fetchData();
@@ -283,8 +290,7 @@ const NewProjectForm = ({ onClose, project, setVariable, variable }) => {
                 placeholder="Enter Team members name..."
               />
               <Form.Text className="text-right helperText">
-                Please separate the emails using commas and include your email
-                too.
+                Please separate the emails using commas.
               </Form.Text>
               <Form.Text className="text-danger">
                 {props.touched.teamMembers && props.errors.teamMembers}

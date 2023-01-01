@@ -355,8 +355,6 @@ const MyProfile = () => {
               </div> */}
               <div
                 className="edit__header"
-                data-aos="fade-up"
-                data-aos-duration="1500"
               >
                 <div
                   className={isReceived ? "rec_active" : "received"}
@@ -379,11 +377,7 @@ const MyProfile = () => {
                     </div>
                   ) : (
                     requestsRecieved?.map((request, index) => (
-                      <div
-                        data-aos="fade-up"
-                        key={index}
-                        data-aos-duration="1500"
-                      >
+                      <div key={index}>
                         <Received request={request} />
                       </div>
                     ))
@@ -394,16 +388,8 @@ const MyProfile = () => {
                   </div>
                 ) : (
                   requests?.map((request, index) => (
-                    <div
-                      data-aos="fade-up"
-                      key={index}
-                      data-aos-duration="1500"
-                    >
-                      <Sent
-                        request={request}
-                        data-aos="fade-up"
-                        data-aos-duration="1500"
-                      />
+                    <div key={index}>
+                      <Sent request={request} />
                     </div>
                   ))
                 )}

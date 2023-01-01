@@ -91,7 +91,7 @@ export const ProjectProvider = ({ children }) => {
         result1.forEach((itm) => {
           devMap[itm.email] = {
             name: itm.name,
-            linkedin: itm.linkedin,
+            id: itm.id,
           };
         }
         );

@@ -142,12 +142,12 @@ const NewUserForm = ({ onClose, user }) => {
   const handleSubmit = (values, actions) => {
     // const { skills } = values;
     const { github, linkedin } = values;
-    if (!linkedin.includes("https://www.linkedin.com/in/")) {
-      toast("Please enter a valid linkedin url");
+    if (github && !github.includes("github.com")) {
+      toast("Please enter a valid github link");
       return;
     }
-    if (!github.includes("https://github.com/")) {
-      toast("Please enter a valid github url");
+    if (linkedin && !linkedin.includes("linkedin.com")) {
+      toast("Please enter a valid linkedin link");
       return;
     }
 
