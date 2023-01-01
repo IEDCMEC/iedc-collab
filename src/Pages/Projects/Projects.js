@@ -57,7 +57,7 @@ const Projects = () => {
       <MainLayout route={"Projects"}>
         <div className="projects_landing">
           <div>
-            <h3 style={{ textAlign: "center",paddingTop:"3rem" }}>
+            <h3 style={{ textAlign: "center", paddingTop: "3rem" }}>
               {projects.length === 0 ? "NOT FOUND" : "PROJECTS"}
             </h3>
           </div>
