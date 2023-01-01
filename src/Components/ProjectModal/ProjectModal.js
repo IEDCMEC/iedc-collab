@@ -102,7 +102,6 @@ const NewProjectForm = ({ onClose, project, setVariable, variable }) => {
           }
         });
         fetchData();
-        setVariable(!variable);
         toast("Project created successfully", {
           autoClose: 3000,
         });

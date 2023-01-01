@@ -79,11 +79,29 @@ const DescriptionDetails = (props) => {
           <div>
             <div className="description__other-team">TEAM MEMBERS</div>
             <div className="description__other-members">
-              {props.selectedProject.teamMembers.map((member, index) => (
-                <div className="description__other-member" key={index}>
-                  {index + 1}. {devHash[member] || member}
-                </div>
-              ))}
+              {props.selectedProject.teamMembers.map((member, index) =>
+                devHash[member]?.linkedin ? (
+                  <div className="description__other-member" key={index}>
+                    {index + 1}
+                    {"."}
+                    <div style={{width:"6px"}}></div>
+                    <a
+                      href={devHash[member].linkedin}
+                      target="_blank"
+                      rel="noreferrer"
+                      style={{
+                        color: "#263238",
+                      }}
+                    >
+                      {devHash[member].name}
+                    </a>
+                  </div>
+                ) : (
+                  <div className="description__other-member" key={index}>
+                    {index + 1}. {devHash[member]?.name || member}
+                  </div>
+                )
+              )}
             </div>
           </div>
         )}

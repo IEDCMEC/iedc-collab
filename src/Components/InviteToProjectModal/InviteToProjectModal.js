@@ -146,10 +146,11 @@ const InviteToProjectModal = ({ user, selectedUser, ...props }) => {
                 <InputLabel
                   id="demo-simple-select-label"
                   style={{
-                    fontWeight: "400",
+                    fontWeight: "600",
                     fontSize: "17px",
+                    fontFamily: "Nunito",
                     lineHeight: "26px",
-                    color: " #622308",
+                    color: " #9e0000",
                   }}
                 >
                   Select Project
@@ -157,11 +158,11 @@ const InviteToProjectModal = ({ user, selectedUser, ...props }) => {
                 <Select
                   className="invite-project-name__label"
                   style={{
-                    fontWeight: "400",
+                    fontWeight: "600",
                     fontSize: "17px",
-
+                    fontFamily: "Nunito",
                     lineHeight: "26px",
-                    color: " #622308",
+                    color: " #9e0000",
                   }}
                   labelId="demo-simple-select-label"
                   id="demo-simple-select"
@@ -177,7 +178,13 @@ const InviteToProjectModal = ({ user, selectedUser, ...props }) => {
                 >
                   {listProjects.map((project, index) => {
                     return (
-                      <MenuItem value={project.name} key={index}>
+                      <MenuItem value={project.name} key={index}  style={{
+                        fontWeight: "600",
+                        fontSize: "17px",
+                        fontFamily: "Nunito",
+                        lineHeight: "26px",
+                        color: " #9e0000",
+                      }}>
                         {project.name}
                       </MenuItem>
                     );
