@@ -13,10 +13,14 @@ import { toast } from "react-toastify";
 import Compress from "compress.js";
 import axios from "axios";
 import { emailUrl } from "../../Utils/urls";
+import { renderEmail } from "react-html-email";
+import InviteEmail from "../InviteEmail/InviteEmail";
+import { FormControlLabel, Radio, RadioGroup } from "@mui/material";
 
 const compress = new Compress();
 const NewProjectForm = ({ onClose, project, setVariable, variable }) => {
   const [image, setImage] = useState(project?.projectPhoto || "");
+  const [isReq, setIsReq] = useState(project?.isReq || true);
   const [projectPhotoName, setProjectPhotoName] = useState(
     project?.projectPhotoName || ""
   );
@@ -28,6 +32,7 @@ const NewProjectForm = ({ onClose, project, setVariable, variable }) => {
     name: project?.name || "",
     desc: project?.desc || "",
     req: project?.req || "",
+    isReq: project?.isReq || true,
     links: project?.links?.join(", ") || "",
     contactNo: project?.contactNo || "",
     githubLink: project?.githubLink || "",
@@ -36,7 +41,6 @@ const NewProjectForm = ({ onClose, project, setVariable, variable }) => {
     hiring: project?.hiring ? project.hiring.join(", ") : "",
     projectPhoto: project?.projectPhoto,
   };
-
   const newProjectSchema = yup.object({
     name: yup.string().required("Please add a valid project name").min(3),
     desc: yup.string().required("Please add a valid description").min(10),
@@ -90,8 +94,9 @@ const NewProjectForm = ({ onClose, project, setVariable, variable }) => {
             axios.post(emailUrl, {
               toEmail: member,
               subject: "New Project",
-              content:
-                "A new project has been added to the website. Please check it out.",
+              content: renderEmail(
+                <InviteEmail data={formValues} member={member} />
+              ),
             });
           } else {
           }
@@ -115,9 +120,14 @@ const NewProjectForm = ({ onClose, project, setVariable, variable }) => {
           if (sent === false) {
             axios.post(emailUrl, {
               toEmail: member,
-              subject: "New Project",
-              content:
-                "A new project has been added to the website. Please check it out.",
+              subject: "Invitation to join IEDC Collab",
+              content: renderEmail(
+                <InviteEmail
+                  data={formValues}
+                  member={member}
+                  id={project.id}
+                />
+              ),
             });
           } else {
           }
@@ -174,35 +184,73 @@ const NewProjectForm = ({ onClose, project, setVariable, variable }) => {
                   : ""}
               </Form.Text>
             </Form.Group>
-            <Form.Group controlId="formBasicDescription">
-              <Form.Label>Project Requirements</Form.Label>
-              <Form.Control
-                onBlur={props.handleBlur("req")}
-                value={props.values.req}
-                style={{ whiteSpace: "pre-wrap" }}
-                onChange={props.handleChange("req")}
-                as="textarea"
-                placeholder="lorem ipsum dolor si amet..."
-                rows="3"
-              />
-              <Form.Text className="text-danger">
-                {props.touched.req && props.errors.req ? "" : ""}
-              </Form.Text>
+            <Form.Group
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "space-between",
+                flexWrap: "wrap",
+              }}
+            >
+              <Form.Label>Are you looking for team members?</Form.Label>
+              <RadioGroup
+                row
+                aria-labelledby="demo-row-radio-buttons-group-label"
+                name="row-radio-buttons-group"
+                style={{
+                  marginTop: "10px",
+                  marginLeft: "10px",
+                }}
+                value={isReq}
+                onChange={() => {
+                  setIsReq(!isReq);
+                }}
+              >
+                <FormControlLabel
+                  value={true}
+                  control={<Radio />}
+                  label="Yes"
+                />
+                <FormControlLabel
+                  value={false}
+                  control={<Radio />}
+                  label="No"
+                />
+              </RadioGroup>
             </Form.Group>
-            <Form.Group controlId="formTeamMembers">
-              <Form.Label>Hiring Roles</Form.Label>
-              <Form.Control
-                onBlur={props.handleBlur("hiring")}
-                value={props.values.hiring}
-                onChange={props.handleChange("hiring")}
-                type="text"
-                placeholder="Enter Hiring Roles..."
-              />
-              <Form.Text className="text-right helperText">
-                Please separate the roles using commas
-              </Form.Text>
-            </Form.Group>
-            <br />
+            {isReq ? (
+              <>
+                <Form.Group controlId="formBasicDescription">
+                  <Form.Label>Project Requirements</Form.Label>
+                  <Form.Control
+                    onBlur={props.handleBlur("req")}
+                    value={props.values.req}
+                    style={{ whiteSpace: "pre-wrap" }}
+                    onChange={props.handleChange("req")}
+                    as="textarea"
+                    placeholder="lorem ipsum dolor si amet..."
+                    rows="3"
+                  />
+                  <Form.Text className="text-danger">
+                    {props.touched.req && props.errors.req ? "" : ""}
+                  </Form.Text>
+                </Form.Group>
+                <Form.Group controlId="formTeamMembers">
+                  <Form.Label>Hiring Roles</Form.Label>
+                  <Form.Control
+                    onBlur={props.handleBlur("hiring")}
+                    value={props.values.hiring}
+                    onChange={props.handleChange("hiring")}
+                    type="text"
+                    placeholder="Enter Hiring Roles..."
+                  />
+                  <Form.Text className="text-right helperText">
+                    Please separate the roles using commas
+                  </Form.Text>
+                </Form.Group>
+                <br />
+              </>
+            ) : null}
 
             <InputGroup controlId="formPhoto" className="photoContainer">
               <Form.Label className="photoLabel">
@@ -233,7 +281,6 @@ const NewProjectForm = ({ onClose, project, setVariable, variable }) => {
                           }
                         );
                         const img1 = results[0];
-                        console.log(img1);
                         const base64str = results[0].data;
                         const imgExt = img1.ext;
                         const compressedImage = Compress.convertBase64ToFile(

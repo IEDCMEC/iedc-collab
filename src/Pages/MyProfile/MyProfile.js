@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./MyProfile.scss";
 import MainLayout from "../../Components/MainLayout/MainLayout";
 import { BsTelephoneInbound } from "react-icons/bs";
@@ -24,6 +24,7 @@ const MyProfile = () => {
   const { currentUser } = useContext(AuthContext);
   const [showProfileModal, setShowProfileModal] = useState(false);
   const { profile, loading, projects } = useContext(ProjectContext);
+  const [count, setCount] = useState(false);
   // const [requests, setRequests] = useState([]);
   // const [profile, setSelectedUser] = useState({});
   // const [loading, setLoading] = useState(true);
@@ -38,7 +39,14 @@ const MyProfile = () => {
       signIn(() => setShowProfileModal(true));
     }
   };
-
+  useEffect(() => {
+    if (projects)
+      projects.forEach((project) => {
+        project.teamMembers?.forEach(
+          (member) => member === currentUser?.email && setCount(true)
+        );
+      });
+  }, [projects, currentUser]);
   // const getDev = async (id) => {
   //   const user = await getUser(id);
   //   setSelectedUser(await user.val());
@@ -292,37 +300,41 @@ const MyProfile = () => {
               <div>Projects</div>
               <div className="developer_details_body_right_content_1">
                 <div className="developer_details_body_right_content_projects_1">
-                  {projects.map((project, index) => {
-                    return project.teamMembers?.find(
-                      (member) => member===currentUser.email
-                    ) ? (
-                      <div
-                        className="developer_details_body_right_content_project"
-                        key={index}
-                        data-aos="fade-up"
-                        data-aos-duration="1500"
-                        onClick={() => {
-                          history.push(`/projects/${project.id}`);
-                        }}
-                      >
-                        <div className="developer_details_body_right_content_project_img">
-                          <img
-                            src={
-                              project.projectPhoto ||
-                              "https://images.unsplash.com/photo-1639413665566-2f75adf7b7ca?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyN3x8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60"
-                            }
-                            alt=""
-                          />
+                  {count ? (
+                    projects.map((project, index) => {
+                      return project.teamMembers?.find(
+                        (member) => member === currentUser.email
+                      ) ? (
+                        <div
+                          className="developer_details_body_right_content_project"
+                          key={index}
+                          data-aos="fade-up"
+                          data-aos-duration="1500"
+                          onClick={() => {
+                            history.push(`/projects/${project.id}`);
+                          }}
+                        >
+                          <div className="developer_details_body_right_content_project_img">
+                            <img
+                              src={
+                                project.projectPhoto ||
+                                "https://images.unsplash.com/photo-1639413665566-2f75adf7b7ca?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyN3x8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60"
+                              }
+                              alt=""
+                            />
+                          </div>
+                          <div className="developer_details_body_right_content_project_title">
+                            {project.name}
+                          </div>
+                          <div className="developer_details_body_right_content_project_lead">
+                            {project.leader_name}
+                          </div>
                         </div>
-                        <div className="developer_details_body_right_content_project_title">
-                          {project.name}
-                        </div>
-                        <div className="developer_details_body_right_content_project_lead">
-                          {project.leader_name}
-                        </div>
-                      </div>
-                    ) : null;
-                  })}
+                      ) : null;
+                    })
+                  ) : (
+                    <div className="skill">No Projects Added</div>
+                  )}
                 </div>
               </div>
             </div>
