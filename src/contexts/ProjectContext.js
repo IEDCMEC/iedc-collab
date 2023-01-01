@@ -89,7 +89,10 @@ export const ProjectProvider = ({ children }) => {
         setAllDevelopers(result1);
         setSelectedDevelopers(result1[index1]);
         result1.forEach((itm) => {
-          devMap[itm.email] = itm.name;
+          devMap[itm.email] = {
+            name: itm.name,
+            linkedin: itm.linkedin,
+          };
         }
         );
         setDevHash(devMap);
