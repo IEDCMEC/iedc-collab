@@ -1,6 +1,10 @@
+import axios from "axios";
 import firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/database";
+import { renderEmail } from "react-html-email";
+import InviteEmail from "../Components/InviteEmail/InviteEmail";
+import { emailUrl } from "../Utils/urls";
 
 const config = {
   apiKey: process.env.REACT_APP_FB_API_KEY,
@@ -75,8 +79,9 @@ export const signOut = () => {
     });
 };
 
-export const doCreateProject = (obj, onSuccess = () => {}) => {
+export const doCreateProject = (obj, developers, onSuccess = () => {}) => {
   const user = firebase.auth().currentUser;
+
   if (!user) {
     alert("Please login to add a project");
     return;
@@ -93,6 +98,7 @@ export const doCreateProject = (obj, onSuccess = () => {}) => {
           var projectData = {
             ...obj,
             projectPhoto: photoUrl,
+            id: newProjectID,
             projectPhotoName: obj.projectPhotoName || "",
             available: true,
             createdAt,
@@ -110,6 +116,22 @@ export const doCreateProject = (obj, onSuccess = () => {}) => {
             .then(function () {
               console.log("Project added sucessfully");
               onSuccess("ADD");
+              projectData.teamMembers.forEach((member) => {
+                let sent = false;
+                developers.forEach((dev) => {
+                  if (dev.email === member) {
+                    sent = true;
+                  }
+                });
+                if (sent === false)
+                  axios.post(emailUrl, {
+                    toEmail: member,
+                    subject: "Invitation to join IEDC Collab",
+                    content: renderEmail(
+                      <InviteEmail data={projectData} member={member} />
+                    ),
+                  });
+              });
             })
             .catch(function (error) {
               alert("Something went wrong");
@@ -124,6 +146,7 @@ export const doCreateProject = (obj, onSuccess = () => {}) => {
       projectPhoto: defaultPhotoUrl,
       projectPhotoName: "Default Image",
       available: true,
+      id: newProjectID,
       createdAt,
       updatedAt: createdAt,
       leader_id: user.uid,
@@ -140,6 +163,22 @@ export const doCreateProject = (obj, onSuccess = () => {}) => {
       .then(function () {
         console.log("Project added sucessfully");
         onSuccess("ADD");
+        projectData.teamMembers.forEach((member) => {
+          let sent = false;
+          developers.forEach((dev) => {
+            if (dev.email === member) {
+              sent = true;
+            }
+          });
+          if (sent === false)
+            axios.post(emailUrl, {
+              toEmail: member,
+              subject: "Invitation to join IEDC Collab",
+              content: renderEmail(
+                <InviteEmail data={projectData} member={member} />
+              ),
+            });
+        });
       })
       .catch(function (error) {
         alert("Something went wrong");
@@ -178,7 +217,12 @@ export const doDeleteProject = (project_id, onSuccess = () => {}) => {
     });
 };
 
-export const doEditProject = async (obj, project_id, onSuccess = () => {}) => {
+export const doEditProject = async (
+  obj,
+  project_id,
+  developers,
+  onSuccess = () => {}
+) => {
   const user = firebase.auth().currentUser;
   if (!user) {
     alert("Please login to add a project");
@@ -210,18 +254,36 @@ export const doEditProject = async (obj, project_id, onSuccess = () => {}) => {
     photoUrl = obj.projectPhoto;
   }
   try {
-    await projectRef.set({
+    var projectData = {
       ...obj,
       projectPhoto: photoUrl,
+      id: project_id,
       available: true,
       updatedAt: new Date(),
       leader_id: user.uid,
       leader_name: user.displayName,
       leaderEmail: user.email,
       leaderImg: user.providerData[0]?.photoURL || null,
-    });
+    };
+    await projectRef.set(projectData);
     console.log("Project edited sucessfully");
     onSuccess("EDIT");
+    projectData.teamMembers.forEach((member) => {
+      let sent = false;
+      developers.forEach((dev) => {
+        if (dev.email === member) {
+          sent = true;
+        }
+      });
+      if (sent === false)
+        axios.post(emailUrl, {
+          toEmail: member,
+          subject: "Invitation to join IEDC Collab",
+          content: renderEmail(
+            <InviteEmail data={projectData} member={member} />
+          ),
+        });
+    });
   } catch (error) {
     alert(
       "Something went wrong during edit. Please try againg after some time"
@@ -479,19 +541,19 @@ export const getSkills = () => {
   return firebase.database().ref("skills/").once("value");
 };
 
-export const addSkills = async (skill)=>{
+export const addSkills = async (skill) => {
   // var skillId = firebase.database().ref().child("skills").push().key;
-   let skills = await getSkills();
-    let skillsArray = skills.val();
-    if(!skillsArray){
-      skillsArray = []
-    }
-    skillsArray.push(skill);
-   
+  let skills = await getSkills();
+  let skillsArray = skills.val();
+  if (!skillsArray) {
+    skillsArray = [];
+  }
+  skillsArray.push(skill);
+
   return firebase
-  .database()
-  .ref("skills/")
-  .set({
-    ...skillsArray,
-  })
-}
+    .database()
+    .ref("skills/")
+    .set({
+      ...skillsArray,
+    });
+};

@@ -1,4 +1,4 @@
-function InviteEmail({ data, member, id }) {
+function InviteEmail({ data, member }) {
   return (
     <>
       <div>
@@ -16,8 +16,8 @@ function InviteEmail({ data, member, id }) {
           <i>
             <a
               href={
-                id
-                  ? `https://iedc-collab-frontend.pages.dev/projects/${id}`
+                data.id
+                  ? `https://iedc-collab-frontend.pages.dev/projects/${data.id}`
                   : `https://iedc-collab-frontend.pages.dev/projects/`
               }
               target="_blank"
