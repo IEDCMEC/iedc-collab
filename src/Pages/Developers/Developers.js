@@ -13,7 +13,7 @@ import { Pagination } from "@mui/material";
 let devs = [];
 
 const Developers = () => {
-  const [users, setUsers] = useState([]);
+  const [users, setUsers] = useState(null);
   const { developers, loading, setSelectedDevelopers } = useContext(
     ProjectContext
   );
@@ -56,6 +56,7 @@ const Developers = () => {
   //   setAllUsers(developers);
   // };
   useEffect(() => {
+    if (developers === null) return;
     devs = developers;
     setPage(0);
     setPages(Math.ceil(developers.length / 10));
@@ -112,10 +113,13 @@ const Developers = () => {
     setLoading1(false);
   };
   useEffect(() => {
-    setUsers(devs.slice(page * 10, page * 10 + 10));
+    if (developers === null) return;
+    //eslint-disable-next-line react-hooks/exhaustive-deps
   }, [page]);
 
   useEffect(() => {
+    if (users === null) return;
+    if (developers === null) return;
     filterDevelopers();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedSkills, branch, yop]);
@@ -124,7 +128,7 @@ const Developers = () => {
   const handleClick = (u) => {
     history.push(`/developers/${u.id}`);
   };
-  if (loading || loading1) {
+  if (loading || loading1 || users === null) {
     return (
       <div>
         <MainLayout route={"Developers"}>
@@ -145,7 +149,7 @@ const Developers = () => {
           />
           <div className="developer_container">
             <h3 className="developer-title">
-              {users.length === 0 ? "NOT FOUND" : "DEVELOPERS"}
+              {users && users.length === 0 ? "NOT FOUND" : "DEVELOPERS"}
             </h3>
             <div className="developer-details">
               {users?.map((user, index) => {

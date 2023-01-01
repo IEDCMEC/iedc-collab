@@ -14,7 +14,7 @@ export const ProjectProvider = ({ children }) => {
   const [projects, setProjects] = useState([]);
   const [selectedProject, setSelectedProject] = useState();
   const [allProjects, setAllProjects] = useState([]);
-  const [developers, setDevelopers] = useState([]);
+  const [developers, setDevelopers] = useState(null);
   const [selectedDevelopers, setSelectedDevelopers] = useState();
   const [profile, setProfile] = useState();
   const [allDevelopers, setAllDevelopers] = useState([]);
@@ -173,7 +173,9 @@ export const ProjectProvider = ({ children }) => {
         selectedDevelopers,
         allDevelopers,
         setSelectedDevelopers,
+        setDevelopers,
         selectedProject,
+        setProjects,
         setSelectedProject,
         loading,
         handleSearch,
