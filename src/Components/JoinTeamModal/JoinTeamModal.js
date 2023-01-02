@@ -13,6 +13,7 @@ import { IoPaperPlaneSharp } from "react-icons/io5";
 import { Dialog, DialogContent, useMediaQuery, useTheme } from "@mui/material";
 import { renderEmail } from "react-html-email";
 import Email from "../Email/Email";
+import { emailUrl } from "../../Utils/urls";
 
 const JoinTeamModal = ({ user, project, ...props }) => {
   const [message, setMessage] = useState("");
@@ -41,7 +42,7 @@ const JoinTeamModal = ({ user, project, ...props }) => {
     });
     try {
       await axios.post(
-        "https://w2e9j471i2.execute-api.ap-south-1.amazonaws.com/dev/send-email",
+        emailUrl,
         {
           toEmail: project.leaderEmail,
           subject: `Request to Join Team of ${project.name} from IEDC Collab`,

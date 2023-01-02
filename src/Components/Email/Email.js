@@ -1,3 +1,5 @@
+import { mainUrl } from "../../Utils/urls";
+
 function Email({ request }) {
   return (
     <>
@@ -16,7 +18,7 @@ function Email({ request }) {
           join their team for the project{"  "}
           <i>
             <a
-              href={`https://iedc-collab-frontend.pages.dev/projects/${request.project_id}`}
+              href={`${mainUrl}/projects/${request.project_id}`}
               target="_blank"
               rel="noreferrer"
             >
@@ -53,11 +55,11 @@ function Email({ request }) {
             To view more details and to accept/decline the{" "}
             {request.type === "invite" ? "invite" : "request"} , Vist{" "}
             <a
-              href="https://iedc-collab-frontend.pages.dev"
+              href={mainUrl}
               target="_blank"
               rel="noreferrer"
             >
-              https://iedc-collab-frontend.pages.dev
+              {mainUrl}
             </a>
           </p>
         </div>
