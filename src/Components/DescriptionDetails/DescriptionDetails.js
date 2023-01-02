@@ -13,6 +13,7 @@ import { IoPricetagsOutline } from "react-icons/io5";
 import { RiDeleteBin7Line } from "react-icons/ri";
 import { FaPhoneAlt } from "react-icons/fa";
 import { FiEdit } from "react-icons/fi";
+import { mainUrl } from "../../Utils/urls";
 
 const DescriptionDetails = (props) => {
   const { fetchData, devHash } = useContext(ProjectContext);
@@ -86,7 +87,7 @@ const DescriptionDetails = (props) => {
                     {"."}
                     <div style={{ width: "6px" }}></div>
                     <a
-                      href={`https://iedc-collab-frontend.pages.dev/developers/${devHash[member].id}`}
+                      href={`${mainUrl}/developers/${devHash[member].id}`}
                       style={{
                         color: "#263238",
                         textDecoration: "underline",
