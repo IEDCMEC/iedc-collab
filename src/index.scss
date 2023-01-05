@@ -30,7 +30,7 @@ $color-2: #ad1457;
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: $color-2;
+  background: #9e0000;
   border-radius: 10px;
 }
 
@@ -39,8 +39,3 @@ $color-2: #ad1457;
   // background: #b30000;
 }
 
-@media (max-width: 770px) {
-  ::-webkit-scrollbar-thumb {
-    background: white;
-  }
-}

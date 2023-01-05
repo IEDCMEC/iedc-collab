@@ -28,7 +28,7 @@ const NewUserForm = ({ onClose, user }) => {
   );
   const [profilePhoto, setProfilePhoto] = useState(user?.profilePhoto || "");
   // const [projects, setProjects] = useState([]);
-  const { fetchUserProfile } = useContext(ProjectContext);
+  const { fetchUserProfile,fetchDevelpersData } = useContext(ProjectContext);
   const [skills, setSkills] = useState([]);
   const [skill, setSkill] = useState();
   const [acValue1, setACValue1] = useState(user?.skills || []);
@@ -159,6 +159,7 @@ const NewUserForm = ({ onClose, user }) => {
     };
     doEditProfile(formValues, () => {
       fetchUserProfile();
+      fetchDevelpersData();
       toast("Edited Profile Successfully", {
         autoClose: 2000,
       });
