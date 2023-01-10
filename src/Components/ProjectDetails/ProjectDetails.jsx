@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
 import "./ProjectDetails.scss";
-import { useHistory } from "react-router";
 import { ProjectContext } from "../../contexts/ProjectContext";
 import { AuthContext } from "../../Firebase/Auth/Auth";
 import { doDeleteProject } from "../../Firebase/firebase";
@@ -14,6 +13,7 @@ import Navigate from "../../assets/Navigate.png";
 import ProjectModal from "../ProjectModal/ProjectModal";
 import { toast } from "react-toastify";
 import DeleteConfirmation from "../DeleteConfirmationModal/DeleteConfirmation";
+import { useHistory } from "react-router-dom";
 
 const ProjectDetails = () => {
   const { selectedProject, fetchData } = useContext(ProjectContext);
@@ -343,7 +343,10 @@ export const ProjectDetailMob = ({ setShowProjectDetailsNotList }) => {
                   }}
                 ></img>
               </div>
-              <div style={{display:"flex",flexWrap:"wrap"}} className="ProjectDetail-tagdivright">
+              <div
+                style={{ display: "flex", flexWrap: "wrap" }}
+                className="ProjectDetail-tagdivright"
+              >
                 {selectedProject.tags.map((tag, index) => (
                   <p
                     rel="noopener noreferrer"
