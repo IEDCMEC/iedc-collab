@@ -8,7 +8,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import useMediaQuery from "@mui/material/useMediaQuery";
-import { getSkills } from "../../Firebase/firebase";
+import { getSkills, getTags } from "../../Firebase/firebase";
 import "./Developers.scss";
 
 // const typeDevs = ['Skills','Projects','Developers']
@@ -42,10 +42,14 @@ const styles1 = {
 export default function PersistentDrawerLeft({
   selectedSkills,
   setSelectedSkills,
+  selectedTags,
+  setSelectedTags,
   addBranch,
   addYop,
+  page,
 }) {
   const [skills, setSkills] = React.useState([]);
+  const [tags, setTags] = React.useState([]);
   // const [branch, setBranch] =  React.useState('')
   // const [yop, setYop] = React.useState('')
   const getAbilities = async () => {
@@ -54,9 +58,22 @@ export default function PersistentDrawerLeft({
       setSkills(messageObject);
     });
   };
+
+  const getTagDetails = async () => {
+    await getTags().then(async function (snapshot) {
+      let messageObject = snapshot.val();
+      setTags(messageObject);
+    });
+  };
+
   React.useEffect(() => {
     getAbilities();
   }, []);
+
+  React.useEffect(() => {
+    getTagDetails();
+  }, []);
+
   const branches = ["CSE", "ECE", "EEE", "EBE", "MECH"];
   const years = ["2023", "2024", "2025", "2026"];
   const matches1 = useMediaQuery("(max-width:600px)");
@@ -83,6 +100,16 @@ export default function PersistentDrawerLeft({
     setSelectedSkills(oldSkills);
   };
 
+  const addTag = (tag) => {
+    let oldTags = selectedTags;
+    if (oldTags.find((s) => s === tag)) {
+      oldTags = oldTags.filter((s) => s !== tag);
+    } else {
+      oldTags = [...oldTags, tag];
+    }
+    setSelectedTags(oldTags);
+  };
+
   return (
     <div className="drawer__container">
       <IconButton
@@ -92,6 +119,7 @@ export default function PersistentDrawerLeft({
         edge="start"
         sx={{
           mr: 5,
+          color: "#9e0000",
           position: "fixed",
           left: matches4 ? "15px" : "30px",
           top: matches3 ? "184px" : "140px",
@@ -146,7 +174,9 @@ export default function PersistentDrawerLeft({
               flexDirection: "row",
             }}
           >
-            <h3 style={styles}>Skills</h3>
+            <h3 style={styles}>
+              {page === "Projects" ? "Tech Stacks" : "Skills"}
+            </h3>
           </div>
           {/* <input
             type="text"
@@ -163,11 +193,22 @@ export default function PersistentDrawerLeft({
               ></Buttons>
             ))}
           </div>
-          <div style={{ minWidth: "90%", margin: "25px" }}>
+          <div
+            style={
+              page === "Projects"
+                ? { display: "none" }
+                : { minWidth: "90%", margin: "25px" }
+            }
+          >
             <h3 style={styles}>Branch/Class</h3>
           </div>
           {/* <input type="text" className="input_box" /> */}
-          <div className="skills">
+          <div
+            className="skills"
+            style={{
+              display: page === "Projects" ? "none" : "flex",
+            }}
+          >
             {branches.map((x, id) => (
               <Buttons
                 key={id}
@@ -178,17 +219,54 @@ export default function PersistentDrawerLeft({
             ))}
           </div>
           {/* placeholder='Start typing...' */}
-          <div style={{ minWidth: "90%", margin: "25px" }}>
+          <div
+            style={
+              page === "Projects"
+                ? { display: "none" }
+                : { minWidth: "90%", margin: "25px" }
+            }
+          >
             <h3 style={styles}>Year of passing</h3>
           </div>
           {/* <input type="text" className="input_box" /> */}
-          <div className="skills">
+          <div
+            className="skills"
+            style={{
+              display: page === "Projects" ? "none" : "flex",
+            }}
+          >
             {years.map((x, id) => (
               <Buttons
                 key={id}
                 name={x}
                 className="skill_boxes menu_button"
                 addSkills={addYop}
+              ></Buttons>
+            ))}
+          </div>
+          <div
+            style={
+              page === "Projects"
+                ? { minWidth: "90%", margin: "25px" }
+                : { display: "none" }
+            }
+          >
+            <h3 style={styles}>Tags</h3>
+          </div>
+          {/* <input type="text" className="input_box" /> */}
+          <div
+            className="skills"
+            style={{
+              display: page === "Projects" ? "flex" : "none",
+            }}
+          >
+            {tags.map((x, id) => (
+              <Buttons
+                page={"Projects"}
+                key={id}
+                name={x}
+                className="skill_boxes menu_button"
+                addSkills={addTag}
               ></Buttons>
             ))}
           </div>
