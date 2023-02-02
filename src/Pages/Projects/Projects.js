@@ -6,9 +6,12 @@ import MainLayout from "../../Components/MainLayout/MainLayout";
 import SuspenseLoader from "../../Components/SuspenseLoader/SuspenseLoader";
 import { ProjectContext } from "../../contexts/ProjectContext";
 import { Pagination } from "@mui/material";
+import Drawer from "../Developers/Drawer";
 const Projects = () => {
   // const [projects, setProjects] = useState([]);
   const { projects, loading } = useContext(ProjectContext);
+  const [selectedSkills, setSelectedSkills] = useState([]);
+  const [selectedTags, setSelectedTags] = useState([]);
   const [pages, setPages] = useState(0);
   const [page, setPage] = useState(0);
   const [works, setWorks] = useState([]);
@@ -27,6 +30,48 @@ const Projects = () => {
   //   getWorks();
 
   // }, [projects]);
+  const filterProjects = () => {
+    let filteredProjects = projects;
+    if (selectedSkills.length > 0 && selectedTags.length > 0) {
+      filteredProjects = filteredProjects.filter((p) => {
+        let flag = false;
+        p.skills.forEach((s) => {
+          if (selectedSkills.find((ss) => ss === s)) flag = true;
+        });
+        p.tags.forEach((s) => {
+          if (selectedTags.find((ss) => ss === s)) flag = true;
+        });
+        return flag;
+      });
+    } else {
+      if (selectedSkills.length > 0) {
+        filteredProjects = filteredProjects.filter((p) => {
+          let flag = false;
+          p.skills.forEach((s) => {
+            if (selectedSkills.find((ss) => ss === s)) flag = true;
+          });
+          return flag;
+        });
+      }
+      if (selectedTags.length > 0) {
+        filteredProjects = filteredProjects.filter((p) => {
+          let flag = false;
+          p.tags.forEach((s) => {
+            if (selectedTags.find((ss) => ss === s)) flag = true;
+          });
+          return flag;
+        });
+      }
+    }
+    setWorks(filteredProjects.slice(page * 12, page * 12 + 12));
+    setPages(Math.ceil(filteredProjects.length / 12));
+  };
+
+  useEffect(() => {
+    filterProjects();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selectedSkills, selectedTags]);
+
   useEffect(() => {
     setPage(0);
     setPages(Math.ceil(projects.length / 12));
@@ -56,8 +101,15 @@ const Projects = () => {
     <>
       <MainLayout route={"Projects"}>
         <div className="projects_landing">
+          <Drawer
+            selectedSkills={selectedSkills}
+            setSelectedSkills={setSelectedSkills}
+            selectedTags={selectedTags}
+            setSelectedTags={setSelectedTags}
+            page={"Projects"}
+          />
           <div>
-            <h3 style={{ textAlign: "center",paddingTop:"3rem" }}>
+            <h3 style={{ textAlign: "center", paddingTop: "3rem" }}>
               {projects.length === 0 ? "NOT FOUND" : "PROJECTS"}
             </h3>
           </div>

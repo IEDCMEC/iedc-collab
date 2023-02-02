@@ -97,13 +97,27 @@ const DescriptionDetails = (props) => {
                     </a>
                   </div>
                 ) : (
-                  <a href={`mailto:${member}`}>
-                    <div className="description__other-member" key={index}>
+                  <a href={`mailto:${member}`} key={index}>
+                    <div className="description__other-member">
                       {index + 1}. {member}
                     </div>
                   </a>
                 )
               )}
+            </div>
+          </div>
+        )}
+        {props.selectedProject.skills?.length && (
+          <div>
+            <div className="description__other-team">TECH STACKS</div>
+            <div className="description__other-members">
+              {props.selectedProject.skills?.map((skill, index) => (
+                <div className="description__other-member" key={index}>
+                  {index + 1}
+                  {" . "}
+                  {skill}
+                </div>
+              ))}
             </div>
           </div>
         )}
