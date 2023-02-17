@@ -35,10 +35,10 @@ const Projects = () => {
     if (selectedSkills.length > 0 && selectedTags.length > 0) {
       filteredProjects = filteredProjects.filter((p) => {
         let flag = false;
-        p.skills.forEach((s) => {
+        p?.skills?.forEach((s) => {
           if (selectedSkills.find((ss) => ss === s)) flag = true;
         });
-        p.tags.forEach((s) => {
+        p?.tags?.forEach((s) => {
           if (selectedTags.find((ss) => ss === s)) flag = true;
         });
         return flag;
@@ -47,7 +47,7 @@ const Projects = () => {
       if (selectedSkills.length > 0) {
         filteredProjects = filteredProjects.filter((p) => {
           let flag = false;
-          p.skills.forEach((s) => {
+          p?.skills?.forEach((s) => {
             if (selectedSkills.find((ss) => ss === s)) flag = true;
           });
           return flag;
@@ -56,7 +56,7 @@ const Projects = () => {
       if (selectedTags.length > 0) {
         filteredProjects = filteredProjects.filter((p) => {
           let flag = false;
-          p.tags.forEach((s) => {
+          p?.tags?.forEach((s) => {
             if (selectedTags.find((ss) => ss === s)) flag = true;
           });
           return flag;
