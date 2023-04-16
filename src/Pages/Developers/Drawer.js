@@ -138,7 +138,7 @@ export default function PersistentDrawerLeft({
             borderTopRightRadius: "16px",
             bottom: "0",
             height: "100%",
-          },
+          }
         }}
         variant="persistent"
         anchor="left"
@@ -240,15 +240,18 @@ export default function PersistentDrawerLeft({
               name='Branch'
               options={branches}
               value={branch}
-              sx={{width:'90%'}}
+              sx={{width:'90%',margin: '1.5rem 0'}}
               renderInput={(params) => <TextField {...params}
                                             label="Branch/Class" 
                                             required
                                             sx={{
                                               '& .MuiOutlinedInput-root':{
+                                                '& .MuiAutocomplete-endAdornment .MuiButtonBase-root .MuiSvgIcon-root':{
+                                                  color:'white'
+                                                },
                                                 '& fieldset':{
                                                   border: '2px solid #D9D9D9',
-                                                  color:'white'                                                  
+                                                  color:'white',                                            
                                                 },
                                                 '& .MuiChip-root':{
                                                   color:"white",
@@ -303,15 +306,18 @@ export default function PersistentDrawerLeft({
               name='Year'
               options={years}
               value={yop}
-              sx={{width:'90%'}}
+              sx={{width:'90%',margin: '1.5rem 0'}}
               renderInput={(params) => <TextField {...params}
                                             label="Year" 
                                             required
                                             sx={{
                                               '& .MuiOutlinedInput-root':{
+                                                '& .MuiAutocomplete-endAdornment .MuiButtonBase-root .MuiSvgIcon-root':{
+                                                  color:'white'
+                                                },
                                                 '& fieldset':{
                                                   border: '2px solid #D9D9D9',
-                                                  color:'white'                                                  
+                                                  color:'white',
                                                 },
                                                 '& .MuiChip-root':{
                                                   color:"white",
