@@ -44,7 +44,7 @@ const Developers = () => {
       oldBranch = [...oldBranch, b];
     }
     setBranch(oldBranch);
-    console.log(oldBranch)
+    // console.log(oldBranch)
   };
   // const getDevs = async () => {
   //   // await getDevelopers().then(async function (snapshot) {
