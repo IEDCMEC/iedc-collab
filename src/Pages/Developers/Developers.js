@@ -44,7 +44,6 @@ const Developers = () => {
       oldBranch = [...oldBranch, b];
     }
     setBranch(oldBranch);
-    // console.log(oldBranch)
   };
   // const getDevs = async () => {
   //   // await getDevelopers().then(async function (snapshot) {
@@ -80,7 +79,6 @@ const Developers = () => {
     } else {
       developers1.forEach((dev) => {
         for (let s in skills) {
-          console.log(dev.skills)
           if (dev.skills && dev?.skills?.find((sk) => sk === skills[s])) {
             devs = [...devs, dev];
             break;
