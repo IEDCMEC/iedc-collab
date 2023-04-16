@@ -9,6 +9,7 @@ import Drawer from "./Drawer";
 import SuspenseLoader from "../../Components/SuspenseLoader/SuspenseLoader";
 import { ProjectContext } from "../../contexts/ProjectContext";
 import { Pagination } from "@mui/material";
+import { ThemeContext } from "../../App";
 
 let devs = [];
 
@@ -17,12 +18,13 @@ const Developers = () => {
   const { developers, loading, setSelectedDevelopers } = useContext(
     ProjectContext
   );
+  const { branch,setBranch,yop,setYop} = useContext(ThemeContext)
   const [selectedSkills, setSelectedSkills] = useState([]);
   const [pages, setPages] = useState(0);
   const [page, setPage] = useState(0);
   const [loading1, setLoading1] = useState(false);
-  const [branch, setBranch] = useState([]);
-  const [yop, setYop] = useState([]);
+  // const [branch, setBranch] = useState([]);
+  // const [yop, setYop] = useState([]);
 
   const addYop = (selectedYop) => {
     let oldYop = yop;
@@ -42,6 +44,7 @@ const Developers = () => {
       oldBranch = [...oldBranch, b];
     }
     setBranch(oldBranch);
+    console.log(oldBranch)
   };
   // const getDevs = async () => {
   //   // await getDevelopers().then(async function (snapshot) {

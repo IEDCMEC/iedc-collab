@@ -10,6 +10,10 @@ import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { getSkills } from "../../Firebase/firebase";
 import "./Developers.scss";
+import { TextField } from '@mui/material';
+import Autocomplete from '@mui/material/Autocomplete';
+import { ThemeContext } from "../../App";
+
 
 // const typeDevs = ['Skills','Projects','Developers']
 const DrawerHeader = styled("div")(({ theme }) => ({
@@ -21,15 +25,15 @@ const DrawerHeader = styled("div")(({ theme }) => ({
   ...theme.mixins.toolbar,
   justifyContent: "flex-end",
 }));
-const styles = {
-  fontFamily: "Nunito",
-  fontWeight: "450",
-  fontSize: "1.6rem",
-  lineHeight: "42px",
-  color: "white",
-  padding: "0",
-  margin: "0",
-};
+// const styles = {
+//   fontFamily: "Nunito",
+//   fontWeight: "450",
+//   fontSize: "1.6rem",
+//   lineHeight: "42px",
+//   color: "white",
+//   padding: "0",
+//   margin: "0",
+// };
 const styles1 = {
   fontFamily: "Nunito",
   fontWeight: "600",
@@ -46,26 +50,34 @@ export default function PersistentDrawerLeft({
   addYop,
 }) {
   const [skills, setSkills] = React.useState([]);
+  const {branch,setBranch,yop,setYop} = React.useContext(ThemeContext);
   // const [branch, setBranch] =  React.useState('')
   // const [yop, setYop] = React.useState('')
   const getAbilities = async () => {
     await getSkills().then(async function (snapshot) {
       let messageObject = snapshot.val();
       setSkills(messageObject);
+      setSkillList(messageObject)
     });
   };
+  const [skillList, setSkillList] = React.useState(skills);
   React.useEffect(() => {
     getAbilities();
   }, []);
   const branches = ["CSE", "ECE", "EEE", "EBE", "MECH"];
+  // const [branch, setBranch] = React.useState(branches);
   const years = ["2023", "2024", "2025", "2026"];
+  const matches0 = useMediaQuery("(max-width:500px)");
   const matches1 = useMediaQuery("(max-width:600px)");
   const matches2 = useMediaQuery("(max-width:800px)");
   const matches3 = useMediaQuery("(max-width:865px)");
   const matches4 = useMediaQuery("(max-width:380px)");
-  const drawerWidth = matches2 ? (matches1 ? "60vw" : "70vw") : "35vw";
+  const matches5 = useMediaQuery("(max-width:1000px)")
+  const drawerWidth = matches5 ? matches2 ? (matches1 ? (matches0 ? "95vw" : "70vw"): "50vw"  ) : "40vw" : "22.8vw";
+
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
+  const [search, setSearch] = React.useState('')
   const handleDrawerOpen = () => {
     setOpen(true);
   };
@@ -82,7 +94,20 @@ export default function PersistentDrawerLeft({
     }
     setSelectedSkills(oldSkills);
   };
-
+  function handleChange(event) {
+    const Name = event.target.value;
+    setSearch(Name)
+    if (Name.length === 0){
+      setSkillList(skills)
+    }
+    else{
+      setSkillList(skills.filter((location)=>{
+        return(
+          location.toLowerCase().includes(Name.toLowerCase())     
+          );
+      }))
+    }
+  }
   return (
     <div className="drawer__container">
       <IconButton
@@ -146,15 +171,54 @@ export default function PersistentDrawerLeft({
               flexDirection: "row",
             }}
           >
-            <h3 style={styles}>Skills</h3>
+            {/* <h3 style={styles}>Skills</h3> */}
           </div>
+          <TextField 
+                name='Skills'
+                autoComplete='off'
+                value={search}
+                onChange={handleChange} 
+                sx={{
+                    width: '80%',
+                    margin: '20px 0 20px 0',
+                    fontFamily: 'Nunito',
+                    '& .MuiOutlinedInput-root':{
+                        background:'linear-gradient(90deg, #8B1010 0%, #C71111 100%)',
+                        color:'white',
+                        // border: '2px solid #D9D9D9',
+                        borderRadius: '5px',
+                      '& fieldset':{
+                        border: '2px solid #D9D9D9',
+                        borderRadius: '5px',
+                        color:'white'
+                      },
+                      '&.Mui-focused fieldset': {
+                        border: '2px solid #D9D9D9',
+                        color: 'white'
+                      },
+                    },
+                    '& .MuiOutlinedInput-root:hover':{
+                      '& fieldset':{
+                        border: '2px solid #D9D9D9',
+                        fontFamily: 'Nunito',
+                        borderRadius: '5px',
+                        color: 'white'
+                      }
+                    }
+                    }} 
+                InputProps={{style: {color:'white',fontFamily: 'Nunito'}}}
+                InputLabelProps={{
+                  style: { color:'white',fontFamily: 'Nunito'},
+                }}
+                variant='outlined'
+                label="Start typing ..." />
           {/* <input
             type="text"
             placeholder="Start typing..."
             className="input_box"
           /> */}
           <div className="skills">
-            {skills.map((x, id) => (
+            {skillList.map((x, id) => (
               <Buttons
                 key={id}
                 name={x}
@@ -163,34 +227,130 @@ export default function PersistentDrawerLeft({
               ></Buttons>
             ))}
           </div>
-          <div style={{ minWidth: "90%", margin: "25px" }}>
+          {/* <div style={{ minWidth: "90%", margin: "25px" }}>
             <h3 style={styles}>Branch/Class</h3>
-          </div>
+          </div> */}
           {/* <input type="text" className="input_box" /> */}
           <div className="skills">
-            {branches.map((x, id) => (
+          <div style={{width:'90%'}}>
+            <Autocomplete
+              id="Branch"
+              multiple
+              onChange={(event,value)=>(setBranch(value))}
+              name='Branch'
+              options={branches}
+              value={branch}
+              sx={{width:'90%'}}
+              renderInput={(params) => <TextField {...params}
+                                            label="Branch/Class" 
+                                            required
+                                            sx={{
+                                              '& .MuiOutlinedInput-root':{
+                                                '& fieldset':{
+                                                  border: '2px solid #D9D9D9',
+                                                  color:'white'                                                  
+                                                },
+                                                '& .MuiChip-root':{
+                                                  color:"white",
+                                                  background:'transparent',
+                                                  border: '2px solid #D9D9D9',
+
+                                                },
+                                                '&.Mui-focused fieldset': {
+                                                  border: '2px solid #D9D9D9',
+                                                  color:'white'                                                  
+                                                }
+                                              },
+                                              '& .MuiOutlinedInput-root:hover':{
+                                                '& fieldset':{
+                                                  border: '2px solid #D9D9D9',
+                                                  color:'white'
+                                                }
+                                              },
+                                              '& label':{
+                                                color:'white'
+                                              },
+                                              '& label.Mui-focused':{
+                                                color:'white'
+                                              },
+                                              "& .MuiOutlinedInput-input ": {
+                                                color: 'white'
+                                              }
+                                              }} 
+                                            />}
+            />
+          </div>
+            {/* {branches.map((x, id) => (
               <Buttons
                 key={id}
                 name={x}
                 className="skill_boxes menu_button"
                 addSkills={addBranch}
               ></Buttons>
-            ))}
+            ))} */}
           </div>
           {/* placeholder='Start typing...' */}
-          <div style={{ minWidth: "90%", margin: "25px" }}>
+          {/* <div style={{ minWidth: "90%", margin: "25px" }}>
             <h3 style={styles}>Year of passing</h3>
-          </div>
+          </div> */}
           {/* <input type="text" className="input_box" /> */}
           <div className="skills">
-            {years.map((x, id) => (
+          <div style={{width:'90%'}}>
+            <Autocomplete
+              id="Year"
+              multiple
+              onChange={(event,value)=>(setYop(value))}
+              name='Year'
+              options={years}
+              value={yop}
+              sx={{width:'90%'}}
+              renderInput={(params) => <TextField {...params}
+                                            label="Year" 
+                                            required
+                                            sx={{
+                                              '& .MuiOutlinedInput-root':{
+                                                '& fieldset':{
+                                                  border: '2px solid #D9D9D9',
+                                                  color:'white'                                                  
+                                                },
+                                                '& .MuiChip-root':{
+                                                  color:"white",
+                                                  background:'transparent',
+                                                  border: '2px solid #D9D9D9',
+
+                                                },
+                                                '&.Mui-focused fieldset': {
+                                                  border: '2px solid #D9D9D9',
+                                                  color:'white'                                                  
+                                                }
+                                              },
+                                              '& .MuiOutlinedInput-root:hover':{
+                                                '& fieldset':{
+                                                  border: '2px solid #D9D9D9',
+                                                  color:'white'
+                                                }
+                                              },
+                                              '& label':{
+                                                color:'white'
+                                              },
+                                              '& label.Mui-focused':{
+                                                color:'white'
+                                              },
+                                              "& .MuiOutlinedInput-input ": {
+                                                color: 'white'
+                                              }
+                                              }} 
+                                            />}
+            />
+          </div>
+            {/* {years.map((x, id) => (
               <Buttons
                 key={id}
                 name={x}
                 className="skill_boxes menu_button"
                 addSkills={addYop}
               ></Buttons>
-            ))}
+            ))} */}
           </div>
         </div>
       </Drawer>
