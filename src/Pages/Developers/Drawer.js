@@ -13,7 +13,7 @@ import "./Developers.scss";
 import { TextField } from '@mui/material';
 import Autocomplete from '@mui/material/Autocomplete';
 import { ThemeContext } from "../../App";
-
+import { useRef } from "react";
 
 // const typeDevs = ['Skills','Projects','Developers']
 const DrawerHeader = styled("div")(({ theme }) => ({
@@ -50,17 +50,18 @@ export default function PersistentDrawerLeft({
   addYop,
 }) {
   const [skills, setSkills] = React.useState([]);
-  const {branch,setBranch,yop,setYop} = React.useContext(ThemeContext);
+  const {branch,setBranch,yop,setYop,setWidth} = React.useContext(ThemeContext);
+  const widthRef = useRef();
   // const [branch, setBranch] =  React.useState('')
   // const [yop, setYop] = React.useState('')
   const getAbilities = async () => {
     await getSkills().then(async function (snapshot) {
       let messageObject = snapshot.val();
       setSkills(messageObject);
-      setSkillList(messageObject)
+      // setSkillList(messageObject)
     });
   };
-  const [skillList, setSkillList] = React.useState(skills);
+  const [skillList, setSkillList] = React.useState(["React","CSS","Javascript","C++"]);
   React.useEffect(() => {
     getAbilities();
   }, []);
@@ -73,7 +74,7 @@ export default function PersistentDrawerLeft({
   const matches3 = useMediaQuery("(max-width:865px)");
   const matches4 = useMediaQuery("(max-width:380px)");
   const matches5 = useMediaQuery("(max-width:1000px)")
-  const drawerWidth = matches5 ? matches2 ? (matches1 ? (matches0 ? "95vw" : "70vw"): "50vw"  ) : "40vw" : "22.8vw";
+  const drawerWidth = matches5 ? matches2 ? (matches1 ? (matches0 ? "95vw" : "70vw"): "50vw"  ) : "40vw" : "25vw";
 
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
@@ -81,6 +82,15 @@ export default function PersistentDrawerLeft({
   const handleDrawerOpen = () => {
     setOpen(true);
   };
+  React.useEffect(()=>{
+    if (open) {
+      setWidth(widthRef.current.offsetWidth)
+    }
+    else{
+      setWidth(0)
+    }
+    
+  },[drawerWidth,open])
 
   const handleDrawerClose = () => {
     setOpen(false);
@@ -98,7 +108,7 @@ export default function PersistentDrawerLeft({
     const Name = event.target.value;
     setSearch(Name)
     if (Name.length === 0){
-      setSkillList(skills)
+      setSkillList(["React","CSS","Javascript","C++"])
     }
     else{
       setSkillList(skills.filter((location)=>{
@@ -127,6 +137,7 @@ export default function PersistentDrawerLeft({
         <MenuIcon sx={{ fontSize: "2rem" }} />
       </IconButton>
       <Drawer
+        ref={widthRef}
         sx={{
           width: drawerWidth,
           flexShrink: 0,
@@ -173,6 +184,12 @@ export default function PersistentDrawerLeft({
           >
             {/* <h3 style={styles}>Skills</h3> */}
           </div>
+          {/* <div style={{ minWidth: "90%", margin: "25px" }}>
+            <h3 style={styles}>Branch/Class</h3>
+          </div> */}
+          {/* <input type="text" className="input_box" /> */}
+          <div className="skills">
+          <div style={{width:'100%'}}>
           <TextField 
                 name='Skills'
                 autoComplete='off'
@@ -183,7 +200,7 @@ export default function PersistentDrawerLeft({
                     margin: '20px 0 20px 0',
                     fontFamily: 'Nunito',
                     '& .MuiOutlinedInput-root':{
-                        background:'linear-gradient(90deg, #8B1010 0%, #C71111 100%)',
+                        background:'transparent',
                         color:'white',
                         // border: '2px solid #D9D9D9',
                         borderRadius: '5px',
@@ -227,12 +244,6 @@ export default function PersistentDrawerLeft({
               ></Buttons>
             ))}
           </div>
-          {/* <div style={{ minWidth: "90%", margin: "25px" }}>
-            <h3 style={styles}>Branch/Class</h3>
-          </div> */}
-          {/* <input type="text" className="input_box" /> */}
-          <div className="skills">
-          <div style={{width:'90%'}}>
             <Autocomplete
               id="Branch"
               multiple
@@ -240,7 +251,7 @@ export default function PersistentDrawerLeft({
               name='Branch'
               options={branches}
               value={branch}
-              sx={{width:'90%',margin: '1.5rem 0'}}
+              sx={{width:'80%',margin: '1.5rem 0'}}
               renderInput={(params) => <TextField {...params}
                                             label="Branch/Class" 
                                             required
@@ -298,7 +309,7 @@ export default function PersistentDrawerLeft({
           </div> */}
           {/* <input type="text" className="input_box" /> */}
           <div className="skills">
-          <div style={{width:'90%'}}>
+          <div style={{width:'100%'}}>
             <Autocomplete
               id="Year"
               multiple
@@ -306,7 +317,7 @@ export default function PersistentDrawerLeft({
               name='Year'
               options={years}
               value={yop}
-              sx={{width:'90%',margin: '1.5rem 0'}}
+              sx={{width:'80%',margin: '1.5rem 0'}}
               renderInput={(params) => <TextField {...params}
                                             label="Year" 
                                             required

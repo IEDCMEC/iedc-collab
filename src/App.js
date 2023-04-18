@@ -43,6 +43,7 @@ initialize();
 function App() {
   const [branch, setBranch] = React.useState([]);
   const [yop, setYop] = React.useState([]);
+  const [width, setWidth] = React.useState(0);
   AOS.init();
   return (
     <ThemeProvider theme={theme}>
@@ -53,7 +54,7 @@ function App() {
             <NavigateBar />
             <ScrollToTop />
             <ToastContainer />
-            <ThemeContext.Provider value={{branch,setBranch,yop,setYop}}>
+            <ThemeContext.Provider value={{branch,setBranch,yop,setYop,width,setWidth}}>
             <Switch>
               <Route exact path="/" component={Landing} />
               <Route exact path="/projects/:id" component={ProjectDetail} />

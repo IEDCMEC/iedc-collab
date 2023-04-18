@@ -18,11 +18,12 @@ const Developers = () => {
   const { developers, loading, setSelectedDevelopers } = useContext(
     ProjectContext
   );
-  const { branch,setBranch,yop,setYop} = useContext(ThemeContext)
+  const { branch,setBranch,yop,setYop,width} = useContext(ThemeContext)
   const [selectedSkills, setSelectedSkills] = useState([]);
   const [pages, setPages] = useState(0);
   const [page, setPage] = useState(0);
   const [loading1, setLoading1] = useState(false);
+  const [currentWidth, setcurrentWidth] = useState(window.innerWidth);
   // const [branch, setBranch] = useState([]);
   // const [yop, setYop] = useState([]);
 
@@ -45,6 +46,15 @@ const Developers = () => {
     }
     setBranch(oldBranch);
   };
+  useEffect(()=>{
+    window.addEventListener("resize",changedWidth);
+    function changedWidth(e){
+      setcurrentWidth(window.innerWidth)
+    }
+    return()=>{
+      window.removeEventListener("resize",changedWidth)
+    };
+  },[width])
   // const getDevs = async () => {
   //   // await getDevelopers().then(async function (snapshot) {
   //   //   let messageObject = snapshot.val();
@@ -141,9 +151,9 @@ const Developers = () => {
     );
   }
   return (
-    <>
+    <div style={{display:'flex',justifyContent: width!==0 ? 'flex-end': 'center',width:'100vw'}}>
       <MainLayout route={"Developers"}>
-        <div className="parent_container">
+        <div className="parent_container" style={{width:currentWidth>1000? `calc(100vw - ${width}px)`:'100vw'}}>
           <Drawer
             selectedSkills={selectedSkills}
             setSelectedSkills={setSelectedSkills}
@@ -177,7 +187,7 @@ const Developers = () => {
           </div>
         </div>
       </MainLayout>
-    </>
+    </div>
   );
 };
 
