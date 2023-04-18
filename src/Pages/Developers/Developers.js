@@ -153,7 +153,7 @@ const Developers = () => {
   return (
     <div style={{display:'flex',justifyContent: width!==0 ? 'flex-end': 'center',width:'100vw'}}>
       <MainLayout route={"Developers"}>
-        <div className="parent_container" style={{width:currentWidth>1000? `calc(100vw - ${width}px)`:'100vw'}}>
+        <div className="parent_container" style={{width:currentWidth>1000? `calc(100vw - ${width}px)`:'100vw',transition:'0.2s'}}>
           <Drawer
             selectedSkills={selectedSkills}
             setSelectedSkills={setSelectedSkills}
