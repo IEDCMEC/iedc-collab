@@ -164,6 +164,7 @@ const Developers = () => {
             <h3 className="developer-title">
               {users && users.length === 0 ? "NOT FOUND" : "DEVELOPERS"}
             </h3>
+           <div>{users && users.length === 0 ? <p style={{fontWeight:'600'}}>Refine your filters please ..</p> : null}</div> 
             <div className="developer-details">
               {users?.map((user, index) => {
                 return (
