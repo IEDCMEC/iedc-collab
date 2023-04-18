@@ -15,7 +15,6 @@
   padding: 2.5rem;
   display: flex;
   color: #ffff;
-  position: fixed;
   flex-direction: column;
   gap: 2rem;
   min-height: 100vh;
@@ -28,8 +27,8 @@
   align-items: center;
   width: 100%;
   gap: 1.25rem;
-  padding: 1rem;
-  margin-left: 25rem;
+  padding: 3rem;
+  padding-bottom: 6rem;
 }
 .pro_image_container {
   display: flex;
@@ -404,8 +403,10 @@
     position: relative;
   }
   .edit__pro_box {
+    padding: 0rem;
+    padding-top: 2rem;
+    padding-bottom: 3rem;
     width: 100%;
-    margin-left: 0rem;
     justify-content: center;
     align-items: center;
   }

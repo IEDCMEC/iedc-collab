@@ -1,23 +1,47 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import { Formik } from "formik";
 import * as yup from "yup";
 import { Form, Row, Col, InputGroup } from "react-bootstrap";
-import { doCreateProject, doEditProject } from "../../Firebase/firebase";
+import {
+  addSkills,
+  doCreateProject,
+  doEditProject,
+  getSkills,
+  getTags,
+  addTags,
+} from "../../Firebase/firebase";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUpload } from "@fortawesome/free-solid-svg-icons";
 import "./ProjectModal.scss";
 import { ProjectContext } from "../../contexts/ProjectContext";
 import { toast } from "react-toastify";
 import Compress from "compress.js";
-import { FormControlLabel, Radio, RadioGroup } from "@mui/material";
+import {
+  Autocomplete,
+  createTheme,
+  FormControlLabel,
+  Radio,
+  RadioGroup,
+  TextField,
+  ThemeProvider,
+} from "@mui/material";
 import { AuthContext } from "../../Firebase/Auth/Auth";
 
 const compress = new Compress();
 const NewProjectForm = ({ onClose, project, setVariable, variable }) => {
   const [image, setImage] = useState(project?.projectPhoto || "");
   const [isReq, setIsReq] = useState(project?.isReq || true);
+  const [skills, setSkills] = useState([]);
+  const [tags, setTags] = useState([]);
+  const [skill, setSkill] = useState("");
+  const [tag, setTag] = useState("");
+  const [acValue1, setACValue1] = useState(project?.skills || []);
+  const [acValue2, setACValue2] = useState(project?.tags || []);
+  const [remainSkills, setRemainSkills] = useState([]);
+  const [remainTags, setRemainTags] = useState([]);
+
   const { currentUser } = useContext(AuthContext);
   const [projectPhotoName, setProjectPhotoName] = useState(
     project?.projectPhotoName || ""
@@ -31,14 +55,106 @@ const NewProjectForm = ({ onClose, project, setVariable, variable }) => {
     desc: project?.desc || "",
     req: project?.req || "",
     isReq: project?.isReq || true,
+    skills: project?.skills || "",
     links: project?.links?.join(", ") || "",
     contactNo: project?.contactNo || "",
     githubLink: project?.githubLink || "",
-    tags: project?.tags ? project.tags.join(", ") : "",
+    tags: project?.tags || "",
     teamMembers: project?.teamMembers ? project.teamMembers.join(", ") : "",
     hiring: project?.hiring ? project.hiring.join(", ") : "",
     projectPhoto: project?.projectPhoto,
   };
+  function getRemainSkills() {
+    let temp1 = [];
+    skills?.forEach((skill) => {
+      if (!acValue1.find((item) => item === skill)) temp1.push(skill);
+    });
+    setRemainSkills(temp1);
+    //console.log(acValue)
+
+    //console.log(temp)
+  }
+
+  function getRemainTags() {
+    let temp1 = [];
+    tags?.forEach((tag) => {
+      if (!acValue2.find((item) => item === tag)) temp1.push(tag);
+    });
+    setRemainTags(temp1);
+    //console.log(acValue)
+
+    //console.log(temp)
+  }
+
+  const getAbilities = async () => {
+    await getSkills().then(async function (snapshot) {
+      let messageObject = snapshot.val();
+      setSkills(messageObject);
+    });
+  };
+
+  const getTagDetails = async () => {
+    await getTags().then(async function (snapshot) {
+      let messageObject = snapshot.val();
+      setTags(messageObject);
+    });
+  };
+
+  useEffect(() => {
+    getAbilities();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [skill, acValue1]);
+
+  useEffect(() => {
+    getTagDetails();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [tag, acValue2]);
+
+  useEffect(() => {
+    getRemainSkills();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [skills, acValue1]);
+
+  useEffect(() => {
+    getRemainTags();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [tags, acValue2]);
+
+  const theme = createTheme({
+    components: {
+      MuiOutlinedInput: {
+        styleOverrides: {
+          root: {
+            "&:hover .MuiOutlinedInput-notchedOutline": {
+              color: "#9E0000",
+              border: "2px solid #9E0000",
+              outline: "none",
+              borderRadius: "10px",
+            },
+            "& .MuiOutlinedInput-notchedOutline": {
+              color: "#9E0000",
+              border: "2px solid #9E0000",
+              outline: "none",
+              borderRadius: "10px",
+            },
+            "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+              color: "#9E0000",
+              border: "2px solid #9E0000",
+              outline: "none",
+              borderRadius: "10px",
+            },
+            "& .MuiChip-root": {
+              fontFamily: "Nunito",
+              backgroundColor: "#9E0000",
+              color: "white",
+            },
+            "& .MuiChip-deleteIcon": { color: "#fff !important" },
+            minHeight: "150%",
+          },
+        },
+      },
+    },
+  });
   const newProjectSchema = yup.object({
     name: yup.string().required("Please add a valid project name").min(3),
     desc: yup.string().required("Please add a valid description").min(10),
@@ -50,19 +166,16 @@ const NewProjectForm = ({ onClose, project, setVariable, variable }) => {
         "Please enter a valid 10 digit phone number"
       ),
     links: yup.string().min(4),
-    githubLink: yup.string().optional().min(4),
-    tags: yup.string(),
+    githubLink: yup.string().optional().min(4)
   });
 
   const handleSubmit = (values, actions) => {
-    const { links, tags, teamMembers, hiring } = values;
+    const { links, teamMembers, hiring } = values;
     const formValues = {
       ...values,
+      skills: acValue1,
+      tags: acValue2,
       links: links
-        .split(",")
-        .filter(Boolean)
-        .map((link) => link.trim()),
-      tags: tags
         .split(",")
         .filter(Boolean)
         .map((link) => link.trim()),
@@ -287,7 +400,7 @@ const NewProjectForm = ({ onClose, project, setVariable, variable }) => {
                 value={props.values.teamMembers}
                 onChange={props.handleChange("teamMembers")}
                 type="text"
-                placeholder="Enter Team members name..."
+                placeholder="Enter Team members emails..."
               />
               <Form.Text className="text-right helperText">
                 Please separate the emails using commas.
@@ -326,23 +439,162 @@ const NewProjectForm = ({ onClose, project, setVariable, variable }) => {
                 </Form.Text>
               </Form.Group>
             </Row>
-
-            <Form.Group controlId="formTags">
-              <Form.Label>Add Tags</Form.Label>
-              <Form.Control
-                onBlur={props.handleBlur("tags")}
-                value={props.values.tags}
-                onChange={props.handleChange("tags")}
-                type="text"
-                placeholder="eg: webdev, nodejs"
-              />
-              <Form.Text className="helperText text-right">
-                Please separate the tags using commas
+            <Form.Group controlid="formSkills">
+              <ThemeProvider theme={theme}>
+                <Autocomplete
+                  multiple
+                  onChange={(event, value) => {
+                    setACValue1(value);
+                  }}
+                  id="checkboxes-tags-demo"
+                  value={acValue1}
+                  options={remainSkills}
+                  filterSelectedOptions
+                  renderOption={(props, option) => (
+                    <li
+                      style={{ fontFamily: "Nunito", color: "#9e0000" }}
+                      {...props}
+                    >
+                      {option}
+                    </li>
+                  )}
+                  renderInput={(params) => (
+                    <TextField
+                      size="small"
+                      {...params}
+                      label="Tech Stacks"
+                      className={theme.root}
+                      sx={{
+                        "& .MuiInputLabel-root": {
+                          color: "#9E0000",
+                          fontFamily: "Nunito",
+                          fontWeight: "600",
+                        },
+                        "& label.Mui-focused": {
+                          color: "#9E0000",
+                          outline: "none",
+                        },
+                      }}
+                      variant="outlined"
+                    />
+                  )}
+                />
+              </ThemeProvider>
+              <Form.Text className="text-danger">
+                {props.touched.skills && props.errors.skills}
               </Form.Text>
+            </Form.Group>
+            <div className="add-skill-row">
+              <Form.Group controlid="formContact" className="col-md-6">
+                <Form.Label>
+                  Enter Stack (If not present in the list)
+                </Form.Label>
+                <Form.Control
+                  value={skill}
+                  onChange={(e) => setSkill(e.target.value)}
+                  type="text"
+                  placeholder="Enter Stack"
+                />
+              </Form.Group>
+              <div
+                className="add-skill-btn"
+                onClick={() => {
+                  if (!skill) toast("Please enter a stack.");
+                  else {
+                    if (skill && skill.length > 0) {
+                      for (let i = 0; i < skills.length; i++) {
+                        if (skills[i].toLowerCase() === skill.toLowerCase()) {
+                          toast("Stack already present in list.");
+                          break;
+                        }
+                      }
+                      addSkills(skill);
+                      setSkill("");
+                      setACValue1([...acValue1, skill]);
+                    }
+                  }
+                }}
+              >
+                Add Stack
+              </div>
+            </div>
+            <Form.Group controlid="formTags">
+              <ThemeProvider theme={theme}>
+                <Autocomplete
+                  multiple
+                  onChange={(event, value) => {
+                    setACValue2(value);
+                  }}
+                  id="checkboxes-tags-demo"
+                  value={acValue2}
+                  options={remainTags}
+                  filterSelectedOptions
+                  renderOption={(props, option) => (
+                    <li
+                      style={{ fontFamily: "Nunito", color: "#9e0000" }}
+                      {...props}
+                    >
+                      {option}
+                    </li>
+                  )}
+                  renderInput={(params) => (
+                    <TextField
+                      size="small"
+                      {...params}
+                      label="Tags"
+                      className={theme.root}
+                      sx={{
+                        "& .MuiInputLabel-root": {
+                          color: "#9E0000",
+                          fontFamily: "Nunito",
+                          fontWeight: "600",
+                        },
+                        "& label.Mui-focused": {
+                          color: "#9E0000",
+                          outline: "none",
+                        },
+                      }}
+                      variant="outlined"
+                    />
+                  )}
+                />
+              </ThemeProvider>
               <Form.Text className="text-danger">
                 {props.touched.tags && props.errors.tags}
               </Form.Text>
             </Form.Group>
+            <div className="add-skill-row">
+              <Form.Group controlid="formContact" className="col-md-6">
+                <Form.Label>Enter Tag (If not present in the list)</Form.Label>
+                <Form.Control
+                  value={tag}
+                  onChange={(e) => setTag(e.target.value)}
+                  type="text"
+                  placeholder="Enter Tag"
+                />
+              </Form.Group>
+              <div
+                className="add-skill-btn"
+                onClick={() => {
+                  if (!tag) toast("Please enter a tag.");
+                  else {
+                    if (tag && tag.length > 0) {
+                      for (let i = 0; i < tags.length; i++) {
+                        if (tags[i].toLowerCase() === tag.toLowerCase()) {
+                          toast("Tag already present in list.");
+                          break;
+                        }
+                      }
+                      addTags(tag);
+                      setTag("");
+                      setACValue2([...acValue2, tag]);
+                    }
+                  }
+                }}
+              >
+                Add Tag
+              </div>
+            </div>
 
             <Form.Group controlId="formLinks">
               <Form.Label>Add Links</Form.Label>

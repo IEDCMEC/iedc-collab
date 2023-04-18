@@ -13,6 +13,7 @@ import { IoPricetagsOutline } from "react-icons/io5";
 import { RiDeleteBin7Line } from "react-icons/ri";
 import { FaPhoneAlt } from "react-icons/fa";
 import { FiEdit } from "react-icons/fi";
+import { mainUrl } from "../../Utils/urls";
 
 const DescriptionDetails = (props) => {
   const { fetchData, devHash } = useContext(ProjectContext);
@@ -86,7 +87,7 @@ const DescriptionDetails = (props) => {
                     {"."}
                     <div style={{ width: "6px" }}></div>
                     <a
-                      href={`https://iedc-collab-frontend.pages.dev/developers/${devHash[member].id}`}
+                      href={`${mainUrl}/developers/${devHash[member].id}`}
                       style={{
                         color: "#263238",
                         textDecoration: "underline",
@@ -96,13 +97,27 @@ const DescriptionDetails = (props) => {
                     </a>
                   </div>
                 ) : (
-                  <a href={`mailto:${member}`}>
-                    <div className="description__other-member" key={index}>
+                  <a href={`mailto:${member}`} key={index}>
+                    <div className="description__other-member">
                       {index + 1}. {member}
                     </div>
                   </a>
                 )
               )}
+            </div>
+          </div>
+        )}
+        {props.selectedProject.skills?.length && (
+          <div>
+            <div className="description__other-team">TECH STACKS</div>
+            <div className="description__other-members">
+              {props.selectedProject.skills?.map((skill, index) => (
+                <div className="description__other-member" key={index}>
+                  {index + 1}
+                  {" . "}
+                  {skill}
+                </div>
+              ))}
             </div>
           </div>
         )}

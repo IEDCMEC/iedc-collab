@@ -1,3 +1,5 @@
+import { mainUrl } from "../../Utils/urls";
+
 function ConfirmEmail({ request, status }) {
   return (
     <>
@@ -18,7 +20,7 @@ function ConfirmEmail({ request, status }) {
           their team for the project{"  "}
           <i>
             <a
-              href={`https://iedc-collab-frontend.pages.dev/projects/${request.project_id}`}
+              href={`${mainUrl}/projects/${request.project_id}`}
               target="_blank"
               rel="noreferrer"
             >
@@ -31,11 +33,11 @@ function ConfirmEmail({ request, status }) {
           <p>
             To view more details , Vist{" "}
             <a
-              href="https://www.iedc-collab-frontend.pages.dev"
+              href={mainUrl}
               target="_blank"
               rel="noreferrer"
             >
-              https://www.iedc-collab-frontend.pages.dev
+              {mainUrl}
             </a>
           </p>
         </div>

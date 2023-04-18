@@ -557,3 +557,24 @@ export const addSkills = async (skill) => {
       ...skillsArray,
     });
 };
+
+export const getTags = () => {
+  return firebase.database().ref("tags/").once("value");
+};
+
+export const addTags = async (skill) => {
+  // var skillId = firebase.database().ref().child("skills").push().key;
+  let tags = await getTags();
+  let tagsArray = tags.val();
+  if (!tagsArray) {
+    tagsArray = [];
+  }
+  tagsArray.push(skill);
+
+  return firebase
+    .database()
+    .ref("tags/")
+    .set({
+      ...tagsArray,
+    });
+};

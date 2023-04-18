@@ -16,7 +16,10 @@ export default function Buttons(props) {
         setValueOnClick(!valueOnClick);
       }}
     >
-      <p>{props.name}</p>
+      <p>
+        {props.page === "Projects" ? "# " : ""}
+        {props.name}
+      </p>
     </button>
   );
 }

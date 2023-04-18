@@ -1,3 +1,5 @@
+import { mainUrl } from "../../Utils/urls";
+
 function InviteEmail({ data, member }) {
   return (
     <>
@@ -17,8 +19,8 @@ function InviteEmail({ data, member }) {
             <a
               href={
                 data.id
-                  ? `https://iedc-collab-frontend.pages.dev/projects/${data.id}`
-                  : `https://iedc-collab-frontend.pages.dev/projects/`
+                  ? `${mainUrl}/projects/${data.id}`
+                  : `${mainUrl}/projects/`
               }
               target="_blank"
               rel="noreferrer"
@@ -28,23 +30,24 @@ function InviteEmail({ data, member }) {
           </i>{" "}
           . Login to{" "}
           <a
-            href="https://www.iedc-collab-frontend.pages.dev"
+            href={mainUrl}
             target="_blank"
             rel="noreferrer"
           >
-            IEDC Collab to check out.
+            IEDC Collab
           </a>
+          {" "}to check out.
         </p>
         <br />
         <div>
           <p>
             To view more details , Vist{" "}
             <a
-              href="https://www.iedc-collab-frontend.pages.dev"
+              href={mainUrl}
               target="_blank"
               rel="noreferrer"
             >
-              https://www.iedc-collab-frontend.pages.dev
+              {mainUrl}
             </a>
           </p>
         </div>

@@ -8,7 +8,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import useMediaQuery from "@mui/material/useMediaQuery";
-import { getSkills } from "../../Firebase/firebase";
+import { getSkills, getTags } from "../../Firebase/firebase";
 import "./Developers.scss";
 import { TextField } from '@mui/material';
 import Autocomplete from '@mui/material/Autocomplete';
@@ -25,15 +25,15 @@ const DrawerHeader = styled("div")(({ theme }) => ({
   ...theme.mixins.toolbar,
   justifyContent: "flex-end",
 }));
-// const styles = {
-//   fontFamily: "Nunito",
-//   fontWeight: "450",
-//   fontSize: "1.6rem",
-//   lineHeight: "42px",
-//   color: "white",
-//   padding: "0",
-//   margin: "0",
-// };
+const styles = {
+  fontFamily: "Nunito",
+  fontWeight: "450",
+  fontSize: "1.6rem",
+  lineHeight: "42px",
+  color: "white",
+  padding: "0",
+  margin: "0",
+};
 const styles1 = {
   fontFamily: "Nunito",
   fontWeight: "600",
@@ -46,10 +46,14 @@ const styles1 = {
 export default function PersistentDrawerLeft({
   selectedSkills,
   setSelectedSkills,
+  selectedTags,
+  setSelectedTags,
   addBranch,
   addYop,
+  page,
 }) {
   const [skills, setSkills] = React.useState([]);
+  const [tags, setTags] = React.useState([]);
   const {branch,setBranch,yop,setYop,setWidth} = React.useContext(ThemeContext);
   const widthRef = useRef();
   // const [branch, setBranch] =  React.useState('')
@@ -62,9 +66,22 @@ export default function PersistentDrawerLeft({
     });
   };
   const [skillList, setSkillList] = React.useState(["React","CSS","Javascript","C++"]);
+
+  const getTagDetails = async () => {
+    await getTags().then(async function (snapshot) {
+      let messageObject = snapshot.val();
+      setTags(messageObject);
+    });
+  };
+
   React.useEffect(() => {
     getAbilities();
   }, []);
+
+  React.useEffect(() => {
+    getTagDetails();
+  }, []);
+
   const branches = ["CSE", "ECE", "EEE", "EBE", "MECH"];
   // const [branch, setBranch] = React.useState(branches);
   const years = ["2023", "2024", "2025", "2026"];
@@ -118,6 +135,16 @@ export default function PersistentDrawerLeft({
       }))
     }
   }
+  const addTag = (tag) => {
+    let oldTags = selectedTags;
+    if (oldTags.find((s) => s === tag)) {
+      oldTags = oldTags.filter((s) => s !== tag);
+    } else {
+      oldTags = [...oldTags, tag];
+    }
+    setSelectedTags(oldTags);
+  };
+
   return (
     <div className="drawer__container">
       <IconButton
@@ -127,6 +154,7 @@ export default function PersistentDrawerLeft({
         edge="start"
         sx={{
           mr: 5,
+          color: "#9e0000",
           position: "fixed",
           left: matches4 ? "15px" : "30px",
           top: matches3 ? "184px" : "140px",
@@ -182,14 +210,16 @@ export default function PersistentDrawerLeft({
               flexDirection: "row",
             }}
           >
-            {/* <h3 style={styles}>Skills</h3> */}
+            {/* <h3 style={styles}>
+              {page === "Projects" ? "Tech Stacks" : "Skills"}
+            </h3> */}
           </div>
           {/* <div style={{ minWidth: "90%", margin: "25px" }}>
             <h3 style={styles}>Branch/Class</h3>
           </div> */}
           {/* <input type="text" className="input_box" /> */}
           <div className="skills">
-          <div style={{width:'100%'}}>
+          <div className="skills" style={{width:'100%'}}>
           <TextField 
                 name='Skills'
                 autoComplete='off'
@@ -228,13 +258,14 @@ export default function PersistentDrawerLeft({
                   style: { color:'white',fontFamily: 'Nunito'},
                 }}
                 variant='outlined'
-                label="Start typing ..." />
+                label="Start typing ..." /></div>
           {/* <input
             type="text"
             placeholder="Start typing..."
             className="input_box"
           /> */}
-          <div className="skills">
+          <div style={{width:'90%'}}>
+            <div className="skills">
             {skillList.map((x, id) => (
               <Buttons
                 key={id}
@@ -243,7 +274,24 @@ export default function PersistentDrawerLeft({
                 addSkills={addSkill}
               ></Buttons>
             ))}
+            </div>
           </div>
+          {/* <div
+            style={
+              page === "Projects"
+                ? { display: "none" }
+                : { minWidth: "90%", margin: "25px" }
+            }
+          >
+            <h3 style={styles}>Branch/Class</h3>
+          </div> */}
+          {/* <input type="text" className="input_box" /> */}
+          <div
+            className="skills"
+            style={{
+              display: page === "Projects" ? "none" : "flex",
+            }}
+          >
             <Autocomplete
               id="Branch"
               multiple
@@ -293,23 +341,33 @@ export default function PersistentDrawerLeft({
                                               }} 
                                             />}
             />
+
           </div>
-            {/* {branches.map((x, id) => (
+          {/* placeholder='Start typing...' */}
+          {/* <div
+            style={
+              page === "Projects"
+                ? { display: "none" }
+                : { minWidth: "90%", margin: "25px" }
+            }
+          >
+            <h3 style={styles}>Year of passing</h3>
+          </div>  */}
+          {/* <input type="text" className="input_box" /> */}
+          <div
+            className="skills"
+            style={{
+              display: page === "Projects" ? "none" : "flex",
+            }}
+          >
+            {/* {years.map((x, id) => (
               <Buttons
                 key={id}
                 name={x}
                 className="skill_boxes menu_button"
-                addSkills={addBranch}
+                addSkills={addYop}
               ></Buttons>
             ))} */}
-          </div>
-          {/* placeholder='Start typing...' */}
-          {/* <div style={{ minWidth: "90%", margin: "25px" }}>
-            <h3 style={styles}>Year of passing</h3>
-          </div> */}
-          {/* <input type="text" className="input_box" /> */}
-          <div className="skills">
-          <div style={{width:'100%'}}>
             <Autocomplete
               id="Year"
               multiple
@@ -319,7 +377,7 @@ export default function PersistentDrawerLeft({
               value={yop}
               sx={{width:'80%',margin: '1.5rem 0'}}
               renderInput={(params) => <TextField {...params}
-                                            label="Year" 
+                                            label="Year of passing" 
                                             required
                                             sx={{
                                               '& .MuiOutlinedInput-root':{
@@ -328,7 +386,7 @@ export default function PersistentDrawerLeft({
                                                 },
                                                 '& fieldset':{
                                                   border: '2px solid #D9D9D9',
-                                                  color:'white',
+                                                  color:'white',                                            
                                                 },
                                                 '& .MuiChip-root':{
                                                   color:"white",
@@ -360,15 +418,33 @@ export default function PersistentDrawerLeft({
                                             />}
             />
           </div>
-            {/* {years.map((x, id) => (
+          <div
+            style={
+              page === "Projects"
+                ? { minWidth: "90%", margin: "25px" }
+                : { display: "none" }
+            }
+          >
+            <h3 style={styles}>Tags</h3>
+          </div>
+          {/* <input type="text" className="input_box" /> */}
+          <div
+            className="skills"
+            style={{
+              display: page === "Projects" ? "flex" : "none",
+            }}
+          >
+            {tags.map((x, id) => (
               <Buttons
+                page={"Projects"}
                 key={id}
                 name={x}
                 className="skill_boxes menu_button"
-                addSkills={addYop}
+                addSkills={addTag}
               ></Buttons>
-            ))} */}
+            ))}
           </div>
+        </div>
         </div>
       </Drawer>
     </div>
