@@ -107,7 +107,7 @@ export default function PersistentDrawerLeft({
       setWidth(0)
     }
     
-  },[drawerWidth,open])
+  },[drawerWidth,open,setWidth])
 
   const handleDrawerClose = () => {
     setOpen(false);
