@@ -15,7 +15,7 @@ import Autocomplete from '@mui/material/Autocomplete';
 import { ThemeContext } from "../../App";
 import { useRef } from "react";
 
-// const typeDevs = ['Skills','Projects','Developers']
+const typeDevs = ['Skills','Projects','Developers']
 const DrawerHeader = styled("div")(({ theme }) => ({
   display: "flex",
   alignItems: "center",
@@ -194,10 +194,10 @@ export default function PersistentDrawerLeft({
         </DrawerHeader>
         <Divider />
         <div className="filter_box">
-          {/* <div style={{minWidth: '90%', margin:'15px'}}><h3 style={styles}>Search By:</h3></div>
+          <div style={{minWidth: '90%', margin:'15px'}}><h3 style={styles}>Search By:</h3></div>
                 <div className="buttons">
                 {typeDevs.map((x,id)=>(<Buttons key={id} name={x} className='buttons'/>))}
-                </div> */}
+                </div>
           <div style={{ minWidth: "90%", margin: "25px" }}>
             <h3 style={styles1}>Filter By:</h3>
           </div>
@@ -210,9 +210,9 @@ export default function PersistentDrawerLeft({
               flexDirection: "row",
             }}
           >
-            {/* <h3 style={styles}>
-              {page === "Projects" ? "Tech Stacks" : "Skills"}
-            </h3> */}
+            <h3 style={styles}>
+              {page === "Projects" ? "Tech Stacks" : null}
+            </h3>
           </div>
           {/* <div style={{ minWidth: "90%", margin: "25px" }}>
             <h3 style={styles}>Branch/Class</h3>
@@ -434,7 +434,7 @@ export default function PersistentDrawerLeft({
               display: page === "Projects" ? "flex" : "none",
             }}
           >
-            {tags.map((x, id) => (
+            {page === "Projects" ?tags.map((x, id) => (
               <Buttons
                 page={"Projects"}
                 key={id}
@@ -442,7 +442,8 @@ export default function PersistentDrawerLeft({
                 className="skill_boxes menu_button"
                 addSkills={addTag}
               ></Buttons>
-            ))}
+            )) :
+            null}
           </div>
         </div>
         </div>
