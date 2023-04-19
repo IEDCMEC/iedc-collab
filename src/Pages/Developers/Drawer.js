@@ -194,10 +194,10 @@ export default function PersistentDrawerLeft({
         </DrawerHeader>
         <Divider />
         <div className="filter_box">
-          <div style={{minWidth: '90%', margin:'15px'}}><h3 style={styles}>Search By:</h3></div>
-                <div className="buttons">
-                {typeDevs.map((x,id)=>(<Buttons key={id} name={x} className='buttons'/>))}
-                </div>
+          <div style={{minWidth: '90%', margin:'15px', display: (page === "Projects") ? "flex" : "none"}}><h3 style={styles}>Search By:</h3></div>
+          <div className="buttons" style={{ display: (page === "Projects") ? "flex" : "none"}}>
+          {typeDevs.map((x,id)=>(<Buttons key={id} name={x} className='buttons'/>))}
+          </div>
           <div style={{ minWidth: "90%", margin: "25px" }}>
             <h3 style={styles1}>Filter By:</h3>
           </div>
