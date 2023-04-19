@@ -434,7 +434,7 @@ export default function PersistentDrawerLeft({
               display: page === "Projects" ? "flex" : "none",
             }}
           >
-            {page === "Projects" ?tags.map((x, id) => (
+            {page === "Projects" ? tags?.map((x, id) => (
               <Buttons
                 page={"Projects"}
                 key={id}
