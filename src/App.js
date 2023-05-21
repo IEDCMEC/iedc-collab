@@ -21,7 +21,8 @@ import AOS from "aos";
 import NavigateBar from "./Components/NavigateBar/NavigateBar";
 import "aos/dist/aos.css";
 import { createTheme, ThemeProvider } from "@mui/material";
-
+import { createContext } from "react";
+export const ThemeContext =createContext();
 const theme = createTheme({
   typography: {
     allVariants: {
@@ -40,6 +41,9 @@ const theme = createTheme({
 initialize();
 
 function App() {
+  const [branch, setBranch] = React.useState([]);
+  const [yop, setYop] = React.useState([]);
+  const [width, setWidth] = React.useState(0);
   AOS.init();
   return (
     <ThemeProvider theme={theme}>
@@ -50,6 +54,7 @@ function App() {
             <NavigateBar />
             <ScrollToTop />
             <ToastContainer />
+            <ThemeContext.Provider value={{branch,setBranch,yop,setYop,width,setWidth}}>
             <Switch>
               <Route exact path="/" component={Landing} />
               <Route exact path="/projects/:id" component={ProjectDetail} />
@@ -64,6 +69,7 @@ function App() {
               <Route Route path="/ideas" component={Ideas} />
               <Route Route path="/team" component={Team} />
             </Switch>
+            </ThemeContext.Provider>
           </BrowserRouter>
         </ProjectProvider>
       </AuthProvider>

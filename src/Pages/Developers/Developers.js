@@ -9,6 +9,7 @@ import Drawer from "./Drawer";
 import SuspenseLoader from "../../Components/SuspenseLoader/SuspenseLoader";
 import { ProjectContext } from "../../contexts/ProjectContext";
 import { Pagination } from "@mui/material";
+import { ThemeContext } from "../../App";
 
 let devs = [];
 
@@ -17,12 +18,14 @@ const Developers = () => {
   const { developers, loading, setSelectedDevelopers } = useContext(
     ProjectContext
   );
+  const { branch,setBranch,yop,setYop,width} = useContext(ThemeContext)
   const [selectedSkills, setSelectedSkills] = useState([]);
   const [pages, setPages] = useState(0);
   const [page, setPage] = useState(0);
   const [loading1, setLoading1] = useState(false);
-  const [branch, setBranch] = useState([]);
-  const [yop, setYop] = useState([]);
+  const [currentWidth, setcurrentWidth] = useState(window.innerWidth);
+  // const [branch, setBranch] = useState([]);
+  // const [yop, setYop] = useState([]);
 
   const addYop = (selectedYop) => {
     let oldYop = yop;
@@ -43,6 +46,15 @@ const Developers = () => {
     }
     setBranch(oldBranch);
   };
+  useEffect(()=>{
+    window.addEventListener("resize",changedWidth);
+    function changedWidth(e){
+      setcurrentWidth(window.innerWidth)
+    }
+    return()=>{
+      window.removeEventListener("resize",changedWidth)
+    };
+  },[width])
   // const getDevs = async () => {
   //   // await getDevelopers().then(async function (snapshot) {
   //   //   let messageObject = snapshot.val();
@@ -139,9 +151,9 @@ const Developers = () => {
     );
   }
   return (
-    <>
+    <div style={{display:'flex',justifyContent: width!==0 ? 'flex-end': 'center',width:'100vw'}}>
       <MainLayout route={"Developers"}>
-        <div className="parent_container">
+        <div className="parent_container" style={{width:currentWidth>1000? `calc(100vw - ${width}px)`:'100vw',transition:'0.2s'}}>
           <Drawer
             selectedSkills={selectedSkills}
             setSelectedSkills={setSelectedSkills}
@@ -152,6 +164,7 @@ const Developers = () => {
             <h3 className="developer-title">
               {users && users.length === 0 ? "NOT FOUND" : "DEVELOPERS"}
             </h3>
+           <div>{users && users.length === 0 ? <p style={{fontWeight:'600'}}>Refine your filters please ..</p> : null}</div> 
             <div className="developer-details">
               {users?.map((user, index) => {
                 return (
@@ -175,7 +188,7 @@ const Developers = () => {
           </div>
         </div>
       </MainLayout>
-    </>
+    </div>
   );
 };
 

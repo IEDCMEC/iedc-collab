@@ -174,14 +174,14 @@
   color: white;
 }
 .skills {
-  min-width: 85%;
-  max-width: 90%;
+  min-width: 100%;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
   align-items: center;
   flex-wrap: wrap;
   flex-direction: row;
-  margin-top: 1.5rem;
+  transition: 0.2s;
+  // margin-top: 1.5rem;
 }
 .skills .skill_boxes {
   margin: 5px 3px;
