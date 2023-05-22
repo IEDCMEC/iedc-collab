@@ -44,6 +44,7 @@ function App() {
   const [branch, setBranch] = React.useState([]);
   const [yop, setYop] = React.useState([]);
   const [width, setWidth] = React.useState(0);
+  const [currentWidth, setcurrentWidth] = React.useState(window.innerWidth);
   AOS.init();
   return (
     <ThemeProvider theme={theme}>
@@ -54,7 +55,7 @@ function App() {
             <NavigateBar />
             <ScrollToTop />
             <ToastContainer />
-            <ThemeContext.Provider value={{branch,setBranch,yop,setYop,width,setWidth}}>
+            <ThemeContext.Provider value={{branch,setBranch,yop,setYop,width,setWidth,currentWidth, setcurrentWidth}}>
             <Switch>
               <Route exact path="/" component={Landing} />
               <Route exact path="/projects/:id" component={ProjectDetail} />
