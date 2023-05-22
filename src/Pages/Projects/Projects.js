@@ -7,6 +7,7 @@ import SuspenseLoader from "../../Components/SuspenseLoader/SuspenseLoader";
 import { ProjectContext } from "../../contexts/ProjectContext";
 import { Pagination } from "@mui/material";
 import Drawer from "../Developers/Drawer";
+import { ThemeContext } from "../../App";
 const Projects = () => {
   // const [projects, setProjects] = useState([]);
   const { projects, loading } = useContext(ProjectContext);
@@ -30,6 +31,16 @@ const Projects = () => {
   //   getWorks();
 
   // }, [projects]);
+  const { currentWidth, setcurrentWidth, width } = useContext(ThemeContext);
+  useEffect(() => {
+    window.addEventListener("resize", changedWidth);
+    function changedWidth(e) {
+      setcurrentWidth(window.innerWidth);
+    }
+    return () => {
+      window.removeEventListener("resize", changedWidth);
+    };
+  }, [width, setcurrentWidth]);
   const filterProjects = () => {
     let filteredProjects = projects;
     if (selectedSkills.length > 0 && selectedTags.length > 0) {
@@ -98,9 +109,21 @@ const Projects = () => {
     );
   }
   return (
-    <>
+    <div
+      style={{
+        display: "flex",
+        justifyContent: width !== 0 ? "flex-end" : "center",
+        width: "100vw",
+      }}
+    >
       <MainLayout route={"Projects"}>
-        <div className="projects_landing">
+        <div
+          className="projects_landing"
+          style={{
+            width: currentWidth > 1000 ? `calc(100vw - ${width}px)` : "100vw",
+            transition: "0.2s",
+          }}
+        >
           <Drawer
             selectedSkills={selectedSkills}
             setSelectedSkills={setSelectedSkills}
@@ -109,9 +132,19 @@ const Projects = () => {
             page={"Projects"}
           />
           <div>
-            <h3 style={{ textAlign: "center", paddingTop: "3rem" }}>
-              {projects.length === 0 ? "NOT FOUND" : "PROJECTS"}
+            <h3
+              style={{ textAlign: "center", paddingTop: "3rem" }}
+              className="developer-title"
+            >
+              {works.length === 0 ? "NOT FOUND" : "PROJECTS"}
             </h3>
+            <div>
+              {works && works.length === 0 ? (
+                <p style={{ fontWeight: "600", color: "black" }}>
+                  Refine your filters please ..
+                </p>
+              ) : null}
+            </div>
           </div>
           <div className="projects_cards">
             {works.map((project) => (
@@ -159,7 +192,7 @@ const Projects = () => {
           />
         </div>
       </MainLayout>
-    </>
+    </div>
   );
 };
 

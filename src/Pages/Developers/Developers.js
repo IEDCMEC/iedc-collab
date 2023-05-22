@@ -18,15 +18,13 @@ const Developers = () => {
   const { developers, loading, setSelectedDevelopers } = useContext(
     ProjectContext
   );
-  const { branch,setBranch,yop,setYop,width} = useContext(ThemeContext)
+  const { branch,setBranch,yop,setYop,width,currentWidth, setcurrentWidth} = useContext(ThemeContext)
   const [selectedSkills, setSelectedSkills] = useState([]);
   const [pages, setPages] = useState(0);
   const [page, setPage] = useState(0);
   const [loading1, setLoading1] = useState(false);
-  const [currentWidth, setcurrentWidth] = useState(window.innerWidth);
   // const [branch, setBranch] = useState([]);
   // const [yop, setYop] = useState([]);
-
   const addYop = (selectedYop) => {
     let oldYop = yop;
     if (oldYop.find((s) => s === selectedYop)) {
@@ -54,7 +52,7 @@ const Developers = () => {
     return()=>{
       window.removeEventListener("resize",changedWidth)
     };
-  },[width])
+  },[width,setcurrentWidth])
   // const getDevs = async () => {
   //   // await getDevelopers().then(async function (snapshot) {
   //   //   let messageObject = snapshot.val();
