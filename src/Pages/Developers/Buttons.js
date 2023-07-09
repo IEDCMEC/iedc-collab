@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
 export default function Buttons(props) {
   const [valueOnClick, setValueOnClick] = useState(false);
   const styles = {
-    background: valueOnClick ? "white" : "rgba(148, 2, 2, 0.2)",
-    color: valueOnClick ? "#9E0000" : "white",
+    background: valueOnClick ? 'white' : 'rgba(148, 2, 2, 0.2)',
+    color: valueOnClick ? '#9E0000' : 'white',
   };
   return (
     <button
@@ -17,7 +17,7 @@ export default function Buttons(props) {
       }}
     >
       <p>
-        {props.page === "Projects" ? "# " : ""}
+        {props.page === 'Projects' ? '# ' : ''}
         {props.name}
       </p>
     </button>

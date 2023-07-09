@@ -154,8 +154,7 @@
     padding: 3rem 0rem 0rem 0rem !important;
   }
 }
-.message__text
-{
+.message__text {
   width: 30rem !important;
 }
 @media (max-width: 450px) {
@@ -164,10 +163,8 @@
     width: 100vw;
   }
 }
-@media (max-width:600px) {
-  .message__text
-  {
+@media (max-width: 600px) {
+  .message__text {
     width: 70vw !important;
   }
-  
 }

@@ -1,39 +1,36 @@
-import axios from "axios";
+import axios from 'axios';
 
-const baseUrl = "";
+const baseUrl = '';
 
 const token = () => {
-  if (localStorage.getItem("token")) {
-    return `token ${localStorage.getItem("tokens")}`;
-  } else {
-    return undefined;
+  if (localStorage.getItem('token')) {
+    return `token ${localStorage.getItem('tokens')}`;
   }
+  return undefined;
 };
 
-export const Post = (domain, Params) => {
-  return axios
+export const Post = (domain, Params) =>
+  axios
     .post(baseUrl + domain, Params, {
       headers: {
         Authorization: token(),
       },
-      origin: "127.0.0.1.8000",
+      origin: '127.0.0.1.8000',
     })
     .then((res) => res.data);
-};
 
-export const Get = (domain) => {
-  return axios
+export const Get = (domain) =>
+  axios
     .get(baseUrl + domain, {
       headers: {
         Authorization: token(),
       },
-      origin: "127.0.0.1.8000",
+      origin: '127.0.0.1.8000',
     })
     .then((res) => res.data);
-};
 
-export const Delete = (domain, Params) => {
-  return axios
+export const Delete = (domain, Params) =>
+  axios
     .delete(baseUrl + domain, {
       headers: {
         Authorization: token(),
@@ -41,14 +38,12 @@ export const Delete = (domain, Params) => {
       data: Params,
     })
     .then((res) => res.data);
-};
 
-export const Put = (domain, Params) => {
-  return axios
+export const Put = (domain, Params) =>
+  axios
     .put(baseUrl + domain, Params, {
       headers: {
         Authorization: token(),
       },
     })
     .then((res) => res.data);
-};

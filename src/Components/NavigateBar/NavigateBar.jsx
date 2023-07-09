@@ -1,24 +1,28 @@
-import React, { useContext, useEffect, useState } from "react";
-import ProjectModal from "../ProjectModal/ProjectModal";
-import "./cards.css";
-import { signOut } from "../../Firebase/firebase";
-import { AuthContext } from "../../Firebase/Auth/Auth";
-import { ProjectContext } from "../../contexts/ProjectContext";
-import { signIn } from "../../Firebase/firebase";
-import { Link, useHistory, useLocation } from "react-router-dom";
-import { Avatar, Drawer } from "@mui/material";
-import { FaHome } from "react-icons/fa";
-import { Menu, MenuItem, MenuButton } from "@szhsin/react-menu";
-import "@szhsin/react-menu/dist/index.css";
-import "@szhsin/react-menu/dist/transitions/slide.css";
+import React, { useContext, useEffect, useState } from 'react';
+import { Link, useHistory, useLocation } from 'react-router-dom';
+import { Avatar, Drawer } from '@mui/material';
+import { FaHome } from 'react-icons/fa';
+import { Menu, MenuItem, MenuButton } from '@szhsin/react-menu';
+import '@szhsin/react-menu/dist/index.css';
+import '@szhsin/react-menu/dist/transitions/slide.css';
+import { HiOutlineMenuAlt3 } from 'react-icons/hi';
 
-import meclogo from "../../assets/meclogo.png";
-import { HiOutlineMenuAlt3 } from "react-icons/hi";
+import ProjectModal from '../ProjectModal/ProjectModal';
+import './cards.scss';
+import { signOut, signIn } from '../../Firebase/firebase';
+import { AuthContext } from '../../Firebase/Auth/Auth';
+import { ProjectContext } from '../../contexts/ProjectContext';
+import meclogo from '../../assets/meclogo.png';
 
-const Navbar = () => {
+function Navbar() {
   const [showProjectModal, setShowProjectModal] = useState(false);
   const { currentUser } = useContext(AuthContext);
-  const { handleSearch, handleSearchDevelopers,profile,fetchUserProfile } = useContext(ProjectContext);
+  const {
+    handleSearch,
+    handleSearchDevelopers,
+    profile,
+    fetchUserProfile,
+  } = useContext(ProjectContext);
   const history = useHistory();
   const [open1, setOpen1] = useState(false);
   const location = useLocation();
@@ -32,7 +36,7 @@ const Navbar = () => {
     if (currentUser) {
       setShowProjectModal(true);
     } else {
-      alert("Please Login to Continue.");
+      alert('Please Login to Continue.');
     }
   };
   // const [selectedUser, setSelectedUser] = useState(null);
@@ -46,47 +50,45 @@ const Navbar = () => {
   //   getDev(currentUser?.uid);
   // }, [currentUser?.uid]);
   useEffect(() => {
-    if(!profile)
-    {
+    if (!profile) {
       fetchUserProfile();
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentUser]);
 
   return (
     <>
-      {(location.pathname.split("/")[1] === "ideas" ||
-        location.pathname.split("/")[1] === "projects" ||
-        location.pathname.split("/")[1] === "developers" ||
-        location.pathname.split("/")[1] === "profile") && (
+      {(location.pathname.split('/')[1] === 'ideas' ||
+        location.pathname.split('/')[1] === 'projects' ||
+        location.pathname.split('/')[1] === 'developers' ||
+        location.pathname.split('/')[1] === 'profile') && (
         <div className="Navigate p-2 mb-5 pb-2">
           <nav
             className="navbar navbar-expand-lg fixed-top navbar-light NavigateBar-mainNav"
             style={{
-              justifyContent: "space-between",
-              backgroundColor: "white",
+              justifyContent: 'space-between',
+              backgroundColor: 'white',
             }}
           >
-            <div style={{ cursor: "pointer" }}>
+            <div style={{ cursor: 'pointer' }}>
               <Link
                 to="/"
-                style={{ display: "flex", alignItems: "center" }}
+                style={{ display: 'flex', alignItems: 'center' }}
                 className="Navbar-homebtn"
               >
                 <div
-                  style={{ display: "flex" }}
+                  style={{ display: 'flex' }}
                   className="NavigateBar-homeicondiv"
                 >
                   <i
                     className="fa fa-home NavigateBar-homeicon"
-                    style={{ color: "white" }}
-                  ></i>
+                    style={{ color: 'white' }}
+                  />
                 </div>
                 <p
                   style={{
-                    marginTop: "0",
-                    marginBottom: "0",
-                    fontWeight: "800",
+                    marginTop: '0',
+                    marginBottom: '0',
+                    fontWeight: '800',
                   }}
                   className=" NavigateBar-title"
                 >
@@ -94,30 +96,30 @@ const Navbar = () => {
                 </p>
               </Link>
             </div>
-            {location.pathname.split("/")[1] === "ideas" && (
+            {location.pathname.split('/')[1] === 'ideas' && (
               <div
                 style={{
-                  display: "flex",
-                  alignItems: "center",
+                  display: 'flex',
+                  alignItems: 'center',
                 }}
                 className="NavigateBar-searchbox mt-2"
               >
                 <input
                   placeholder="Search ideas..."
                   onChange={(e) => handleSearch(e.target.value)}
-                  style={{ borderStyle: "none", outline: "none", width: "95%" }}
-                ></input>
+                  style={{ borderStyle: 'none', outline: 'none', width: '95%' }}
+                />
                 <i
                   className="fa fa-search fa-lg Navigate-searchicon"
-                  style={{ cursor: "pointer" }}
-                ></i>
+                  style={{ cursor: 'pointer' }}
+                />
               </div>
             )}
-            {location.pathname.split("/")[1] === "projects" && (
+            {location.pathname.split('/')[1] === 'projects' && (
               <div
                 style={{
-                  display: "flex",
-                  alignItems: "center",
+                  display: 'flex',
+                  alignItems: 'center',
                 }}
                 className="NavigateBar-searchbox mt-2"
               >
@@ -127,19 +129,19 @@ const Navbar = () => {
                     e.preventDefault();
                     handleSearch(e.target.value);
                   }}
-                  style={{ borderStyle: "none", outline: "none", width: "95%" }}
-                ></input>
+                  style={{ borderStyle: 'none', outline: 'none', width: '95%' }}
+                />
                 <i
                   className="fa fa-search fa-lg Navigate-searchicon"
-                  style={{ cursor: "pointer" }}
-                ></i>
+                  style={{ cursor: 'pointer' }}
+                />
               </div>
             )}
-            {location.pathname.split("/")[1] === "developers" && (
+            {location.pathname.split('/')[1] === 'developers' && (
               <div
                 style={{
-                  display: "flex",
-                  alignItems: "center",
+                  display: 'flex',
+                  alignItems: 'center',
                 }}
                 className="NavigateBar-searchbox mt-2"
               >
@@ -149,47 +151,47 @@ const Navbar = () => {
                     e1.preventDefault();
                     handleSearchDevelopers(e1.target.value);
                   }}
-                  style={{ borderStyle: "none", outline: "none", width: "95%" }}
-                ></input>
+                  style={{ borderStyle: 'none', outline: 'none', width: '95%' }}
+                />
                 <i
                   className="fa fa-search fa-lg Navigate-searchicon"
-                  style={{ cursor: "pointer" }}
-                ></i>
+                  style={{ cursor: 'pointer' }}
+                />
               </div>
             )}
-            {location.pathname.split("/")[1] === "profile" && (
+            {location.pathname.split('/')[1] === 'profile' && (
               <div
                 style={{
-                  display: "flex",
-                  alignItems: "center",
+                  display: 'flex',
+                  alignItems: 'center',
                 }}
                 className="NavigateBar-searchbox mt-2"
               >
                 <input
                   placeholder="Search projects..."
                   onChange={(e) => {
-                    history.push(`/projects`);
+                    history.push('/projects');
                     handleSearch(e.target.value);
                   }}
-                  style={{ borderStyle: "none", outline: "none", width: "95%" }}
-                ></input>
+                  style={{ borderStyle: 'none', outline: 'none', width: '95%' }}
+                />
                 <i
                   className="fa fa-search fa-lg Navigate-searchicon"
-                  style={{ cursor: "pointer" }}
-                ></i>
+                  style={{ cursor: 'pointer' }}
+                />
               </div>
             )}
 
             <div
               id="navbarSupportedContent"
-              style={{ flexGrow: "0", display: "flex" }}
+              style={{ flexGrow: '0', display: 'flex' }}
             >
               <div
                 className="NavigateBar-Newprobtn-1 css-button"
                 onClick={newprojectClick}
               >
                 <div className="css-button-icon">
-                  <i className="fa fa-plus-square"></i>
+                  <i className="fa fa-plus-square" />
                 </div>
                 <div className="css-button-text">New Project</div>
               </div>
@@ -201,38 +203,42 @@ const Navbar = () => {
                       <Avatar
                         src={profile?.profilePhoto}
                         sx={{
-                          cursor: "pointer",
-                          height: "35px",
-                          width: "35px",
+                          cursor: 'pointer',
+                          height: '35px',
+                          width: '35px',
                         }}
                       />
                     </MenuButton>
                   }
                   transition
                 >
-                  <MenuItem onClick={newprojectClick} className="mobile__only" style={{
-                    color:"#9e0000"
-                  }}>
+                  <MenuItem
+                    onClick={newprojectClick}
+                    className="mobile__only"
+                    style={{
+                      color: '#9e0000',
+                    }}
+                  >
                     Create A Project
                   </MenuItem>
                   <MenuItem
                     onClick={() => {
-                      history.push(`/profile`);
+                      history.push('/profile');
                     }}
                     style={{
-                      color:"#9e0000"
+                      color: '#9e0000',
                     }}
                   >
-                    {" "}
+                    {' '}
                     My Profile
                   </MenuItem>
                   <MenuItem
                     onClick={() => {
                       signOut();
-                      history.push("/projects");
+                      history.push('/projects');
                     }}
                     style={{
-                      color:"#9e0000"
+                      color: '#9e0000',
                     }}
                   >
                     Logout
@@ -254,8 +260,8 @@ const Navbar = () => {
           />
         </div>
       )}
-      {location.pathname === "/" ||
-        (location.pathname.split("/")[1] === "team" && (
+      {location.pathname === '/' ||
+        (location.pathname.split('/')[1] === 'team' && (
           <div className="navbar_1">
             <div className="nav__desktop">
               <Link to="/" className="nav_item">
@@ -294,9 +300,9 @@ const Navbar = () => {
               open={open1}
               onClick={handleDrawerClose}
               onClose={(event, reason) => {
-                if (reason !== "backdropClick") {
+                if (reason !== 'backdropClick') {
                   handleDrawerClose();
-                } else if (reason !== "escapeKeyDown") {
+                } else if (reason !== 'escapeKeyDown') {
                   handleDrawerClose();
                 }
               }}
@@ -319,8 +325,8 @@ const Navbar = () => {
                     <Link
                       to="/projects"
                       className="nav_item_mob"
-                      spy={true}
-                      smooth={true}
+                      spy
+                      smooth
                       onClick={handleDrawerClose}
                     >
                       Projects
@@ -328,8 +334,8 @@ const Navbar = () => {
                     <Link
                       to="/developers"
                       className="nav_item_mob"
-                      spy={true}
-                      smooth={true}
+                      spy
+                      smooth
                       onClick={handleDrawerClose}
                     >
                       Developers
@@ -356,6 +362,6 @@ const Navbar = () => {
         ))}
     </>
   );
-};
+}
 
 export default Navbar;

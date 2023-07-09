@@ -1,10 +1,12 @@
-export const Menu = [
+const Menu = [
   {
-    label: "Projects",
-    url: "/projects",
+    label: 'Projects',
+    url: '/projects',
   },
   {
-    label: "Developers",
-    url: "/developers",
+    label: 'Developers',
+    url: '/developers',
   },
 ];
+
+export default Menu;

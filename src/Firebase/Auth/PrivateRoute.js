@@ -1,24 +1,24 @@
-import React, { useContext } from "react";
-import { Route, Redirect } from "react-router-dom";
-import { AuthContext } from "./Auth";
+import React, { useContext } from 'react';
+import { Route, Redirect } from 'react-router-dom';
+import { AuthContext } from './Auth';
 
-const PrivateRoute = ({ component: RouteComponent, ...rest }) => {
+function PrivateRoute({ component: RouteComponent, ...rest }) {
   const { currentUser } = useContext(AuthContext);
-  if (currentUser) console.log("current user" + currentUser.email);
-  else console.log("current user is None");
+  if (currentUser) console.log(`current user${currentUser.email}`);
+  else console.log('current user is None');
   return (
     <Route
       {...rest}
       render={(routeProps) =>
-        !!currentUser ? (
+        currentUser ? (
           <RouteComponent {...routeProps} />
         ) : (
-          <Redirect to={"/login"} />
+          <Redirect to="/login" />
         )
       }
     />
   );
-};
+}
 
 export default PrivateRoute;
 
@@ -27,7 +27,7 @@ export default PrivateRoute;
       {...rest}
       render={routeProps =>
         !!currentUser ? (
-         
+
           <RouteComponent {...routeProps} />
         ) : (
           <Redirect to={"/login"} />

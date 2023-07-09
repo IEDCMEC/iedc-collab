@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
-import firebase from "firebase";
+import React, { useEffect, useState } from 'react';
+import firebase from 'firebase';
 
 export const AuthContext = React.createContext();
 export const validUserContext = React.createContext();
-export const AuthProvider = ({ children }) => {
+export function AuthProvider({ children }) {
   const [currentUser, setCurrentUser] = useState(null);
   const [pending, setPending] = useState(true);
   const [validUserState, setValidUserState] = useState(false);
@@ -35,4 +35,4 @@ export const AuthProvider = ({ children }) => {
       </validUserContext.Provider>
     </AuthContext.Provider>
   );
-};
+}

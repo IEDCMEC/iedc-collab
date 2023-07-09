@@ -6,41 +6,42 @@ import {
   subramani,
   mrinalini,
   karthik,
-} from "../assets/team/index";
+} from '../assets/team/index';
+
 const developers = [
   {
     id: 1,
-    name: "Sona Martin",
+    name: 'Sona Martin',
     image: sona,
   },
   {
     id: 2,
-    name: "Joshua Joy Reji",
+    name: 'Joshua Joy Reji',
     image: joshua,
   },
   {
     id: 3,
-    name: "Nazim Filzer",
+    name: 'Nazim Filzer',
     image: nazim,
   },
   {
     id: 4,
-    name: "Allen Shibu",
+    name: 'Allen Shibu',
     image: allen,
   },
   {
     id: 5,
-    name: "Subramani E",
+    name: 'Subramani E',
     image: subramani,
   },
   {
     id: 6,
-    name: "Mrinalini Nair",
+    name: 'Mrinalini Nair',
     image: mrinalini,
   },
   {
     id: 7,
-    name: "Karthik G Kumar",
+    name: 'Karthik G Kumar',
     image: karthik,
   },
 ];

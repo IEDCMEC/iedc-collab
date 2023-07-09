@@ -1,34 +1,33 @@
-import React, { useContext, useEffect, useState } from "react";
-import Modal from "react-bootstrap/Modal";
-import Button from "react-bootstrap/Button";
-import { Formik } from "formik";
-import * as yup from "yup";
-import { Form, Row, Col, InputGroup } from "react-bootstrap";
+import React, { useContext, useEffect, useState } from 'react';
+import Modal from 'react-bootstrap/Modal';
+import Button from 'react-bootstrap/Button';
+import { Formik } from 'formik';
+import * as yup from 'yup';
+import { Form, Row, Col, InputGroup } from 'react-bootstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUpload } from '@fortawesome/free-solid-svg-icons';
+import './EditModal.scss';
+import { toast } from 'react-toastify';
+import Compress from 'compress.js';
+import { Autocomplete, TextField } from '@mui/material';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 import {
   doEditProfile,
   // getProjects,
   getSkills,
   addSkills,
-} from "../../Firebase/firebase";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUpload } from "@fortawesome/free-solid-svg-icons";
-import "./EditModal.scss";
-import { toast } from "react-toastify";
-import Compress from "compress.js";
-import "./EditModal.scss";
-import { Autocomplete, TextField } from "@mui/material";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { ProjectContext } from "../../contexts/ProjectContext";
+} from '../../Firebase/firebase';
+import { ProjectContext } from '../../contexts/ProjectContext';
 
 const compress = new Compress();
-const NewUserForm = ({ onClose, user }) => {
-  const [image, setImage] = useState(user?.profilePhoto || "");
+function NewUserForm({ onClose, user }) {
+  const [image, setImage] = useState(user?.profilePhoto || '');
   const [profilePhotoName, setProfilePhotoName] = useState(
-    user?.profilePhotoName || ""
+    user?.profilePhotoName || ''
   );
-  const [profilePhoto, setProfilePhoto] = useState(user?.profilePhoto || "");
+  const [profilePhoto, setProfilePhoto] = useState(user?.profilePhoto || '');
   // const [projects, setProjects] = useState([]);
-  const { fetchUserProfile,fetchDevelpersData } = useContext(ProjectContext);
+  const { fetchUserProfile, fetchDevelpersData } = useContext(ProjectContext);
   const [skills, setSkills] = useState([]);
   const [skill, setSkill] = useState();
   const [acValue1, setACValue1] = useState(user?.skills || []);
@@ -36,17 +35,17 @@ const NewUserForm = ({ onClose, user }) => {
   // const getSkills=['React Js','Vanilla Js','Vue Js','Angular Js','Arduino','Rasberry Pi','IOT','C++','Python','Django','Flask','Java','Spring','Node JS','Kotlin', 'Fluuter','MySQL','PostgreSQL','SQLite'];
   //  const { fetchData } = useContext(UserContext);
   const initialValue = {
-    name: user?.name || "",
-    branch: user?.branch || "",
-    year: user?.year || "",
-    about: user?.about || "",
-    skills: user?.skills || "",
-    achievements: user?.achievements || "",
-    contact: user?.contact || "",
-    email: user?.email || "",
-    linkedin: user?.linkedin || "",
-    github: user?.github || "",
-    website: user?.website || "",
+    name: user?.name || '',
+    branch: user?.branch || '',
+    year: user?.year || '',
+    about: user?.about || '',
+    skills: user?.skills || '',
+    achievements: user?.achievements || '',
+    contact: user?.contact || '',
+    email: user?.email || '',
+    linkedin: user?.linkedin || '',
+    github: user?.github || '',
+    website: user?.website || '',
   };
 
   // const getWorks = async () => {
@@ -61,19 +60,19 @@ const NewUserForm = ({ onClose, user }) => {
   // };
 
   function getRemainSkills() {
-    let temp1 = [];
+    const temp1 = [];
     skills?.forEach((skill) => {
       if (!acValue1.find((item) => item === skill)) temp1.push(skill);
     });
     setRemainSkills(temp1);
-    //console.log(acValue)
+    // console.log(acValue)
 
-    //console.log(temp)
+    // console.log(temp)
   }
 
   const getAbilities = async () => {
-    await getSkills().then(async function (snapshot) {
-      let messageObject = snapshot.val();
+    await getSkills().then(async (snapshot) => {
+      const messageObject = snapshot.val();
       setSkills(messageObject);
     });
   };
@@ -92,46 +91,46 @@ const NewUserForm = ({ onClose, user }) => {
       MuiOutlinedInput: {
         styleOverrides: {
           root: {
-            "&:hover .MuiOutlinedInput-notchedOutline": {
-              color: "#9E0000",
-              border: "2px solid #9E0000",
-              outline: "none",
-              borderRadius: "10px",
+            '&:hover .MuiOutlinedInput-notchedOutline': {
+              color: '#9E0000',
+              border: '2px solid #9E0000',
+              outline: 'none',
+              borderRadius: '10px',
             },
-            "& .MuiOutlinedInput-notchedOutline": {
-              color: "#9E0000",
-              border: "2px solid #9E0000",
-              outline: "none",
-              borderRadius: "10px",
+            '& .MuiOutlinedInput-notchedOutline': {
+              color: '#9E0000',
+              border: '2px solid #9E0000',
+              outline: 'none',
+              borderRadius: '10px',
             },
-            "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-              color: "#9E0000",
-              border: "2px solid #9E0000",
-              outline: "none",
-              borderRadius: "10px",
+            '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+              color: '#9E0000',
+              border: '2px solid #9E0000',
+              outline: 'none',
+              borderRadius: '10px',
             },
-            "& .MuiChip-root": {
-              fontFamily: "Nunito",
-              backgroundColor: "#9E0000",
-              color: "white",
+            '& .MuiChip-root': {
+              fontFamily: 'Nunito',
+              backgroundColor: '#9E0000',
+              color: 'white',
             },
-            "& .MuiChip-deleteIcon": { color: "#fff !important" },
-            minHeight: "150%",
+            '& .MuiChip-deleteIcon': { color: '#fff !important' },
+            minHeight: '150%',
           },
         },
       },
     },
   });
   const newUserSchema = yup.object({
-    about: yup.string().required("Please add a valid description").min(10),
-    branch: yup.string().required("Please select a branch."),
-    year: yup.string().required("Please select a passing year."),
+    about: yup.string().required('Please add a valid description').min(10),
+    branch: yup.string().required('Please select a branch.'),
+    year: yup.string().required('Please select a passing year.'),
     contact: yup
       .string()
       .required()
       .matches(
         /^[(]?[0-9]{3}[)]?[-\s.]?[0-9]{3}[-\s.]?[0-9]{4,6}$/,
-        "Please enter a valid 10 digit phone number"
+        'Please enter a valid 10 digit phone number'
       ),
     achievements: yup.string(),
     github: yup.string().optional().min(4),
@@ -142,12 +141,12 @@ const NewUserForm = ({ onClose, user }) => {
   const handleSubmit = (values, actions) => {
     // const { skills } = values;
     const { github, linkedin } = values;
-    if (github && !github.includes("github.com")) {
-      toast("Please enter a valid github link");
+    if (github && !github.includes('github.com')) {
+      toast('Please enter a valid github link');
       return;
     }
-    if (linkedin && !linkedin.includes("linkedin.com")) {
-      toast("Please enter a valid linkedin link");
+    if (linkedin && !linkedin.includes('linkedin.com')) {
+      toast('Please enter a valid linkedin link');
       return;
     }
 
@@ -160,7 +159,7 @@ const NewUserForm = ({ onClose, user }) => {
     doEditProfile(formValues, () => {
       fetchUserProfile();
       fetchDevelpersData();
-      toast("Edited Profile Successfully", {
+      toast('Edited Profile Successfully', {
         autoClose: 2000,
       });
     });
@@ -181,8 +180,8 @@ const NewUserForm = ({ onClose, user }) => {
               <Form.Control
                 required
                 disabled
-                style={{ cursor: "not-allowed" }}
-                onBlur={props.handleBlur("name")}
+                style={{ cursor: 'not-allowed' }}
+                onBlur={props.handleBlur('name')}
                 value={props.values.name}
               />
               <Form.Text className="text-danger">
@@ -192,7 +191,7 @@ const NewUserForm = ({ onClose, user }) => {
             <br />
             <InputGroup controlid="formPhoto" className="photoContainer">
               <Form.Label className="photoLabel">
-                <span className="photoHead" style={{ fontWeight: "800" }}>
+                <span className="photoHead" style={{ fontWeight: '800' }}>
                   Profile Photo
                 </span>
                 <span className="photoIcon">
@@ -201,10 +200,10 @@ const NewUserForm = ({ onClose, user }) => {
 
                 <Form.Control
                   required
-                  onBlur={props.handleBlur("photo")}
+                  onBlur={props.handleBlur('photo')}
                   onChange={async (e) => {
                     if (e.target.files[0].size > 1048576) {
-                      toast("File size should be less than 1MB", {
+                      toast('File size should be less than 1MB', {
                         autoClose: 2000,
                       });
                     } else {
@@ -233,7 +232,7 @@ const NewUserForm = ({ onClose, user }) => {
                         setProfilePhoto(e.target.files[0]);
                         setProfilePhotoName(e.target.files[0].name);
                         setImage(URL.createObjectURL(e.target.files[0]));
-                        console.log("Error in compressing: " + error);
+                        console.log(`Error in compressing: ${error}`);
                       }
                     }
                   }}
@@ -254,7 +253,7 @@ const NewUserForm = ({ onClose, user }) => {
                   width="200px"
                   height="200px"
                   src={image}
-                ></img>
+                />
               )}
             </Row>
             <Row>
@@ -263,13 +262,13 @@ const NewUserForm = ({ onClose, user }) => {
                 <Form.Control
                   as="select"
                   style={{
-                    color: "#9E0000",
-                    border: "2px solid #9E0000",
-                    borderRadius: "10px",
+                    color: '#9E0000',
+                    border: '2px solid #9E0000',
+                    borderRadius: '10px',
                   }}
-                  onBlur={props.handleBlur("branch")}
+                  onBlur={props.handleBlur('branch')}
                   value={props.values.branch}
-                  onChange={props.handleChange("branch")}
+                  onChange={props.handleChange('branch')}
                 >
                   <option value="">Choose Branch...</option>
                   <option value="CSE">CSE</option>
@@ -287,13 +286,13 @@ const NewUserForm = ({ onClose, user }) => {
                 <Form.Control
                   as="select"
                   style={{
-                    color: "#9E0000",
-                    border: "2px solid #9E0000",
-                    borderRadius: "10px",
+                    color: '#9E0000',
+                    border: '2px solid #9E0000',
+                    borderRadius: '10px',
                   }}
-                  onBlur={props.handleBlur("year")}
+                  onBlur={props.handleBlur('year')}
                   value={props.values.year}
-                  onChange={props.handleChange("year")}
+                  onChange={props.handleChange('year')}
                 >
                   <option value="">Choose Passing Year...</option>
                   <option value="2023">2023</option>
@@ -309,18 +308,18 @@ const NewUserForm = ({ onClose, user }) => {
             <Form.Group controlid="formAboutMe">
               <Form.Label>About Me*</Form.Label>
               <Form.Control
-                onBlur={props.handleBlur("about")}
+                onBlur={props.handleBlur('about')}
                 value={props.values.about}
-                onChange={props.handleChange("about")}
+                onChange={props.handleChange('about')}
                 as="textarea"
-                style={{ whiteSpace: "pre-wrap" }}
+                style={{ whiteSpace: 'pre-wrap' }}
                 placeholder="lorem ipsum dolor si amet..."
                 rows="3"
               />
               <Form.Text className="text-danger">
                 {props.touched.about && props.errors.about
-                  ? "Please enter a description greater than 10 characters"
-                  : ""}
+                  ? 'Please enter a description greater than 10 characters'
+                  : ''}
               </Form.Text>
             </Form.Group>
             <br />
@@ -337,7 +336,7 @@ const NewUserForm = ({ onClose, user }) => {
                   filterSelectedOptions
                   renderOption={(props, option) => (
                     <li
-                      style={{ fontFamily: "Nunito", color: "#9e0000" }}
+                      style={{ fontFamily: 'Nunito', color: '#9e0000' }}
                       {...props}
                     >
                       {option}
@@ -350,14 +349,14 @@ const NewUserForm = ({ onClose, user }) => {
                       label="Skills"
                       className={theme.root}
                       sx={{
-                        "& .MuiInputLabel-root": {
-                          color: "#9E0000",
-                          fontFamily: "Nunito",
-                          fontWeight: "600",
+                        '& .MuiInputLabel-root': {
+                          color: '#9E0000',
+                          fontFamily: 'Nunito',
+                          fontWeight: '600',
                         },
-                        "& label.Mui-focused": {
-                          color: "#9E0000",
-                          outline: "none",
+                        '& label.Mui-focused': {
+                          color: '#9E0000',
+                          outline: 'none',
                         },
                       }}
                       variant="outlined"
@@ -384,19 +383,17 @@ const NewUserForm = ({ onClose, user }) => {
               <div
                 className="add-skill-btn"
                 onClick={() => {
-                  if (!skill) toast("Please enter a skill.");
-                  else {
-                    if (skill && skill.length > 0) {
-                      for (let i = 0; i < skills.length; i++) {
-                        if (skills[i].toLowerCase() === skill.toLowerCase()) {
-                          toast("Skill already present in list.");
-                          break;
-                        }
+                  if (!skill) toast('Please enter a skill.');
+                  else if (skill && skill.length > 0) {
+                    for (let i = 0; i < skills.length; i++) {
+                      if (skills[i].toLowerCase() === skill.toLowerCase()) {
+                        toast('Skill already present in list.');
+                        break;
                       }
-                      addSkills(skill);
-                      setSkill("");
-                      setACValue1([...acValue1, skill]);
                     }
+                    addSkills(skill);
+                    setSkill('');
+                    setACValue1([...acValue1, skill]);
                   }
                 }}
               >
@@ -407,11 +404,11 @@ const NewUserForm = ({ onClose, user }) => {
               <Form.Label>Achievements</Form.Label>
               <Form.Control
                 required
-                onBlur={props.handleBlur("achievements")}
+                onBlur={props.handleBlur('achievements')}
                 value={props.values.achievements}
-                onChange={props.handleChange("achievements")}
+                onChange={props.handleChange('achievements')}
                 type="text"
-                style={{ whiteSpace: "pre-wrap" }}
+                style={{ whiteSpace: 'pre-wrap' }}
                 as="textarea"
                 rows="3"
                 placeholder="Enter Your Achievements"
@@ -425,9 +422,9 @@ const NewUserForm = ({ onClose, user }) => {
               <Form.Group controlid="formContact" className="col-md-6">
                 <Form.Label>Contact No.*</Form.Label>
                 <Form.Control
-                  onBlur={props.handleBlur("constact")}
+                  onBlur={props.handleBlur('constact')}
                   value={props.values.contact}
-                  onChange={props.handleChange("contact")}
+                  onChange={props.handleChange('contact')}
                   type="text"
                   placeholder="Enter your Contact No"
                 />
@@ -438,7 +435,7 @@ const NewUserForm = ({ onClose, user }) => {
               <Form.Group controlid="formMail" className="col-md-6">
                 <Form.Label>Mail ID*</Form.Label>
                 <Form.Control
-                  onBlur={props.handleBlur("email")}
+                  onBlur={props.handleBlur('email')}
                   value={props.values.email}
                   disabled
                   required
@@ -453,9 +450,9 @@ const NewUserForm = ({ onClose, user }) => {
               <Form.Group controlid="formLinkedin" className="col-md-6">
                 <Form.Label>LinkedIn</Form.Label>
                 <Form.Control
-                  onBlur={props.handleBlur("linkedin")}
+                  onBlur={props.handleBlur('linkedin')}
                   value={props.values.linkedin}
-                  onChange={props.handleChange("linkedin")}
+                  onChange={props.handleChange('linkedin')}
                   type="text"
                   placeholder="eg: https://linkedin.com/in/IEDCMEC"
                 />
@@ -466,9 +463,9 @@ const NewUserForm = ({ onClose, user }) => {
               <Form.Group controlid="formGithub" className="col-md-6">
                 <Form.Label>Github</Form.Label>
                 <Form.Control
-                  onBlur={props.handleBlur("github")}
+                  onBlur={props.handleBlur('github')}
                   value={props.values.github}
-                  onChange={props.handleChange("github")}
+                  onChange={props.handleChange('github')}
                   type="text"
                   placeholder="eg: https://github.com/IEDCMEC/iedc-collab-frontend"
                 />
@@ -482,9 +479,9 @@ const NewUserForm = ({ onClose, user }) => {
               <Form.Label>Website</Form.Label>
               <Form.Control
                 required
-                onBlur={props.handleBlur("website")}
+                onBlur={props.handleBlur('website')}
                 value={props.values.website}
-                onChange={props.handleChange("website")}
+                onChange={props.handleChange('website')}
                 type="text"
                 placeholder="Enter Website Link"
               />
@@ -509,9 +506,9 @@ const NewUserForm = ({ onClose, user }) => {
       </Formik>
     </div>
   );
-};
+}
 
-const EditProfileModal = (props) => {
+function EditProfileModal(props) {
   return (
     <Modal
       {...props}
@@ -525,13 +522,13 @@ const EditProfileModal = (props) => {
           <i
             className="fa fa-close d-block d-md-none"
             style={{
-              fontSize: "25px",
-              right: "30px",
+              fontSize: '25px',
+              right: '30px',
               padding: 10,
-              cursor: "pointer",
+              cursor: 'pointer',
             }}
             onClick={props.onHide}
-          ></i>
+          />
         </div>
         <Col className="p-md-5">
           <NewUserForm onClose={props.onHide} user={props.user} />
@@ -539,5 +536,5 @@ const EditProfileModal = (props) => {
       </Modal.Body>
     </Modal>
   );
-};
+}
 export default EditProfileModal;

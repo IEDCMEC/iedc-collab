@@ -1,16 +1,16 @@
-import React, { useContext, useEffect, useState } from "react";
-import { AuthContext } from "../Firebase/Auth/Auth";
+import React, { useContext, useEffect, useState } from 'react';
+import { AuthContext } from '../Firebase/Auth/Auth';
 import {
   getDevelopers,
   getProjects,
   getRequests,
   getRequestsRecieved,
   getUser,
-} from "../Firebase/firebase";
+} from '../Firebase/firebase';
 
 export const ProjectContext = React.createContext();
 
-export const ProjectProvider = ({ children }) => {
+export function ProjectProvider({ children }) {
   const [projects, setProjects] = useState([]);
   const [selectedProject, setSelectedProject] = useState();
   const [allProjects, setAllProjects] = useState([]);
@@ -27,10 +27,10 @@ export const ProjectProvider = ({ children }) => {
   const fetchData = (state) => {
     let index = 0;
     switch (state) {
-      case "ADD":
+      case 'ADD':
         index = allProjects.length;
         break;
-      case "EDIT":
+      case 'EDIT':
         index = allProjects.indexOf(selectedProject);
         break;
       default:
@@ -38,8 +38,8 @@ export const ProjectProvider = ({ children }) => {
     }
     setLoading(true);
     getProjects()
-      .then(async function (snapshot) {
-        let messageObject = snapshot.val();
+      .then(async (snapshot) => {
+        const messageObject = snapshot.val();
         const result = Object.keys(messageObject).map((key) => ({
           ...messageObject[key],
           id: key,
@@ -48,8 +48,8 @@ export const ProjectProvider = ({ children }) => {
         setAllProjects(result);
         setSelectedProject(result[index]);
       })
-      .catch(function (error) {
-        alert("Something went wrong. Please try again after some time.");
+      .catch((error) => {
+        alert('Something went wrong. Please try again after some time.');
         console.log(error);
       })
       .finally(() => {
@@ -64,14 +64,14 @@ export const ProjectProvider = ({ children }) => {
       setLoading(false);
     }
   };
-  let devMap = {};
+  const devMap = {};
   const fetchDevelpersData = (state1) => {
     let index1 = 0;
     switch (state1) {
-      case "ADD":
+      case 'ADD':
         index1 = allDevelopers.length;
         break;
-      case "EDIT":
+      case 'EDIT':
         index1 = allDevelopers.indexOf(selectedDevelopers);
         break;
       default:
@@ -79,8 +79,8 @@ export const ProjectProvider = ({ children }) => {
     }
     setLoading(true);
     getDevelopers()
-      .then(async function (snapshot) {
-        let messageObject = snapshot.val();
+      .then(async (snapshot) => {
+        const messageObject = snapshot.val();
         const result1 = Object.keys(messageObject).map((key) => ({
           ...messageObject[key],
           id: key,
@@ -93,12 +93,11 @@ export const ProjectProvider = ({ children }) => {
             name: itm.name,
             id: itm.id,
           };
-        }
-        );
+        });
         setDevHash(devMap);
       })
-      .catch(function (error) {
-        alert("Something went wrong. Please try again after some time.");
+      .catch((error) => {
+        alert('Something went wrong. Please try again after some time.');
         console.log(error);
       })
       .finally(() => {
@@ -131,7 +130,7 @@ export const ProjectProvider = ({ children }) => {
     }
   };
   const handleSearch = (searchtext) => {
-    if (searchtext !== "") {
+    if (searchtext !== '') {
       const modified = allProjects.filter(
         (itm) =>
           itm.name && itm.name.toLowerCase().includes(searchtext.toLowerCase())
@@ -142,7 +141,7 @@ export const ProjectProvider = ({ children }) => {
     }
   };
   const handleSearchDevelopers = (searchtext) => {
-    if (searchtext !== "") {
+    if (searchtext !== '') {
       setLoading(true);
       const modified = allDevelopers.filter(
         (itm) =>
@@ -186,4 +185,4 @@ export const ProjectProvider = ({ children }) => {
       {children}
     </ProjectContext.Provider>
   );
-};
+}

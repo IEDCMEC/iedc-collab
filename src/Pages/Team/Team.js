@@ -1,16 +1,17 @@
-import React from "react";
-import "./Team.scss";
-import NavbarHome from "../../Components/NavbarHome/NavbarHome";
-import Footer from "../../Components/Footer/Footer";
-import designers from "../../data/designers";
-import developers from "../../data/developers";
-import bubble2 from "../../assets/bubble_2.svg";
-import bubble3 from "../../assets/bubble_3.svg";
-import bubble5 from "../../assets/bubble_5.svg";
-import bubble1 from "../../assets/bubble_1.svg";
-import TeamCard from "../../Components/Team/TeamCard";
-import core from "../../data/core";
-const Team = () => {
+import React from 'react';
+import './Team.scss';
+import NavbarHome from '../../Components/NavbarHome/NavbarHome';
+import Footer from '../../Components/Footer/Footer';
+import designers from '../../data/designers';
+import developers from '../../data/developers';
+import bubble2 from '../../assets/bubble_2.svg';
+import bubble3 from '../../assets/bubble_3.svg';
+import bubble5 from '../../assets/bubble_5.svg';
+import bubble1 from '../../assets/bubble_1.svg';
+import TeamCard from '../../Components/Team/TeamCard';
+import core from '../../data/core';
+
+function Team() {
   return (
     <div>
       <NavbarHome />
@@ -44,6 +45,6 @@ const Team = () => {
       <Footer />
     </div>
   );
-};
+}
 
 export default Team;

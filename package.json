@@ -19,6 +19,11 @@
     "axios": "^0.21.1",
     "bootstrap": "^4.5.3",
     "compress.js": "^1.2.1",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-jsx-a11y": "^6.7.1",
+    "eslint-plugin-react": "^7.32.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
     "firebase": "^8.2.1",
     "formik": "^2.2.6",
     "prop-types": "^15.7.2",
@@ -37,10 +42,13 @@
     "yup": "^0.32.8"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start": "react-scripts --openssl-legacy-provider start",
+    "build": "react-scripts --openssl-legacy-provider build",
+    "lint": "eslint . --fix --max-warnings=0",
+    "format": "prettier . --write",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "prepare": "husky install"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -58,6 +66,12 @@
     ]
   },
   "devDependencies": {
+    "eslint": "^8.44.0",
+    "eslint-config-prettier": "^8.8.0",
     "prettier": "2.2.1"
+  },
+  "lint-staged": {
+    "*.js": "eslint --cache --fix",
+    "*.--write": "prettier --write"
   }
 }

@@ -1,8 +1,10 @@
 # IEDC Collab Frontend
 
 ### Getting Started
+
 Create `.env` file.
 Add to .env file
+
 ```
 REACT_APP_FB_API_KEY=XXXXxxxx
 REACT_APP_AUTH_DOMAIN=xxxxXXXX.firebaseapp.com
@@ -11,6 +13,7 @@ REACT_APP_PROJECT_ID=xxxxXXXX
 REACT_APP_STORAGE_BUCKET=xxxxXXXX.appspot.com
 REACT_APP_MESSAGING_SENDER_ID=xxxxXXXX
 ```
+
 ### We request you if you are about to contribute, write clean and well documented code and also we expect you to follow undermentioned commit message format:
 
     Build: A new feature or Feat: A new feature.

@@ -58,8 +58,7 @@
     }
   }
 }
-.invite-project-name__label
-{
+.invite-project-name__label {
   width: 30rem !important;
 }
 .message {
@@ -142,10 +141,8 @@
     width: 100vw;
   }
 }
-@media (max-width:600px) {
-  .invite-project-name__label
-  {
+@media (max-width: 600px) {
+  .invite-project-name__label {
     width: 70vw !important;
   }
-  
 }

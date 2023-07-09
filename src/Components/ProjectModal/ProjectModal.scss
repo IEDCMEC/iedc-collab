@@ -38,14 +38,14 @@
     font-weight: 800;
   }
 
-//   textarea:focus,
-//   input:focus,
-//   input[type]:focus,
-//   .uneditable-input:focus {
-//     box-shadow: 0 1px 1px rgba(229, 103, 23, 0.075) inset,
-//       0 0 8px rgba(229, 103, 23, 0.6) !important;
-//     outline: 0 none;
-//   }
+  //   textarea:focus,
+  //   input:focus,
+  //   input[type]:focus,
+  //   .uneditable-input:focus {
+  //     box-shadow: 0 1px 1px rgba(229, 103, 23, 0.075) inset,
+  //       0 0 8px rgba(229, 103, 23, 0.6) !important;
+  //     outline: 0 none;
+  //   }
 
   textarea,
   input,
@@ -65,7 +65,7 @@
     color: #9e0000;
   }
 
-  input[type="file"]:focus {
+  input[type='file']:focus {
     box-shadow: none !important;
   }
 }

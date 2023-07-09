@@ -1,10 +1,10 @@
-import axios from "axios";
-import firebase from "firebase/app";
-import "firebase/auth";
-import "firebase/database";
-import { renderEmail } from "react-html-email";
-import InviteEmail from "../Components/InviteEmail/InviteEmail";
-import { emailUrl } from "../Utils/urls";
+import axios from 'axios';
+import firebase from 'firebase/app';
+import 'firebase/auth';
+import 'firebase/database';
+import { renderEmail } from 'react-html-email';
+import InviteEmail from '../Components/InviteEmail/InviteEmail';
+import { emailUrl } from '../Utils/urls';
 
 const config = {
   apiKey: process.env.REACT_APP_FB_API_KEY,
@@ -27,55 +27,55 @@ export default initialize;
 export const signIn = async (onSigninSuccess = () => {}) => {
   const provider = new firebase.auth.GoogleAuthProvider();
   provider.setCustomParameters({
-    prompt: "select_account",
+    prompt: 'select_account',
   });
 
   try {
     const result = await firebase.auth().signInWithPopup(provider);
-    const user = result.user;
+    const { user } = result;
     const userfromDB = await getUser(user.uid);
     if (userfromDB.val()) {
     } else {
       const userData = {
         name: user.displayName,
-        first_name: user.displayName.split(" ").shift(),
-        last_name: user.displayName.split(" ").slice(1).join(" "),
+        first_name: user.displayName.split(' ').shift(),
+        last_name: user.displayName.split(' ').slice(1).join(' '),
         email: user.email,
         profilePhoto: user.photoURL,
       };
 
       firebase
         .database()
-        .ref("users/" + user.uid)
+        .ref(`users/${user.uid}`)
         .set(userData)
-        .then(function () {
-          console.log("User added sucessfully");
-          if (onSigninSuccess.typeOf === "function") onSigninSuccess();
+        .then(() => {
+          console.log('User added sucessfully');
+          if (onSigninSuccess.typeOf === 'function') onSigninSuccess();
         })
-        .catch(function (error) {
-          alert("Something went wrong");
+        .catch((error) => {
+          alert('Something went wrong');
           console.log(error);
         });
     }
   } catch (error) {
-    alert("Something is wrong, please check network connection");
+    alert('Something is wrong, please check network connection');
     console.log(error);
   }
 };
 
 const defaultPhotoUrl =
-  "https://images.unsplash.com/photo-1639413665566-2f75adf7b7ca?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyN3x8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60";
+  'https://images.unsplash.com/photo-1639413665566-2f75adf7b7ca?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyN3x8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60';
 
 export const signOut = () => {
   firebase
     .auth()
     .signOut()
-    .then(function () {
-      console.log("Sign out successful");
+    .then(() => {
+      console.log('Sign out successful');
     })
-    .catch(function (error) {
-      console.log("Sign out unsuccessful");
-      alert("Something is wrong, please check network connection");
+    .catch((error) => {
+      console.log('Sign out unsuccessful');
+      alert('Something is wrong, please check network connection');
     });
 };
 
@@ -83,10 +83,10 @@ export const doCreateProject = (obj, developers, onSuccess = () => {}) => {
   const user = firebase.auth().currentUser;
 
   if (!user) {
-    alert("Please login to add a project");
+    alert('Please login to add a project');
     return;
   }
-  var newProjectID = firebase.database().ref().child("projects").push().key;
+  const newProjectID = firebase.database().ref().child('projects').push().key;
   if (obj.projectPhoto) {
     firebase
       .storage()
@@ -95,11 +95,11 @@ export const doCreateProject = (obj, developers, onSuccess = () => {}) => {
       .then(({ ref }) => {
         ref.getDownloadURL().then((photoUrl) => {
           const createdAt = Date.now();
-          var projectData = {
+          const projectData = {
             ...obj,
             projectPhoto: photoUrl,
             id: newProjectID,
-            projectPhotoName: obj.projectPhotoName || "",
+            projectPhotoName: obj.projectPhotoName || '',
             available: true,
             createdAt,
             updatedAt: createdAt,
@@ -111,11 +111,11 @@ export const doCreateProject = (obj, developers, onSuccess = () => {}) => {
 
           firebase
             .database()
-            .ref("projects/" + newProjectID)
+            .ref(`projects/${newProjectID}`)
             .set(projectData)
-            .then(function () {
-              console.log("Project added sucessfully");
-              onSuccess("ADD");
+            .then(() => {
+              console.log('Project added sucessfully');
+              onSuccess('ADD');
               projectData.teamMembers.forEach((member) => {
                 let sent = false;
                 developers.forEach((dev) => {
@@ -123,28 +123,29 @@ export const doCreateProject = (obj, developers, onSuccess = () => {}) => {
                     sent = true;
                   }
                 });
-                if (sent === false)
+                if (sent === false) {
                   axios.post(emailUrl, {
                     toEmail: member,
-                    subject: "Invitation to join IEDC Collab",
+                    subject: 'Invitation to join IEDC Collab',
                     content: renderEmail(
                       <InviteEmail data={projectData} member={member} />
                     ),
                   });
+                }
               });
             })
-            .catch(function (error) {
-              alert("Something went wrong");
+            .catch((error) => {
+              alert('Something went wrong');
               console.log(error);
             });
         });
       });
   } else {
     const createdAt = Date.now();
-    var projectData = {
+    const projectData = {
       ...obj,
       projectPhoto: defaultPhotoUrl,
-      projectPhotoName: "Default Image",
+      projectPhotoName: 'Default Image',
       available: true,
       id: newProjectID,
       createdAt,
@@ -158,11 +159,11 @@ export const doCreateProject = (obj, developers, onSuccess = () => {}) => {
 
     firebase
       .database()
-      .ref("projects/" + newProjectID)
+      .ref(`projects/${newProjectID}`)
       .set(projectData)
-      .then(function () {
-        console.log("Project added sucessfully");
-        onSuccess("ADD");
+      .then(() => {
+        console.log('Project added sucessfully');
+        onSuccess('ADD');
         projectData.teamMembers.forEach((member) => {
           let sent = false;
           developers.forEach((dev) => {
@@ -170,49 +171,49 @@ export const doCreateProject = (obj, developers, onSuccess = () => {}) => {
               sent = true;
             }
           });
-          if (sent === false)
+          if (sent === false) {
             axios.post(emailUrl, {
               toEmail: member,
-              subject: "Invitation to join IEDC Collab",
+              subject: 'Invitation to join IEDC Collab',
               content: renderEmail(
                 <InviteEmail data={projectData} member={member} />
               ),
             });
+          }
         });
       })
-      .catch(function (error) {
-        alert("Something went wrong");
+      .catch((error) => {
+        alert('Something went wrong');
         console.log(error);
       });
   }
 };
 
 export const doDeleteProject = (project_id, onSuccess = () => {}) => {
-  let user = firebase.auth().currentUser;
+  const user = firebase.auth().currentUser;
   if (!user) {
-    alert("Please login to add a project");
+    alert('Please login to add a project');
     return;
   }
 
-  let projectRef = firebase.database().ref("projects/" + project_id);
+  const projectRef = firebase.database().ref(`projects/${project_id}`);
 
   projectRef
-    .child("leader_id")
-    .once("value")
-    .then(function (snapshot) {
+    .child('leader_id')
+    .once('value')
+    .then((snapshot) => {
       if (snapshot.val() !== user.uid) {
-        return;
       }
     });
   firebase.storage().ref(`projectPhoto/${project_id}`).delete();
   projectRef
     .remove()
-    .then(function () {
-      console.log("Project deleted sucessfully");
+    .then(() => {
+      console.log('Project deleted sucessfully');
       onSuccess();
     })
-    .catch(function (error) {
-      alert("Something went wrong");
+    .catch((error) => {
+      alert('Something went wrong');
       console.log(error);
     });
 };
@@ -225,18 +226,18 @@ export const doEditProject = async (
 ) => {
   const user = firebase.auth().currentUser;
   if (!user) {
-    alert("Please login to add a project");
+    alert('Please login to add a project');
     return;
   }
-  const projectRef = firebase.database().ref("projects/" + project_id);
-  const leaderId = (await projectRef.child("leader_id").once("value")).val();
+  const projectRef = firebase.database().ref(`projects/${project_id}`);
+  const leaderId = (await projectRef.child('leader_id').once('value')).val();
   if (leaderId !== user.uid) {
-    alert("Only the project creator can edit the project!");
+    alert('Only the project creator can edit the project!');
     return;
   }
 
   const storedPhoto = (
-    await projectRef.child("projectPhoto").once("value")
+    await projectRef.child('projectPhoto').once('value')
   ).val();
 
   let photoUrl;
@@ -244,17 +245,17 @@ export const doEditProject = async (
     photoUrl = defaultPhotoUrl;
   } else if (obj.projectPhoto !== storedPhoto) {
     try {
-      let imgDb = firebase.storage().ref(`projectPhoto/${project_id}`);
-      let newimg = await imgDb.put(obj.projectPhoto);
+      const imgDb = firebase.storage().ref(`projectPhoto/${project_id}`);
+      const newimg = await imgDb.put(obj.projectPhoto);
       photoUrl = await newimg.ref.getDownloadURL();
     } catch (error) {
-      alert("Something went wrong");
+      alert('Something went wrong');
     }
   } else {
     photoUrl = obj.projectPhoto;
   }
   try {
-    var projectData = {
+    const projectData = {
       ...obj,
       projectPhoto: photoUrl,
       id: project_id,
@@ -266,8 +267,8 @@ export const doEditProject = async (
       leaderImg: user.providerData[0]?.photoURL || null,
     };
     await projectRef.set(projectData);
-    console.log("Project edited sucessfully");
-    onSuccess("EDIT");
+    console.log('Project edited sucessfully');
+    onSuccess('EDIT');
     projectData.teamMembers.forEach((member) => {
       let sent = false;
       developers.forEach((dev) => {
@@ -275,18 +276,19 @@ export const doEditProject = async (
           sent = true;
         }
       });
-      if (sent === false)
+      if (sent === false) {
         axios.post(emailUrl, {
           toEmail: member,
-          subject: "Invitation to join IEDC Collab",
+          subject: 'Invitation to join IEDC Collab',
           content: renderEmail(
             <InviteEmail data={projectData} member={member} />
           ),
         });
+      }
     });
   } catch (error) {
     alert(
-      "Something went wrong during edit. Please try againg after some time"
+      'Something went wrong during edit. Please try againg after some time'
     );
     console.log(error);
   }
@@ -295,12 +297,12 @@ export const doEditProject = async (
 export const doEditProfile = (obj, onSuccess = () => {}) => {
   const user = firebase.auth().currentUser;
   if (!user) {
-    alert("Please login to add a project");
+    alert('Please login to add a project');
     return;
   }
   console.log(obj.profilePhoto);
 
-  if (obj.profilePhoto && typeof obj.profilePhoto !== "string") {
+  if (obj.profilePhoto && typeof obj.profilePhoto !== 'string') {
     firebase
       .storage()
       .ref(`profilePhoto/${user.uid}`)
@@ -308,13 +310,13 @@ export const doEditProfile = (obj, onSuccess = () => {}) => {
       .then(({ ref }) => {
         ref.getDownloadURL().then((photoUrl) => {
           const createdAt = Date.now();
-          var userData = {
+          const userData = {
             ...obj,
             profilePhoto: photoUrl,
-            profilePhotoName: obj.profilePhotoName || "",
+            profilePhotoName: obj.profilePhotoName || '',
             name: user.displayName,
-            first_name: user.displayName.split(" ").shift(),
-            last_name: user.displayName.split(" ").slice(1).join(" "),
+            first_name: user.displayName.split(' ').shift(),
+            last_name: user.displayName.split(' ').slice(1).join(' '),
             available: true,
             createdAt,
             updatedAt: createdAt,
@@ -323,14 +325,14 @@ export const doEditProfile = (obj, onSuccess = () => {}) => {
 
           firebase
             .database()
-            .ref("users/" + user.uid)
+            .ref(`users/${user.uid}`)
             .set(userData)
-            .then(function () {
-              console.log("User added sucessfully");
-              onSuccess("ADD");
+            .then(() => {
+              console.log('User added sucessfully');
+              onSuccess('ADD');
             })
-            .catch(function (error) {
-              alert("Something went wrong");
+            .catch((error) => {
+              alert('Something went wrong');
               console.log(error);
             });
         });
@@ -338,15 +340,15 @@ export const doEditProfile = (obj, onSuccess = () => {}) => {
   } else {
     const createdAt = Date.now();
 
-    var userData = {
+    const userData = {
       ...obj,
       profilePhoto: obj.profilePhoto
         ? obj.profilePhoto
         : user.providerData[0]?.photoURL,
       name: user.displayName,
-      first_name: user.displayName.split(" ").shift(),
-      last_name: user.displayName.split(" ").slice(1).join(" "),
-      projectPhotoName: "Default Image",
+      first_name: user.displayName.split(' ').shift(),
+      last_name: user.displayName.split(' ').slice(1).join(' '),
+      projectPhotoName: 'Default Image',
       available: true,
       createdAt,
       updatedAt: createdAt,
@@ -354,47 +356,43 @@ export const doEditProfile = (obj, onSuccess = () => {}) => {
 
     firebase
       .database()
-      .ref("users/" + user.uid)
+      .ref(`users/${user.uid}`)
       .set(userData)
-      .then(function () {
-        console.log("User added sucessfully");
-        onSuccess("ADD");
+      .then(() => {
+        console.log('User added sucessfully');
+        onSuccess('ADD');
       })
-      .catch(function (error) {
-        alert("Something went wrong");
+      .catch((error) => {
+        alert('Something went wrong');
         console.log(error);
       });
   }
 };
 
-export const getProjects = () => {
-  return firebase.database().ref("projects/").once("value");
-};
-export const getDevelopers = () => {
-  return firebase.database().ref("users/").once("value");
-};
+export const getProjects = () =>
+  firebase.database().ref('projects/').once('value');
+export const getDevelopers = () =>
+  firebase.database().ref('users/').once('value');
 
-export const getProject = (project_id) => {
-  return firebase.database().ref("projects/").child(project_id).once("value");
-};
+export const getProject = (project_id) =>
+  firebase.database().ref('projects/').child(project_id).once('value');
 
-export const getUser = (user_id) => {
-  return firebase.database().ref("users/").child(user_id).once("value");
-};
+export const getUser = (user_id) =>
+  firebase.database().ref('users/').child(user_id).once('value');
 
 export const sendInvite = async (data) => {
-  var requestId = firebase.database().ref().child("requests").push().key;
+  const requestId = firebase.database().ref().child('requests').push().key;
   return firebase
     .database()
-    .ref("requests/" + requestId)
+    .ref(`requests/${requestId}`)
     .set({
       ...data,
-      status: "pending",
-      type: "invite",
+      status: 'pending',
+      type: 'invite',
       createdAt: Date.now(),
     })
     .then(() => {
-      console.log("invite send successfully");
+      console.log('invite send successfully');
     })
     .catch((error) => {
       console.log("Oops! invite wasn't sent \n more info:", error);
@@ -402,18 +400,18 @@ export const sendInvite = async (data) => {
 };
 
 export const sendRequest = async (data) => {
-  var requestId = firebase.database().ref().child("requests").push().key;
+  const requestId = firebase.database().ref().child('requests').push().key;
   return firebase
     .database()
-    .ref("requests/" + requestId)
+    .ref(`requests/${requestId}`)
     .set({
       ...data,
-      status: "pending",
-      type: "request",
+      status: 'pending',
+      type: 'request',
       createdAt: Date.now(),
     })
     .then(() => {
-      console.log("request send successfully");
+      console.log('request send successfully');
     })
     .catch((error) => {
       console.log("Oops! Request wasn't sent \n more info:", error);
@@ -424,8 +422,8 @@ export const acceptRequest = async (invite) => {
   try {
     await getProject(invite.project_id).then((project) => {
       console.log(project.val());
-      let p = project.val();
-      let users = p.teamMembers;
+      const p = project.val();
+      const users = p.teamMembers;
       users.push(invite.sender_email);
       firebase
         .database()
@@ -435,15 +433,15 @@ export const acceptRequest = async (invite) => {
         .set(users);
     });
 
-    //let addProject = await firebase.database().ref("users/").update({projects: firebase.firestore.FieldValue.arrayUnion({name:invite.project, id:invite.project_id})});
+    // let addProject = await firebase.database().ref("users/").update({projects: firebase.firestore.FieldValue.arrayUnion({name:invite.project, id:invite.project_id})});
     await firebase
       .database()
-      .ref("requests/")
+      .ref('requests/')
       .update({
-        [`/${invite.id}/status`]: "accepted",
+        [`/${invite.id}/status`]: 'accepted',
       })
       .then(() => {
-        console.log("request accepted successfully");
+        console.log('request accepted successfully');
       });
   } catch (error) {
     console.log("Oops! counldn't accept request \n more info:", error);
@@ -453,8 +451,8 @@ export const acceptInvite = async (invite) => {
   try {
     await getProject(invite.project_id).then((project) => {
       console.log(project.val());
-      let p = project.val();
-      let users = p.teamMembers;
+      const p = project.val();
+      const users = p.teamMembers;
       users.push(invite.reciever_email);
       firebase
         .database()
@@ -464,15 +462,15 @@ export const acceptInvite = async (invite) => {
         .set(users);
     });
 
-    //let addProject = await firebase.database().ref("users/").update({projects: firebase.firestore.FieldValue.arrayUnion({name:invite.project, id:invite.project_id})});
+    // let addProject = await firebase.database().ref("users/").update({projects: firebase.firestore.FieldValue.arrayUnion({name:invite.project, id:invite.project_id})});
     await firebase
       .database()
-      .ref("requests/")
+      .ref('requests/')
       .update({
-        [`/${invite.id}/status`]: "accepted",
+        [`/${invite.id}/status`]: 'accepted',
       })
       .then(() => {
-        console.log("invite accepted successfully");
+        console.log('invite accepted successfully');
       });
   } catch (error) {
     console.log("Oops! counldn't accept invite \n more info:", error);
@@ -480,15 +478,15 @@ export const acceptInvite = async (invite) => {
 };
 export const declineRequest = async (invite) => {
   try {
-    //let addProject = await firebase.database().ref("users/").update({projects: firebase.firestore.FieldValue.arrayUnion({name:invite.project, id:invite.project_id})});
+    // let addProject = await firebase.database().ref("users/").update({projects: firebase.firestore.FieldValue.arrayUnion({name:invite.project, id:invite.project_id})});
     await firebase
       .database()
-      .ref("requests/")
+      .ref('requests/')
       .update({
-        [`/${invite.id}/status`]: "declined",
+        [`/${invite.id}/status`]: 'declined',
       })
       .then(() => {
-        console.log("invite declined successfully");
+        console.log('invite declined successfully');
       });
   } catch (error) {
     console.log("Oops! counldn't decline invite \n more info:", error);
@@ -496,19 +494,19 @@ export const declineRequest = async (invite) => {
 };
 export const getRequests = async (uid) => {
   try {
-    let data = await firebase
+    const data = await firebase
       .database()
-      .ref("requests/")
-      .orderByChild("sender_id")
+      .ref('requests/')
+      .orderByChild('sender_id')
       .equalTo(uid)
-      .once("value");
-    let objval = data.val();
+      .once('value');
+    const objval = data.val();
 
-    let requests = Object.keys(objval).map((key) => ({
+    const requests = Object.keys(objval).map((key) => ({
       ...objval[key],
       id: key,
     }));
-    let orderedRequests = requests.reverse();
+    const orderedRequests = requests.reverse();
 
     return orderedRequests;
   } catch (error) {
@@ -517,19 +515,19 @@ export const getRequests = async (uid) => {
 };
 export const getRequestsRecieved = async (uid) => {
   try {
-    let data = await firebase
+    const data = await firebase
       .database()
-      .ref("requests/")
-      .orderByChild("receiver_id")
+      .ref('requests/')
+      .orderByChild('receiver_id')
       .equalTo(uid)
-      .once("value");
-    let objval = data.val();
+      .once('value');
+    const objval = data.val();
 
-    let requests = Object.keys(objval).map((key) => ({
+    const requests = Object.keys(objval).map((key) => ({
       ...objval[key],
       id: key,
     }));
-    let orderedRequests = requests.reverse();
+    const orderedRequests = requests.reverse();
 
     return orderedRequests;
   } catch (error) {
@@ -537,13 +535,11 @@ export const getRequestsRecieved = async (uid) => {
   }
 };
 
-export const getSkills = () => {
-  return firebase.database().ref("skills/").once("value");
-};
+export const getSkills = () => firebase.database().ref('skills/').once('value');
 
 export const addSkills = async (skill) => {
   // var skillId = firebase.database().ref().child("skills").push().key;
-  let skills = await getSkills();
+  const skills = await getSkills();
   let skillsArray = skills.val();
   if (!skillsArray) {
     skillsArray = [];
@@ -552,19 +548,17 @@ export const addSkills = async (skill) => {
 
   return firebase
     .database()
-    .ref("skills/")
+    .ref('skills/')
     .set({
       ...skillsArray,
     });
 };
 
-export const getTags = () => {
-  return firebase.database().ref("tags/").once("value");
-};
+export const getTags = () => firebase.database().ref('tags/').once('value');
 
 export const addTags = async (skill) => {
   // var skillId = firebase.database().ref().child("skills").push().key;
-  let tags = await getTags();
+  const tags = await getTags();
   let tagsArray = tags.val();
   if (!tagsArray) {
     tagsArray = [];
@@ -573,7 +567,7 @@ export const addTags = async (skill) => {
 
   return firebase
     .database()
-    .ref("tags/")
+    .ref('tags/')
     .set({
       ...tagsArray,
     });
