@@ -1,8 +1,11 @@
+import React, { createContext, useMemo } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import { AuthProvider } from './Firebase/Auth/Auth';
-import './App.scss';
-import React, { createContext } from 'react';
 import 'react-toastify/dist/ReactToastify.css';
+import AOS from 'aos';
+import { createTheme, ThemeProvider } from '@mui/material';
+import { ToastContainer } from 'react-toastify';
+import './App.scss';
+import { AuthProvider } from './Firebase/Auth/Auth';
 import {
   Projects,
   Landing,
@@ -15,12 +18,9 @@ import {
 } from './Pages/index';
 import initialize from './Firebase/firebase';
 import { ProjectProvider } from './contexts/ProjectContext';
-import { ToastContainer } from 'react-toastify';
 import ScrollToTop from './Utils/ScrollToTop';
-import AOS from 'aos';
 import NavigateBar from './Components/NavigateBar/NavigateBar';
 import 'aos/dist/aos.css';
-import { createTheme, ThemeProvider } from '@mui/material';
 
 export const ThemeContext = createContext();
 const theme = createTheme({
@@ -45,6 +45,29 @@ function App() {
   const [yop, setYop] = React.useState([]);
   const [width, setWidth] = React.useState(0);
   const [currentWidth, setcurrentWidth] = React.useState(window.innerWidth);
+  const memoizedValue = useMemo(
+    () => ({
+      branch,
+      setBranch,
+      yop,
+      setYop,
+      width,
+      setWidth,
+      currentWidth,
+      setcurrentWidth,
+    }),
+    [
+      branch,
+      setBranch,
+      yop,
+      setYop,
+      width,
+      setWidth,
+      currentWidth,
+      setcurrentWidth,
+    ]
+  );
+
   AOS.init();
   return (
     <ThemeProvider theme={theme}>
@@ -55,18 +78,7 @@ function App() {
               <NavigateBar />
               <ScrollToTop />
               <ToastContainer />
-              <ThemeContext.Provider
-                value={{
-                  branch,
-                  setBranch,
-                  yop,
-                  setYop,
-                  width,
-                  setWidth,
-                  currentWidth,
-                  setcurrentWidth,
-                }}
-              >
+              <ThemeContext.Provider value={memoizedValue}>
                 <Switch>
                   <Route exact path="/" component={Landing} />
                   <Route exact path="/projects/:id" component={ProjectDetail} />

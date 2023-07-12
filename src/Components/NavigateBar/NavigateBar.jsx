@@ -186,7 +186,8 @@ function Navbar() {
               id="navbarSupportedContent"
               style={{ flexGrow: '0', display: 'flex' }}
             >
-              <div
+              <button
+                type="button"
                 className="NavigateBar-Newprobtn-1 css-button"
                 onClick={newprojectClick}
               >
@@ -194,7 +195,7 @@ function Navbar() {
                   <i className="fa fa-plus-square" />
                 </div>
                 <div className="css-button-text">New Project</div>
-              </div>
+              </button>
 
               {currentUser ? (
                 <Menu
@@ -245,12 +246,13 @@ function Navbar() {
                   </MenuItem>
                 </Menu>
               ) : (
-                <div
+                <button
+                  type="button"
                   className="NavigateBar-Newprobtn css-button"
                   onClick={signIn}
                 >
                   <div className="css-button-text">Sign In To Collab</div>
-                </div>
+                </button>
               )}
             </div>
           </nav>
@@ -291,7 +293,11 @@ function Navbar() {
             <div className="nav__mob">
               <div className="nav__mob_container">
                 <div className="title">IEDC MEC COLLAB</div>
-                <button className="nav_btn" onClick={handleDrawerOpen}>
+                <button
+                  type="button"
+                  className="nav_btn"
+                  onClick={handleDrawerOpen}
+                >
                   <HiOutlineMenuAlt3 className="hamburger" />
                 </button>
               </div>

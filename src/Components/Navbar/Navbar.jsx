@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import { NavLink } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import { ProjectContext } from '../../contexts/ProjectContext';
 import { AuthContext } from '../../Firebase/Auth/Auth';
 import Menu from './Menu';
@@ -13,8 +14,8 @@ function Nav({ route }) {
   return (
     <nav className="NavbarItems">
       <ul className="NavMenu">
-        {Menu.map((item, index) => (
-          <li key={index}>
+        {Menu.map((item) => (
+          <li key={item}>
             <NavLink
               activeClassName={route === item.label ? 'NavLinksActive' : ''}
               className="NavLinks"
@@ -58,5 +59,9 @@ function Nav({ route }) {
     </nav>
   );
 }
+
+Nav.propTypes = {
+  route: PropTypes.string.isRequired,
+};
 
 export default Nav;

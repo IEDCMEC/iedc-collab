@@ -122,7 +122,7 @@ function JoinTeamModal({ user, project, ...props }) {
             onClick={(event) => {
               event.preventDefault();
               onSubmit();
-              props.onClose();
+              props.handleClose();
             }}
           >
             <p>Send</p>

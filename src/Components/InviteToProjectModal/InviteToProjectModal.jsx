@@ -13,6 +13,7 @@ import {
   ThemeProvider,
   useMediaQuery,
 } from '@mui/material';
+import PropTypes from 'prop-types';
 import { toast } from 'react-toastify';
 import { RiCloseLine } from 'react-icons/ri';
 import { IoPaperPlaneSharp } from 'react-icons/io5';
@@ -98,13 +99,13 @@ function InviteToProjectModal({ user, selectedUser, ...props }) {
     //     id: key,
     //   }));
     const temp = [];
-    projects.forEach((project, index) => {
-      if (project.leaderEmail === user.email) {
+    projects.forEach((projectName) => {
+      if (projectName.leaderEmail === user.email) {
         if (
-          !project.teamMembers?.some((x) => x === selectedUser.email) &&
-          project?.isReq === true
+          !projectName.teamMembers?.some((x) => x === selectedUser.email) &&
+          projectName?.isReq === true
         )
-          temp.push(project);
+          temp.push(projectName);
       }
     });
     if (temp.length === 0) {
@@ -114,8 +115,6 @@ function InviteToProjectModal({ user, selectedUser, ...props }) {
   };
   useEffect(() => {
     getWorks();
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
     <Dialog
@@ -130,9 +129,13 @@ function InviteToProjectModal({ user, selectedUser, ...props }) {
       <img src={triangle2} alt="" className="triangle_2" />
       <img src={triangle3} alt="" className="triangle_3" />
       <img src={triangle4} alt="" className="triangle_4" />
-      <div className="close-button" onClick={props.onClose}>
+      <button
+        type="button"
+        className="close-button"
+        onClick={props.handleClose}
+      >
         <RiCloseLine size={38} color="#9e0000" />
-      </div>
+      </button>
       <DialogContent className="invite-to-project-modal__body">
         <form onSubmit={handleSubmit}>
           <h1 className="join-team-modal__title">Invite To Project</h1>
@@ -167,15 +170,15 @@ function InviteToProjectModal({ user, selectedUser, ...props }) {
                   onChange={(e) => {
                     setProject(
                       listProjects.find(
-                        (project) => project.name === e.target.value
+                        (projectName) => projectName.name === e.target.value
                       )
                     );
                   }}
                 >
-                  {listProjects.map((project, index) => (
+                  {listProjects.map((projectName) => (
                     <MenuItem
-                      value={project.name}
-                      key={index}
+                      value={projectName.name}
+                      key={projectName.id}
                       style={{
                         fontWeight: '600',
                         fontSize: '17px',
@@ -184,7 +187,7 @@ function InviteToProjectModal({ user, selectedUser, ...props }) {
                         color: ' #9e0000',
                       }}
                     >
-                      {project.name}
+                      {projectName.name}
                     </MenuItem>
                   ))}
                 </Select>
@@ -206,7 +209,7 @@ function InviteToProjectModal({ user, selectedUser, ...props }) {
             onClick={(event) => {
               event.preventDefault();
               handleSubmit();
-              props.onClose();
+              props.handleClose();
             }}
           >
             <p>Send</p>
@@ -220,9 +223,19 @@ function InviteToProjectModal({ user, selectedUser, ...props }) {
 
 InviteToProjectModal.propTypes = {
   open: PropTypes.bool.isRequired,
-  onClose: PropTypes.func.isRequired,
-  selectedUser: PropTypes.object.isRequired,
-  user: PropTypes.object.isRequired,
+  handleClose: PropTypes.func.isRequired,
+  selectedUser: PropTypes.shape({
+    name: PropTypes.string,
+    email: PropTypes.string,
+    photoURL: PropTypes.string,
+    _id: PropTypes.string,
+  }).isRequired,
+  user: PropTypes.shape({
+    displayName: PropTypes.string,
+    uid: PropTypes.string,
+    email: PropTypes.string,
+    photoURL: PropTypes.string,
+  }).isRequired,
 };
 
 export default InviteToProjectModal;

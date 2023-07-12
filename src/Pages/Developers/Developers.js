@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import { Pagination } from '@mui/material';
 import MainLayout from '../../Components/MainLayout/MainLayout';
 // import { getDevelopers } from "../../Firebase/firebase";
 import './Developers.scss';
@@ -8,7 +9,7 @@ import Drawer from './Drawer';
 // import { IndeterminateCheckBox } from "@mui/icons-material";
 import SuspenseLoader from '../../Components/SuspenseLoader/SuspenseLoader';
 import { ProjectContext } from '../../contexts/ProjectContext';
-import { Pagination } from '@mui/material';
+
 import { ThemeContext } from '../../App';
 
 let devs = [];

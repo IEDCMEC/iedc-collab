@@ -97,8 +97,7 @@ export function ProjectProvider({ children }) {
         setDevHash(devMap);
       })
       .catch((error) => {
-        alert('Something went wrong. Please try again after some time.');
-        console.log(error);
+        throw error;
       })
       .finally(() => {
         setLoading(false);
@@ -107,13 +106,11 @@ export function ProjectProvider({ children }) {
   useEffect(() => {
     fetchData();
     fetchDevelpersData();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   useEffect(() => {
     fetchUserProfile();
     fetchRequests();
     fetchRequestsRecieved();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentUser]);
   const fetchRequests = async () => {
     if (currentUser) {

@@ -3,6 +3,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/swiper.min.css';
 import { useHistory } from 'react-router-dom';
 import { BsArrowLeftCircleFill, BsArrowRightCircleFill } from 'react-icons/bs';
+import PropTypes from 'prop-types';
 import { ProjectContext } from '../../contexts/ProjectContext';
 import ProjectCard from './ProjectCard';
 
@@ -21,18 +22,19 @@ function ProjectCarousel({ project }) {
   }, [swiperRef]);
   let i = 0;
   function getPosition() {
-    for (i = 0; i < projects.length; i++) {
-      const projects_list = projects[i].id;
-      if (projects_list === project.id) {
+    for (i = 0; i < projects.length; i += 1) {
+      const projectsList = projects[i].id;
+      if (projectsList === project.id) {
         return i;
       }
     }
+    return 0;
   }
   return (
     <div className="project-carousel">
-      <div className="left_arrow" onClick={handleLeftClick}>
+      <button type="button" className="left_arrow" onClick={handleLeftClick}>
         <BsArrowLeftCircleFill color="#9e0000" size={30} />
-      </div>
+      </button>
       <Swiper
         onSwiper={setSwiperRef}
         spaceBetween={30}
@@ -58,7 +60,8 @@ function ProjectCarousel({ project }) {
       >
         {projects.map((x) => (
           <SwiperSlide key={x.id}>
-            <div
+            <button
+              type="button"
               key={x.id}
               onClick={() => {
                 history.push(`/projects/${x.id}`);
@@ -70,15 +73,22 @@ function ProjectCarousel({ project }) {
                 projectId={x.id}
                 project={project}
               />
-            </div>
+            </button>
           </SwiperSlide>
         ))}
       </Swiper>
 
-      <div className="right_arrow" onClick={handleRightClick}>
+      <button type="button" className="right_arrow" onClick={handleRightClick}>
         <BsArrowRightCircleFill color="#9e0000" size={30} />
-      </div>
+      </button>
     </div>
   );
 }
+
+ProjectCarousel.propTypes = {
+  project: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+  }).isRequired,
+};
+
 export default ProjectCarousel;
