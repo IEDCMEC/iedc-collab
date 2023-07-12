@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unknown-property */
 import React from 'react';
 import './Team.scss';
 import NavbarHome from '../../Components/NavbarHome/NavbarHome';

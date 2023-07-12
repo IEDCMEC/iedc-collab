@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import { AuthContext } from '../Firebase/Auth/Auth';
 import {
   getDevelopers,
@@ -49,8 +50,7 @@ export function ProjectProvider({ children }) {
         setSelectedProject(result[index]);
       })
       .catch((error) => {
-        alert('Something went wrong. Please try again after some time.');
-        console.log(error);
+        throw error;
       })
       .finally(() => {
         setLoading(false);
@@ -107,11 +107,7 @@ export function ProjectProvider({ children }) {
     fetchData();
     fetchDevelpersData();
   }, []);
-  useEffect(() => {
-    fetchUserProfile();
-    fetchRequests();
-    fetchRequestsRecieved();
-  }, [currentUser]);
+
   const fetchRequests = async () => {
     if (currentUser) {
       setLoading(true);
@@ -126,6 +122,13 @@ export function ProjectProvider({ children }) {
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+    fetchUserProfile();
+    fetchRequests();
+    fetchRequestsRecieved();
+  }, [currentUser]);
+
   const handleSearch = (searchtext) => {
     if (searchtext !== '') {
       const modified = allProjects.filter(
@@ -152,34 +155,53 @@ export function ProjectProvider({ children }) {
       setLoading(false);
     }
   };
+
+  const memoizedValue = React.useMemo(
+    () => ({
+      projects,
+      developers,
+      devHash,
+      profile,
+      requests,
+      requestsRecieved,
+      selectedDevelopers,
+      allDevelopers,
+      setSelectedDevelopers,
+      setDevelopers,
+      selectedProject,
+      setProjects,
+      setSelectedProject,
+      loading,
+      handleSearch,
+      handleSearchDevelopers,
+      fetchData,
+      fetchDevelpersData,
+      fetchUserProfile,
+      fetchRequests,
+      fetchRequestsRecieved,
+      allProjects,
+    }),
+    [
+      projects,
+      developers,
+      devHash,
+      profile,
+      requests,
+      requestsRecieved,
+      selectedDevelopers,
+      allDevelopers,
+      selectedProject,
+      allProjects,
+      loading,
+    ]
+  );
   return (
-    <ProjectContext.Provider
-      value={{
-        projects,
-        developers,
-        devHash,
-        profile,
-        requests,
-        requestsRecieved,
-        selectedDevelopers,
-        allDevelopers,
-        setSelectedDevelopers,
-        setDevelopers,
-        selectedProject,
-        setProjects,
-        setSelectedProject,
-        loading,
-        handleSearch,
-        handleSearchDevelopers,
-        fetchData,
-        fetchDevelpersData,
-        fetchUserProfile,
-        fetchRequests,
-        fetchRequestsRecieved,
-        allProjects,
-      }}
-    >
+    <ProjectContext.Provider value={memoizedValue}>
       {children}
     </ProjectContext.Provider>
   );
 }
+
+ProjectProvider.propTypes = {
+  children: PropTypes.node.isRequired,
+};

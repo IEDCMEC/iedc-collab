@@ -1,4 +1,4 @@
-import React, { createContext, useMemo } from 'react';
+import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import 'react-toastify/dist/ReactToastify.css';
 import AOS from 'aos';
@@ -15,14 +15,13 @@ import {
   DeveloperDetails,
   ProjectDetail,
   Team,
-} from './Pages/index';
+} from './Pages';
 import initialize from './Firebase/firebase';
 import { ProjectProvider } from './contexts/ProjectContext';
 import ScrollToTop from './Utils/ScrollToTop';
 import NavigateBar from './Components/NavigateBar/NavigateBar';
 import 'aos/dist/aos.css';
 
-export const ThemeContext = createContext();
 const theme = createTheme({
   typography: {
     allVariants: {
@@ -41,32 +40,32 @@ const theme = createTheme({
 initialize();
 
 function App() {
-  const [branch, setBranch] = React.useState([]);
-  const [yop, setYop] = React.useState([]);
-  const [width, setWidth] = React.useState(0);
-  const [currentWidth, setcurrentWidth] = React.useState(window.innerWidth);
-  const memoizedValue = useMemo(
-    () => ({
-      branch,
-      setBranch,
-      yop,
-      setYop,
-      width,
-      setWidth,
-      currentWidth,
-      setcurrentWidth,
-    }),
-    [
-      branch,
-      setBranch,
-      yop,
-      setYop,
-      width,
-      setWidth,
-      currentWidth,
-      setcurrentWidth,
-    ]
-  );
+  // const [branch, setBranch] = React.useState([]);
+  // const [yop, setYop] = React.useState([]);
+  // const [width, setWidth] = React.useState(0);
+  // const [currentWidth, setcurrentWidth] = React.useState(window.innerWidth);
+  // const memoizedValue = useMemo(
+  //   () => ({
+  //     branch,
+  //     setBranch,
+  //     yop,
+  //     setYop,
+  //     width,
+  //     setWidth,
+  //     currentWidth,
+  //     setcurrentWidth,
+  //   }),
+  //   [
+  //     branch,
+  //     setBranch,
+  //     yop,
+  //     setYop,
+  //     width,
+  //     setWidth,
+  //     currentWidth,
+  //     setcurrentWidth,
+  //   ]
+  // );
 
   AOS.init();
   return (
@@ -78,7 +77,7 @@ function App() {
               <NavigateBar />
               <ScrollToTop />
               <ToastContainer />
-              <ThemeContext.Provider value={memoizedValue}>
+              {/* <ThemeContext.Provider value={memoizedValue}> */}
                 <Switch>
                   <Route exact path="/" component={Landing} />
                   <Route exact path="/projects/:id" component={ProjectDetail} />
@@ -93,7 +92,7 @@ function App() {
                   <Route Route path="/ideas" component={Ideas} />
                   <Route Route path="/team" component={Team} />
                 </Switch>
-              </ThemeContext.Provider>
+              {/* </ThemeContext.Provider> */}
             </BrowserRouter>
           </ProjectProvider>
         </AuthProvider>

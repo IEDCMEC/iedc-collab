@@ -6,7 +6,7 @@ import MainLayout from '../../Components/MainLayout/MainLayout';
 import SuspenseLoader from '../../Components/SuspenseLoader/SuspenseLoader';
 import { ProjectContext } from '../../contexts/ProjectContext';
 import Drawer from '../Developers/Drawer';
-import { ThemeContext } from '../../App';
+// import { ThemeContext } from '../../App';
 
 function Projects() {
   const { projects, loading } = useContext(ProjectContext);
@@ -15,16 +15,16 @@ function Projects() {
   const [pages, setPages] = useState(0);
   const [page, setPage] = useState(0);
   const [works, setWorks] = useState([]);
-  const { currentWidth, setcurrentWidth, width } = useContext(ThemeContext);
-  useEffect(() => {
-    function changedWidth(e) {
-      setcurrentWidth(window.innerWidth);
-    }
-    window.addEventListener('resize', changedWidth);
-    return () => {
-      window.removeEventListener('resize', changedWidth);
-    };
-  }, [width, setcurrentWidth]);
+  // const { currentWidth, setcurrentWidth, width } = useContext(ThemeContext);
+  // useEffect(() => {
+  //   function changedWidth() {
+  //     setcurrentWidth(window.innerWidth);
+  //   }
+  //   window.addEventListener('resize', changedWidth);
+  //   return () => {
+  //     window.removeEventListener('resize', changedWidth);
+  //   };
+  // }, [width, setcurrentWidth]);
   const filterProjects = () => {
     let filteredProjects = projects;
     if (selectedSkills.length > 0 && selectedTags.length > 0) {
@@ -92,7 +92,7 @@ function Projects() {
     <div
       style={{
         display: 'flex',
-        justifyContent: width !== 0 ? 'flex-end' : 'center',
+        // justifyContent: width !== 0 ? 'flex-end' : 'center',
         width: '100vw',
       }}
     >
@@ -100,7 +100,7 @@ function Projects() {
         <div
           className="projects_landing"
           style={{
-            width: currentWidth > 1000 ? `calc(100vw - ${width}px)` : '100vw',
+            // width: currentWidth > 1000 ? `calc(100vw - ${width}px)` : '100vw',
             transition: '0.2s',
           }}
         >
@@ -128,7 +128,8 @@ function Projects() {
           </div>
           <div className="projects_cards">
             {works.map((project) => (
-              <div
+              <button
+                type="button"
                 data-aos="zoom-in"
                 key={project.id}
                 className="cards"
@@ -156,7 +157,7 @@ function Projects() {
                     </div>
                   </div>
                 </div>
-              </div>
+              </button>
             ))}
           </div>
           <Pagination

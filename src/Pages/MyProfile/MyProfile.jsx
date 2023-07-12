@@ -87,7 +87,6 @@ function MyProfile() {
   // }, [currentUser]);
   useEffect(() => {
     if (!profile) fetchUserProfile();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentUser]);
   if (loading || !profile) {
     return (
@@ -257,11 +256,11 @@ function MyProfile() {
               {profile.skills ? (
                 profile.skills.map((skill, index) =>
                   index === profile.skills.length - 1 ? (
-                    <div className="skill" key={index}>
+                    <div className="skill" key={skill}>
                       {skill}
                     </div>
                   ) : (
-                    <div className="skill" key={index}>
+                    <div className="skill" key={skill}>
                       {skill} ,
                     </div>
                   )
@@ -298,13 +297,14 @@ function MyProfile() {
             <div className="developer_details_body_right_content_1">
               <div className="developer_details_body_right_content_projects_1">
                 {count ? (
-                  projects.map((project, index) =>
+                  projects.map((project) =>
                     project.teamMembers?.find(
                       (member) => member === currentUser.email
                     ) ? (
-                      <div
+                      <button
+                        type="button"
                         className="developer_details_body_right_content_project"
-                        key={index}
+                        key={project.id}
                         data-aos="fade-up"
                         data-aos-duration="1500"
                         onClick={() => {
@@ -326,7 +326,7 @@ function MyProfile() {
                         <div className="developer_details_body_right_content_project_lead">
                           {project.leader_name}
                         </div>
-                      </div>
+                      </button>
                     ) : null
                   )
                 ) : (
@@ -349,41 +349,47 @@ function MyProfile() {
                 <div className="reqs_invite_bar__invite">Invite</div>
               </div> */}
             <div className="edit__header">
-              <div
+              <button
+                type="button"
                 className={isReceived ? 'rec_active' : 'received'}
                 onClick={() => setIsReceived(true)}
               >
                 Recieved
-              </div>
-              <div
+              </button>
+              <button
+                type="button"
                 className={isReceived ? 'sent' : 'sent_active'}
                 onClick={() => setIsReceived(false)}
               >
                 Sent
-              </div>
+              </button>
             </div>
             <div className="requests__cards">
-              {isReceived ? (
-                !requestsRecieved ? (
+              {isReceived &&
+                (!requestsRecieved || requestsRecieved.length === 0 ? (
                   <div className="received_sent_box skill">
-                    No Requests Recieved
+                    No Requests Received
                   </div>
                 ) : (
-                  requestsRecieved?.map((request, index) => (
-                    <div key={index}>
+                  requestsRecieved.map((request) => (
+                    <div key={request}>
                       <Received request={request} />
                     </div>
                   ))
-                )
-              ) : !requests ? (
-                <div className="received_sent_box skill">No Requests Sent</div>
-              ) : (
-                requests?.map((request, index) => (
-                  <div key={index}>
-                    <Sent request={request} />
+                ))}
+
+              {!isReceived &&
+                (!requests || requests.length === 0 ? (
+                  <div className="received_sent_box skill">
+                    No Requests Sent
                   </div>
-                ))
-              )}
+                ) : (
+                  requests.map((request) => (
+                    <div key={request}>
+                      <Sent request={request} />
+                    </div>
+                  ))
+                ))}
             </div>
           </div>
         </div>

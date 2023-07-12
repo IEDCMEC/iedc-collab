@@ -72,6 +72,7 @@ function InviteToProjectModal({ user, selectedUser, ...props }) {
       reciever_img:
         selectedUser.photoURL ||
         'https://sabt.center/wp-content/uploads/2014/08/avatar-1.png',
+      // eslint-disable-next-line no-underscore-dangle
       receiver_id: selectedUser._id,
       project_id: project.id,
       project: project.name,

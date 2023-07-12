@@ -10,7 +10,7 @@ import Drawer from './Drawer';
 import SuspenseLoader from '../../Components/SuspenseLoader/SuspenseLoader';
 import { ProjectContext } from '../../contexts/ProjectContext';
 
-import { ThemeContext } from '../../App';
+// import { ThemeContext } from '../../App';
 
 let devs = [];
 
@@ -19,15 +19,15 @@ function Developers() {
   const { developers, loading, setSelectedDevelopers } = useContext(
     ProjectContext
   );
-  const {
-    branch,
-    setBranch,
-    yop,
-    setYop,
-    width,
-    currentWidth,
-    setcurrentWidth,
-  } = useContext(ThemeContext);
+  // const {
+  //   branch,
+  //   setBranch,
+  //   yop,
+  //   setYop,
+  //   width,
+  //   currentWidth,
+  //   setcurrentWidth,
+  // } = useContext(ThemeContext);
   const [selectedSkills, setSelectedSkills] = useState([]);
   const [pages, setPages] = useState(0);
   const [page, setPage] = useState(0);
