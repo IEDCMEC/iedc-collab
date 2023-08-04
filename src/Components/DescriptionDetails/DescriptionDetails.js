@@ -8,7 +8,7 @@ import ProjectModal from "../ProjectModal/ProjectModal";
 import { toast } from "react-toastify";
 import DeleteConfirmation from "../DeleteConfirmationModal/DeleteConfirmation";
 import { IoMdMail } from "react-icons/io";
-import { GoMarkGithub } from "react-icons/go";
+// import { GoMarkGithub } from "react-icons/go";
 import { IoPricetagsOutline } from "react-icons/io5";
 import { RiDeleteBin7Line } from "react-icons/ri";
 import { FaPhoneAlt } from "react-icons/fa";
@@ -202,7 +202,7 @@ const DescriptionDetails = (props) => {
             ""
           )}
 
-          {props.selectedProject.githubLink.length ? (
+          {/* {props.selectedProject.githubLink.length ? (
             <a
               href={props.selectedProject.githubLink}
               target="_blank"
@@ -212,7 +212,7 @@ const DescriptionDetails = (props) => {
             </a>
           ) : (
             ""
-          )}
+          )} */}
         </div>
 
         <ProjectModal

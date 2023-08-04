@@ -1,7 +1,7 @@
 import "./RequirementDetails.scss";
 import { FaPhoneAlt } from "react-icons/fa";
 import { IoMdMail } from "react-icons/io";
-import { GoMarkGithub } from "react-icons/go";
+// import { GoMarkGithub } from "react-icons/go";
 import { useHistory } from "react-router-dom";
 import { doDeleteProject } from "../../Firebase/firebase";
 import { toast } from "react-toastify";
@@ -124,7 +124,7 @@ const RequirementDetails = (props) => {
             ""
           )}
 
-          {props.selectedProject.githubLink.length ? (
+          {/* {props.selectedProject.githubLink.length ? (
             <a
               href={props.selectedProject.githubLink}
               target="_blank"
@@ -134,7 +134,7 @@ const RequirementDetails = (props) => {
             </a>
           ) : (
             ""
-          )}
+          )} */}
         </div>
       </div>
       <ProjectModal

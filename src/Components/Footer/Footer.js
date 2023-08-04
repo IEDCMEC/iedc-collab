@@ -3,7 +3,7 @@ import bubble6 from "../../assets/bubble_6.svg";
 import bubble7 from "../../assets/bubble_7.svg";
 import { HiMail } from "react-icons/hi";
 import { FaLinkedin } from "react-icons/fa";
-import { GoMarkGithub } from "react-icons/go";
+// import { GoMarkGithub } from "react-icons/go";
 const Footer = () => {
   return (
     <>
@@ -17,9 +17,9 @@ const Footer = () => {
             <a href="https://www.linkedin.com/company/iedcmec/">
               <FaLinkedin color="white" size={28} />
             </a>
-            <a href="https://github.com/IEDCMEC">
+            {/* <a href="https://github.com/IEDCMEC">
               <GoMarkGithub color="white" size={28} />
-            </a>
+            </a> */}
           </div>
           <div className="footer__made">Made with ❤️ IEDC MEC 2022</div>
         </div>
