@@ -1,4 +1,4 @@
-# Collab
+# IEDC Collab Frontend
 
 Collab is a platform where students can collaborate on projects, share their work, and connect with other students. It is built using React and Firebase.
 
@@ -52,9 +52,8 @@ REACT_APP_MESSAGING_SENDER_ID=xxxxXXXX
 ```
 ### We request you if you are about to contribute, write clean and well documented code and also we expect you to follow undermentioned commit message format:
 
-5. Open your browser and navigate to http://localhost:3000
+### For Example:-
 
-## Contributing
-
-Contributions are welcome! If you have any ideas, suggestions, or bug reports, please feel free to open an issue or submit a pull request. Let's make Collab even better together✨.
-License
+    git commit -m "Feat: Added UI component to add file" or git commit -m "Feat: Added UI component to add file",
+    git commit -m "Fix: Bug in SomeView was fixed",
+    etc.
