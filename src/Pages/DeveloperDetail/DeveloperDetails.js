@@ -12,7 +12,7 @@ import Lottie from "react-lottie";
 import { IoMdMail } from "react-icons/io";
 import { FaGraduationCap, FaLinkedin, FaPhoneAlt } from "react-icons/fa";
 import { TbNetwork } from "react-icons/tb";
-import { GoMarkGithub } from "react-icons/go";
+// import { GoMarkGithub } from "react-icons/go";
 import { HiUserAdd } from "react-icons/hi";
 import { BsArrowLeftCircleFill } from "react-icons/bs";
 import { ProjectContext } from "../../contexts/ProjectContext";
@@ -144,7 +144,7 @@ function DeveloperDetails() {
                     ) : (
                       ""
                     )}
-                    {selectedUser.github ? (
+                    {/* {selectedUser.github ? (
                       <a
                         href={selectedUser?.github}
                         target="_blank"
@@ -154,7 +154,7 @@ function DeveloperDetails() {
                       </a>
                     ) : (
                       " "
-                    )}
+                    )} */}
                   </div>
                 </div>
                 <div className="developer_class">
