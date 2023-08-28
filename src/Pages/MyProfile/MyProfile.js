@@ -364,7 +364,7 @@ const MyProfile = () => {
                   className={isReceived ? "rec_active" : "received"}
                   onClick={() => setIsReceived(true)}
                 >
-                  Recieved
+                  Received
                 </div>
                 <div
                   className={isReceived ? "sent" : "sent_active"}
