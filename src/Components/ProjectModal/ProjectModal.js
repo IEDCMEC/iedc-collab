@@ -12,9 +12,13 @@ import { ProjectContext } from "../../contexts/ProjectContext";
 import { toast } from "react-toastify";
 import Compress from "compress.js";
 
+//image size
+import { getImageSize } from 'react-image-size';
+
 const compress = new Compress();
 const NewProjectForm = ({ onClose, project }) => {
   const [image, setImage] = useState(project?.projectPhoto || "");
+  const [dimensions, setDimensions] = useState(); 
   const [projectPhotoName, setProjectPhotoName] = useState(
     project?.projectPhotoName || ""
   );
@@ -86,6 +90,16 @@ const NewProjectForm = ({ onClose, project }) => {
     onClose();
     actions.resetForm();
   };
+
+  //Function to fetch image dimension details
+  async function fetchImageSize(url) {
+    try {
+        const dimensions = await getImageSize(url);
+        return dimensions;
+    } catch (error) {
+        console.error(error);
+    }
+}
 
   return (
     <div className="newProjectForm">
@@ -161,6 +175,11 @@ const NewProjectForm = ({ onClose, project }) => {
                       setProjectPhoto(compressedImage);
                       setProjectPhotoName(e.target.files[0].name);
                       setImage(URL.createObjectURL(compressedImage));
+                      const dimensions = await fetchImageSize(URL.createObjectURL(compressedImage));
+                      setDimensions(dimensions);
+                      console.log(dimensions);
+                      
+                      
                     } catch (error) {
                       setProjectPhoto(e.target.files[0]);
                       setProjectPhotoName(e.target.files[0].name);
@@ -182,8 +201,8 @@ const NewProjectForm = ({ onClose, project }) => {
                 <img
                   className="projectPhoto"
                   alt="project banner"
-                  width="200px"
-                  height="200px"
+                  width={dimensions?.width}
+                  height={dimensions?.height}
                   src={image}
                 ></img>
               )}
