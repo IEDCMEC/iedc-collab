@@ -29,9 +29,14 @@ import {
 } from "@mui/material";
 import { AuthContext } from "../../Firebase/Auth/Auth";
 
+//image size
+import { getImageSize } from 'react-image-size';
+
 const compress = new Compress();
 const NewProjectForm = ({ onClose, project, setVariable, variable }) => {
   const [image, setImage] = useState(project?.projectPhoto || "");
+  const [dimensions, setDimensions] = useState(); 
+  const [imageWidth, setImageWidth] = useState(0);
   const [isReq, setIsReq] = useState(project?.isReq || true);
   const [skills, setSkills] = useState([]);
   const [tags, setTags] = useState([]);
@@ -41,6 +46,8 @@ const NewProjectForm = ({ onClose, project, setVariable, variable }) => {
   const [acValue2, setACValue2] = useState(project?.tags || []);
   const [remainSkills, setRemainSkills] = useState([]);
   const [remainTags, setRemainTags] = useState([]);
+
+  
 
   const { currentUser } = useContext(AuthContext);
   const [projectPhotoName, setProjectPhotoName] = useState(
@@ -218,6 +225,16 @@ const NewProjectForm = ({ onClose, project, setVariable, variable }) => {
     actions.resetForm();
   };
 
+  //Function to fetch image dimension details
+  async function fetchImageSize(url) {
+    try {
+        const dimensions = await getImageSize(url);
+        return dimensions;
+    } catch (error) {
+        console.error(error);
+    }
+}
+
   return (
     <div className="newProjectForm">
       <Formik
@@ -365,6 +382,11 @@ const NewProjectForm = ({ onClose, project, setVariable, variable }) => {
                         setProjectPhoto(compressedImage);
                         setProjectPhotoName(e.target.files[0].name);
                         setImage(URL.createObjectURL(compressedImage));
+                        const dimensions = await fetchImageSize(URL.createObjectURL(compressedImage));
+                        setDimensions(dimensions);
+                        console.log(dimensions);
+                        const width = (dimensions.width/dimensions.height)*200;
+                        setImageWidth(width);
                       } catch (error) {
                         setProjectPhoto(e.target.files[0]);
                         setProjectPhotoName(e.target.files[0].name);
@@ -387,7 +409,7 @@ const NewProjectForm = ({ onClose, project, setVariable, variable }) => {
                 <img
                   className="projectPhoto"
                   alt="project banner"
-                  width="200px"
+                  width={dimensions?imageWidth:200}
                   height="200px"
                   src={image}
                 ></img>
