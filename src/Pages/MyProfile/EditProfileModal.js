@@ -28,7 +28,7 @@ const NewUserForm = ({ onClose, user }) => {
   );
   const [profilePhoto, setProfilePhoto] = useState(user?.profilePhoto || "");
   // const [projects, setProjects] = useState([]);
-  const { fetchUserProfile,fetchDevelpersData } = useContext(ProjectContext);
+  const { fetchUserProfile, fetchDevelpersData } = useContext(ProjectContext);
   const [skills, setSkills] = useState([]);
   const [skill, setSkill] = useState();
   const [acValue1, setACValue1] = useState(user?.skills || []);
@@ -134,9 +134,9 @@ const NewUserForm = ({ onClose, user }) => {
         "Please enter a valid 10 digit phone number"
       ),
     achievements: yup.string(),
-    github: yup.string().optional().min(4),
-    linkedin: yup.string().optional().min(4),
-    website: yup.string().optional().min(4),
+    github: yup.string().nullable().matches(/github\.com/, "Please enter a valid Github profile URL").min(4),
+    linkedin: yup.string().nullable().matches(/linkedin\.com/, "Please enter a valid LinkedIn profile URL").min(4),
+    website: yup.string().nullable().url("Please enter a valid website URL").min(4),
   });
 
   const handleSubmit = (values, actions) => {
