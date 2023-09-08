@@ -30,6 +30,11 @@ button:hover {
   border: 2px solid var(--primaryColor);
 }
 
+.NavigateBar-profilebox {
+  padding: 0.3rem;
+  border: 2px solid transparent;
+}
+
 .Navigate-searchicon {
   color: var(--primaryColor);
 }
