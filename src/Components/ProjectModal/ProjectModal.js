@@ -502,11 +502,13 @@ const NewProjectForm = ({ onClose, project, setVariable, variable }) => {
                   if (!skill) toast("Please enter a stack.");
                   else {
                     if (skill && skill.length > 0) {
-                      for (let i = 0; i < skill.length; i++) {
-                        if (skills[i].toLowerCase() === skill.toLowerCase()) {
-                          toast("Stack already present in list.");
-                          break;
-                        }
+                      for (let i = 0; i < skills.length; i++) {
+                        if (skills[i] !== undefined) {
+                          if (skills[i].toLowerCase() === skill.toLowerCase()) {
+                            toast("Stack already present in list.");
+                            break;
+                          } 
+                        } 
                       }
                       addSkills(skill);
                       setSkill("");
