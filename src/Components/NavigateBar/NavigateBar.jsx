@@ -162,7 +162,7 @@ const Navbar = () => {
               className="NavigateBar-profilebox mt-2"
             >
               <input disabled
-                style={{ borderStyle: "none", outline: "none" }}
+                style={{ borderStyle: "none", outline: "none", backgroundColor: "white"}}
               ></input>
               
             </div>
