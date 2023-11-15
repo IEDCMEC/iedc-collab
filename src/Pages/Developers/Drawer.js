@@ -196,7 +196,7 @@ export default function PersistentDrawerLeft({
         open={open}
       >
         <DrawerHeader>
-          <IconButton onClick={handleDrawerClose} className="menu_button">
+          <IconButton onClick={handleDrawerClose} sx={{position:'fixed'}}>
             {theme.direction === "ltr" ? (
               <ChevronLeftIcon sx={{ fontSize: "2rem", color: "white" }} />
             ) : (
@@ -263,12 +263,12 @@ export default function PersistentDrawerLeft({
             className="input_box"
           /> */}
             <div style={{ width: "90%" }}>
-              <div className="skills">
+              <div className="skills"> 
                 {skillList.map((x, id) => (
                   <Buttons
                     key={id}
                     name={x}
-                    className="skill_boxes menu_button"
+                    className="skill_boxes"
                     addSkills={addSkill}
                   ></Buttons>
                 ))}
