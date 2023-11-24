@@ -167,8 +167,18 @@ export default function PersistentDrawerLeft({
   };
 
   const clearFilter = () => {
-    setSelectedTags([]);
-    setSelectedSkills([]);
+    console.log(branch, yop);
+    if (page == "Projects" ){
+      setSelectedSkills([]);
+      setSelectedTags([]);
+      
+    }
+    if (page == "Developers") {
+      setBranch([]);
+      setYop([]);
+      console.log(branch, yop);
+    }
+    
   }
 
   return (
@@ -231,7 +241,29 @@ export default function PersistentDrawerLeft({
           </div>
           <div style={{ minWidth: "90%", margin: "25px", display:"flex", flexDirection:"row", justifyContent:"space-between"}}>
             <h3 style={styles1}>Filter By:</h3>
-            <button style={{color:"white", padding:"1px 7px", fontSize:"12px", borderRadius:"5px", backgroundColor:"#C61111",hover:"#9e0000"}} onClick={clearFilter} onMouseEnter={(e) => e.target.style.backgroundColor = "#FF0000"}
+            <button style={{color:"white", padding:"1px 7px", fontSize:"12px", borderRadius:"5px", backgroundColor:"#C61111",hover:"#9e0000"}} 
+             onClick={() =>{
+              console.log("filter cleared");
+              clearFilter();
+              return(
+                <div style={{ width: "90%" }}>
+                <div className="skills">
+                  {skillList.map((x, id) => (
+                    <Buttons
+                      key={id}
+                      name={x}
+                      className="skill_boxes menu_button"
+                      addSkills={addSkill}
+                      tags={selectedTags}
+                      clearFilter={true}
+                    ></Buttons>
+                  ))}
+                </div>
+              </div>
+                )
+              }
+            }
+            onMouseEnter={(e) => e.target.style.backgroundColor = "#FF0000"}
   onMouseLeave={(e) => e.target.style.backgroundColor = "#9e0000"}>Clear Filter</button>
           </div>
           
@@ -287,6 +319,8 @@ export default function PersistentDrawerLeft({
                     name={x}
                     className="skill_boxes menu_button"
                     addSkills={addSkill}
+                    tags={selectedTags}
+                    clearFilter={false}
                   ></Buttons>
                 ))}
               </div>
@@ -468,6 +502,8 @@ export default function PersistentDrawerLeft({
                       name={x}
                       className="skill_boxes menu_button"
                       addSkills={addTag}
+                      tags={selectedTags}
+                      clearFilter={false}
                     ></Buttons>
                   ))
                 : null}
