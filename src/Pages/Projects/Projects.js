@@ -19,7 +19,7 @@ const Projects = () => {
   // const [loading, setLoading] = useState(true);
   // const getWorks = async () => {
   //   await getProjects().then(async function (snapshot) {
-  //     let messageObject = snapshot.val();
+  //     let messageObject = snapshot.docs();
   //     const result = Object.keys(messageObject).map((key) => ({
   //       ...messageObject[key],
   //       id: key,

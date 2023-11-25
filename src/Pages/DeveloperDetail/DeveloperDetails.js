@@ -34,7 +34,7 @@ function DeveloperDetails() {
   };
   const getDev = async (id) => {
     let user = await getUser(id);
-    user = await user.val();
+    user = await user.docs();
     user = { ...user, _id: id };
     setSelectedUser(user);
     setLoading(false);

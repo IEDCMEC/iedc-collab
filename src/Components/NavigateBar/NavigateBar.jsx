@@ -39,7 +39,7 @@ const Navbar = () => {
   // const getDev = async (id) => {
   //   if (id) {
   //     const user = await getUser(id);
-  //     setSelectedUser(await user.val());
+  //     setSelectedUser(await user.docs());
   //   }
   // };
   // useEffect(() => {

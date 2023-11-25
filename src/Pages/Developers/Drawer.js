@@ -60,27 +60,23 @@ export default function PersistentDrawerLeft({
   const widthRef = useRef();
   // const [branch, setBranch] =  React.useState('')
   // const [yop, setYop] = React.useState('')
-  const getAbilities = async () => {
-    await getSkills().then(async function (snapshot) {
-      let messageObject = snapshot.val();
-      setSkills(messageObject);
-      // setSkillList(messageObject)
-    });
-  };
+
   const [skillList, setSkillList] = React.useState([
     "React",
     "CSS",
     "Javascript",
     "C++",
   ]);
-
-  const getTagDetails = async () => {
-    await getTags().then(async function (snapshot) {
-      let messageObject = snapshot.val();
-      setTags(messageObject);
+  const getAbilities = async () => {
+    await getSkills().then(async (snapshot) => {
+      setSkills(Object.values(snapshot.data()));
     });
   };
-
+  const getTagDetails = async () => {
+    await getTags().then(async (snapshot) => {
+      setTags(Object.values(snapshot.data()));
+    });
+  };
   React.useEffect(() => {
     getAbilities();
   }, []);
@@ -196,7 +192,7 @@ export default function PersistentDrawerLeft({
         open={open}
       >
         <DrawerHeader>
-          <IconButton onClick={handleDrawerClose} sx={{position:'fixed'}}>
+          <IconButton onClick={handleDrawerClose} sx={{ position: "fixed" }}>
             {theme.direction === "ltr" ? (
               <ChevronLeftIcon sx={{ fontSize: "2rem", color: "white" }} />
             ) : (
@@ -245,10 +241,10 @@ export default function PersistentDrawerLeft({
                   fontFamily: "Nunito",
                   background: "transparent",
                   color: "white",
-                  border: '2px solid #D9D9D9',
+                  border: "2px solid #D9D9D9",
                   borderRadius: "5px",
-                  padding: '15px 20px',
-                  borderColor: 'white',
+                  padding: "15px 20px",
+                  borderColor: "white",
                 }}
                 // InputProps={{ style: { color: "white", fontFamily: "Nunito" } }}
                 // InputLabelProps={{
@@ -263,7 +259,7 @@ export default function PersistentDrawerLeft({
             className="input_box"
           /> */}
             <div style={{ width: "90%" }}>
-              <div className="skills"> 
+              <div className="skills">
                 {skillList.map((x, id) => (
                   <Buttons
                     key={id}

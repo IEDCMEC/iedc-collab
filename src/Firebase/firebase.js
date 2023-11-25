@@ -336,24 +336,68 @@ export const doEditProfile = async (obj, onSuccess = () => {}) => {
     console.log(err);
   }
 };
-
 export const getProjects = async () => {
-  const db = firebase.firestore();
-  return await db.collection("projects").get();
+  const data = [];
+  const projects = await firebase.firestore().collection("projects").get();
+  // .then((snapshot) => {
+  //   if (snapshot.docs.length > 0) {
+  //     snapshot.docs.forEach((doc) => {
+  //       data.push(doc.data());
+  //     });
+  //   }
+  // });
+  return projects;
 };
-export const getDevelopers = async () => {
+export const getDevelopers = () => {
+  const data = [];
   const db = firebase.firestore();
-  return await db.collection("users").get();
+  const users = db.collection("users").get();
+  // .then((snapshot) => {
+  //   if (snapshot.docs.length > 0) {
+  //     snapshot.docs.forEach((doc) => {
+  //       data.push(doc.data());
+  //     });
+  //   }
+  // });
+  console.log(data);
+  return users;
 };
 
-export const getProject = async (project_id) => {
+export const getProject = (project_id) => {
+  const data = [];
   const db = firebase.firestore();
-  return await db.collection("projects").doc(project_id).get();
+  const project = db
+    .collection("projects")
+    .doc(project_id)
+    .get()
+    .then((snapshot) => {
+      if (snapshot.docs.length > 0) {
+        snapshot.docs.forEach((doc) => {
+          data.push(doc.data());
+        });
+      }
+    });
+  // return project;
 };
 
 export const getUser = async (user_id) => {
+  // let data;
   const db = firebase.firestore();
-  return await db.collection("users").doc(user_id).get();
+  return await db
+    .collection("users")
+    .doc(user_id)
+    .get()
+    // .then((snapshot) => {
+    //   // if (snapshot.docs.length > 0) {
+    //   //   snapshot.docs.forEach((doc) => {
+    //   //     data.push(doc.data());
+    //   //   });
+    //   // }
+    //   // console.log(snapshot.data())
+    //  data = snapshot.data();
+    // });
+  // console.log(user)
+  // return data;
 };
 
 export const sendInvite = async (data) => {
@@ -464,19 +508,30 @@ export const declineRequest = async (invite) => {
 };
 export const getRequests = async (uid) => {
   try {
+    const data = [];
     const querySnapshot = await firebase
       .firestore()
       .collection("requests")
       .where("sender_id", "==", uid)
       .orderBy("createdAt", "desc")
-      .get();
+      .get()
+      .then((snapshot) => {
+        snapshot.docs.map((doc) =>
+          data.push({
+            ...doc.data(),
+            id: doc.id,
+          })
+        );
+      });
 
-    const requests = querySnapshot.docs.map((doc) => ({
-      ...doc.data(),
-      id: doc.id,
-    }));
-
-    return requests;
+    // const requests = querySnapshot.docs.map((doc) =>
+    //   data.push({
+    //     ...doc.data(),
+    //     id: doc.id,
+    //   })
+    // );
+    console.log(data);
+    return data;
   } catch (error) {
     console.error(error);
   }
@@ -501,8 +556,17 @@ export const getRequestsRecieved = async (uid) => {
   }
 };
 
-export const getSkills = async () => {
-  return await firebase.firestore().collection("skills").get();
+export const getSkills = () => {
+  const data = [];
+  const skills = firebase.firestore().collection("skills").doc("skills").get();
+  // .then((snapshot) => {
+  //   if (snapshot.docs.length > 0) {
+  //     snapshot.docs.forEach((doc) => {
+  //       data.push(doc.data());
+  //     });
+  //   }
+  // });
+  return skills;
 };
 
 export const addSkills = async (skill) => {
@@ -518,7 +582,7 @@ export const addSkills = async (skill) => {
     }
     skillsArray.push(skill);
 
-    await firebase.firestore().collection('skills').doc("skills").set({
+    await firebase.firestore().collection("skills").doc("skills").set({
       skills: skillsArray,
     });
 
@@ -527,9 +591,17 @@ export const addSkills = async (skill) => {
     console.error("Oops! Couldn't add skills \n more info:", error);
   }
 };
-export const getTags = async () => {
-  const db = firebase.firestore();
-  return await db.collection("tags").get();
+export const getTags = () => {
+  const data = [];
+  const tags = firebase.firestore().collection("tags").doc("tags").get();
+  // .then((snapshot) => {
+  //   if (snapshot.docs.length > 0) {
+  //     snapshot.docs.forEach((doc) => {
+  //       data.push(doc.data());
+  //     });
+  //   }
+  // });
+  return tags;
 };
 export const addTags = async (tag) => {
   // var skillId = firebase.database().ref().child("skills").push().key;
@@ -546,11 +618,11 @@ export const addTags = async (tag) => {
 
     tagsArray.push(tag);
 
-    await firebase.firestore().collection('tags').doc('tags').set({
+    await firebase.firestore().collection("tags").doc("tags").set({
       tags: tagsArray,
     });
 
-    console.log('Tags added successfully');
+    console.log("Tags added successfully");
   } catch (error) {
     console.error("Oops! Couldn't add tags \n more info:", error);
   }
