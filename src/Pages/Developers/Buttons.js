@@ -1,30 +1,26 @@
 import React, { useState } from "react";
 
 export default function Buttons(props) {
-  const [selectedTags, setSelectedTags] = useState([]);
   const [valueOnClick, setValueOnClick] = useState(false);
   const styles = {
     background: valueOnClick ? "white" : "rgba(148, 2, 2, 0.2)",
     color: valueOnClick ? "#9E0000" : "white",
   };
+  const stylesClear = {
+    background:  "rgba(148, 2, 2, 0.2)",
+    color:   "white" ,
+  };
 
-  console.log(props.clearFilter);
-  //make this and the onelick fn into a same fn,make it such that it is a fn inside a fn
-  
-  
+// try to integrate selectedSkills useState var into this function, as a prop,and add clearfilter button logic 
   return (
+    
     <button
       name={props.name}
       className={props.className}
-      style={styles}
+      style={props.clearFilter ? stylesClear : styles}
       onClick={() => {
-        if (props.clearFilter == true){
-          setValueOnClick(false);
-          }
-        else{
           setValueOnClick(!valueOnClick);
-        }
-        props.addSkills(props.name);
+          props.addSkills(props.name);
       }
     }
       
@@ -36,4 +32,5 @@ export default function Buttons(props) {
       </p>
     </button>
   );
+
 }
