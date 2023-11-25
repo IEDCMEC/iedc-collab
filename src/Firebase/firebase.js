@@ -359,25 +359,25 @@ export const getDevelopers = () => {
   //     });
   //   }
   // });
-  console.log(data);
+  // console.log(data);
   return users;
 };
 
 export const getProject = (project_id) => {
-  const data = [];
+  var data = [];
   const db = firebase.firestore();
   const project = db
     .collection("projects")
     .doc(project_id)
     .get()
-    .then((snapshot) => {
-      if (snapshot.docs.length > 0) {
-        snapshot.docs.forEach((doc) => {
-          data.push(doc.data());
-        });
-      }
-    });
-  // return project;
+    // .then((snapshot) => {
+    //   // if (snapshot.docs.length > 0) {
+    //    data = snapshot.data()
+    //    console.log(snapshot.data())
+    //   // }
+    // });
+    // console.log(data)
+  return project;
 };
 
 export const getUser = async (user_id) => {

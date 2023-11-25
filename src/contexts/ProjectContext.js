@@ -124,20 +124,15 @@ export const ProjectProvider = ({ children }) => {
         if (snapshot.docs.length > 0) {
           // console.log(snapshot.docs)
           snapshot.docs.forEach((doc) => {
-            data.push(doc.data());
+            data.push({
+              ...doc.data(),
+              id: doc.id
+            });
           });
-          // console.log(data)
-          const result = data.map((value, index) => {
-            return {
-              ...value,
-              id: value.id,
-            };
-          });
-          // console.log(result);
-          setDevelopers(result);
-          setAllDevelopers(result);
-          setSelectedDevelopers(result[index1]);
-          result.forEach((itm) => {
+          setDevelopers(data);
+          setAllDevelopers(data);
+          setSelectedDevelopers(data[index1]);
+          data.forEach((itm) => {
             devMap[itm.email] = {
               name: itm.name,
               id: itm.id,

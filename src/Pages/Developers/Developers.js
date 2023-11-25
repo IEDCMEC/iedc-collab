@@ -71,7 +71,6 @@ const Developers = () => {
     setPage(0);
     setPages(Math.ceil(developers.length / 10));
     setUsers(developers.slice(page * 10, page * 10 + 10));
-
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [developers]);
   const filterDevelopers = () => {
