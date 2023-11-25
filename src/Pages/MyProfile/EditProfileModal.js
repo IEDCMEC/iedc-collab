@@ -134,9 +134,21 @@ const NewUserForm = ({ onClose, user }) => {
         "Please enter a valid 10 digit phone number"
       ),
     achievements: yup.string(),
-    github: yup.string().nullable().matches(/github\.com/, "Please enter a valid Github profile URL").min(4),
-    linkedin: yup.string().nullable().matches(/linkedin\.com/, "Please enter a valid LinkedIn profile URL").min(4),
-    website: yup.string().nullable().url("Please enter a valid website URL").min(4),
+    github: yup
+      .string()
+      .nullable()
+      .matches(/github\.com/, "Please enter a valid Github profile URL")
+      .min(4),
+    linkedin: yup
+      .string()
+      .nullable()
+      .matches(/linkedin\.com/, "Please enter a valid LinkedIn profile URL")
+      .min(4),
+    website: yup
+      .string()
+      .nullable()
+      .url("Please enter a valid website URL")
+      .min(4),
   });
 
   const handleSubmit = (values, actions) => {
@@ -386,9 +398,20 @@ const NewUserForm = ({ onClose, user }) => {
                 onClick={() => {
                   if (!skill) toast("Please enter a skill.");
                   else {
-                    if (skill && skill.length > 0) {
+                    // Convert all elements in skills array to lowercase
+                    let skillsLower = [];
+                    if (skills && Array.isArray(skills)) {
                       for (let i = 0; i < skills.length; i++) {
-                        if (skills[i].toLowerCase() === skill.toLowerCase()) {
+                        // Ensure each element is not null or undefined before calling toLowerCase()
+                        if (skills[i]) {
+                          skillsLower.push(skills[i].toLowerCase());
+                        }
+                      }
+                    }
+
+                    if (skill && skill.length > 0) {
+                      for (let i = 0; i < skillsLower.length; i++) {
+                        if (skillsLower[i] === skill.toLowerCase()) {
                           toast("Skill already present in list.");
                           break;
                         }
