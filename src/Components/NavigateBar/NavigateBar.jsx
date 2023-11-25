@@ -159,25 +159,13 @@ const Navbar = () => {
             )}
             {location.pathname.split("/")[1] === "profile" && (
               <div
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                }}
-                className="NavigateBar-searchbox mt-2"
-              >
-                <input
-                  placeholder="Search projects..."
-                  onChange={(e) => {
-                    history.push(`/projects`);
-                    handleSearch(e.target.value);
-                  }}
-                  style={{ borderStyle: "none", outline: "none", width: "95%" }}
-                ></input>
-                <i
-                  className="fa fa-search fa-lg Navigate-searchicon"
-                  style={{ cursor: "pointer" }}
-                ></i>
-              </div>
+              className="NavigateBar-profilebox mt-2"
+            >
+              <input disabled
+                style={{ borderStyle: "none", outline: "none", backgroundColor: "white"}}
+              ></input>
+              
+            </div>
             )}
 
             <div
