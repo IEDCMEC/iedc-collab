@@ -12,6 +12,7 @@ import {
   DeveloperDetails,
   ProjectDetail,
   Team,
+  Jobs,
 } from "./Pages/index";
 import initialize from "./Firebase/firebase";
 import { ProjectProvider } from "./contexts/ProjectContext";
@@ -69,6 +70,7 @@ function App() {
               <Route Route path="/profile" component={MyProfile} />
               <Route Route path="/ideas" component={Ideas} />
               <Route Route path="/team" component={Team} />
+              <Route Route path="/jobs" component={Jobs} />
             </Switch>
             </ThemeContext.Provider>
           </BrowserRouter>

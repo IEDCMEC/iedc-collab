@@ -7,4 +7,8 @@ export const Menu = [
     label: "Developers",
     url: "/developers",
   },
+  {
+    label: "Ideas",
+    url: "/ideas",
+  }
 ];

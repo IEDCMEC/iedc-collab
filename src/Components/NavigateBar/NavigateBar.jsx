@@ -18,7 +18,12 @@ import { HiOutlineMenuAlt3 } from "react-icons/hi";
 const Navbar = () => {
   const [showProjectModal, setShowProjectModal] = useState(false);
   const { currentUser } = useContext(AuthContext);
-  const { handleSearch, handleSearchDevelopers,profile,fetchUserProfile } = useContext(ProjectContext);
+  const {
+    handleSearch,
+    handleSearchDevelopers,
+    profile,
+    fetchUserProfile,
+  } = useContext(ProjectContext);
   const history = useHistory();
   const [open1, setOpen1] = useState(false);
   const location = useLocation();
@@ -46,8 +51,7 @@ const Navbar = () => {
   //   getDev(currentUser?.uid);
   // }, [currentUser?.uid]);
   useEffect(() => {
-    if(!profile)
-    {
+    if (!profile) {
       fetchUserProfile();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -56,6 +60,7 @@ const Navbar = () => {
   return (
     <>
       {(location.pathname.split("/")[1] === "ideas" ||
+        location.pathname.split("/")[1] === "jobs" ||
         location.pathname.split("/")[1] === "projects" ||
         location.pathname.split("/")[1] === "developers" ||
         location.pathname.split("/")[1] === "profile") && (
@@ -198,9 +203,13 @@ const Navbar = () => {
                   }
                   transition
                 >
-                  <MenuItem onClick={newprojectClick} className="mobile__only" style={{
-                    color:"#9e0000"
-                  }}>
+                  <MenuItem
+                    onClick={newprojectClick}
+                    className="mobile__only"
+                    style={{
+                      color: "#9e0000",
+                    }}
+                  >
                     Create A Project
                   </MenuItem>
                   <MenuItem
@@ -208,7 +217,7 @@ const Navbar = () => {
                       history.push(`/profile`);
                     }}
                     style={{
-                      color:"#9e0000"
+                      color: "#9e0000",
                     }}
                   >
                     {" "}
@@ -220,7 +229,7 @@ const Navbar = () => {
                       history.push("/projects");
                     }}
                     style={{
-                      color:"#9e0000"
+                      color: "#9e0000",
                     }}
                   >
                     Logout
@@ -263,6 +272,9 @@ const Navbar = () => {
                 </Link>
                 <Link to="/ideas" className="nav_item">
                   Ideas
+                </Link>
+                <Link to="/ideas" className="nav_item">
+                  Jobs
                 </Link>
               </div>
               <a href="https://www.mec.ac.in/" target="_blank" rel="noreferrer">
@@ -328,6 +340,13 @@ const Navbar = () => {
                       onClick={handleDrawerClose}
                     >
                       Ideas
+                    </Link>
+                    <Link
+                      to="/jobs"
+                      className="nav_item_mob"
+                      onClick={handleDrawerClose}
+                    >
+                      Jobs
                     </Link>
                   </div>
                 </div>
