@@ -39,7 +39,7 @@ export const ProjectProvider = ({ children }) => {
     setLoading(true);
     getProjects()
       .then(async function (snapshot) {
-        let messageObject = snapshot.val();
+        let messageObject = snapshot.docs;
         const result = Object.keys(messageObject).map((key) => ({
           ...messageObject[key],
           id: key,
@@ -60,7 +60,7 @@ export const ProjectProvider = ({ children }) => {
     if (currentUser) {
       setLoading(true);
       const profileUser = await getUser(currentUser?.uid);
-      setProfile(await profileUser.val());
+      setProfile(profileUser.data);
       setLoading(false);
     }
   };
@@ -80,7 +80,7 @@ export const ProjectProvider = ({ children }) => {
     setLoading(true);
     getDevelopers()
       .then(async function (snapshot) {
-        let messageObject = snapshot.val();
+        let messageObject = snapshot.docs;
         const result1 = Object.keys(messageObject).map((key) => ({
           ...messageObject[key],
           id: key,
