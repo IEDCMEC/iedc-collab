@@ -45,7 +45,7 @@ function Nav({ route }) {
         ) : (
           " "
         )}
-        <NavLink
+        {/* <NavLink
           activeClassName={route === "Jobs" ? "NavLinksActive" : ""}
           className="NavLinks"
           to="/jobs"
@@ -55,7 +55,7 @@ function Nav({ route }) {
           }}
         >
           Jobs
-        </NavLink>
+        </NavLink> */}
       </ul>
     </nav>
   );
