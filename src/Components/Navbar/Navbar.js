@@ -46,15 +46,15 @@ function Nav({ route }) {
           " "
         )}
         <NavLink
-          activeClassName={route === "Ideas" ? "NavLinksActive" : ""}
+          activeClassName={route === "Jobs" ? "NavLinksActive" : ""}
           className="NavLinks"
-          to="/ideas"
+          to="/jobs"
           onClick={() => {
             setProjects(allProjects);
             setDevelopers(allDevelopers);
           }}
         >
-          Ideas
+          Jobs
         </NavLink>
       </ul>
     </nav>

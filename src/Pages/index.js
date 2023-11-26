@@ -7,3 +7,4 @@ export { default as ProjectDetail } from "./ProjectDetail/ProjectDetail";
 export { default as Projects } from "./Projects/Projects";
 export { default as DeveloperDetails } from "./DeveloperDetail/DeveloperDetails";
 export { default as Team } from "./Team/Team";
+export { default as Jobs } from "./Jobs/Jobs";
