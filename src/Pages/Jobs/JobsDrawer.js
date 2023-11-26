@@ -60,13 +60,6 @@ export default function PersistentDrawerLeft({
   const widthRef = useRef();
   // const [branch, setBranch] =  React.useState('')
   // const [yop, setYop] = React.useState('')
-  const getAbilities = async () => {
-    await getSkills().then(async function (snapshot) {
-      let messageObject = snapshot.val();
-      setSkills(messageObject);
-      // setSkillList(messageObject)
-    });
-  };
   const [skillList, setSkillList] = React.useState([
     "React",
     "CSS",
@@ -74,13 +67,16 @@ export default function PersistentDrawerLeft({
     "C++",
   ]);
 
-  const getTagDetails = async () => {
-    await getTags().then(async function (snapshot) {
-      let messageObject = snapshot.val();
-      setTags(messageObject);
+  const getAbilities = async () => {
+    await getSkills().then(async (snapshot) => {
+      setSkills(Object.values(snapshot.data()));
     });
   };
-
+  const getTagDetails = async () => {
+    await getTags().then(async (snapshot) => {
+      setTags(Object.values(snapshot.data()));
+    });
+  };
   React.useEffect(() => {
     getAbilities();
   }, []);
