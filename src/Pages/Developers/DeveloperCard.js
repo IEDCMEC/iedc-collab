@@ -9,6 +9,7 @@ const DeveloperCard = ({ user, handleClick }) => {
     }
     return urlArray[urlArray.length - 1];
   };
+  const username = user.name !== undefined ? user.name.toLowerCase() : null
   return (
     <div
       data-aos="zoom-in"
@@ -32,7 +33,7 @@ const DeveloperCard = ({ user, handleClick }) => {
         justifyContent: "center",
         alignItems: "flex-start",
       }}>
-        <h1 className="developer-card-name">{user.name.toLowerCase()}</h1>
+        <h1 className="developer-card-name">{username}</h1>
         <div className="developer-card-email">
           {user.linkedin ? "@" + getLinkedinUsername(user.linkedin) : null}
         </div>

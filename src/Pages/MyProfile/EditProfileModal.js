@@ -51,7 +51,7 @@ const NewUserForm = ({ onClose, user }) => {
 
   // const getWorks = async () => {
   //   await getProjects().then(async function (snapshot) {
-  //     let messageObject = snapshot.val();
+  //     let messageObject = snapshot.docs();
   //     const result = Object.keys(messageObject).map((key) => ({
   //       ...messageObject[key],
   //       id: key,
@@ -72,11 +72,15 @@ const NewUserForm = ({ onClose, user }) => {
   }
 
   const getAbilities = async () => {
-    await getSkills().then(async function (snapshot) {
-      let messageObject = snapshot.val();
-      setSkills(messageObject);
+    await getSkills().then(async (snapshot) => {
+      setSkills(Object.values(snapshot.data()));
     });
   };
+  // const getTagDetails = async () => {
+  //   await getTags().then(async (snapshot) => {
+  //     setTags(Object.values(snapshot.data()));
+  //   });
+  // };
 
   useEffect(() => {
     getAbilities();

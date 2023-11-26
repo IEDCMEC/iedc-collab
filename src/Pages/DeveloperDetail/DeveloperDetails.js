@@ -32,9 +32,9 @@ function DeveloperDetails() {
     animationData: animation,
     rendererSettings: { preserveAspectRatio: "xMidYMid slice" },
   };
+  // console.log(id)
   const getDev = async (id) => {
-    let user = await getUser(id);
-    user = await user.val();
+    let user = await getUser(id).then((snapshot)=>snapshot.data())
     user = { ...user, _id: id };
     setSelectedUser(user);
     setLoading(false);

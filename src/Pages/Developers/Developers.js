@@ -55,7 +55,7 @@ const Developers = () => {
   },[width,setcurrentWidth])
   // const getDevs = async () => {
   //   // await getDevelopers().then(async function (snapshot) {
-  //   //   let messageObject = snapshot.val();
+  //   //   let messageObject = snapshot.docs();
   //   //   const result = Object.keys(messageObject).map((key) => ({
   //   //     ...messageObject[key],
   //   //     id: key,
@@ -71,7 +71,6 @@ const Developers = () => {
     setPage(0);
     setPages(Math.ceil(developers.length / 10));
     setUsers(developers.slice(page * 10, page * 10 + 10));
-
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [developers]);
   const filterDevelopers = () => {
@@ -129,8 +128,8 @@ const Developers = () => {
   }, [page]);
 
   useEffect(() => {
-    if (users === null) return;
-    if (developers === null) return;
+    if (users === undefined || users === null) return;
+    if (developers === undefined || developers === null) return;
     filterDevelopers();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedSkills, branch, yop]);
@@ -148,6 +147,7 @@ const Developers = () => {
       </div>
     );
   }
+  // console.log(users)
   return (
     <div style={{display:'flex',justifyContent: width!==0 ? 'flex-end': 'center',width:'100vw'}}>
       <MainLayout route={"Developers"}>

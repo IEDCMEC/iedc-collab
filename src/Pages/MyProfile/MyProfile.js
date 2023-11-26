@@ -51,7 +51,7 @@ const MyProfile = () => {
   }, [projects, currentUser]);
   // const getDev = async (id) => {
   //   const user = await getUser(id);
-  //   setSelectedUser(await user.val());
+  //   setSelectedUser(await user.docs());
   //   setLoading(false);
   // };
 

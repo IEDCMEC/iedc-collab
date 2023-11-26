@@ -17,10 +17,11 @@ function ProjectDetail() {
   const [variable, setVariable] = useState(true);
   const [loading, setLoading] = useState(true);
   const getWork = async (id) => {
-    const project = await getProject(id);
-    let p = await project.val();
-    p.id = id;
-    setSelectedProject(p);
+    const project = await getProject(id).then((snapshot)=>snapshot.data())
+    // let p = await project.docs();
+    // console.log(project)
+    // p.id = id;
+    setSelectedProject(project);
     setLoading(false);
   };
 

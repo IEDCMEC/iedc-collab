@@ -30,12 +30,12 @@ import {
 import { AuthContext } from "../../Firebase/Auth/Auth";
 
 //image size
-import { getImageSize } from 'react-image-size';
+import { getImageSize } from "react-image-size";
 
 const compress = new Compress();
 const NewProjectForm = ({ onClose, project, setVariable, variable }) => {
   const [image, setImage] = useState(project?.projectPhoto || "");
-  const [dimensions, setDimensions] = useState(); 
+  const [dimensions, setDimensions] = useState();
   const [imageWidth, setImageWidth] = useState(0);
   const [isReq, setIsReq] = useState(project?.isReq || true);
   const [skills, setSkills] = useState([]);
@@ -46,8 +46,6 @@ const NewProjectForm = ({ onClose, project, setVariable, variable }) => {
   const [acValue2, setACValue2] = useState(project?.tags || []);
   const [remainSkills, setRemainSkills] = useState([]);
   const [remainTags, setRemainTags] = useState([]);
-
-  
 
   const { currentUser } = useContext(AuthContext);
   const [projectPhotoName, setProjectPhotoName] = useState(
@@ -94,19 +92,19 @@ const NewProjectForm = ({ onClose, project, setVariable, variable }) => {
   }
 
   const getAbilities = async () => {
-    await getSkills().then(async function (snapshot) {
-      let messageObject = snapshot.val();
-      setSkills(messageObject);
+    await getSkills().then(async (snapshot) => {
+      setSkills(Object.values(snapshot.data()));
     });
   };
-
   const getTagDetails = async () => {
-    await getTags().then(async function (snapshot) {
-      let messageObject = snapshot.val();
-      setTags(messageObject);
+    await getTags().then(async (snapshot) => {
+      setTags(Object.values(snapshot.data()));
     });
   };
 
+  useEffect(()=>{
+    getTagDetails()
+  },[])
   useEffect(() => {
     getAbilities();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -173,7 +171,7 @@ const NewProjectForm = ({ onClose, project, setVariable, variable }) => {
         "Please enter a valid 10 digit phone number"
       ),
     links: yup.string().min(4),
-    githubLink: yup.string().optional().min(4)
+    githubLink: yup.string().optional().min(4),
   });
 
   const handleSubmit = (values, actions) => {
@@ -228,12 +226,12 @@ const NewProjectForm = ({ onClose, project, setVariable, variable }) => {
   //Function to fetch image dimension details
   async function fetchImageSize(url) {
     try {
-        const dimensions = await getImageSize(url);
-        return dimensions;
+      const dimensions = await getImageSize(url);
+      return dimensions;
     } catch (error) {
-        console.error(error);
+      console.error(error);
     }
-}
+  }
 
   return (
     <div className="newProjectForm">
@@ -382,10 +380,13 @@ const NewProjectForm = ({ onClose, project, setVariable, variable }) => {
                         setProjectPhoto(compressedImage);
                         setProjectPhotoName(e.target.files[0].name);
                         setImage(URL.createObjectURL(compressedImage));
-                        const dimensions = await fetchImageSize(URL.createObjectURL(compressedImage));
+                        const dimensions = await fetchImageSize(
+                          URL.createObjectURL(compressedImage)
+                        );
                         setDimensions(dimensions);
                         console.log(dimensions);
-                        const width = (dimensions.width/dimensions.height)*200;
+                        const width =
+                          (dimensions.width / dimensions.height) * 200;
                         setImageWidth(width);
                       } catch (error) {
                         setProjectPhoto(e.target.files[0]);
@@ -409,7 +410,7 @@ const NewProjectForm = ({ onClose, project, setVariable, variable }) => {
                 <img
                   className="projectPhoto"
                   alt="project banner"
-                  width={dimensions?imageWidth:200}
+                  width={dimensions ? imageWidth : 200}
                   height="200px"
                   src={image}
                 ></img>
@@ -529,8 +530,8 @@ const NewProjectForm = ({ onClose, project, setVariable, variable }) => {
                           if (skills[i].toLowerCase() === skill.toLowerCase()) {
                             toast("Stack already present in list.");
                             break;
-                          } 
-                        } 
+                          }
+                        }
                       }
                       addSkills(skill);
                       setSkill("");

@@ -16,7 +16,7 @@ export const ProjectProvider = ({ children }) => {
   const [allProjects, setAllProjects] = useState([]);
   const [developers, setDevelopers] = useState(null);
   const [selectedDevelopers, setSelectedDevelopers] = useState();
-  const [profile, setProfile] = useState();
+  const [profile, setProfile] = useState(null);
   const [allDevelopers, setAllDevelopers] = useState([]);
   const { currentUser } = useContext(AuthContext);
   const [requests, setRequests] = useState([]);
@@ -38,15 +38,35 @@ export const ProjectProvider = ({ children }) => {
     }
     setLoading(true);
     getProjects()
-      .then(async function (snapshot) {
-        let messageObject = snapshot.val();
-        const result = Object.keys(messageObject).map((key) => ({
-          ...messageObject[key],
-          id: key,
-        }));
-        setProjects(result);
-        setAllProjects(result);
-        setSelectedProject(result[index]);
+      // .then(async function (snapshot) {
+      //   let messageObject = snapshot;
+      //   const result = Object.keys(messageObject).map((key) => ({
+      //     ...messageObject[key],
+      //     id: key,
+      //   }));
+      //   setProjects(result);
+      //   setAllProjects(result);
+      //   setSelectedProject(result[index]);
+      // })
+      .then(async (snapshot) => {
+        var data = [];
+        // console.log(snapshot.docs)
+        if (snapshot.docs.length > 0) {
+          snapshot.docs.forEach((doc) => {
+            data.push(doc.data());
+          });
+          // console.log(data)
+          const result = data.map((value, index) => {
+            return {
+              ...value,
+              id: value.id,
+            };
+          });
+          setProjects(result);
+          setAllProjects(result);
+          // console.log(result);
+          setSelectedProject(result[index]);
+        }
       })
       .catch(function (error) {
         alert("Something went wrong. Please try again after some time.");
@@ -59,8 +79,11 @@ export const ProjectProvider = ({ children }) => {
   const fetchUserProfile = async () => {
     if (currentUser) {
       setLoading(true);
-      const profileUser = await getUser(currentUser?.uid);
-      setProfile(await profileUser.val());
+      getUser(currentUser?.uid).then((snapshot)=>{
+        setProfile(snapshot.data())
+        // console.log(snapshot.data())
+      })
+      // setProfile(profileUser);
       setLoading(false);
     }
   };
@@ -79,23 +102,44 @@ export const ProjectProvider = ({ children }) => {
     }
     setLoading(true);
     getDevelopers()
-      .then(async function (snapshot) {
-        let messageObject = snapshot.val();
-        const result1 = Object.keys(messageObject).map((key) => ({
-          ...messageObject[key],
-          id: key,
-        }));
-        setDevelopers(result1);
-        setAllDevelopers(result1);
-        setSelectedDevelopers(result1[index1]);
-        result1.forEach((itm) => {
-          devMap[itm.email] = {
-            name: itm.name,
-            id: itm.id,
-          };
+      // .then(async function (snapshot) {
+      //   let messageObject = snapshot;
+      //   const result1 = Object.keys(messageObject).map((key) => ({
+      //     ...messageObject[key],
+      //     id: key,
+      //   }));
+      //   setDevelopers(result1);
+      //   setAllDevelopers(result1);
+      //   setSelectedDevelopers(result1[index1]);
+      //   result1.forEach((itm) => {
+      //     devMap[itm.email] = {
+      //       name: itm.name,
+      //       id: itm.id,
+      //     };
+      //   });
+      //   setDevHash(devMap);
+      // })
+      .then((snapshot) => {
+        var data = [];
+        if (snapshot.docs.length > 0) {
+          // console.log(snapshot.docs)
+          snapshot.docs.forEach((doc) => {
+            data.push({
+              ...doc.data(),
+              id: doc.id
+            });
+          });
+          setDevelopers(data);
+          setAllDevelopers(data);
+          setSelectedDevelopers(data[index1]);
+          data.forEach((itm) => {
+            devMap[itm.email] = {
+              name: itm.name,
+              id: itm.id,
+            };
+          });
+          setDevHash(devMap);
         }
-        );
-        setDevHash(devMap);
       })
       .catch(function (error) {
         alert("Something went wrong. Please try again after some time.");
@@ -156,6 +200,7 @@ export const ProjectProvider = ({ children }) => {
       setLoading(false);
     }
   };
+  // console.log(projects, developers);
   return (
     <ProjectContext.Provider
       value={{
