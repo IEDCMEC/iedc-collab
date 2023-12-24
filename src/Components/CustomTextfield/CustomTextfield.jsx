@@ -1,6 +1,6 @@
 import React from "react";
 import { Box, Typography, Drawer, Button, TextField } from "@mui/material";
-const FormSample = ({
+const CustomTextfield = ({
   id,
   label,
   height,
@@ -74,4 +74,4 @@ const FormSample = ({
   );
 };
 
-export default FormSample;
+export default CustomTextfield;

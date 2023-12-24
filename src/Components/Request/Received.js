@@ -18,63 +18,67 @@ import ConfirmEmail from "../ConfirmEmail/ConfirmEmail";
 function Received({ request }) {
   const history = useHistory();
   const { fetchRequestsRecieved } = useContext(ProjectContext);
-//   async function handleRequest() {
-//     await acceptRequest(request).then(() => {
-//       toast("Request Accepted");
-//       fetchRequestsRecieved().then(() => {
-//         axios.post(emailUrl, {
-//           toEmail: request.sender_email,
-//           subject: `Request Accepted by ${request.receiver} from IEDC Collab`,
-//           content: renderEmail(
-//             <ConfirmEmail request={request} status={"accepted"} />
-//           ),
-//         });
-//       });
-//     });
-//   }
-//   async function handleInvite() {
-//     await acceptInvite(request).then(() => {
-//       toast("Invite Accepted");
-//       fetchRequestsRecieved().then(() => {
-//         axios.post(emailUrl, {
-//           toEmail: request.sender_email,
-//           subject: `Invite Accepted by ${request.receiver} from IEDC Collab`,
-//           content: renderEmail(
-//             <ConfirmEmail request={request} status={"accepted"} />
-//           ),
-//         });
-//       });
-//     });
-//   }
-//   async function handleDeclineRequest() {
-//     if (request.type === "invite") {
-//       await declineRequest(request).then(() => {
-//         toast("Invite Declined");
-//         fetchRequestsRecieved().then(() => {
-//           axios.post(emailUrl, {
-//             toEmail: request.sender_email,
-//             subject: `Invite Declined by ${request.receiver} from IEDC Collab`,
-//             content: renderEmail(
-//               <ConfirmEmail request={request} status={"declined"} />
-//             ),
-//           });
-//         });
-//       });
-//     }
-//     if (request.type === "request")
-//       await declineRequest(request).then(() => {
-//         toast("Request Declined");
-//         fetchRequestsRecieved().then(() => {
-//           axios.post(emailUrl, {
-//             toEmail: request.sender_email,
-//             subject: `Request Declined by ${request.receiver} from IEDC Collab`,
-//             content: renderEmail(
-//               <ConfirmEmail request={request} status={"declined"} />
-//             ),
-//           });
-//         });
-//       });
-//   }
+  async function handleRequest() {
+    await acceptRequest(request).then(() => {
+      toast("Request Accepted");
+      fetchRequestsRecieved()
+      // .then(() => {
+      //   axios.post(emailUrl, {
+      //     toEmail: request.sender_email,
+      //     subject: `Request Accepted by ${request.receiver} from IEDC Collab`,
+      //     content: renderEmail(
+      //       <ConfirmEmail request={request} status={"accepted"} />
+      //     ),
+      //   });
+      // });
+    });
+  }
+  async function handleInvite() {
+    await acceptInvite(request).then(() => {
+      toast("Invite Accepted");
+      fetchRequestsRecieved()
+      // .then(() => {
+      //   axios.post(emailUrl, {
+      //     toEmail: request.sender_email,
+      //     subject: `Invite Accepted by ${request.receiver} from IEDC Collab`,
+      //     content: renderEmail(
+      //       <ConfirmEmail request={request} status={"accepted"} />
+      //     ),
+      //   });
+      // });
+    });
+  }
+  async function handleDeclineRequest() {
+    if (request.type === "invite") {
+      await declineRequest(request).then(() => {
+        toast("Invite Declined");
+        fetchRequestsRecieved()
+        // .then(() => {
+        //   axios.post(emailUrl, {
+        //     toEmail: request.sender_email,
+        //     subject: `Invite Declined by ${request.receiver} from IEDC Collab`,
+        //     content: renderEmail(
+        //       <ConfirmEmail request={request} status={"declined"} />
+        //     ),
+        //   });
+        // });
+      });
+    }
+    if (request.type === "request")
+      await declineRequest(request).then(() => {
+        toast("Request Declined");
+        fetchRequestsRecieved()
+        // .then(() => {
+        //   axios.post(emailUrl, {
+        //     toEmail: request.sender_email,
+        //     subject: `Request Declined by ${request.receiver} from IEDC Collab`,
+        //     content: renderEmail(
+        //       <ConfirmEmail request={request} status={"declined"} />
+        //     ),
+        //   });
+        // });
+      });
+  }
   return (
     <div className="received_sent_box">
       <div className="received_bpx_header">
@@ -127,10 +131,10 @@ function Received({ request }) {
                 className="received_btn_accept"
                 onClick={() => {
                   if (request.type === "request") {
-                    // handleRequest();
+                    handleRequest();
                   }
                   if (request.type === "invite") {
-                    // handleInvite();
+                    handleInvite();
                   }
                 }}
               >
@@ -140,7 +144,7 @@ function Received({ request }) {
               <div
                 className="received_btn_decline"
                 onClick={() => {
-                  // handleDeclineRequest();
+                  handleDeclineRequest();
                 }}
               >
                 <RiDeleteBin6Line size={25} />

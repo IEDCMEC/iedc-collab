@@ -64,35 +64,35 @@ const InviteToProjectModal = ({ user, selectedUser, ...props }) => {
       },
     },
   });
-  // async function handleSubmit() {
-  //   let data = {
-  //     sender: user.displayName,
-  //     sender_id: user.uid,
-  //     sender_email: user.email,
-  //     sender_img: user.photoURL,
-  //     reciever_email: selectedUser.email,
-  //     receiver: selectedUser.name,
-  //     reciever_img:
-  //       selectedUser.photoURL ||
-  //       "https://sabt.center/wp-content/uploads/2014/08/avatar-1.png",
-  //     receiver_id: selectedUser._id,
-  //     project_id: project.id,
-  //     project: project.name,
-  //     status: "pending",
-  //     message: message,
-  //     createdAt: Date.now(),
-  //   };
-  //   await sendInvite(data).then(() => {
-  //     toast("Invite Sent Successfully");
-  //     fetchRequests();
-  //   });
-  //   await axios.post(emailUrl, {
-  //     toEmail: selectedUser.email,
-  //     subject: `Invite to join project ${project.name} from IEDC Collab`,
-  //     // content: message,
-  //     content: renderEmail(<Email request={data} />),
-  //   });
-  // }
+  async function handleSubmit() {
+    let data = {
+      sender: user.displayName,
+      sender_id: user.uid,
+      sender_email: user.email,
+      sender_img: user.photoURL,
+      reciever_email: selectedUser.email,
+      receiver: selectedUser.name,
+      reciever_img:
+        selectedUser.photoURL ||
+        "https://sabt.center/wp-content/uploads/2014/08/avatar-1.png",
+      receiver_id: selectedUser._id,
+      project_id: project.id,
+      project: project.name,
+      status: "pending",
+      message: message,
+      createdAt: Date.now(),
+    };
+    await sendInvite(data).then(() => {
+      toast("Invite Sent Successfully");
+      fetchRequests();
+    });
+    // await axios.post(emailUrl, {
+    //   toEmail: selectedUser.email,
+    //   subject: `Invite to join project ${project.name} from IEDC Collab`,
+    //   // content: message,
+    //   content: renderEmail(<Email request={data} />),
+    // });
+  }
 
   const getWorks = async () => {
     // await getProjects().then(async function (snapshot) {
@@ -138,7 +138,7 @@ const InviteToProjectModal = ({ user, selectedUser, ...props }) => {
         <RiCloseLine size={38} color="#9e0000" />
       </div>
       <DialogContent className="invite-to-project-modal__body">
-        <form >{/*onSubmit={handleSubmit}*/ }
+        <form onSubmit={handleSubmit}>{/**/ }
           <h1 className="join-team-modal__title">Invite To Project</h1>
           <div className="invite-project-name">
             <ThemeProvider theme={theme}>

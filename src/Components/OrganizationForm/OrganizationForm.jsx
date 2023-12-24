@@ -2,7 +2,7 @@ import React from "react";
 import { useContext } from "react";
 import { ProjectContext } from "../../contexts/ProjectContext";
 import { Box, Button, Typography } from "@mui/material";
-import FormSample from "../FormSample/FormSample";
+import CustomTextfield from "../CustomTextfield/CustomTextfield";
 import { Modal } from "@mui/base/Modal";
 import { Dialog } from "@mui/material";
 import Backdrop from "@mui/material/Backdrop";
@@ -26,7 +26,7 @@ const OrganizationForm = ({ openModal, setOpenModal }) => {
         autoClose: 2000,
       });
     });
-    
+
   };
   const handleClose = (event, reason) => {
     if ((reason === "backdropClick") | "escapeKeyDown") {
@@ -159,7 +159,7 @@ const OrganizationForm = ({ openModal, setOpenModal }) => {
               >
                 Describe your organization
               </Typography>
-              <FormSample
+              <CustomTextfield
                 id={"desc"}
                 label={"Description"}
                 minRows={4}
@@ -200,7 +200,7 @@ const OrganizationForm = ({ openModal, setOpenModal }) => {
               >
                 Where is your organization located?
               </Typography>
-              <FormSample
+              <CustomTextfield
                 id={"address"}
                 label={"Address"}
                 minRows={4}
@@ -241,7 +241,7 @@ const OrganizationForm = ({ openModal, setOpenModal }) => {
               >
                 What's your Company website?
               </Typography>
-              <FormSample
+              <CustomTextfield
                 id={"website"}
                 label={"Company Website"}
                 type={"url"}
@@ -292,7 +292,7 @@ const OrganizationForm = ({ openModal, setOpenModal }) => {
               >
                 Enter your LinkedIn profile
               </Typography>
-              <FormSample
+              <CustomTextfield
                 id={"linkedin"}
                 label={"LinkedIn"}
                 type={"url"}
@@ -332,7 +332,7 @@ const OrganizationForm = ({ openModal, setOpenModal }) => {
               >
                 Enter District
               </Typography>
-              <FormSample
+              <CustomTextfield
                 id={"district"}
                 label={"District"}
                 type={"string"}
@@ -372,7 +372,7 @@ const OrganizationForm = ({ openModal, setOpenModal }) => {
               >
                 Enter State
               </Typography>
-              <FormSample
+              <CustomTextfield
                 id={"state"}
                 label={"State"}
                 type={"string"}
