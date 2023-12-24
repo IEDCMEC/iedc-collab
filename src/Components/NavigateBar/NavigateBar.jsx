@@ -11,19 +11,37 @@ import { FaHome } from "react-icons/fa";
 import { Menu, MenuItem, MenuButton } from "@szhsin/react-menu";
 import "@szhsin/react-menu/dist/index.css";
 import "@szhsin/react-menu/dist/transitions/slide.css";
-
 import meclogo from "../../assets/meclogo.png";
 import { HiOutlineMenuAlt3 } from "react-icons/hi";
+import SignupOptions from "../SignupOptions/SignupOptions";
 
 const Navbar = () => {
   const [showProjectModal, setShowProjectModal] = useState(false);
+  const [openModal, setOpenModal] = useState(false);
   const { currentUser } = useContext(AuthContext);
   const {
     handleSearch,
     handleSearchDevelopers,
     profile,
     fetchUserProfile,
+    setProfile,
+    role,
   } = useContext(ProjectContext);
+  console.log(profile);
+  function handleRole() {
+    if (profile === null) {
+      setOpenModal(false);
+    } else {
+      const keys = profile && Object.keys(profile);
+      console.log(keys.includes("role"))
+      if (!keys.includes("role")) {
+        setOpenModal(true);
+      }
+    }
+  }
+  useEffect(() => {
+    handleRole()
+  }, [profile]);
   const history = useHistory();
   const [open1, setOpen1] = useState(false);
   const location = useLocation();
@@ -163,14 +181,16 @@ const Navbar = () => {
               </div>
             )}
             {location.pathname.split("/")[1] === "profile" && (
-              <div
-              className="NavigateBar-profilebox mt-2"
-            >
-              <input disabled
-                style={{ borderStyle: "none", outline: "none", backgroundColor: "white"}}
-              ></input>
-              
-            </div>
+              <div className="NavigateBar-profilebox mt-2">
+                <input
+                  disabled
+                  style={{
+                    borderStyle: "none",
+                    outline: "none",
+                    backgroundColor: "white",
+                  }}
+                ></input>
+              </div>
             )}
 
             <div
@@ -227,6 +247,7 @@ const Navbar = () => {
                     onClick={() => {
                       signOut();
                       history.push("/projects");
+                      setProfile(null);
                     }}
                     style={{
                       color: "#9e0000",
@@ -238,7 +259,7 @@ const Navbar = () => {
               ) : (
                 <div
                   className="NavigateBar-Newprobtn css-button"
-                  onClick={signIn}
+                  onClick={() => setOpenModal(!openModal)}
                 >
                   <div className="css-button-text">Sign In To Collab</div>
                 </div>
@@ -361,6 +382,7 @@ const Navbar = () => {
             </Drawer>
           </div>
         ))}
+      <SignupOptions openModal={openModal} setOpenModal={setOpenModal} />
     </>
   );
 };

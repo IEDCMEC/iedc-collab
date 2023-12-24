@@ -223,9 +223,10 @@ export const ProjectProvider = ({ children }) => {
         fetchData,
         fetchDevelpersData,
         fetchUserProfile,
+        setProfile,
         fetchRequests,
         fetchRequestsRecieved,
-        allProjects,
+        allProjects
       }}
     >
       {children}
