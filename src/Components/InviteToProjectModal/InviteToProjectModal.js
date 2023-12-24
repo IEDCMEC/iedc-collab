@@ -138,7 +138,7 @@ const InviteToProjectModal = ({ user, selectedUser, ...props }) => {
         <RiCloseLine size={38} color="#9e0000" />
       </div>
       <DialogContent className="invite-to-project-modal__body">
-        <form onSubmit={handleSubmit}>
+        <form >{/*onSubmit={handleSubmit}*/ }
           <h1 className="join-team-modal__title">Invite To Project</h1>
           <div className="invite-project-name">
             <ThemeProvider theme={theme}>

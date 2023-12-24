@@ -98,7 +98,7 @@ const JoinTeamModal = ({ user, project, ...props }) => {
           <RiCloseLine size={38} color="#9e0000" />
         </div>
         <DialogContent className="join-team-modal__body">
-          <form onSubmit={onSubmit}>
+          <form >{/*onSubmit={onSubmit}*/}
             <h1 className="join-team-modal__title">Join Project Request</h1>
             <div className="message">
               <p className="message__label">Message</p>
