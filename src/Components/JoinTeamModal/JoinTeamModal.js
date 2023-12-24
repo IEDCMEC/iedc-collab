@@ -11,7 +11,7 @@ import { ProjectContext } from "../../contexts/ProjectContext";
 import { RiCloseLine } from "react-icons/ri";
 import { IoPaperPlaneSharp } from "react-icons/io5";
 import { Dialog, DialogContent, useMediaQuery, useTheme } from "@mui/material";
-import { renderEmail } from "react-html-email";
+// import { renderEmail } from "react-html-email";
 import Email from "../Email/Email";
 import { emailUrl } from "../../Utils/urls";
 
@@ -20,39 +20,39 @@ const JoinTeamModal = ({ user, project, ...props }) => {
   const fullScreen = useMediaQuery(useTheme().breakpoints.down("sm"));
   const { fetchRequests } = useContext(ProjectContext);
 
-  const onSubmit = async () => {
-    let data = {
-      sender: user.displayName,
-      sender_id: user.uid,
-      sender_img: user.photoURL,
-      sender_email: user.email,
-      receiver_email: project.leaderEmail,
-      receiver: project.leader_name,
-      receiver_id: project.leader_id,
-      receiver_img: project.leaderImg,
-      project_id: project.id,
-      project: project.name,
-      status: "pending",
-      message: message,
-      createdAt: Date.now(),
-    };
-    await sendRequest(data).then(() => {
-      fetchRequests();
-      toast("Request Sent Successfully");
-    });
-    try {
-      await axios.post(
-        emailUrl,
-        {
-          toEmail: project.leaderEmail,
-          subject: `Request to Join Team of ${project.name} from IEDC Collab`,
-          content: renderEmail(<Email request={data} />),
-        }
-      );
-    } catch (err) {
-      console.log(err);
-    }
-  };
+  // const onSubmit = async () => {
+  //   let data = {
+  //     sender: user.displayName,
+  //     sender_id: user.uid,
+  //     sender_img: user.photoURL,
+  //     sender_email: user.email,
+  //     receiver_email: project.leaderEmail,
+  //     receiver: project.leader_name,
+  //     receiver_id: project.leader_id,
+  //     receiver_img: project.leaderImg,
+  //     project_id: project.id,
+  //     project: project.name,
+  //     status: "pending",
+  //     message: message,
+  //     createdAt: Date.now(),
+  //   };
+  //   await sendRequest(data).then(() => {
+  //     fetchRequests();
+  //     toast("Request Sent Successfully");
+  //   });
+  //   try {
+  //     await axios.post(
+  //       emailUrl,
+  //       {
+  //         toEmail: project.leaderEmail,
+  //         subject: `Request to Join Team of ${project.name} from IEDC Collab`,
+  //         content: renderEmail(<Email request={data} />),
+  //       }
+  //     );
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // };
   return (
     <>
       <Dialog
@@ -114,7 +114,7 @@ const JoinTeamModal = ({ user, project, ...props }) => {
               className="btn"
               onClick={(event) => {
                 event.preventDefault();
-                onSubmit();
+                // onSubmit();
                 props.onClose();
               }}
             >

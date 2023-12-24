@@ -3,7 +3,7 @@ import firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/database";
 import "firebase/firestore";
-import { renderEmail } from "react-html-email";
+// import { renderEmail } from "react-html-email";
 import InviteEmail from "../Components/InviteEmail/InviteEmail";
 import { emailUrl } from "../Utils/urls";
 
@@ -118,17 +118,17 @@ export const doCreateProject = async (
       console.log("Project added successfully");
       onSuccess("ADD");
 
-      projectData.teamMembers.forEach(async (member) => {
-        if (!developers.some((dev) => dev.email === member)) {
-          await axios.post(emailUrl, {
-            toEmail: member,
-            subject: "Invitation to join IEDC Collab",
-            content: renderEmail(
-              <InviteEmail data={projectData} member={member} />
-            ),
-          });
-        }
-      });
+      // projectData.teamMembers.forEach(async (member) => {
+      //   if (!developers.some((dev) => dev.email === member)) {
+      //     await axios.post(emailUrl, {
+      //       toEmail: member,
+      //       subject: "Invitation to join IEDC Collab",
+      //       content: renderEmail(
+      //         <InviteEmail data={projectData} member={member} />
+      //       ),
+      //     });
+      //   }
+      // });
     } else {
       const createdAt = Date.now();
       var projectData = {
@@ -150,17 +150,17 @@ export const doCreateProject = async (
       console.log("Project added successfully");
       onSuccess("ADD");
 
-      projectData.teamMembers.forEach(async (member) => {
-        if (!developers.some((dev) => dev.email === member)) {
-          await axios.post(emailUrl, {
-            toEmail: member,
-            subject: "Invitation to join IEDC Collab",
-            content: renderEmail(
-              <InviteEmail data={projectData} member={member} />
-            ),
-          });
-        }
-      });
+      // projectData.teamMembers.forEach(async (member) => {
+      //   if (!developers.some((dev) => dev.email === member)) {
+      //     await axios.post(emailUrl, {
+      //       toEmail: member,
+      //       subject: "Invitation to join IEDC Collab",
+      //       content: renderEmail(
+      //         <InviteEmail data={projectData} member={member} />
+      //       ),
+      //     });
+      //   }
+      // });
     }
   } catch (err) {
     console.log("Something went wrong");
@@ -259,17 +259,17 @@ export const doEditProject = async (
       await projectRef.set(projectData);
       console.log("Project edited sucessfully");
       onSuccess("EDIT");
-      projectData.teamMembers.forEach(async (member) => {
-        if (!developers.some((dev) => dev.email === member)) {
-          await axios.post(emailUrl, {
-            toEmail: member,
-            subject: "Invitation to join IEDC Collab",
-            content: renderEmail(
-              <InviteEmail data={projectData} member={member} />
-            ),
-          });
-        }
-      });
+      // projectData.teamMembers.forEach(async (member) => {
+      //   if (!developers.some((dev) => dev.email === member)) {
+      //     await axios.post(emailUrl, {
+      //       toEmail: member,
+      //       subject: "Invitation to join IEDC Collab",
+      //       content: renderEmail(
+      //         <InviteEmail data={projectData} member={member} />
+      //       ),
+      //     });
+      //   }
+      // });
     } catch (error) {
       alert(
         "Something went wrong during edit. Please try againg after some time"
