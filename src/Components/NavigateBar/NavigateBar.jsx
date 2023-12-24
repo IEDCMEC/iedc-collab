@@ -14,6 +14,7 @@ import "@szhsin/react-menu/dist/transitions/slide.css";
 import meclogo from "../../assets/meclogo.png";
 import { HiOutlineMenuAlt3 } from "react-icons/hi";
 import SignupOptions from "../SignupOptions/SignupOptions";
+import OrganizationForm from "../OrganizationForm/OrganizationForm";
 
 const Navbar = () => {
   const [showProjectModal, setShowProjectModal] = useState(false);
@@ -27,20 +28,43 @@ const Navbar = () => {
     setProfile,
     role,
   } = useContext(ProjectContext);
-  console.log(profile);
+  const [companyOpen, setCompanyOpen] = useState(
+    profile?.role && profile?.role === "Organization"
+      ? profile?.description && profile?.description !== ""
+        ? false
+        : true
+      : false
+  );
+  // console.log(profile);
+  // console.log(
+  //   profile?.role && profile?.role === "Organization"
+  //     ? profile?.description && profile?.description !== ""
+  //       ? false
+  //       : true
+  //     : false
+  // );
+  useEffect(() => {
+    setCompanyOpen(
+      profile?.role && profile?.role === "Organization"
+        ? profile?.description && profile?.description !== ""
+          ? false
+          : true
+        : false
+    );
+  }, [profile, companyOpen]);
   function handleRole() {
     if (profile === null) {
       setOpenModal(false);
     } else {
       const keys = profile && Object.keys(profile);
-      console.log(keys.includes("role"))
+      console.log(keys.includes("role"));
       if (!keys.includes("role")) {
         setOpenModal(true);
       }
     }
   }
   useEffect(() => {
-    handleRole()
+    handleRole();
   }, [profile]);
   const history = useHistory();
   const [open1, setOpen1] = useState(false);
@@ -383,6 +407,7 @@ const Navbar = () => {
           </div>
         ))}
       <SignupOptions openModal={openModal} setOpenModal={setOpenModal} />
+      <OrganizationForm openModal={companyOpen} setOpenModal={setCompanyOpen} />
     </>
   );
 };

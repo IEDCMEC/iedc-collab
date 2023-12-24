@@ -20,19 +20,20 @@ const initialize = () => {
   }
 };
 export default initialize;
+
 export const UpdateUserDetails = async (data, onSuccess = () => {}) => {
   const db = firebase.firestore();
   const user = firebase.auth().currentUser;
   const obj = data[0];
   const myrole = data[1];
   if (!user) {
-    signIn(myrole)
+    signIn(myrole);
     return;
   }
   // console.log(obj.profilePhoto);
   const storage = firebase.storage();
   try {
-    console.log(obj,myrole,data)
+    console.log(obj, myrole, data);
     if (obj.profilePhoto && typeof obj.profilePhoto !== "string") {
       const photoRef = storage.ref(`profilePhoto/${user.uid}`);
       const newPhotoSnapshot = await photoRef.put(obj.profilePhoto);
@@ -49,7 +50,7 @@ export const UpdateUserDetails = async (data, onSuccess = () => {}) => {
         available: true,
         createdAt,
         updatedAt: createdAt,
-        role: myrole
+        role: myrole,
       };
 
       await db.collection("users").doc(user.uid).set(userData);
@@ -68,7 +69,7 @@ export const UpdateUserDetails = async (data, onSuccess = () => {}) => {
         available: true,
         createdAt,
         updatedAt: createdAt,
-        role: myrole
+        role: myrole,
       };
 
       await db.collection("users").doc(user.uid).set(userData);
@@ -80,8 +81,37 @@ export const UpdateUserDetails = async (data, onSuccess = () => {}) => {
     console.log(err);
   }
 };
+
+export const updateCompanyDetails = async (data, onSuccess = () => {}) => {
+  const details = { ...data[0], ...data[1] };
+  // console.log(details)
+  const user = firebase.auth().currentUser;
+  if (!user) {
+    alert("Please login to add a project");
+    return;
+  }
+  // console.log(obj.profilePhoto);
+  const db = firebase.firestore();
+  const storage = firebase.storage();
+  try {
+    const createdAt = Date.now();
+      const userData = {
+        ...details,
+        createdAt,
+        updatedAt: createdAt,
+      };
+
+      await db.collection("users").doc(user.uid).set(userData);
+
+      console.log("User profile updated successfully");
+      onSuccess("ADD");
+  } catch (err) {
+    console.log(err)
+  }
+};
 // Authentication functions
-export const signIn = async (myrole) => { //onSigninSuccess = () => {}
+export const signIn = async (myrole) => {
+  //onSigninSuccess = () => {}
   const provider = new firebase.auth.GoogleAuthProvider();
   provider.setCustomParameters({
     prompt: "select_account",
@@ -104,7 +134,7 @@ export const signIn = async (myrole) => { //onSigninSuccess = () => {}
         last_name: user.displayName.split(" ").slice(1).join(" "),
         email: user.email,
         profilePhoto: user.photoURL,
-        role: myrole
+        role: myrole,
       };
 
       await userRef.set(userData);

@@ -57,7 +57,7 @@ const SignupOptions = ({ openModal, setOpenModal }) => {
     >
       <Box
         sx={{
-          fontFamily: "'IBM Plex Sans', sans-serif",
+          fontFamily: "Nunito",
           height: "300px",
           width: { xs: "45vw", md: "50vw", lg: "40vw" },
           position: "fixed",
