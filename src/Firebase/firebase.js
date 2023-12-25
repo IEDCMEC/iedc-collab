@@ -1,12 +1,8 @@
-import axios from "axios";
 import firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/database";
 import "firebase/firestore";
-import { renderEmail } from "react-html-email";
-import InviteEmail from "../Components/InviteEmail/InviteEmail";
-import { emailUrl } from "../Utils/urls";
-
+// import { renderEmail } from "react-html-email";
 const config = {
   apiKey: process.env.REACT_APP_FB_API_KEY,
   authDomain: process.env.REACT_APP_AUTH_DOMAIN,
@@ -25,8 +21,97 @@ const initialize = () => {
 };
 export default initialize;
 
+export const UpdateUserDetails = async (data, onSuccess = () => {}) => {
+  const db = firebase.firestore();
+  const user = firebase.auth().currentUser;
+  const obj = data[0];
+  const myrole = data[1];
+  if (!user) {
+    signIn(myrole);
+    return;
+  }
+  // console.log(obj.profilePhoto);
+  const storage = firebase.storage();
+  try {
+    console.log(obj, myrole, data);
+    if (obj.profilePhoto && typeof obj.profilePhoto !== "string") {
+      const photoRef = storage.ref(`profilePhoto/${user.uid}`);
+      const newPhotoSnapshot = await photoRef.put(obj.profilePhoto);
+      const photoUrl = await newPhotoSnapshot.ref.getDownloadURL();
+
+      const createdAt = Date.now();
+      const userData = {
+        ...obj,
+        profilePhoto: photoUrl,
+        profilePhotoName: obj.profilePhotoName || "",
+        name: user.displayName,
+        first_name: user.displayName.split(" ").shift(),
+        last_name: user.displayName.split(" ").slice(1).join(" "),
+        available: true,
+        createdAt,
+        updatedAt: createdAt,
+        role: myrole,
+      };
+
+      await db.collection("users").doc(user.uid).set(userData);
+
+      console.log("User profile updated successfully");
+      onSuccess("ADD");
+    } else {
+      const createdAt = Date.now();
+      const userData = {
+        ...obj,
+        profilePhoto: obj.profilePhoto || user.providerData[0]?.photoURL,
+        name: user.displayName,
+        first_name: user.displayName.split(" ").shift(),
+        last_name: user.displayName.split(" ").slice(1).join(" "),
+        projectPhotoName: "Default Image",
+        available: true,
+        createdAt,
+        updatedAt: createdAt,
+        role: myrole,
+      };
+
+      await db.collection("users").doc(user.uid).set(userData);
+
+      console.log("User profile updated successfully");
+      onSuccess("ADD");
+    }
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export const updateCompanyDetails = async (data, onSuccess = () => {}) => {
+  const details = { ...data[0], ...data[1] };
+  // console.log(details)
+  const user = firebase.auth().currentUser;
+  if (!user) {
+    alert("Please login to add a project");
+    return;
+  }
+  // console.log(obj.profilePhoto);
+  const db = firebase.firestore();
+  const storage = firebase.storage();
+  try {
+    const createdAt = Date.now();
+      const userData = {
+        ...details,
+        createdAt,
+        updatedAt: createdAt,
+      };
+
+      await db.collection("users").doc(user.uid).set(userData);
+
+      console.log("User profile updated successfully");
+      onSuccess("ADD");
+  } catch (err) {
+    console.log(err)
+  }
+};
 // Authentication functions
-export const signIn = async (onSigninSuccess = () => {}) => {
+export const signIn = async (myrole) => {
+  //onSigninSuccess = () => {}
   const provider = new firebase.auth.GoogleAuthProvider();
   provider.setCustomParameters({
     prompt: "select_account",
@@ -49,14 +134,15 @@ export const signIn = async (onSigninSuccess = () => {}) => {
         last_name: user.displayName.split(" ").slice(1).join(" "),
         email: user.email,
         profilePhoto: user.photoURL,
+        role: myrole,
       };
 
       await userRef.set(userData);
       console.log("user added successfully");
     }
   } catch (error) {
-    alert("Something is wrong, please check network connection");
     console.log(error);
+    alert("Something is wrong, please check network connection");
   }
 };
 
@@ -118,17 +204,17 @@ export const doCreateProject = async (
       console.log("Project added successfully");
       onSuccess("ADD");
 
-      projectData.teamMembers.forEach(async (member) => {
-        if (!developers.some((dev) => dev.email === member)) {
-          await axios.post(emailUrl, {
-            toEmail: member,
-            subject: "Invitation to join IEDC Collab",
-            content: renderEmail(
-              <InviteEmail data={projectData} member={member} />
-            ),
-          });
-        }
-      });
+      // projectData.teamMembers.forEach(async (member) => {
+      //   if (!developers.some((dev) => dev.email === member)) {
+      //     await axios.post(emailUrl, {
+      //       toEmail: member,
+      //       subject: "Invitation to join IEDC Collab",
+      //       content: renderEmail(
+      //         <InviteEmail data={projectData} member={member} />
+      //       ),
+      //     });
+      //   }
+      // });
     } else {
       const createdAt = Date.now();
       var projectData = {
@@ -150,17 +236,17 @@ export const doCreateProject = async (
       console.log("Project added successfully");
       onSuccess("ADD");
 
-      projectData.teamMembers.forEach(async (member) => {
-        if (!developers.some((dev) => dev.email === member)) {
-          await axios.post(emailUrl, {
-            toEmail: member,
-            subject: "Invitation to join IEDC Collab",
-            content: renderEmail(
-              <InviteEmail data={projectData} member={member} />
-            ),
-          });
-        }
-      });
+      // projectData.teamMembers.forEach(async (member) => {
+      //   if (!developers.some((dev) => dev.email === member)) {
+      //     await axios.post(emailUrl, {
+      //       toEmail: member,
+      //       subject: "Invitation to join IEDC Collab",
+      //       content: renderEmail(
+      //         <InviteEmail data={projectData} member={member} />
+      //       ),
+      //     });
+      //   }
+      // });
     }
   } catch (err) {
     console.log("Something went wrong");
@@ -259,17 +345,17 @@ export const doEditProject = async (
       await projectRef.set(projectData);
       console.log("Project edited sucessfully");
       onSuccess("EDIT");
-      projectData.teamMembers.forEach(async (member) => {
-        if (!developers.some((dev) => dev.email === member)) {
-          await axios.post(emailUrl, {
-            toEmail: member,
-            subject: "Invitation to join IEDC Collab",
-            content: renderEmail(
-              <InviteEmail data={projectData} member={member} />
-            ),
-          });
-        }
-      });
+      // projectData.teamMembers.forEach(async (member) => {
+      //   if (!developers.some((dev) => dev.email === member)) {
+      //     await axios.post(emailUrl, {
+      //       toEmail: member,
+      //       subject: "Invitation to join IEDC Collab",
+      //       content: renderEmail(
+      //         <InviteEmail data={projectData} member={member} />
+      //       ),
+      //     });
+      //   }
+      // });
     } catch (error) {
       alert(
         "Something went wrong during edit. Please try againg after some time"
@@ -366,36 +452,30 @@ export const getDevelopers = () => {
 export const getProject = (project_id) => {
   var data = [];
   const db = firebase.firestore();
-  const project = db
-    .collection("projects")
-    .doc(project_id)
-    .get()
-    // .then((snapshot) => {
-    //   // if (snapshot.docs.length > 0) {
-    //    data = snapshot.data()
-    //    console.log(snapshot.data())
-    //   // }
-    // });
-    // console.log(data)
+  const project = db.collection("projects").doc(project_id).get();
+  // .then((snapshot) => {
+  //   // if (snapshot.docs.length > 0) {
+  //    data = snapshot.data()
+  //    console.log(snapshot.data())
+  //   // }
+  // });
+  // console.log(data)
   return project;
 };
 
 export const getUser = async (user_id) => {
   // let data;
   const db = firebase.firestore();
-  return await db
-    .collection("users")
-    .doc(user_id)
-    .get()
-    // .then((snapshot) => {
-    //   // if (snapshot.docs.length > 0) {
-    //   //   snapshot.docs.forEach((doc) => {
-    //   //     data.push(doc.data());
-    //   //   });
-    //   // }
-    //   // console.log(snapshot.data())
-    //  data = snapshot.data();
-    // });
+  return await db.collection("users").doc(user_id).get();
+  // .then((snapshot) => {
+  //   // if (snapshot.docs.length > 0) {
+  //   //   snapshot.docs.forEach((doc) => {
+  //   //     data.push(doc.data());
+  //   //   });
+  //   // }
+  //   // console.log(snapshot.data())
+  //  data = snapshot.data();
+  // });
   // console.log(user)
   // return data;
 };

@@ -11,7 +11,7 @@ import { ProjectContext } from "../../contexts/ProjectContext";
 import { RiCloseLine } from "react-icons/ri";
 import { IoPaperPlaneSharp } from "react-icons/io5";
 import { Dialog, DialogContent, useMediaQuery, useTheme } from "@mui/material";
-import { renderEmail } from "react-html-email";
+// import { renderEmail } from "react-html-email";
 import Email from "../Email/Email";
 import { emailUrl } from "../../Utils/urls";
 
@@ -40,18 +40,18 @@ const JoinTeamModal = ({ user, project, ...props }) => {
       fetchRequests();
       toast("Request Sent Successfully");
     });
-    try {
-      await axios.post(
-        emailUrl,
-        {
-          toEmail: project.leaderEmail,
-          subject: `Request to Join Team of ${project.name} from IEDC Collab`,
-          content: renderEmail(<Email request={data} />),
-        }
-      );
-    } catch (err) {
-      console.log(err);
-    }
+    // try {
+    //   await axios.post(
+    //     emailUrl,
+    //     {
+    //       toEmail: project.leaderEmail,
+    //       subject: `Request to Join Team of ${project.name} from IEDC Collab`,
+    //       content: renderEmail(<Email request={data} />),
+    //     }
+    //   );
+    // } catch (err) {
+    //   console.log(err);
+    // }
   };
   return (
     <>
@@ -98,7 +98,7 @@ const JoinTeamModal = ({ user, project, ...props }) => {
           <RiCloseLine size={38} color="#9e0000" />
         </div>
         <DialogContent className="join-team-modal__body">
-          <form onSubmit={onSubmit}>
+          <form onSubmit={onSubmit}>{/**/}
             <h1 className="join-team-modal__title">Join Project Request</h1>
             <div className="message">
               <p className="message__label">Message</p>
@@ -114,7 +114,7 @@ const JoinTeamModal = ({ user, project, ...props }) => {
               className="btn"
               onClick={(event) => {
                 event.preventDefault();
-                onSubmit();
+                // onSubmit();
                 props.onClose();
               }}
             >

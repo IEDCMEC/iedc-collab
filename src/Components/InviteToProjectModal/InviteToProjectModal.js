@@ -29,7 +29,7 @@ import { RiCloseLine } from "react-icons/ri";
 import { IoPaperPlaneSharp } from "react-icons/io5";
 import { useTheme } from "@emotion/react";
 import Email from "../Email/Email";
-import { renderEmail } from "react-html-email";
+// import { renderEmail } from "react-html-email";
 
 const InviteToProjectModal = ({ user, selectedUser, ...props }) => {
   // const [projects, setProjects] = useState([]);
@@ -86,12 +86,12 @@ const InviteToProjectModal = ({ user, selectedUser, ...props }) => {
       toast("Invite Sent Successfully");
       fetchRequests();
     });
-    await axios.post(emailUrl, {
-      toEmail: selectedUser.email,
-      subject: `Invite to join project ${project.name} from IEDC Collab`,
-      // content: message,
-      content: renderEmail(<Email request={data} />),
-    });
+    // await axios.post(emailUrl, {
+    //   toEmail: selectedUser.email,
+    //   subject: `Invite to join project ${project.name} from IEDC Collab`,
+    //   // content: message,
+    //   content: renderEmail(<Email request={data} />),
+    // });
   }
 
   const getWorks = async () => {
@@ -138,7 +138,7 @@ const InviteToProjectModal = ({ user, selectedUser, ...props }) => {
         <RiCloseLine size={38} color="#9e0000" />
       </div>
       <DialogContent className="invite-to-project-modal__body">
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit}>{/**/ }
           <h1 className="join-team-modal__title">Invite To Project</h1>
           <div className="invite-project-name">
             <ThemeProvider theme={theme}>
@@ -207,7 +207,7 @@ const InviteToProjectModal = ({ user, selectedUser, ...props }) => {
             className="btn"
             onClick={(event) => {
               event.preventDefault();
-              handleSubmit();
+              // handleSubmit();
               props.onClose();
             }}
           >

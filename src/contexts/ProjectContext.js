@@ -23,7 +23,22 @@ export const ProjectProvider = ({ children }) => {
   const [requestsRecieved, setRequestsRecieved] = useState([]);
   const [loading, setLoading] = useState(false);
   const [devHash, setDevHash] = useState({});
-
+  const [companyDetails, setCompanyDetails] = useState({
+    // name: profile?.name || "",
+    description: "",
+    // company_logo: profile?.profilePhoto || "",
+    // role: profile?.role ? profile.role : "Organization",
+    website: "",
+    address: "",
+    // phone: profile?.contact || "",
+    // github: "",
+    linkedin: "",
+    // email: profile?.email || "",
+    district: "",
+    state: "",
+    approved: false,
+    deleted: false,
+  });
   const fetchData = (state) => {
     let index = 0;
     switch (state) {
@@ -79,10 +94,10 @@ export const ProjectProvider = ({ children }) => {
   const fetchUserProfile = async () => {
     if (currentUser) {
       setLoading(true);
-      getUser(currentUser?.uid).then((snapshot)=>{
-        setProfile(snapshot.data())
+      getUser(currentUser?.uid).then((snapshot) => {
+        setProfile(snapshot.data());
         // console.log(snapshot.data())
-      })
+      });
       // setProfile(profileUser);
       setLoading(false);
     }
@@ -126,7 +141,7 @@ export const ProjectProvider = ({ children }) => {
           snapshot.docs.forEach((doc) => {
             data.push({
               ...doc.data(),
-              id: doc.id
+              id: doc.id,
             });
           });
           setDevelopers(data);
@@ -223,9 +238,12 @@ export const ProjectProvider = ({ children }) => {
         fetchData,
         fetchDevelpersData,
         fetchUserProfile,
+        setProfile,
         fetchRequests,
         fetchRequestsRecieved,
         allProjects,
+        companyDetails,
+        setCompanyDetails,
       }}
     >
       {children}
