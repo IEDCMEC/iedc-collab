@@ -114,7 +114,7 @@ const JoinTeamModal = ({ user, project, ...props }) => {
               className="btn"
               onClick={(event) => {
                 event.preventDefault();
-                // onSubmit();
+                onSubmit();
                 props.onClose();
               }}
             >
