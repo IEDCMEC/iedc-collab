@@ -192,7 +192,6 @@ export const doCreateProject = async (
       const projectData = {
         ...obj,
         projectPhoto: photoUrl,
-        id: newProjectID,
         projectPhotoName: obj.projectPhotoName || "",
         available: true,
         createdAt,
@@ -234,7 +233,6 @@ export const doCreateProject = async (
         projectPhoto: defaultPhotoUrl,
         projectPhotoName: "Default Image",
         available: true,
-        id: newProjectID,
         createdAt,
         // updatedAt: createdAt,
         leader_id: user.uid,
@@ -515,7 +513,7 @@ export const getProject = async (project_id) => {
   const response = await axios.get(
     `${process.env.REACT_APP_BACKEND_URL}/api/project/${project_id}`
   );
-  console.log(response.data);
+  console.log(response);
   return response.data;
 };
 

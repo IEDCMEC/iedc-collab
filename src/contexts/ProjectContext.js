@@ -64,7 +64,7 @@ export const ProjectProvider = ({ children }) => {
       //   setSelectedProject(result[index]);
       // })
       .then((projects) => {
-        var data = [];
+        // var data = [];
         // console.log(snapshot.docs)
         if (projects.length > 0) {
           // snapshot.docs.forEach((doc) => {
@@ -136,7 +136,7 @@ export const ProjectProvider = ({ children }) => {
       //   setDevHash(devMap);
       // })
       .then((devs) => {
-        var data = [];
+        //var data = [];
         if (devs.length > 0) {
           // console.log(snapshot.docs)
           // devs.forEach((doc) => {
@@ -145,7 +145,6 @@ export const ProjectProvider = ({ children }) => {
           //     id: doc.id,
           //   });
           // });
-          console.log(devs)
           setDevelopers(devs);
           setAllDevelopers(devs);
           setSelectedDevelopers(devs[index1]);
