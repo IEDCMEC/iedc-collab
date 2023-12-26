@@ -75,7 +75,7 @@ const InviteToProjectModal = ({ user, selectedUser, ...props }) => {
       reciever_img:
         selectedUser.photoURL ||
         "https://sabt.center/wp-content/uploads/2014/08/avatar-1.png",
-      receiver_id: selectedUser._id,
+      receiver_id: selectedUser.id,
       project_id: project.id,
       project: project.name,
       status: "pending",
@@ -207,7 +207,7 @@ const InviteToProjectModal = ({ user, selectedUser, ...props }) => {
             className="btn"
             onClick={(event) => {
               event.preventDefault();
-              // handleSubmit();
+               handleSubmit();
               props.onClose();
             }}
           >

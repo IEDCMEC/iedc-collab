@@ -48,6 +48,8 @@ export const UpdateUserDetails = async (data, onSuccess = () => {}) => {
         profilePhoto: photoUrl,
         profilePhotoName: obj.profilePhotoName || "",
         name: user.displayName,
+        uid: user.uid,
+        email: user.email,
         first_name: user.displayName.split(" ").shift(),
         last_name: user.displayName.split(" ").slice(1).join(" "),
         available: true,
@@ -66,6 +68,8 @@ export const UpdateUserDetails = async (data, onSuccess = () => {}) => {
         ...obj,
         profilePhoto: obj.profilePhoto || user.providerData[0]?.photoURL,
         name: user.displayName,
+        uid: user.uid,
+        email: user.email,
         first_name: user.displayName.split(" ").shift(),
         last_name: user.displayName.split(" ").slice(1).join(" "),
         projectPhotoName: "Default Image",
@@ -137,6 +141,7 @@ export const signIn = async (myrole) => {
         last_name: user.displayName.split(" ").slice(1).join(" "),
         email: user.email,
         profilePhoto: user.photoURL,
+        uid: user.uid,
         role: myrole,
       };
 
@@ -619,7 +624,7 @@ export const declineRequest = async (invite) => {
 export const getRequests = async (uid) => {
   try {
     const data = [];
-    const querySnapshot = await firebase
+    await firebase
       .firestore()
       .collection("requests")
       .where("sender_id", "==", uid)
@@ -648,6 +653,7 @@ export const getRequests = async (uid) => {
 };
 export const getRequestsRecieved = async (uid) => {
   try {
+    console.log(uid);
     const querySnapshot = await firebase
       .firestore()
       .collection("requests")
