@@ -288,10 +288,14 @@
   gap: 0.75rem;
   flex-wrap: wrap;
 }
+
 .edit__pro_abtMe,
 .edit__pro_projects,
 .edit__pro_skls,
-.edit__pro_achvmts {
+.edit__pro_achvmts,
+.edit__pro_dstr,
+.edit__pro_state
+ {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -302,8 +306,21 @@
   font-size: 31px;
   line-height: 42px;
   color: #9e0000;
-
   padding-top: 1rem;
+}
+.state-dstr-container{
+  display:flex;
+  flex-direction: row;
+  gap:0.8rem;
+  flex:1;
+  width:88%;
+}
+@media screen and (max-width: 768px) {
+  .state-dstr-container {
+    flex-direction: column; 
+    gap: 0.8rem;
+    width:100%;
+  }
 }
 .edit__pro_projects {
   padding: 3rem;
@@ -321,6 +338,25 @@
 .edit__pro_achvmts_bx {
   display: flex;
   flex-direction: column;
+  font-style: normal;
+  font-weight: 400;
+  padding: 1.2rem;
+  font-size: var(--primary-font);
+  line-height: var(--primary-line);
+  text-align: left;
+  color: #171e22;
+  justify-content: center;
+  background: #ffffff;
+  border: 0.4px solid #9e0000;
+  border-radius: 10px;
+  width: 80%;
+  min-height: 3rem;
+}
+
+.edit__pro_dstr_bx,
+.edit__pro_state_bx{
+  display: flex;
+  flex-direction: row;
   font-style: normal;
   font-weight: 400;
   padding: 1.2rem;
