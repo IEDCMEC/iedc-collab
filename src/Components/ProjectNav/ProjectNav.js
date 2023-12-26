@@ -14,7 +14,7 @@ const ProjectNav = ({ selectedProject }) => {
   const { currentUser } = useContext(AuthContext);
   const getDev = async (id) => {
     // const user = await getUser(id);
-    setUser(await getUser(id).then((snapshot)=>snapshot.data()));
+    setUser(await getUser(id))
     setLoading(false);
   };
   useEffect(() => {
