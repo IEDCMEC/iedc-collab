@@ -34,8 +34,9 @@ function DeveloperDetails() {
   };
   // console.log(id)
   const getDev = async (id) => {
-    let user = await getUser(id).then((snapshot)=>snapshot.data())
-    user = { ...user, _id: id };
+    let user = await getUser(id)
+    // user = { ...user, _id: id };
+    // console.log(user)
     setSelectedUser(user);
     setLoading(false);
   };

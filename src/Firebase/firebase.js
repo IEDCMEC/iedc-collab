@@ -1,8 +1,11 @@
 import firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/database";
+import { parse, stringify } from "flatted";
 import "firebase/firestore";
 // import { renderEmail } from "react-html-email";
+
+import axios from "axios";
 const config = {
   apiKey: process.env.REACT_APP_FB_API_KEY,
   authDomain: process.env.REACT_APP_AUTH_DOMAIN,
@@ -95,18 +98,18 @@ export const updateCompanyDetails = async (data, onSuccess = () => {}) => {
   const storage = firebase.storage();
   try {
     const createdAt = Date.now();
-      const userData = {
-        ...details,
-        createdAt,
-        updatedAt: createdAt,
-      };
+    const userData = {
+      ...details,
+      createdAt,
+      updatedAt: createdAt,
+    };
 
-      await db.collection("users").doc(user.uid).set(userData);
+    await db.collection("users").doc(user.uid).set(userData);
 
-      console.log("User profile updated successfully");
-      onSuccess("ADD");
+    console.log("User profile updated successfully");
+    onSuccess("ADD");
   } catch (err) {
-    console.log(err)
+    console.log(err);
   }
 };
 // Authentication functions
@@ -198,9 +201,18 @@ export const doCreateProject = async (
         leader_name: user.displayName,
         leaderEmail: user.email,
       };
-
-      await newProjectRef.set(projectData);
-
+      const reqid = await user.getIdToken()
+      // console.log(reqid)
+      const response = await axios.post(
+        `https://collab-api.iedcmec.in/api/project/add`,
+        projectData,
+        {
+          headers: {
+            "x-auth-token": reqid
+          },
+        }
+      );
+      console.log(response);
       console.log("Project added successfully");
       onSuccess("ADD");
 
@@ -224,15 +236,29 @@ export const doCreateProject = async (
         available: true,
         id: newProjectID,
         createdAt,
-        updatedAt: createdAt,
+        // updatedAt: createdAt,
         leader_id: user.uid,
         leader_name: user.displayName,
         leaderEmail: user.email,
         leaderImg: user.providerData[0]?.photoURL || null,
       };
-      console.log(projectData);
-      await newProjectRef.set(projectData);
-
+      // console.log(projectData);
+      // await newProjectRef.set(projectData);
+      // console.log(projectData);
+      // const reqdata = JSON.stringify(projectData);
+      // console.log(reqdata);
+      const reqid = await user.getIdToken()
+      // console.log(reqid)
+      const response = await axios.post(
+        `https://collab-api.iedcmec.in/api/project/add`,
+        projectData,
+        {
+          headers: {
+            "x-auth-token": reqid
+          },
+        }
+      );
+      console.log(response);
       console.log("Project added successfully");
       onSuccess("ADD");
 
@@ -342,7 +368,12 @@ export const doEditProject = async (
         leaderEmail: user.email,
         leaderImg: user.providerData[0]?.photoURL || null,
       };
-      await projectRef.set(projectData);
+      // await projectRef.set(projectData);
+      await axios.post(
+        `https://collab-api.iedcmec.in/api/project/edit`,
+        projectData
+      );
+
       console.log("Project edited sucessfully");
       onSuccess("EDIT");
       // projectData.teamMembers.forEach(async (member) => {
@@ -424,7 +455,7 @@ export const doEditProfile = async (obj, onSuccess = () => {}) => {
 };
 export const getProjects = async () => {
   const data = [];
-  const projects = await firebase.firestore().collection("projects").get();
+  // const projects = await firebase.firestore().collection("projects").get();
   // .then((snapshot) => {
   //   if (snapshot.docs.length > 0) {
   //     snapshot.docs.forEach((doc) => {
@@ -432,12 +463,16 @@ export const getProjects = async () => {
   //     });
   //   }
   // });
-  return projects;
+  // console.log(projects)
+  // return projects;
+  const response = await axios.get(`https://collab-api.iedcmec.in/api/project`);
+  // console.log(response.data)
+  return response.data;
 };
-export const getDevelopers = () => {
-  const data = [];
-  const db = firebase.firestore();
-  const users = db.collection("users").get();
+export const getDevelopers = async () => {
+  // const data = [];
+  // const db = firebase.firestore();
+  // const users = db.collection("users").get();
   // .then((snapshot) => {
   //   if (snapshot.docs.length > 0) {
   //     snapshot.docs.forEach((doc) => {
@@ -446,27 +481,37 @@ export const getDevelopers = () => {
   //   }
   // });
   // console.log(data);
-  return users;
+  const response = await axios.get(
+    `https://collab-api.iedcmec.in/api/developer`
+  );
+  // console.log(response.data)
+  return response.data;
+  // return users;
 };
 
-export const getProject = (project_id) => {
-  var data = [];
-  const db = firebase.firestore();
-  const project = db.collection("projects").doc(project_id).get();
-  // .then((snapshot) => {
-  //   // if (snapshot.docs.length > 0) {
-  //    data = snapshot.data()
-  //    console.log(snapshot.data())
-  //   // }
-  // });
-  // console.log(data)
-  return project;
+export const getProject = async (project_id) => {
+  // var data = [];
+  // const db = firebase.firestore();
+  // const project = db.collection("projects").doc(project_id).get();
+  // // .then((snapshot) => {
+  // //   // if (snapshot.docs.length > 0) {
+  // //    data = snapshot.data()
+  // //    console.log(snapshot.data())
+  // //   // }
+  // // });
+  // // console.log(data)
+  // return project;
+  const response = await axios.get(
+    `https://collab-api.iedcmec.in/api/project/${project_id}`
+  );
+  console.log(response.data);
+  return response.data;
 };
 
 export const getUser = async (user_id) => {
   // let data;
-  const db = firebase.firestore();
-  return await db.collection("users").doc(user_id).get();
+  // const db = firebase.firestore();
+  // return await db.collection("users").doc(user_id).get();
   // .then((snapshot) => {
   //   // if (snapshot.docs.length > 0) {
   //   //   snapshot.docs.forEach((doc) => {
@@ -477,6 +522,11 @@ export const getUser = async (user_id) => {
   //  data = snapshot.data();
   // });
   // console.log(user)
+  const response = await axios.get(
+    `https://collab-api.iedcmec.in/api/developer/${user_id}`
+  );
+  // console.log(response.data)
+  return response.data;
   // return data;
 };
 

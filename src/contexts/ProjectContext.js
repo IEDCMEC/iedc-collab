@@ -63,24 +63,25 @@ export const ProjectProvider = ({ children }) => {
       //   setAllProjects(result);
       //   setSelectedProject(result[index]);
       // })
-      .then(async (snapshot) => {
+      .then((projects) => {
         var data = [];
         // console.log(snapshot.docs)
-        if (snapshot.docs.length > 0) {
-          snapshot.docs.forEach((doc) => {
-            data.push(doc.data());
-          });
-          // console.log(data)
-          const result = data.map((value, index) => {
-            return {
-              ...value,
-              id: value.id,
-            };
-          });
-          setProjects(result);
-          setAllProjects(result);
-          // console.log(result);
-          setSelectedProject(result[index]);
+        if (projects.length > 0) {
+          // snapshot.docs.forEach((doc) => {
+          //   data.push(doc.data());
+          // });
+          // // console.log(data)
+          // const result = data.map((value, index) => {
+          //   return {
+          //     ...value,
+          //     id: value.id,
+          //   };
+          // });
+          // console.log(projects)
+          setProjects(projects);
+          setAllProjects(projects);
+          // console.log(projects);
+          setSelectedProject(projects[index]);
         }
       })
       .catch(function (error) {
@@ -94,8 +95,8 @@ export const ProjectProvider = ({ children }) => {
   const fetchUserProfile = async () => {
     if (currentUser) {
       setLoading(true);
-      getUser(currentUser?.uid).then((snapshot) => {
-        setProfile(snapshot.data());
+      getUser(currentUser?.uid).then((profile) => {
+        setProfile(profile);
         // console.log(snapshot.data())
       });
       // setProfile(profileUser);
@@ -134,20 +135,21 @@ export const ProjectProvider = ({ children }) => {
       //   });
       //   setDevHash(devMap);
       // })
-      .then((snapshot) => {
+      .then((devs) => {
         var data = [];
-        if (snapshot.docs.length > 0) {
+        if (devs.length > 0) {
           // console.log(snapshot.docs)
-          snapshot.docs.forEach((doc) => {
-            data.push({
-              ...doc.data(),
-              id: doc.id,
-            });
-          });
-          setDevelopers(data);
-          setAllDevelopers(data);
-          setSelectedDevelopers(data[index1]);
-          data.forEach((itm) => {
+          // devs.forEach((doc) => {
+          //   data.push({
+          //     ...doc,
+          //     id: doc.id,
+          //   });
+          // });
+          console.log(devs)
+          setDevelopers(devs);
+          setAllDevelopers(devs);
+          setSelectedDevelopers(devs[index1]);
+          devs.forEach((itm) => {
             devMap[itm.email] = {
               name: itm.name,
               id: itm.id,
