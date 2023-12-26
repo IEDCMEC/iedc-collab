@@ -201,14 +201,14 @@ export const doCreateProject = async (
         leader_name: user.displayName,
         leaderEmail: user.email,
       };
-      const reqid = await user.getIdToken()
+      const reqid = await user.getIdToken();
       // console.log(reqid)
       const response = await axios.post(
-        `https://collab-api.iedcmec.in/api/project/add`,
+        `${process.env.REACT_APP_BACKEND_URL}/api/project/add`,
         projectData,
         {
           headers: {
-            "x-auth-token": reqid
+            "x-auth-token": reqid,
           },
         }
       );
@@ -247,14 +247,14 @@ export const doCreateProject = async (
       // console.log(projectData);
       // const reqdata = JSON.stringify(projectData);
       // console.log(reqdata);
-      const reqid = await user.getIdToken()
+      const reqid = await user.getIdToken();
       // console.log(reqid)
       const response = await axios.post(
-        `https://collab-api.iedcmec.in/api/project/add`,
+        `${process.env.REACT_APP_BACKEND_URL}/api/project/add`,
         projectData,
         {
           headers: {
-            "x-auth-token": reqid
+            "x-auth-token": reqid,
           },
         }
       );
@@ -369,10 +369,19 @@ export const doEditProject = async (
         leaderImg: user.providerData[0]?.photoURL || null,
       };
       // await projectRef.set(projectData);
-      await axios.post(
-        `https://collab-api.iedcmec.in/api/project/edit`,
-        projectData
+      const reqid = await user.getIdToken();
+
+      const response = await axios.post(
+        `${process.env.REACT_APP_BACKEND_URL}/api/project/add`,
+        projectData,
+        {
+          headers: {
+            "x-auth-token": reqid,
+          },
+        }
       );
+
+      console.log(response);
 
       console.log("Project edited sucessfully");
       onSuccess("EDIT");
@@ -465,7 +474,9 @@ export const getProjects = async () => {
   // });
   // console.log(projects)
   // return projects;
-  const response = await axios.get(`https://collab-api.iedcmec.in/api/project`);
+  const response = await axios.get(
+    `${process.env.REACT_APP_BACKEND_URL}/api/project`
+  );
   // console.log(response.data)
   return response.data;
 };
@@ -482,7 +493,7 @@ export const getDevelopers = async () => {
   // });
   // console.log(data);
   const response = await axios.get(
-    `https://collab-api.iedcmec.in/api/developer`
+    `${process.env.REACT_APP_BACKEND_URL}/api/developer`
   );
   // console.log(response.data)
   return response.data;
@@ -502,7 +513,7 @@ export const getProject = async (project_id) => {
   // // console.log(data)
   // return project;
   const response = await axios.get(
-    `https://collab-api.iedcmec.in/api/project/${project_id}`
+    `${process.env.REACT_APP_BACKEND_URL}/api/project/${project_id}`
   );
   console.log(response.data);
   return response.data;
@@ -523,7 +534,7 @@ export const getUser = async (user_id) => {
   // });
   // console.log(user)
   const response = await axios.get(
-    `https://collab-api.iedcmec.in/api/developer/${user_id}`
+    `${process.env.REACT_APP_BACKEND_URL}/api/developer/${user_id}`
   );
   // console.log(response.data)
   return response.data;
@@ -531,110 +542,81 @@ export const getUser = async (user_id) => {
 };
 
 export const sendInvite = async (data) => {
-  const db = firebase.firestore();
-  const requestId = db.collection("requests").doc().id;
-  try {
-    await db
-      .collection("requests")
-      .doc(requestId)
-      .set({
-        ...data,
-        status: "pending",
-        type: "invite",
-        createdAt: Date.now(),
-      });
+  const user = firebase.auth().currentUser;
+  const reqid = await user.getIdToken();
 
-    console.log("Invite sent successfully");
-  } catch (error) {
-    console.error("Oops! Invite wasn't sent \n more info:", error);
-  }
+  const response = await axios.post(
+    `${process.env.REACT_APP_BACKEND_URL}/api/project/invite`,
+    data,
+    {
+      headers: {
+        "x-auth-token": reqid,
+      },
+    }
+  );
+  console.log(response);
 };
 
 export const sendRequest = async (data) => {
-  const db = firebase.firestore();
-  const requestId = db.collection("requests").doc().id;
-  try {
-    await db
-      .collection("requests")
-      .doc(requestId)
-      .set({
-        ...data,
-        status: "pending",
-        type: "request",
-        createdAt: Date.now(),
-      });
+  const user = firebase.auth().currentUser;
+  const reqid = await user.getIdToken();
 
-    console.log("Request sent successfully");
-  } catch (error) {
-    console.error("Oops! Request wasn't sent \n more info:", error);
-  }
+  const response = await axios.post(
+    `${process.env.REACT_APP_BACKEND_URL}/api/project/join`,
+    data,
+    {
+      headers: {
+        "x-auth-token": reqid,
+      },
+    }
+  );
+  console.log(response);
 };
 
 export const acceptRequest = async (invite) => {
-  try {
-    const projectDoc = await getProject(invite.project_id);
+  const user = firebase.auth().currentUser;
+  const reqid = await user.getIdToken();
 
-    if (projectDoc.exists) {
-      const projectData = projectDoc.data();
-      let users = projectData.teamMembers || [];
-      users.push(invite.sender_email);
-
-      await firebase
-        .firestore()
-        .collection("projects")
-        .doc(invite.project_id)
-        .update({
-          teamMembers: users,
-        });
+  const response = await axios.post(
+    `${process.env.REACT_APP_BACKEND_URL}/api/project/request/accept`,
+    invite,
+    {
+      headers: {
+        "x-auth-token": reqid,
+      },
     }
-
-    //let addProject = await firebase.database().ref("users/").update({projects: firebase.firestore.FieldValue.arrayUnion({name:invite.project, id:invite.project_id})});
-    await firebase.firestore().collection("requests").doc(invite.id).update({
-      status: "accepted",
-    });
-
-    console.log("Request accepted successfully");
-  } catch (error) {
-    console.log("Oops! counldn't accept request \n more info:", error);
-  }
+  );
+  console.log(response);
 };
 export const acceptInvite = async (invite) => {
-  try {
-    const projectDoc = await getProject(invite.project_id);
+  const user = firebase.auth().currentUser;
+  const reqid = await user.getIdToken();
 
-    if (projectDoc.exists) {
-      const projectData = projectDoc.data();
-      let users = projectData.teamMembers || [];
-      users.push(invite.receiver_email);
-
-      await firebase
-        .firestore()
-        .collection("projects")
-        .doc(invite.project_id)
-        .update({
-          teamMembers: users,
-        });
+  const response = await axios.post(
+    `${process.env.REACT_APP_BACKEND_URL}/api/project/invite/accept`,
+    invite,
+    {
+      headers: {
+        "x-auth-token": reqid,
+      },
     }
-
-    await firebase.firestore().collection("requests").doc(invite.id).update({
-      status: "accepted",
-    });
-
-    console.log("Invite accepted successfully");
-  } catch (error) {
-    console.error("Oops! Couldn't accept invite \n more info:", error);
-  }
+  );
+  console.log(response);
 };
 export const declineRequest = async (invite) => {
-  try {
-    await firebase.firestore().collection("requests").doc(invite.id).update({
-      status: "declined",
-    });
+  const user = firebase.auth().currentUser;
+  const reqid = await user.getIdToken();
 
-    console.log("Request declined successfully");
-  } catch (error) {
-    console.error("Oops! Couldn't decline request \n more info:", error);
-  }
+  const response = await axios.post(
+    `${process.env.REACT_APP_BACKEND_URL}/api/project/request/decline`,
+    invite,
+    {
+      headers: {
+        "x-auth-token": reqid,
+      },
+    }
+  );
+  console.log(response);
 };
 export const getRequests = async (uid) => {
   try {
