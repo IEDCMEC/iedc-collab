@@ -50,6 +50,7 @@ function DeveloperDetails() {
           (member) => member === selectedUser?.email && setCount(true)
         );
       });
+      console.log(selectedUser)
   }, [projects, selectedUser]);
   if (loading) {
     return (
