@@ -622,54 +622,34 @@ export const declineRequest = async (invite) => {
   console.log(response);
 };
 export const getRequests = async (uid) => {
-  try {
-    const data = [];
-    await firebase
-      .firestore()
-      .collection("requests")
-      .where("sender_id", "==", uid)
-      .orderBy("createdAt", "desc")
-      .get()
-      .then((snapshot) => {
-        snapshot.docs.map((doc) =>
-          data.push({
-            ...doc.data(),
-            id: doc.id,
-          })
-        );
-      });
+  const user = firebase.auth().currentUser;
+  const reqid = await user.getIdToken();
 
-    // const requests = querySnapshot.docs.map((doc) =>
-    //   data.push({
-    //     ...doc.data(),
-    //     id: doc.id,
-    //   })
-    // );
-    console.log(data);
-    return data;
-  } catch (error) {
-    console.error(error);
-  }
+  const response = await axios.get(
+    `${process.env.REACT_APP_BACKEND_URL}/api/project/request/sent`,
+    {
+      headers: {
+        "x-auth-token": reqid,
+      },
+    }
+  );
+  console.log(response);
+  return response.data;
 };
 export const getRequestsRecieved = async (uid) => {
-  try {
-    console.log(uid);
-    const querySnapshot = await firebase
-      .firestore()
-      .collection("requests")
-      .where("receiver_id", "==", uid)
-      .orderBy("createdAt", "desc")
-      .get();
+  const user = firebase.auth().currentUser;
+  const reqid = await user.getIdToken();
 
-    const requests = querySnapshot.docs.map((doc) => ({
-      ...doc.data(),
-      id: doc.id,
-    }));
-
-    return requests;
-  } catch (error) {
-    console.error(error);
-  }
+  const response = await axios.get(
+    `${process.env.REACT_APP_BACKEND_URL}/api/project/request/recieved`,
+    {
+      headers: {
+        "x-auth-token": reqid,
+      },
+    }
+  );
+  console.log(response);
+  return response.data;
 };
 
 export const getSkills = () => {
