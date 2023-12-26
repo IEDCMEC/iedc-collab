@@ -375,7 +375,7 @@ export const doEditProject = async (
       const reqid = await user.getIdToken();
 
       const response = await axios.post(
-        `${process.env.REACT_APP_BACKEND_URL}/api/project/add`,
+        `${process.env.REACT_APP_BACKEND_URL}/api/project/edit`,
         projectData,
         {
           headers: {
