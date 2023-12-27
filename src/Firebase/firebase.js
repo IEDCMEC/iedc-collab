@@ -478,7 +478,7 @@ export const getProjects = async () => {
   // console.log(projects)
   // return projects;
   const response = await axios.get(
-    `${process.env.REACT_APP_BACKEND_URL}/api/project`
+    `${process.env.REACT_APP_BACKEND_URL}/api/project?key=${Math.random()}`
   );
   // console.log(response.data)
   return response.data;
@@ -496,7 +496,7 @@ export const getDevelopers = async () => {
   // });
   // console.log(data);
   const response = await axios.get(
-    `${process.env.REACT_APP_BACKEND_URL}/api/developer`
+    `${process.env.REACT_APP_BACKEND_URL}/api/developer?key=${Math.random()}`
   );
   // console.log(response.data)
   return response.data;
@@ -516,7 +516,7 @@ export const getProject = async (project_id) => {
   // // console.log(data)
   // return project;
   const response = await axios.get(
-    `${process.env.REACT_APP_BACKEND_URL}/api/project/${project_id}`
+    `${process.env.REACT_APP_BACKEND_URL}/api/project/${project_id}?key=${Math.random()}`
   );
   console.log(response);
   return response.data;
@@ -537,7 +537,7 @@ export const getUser = async (user_id) => {
   // });
   // console.log(user)
   const response = await axios.get(
-    `${process.env.REACT_APP_BACKEND_URL}/api/developer/${user_id}`
+    `${process.env.REACT_APP_BACKEND_URL}/api/developer/${user_id}?key=${Math.random()}`
   );
   // console.log(response.data)
   return response.data;
@@ -626,7 +626,7 @@ export const getRequests = async (uid) => {
   const reqid = await user.getIdToken();
 
   const response = await axios.get(
-    `${process.env.REACT_APP_BACKEND_URL}/api/project/request/sent`,
+    `${process.env.REACT_APP_BACKEND_URL}/api/project/request/sent?key=${Math.random()}`,
     {
       headers: {
         "x-auth-token": reqid,
@@ -641,7 +641,7 @@ export const getRequestsRecieved = async (uid) => {
   const reqid = await user.getIdToken();
 
   const response = await axios.get(
-    `${process.env.REACT_APP_BACKEND_URL}/api/project/request/recieved`,
+    `${process.env.REACT_APP_BACKEND_URL}/api/project/request/recieved?key=${Math.random()}`,
     {
       headers: {
         "x-auth-token": reqid,
