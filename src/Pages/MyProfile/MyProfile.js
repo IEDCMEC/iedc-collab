@@ -101,8 +101,274 @@ const MyProfile = () => {
     );
   }
   return (
-    <>
-      <MainLayout route={"My Profile"}>
+    <> 
+      {profile.role==='Organization'? (
+        <MainLayout route={"My Profile"}>
+        <div className="my_profile_container">
+          <div className="profile_board">
+            <div className="pro_image_container">
+              <img
+                src={
+                  profile.profilePhoto ||
+                  "https://sabt.center/wp-content/uploads/2014/08/avatar-1.png"
+                }
+                className="profile_image"
+                data-aos="fade-up"
+                alt=""
+              />
+            </div>
+
+            <div
+              className="profile_details_container"
+              data-aos="fade-up"
+              data-aos-duration="1500"
+            >
+              <div
+                style={{
+                  width: "100%",
+                  display: "flex",
+                  justifyContent: "flex-end",
+                  alignItems: "flex-end",
+                }}
+              >
+                <FiEdit
+                  size={36}
+                  style={{
+                    cursor: "pointer",
+                    alignItems: "flex-end",
+                  }}
+                  alt=""
+                  onClick={newprojectClick}
+                />
+              </div>
+
+              <div className="profile_details_header_name">
+                {profile.name.toUpperCase()}
+              </div>
+
+              <div className="phone_class">
+                <div className="profile_phone">
+                  <BsTelephoneInbound size={25} />
+                  <div>
+                    {profile.contact ? (
+                      <a
+                        href={`tel:+91${profile.contact}`}
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        {profile.contact}
+                      </a>
+                    ) : (
+                      <div className="change-in-edit">{"<empty>"}</div>
+                    )}
+                  </div>
+                </div>
+                <div className="profile_phone">
+                  <HiOutlineAcademicCap size={25} />
+                  <div>
+                    {profile?.branch || (
+                      <div className="change-in-edit">{"<empty>"}</div>
+                    )}
+                    {"  "}
+                    {profile?.year}
+                  </div>
+                </div>
+
+                <div className="profile_phone">
+                  <MdOutlineEmail size={25} />
+                  <div>
+                    {(
+                      <a
+                        href={`mailto:${profile?.email}`}
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        {profile?.email}
+                      </a>
+                    ) || <div className="change-in-edit">{"<empty>"}</div>}
+                  </div>
+                </div>
+                <div className="profile_phone">
+                  <TbNetwork size={25} />
+                  <div>
+                    {profile.website ? (
+                      <a
+                        href={profile?.website}
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        Portfolio Website
+                      </a>
+                    ) : (
+                      <div className="change-in-edit">{"<empty>"}</div>
+                    )}
+                  </div>
+                </div>
+                <div className="profile_phone">
+                  <VscGithubInverted size={25} />
+                  <div>
+                    {profile.github ? (
+                      <a
+                        href={profile?.github}
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        @{getGithubUsername(profile.github)}
+                      </a>
+                    ) : (
+                      <div className="change-in-edit">{"<empty>"}</div>
+                    )}
+                  </div>
+                </div>
+                <div className="profile_phone">
+                  <FaLinkedin size={25} />
+                  <div>
+                    {profile.linkedin ? (
+                      <a
+                        href={profile.linkedin}
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        @{getLinkedinUsername(profile.linkedin)}
+                      </a>
+                    ) : (
+                      <div className="change-in-edit">{"<empty>"}</div>
+                    )}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="edit__pro_box">
+            <div
+              className="edit__pro_abtMe"
+              data-aos="fade-up"
+              data-aos-duration="1500"
+            >
+              <div>Description</div>
+              <div
+                className="edit__pro_abtMe_bx"
+                style={{ whiteSpace: "pre-wrap" }}
+              >
+                {profile.description ? (
+                  profile.description
+                ) : (
+                  <div className="skill">Description is not added</div>
+                )}
+              </div>
+            </div>
+
+            <div
+              className="edit__pro_abtMe"
+              data-aos="fade-up"
+              data-aos-duration="1500"
+            >
+              <div>Location</div>
+              <div
+                className="edit__pro_abtMe_bx"
+                style={{ whiteSpace: "pre-wrap" }}
+              >
+                {profile.address ? (
+                   profile.address
+                ) : (
+                  <div className="skill">Organisation location is not added</div>
+                )}
+              </div>
+            </div>
+
+            <div
+              className="edit__pro_abtMe"
+              data-aos="fade-up"
+              data-aos-duration="1500"
+            >
+              <div>Website</div>
+              <div
+                className="edit__pro_abtMe_bx"
+                style={{ whiteSpace: "pre-wrap" }}
+              >
+                {profile.website? (
+                   profile.website
+                ) : (
+                  <div className="skill">Company website is not added</div>
+                )}
+              </div>
+            </div>
+
+            <div
+              className="edit__pro_abtMe"
+              data-aos="fade-up"
+              data-aos-duration="1500"
+            >
+              <div>LinkedIn</div>
+              <div
+                className="edit__pro_abtMe_bx"
+                style={{ whiteSpace: "pre-wrap" }}
+              >
+                {profile.linkedin? (
+                   profile.linkedin
+                ) : (
+                  <div className="skill">LinkedIn profile is not added</div>
+                )}
+              </div>
+            </div>
+
+            <div className= "state-dstr-container">
+            <div
+              className="edit__pro_dstr"
+              data-aos="fade-up"
+              data-aos-duration="1500"
+            >
+              <div>District</div>
+              <div
+                className="edit__pro_dstr_bx"
+                style={{ whiteSpace: "pre-wrap" }}
+              >
+                {profile.district? (
+                   profile.district
+                ) : (
+                  <div className="skill">District is not added</div>
+                )}
+              </div>
+            </div>
+
+            <div
+              className="edit__pro_state"
+              data-aos="fade-up"
+              data-aos-duration="1500"
+            >
+              <div>State</div>
+              <div
+                className="edit__pro_state_bx"
+                style={{ whiteSpace: "pre-wrap" }}
+              >
+                {profile.state? (
+                   profile.state
+                ) : (
+                  <div className="skill">State is not added</div>
+                )}
+              </div>
+            </div>
+            </div>
+            </div>
+
+            <div className="edit__pro_box_1">
+              {/* <div className="reqs_invite_bar">
+                <div className="reqs_invite_bar__requests">Requests</div>
+                <div className="reqs_invite_bar__line">|</div>
+                <div className="reqs_invite_bar__invite">Invite</div>
+              </div> */} 
+            </div>
+          </div>
+        
+        <EditProfileModal
+          user={profile}
+          show={showProfileModal}
+          onHide={() => setShowProfileModal(false)}
+        />
+      </MainLayout>
+      ) : (
+        <MainLayout route={"My Profile"}>
         <div className="my_profile_container">
           <div className="profile_board">
             <div className="pro_image_container">
@@ -407,6 +673,8 @@ const MyProfile = () => {
           onHide={() => setShowProfileModal(false)}
         />
       </MainLayout>
+      )}
+      
     </>
   );
 };
