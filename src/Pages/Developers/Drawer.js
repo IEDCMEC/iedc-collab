@@ -15,6 +15,8 @@ import Autocomplete from "@mui/material/Autocomplete";
 import { ThemeContext } from "../../App";
 import { useRef } from "react";
 
+
+
 const typeDevs = ["Skills", "Projects", "Developers"];
 const DrawerHeader = styled("div")(({ theme }) => ({
   display: "flex",
@@ -85,6 +87,13 @@ export default function PersistentDrawerLeft({
     getTagDetails();
   }, []);
 
+  // const [renderedFilters, setRenderedFilters] = useState([]);
+  // useEffect(() => {
+  //   setRenderedFilters([...selectedSkills, ...selectedTags]);
+  // }, [selectedSkills, selectedTags]);
+
+
+
   const branches = ["CSE", "ECE", "EEE", "EBE", "MECH"];
   // const [branch, setBranch] = React.useState(branches);
   const years = ["2023", "2024", "2025", "2026"];
@@ -107,6 +116,7 @@ export default function PersistentDrawerLeft({
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
   const [search, setSearch] = React.useState("");
+
   const handleDrawerOpen = () => {
     setOpen(true);
   };
@@ -152,6 +162,24 @@ export default function PersistentDrawerLeft({
     }
     setSelectedTags(oldTags);
   };
+
+  const clearFilter = () => {
+    setCleared(true);
+    if (page == "Projects" ){
+      setSelectedSkills([]);
+      setSelectedTags([]);
+      
+    }
+    if (page == "Developers") {
+      setBranch([]);
+      setYop([]);
+      setSelectedSkills([]);
+      setSelectedTags([]);
+    }
+    
+    
+  }
+  const [cleared, setCleared] = React.useState(false);
 
   return (
     <div className="drawer__container">
@@ -211,9 +239,17 @@ export default function PersistentDrawerLeft({
           >
             <h3 style={styles}>Search By:</h3>
           </div>
-          <div style={{ minWidth: "90%", margin: "25px" }}>
+          <div style={{ minWidth: "90%", margin: "25px", display:"flex", flexDirection:"row", justifyContent:"space-between"}}>
             <h3 style={styles1}>Filter By:</h3>
+            <button style={{color:"white", padding:"1px 7px", fontSize:"12px", borderRadius:"5px", backgroundColor:"#C61111",hover:"#9e0000"}} 
+             onClick={() =>{
+              clearFilter();
+              }
+            }
+            onMouseEnter={(e) => e.target.style.backgroundColor = "#FF0000"}
+  onMouseLeave={(e) => e.target.style.backgroundColor = "#9e0000"}>Clear Filter</button>
           </div>
+          
           <div
             style={{
               minWidth: "90%",
@@ -266,10 +302,15 @@ export default function PersistentDrawerLeft({
                     name={x}
                     className="skill_boxes"
                     addSkills={addSkill}
+                    tags={selectedTags}
+                    clearFilter={cleared}
                   ></Buttons>
                 ))}
               </div>
             </div>
+            {/* {
+              cleared ? setCleared(false) : null
+            }  */}
             {/* <div
             style={
               page === "Projects"
@@ -447,6 +488,8 @@ export default function PersistentDrawerLeft({
                       name={x}
                       className="skill_boxes menu_button"
                       addSkills={addTag}
+                      tags={selectedTags}
+                      clearFilter={cleared}
                     ></Buttons>
                   ))
                 : null}
