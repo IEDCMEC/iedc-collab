@@ -53,11 +53,11 @@ const Navbar = () => {
     );
   }, [profile, companyOpen]);
   function handleRole() {
-    if (profile === null) {
+    if ((profile && profile?.length === 0) || profile === null) {
       setOpenModal(false);
     } else {
       const keys = profile && Object.keys(profile);
-      // console.log(keys.includes("role"));
+      console.log(keys.includes("role"));
       if (!keys.includes("role")) {
         setOpenModal(true);
       }
@@ -283,7 +283,7 @@ const Navbar = () => {
               ) : (
                 <div
                   className="NavigateBar-Newprobtn css-button"
-                  onClick={() => setOpenModal(!openModal)}
+                  onClick={() => signIn()}
                 >
                   <div className="css-button-text">Sign In To Collab</div>
                 </div>

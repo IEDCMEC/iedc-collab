@@ -14,8 +14,17 @@ const SignupOptions = ({ openModal, setOpenModal }) => {
     ProjectContext
   );
   function handleSignin(typeofuser) {
-    if (profile === null) {
-      signIn(typeofuser);
+    if ((profile && profile?.length === 0) || profile === null) {
+      signIn();
+      UpdateUserDetails([profile, typeofuser], () => {
+        fetchUserProfile();
+        fetchDevelpersData();
+        toast("Edited Profile Successfully", {
+          autoClose: 2000,
+        });
+      });
+      // fetchUserProfile();
+      // fetchDevelpersData();
     } else {
       UpdateUserDetails([profile, typeofuser], () => {
         fetchUserProfile();
@@ -24,6 +33,7 @@ const SignupOptions = ({ openModal, setOpenModal }) => {
           autoClose: 2000,
         });
       });
+      console.log(profile);
     }
     setOpenModal(false);
   }

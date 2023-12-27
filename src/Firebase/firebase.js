@@ -30,7 +30,7 @@ export const UpdateUserDetails = async (data, onSuccess = () => {}) => {
   const obj = data[0];
   const myrole = data[1];
   if (!user) {
-    signIn(myrole);
+    signIn();
     return;
   }
   // console.log(obj.profilePhoto);
@@ -117,7 +117,7 @@ export const updateCompanyDetails = async (data, onSuccess = () => {}) => {
   }
 };
 // Authentication functions
-export const signIn = async (myrole) => {
+export const signIn = async () => {
   //onSigninSuccess = () => {}
   const provider = new firebase.auth.GoogleAuthProvider();
   provider.setCustomParameters({
@@ -131,7 +131,7 @@ export const signIn = async (myrole) => {
 
     // Check if the user already exists in Firestore
     const userSnapshot = await userRef.get();
-
+    // console.log(userSnapshot)
     if (userSnapshot.exists) {
       // User already exists in Firestore
     } else {
@@ -142,7 +142,7 @@ export const signIn = async (myrole) => {
         email: user.email,
         profilePhoto: user.photoURL,
         uid: user.uid,
-        role: myrole,
+        // role: myrole,
       };
 
       await userRef.set(userData);
@@ -539,7 +539,7 @@ export const getUser = async (user_id) => {
   const response = await axios.get(
     `${process.env.REACT_APP_BACKEND_URL}/api/developer/${user_id}?key=${Math.random()}`
   );
-  // console.log(response.data)
+  console.log(response.data, `${process.env.REACT_APP_BACKEND_URL}/api/developer/${user_id}`)
   return response.data;
   // return data;
 };
