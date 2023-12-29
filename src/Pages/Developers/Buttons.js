@@ -10,14 +10,17 @@ export default function Buttons(props) {
     background:  "rgba(148, 2, 2, 0.2)",
     color:   "white" ,
   };
-
+  React.useEffect(()=>{
+      setValueOnClick(false)
+      // console.log(props.clearFilter)
+  },[props.clearFilter])
 // try to integrate selectedSkills useState var into this function, as a prop,and add clearfilter button logic 
   return (
     
     <button
       name={props.name}
       className={props.className}
-      style={props.clearFilter ? stylesClear : styles}
+      style={styles}
       onClick={() => {
           setValueOnClick(!valueOnClick);
           props.addSkills(props.name);

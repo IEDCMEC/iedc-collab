@@ -15,8 +15,6 @@ import Autocomplete from "@mui/material/Autocomplete";
 import { ThemeContext } from "../../App";
 import { useRef } from "react";
 
-
-
 const typeDevs = ["Skills", "Projects", "Developers"];
 const DrawerHeader = styled("div")(({ theme }) => ({
   display: "flex",
@@ -92,8 +90,6 @@ export default function PersistentDrawerLeft({
   //   setRenderedFilters([...selectedSkills, ...selectedTags]);
   // }, [selectedSkills, selectedTags]);
 
-
-
   const branches = ["CSE", "ECE", "EEE", "EBE", "MECH"];
   // const [branch, setBranch] = React.useState(branches);
   const years = ["2023", "2024", "2025", "2026"];
@@ -163,22 +159,22 @@ export default function PersistentDrawerLeft({
     setSelectedTags(oldTags);
   };
 
-  const clearFilter = () => {
-    setCleared(true);
-    if (page == "Projects" ){
+  const clearFilter= () => {
+    setCleared(!cleared);
+    console.log(selectedSkills)
+    const page = window.location.href.split("/")[3]
+    console.log(page)
+    if (page === "projects") {
       setSelectedSkills([]);
       setSelectedTags([]);
-      
     }
-    if (page == "Developers") {
+    if (page === "developers") {
       setBranch([]);
       setYop([]);
       setSelectedSkills([]);
-      setSelectedTags([]);
+      // setSelectedTags([]);
     }
-    
-    
-  }
+  };
   const [cleared, setCleared] = React.useState(false);
 
   return (
@@ -239,17 +235,37 @@ export default function PersistentDrawerLeft({
           >
             <h3 style={styles}>Search By:</h3>
           </div>
-          <div style={{ minWidth: "90%", margin: "25px", display:"flex", flexDirection:"row", justifyContent:"space-between"}}>
+          <div
+            style={{
+              minWidth: "90%",
+              margin: "25px",
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "space-between",
+            }}
+          >
             <h3 style={styles1}>Filter By:</h3>
-            <button style={{color:"white", padding:"1px 7px", fontSize:"12px", borderRadius:"5px", backgroundColor:"#C61111",hover:"#9e0000"}} 
-             onClick={() =>{
-              clearFilter();
-              }
-            }
-            onMouseEnter={(e) => e.target.style.backgroundColor = "#FF0000"}
-  onMouseLeave={(e) => e.target.style.backgroundColor = "#9e0000"}>Clear Filter</button>
+            <button
+              style={{
+                color: "white",
+                padding: "1px 7px",
+                fontSize: "16px",
+                borderRadius: "5px",
+                backgroundColor: "transparent",
+                border:'2px solid white',
+                fontStyle:'Nunito',
+                // hover: "#9e0000",
+              }}
+              onClick={() => {
+                clearFilter();
+              }}
+              // onMouseEnter={(e) => (e.target.style.backgroundColor = "#FF0000")}
+              // onMouseLeave={(e) => (e.target.style.backgroundColor = "#9e0000")}
+            >
+              Clear Filter
+            </button>
           </div>
-          
+
           <div
             style={{
               minWidth: "90%",
