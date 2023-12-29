@@ -75,9 +75,9 @@ const NewProjectForm = ({ onClose, project, setVariable, variable }) => {
       if (!acValue1.find((item) => item === skill)) temp1.push(skill);
     });
     setRemainSkills(temp1);
-    //console.log(acValue)
+    //// console.log(acValue)
 
-    //console.log(temp)
+    //// console.log(temp)
   }
 
   function getRemainTags() {
@@ -86,9 +86,9 @@ const NewProjectForm = ({ onClose, project, setVariable, variable }) => {
       if (!acValue2.find((item) => item === tag)) temp1.push(tag);
     });
     setRemainTags(temp1);
-    //console.log(acValue)
+    //// console.log(acValue)
 
-    //console.log(temp)
+    //// console.log(temp)
   }
 
   const getAbilities = async () => {
@@ -204,7 +204,7 @@ const NewProjectForm = ({ onClose, project, setVariable, variable }) => {
     if (!project) {
       doCreateProject(formValues, developers, () => {
         fetchData();
-        console.log(projects);
+        // console.log(projects);
 
         toast("Project created successfully", {
           autoClose: 3000,
@@ -384,7 +384,7 @@ const NewProjectForm = ({ onClose, project, setVariable, variable }) => {
                           URL.createObjectURL(compressedImage)
                         );
                         setDimensions(dimensions);
-                        console.log(dimensions);
+                        // console.log(dimensions);
                         const width =
                           (dimensions.width / dimensions.height) * 200;
                         setImageWidth(width);
@@ -392,7 +392,7 @@ const NewProjectForm = ({ onClose, project, setVariable, variable }) => {
                         setProjectPhoto(e.target.files[0]);
                         setProjectPhotoName(e.target.files[0].name);
                         setImage(URL.createObjectURL(e.target.files[0]));
-                        console.log("Error in compressing: " + error);
+                        // console.log("Error in compressing: " + error);
                       }
                     }
                   }}

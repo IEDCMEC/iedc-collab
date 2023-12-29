@@ -18,9 +18,9 @@ function ProjectDetail() {
   const [loading, setLoading] = useState(true);
   const getWork = async (id) => {
     const project = await getProject(id)
-    console.log("project",project)
+    // console.log("project",project)
     // let p = await project.docs();
-    // console.log(project)
+    // // console.log(project)
     // p.id = id;
     setSelectedProject(project);
     setLoading(false);

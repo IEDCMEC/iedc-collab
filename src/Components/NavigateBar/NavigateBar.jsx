@@ -35,8 +35,8 @@ const Navbar = () => {
         : true
       : false
   );
-  // console.log(profile);
-  // console.log(
+  // // console.log(profile);
+  // // console.log(
   //   profile?.role && profile?.role === "Organization"
   //     ? profile?.description && profile?.description !== ""
   //       ? false
@@ -57,7 +57,7 @@ const Navbar = () => {
       setOpenModal(false);
     } else {
       const keys = profile && Object.keys(profile);
-      console.log(keys.includes("role"));
+      // console.log(keys.includes("role"));
       if (!keys.includes("role")) {
         setOpenModal(true);
       }

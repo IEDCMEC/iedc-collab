@@ -66,9 +66,9 @@ const NewUserForm = ({ onClose, user }) => {
       if (!acValue1.find((item) => item === skill)) temp1.push(skill);
     });
     setRemainSkills(temp1);
-    //console.log(acValue)
+    //// console.log(acValue)
 
-    //console.log(temp)
+    //// console.log(temp)
   }
 
   const getAbilities = async () => {
@@ -235,7 +235,7 @@ const NewUserForm = ({ onClose, user }) => {
                           }
                         );
                         const img1 = results[0];
-                        // console.log(img1);
+                        // // console.log(img1);
                         const base64str = results[0].data;
                         const imgExt = img1.ext;
                         const compressedImage = Compress.convertBase64ToFile(
@@ -249,7 +249,7 @@ const NewUserForm = ({ onClose, user }) => {
                         setProfilePhoto(e.target.files[0]);
                         setProfilePhotoName(e.target.files[0].name);
                         setImage(URL.createObjectURL(e.target.files[0]));
-                        console.log("Error in compressing: " + error);
+                        // console.log("Error in compressing: " + error);
                       }
                     }
                   }}

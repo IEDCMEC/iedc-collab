@@ -147,7 +147,7 @@ const Developers = () => {
       </div>
     );
   }
-  // console.log(users)
+  // // console.log(users)
   return (
     <div style={{display:'flex',justifyContent: width!==0 ? 'flex-end': 'center',width:'100vw'}}>
       <MainLayout route={"Developers"}>
