@@ -9,7 +9,7 @@ import { toast } from "react-toastify";
 
 // import { UpdateUserDetails } from "../../Firebase/firebase";
 const SignupOptions = ({ openModal, setOpenModal }) => {
-  //   console.log(openModal);
+  //   // console.log(openModal);
   const { profile, fetchUserProfile, fetchDevelpersData } = useContext(
     ProjectContext
   );
@@ -33,7 +33,7 @@ const SignupOptions = ({ openModal, setOpenModal }) => {
           autoClose: 2000,
         });
       });
-      console.log(profile);
+      // console.log(profile);
     }
     setOpenModal(false);
   }

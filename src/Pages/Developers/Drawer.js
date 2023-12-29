@@ -161,9 +161,9 @@ export default function PersistentDrawerLeft({
 
   const clearFilter= () => {
     setCleared(!cleared);
-    console.log(selectedSkills)
+    // // console.log(selectedSkills)
     const page = window.location.href.split("/")[3]
-    console.log(page)
+    // // console.log(page)
     if (page === "projects") {
       setSelectedSkills([]);
       setSelectedTags([]);

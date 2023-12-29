@@ -65,28 +65,28 @@ export const ProjectProvider = ({ children }) => {
       // })
       .then((projects) => {
         // var data = [];
-        // console.log(snapshot.docs)
+        // // console.log(snapshot.docs)
         if (projects.length > 0) {
           // snapshot.docs.forEach((doc) => {
           //   data.push(doc.data());
           // });
-          // // console.log(data)
+          // // // console.log(data)
           // const result = data.map((value, index) => {
           //   return {
           //     ...value,
           //     id: value.id,
           //   };
           // });
-          // console.log(projects)
+          // // console.log(projects)
           setProjects(projects);
           setAllProjects(projects);
-          // console.log(projects);
+          // // console.log(projects);
           setSelectedProject(projects[index]);
         }
       })
       .catch(function (error) {
         alert("Something went wrong. Please try again after some time.");
-        console.log(error);
+        // console.log(error);
       })
       .finally(() => {
         setLoading(false);
@@ -94,16 +94,16 @@ export const ProjectProvider = ({ children }) => {
   };
   const fetchUserProfile = async () => {
     if (currentUser) {
-      console.log(currentUser);
+      // console.log(currentUser);
       setLoading(true);
       getUser(currentUser?.uid).then((profile) => {
         setProfile(profile);
-        // console.log(snapshot.data())
+        // // console.log(snapshot.data())
       });
       if ((profile && profile?.length === 0) || profile === null) {
         getUser(currentUser?.uid).then((profile) => {
           setProfile(profile);
-          // console.log(snapshot.data())
+          // // console.log(snapshot.data())
         });
       }
       // setProfile(profileUser);
@@ -145,7 +145,7 @@ export const ProjectProvider = ({ children }) => {
       .then((devs) => {
         //var data = [];
         if (devs.length > 0) {
-          // console.log(snapshot.docs)
+          // // console.log(snapshot.docs)
           // devs.forEach((doc) => {
           //   data.push({
           //     ...doc,
@@ -166,7 +166,7 @@ export const ProjectProvider = ({ children }) => {
       })
       .catch(function (error) {
         alert("Something went wrong. Please try again after some time.");
-        console.log(error);
+        // console.log(error);
       })
       .finally(() => {
         setLoading(false);
@@ -223,7 +223,7 @@ export const ProjectProvider = ({ children }) => {
       setLoading(false);
     }
   };
-  // console.log(projects, developers);
+  // // console.log(projects, developers);
   return (
     <ProjectContext.Provider
       value={{

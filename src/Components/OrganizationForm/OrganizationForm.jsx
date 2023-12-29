@@ -18,7 +18,7 @@ const OrganizationForm = ({ openModal, setOpenModal }) => {
   } = useContext(ProjectContext);
   const handleSubmit = (event) => {
     event.preventDefault();
-    // console.log(companyDetails);
+    // // console.log(companyDetails);
     updateCompanyDetails([profile, companyDetails], () => {
       fetchUserProfile();
       fetchDevelpersData();
@@ -30,7 +30,7 @@ const OrganizationForm = ({ openModal, setOpenModal }) => {
   };
   const handleClose = (event, reason) => {
     if ((reason === "backdropClick") | "escapeKeyDown") {
-      console.log(reason);
+      // console.log(reason);
     } else {
       setOpenModal(false);
     }

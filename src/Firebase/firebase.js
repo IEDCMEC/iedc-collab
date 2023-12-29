@@ -33,10 +33,10 @@ export const UpdateUserDetails = async (data, onSuccess = () => {}) => {
     signIn();
     return;
   }
-  // console.log(obj.profilePhoto);
+  // // console.log(obj.profilePhoto);
   const storage = firebase.storage();
   try {
-    console.log(obj, myrole, data);
+    // console.log(obj, myrole, data);
     if (obj.profilePhoto && typeof obj.profilePhoto !== "string") {
       const photoRef = storage.ref(`profilePhoto/${user.uid}`);
       const newPhotoSnapshot = await photoRef.put(obj.profilePhoto);
@@ -60,7 +60,7 @@ export const UpdateUserDetails = async (data, onSuccess = () => {}) => {
 
       await db.collection("users").doc(user.uid).set(userData);
 
-      console.log("User profile updated successfully");
+      // console.log("User profile updated successfully");
       onSuccess("ADD");
     } else {
       const createdAt = Date.now();
@@ -81,23 +81,23 @@ export const UpdateUserDetails = async (data, onSuccess = () => {}) => {
 
       await db.collection("users").doc(user.uid).set(userData);
 
-      console.log("User profile updated successfully");
+      // console.log("User profile updated successfully");
       onSuccess("ADD");
     }
   } catch (err) {
-    console.log(err);
+    // console.log(err);
   }
 };
 
 export const updateCompanyDetails = async (data, onSuccess = () => {}) => {
   const details = { ...data[0], ...data[1] };
-  // console.log(details)
+  // // console.log(details)
   const user = firebase.auth().currentUser;
   if (!user) {
     alert("Please login to add a project");
     return;
   }
-  // console.log(obj.profilePhoto);
+  // // console.log(obj.profilePhoto);
   const db = firebase.firestore();
   const storage = firebase.storage();
   try {
@@ -110,10 +110,10 @@ export const updateCompanyDetails = async (data, onSuccess = () => {}) => {
 
     await db.collection("users").doc(user.uid).set(userData);
 
-    console.log("User profile updated successfully");
+    // console.log("User profile updated successfully");
     onSuccess("ADD");
   } catch (err) {
-    console.log(err);
+    // console.log(err);
   }
 };
 // Authentication functions
@@ -131,7 +131,7 @@ export const signIn = async () => {
 
     // Check if the user already exists in Firestore
     const userSnapshot = await userRef.get();
-    // console.log(userSnapshot)
+    // // console.log(userSnapshot)
     if (userSnapshot.exists) {
       // User already exists in Firestore
     } else {
@@ -146,10 +146,10 @@ export const signIn = async () => {
       };
 
       await userRef.set(userData);
-      console.log("user added successfully");
+      // console.log("user added successfully");
     }
   } catch (error) {
-    console.log(error);
+    // console.log(error);
     alert("Something is wrong, please check network connection");
   }
 };
@@ -162,10 +162,10 @@ export const signOut = () => {
     .auth()
     .signOut()
     .then(function () {
-      console.log("Sign out successful");
+      // console.log("Sign out successful");
     })
     .catch(function (error) {
-      console.log("Sign out unsuccessful");
+      // console.log("Sign out unsuccessful");
       alert("Something is wrong, please check network connection");
     });
 };
@@ -206,7 +206,7 @@ export const doCreateProject = async (
         leaderEmail: user.email,
       };
       const reqid = await user.getIdToken();
-      // console.log(reqid)
+      // // console.log(reqid)
       const response = await axios.post(
         `${process.env.REACT_APP_BACKEND_URL}/api/project/add`,
         projectData,
@@ -216,8 +216,8 @@ export const doCreateProject = async (
           },
         }
       );
-      console.log(response);
-      console.log("Project added successfully");
+      // console.log(response);
+      // console.log("Project added successfully");
       onSuccess("ADD");
 
       // projectData.teamMembers.forEach(async (member) => {
@@ -245,13 +245,13 @@ export const doCreateProject = async (
         leaderEmail: user.email,
         leaderImg: user.providerData[0]?.photoURL || null,
       };
-      // console.log(projectData);
+      // // console.log(projectData);
       // await newProjectRef.set(projectData);
-      // console.log(projectData);
+      // // console.log(projectData);
       // const reqdata = JSON.stringify(projectData);
-      // console.log(reqdata);
+      // // console.log(reqdata);
       const reqid = await user.getIdToken();
-      // console.log(reqid)
+      // // console.log(reqid)
       const response = await axios.post(
         `${process.env.REACT_APP_BACKEND_URL}/api/project/add`,
         projectData,
@@ -261,8 +261,8 @@ export const doCreateProject = async (
           },
         }
       );
-      console.log(response);
-      console.log("Project added successfully");
+      // console.log(response);
+      // console.log("Project added successfully");
       onSuccess("ADD");
 
       // projectData.teamMembers.forEach(async (member) => {
@@ -278,8 +278,8 @@ export const doCreateProject = async (
       // });
     }
   } catch (err) {
-    console.log("Something went wrong");
-    console.log(err);
+    // console.log("Something went wrong");
+    // console.log(err);
   }
 };
 
@@ -310,10 +310,10 @@ export const doDeleteProject = async (project_id, onSuccess = () => {}) => {
     // Delete the project document from Firestore
     await projectRef.delete();
 
-    console.log("Project deleted successfully");
+    // console.log("Project deleted successfully");
     onSuccess();
   } catch (err) {
-    console.log(err);
+    // console.log(err);
   }
 };
 
@@ -384,9 +384,9 @@ export const doEditProject = async (
         }
       );
 
-      console.log(response);
+      // console.log(response);
 
-      console.log("Project edited sucessfully");
+      // console.log("Project edited sucessfully");
       onSuccess("EDIT");
       // projectData.teamMembers.forEach(async (member) => {
       //   if (!developers.some((dev) => dev.email === member)) {
@@ -403,10 +403,10 @@ export const doEditProject = async (
       alert(
         "Something went wrong during edit. Please try againg after some time"
       );
-      console.log(error);
+      // console.log(error);
     }
   } catch (err) {
-    console.log(err);
+    // console.log(err);
   }
 };
 
@@ -416,7 +416,7 @@ export const doEditProfile = async (data, onSuccess = () => {}) => {
     alert("Please login to add a project");
     return;
   }
-  // console.log(obj.profilePhoto);
+  // // console.log(obj.profilePhoto);
   const db = firebase.firestore();
   const myrole = data[0];
   const obj = data[1];
@@ -443,10 +443,10 @@ export const doEditProfile = async (data, onSuccess = () => {}) => {
         uid: user.uid,
         role: myrole,
       };
-      console.log(user);
+      // console.log(user);
       await db.collection("users").doc(user.uid).set(userData);
 
-      console.log("User profile updated successfully");
+      // console.log("User profile updated successfully");
       onSuccess("ADD");
     } else {
       const createdAt = Date.now();
@@ -467,11 +467,11 @@ export const doEditProfile = async (data, onSuccess = () => {}) => {
 
       await db.collection("users").doc(user.uid).set(userData);
 
-      console.log("User profile updated successfully");
+      // console.log("User profile updated successfully");
       onSuccess("ADD");
     }
   } catch (err) {
-    console.log(err);
+    // console.log(err);
   }
 };
 export const getProjects = async () => {
@@ -484,12 +484,12 @@ export const getProjects = async () => {
   //     });
   //   }
   // });
-  // console.log(projects)
+  // // console.log(projects)
   // return projects;
   const response = await axios.get(
     `${process.env.REACT_APP_BACKEND_URL}/api/project?key=${Math.random()}`
   );
-  // console.log(response.data)
+  // // console.log(response.data)
   return response.data;
 };
 export const getDevelopers = async () => {
@@ -503,11 +503,11 @@ export const getDevelopers = async () => {
   //     });
   //   }
   // });
-  // console.log(data);
+  // // console.log(data);
   const response = await axios.get(
     `${process.env.REACT_APP_BACKEND_URL}/api/developer?key=${Math.random()}`
   );
-  // console.log(response.data)
+  // // console.log(response.data)
   return response.data;
   // return users;
 };
@@ -519,17 +519,17 @@ export const getProject = async (project_id) => {
   // // .then((snapshot) => {
   // //   // if (snapshot.docs.length > 0) {
   // //    data = snapshot.data()
-  // //    console.log(snapshot.data())
+  // //    // console.log(snapshot.data())
   // //   // }
   // // });
-  // // console.log(data)
+  // // // console.log(data)
   // return project;
   const response = await axios.get(
     `${
       process.env.REACT_APP_BACKEND_URL
     }/api/project/${project_id}?key=${Math.random()}`
   );
-  console.log(response);
+  // console.log(response);
   return response.data;
 };
 
@@ -543,19 +543,19 @@ export const getUser = async (user_id) => {
   //   //     data.push(doc.data());
   //   //   });
   //   // }
-  //   // console.log(snapshot.data())
+  //   // // console.log(snapshot.data())
   //  data = snapshot.data();
   // });
-  // console.log(user)
+  // // console.log(user)
   const response = await axios.get(
     `${
       process.env.REACT_APP_BACKEND_URL
     }/api/developer/${user_id}?key=${Math.random()}`
   );
-  console.log(
-    response.data,
-    `${process.env.REACT_APP_BACKEND_URL}/api/developer/${user_id}`
-  );
+  // console.log(
+  //   response.data,
+  //   `${process.env.REACT_APP_BACKEND_URL}/api/developer/${user_id}`
+  // );
   return response.data;
   // return data;
 };
@@ -573,7 +573,7 @@ export const sendInvite = async (data) => {
       },
     }
   );
-  console.log(response);
+  // console.log(response);
 };
 
 export const sendRequest = async (data) => {
@@ -589,7 +589,7 @@ export const sendRequest = async (data) => {
       },
     }
   );
-  console.log(response);
+  // console.log(response);
 };
 
 export const acceptRequest = async (invite) => {
@@ -605,7 +605,7 @@ export const acceptRequest = async (invite) => {
       },
     }
   );
-  console.log(response);
+  // console.log(response);
 };
 export const acceptInvite = async (invite) => {
   const user = firebase.auth().currentUser;
@@ -620,7 +620,7 @@ export const acceptInvite = async (invite) => {
       },
     }
   );
-  console.log(response);
+  // console.log(response);
 };
 export const declineRequest = async (invite) => {
   const user = firebase.auth().currentUser;
@@ -635,7 +635,7 @@ export const declineRequest = async (invite) => {
       },
     }
   );
-  console.log(response);
+  // console.log(response);
 };
 export const getRequests = async (uid) => {
   const user = firebase.auth().currentUser;
@@ -651,7 +651,7 @@ export const getRequests = async (uid) => {
       },
     }
   );
-  console.log(response);
+  // console.log(response);
   return response.data;
 };
 export const getRequestsRecieved = async (uid) => {
@@ -668,7 +668,7 @@ export const getRequestsRecieved = async (uid) => {
       },
     }
   );
-  console.log(response);
+  // console.log(response);
   return response.data;
 };
 
@@ -702,7 +702,7 @@ export const addSkills = async (skill) => {
       skills: skillsArray,
     });
 
-    console.log("Skills added successfully");
+    // console.log("Skills added successfully");
   } catch (error) {
     console.error("Oops! Couldn't add skills \n more info:", error);
   }
@@ -738,7 +738,7 @@ export const addTags = async (tag) => {
       tags: tagsArray,
     });
 
-    console.log("Tags added successfully");
+    // console.log("Tags added successfully");
   } catch (error) {
     console.error("Oops! Couldn't add tags \n more info:", error);
   }

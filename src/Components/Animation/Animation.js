@@ -26,7 +26,7 @@ const Animation = () => {
     try {
       await signIn();
     } catch (error) {
-      console.log(error);
+      // console.log(error);
     }
   };
   useEffect(() => {

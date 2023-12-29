@@ -32,11 +32,11 @@ function DeveloperDetails() {
     animationData: animation,
     rendererSettings: { preserveAspectRatio: "xMidYMid slice" },
   };
-  // console.log(id)
+  // // console.log(id)
   const getDev = async (id) => {
     let user = await getUser(id)
     // user = { ...user, _id: id };
-    // console.log(user)
+    // // console.log(user)
     setSelectedUser(user);
     setLoading(false);
   };
@@ -50,7 +50,7 @@ function DeveloperDetails() {
           (member) => member === selectedUser?.email && setCount(true)
         );
       });
-      console.log(selectedUser)
+      // console.log(selectedUser)
   }, [projects, selectedUser]);
   if (loading) {
     return (

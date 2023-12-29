@@ -16,7 +16,7 @@ export const AuthProvider = ({ children }) => {
       setValidUserState(true);
       // else
       //  setValidity(false)
-      //   console.log("in set validity  " + validUserState + user + pending)
+      //   // console.log("in set validity  " + validUserState + user + pending)
     });
   }, [pending, validUserState]);
 
