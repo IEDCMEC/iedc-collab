@@ -531,7 +531,7 @@ const MyProfile = () => {
             >
               <div>Skills</div>
               <div className="edit__pro_skls_bx">
-                {profile.skills ? (
+                {profile.skills && profile.skills.length !== 0 ? (
                   profile.skills.map((skill, index) =>
                     index === profile.skills.length - 1 ? (
                       <div className="skill" key={index}>

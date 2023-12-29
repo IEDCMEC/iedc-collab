@@ -28,7 +28,7 @@ const NewUserForm = ({ onClose, user }) => {
   );
   const [profilePhoto, setProfilePhoto] = useState(user?.profilePhoto || "");
   // const [projects, setProjects] = useState([]);
-  const { fetchUserProfile, fetchDevelpersData } = useContext(ProjectContext);
+  const { fetchUserProfile, fetchDevelpersData, profile } = useContext(ProjectContext);
   const [skills, setSkills] = useState([]);
   const [skill, setSkill] = useState();
   const [acValue1, setACValue1] = useState(user?.skills || []);
@@ -141,12 +141,12 @@ const NewUserForm = ({ onClose, user }) => {
     github: yup
       .string()
       .nullable()
-      .matches(/github\.com/, "Please enter a valid Github profile URL")
+      .matches(/github\.com/, "Please enter a valid Github profile.role URL")
       .min(4),
     linkedin: yup
       .string()
       .nullable()
-      .matches(/linkedin\.com/, "Please enter a valid LinkedIn profile URL")
+      .matches(/linkedin\.com/, "Please enter a valid LinkedIn profile.role URL")
       .min(4),
     website: yup
       .string()
@@ -173,7 +173,7 @@ const NewUserForm = ({ onClose, user }) => {
       profilePhoto,
       profilePhotoName,
     };
-    doEditProfile(formValues, () => {
+    doEditProfile([profile.role, formValues], () => {
       fetchUserProfile();
       fetchDevelpersData();
       toast("Edited Profile Successfully", {

@@ -94,12 +94,18 @@ export const ProjectProvider = ({ children }) => {
   };
   const fetchUserProfile = async () => {
     if (currentUser) {
-      console.log(currentUser)
+      console.log(currentUser);
       setLoading(true);
       getUser(currentUser?.uid).then((profile) => {
         setProfile(profile);
         // console.log(snapshot.data())
       });
+      if ((profile && profile?.length === 0) || profile === null) {
+        getUser(currentUser?.uid).then((profile) => {
+          setProfile(profile);
+          // console.log(snapshot.data())
+        });
+      }
       // setProfile(profileUser);
       setLoading(false);
     }
