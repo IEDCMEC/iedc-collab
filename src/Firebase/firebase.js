@@ -410,7 +410,7 @@ export const doEditProject = async (
   }
 };
 
-export const doEditProfile = async (obj, onSuccess = () => {}) => {
+export const doEditProfile = async (data, onSuccess = () => {}) => {
   const user = firebase.auth().currentUser;
   if (!user) {
     alert("Please login to add a project");
@@ -418,6 +418,9 @@ export const doEditProfile = async (obj, onSuccess = () => {}) => {
   }
   // console.log(obj.profilePhoto);
   const db = firebase.firestore();
+  const myrole = data[0];
+  const obj = data[1];
+
   const storage = firebase.storage();
   try {
     if (obj.profilePhoto && typeof obj.profilePhoto !== "string") {
@@ -436,8 +439,11 @@ export const doEditProfile = async (obj, onSuccess = () => {}) => {
         available: true,
         createdAt,
         updatedAt: createdAt,
+        email: user.email,
+        uid: user.uid,
+        role: myrole,
       };
-
+      console.log(user);
       await db.collection("users").doc(user.uid).set(userData);
 
       console.log("User profile updated successfully");
@@ -454,6 +460,9 @@ export const doEditProfile = async (obj, onSuccess = () => {}) => {
         available: true,
         createdAt,
         updatedAt: createdAt,
+        email: user.email,
+        uid: user.uid,
+        role: myrole,
       };
 
       await db.collection("users").doc(user.uid).set(userData);
@@ -516,7 +525,9 @@ export const getProject = async (project_id) => {
   // // console.log(data)
   // return project;
   const response = await axios.get(
-    `${process.env.REACT_APP_BACKEND_URL}/api/project/${project_id}?key=${Math.random()}`
+    `${
+      process.env.REACT_APP_BACKEND_URL
+    }/api/project/${project_id}?key=${Math.random()}`
   );
   console.log(response);
   return response.data;
@@ -537,9 +548,14 @@ export const getUser = async (user_id) => {
   // });
   // console.log(user)
   const response = await axios.get(
-    `${process.env.REACT_APP_BACKEND_URL}/api/developer/${user_id}?key=${Math.random()}`
+    `${
+      process.env.REACT_APP_BACKEND_URL
+    }/api/developer/${user_id}?key=${Math.random()}`
   );
-  console.log(response.data, `${process.env.REACT_APP_BACKEND_URL}/api/developer/${user_id}`)
+  console.log(
+    response.data,
+    `${process.env.REACT_APP_BACKEND_URL}/api/developer/${user_id}`
+  );
   return response.data;
   // return data;
 };
@@ -626,7 +642,9 @@ export const getRequests = async (uid) => {
   const reqid = await user.getIdToken();
 
   const response = await axios.get(
-    `${process.env.REACT_APP_BACKEND_URL}/api/project/request/sent?key=${Math.random()}`,
+    `${
+      process.env.REACT_APP_BACKEND_URL
+    }/api/project/request/sent?key=${Math.random()}`,
     {
       headers: {
         "x-auth-token": reqid,
@@ -641,7 +659,9 @@ export const getRequestsRecieved = async (uid) => {
   const reqid = await user.getIdToken();
 
   const response = await axios.get(
-    `${process.env.REACT_APP_BACKEND_URL}/api/project/request/recieved?key=${Math.random()}`,
+    `${
+      process.env.REACT_APP_BACKEND_URL
+    }/api/project/request/recieved?key=${Math.random()}`,
     {
       headers: {
         "x-auth-token": reqid,
