@@ -9,15 +9,15 @@
 .drawer__container button:focus {
   outline: none;
 }
-.developer-title {
-  text-align: center;
-  font-style: normal;
-  font-weight: 800;
-  font-size: 30px;
-  line-height: 40px;
-  padding-top: 5rem;
-  color: #9e0000;
-}
+// .developer-title {
+//   text-align: center;
+//   font-style: normal;
+//   font-weight: 800;
+//   font-size: 30px;
+//   line-height: 40px;
+//   margin-top: 3rem;
+//   color: #9e0000;
+// }
 .job-details {
   display: flex;
   flex-direction: column;
@@ -105,7 +105,7 @@
 @media (max-width: 420px) {
   .developer-card {
     margin-left: 7px;
-    width:90vw;
+    width: 90vw;
 
     height: 89px;
   }
@@ -212,5 +212,3 @@
 .developer_container button:hover {
   background-color: #e77e7e4d;
 }
-
-

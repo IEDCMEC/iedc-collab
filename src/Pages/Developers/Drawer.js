@@ -178,7 +178,7 @@ export default function PersistentDrawerLeft({
   const [cleared, setCleared] = React.useState(false);
 
   return (
-    <div className="drawer__container">
+    <>
       <IconButton
         color="inherit"
         aria-label="open drawer"
@@ -513,6 +513,6 @@ export default function PersistentDrawerLeft({
           </div>
         </div>
       </Drawer>
-    </div>
+    </>
   );
 }

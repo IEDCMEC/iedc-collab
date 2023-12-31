@@ -5,8 +5,8 @@ import { signOut } from "../../Firebase/firebase";
 import { AuthContext } from "../../Firebase/Auth/Auth";
 import { ProjectContext } from "../../contexts/ProjectContext";
 import { signIn } from "../../Firebase/firebase";
-import { Link, useHistory, useLocation } from "react-router-dom";
-import { Avatar, Drawer } from "@mui/material";
+import { Link, useLocation } from "react-router-dom";
+import { Avatar, Dialog, Drawer, Box, Typography } from "@mui/material";
 import { FaHome } from "react-icons/fa";
 import { Menu, MenuItem, MenuButton } from "@szhsin/react-menu";
 import "@szhsin/react-menu/dist/index.css";
@@ -15,7 +15,7 @@ import meclogo from "../../assets/meclogo.png";
 import { HiOutlineMenuAlt3 } from "react-icons/hi";
 import SignupOptions from "../SignupOptions/SignupOptions";
 import OrganizationForm from "../OrganizationForm/OrganizationForm";
-
+import { useHistory } from "react-router-dom";
 const Navbar = () => {
   const [showProjectModal, setShowProjectModal] = useState(false);
   const [openModal, setOpenModal] = useState(false);
@@ -52,6 +52,10 @@ const Navbar = () => {
         : false
     );
   }, [profile, companyOpen]);
+
+  useEffect(() => {
+    setOpenModal(profile?.role === undefined ? true : false);
+  }, [profile, companyOpen]);
   function handleRole() {
     if ((profile && profile?.length === 0) || profile === null) {
       setOpenModal(false);
@@ -82,30 +86,14 @@ const Navbar = () => {
       alert("Please Login to Continue.");
     }
   };
-  // const [selectedUser, setSelectedUser] = useState(null);
-  // const getDev = async (id) => {
-  //   if (id) {
-  //     const user = await getUser(id);
-  //     setSelectedUser(await user.docs());
-  //   }
-  // };
-  // useEffect(() => {
-  //   getDev(currentUser?.uid);
-  // }, [currentUser?.uid]);
-  useEffect(() => {
-    if (!profile) {
-      fetchUserProfile();
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [currentUser]);
-
   return (
     <>
       {(location.pathname.split("/")[1] === "ideas" ||
         location.pathname.split("/")[1] === "jobs" ||
         location.pathname.split("/")[1] === "projects" ||
         location.pathname.split("/")[1] === "developers" ||
-        location.pathname.split("/")[1] === "profile") && (
+        location.pathname.split("/")[1] === "profile" ||
+        location.pathname.split("/")[1] === "myjobs") && (
         <div className="Navigate p-2 mb-5 pb-2">
           <nav
             className="navbar navbar-expand-lg fixed-top navbar-light NavigateBar-mainNav"

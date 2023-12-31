@@ -508,7 +508,9 @@ export const getDevelopers = async () => {
     `${process.env.REACT_APP_BACKEND_URL}/api/developer?key=${Math.random()}`
   );
   // // console.log(response.data)
-  return response.data;
+  const details = response.data.filter((value,index)=>value.role == "User")
+  // console.log(details)
+  return details;
   // return users;
 };
 

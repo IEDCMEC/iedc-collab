@@ -3,7 +3,7 @@ import "./DeveloperDetails.scss";
 // import person from "../../assets/details_left.svg";
 import InviteToProjectModal from "../../Components/InviteToProjectModal/InviteToProjectModal";
 import { useContext, useEffect, useState } from "react";
-import { useHistory, useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import { getUser } from "../../Firebase/firebase";
 import { AuthContext } from "../../Firebase/Auth/Auth";
 import SuspenseLoader from "../../Components/SuspenseLoader/SuspenseLoader";

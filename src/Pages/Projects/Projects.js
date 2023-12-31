@@ -133,7 +133,7 @@ const Projects = () => {
           />
           <div>
             <h3
-              style={{ textAlign: "center", paddingTop: "3rem" }}
+              style={{ textAlign: "center", padding: "0rem" }}
               className="developer-title"
             >
               {works.length === 0 ? "NOT FOUND" : "PROJECTS"}
