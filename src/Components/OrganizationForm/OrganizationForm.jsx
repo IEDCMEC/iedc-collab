@@ -8,6 +8,7 @@ import { Dialog } from "@mui/material";
 import Backdrop from "@mui/material/Backdrop";
 import { updateCompanyDetails } from "../../Firebase/firebase";
 import { toast } from "react-toastify";
+import { useHistory } from "react-router-dom";
 const OrganizationForm = ({ openModal, setOpenModal }) => {
   const {
     companyDetails,
@@ -16,6 +17,7 @@ const OrganizationForm = ({ openModal, setOpenModal }) => {
     fetchUserProfile,
     fetchDevelpersData,
   } = useContext(ProjectContext);
+  const history = useHistory();
   const handleSubmit = (event) => {
     event.preventDefault();
     // // console.log(companyDetails);
@@ -26,7 +28,22 @@ const OrganizationForm = ({ openModal, setOpenModal }) => {
         autoClose: 2000,
       });
     });
-
+    history.push("/profile");
+    setCompanyDetails({
+      description: "",
+      // company_logo: profile?.profilePhoto || "",
+      // role: profile?.role ? profile.role : "Organization",
+      website: "",
+      address: "",
+      // phone: profile?.contact || "",
+      // github: "",
+      linkedin: "",
+      // email: profile?.email || "",
+      district: "",
+      state: "",
+      approved: false,
+      deleted: false,
+    });
   };
   const handleClose = (event, reason) => {
     if ((reason === "backdropClick") | "escapeKeyDown") {
@@ -330,46 +347,6 @@ const OrganizationForm = ({ openModal, setOpenModal }) => {
                   textAlign: { xs: "center", md: "left" },
                 }}
               >
-                Enter District
-              </Typography>
-              <CustomTextfield
-                id={"district"}
-                label={"District"}
-                type={"string"}
-                // height="50px"
-                width={{ xs: "100%", md: "80%" }}
-                generalbgcolor="#fff"
-                fieldsetbgcolor="#fff"
-                fieldsetborder="2px solid #9e0000"
-                multiline={false}
-                fieldsetborderradius="8px"
-                InputProps={{
-                  style: {
-                    color: "black",
-                    fontFamily: "Nunito",
-                  },
-                }}
-                InputLabelProps={{
-                  style: {
-                    color: "#9e0000",
-                    fontFamily: "Nunito",
-                    fontSize: "12px",
-                  },
-                }}
-                value={companyDetails.district}
-                onChange={setCompanyDetails}
-                name="district"
-                generalcolor="#9e0000"
-                margin="20px 0"
-              />
-              <Typography
-                sx={{
-                  width: { xs: "100%", md: "80%" },
-                  color: "black",
-                  fontSize: "20px",
-                  textAlign: { xs: "center", md: "left" },
-                }}
-              >
                 Enter State
               </Typography>
               <CustomTextfield
@@ -399,6 +376,46 @@ const OrganizationForm = ({ openModal, setOpenModal }) => {
                 value={companyDetails.state}
                 onChange={setCompanyDetails}
                 name="state"
+                generalcolor="#9e0000"
+                margin="20px 0"
+              />
+              <Typography
+                sx={{
+                  width: { xs: "100%", md: "80%" },
+                  color: "black",
+                  fontSize: "20px",
+                  textAlign: { xs: "center", md: "left" },
+                }}
+              >
+                Enter District
+              </Typography>
+              <CustomTextfield
+                id={"district"}
+                label={"District"}
+                type={"string"}
+                // height="50px"
+                width={{ xs: "100%", md: "80%" }}
+                generalbgcolor="#fff"
+                fieldsetbgcolor="#fff"
+                fieldsetborder="2px solid #9e0000"
+                multiline={false}
+                fieldsetborderradius="8px"
+                InputProps={{
+                  style: {
+                    color: "black",
+                    fontFamily: "Nunito",
+                  },
+                }}
+                InputLabelProps={{
+                  style: {
+                    color: "#9e0000",
+                    fontFamily: "Nunito",
+                    fontSize: "12px",
+                  },
+                }}
+                value={companyDetails.district}
+                onChange={setCompanyDetails}
+                name="district"
                 generalcolor="#9e0000"
                 margin="20px 0"
               />

@@ -22,7 +22,10 @@ const CustomTextfield = ({
   minRows
 }) => {
   function handleChange(event) {
-    const { name, value } = event.target;
+    var { name, value } = event.target;
+    if (name === "state" || name === "district"){
+      value = value.toLowerCase()
+    }
     onChange((preValue) => {
       return {
         ...preValue,
