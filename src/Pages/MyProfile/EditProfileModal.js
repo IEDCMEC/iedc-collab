@@ -699,7 +699,7 @@ const NewUserForm = ({ onClose, user }) => {
                   <Form.Control
                     required
                     onBlur={props.handleBlur("state")}
-                    value={props.values.state.toUpperCase()}
+                    value={props.values.state}
                     onChange={props.handleChange("state")}
                     type="text"
                     style={{ whiteSpace: "pre-wrap" }}
@@ -722,7 +722,7 @@ const NewUserForm = ({ onClose, user }) => {
                     }}
                     required
                     onBlur={props.handleBlur("district")}
-                    value={props.values.district.toUpperCase()}
+                    value={props.values.district}
                     onChange={props.handleChange("district")}
                     type="text"
                     // style={{ whiteSpace: "pre-wrap" }}
