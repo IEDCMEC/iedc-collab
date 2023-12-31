@@ -74,10 +74,10 @@ function Nav({ route }) {
                     }
                     className="NavLinks"
                     to={item.url}
-                    onClick={() => {
-                      setProjects(allProjects);
-                      setDevelopers(allDevelopers);
-                    }}
+                    // onClick={() => {
+                    //   setProjects(allProjects);
+                    //   setDevelopers(allDevelopers);
+                    // }}
                   >
                     {item.label}
                   </NavLink>
@@ -93,10 +93,10 @@ function Nav({ route }) {
                     }
                     className="NavLinks"
                     to={item.url}
-                    onClick={() => {
-                      setProjects(allProjects);
-                      setDevelopers(allDevelopers);
-                    }}
+                    // onClick={() => {
+                    //   setProjects(allProjects);
+                    //   setDevelopers(allDevelopers);
+                    // }}
                   >
                     {item.label}
                   </NavLink>
