@@ -24,7 +24,7 @@ const CustomTextfield = ({
   function handleChange(event) {
     var { name, value } = event.target;
     if (name === "state" || name === "district"){
-      value = value.toLowerCase()
+      value = value.toUpperCase()
     }
     onChange((preValue) => {
       return {
