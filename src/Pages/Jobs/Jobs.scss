@@ -9,15 +9,6 @@
 .drawer__container button:focus {
   outline: none;
 }
-// .developer-title {
-//   text-align: center;
-//   font-style: normal;
-//   font-weight: 800;
-//   font-size: 30px;
-//   line-height: 40px;
-//   margin-top: 3rem;
-//   color: #9e0000;
-// }
 .job-details {
   display: flex;
   flex-direction: column;
@@ -134,12 +125,9 @@
 /* FILTER CSS CODE */
 .filter_box {
   background: linear-gradient(90deg, #8b1010 0%, #c71111 100%);
-  // min-height: 90vh;
-  // min-width: 35vw;
   display: flex;
   align-items: center;
   flex-direction: column;
-  // left: 0;
   margin: 2rem 0;
 }
 
@@ -189,7 +177,6 @@
   flex-wrap: wrap;
   flex-direction: row;
   transition: 0.2s;
-  // margin-top: 1.5rem;
 }
 .skills .skill_boxes {
   margin: 5px 3px;

@@ -20,7 +20,6 @@ const OrganizationForm = ({ openModal, setOpenModal }) => {
   const history = useHistory();
   const handleSubmit = (event) => {
     event.preventDefault();
-    // // console.log(companyDetails);
     updateCompanyDetails([profile, companyDetails], () => {
       fetchUserProfile();
       fetchDevelpersData();
@@ -31,14 +30,9 @@ const OrganizationForm = ({ openModal, setOpenModal }) => {
     history.push("/profile");
     setCompanyDetails({
       description: "",
-      // company_logo: profile?.profilePhoto || "",
-      // role: profile?.role ? profile.role : "Organization",
       website: "",
       address: "",
-      // phone: profile?.contact || "",
-      // github: "",
       linkedin: "",
-      // email: profile?.email || "",
       district: "",
       state: "",
       approved: false,
@@ -47,14 +41,12 @@ const OrganizationForm = ({ openModal, setOpenModal }) => {
   };
   const handleClose = (event, reason) => {
     if ((reason === "backdropClick") | "escapeKeyDown") {
-      // console.log(reason);
     } else {
       setOpenModal(false);
     }
   };
 
   const handleBackdropClick = (event) => {
-    //these fail to keep the modal open
     event.stopPropagation();
     return false;
   };
@@ -112,14 +104,9 @@ const OrganizationForm = ({ openModal, setOpenModal }) => {
             justifyContent: "flex-start",
             flexDirection: "column",
             gap: "8px",
-            // overflow: "hidden",
             overflowX: "hidden",
             overflowY: "scroll",
             backgroundColor: "white",
-            //   borderRadius: "8px",
-            // border: "2px solid #9e0000",
-            // boxShadow: "0 4px 12px rgb(0 0 0 / 0.5)",
-            // color: ${theme.palette.mode === 'dark' ? grey[50] : grey[900]},
           }}
         >
           <Box
@@ -128,11 +115,8 @@ const OrganizationForm = ({ openModal, setOpenModal }) => {
               alignItems: "center",
               justifyContent: "flex-start",
               flexDirection: "column",
-              //   minHeight: "5%",
               width: "100%",
-              //   position: "fixed",
               padding: "10px 0px 0px 0px",
-              //   top: "0",
             }}
           >
             <Typography
@@ -150,10 +134,7 @@ const OrganizationForm = ({ openModal, setOpenModal }) => {
               flexDirection: { xs: "column", md: "row" },
               minHeight: { xs: "105vh", md: "80%" },
               width: "100%",
-              //   position: "fixed",
               padding: "20px",
-              //   margin:'5px'
-              //   bottom: "0",
             }}
           >
             <Box
