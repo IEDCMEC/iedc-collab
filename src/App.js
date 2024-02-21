@@ -1,5 +1,5 @@
 import { AuthProvider } from "./Firebase/Auth/Auth";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import "./App.scss";
 import React from "react";
 import "react-toastify/dist/ReactToastify.css";
@@ -23,6 +23,8 @@ import NavigateBar from "./Components/NavigateBar/NavigateBar";
 import "aos/dist/aos.css";
 import { createTheme, ThemeProvider } from "@mui/material";
 import { createContext } from "react";
+import VerificationPage from "./Components/VerificationPage/VerificationPage";
+import CompanyJobs from "./Pages/CompanyJobs/CompanyJobs";
 export const ThemeContext =createContext();
 const theme = createTheme({
   typography: {
@@ -52,7 +54,6 @@ function App() {
     <div className="App">
       <AuthProvider>
         <ProjectProvider>
-          <BrowserRouter>
             <NavigateBar />
             <ScrollToTop />
             <ToastContainer />
@@ -70,10 +71,11 @@ function App() {
               <Route Route path="/profile" component={MyProfile} />
               <Route Route path="/ideas" component={Ideas} />
               <Route Route path="/team" component={Team} />
+              <Route Route path="/MyJobs" component={CompanyJobs}/>
+              {/* <Route Route path="/verification" component={VerificationPage} /> */}
               <Route Route path="/jobs" component={Jobs} />
             </Switch>
             </ThemeContext.Provider>
-          </BrowserRouter>
         </ProjectProvider>
       </AuthProvider>
     </div>

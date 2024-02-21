@@ -22,7 +22,7 @@ const CustomTextfield = ({
   minRows
 }) => {
   function handleChange(event) {
-    const { name, value } = event.target;
+    var { name, value } = event.target;
     onChange((preValue) => {
       return {
         ...preValue,

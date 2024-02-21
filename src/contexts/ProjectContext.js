@@ -7,14 +7,17 @@ import {
   getRequestsRecieved,
   getUser,
 } from "../Firebase/firebase";
-
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 export const ProjectContext = React.createContext();
 
 export const ProjectProvider = ({ children }) => {
+  const history = useHistory()
   const [projects, setProjects] = useState([]);
   const [selectedProject, setSelectedProject] = useState();
   const [allProjects, setAllProjects] = useState([]);
   const [developers, setDevelopers] = useState(null);
+  const [jobs, setJobs] = useState(null);
+  const [allJobs, setAllJobs] = useState([])
   const [selectedDevelopers, setSelectedDevelopers] = useState();
   const [profile, setProfile] = useState(null);
   const [allDevelopers, setAllDevelopers] = useState([]);
@@ -104,10 +107,14 @@ export const ProjectProvider = ({ children }) => {
         getUser(currentUser?.uid).then((profile) => {
           setProfile(profile);
           // // console.log(snapshot.data())
+          if (profile?.role === "Organization"){
+            history.push('/profile')
+          }
         });
       }
       // setProfile(profileUser);
       setLoading(false);
+
     }
   };
   let devMap = {};
@@ -252,6 +259,8 @@ export const ProjectProvider = ({ children }) => {
         allProjects,
         companyDetails,
         setCompanyDetails,
+        allJobs,
+        setJobs,
       }}
     >
       {children}
