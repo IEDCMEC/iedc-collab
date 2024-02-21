@@ -93,7 +93,7 @@ const Navbar = () => {
         location.pathname.split("/")[1] === "projects" ||
         location.pathname.split("/")[1] === "developers" ||
         location.pathname.split("/")[1] === "profile" ||
-        location.pathname.split("/")[1] === "myjobs") && (
+        location.pathname.split("/")[1] === "MyJobs") && (
         <div className="Navigate p-2 mb-5 pb-2">
           <nav
             className="navbar navbar-expand-lg fixed-top navbar-light NavigateBar-mainNav"
@@ -216,7 +216,7 @@ const Navbar = () => {
                 <div className="css-button-icon">
                   <i className="fa fa-plus-square"></i>
                 </div>
-                <div className="css-button-text">New Project</div>
+                <div className="css-button-text">{profile?.role === "User" ? 'New Project' : 'Post Job'}</div>
               </div>
 
               {currentUser ? (
@@ -306,9 +306,9 @@ const Navbar = () => {
                 <Link to="/ideas" className="nav_item">
                   Ideas
                 </Link>
-                <Link to="/ideas" className="nav_item">
+                {/* <Link to="/ideas" className="nav_item">
                   Jobs
-                </Link>
+                </Link> */}
               </div>
               <a href="https://www.mec.ac.in/" target="_blank" rel="noreferrer">
                 <img src={meclogo} alt="" className="meclogo" />
@@ -374,13 +374,13 @@ const Navbar = () => {
                     >
                       Ideas
                     </Link>
-                    <Link
+                    {/* <Link
                       to="/jobs"
                       className="nav_item_mob"
                       onClick={handleDrawerClose}
                     >
                       Jobs
-                    </Link>
+                    </Link> */}
                   </div>
                 </div>
                 <a

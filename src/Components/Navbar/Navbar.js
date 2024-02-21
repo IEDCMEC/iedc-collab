@@ -40,7 +40,7 @@ function Nav({ route }) {
   const CompanyMenu = [
     {
       label: "My Jobs",
-      url: "/myjobs",
+      url: "/MyJobs",
     },
   ];
   

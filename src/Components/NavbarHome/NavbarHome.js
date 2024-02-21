@@ -37,9 +37,9 @@ function NavbarHome() {
           <Link to="/ideas" className="nav_item">
             Ideas
           </Link>
-          <Link to="/jobs" className="nav_item">
+          {/* <Link to="/jobs" className="nav_item">
             Jobs
-          </Link>
+          </Link> */}
         </div>
         <a href="https://www.mec.ac.in/" target="_blank" rel="noreferrer">
           <img src={meclogo} alt="" className="meclogo" />
@@ -105,13 +105,13 @@ function NavbarHome() {
               >
                 Ideas
               </Link>
-              <Link
+              {/* <Link
                 to="/jobs"
                 className="nav_item_mob"
                 onClick={handleDrawerClose}
               >
                 Jobs
-              </Link>
+              </Link> */}
             </div>
           </div>
           <a href="https://www.mec.ac.in/" target="_blank" rel="noreferrer">

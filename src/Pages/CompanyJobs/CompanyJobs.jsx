@@ -12,7 +12,7 @@ const CompanyJobs = () => {
       {profile?.role &&
       profile?.role === "Organization" &&
       profile?.approved === true ? (
-        <MainLayout>
+        <MainLayout route={'My Jobs'}>
           <div>CompanyJobs</div>
         </MainLayout>
       ) : (

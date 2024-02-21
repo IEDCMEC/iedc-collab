@@ -71,7 +71,7 @@ function App() {
               <Route Route path="/profile" component={MyProfile} />
               <Route Route path="/ideas" component={Ideas} />
               <Route Route path="/team" component={Team} />
-              <Route Route path="/myjobs" component={CompanyJobs}/>
+              <Route Route path="/MyJobs" component={CompanyJobs}/>
               {/* <Route Route path="/verification" component={VerificationPage} /> */}
               <Route Route path="/jobs" component={Jobs} />
             </Switch>
