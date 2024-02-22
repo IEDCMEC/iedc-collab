@@ -60,3 +60,5 @@ REACT_APP_MESSAGING_SENDER_ID=xxxxXXXX
 
 Contributions are welcome! If you have any ideas, suggestions, or bug reports, please feel free to open an issue or submit a pull request. Let's make Collab even better together✨.
 License
+
+## [Hosted Link](https://collab-beta.iedcmec.in/)
