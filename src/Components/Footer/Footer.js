@@ -21,7 +21,7 @@ const Footer = () => {
               <GoMarkGithub color="white" size={28} />
             </a> */}
           </div>
-          <div className="footer__made">Made with ❤️ IEDC MEC 2022</div>
+          <div className="footer__made">Made with ❤️ IEDC MEC 2024</div>
         </div>
         <img src={bubble7} alt="" className="bubble_7" />
       </div>
