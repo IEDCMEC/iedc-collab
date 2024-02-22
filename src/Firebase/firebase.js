@@ -674,9 +674,9 @@ export const getRequestsRecieved = async (uid) => {
   return response.data;
 };
 
-export const getSkills = () => {
+export const getSkills = async () => {
   const data = [];
-  const skills = firebase.firestore().collection("skills").doc("skills").get();
+  const skills = await firebase.firestore().collection("skills").doc("skills").get();
   // .then((snapshot) => {
   //   if (snapshot.docs.length > 0) {
   //     snapshot.docs.forEach((doc) => {
@@ -691,27 +691,23 @@ export const addSkills = async (skill) => {
   try {
     const skillsSnapshot = getSkills();
 
-    let skillsArray = [];
+    var skillsArray = {};
 
     if (!skillsSnapshot.empty) {
-      skillsSnapshot.forEach((doc) => {
-        skillsArray.push(doc.data());
-      });
+      skillsArray = (await skillsSnapshot).data();
     }
-    skillsArray.push(skill);
+    const values = Object.values(skillsArray);
+    const updatedArray = {...values, [values.length] : skill};
+    await firebase.firestore().collection("skills").doc("skills").set(updatedArray);
 
-    await firebase.firestore().collection("skills").doc("skills").set({
-      skills: skillsArray,
-    });
-
-    // console.log("Skills added successfully");
+    console.log("Skills added successfully");
   } catch (error) {
     console.error("Oops! Couldn't add skills \n more info:", error);
   }
 };
-export const getTags = () => {
+export const getTags = async () => {
   const data = [];
-  const tags = firebase.firestore().collection("tags").doc("tags").get();
+  const tags = await firebase.firestore().collection("tags").doc("tags").get();
   // .then((snapshot) => {
   //   if (snapshot.docs.length > 0) {
   //     snapshot.docs.forEach((doc) => {
@@ -725,22 +721,15 @@ export const addTags = async (tag) => {
   // var skillId = firebase.database().ref().child("skills").push().key;
   try {
     const tagsSnapshot = await getTags();
-
-    let tagsArray = [];
+    var tagsArray = {};
 
     if (!tagsSnapshot.empty) {
-      tagsSnapshot.forEach((doc) => {
-        tagsArray.push(doc.data());
-      });
+      tagsArray = tagsSnapshot.data();
     }
-
-    tagsArray.push(tag);
-
-    await firebase.firestore().collection("tags").doc("tags").set({
-      tags: tagsArray,
-    });
-
-    // console.log("Tags added successfully");
+    const values = Object.values(tagsArray);
+    const updatedArray = {...values, [values.length] : tag};
+    await firebase.firestore().collection("tags").doc("tags").set(updatedArray);
+    console.log("Tags added successfully");
   } catch (error) {
     console.error("Oops! Couldn't add tags \n more info:", error);
   }
