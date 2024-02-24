@@ -258,7 +258,7 @@ const Navbar = () => {
                   <MenuItem
                     onClick={() => {
                       signOut();
-                      history.push("/projects");
+                      history.push("/");
                       setProfile(null);
                     }}
                     style={{

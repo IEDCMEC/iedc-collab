@@ -70,22 +70,23 @@ const NewProjectForm = ({ onClose, project, setVariable, variable }) => {
     projectPhoto: project?.projectPhoto,
   };
   function getRemainSkills() {
-    let temp1 = [];
-    skills?.forEach((skill) => {
-      if (!acValue1.find((item) => item === skill)) temp1.push(skill);
-    });
-    setRemainSkills(temp1);
+    // let temp1 = [];
+    // skills?.forEach((skill) => {
+    //   if (!acValue1.find((item) => item === skill)) temp1.push(skill);
+    // });
+    console.log(skills)
+    setRemainSkills(skills);
     //// console.log(acValue)
 
     //// console.log(temp)
   }
 
   function getRemainTags() {
-    let temp1 = [];
-    tags?.forEach((tag) => {
-      if (!acValue2.find((item) => item === tag)) temp1.push(tag);
-    });
-    setRemainTags(temp1);
+    // let temp1 = [];
+    // tags?.forEach((tag) => {
+    //   if (!acValue2.find((item) => item === tag)) temp1.push(tag);
+    // });
+    setRemainTags(tags);
     //// console.log(acValue)
 
     //// console.log(temp)
@@ -604,12 +605,12 @@ const NewProjectForm = ({ onClose, project, setVariable, variable }) => {
                   if (!tag) toast("Please enter a tag.");
                   else {
                     if (tag && tag.length > 0) {
-                      for (let i = 0; i < tags.length; i++) {
-                        if (tags[i].toLowerCase() === tag.toLowerCase()) {
-                          toast("Tag already present in list.");
-                          break;
-                        }
-                      }
+                      // for (let i = 0; i < tags.length; i++) {
+                      //   if (tags[i].toLowerCase() === tag.toLowerCase()) {
+                      //     toast("Tag already present in list.");
+                      //     break;
+                      //   }
+                      // }
                       addTags(tag);
                       setTag("");
                       setACValue2([...acValue2, tag]);
