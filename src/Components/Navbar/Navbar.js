@@ -12,7 +12,7 @@ function Nav({ route }) {
     allProjects,
     setDevelopers,
     allDevelopers,
-    allJobs, 
+    allJobs,
     setJobs,
     profile,
   } = useContext(ProjectContext);
@@ -21,29 +21,29 @@ function Nav({ route }) {
       label: "Projects",
       url: "/projects",
       onClickFunction: (attribute) => setProjects(attribute),
-      attribute: allProjects
+      attribute: allProjects,
     },
     {
       label: "Developers",
       url: "/developers",
       onClickFunction: (attribute) => setDevelopers(attribute),
-      attribute: allDevelopers
+      attribute: allDevelopers,
     },
     {
       label: "Ideas",
       url: "/ideas",
       onClickFunction: () => {},
-      attribute: []
+      attribute: [],
     },
   ];
-  
+
   const CompanyMenu = [
     {
       label: "My Jobs",
       url: "/MyJobs",
     },
   ];
-  
+
   return (
     <nav className="NavbarItems">
       <ul className="NavMenu">
@@ -57,7 +57,7 @@ function Nav({ route }) {
                     }
                     className="NavLinks"
                     to={item.url}
-                    onClick={item.onClickFunction(item.attribute)}
+                    onClick={() => item.onClickFunction(item.attribute)}
                   >
                     {item.label}
                   </NavLink>
