@@ -6,7 +6,7 @@ import { ProjectContext } from "../../contexts/ProjectContext";
 import { useHistory } from "react-router-dom";
 import { BsArrowLeftCircleFill, BsArrowRightCircleFill } from "react-icons/bs";
 function ProjectCarousel({ project }) {
-  const { projects } = useContext(ProjectContext);
+  const { projects, allProjects } = useContext(ProjectContext);
   const history = useHistory();
   const [swiperRef, setSwiperRef] = useState();
   const handleLeftClick = useCallback(() => {
@@ -56,7 +56,7 @@ function ProjectCarousel({ project }) {
           }}
           className="mySwiper"
         >
-          {projects.map((x) => (
+          {allProjects.map((x) => (
             <SwiperSlide key={x.id}>
               <div
                 key={x.id}
