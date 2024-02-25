@@ -1,0 +1,173 @@
+.join-team-modal {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  
+    .bubble_9 {
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+    .join-team-modal__title {
+      font-size: 2rem;
+    }
+    .bubble_10 {
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+  
+    .bubble_11 {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      right: 0;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      row-gap: 4rem;
+      padding: 50px;
+    }
+    .rectangle-decoration {
+      position: absolute;
+  
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-rows: 1fr 1fr 1fr 1fr;
+      gap: 10px;
+    }
+  
+    .rectangle {
+      height: 9.6px;
+      width: 9.6px;
+      background-color: #eacccc;
+    }
+  
+    .top-rectangles {
+      top: 0;
+      right: 20%;
+    }
+  
+    .bottom-rectangles {
+      bottom: 0;
+      left: 10%;
+    }
+  
+    .close-button {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      z-index: 10;
+      cursor: pointer;
+    }
+  
+    &__body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      row-gap: 3rem;
+  
+      padding: 50px;
+  
+      h1 {
+        color: #9e0000;
+        text-align: center;
+        font-size: 45px;
+        font-weight: 700;
+      }
+  
+      .message {
+        position: relative;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+  
+        .message__label {
+          font-weight: 700;
+          font-size: 31px;
+          color: #9e0000;
+          position: absolute;
+          top: -28px;
+          left: 20px;
+          background: white;
+          padding-inline: 10px;
+        }
+  
+        .message__text {
+          border: 1px solid #9e0000;
+          border-radius: 10px;
+          background-color: inherit;
+  
+          width: 100%;
+          height: 225px;
+          padding: 20px;
+          outline: none;
+          color: #9e0000;
+          font-size: 18px;
+          font-weight: 300;
+          @media (max-width: 500px) {
+            max-width: 20rem;
+          }
+        }
+      }
+  
+      .btn {
+        align-self: center;
+        @media screen and (max-width: 992px) {
+        }
+        display: flex;
+        flex-direction: row;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 1rem;
+        background: #9e0000 !important;
+        color: white !important;
+        p {
+          margin-bottom: 0;
+          font-size: 1.5rem;
+        }
+      }
+    }
+  }
+  @media (min-device-width: 20px) and (max-device-width: 780px) {
+    .message__label {
+      font-weight: 700;
+      font-size: 21px !important;
+      color: #9e0000;
+      position: absolute;
+      top: -15px !important;
+      left: 50px !important;
+    }
+    .join-team-modal .close-button {
+      right: 7px;
+    }
+    .top-rectangles {
+      display: none !important;
+    }
+    .join-team-modal__body {
+      padding: 3rem 0rem 0rem 0rem !important;
+    }
+  }
+  .message__text
+  {
+    width: 30rem !important;
+  }
+  @media (max-width: 450px) {
+    .MuiDialog-paperFullScreen {
+      height: 60vh;
+      width: 100vw;
+    }
+  }
+  @media (max-width:600px) {
+    .message__text
+    {
+      width: 70vw !important;
+    }
+    
+  }

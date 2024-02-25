@@ -1,27 +1,55 @@
-import React, { useContext } from "react";
 import "./Request.css";
-import {
-  acceptInvite,
-  acceptRequest,
-  declineRequest,
-} from "../../Firebase/firebase";
-import { useHistory } from "react-router-dom";
+import {declineRequest} from "../../Firebase/firebase";
+import { useContext, useEffect, useState } from "react";
+import { useParams, useHistory } from "react-router-dom";
+import { getUser } from "../../Firebase/firebase";
+import { AuthContext } from "../../Firebase/Auth/Auth";
 import { toast } from "react-toastify";
 import axios from "axios";
 import { emailUrl } from "../../Utils/urls";
 import { ProjectContext } from "../../contexts/ProjectContext";
 import { HiUserAdd } from "react-icons/hi";
 import { RiDeleteBin6Line } from "react-icons/ri";
+import RequestAcceptedModal from "../../Components/RequestAcceptedModal/RequestAcceptedModal";
 // import { renderEmail } from "react-html-email";
 import ConfirmEmail from "../ConfirmEmail/ConfirmEmail";
 
 function Received({ request }) {
   const history = useHistory();
+  const { currentUser } = useContext(AuthContext);
   const { fetchRequestsRecieved } = useContext(ProjectContext);
-  async function handleRequest() {
-    await acceptRequest(request).then(() => {
-      toast("Request Accepted");
-      fetchRequestsRecieved()
+  let { id } = useParams();
+
+  const [selectedUser, setSelectedUser] = useState({});
+  const [loading, setLoading] = useState(true);
+  const { projects } = useContext(ProjectContext);
+  const [count, setCount] = useState(false);
+  const [open, setOpen] = useState(false);
+  
+  // // console.log(id)
+  const getDev = async (id) => {
+    let user = await getUser(id)
+    // user = { ...user, _id: id };
+    // // console.log(user)
+    setSelectedUser(user);
+    setLoading(false);
+  };
+  useEffect(() => {
+    getDev(id);
+  }, [id]);
+  useEffect(() => {
+    if (projects)
+      projects.forEach((project) => {
+        project.teamMembers?.forEach(
+          (member) => member === selectedUser?.email && setCount(true)
+        );
+      });
+      // console.log(selectedUser)
+  }, [projects, selectedUser]);
+  // async function handleRequest() {
+    // await acceptRequest(request).then(() => {
+    //   toast("Request Accepted");
+    //   fetchRequestsRecieved()
       // .then(() => {
       //   axios.post(emailUrl, {
       //     toEmail: request.sender_email,
@@ -31,12 +59,12 @@ function Received({ request }) {
       //     ),
       //   });
       // });
-    });
-  }
-  async function handleInvite() {
-    await acceptInvite(request).then(() => {
-      toast("Invite Accepted");
-      fetchRequestsRecieved()
+    // });
+  // }
+  // async function handleInvite() {
+  //   await acceptInvite(request).then(() => {
+  //     toast("Invite Accepted");
+  //     fetchRequestsRecieved()
       // .then(() => {
       //   axios.post(emailUrl, {
       //     toEmail: request.sender_email,
@@ -46,8 +74,8 @@ function Received({ request }) {
       //     ),
       //   });
       // });
-    });
-  }
+  //   });
+  // }
   async function handleDeclineRequest() {
     if (request.type === "invite") {
       await declineRequest(request).then(() => {
@@ -130,16 +158,32 @@ function Received({ request }) {
               <div
                 className="received_btn_accept"
                 onClick={() => {
+                  console.log("Request Object:", request)
                   if (request.type === "request") {
-                    handleRequest();
+                    if(currentUser){
+                      setOpen(true)
+                    }
                   }
                   if (request.type === "invite") {
-                    handleInvite();
+                    if(currentUser){
+                      setOpen(true)
+                    }
                   }
                 }}
               >
                 <HiUserAdd size={25} />
                 Accept
+              </div>
+              <div>
+               {currentUser ? (
+                  <RequestAcceptedModal
+                    open={open}
+                    onClose={() => setOpen(false)}
+                    request= {request}
+                  />
+                ) : (
+                  ""
+                )}
               </div>
               <div
                 className="received_btn_decline"
@@ -159,3 +203,5 @@ function Received({ request }) {
 }
 
 export default Received;
+
+
