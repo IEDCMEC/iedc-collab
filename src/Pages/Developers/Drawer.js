@@ -5,6 +5,7 @@ import Buttons from "./Buttons";
 import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
+import FilterAltIcon from '@mui/icons-material/FilterAlt';
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import useMediaQuery from "@mui/material/useMediaQuery";
@@ -179,12 +180,16 @@ export default function PersistentDrawerLeft({
 
   return (
     <>
-      <IconButton
+      <IconButton 
+      
         color="inherit"
         aria-label="open drawer"
         onClick={handleDrawerOpen}
         edge="start"
         sx={{
+          display: 'flex', 
+          alignItems: 'center', 
+          justifyContent:'center',
           mr: 5,
           color: "#9e0000",
           position: "fixed",
@@ -194,8 +199,11 @@ export default function PersistentDrawerLeft({
         }}
         className="menu_button"
       >
-        <MenuIcon sx={{ fontSize: "2rem" }} />
+        <FilterAltIcon sx={{ fontSize: "2rem" }} />
+        <h3>Filter</h3>
       </IconButton>
+      
+  
       <Drawer
         ref={widthRef}
         sx={{
