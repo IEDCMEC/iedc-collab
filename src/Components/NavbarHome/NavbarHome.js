@@ -1,4 +1,4 @@
-import { useState, React } from "react";
+/*import { useState, React } from "react";
 import { Drawer } from "@mui/material";
 import { HiOutlineMenuAlt3 } from "react-icons/hi";
 import { Link } from "react-router-dom";
@@ -39,7 +39,7 @@ function NavbarHome() {
           </Link>
           {/* <Link to="/jobs" className="nav_item">
             Jobs
-          </Link> */}
+          </Link> /}
         </div>
         <a href="https://www.mec.ac.in/" target="_blank" rel="noreferrer">
           <img src={meclogo} alt="" className="meclogo" />
@@ -111,7 +111,151 @@ function NavbarHome() {
                 onClick={handleDrawerClose}
               >
                 Jobs
-              </Link> */}
+              </Link> *}
+            </div>
+          </div>
+          <a href="https://www.mec.ac.in/" target="_blank" rel="noreferrer">
+            <img src={meclogo} alt="" className="meclogo__mob" />
+          </a>
+        </div>
+      </Drawer>
+    </div>
+  );
+}
+
+export default NavbarHome;*/
+
+import React, { useState,useContext } from "react";
+import { Drawer } from "@mui/material";
+import { HiOutlineMenuAlt3 } from "react-icons/hi";
+import { Link } from "react-router-dom";
+import "./NavbarHome.scss";
+import meclogo from "../../assets/meclogo.png";
+import { FaHome } from "react-icons/fa";
+import { signIn, signOut } from "../../Firebase/firebase";
+import { ProjectContext } from "../../contexts/ProjectContext";
+
+
+function NavbarHome() {
+  const [open, setOpen] = useState(false);
+ // const [isLoggedIn, setIsLoggedIn] = useState(false); // State to track login status
+  const { profile } = useContext(ProjectContext);
+  const isLoggedIn = profile && profile.id !== undefined;
+
+
+  const handleDrawerOpen = () => {
+    setOpen(true);
+  };
+
+  const handleDrawerClose = () => {
+    setOpen(false);
+  };
+
+  return (
+    <div className="navbar_1">
+      <div className="nav__desktop">
+        <Link to="/" className="nav_item">
+          <div className="logo">
+            <div className="home_logo">
+              <FaHome color="white" size={25} />
+            </div>
+            <div className="title">IEDC MEC COLLAB</div>
+          </div>
+        </Link>
+        <div className="navbar_items">
+          <Link to="/projects" className="nav_item">
+            Projects
+          </Link>
+          <Link to="/ideas" className="nav_item">
+            Ideas
+          </Link>
+          <Link to="/developers" className="nav_item">
+            Developers
+          </Link>
+          {/* Conditional rendering based on login status */}
+          {isLoggedIn ? (
+            <Link to="/profile" className="nav_item logout" onClick={signOut}>
+              My Profile
+            </Link>
+          ) : (
+            <button className="nav_item logout" onClick={signIn}>
+              Login
+            </button>
+          )}
+        </div>
+        <a href="https://www.mec.ac.in/" target="_blank" rel="noreferrer">
+          <img src={meclogo} alt="" className="meclogo" />
+        </a>
+      </div>
+
+      <div className="nav__mob">
+        <div className="nav__mob_container">
+          <div className="title">IEDC MEC COLLAB</div>
+          <button className="nav_btn" onClick={handleDrawerOpen}>
+            <HiOutlineMenuAlt3 className="hamburger" />
+          </button>
+        </div>
+      </div>
+      <Drawer
+        open={open}
+        onClick={handleDrawerClose}
+        onClose={(event, reason) => {
+          if (reason !== "backdropClick") {
+            handleDrawerClose();
+          } else if (reason !== "escapeKeyDown") {
+            handleDrawerClose();
+          }
+        }}
+        anchor="left"
+      >
+        <div className="nav__drawer">
+          <div className="nav__drawer_header">
+            <div className="title_mob">IEDC MEC COLLAB</div>
+            <div className="navbar_items_mob">
+              <Link
+                to="/projects"
+                className="nav_item_mob"
+                onClick={handleDrawerClose}
+              >
+                Projects
+              </Link>
+              <Link
+                to="/ideas"
+                className="nav_item_mob"
+                onClick={handleDrawerClose}
+              >
+                Ideas
+              </Link>
+              <Link
+                to="/developers"
+                className="nav_item_mob"
+                onClick={handleDrawerClose}
+              >
+                Developers
+              </Link>
+              {/* Conditional rendering based on login status */}
+              {isLoggedIn ? (
+                <Link
+                  to="/profile"
+                  className="nav_item_mob logout"
+                  onClick={()=>{
+                    handleDrawerClose();
+                    signOut();
+                  }}
+                >
+                  Logout
+                </Link>
+              ) : (
+                <button
+                  className="nav_item_mob logout"
+                  onClick={() => {
+                    handleDrawerClose();
+                    signIn();
+                  }}
+                >
+                  Login
+                </button>
+              )}
             </div>
           </div>
           <a href="https://www.mec.ac.in/" target="_blank" rel="noreferrer">
