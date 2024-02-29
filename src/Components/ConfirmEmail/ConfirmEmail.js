@@ -29,6 +29,21 @@ function ConfirmEmail({ request, status }) {
           </i>
         </p>
         <br />
+        <p
+          style={{
+            paddingLeft: "1.5rem",
+          }}
+        >
+          <b>Message : </b>{" "}
+          <p
+            style={{
+              paddingLeft: "1.5rem",
+            }}
+          >
+            {request.message}
+          </p>
+          </p>
+          <br />
         <div>
           <p>
             To view more details , Vist{" "}

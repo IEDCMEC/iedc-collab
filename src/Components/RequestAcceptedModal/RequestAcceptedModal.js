@@ -31,10 +31,10 @@ const RequestAcceptedModal = ({request, ...props }) => {
         await acceptRequest(request).then(() => {
             toast("Request Accepted");
              fetchRequestsRecieved(); 
-            });;
+            });
     }
     if(request.type === "invite"){
-        await acceptInvite(request).then(() => {
+        await acceptInvite({...request,message: message}).then(() => {
             toast("Request Accepted");
              fetchRequestsRecieved()
     })
