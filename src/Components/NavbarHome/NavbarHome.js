@@ -125,7 +125,9 @@ function NavbarHome() {
 
 export default NavbarHome;*/
 
-import React, { useState,useContext } from "react";
+
+
+import React, { useState, useEffect, useContext } from "react";
 import { Drawer } from "@mui/material";
 import { HiOutlineMenuAlt3 } from "react-icons/hi";
 import { Link } from "react-router-dom";
@@ -135,13 +137,14 @@ import { FaHome } from "react-icons/fa";
 import { signIn, signOut } from "../../Firebase/firebase";
 import { ProjectContext } from "../../contexts/ProjectContext";
 
-
 function NavbarHome() {
   const [open, setOpen] = useState(false);
- // const [isLoggedIn, setIsLoggedIn] = useState(false); // State to track login status
   const { profile } = useContext(ProjectContext);
-  const isLoggedIn = profile && profile.id !== undefined;
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
+  useEffect(() => {
+    setIsLoggedIn(profile && profile.id !== undefined);
+  }, [profile]);
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -174,12 +177,12 @@ function NavbarHome() {
           </Link>
           {/* Conditional rendering based on login status */}
           {isLoggedIn ? (
-            <Link to="/profile" className="nav_item logout" onClick={signOut}>
-              My Profile
-            </Link>
+             <Link to="/profile" className="nav_item login">
+             My Profile
+           </Link>
           ) : (
-            <button className="nav_item logout" onClick={signIn}>
-              Login
+            <button className="nav_item login" onClick={signIn}>
+              Sign In
             </button>
           )}
         </div>
@@ -237,23 +240,20 @@ function NavbarHome() {
               {isLoggedIn ? (
                 <Link
                   to="/profile"
-                  className="nav_item_mob logout"
-                  onClick={()=>{
-                    handleDrawerClose();
-                    signOut();
-                  }}
+                  className="nav_item login"
+                  onClick={handleDrawerClose}
                 >
-                  Logout
+                  My Profile
                 </Link>
               ) : (
                 <button
-                  className="nav_item_mob logout"
+                  className="nav_item login"
                   onClick={() => {
                     handleDrawerClose();
                     signIn();
                   }}
                 >
-                  Login
+                  Sign In
                 </button>
               )}
             </div>

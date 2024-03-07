@@ -6,6 +6,7 @@ import "firebase/firestore";
 // import { renderEmail } from "react-html-email";
 
 import axios from "axios";
+/*
 const config = {
   apiKey: process.env.REACT_APP_FB_API_KEY,
   authDomain: process.env.REACT_APP_AUTH_DOMAIN,
@@ -13,16 +14,16 @@ const config = {
   projectId: process.env.REACT_APP_PROJECT_ID,
   storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
   messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
-};
+};*/
 
-/*const config = {
+const config = {
   apiKey: "AIzaSyAQ_ZAyiMvqylncaHQfLQ5MwuHiGrMJ4xQ",
   authDomain: "temp-iedc-collab.firebaseapp.com",
   projectId: "temp-iedc-collab",
   storageBucket: "temp-iedc-collab.appspot.com",
   messagingSenderId: "204230489361",
   appId: "1:204230489361:web:4a30a49e17618ecdee48b0"
-};*/
+};
 const initialize = () => {
   if (!firebase.apps.length) {
     firebase.initializeApp(config);
