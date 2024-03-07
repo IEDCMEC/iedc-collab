@@ -5,25 +5,29 @@
 
 .project-nav__container {
   display: flex;
-  justify-content: space-between;
+  justify-content:space-between;
+  align-items: center;
   width: 100%;
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
+  height: 100px;
+  padding-top: 2rem;
+  padding-bottom: 1.5rem;
   padding-left: 1rem;
-  padding-right: 1rem;
+  padding-right: 5rem;
 }
 
 .project-nav__title-icon {
   display: inline-flex;
+  padding-left: 6rem;
 }
 
 .project-nav__likes-join {
   display: inline-flex;
+ 
   justify-content: flex-end;
 }
 
 .project-nav__profile {
-  padding-left: 3rem;
+  
   padding-right: 5px;
 }
 .project-nav__profile img {
@@ -75,7 +79,7 @@
 
   margin-top: 7px;
   margin-bottom: 7px;
-  padding-top: 11px;
+  padding: 11px;
   padding-left: 12px;
   padding-right: 12px;
   margin-right: 45px;
@@ -142,4 +146,15 @@
   .projectnav-likes {
     display: none;
   }
+ .view_projects{
+  display:flex;
+  width:70%
+ }
+ .left-arrow{
+  padding-top: 3rem;
+ }
+
+
+
+
 }

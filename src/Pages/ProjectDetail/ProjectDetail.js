@@ -45,6 +45,7 @@ function ProjectDetail() {
         <ProjectCarousel project={selectedProject} />
         <ProjectNav selectedProject={selectedProject} />
         <div className="project_details_flex">
+       
           <ProjectToggle
             toggle={toggle}
             setToggle={setToggle}
