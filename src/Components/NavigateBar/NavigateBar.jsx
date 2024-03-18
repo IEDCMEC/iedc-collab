@@ -216,7 +216,7 @@ const Navbar = () => {
                 <div className="css-button-icon">
                   <i className="fa fa-plus-square"></i>
                 </div>
-                <div className="css-button-text">{profile?.role === "User" ? 'New Project' : 'Post Job'}</div>
+                <div className="css-button-text">{profile?.role === "Organization" ? 'Post Job': 'New Project'}</div>
               </div>
 
               {currentUser ? (
