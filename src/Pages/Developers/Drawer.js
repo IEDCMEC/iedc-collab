@@ -11,7 +11,7 @@ import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { getSkills, getTags } from "../../Firebase/firebase";
 import "./Developers.scss";
-import { TextField } from "@mui/material";
+import { TextField, Typography } from "@mui/material";
 import Autocomplete from "@mui/material/Autocomplete";
 import { ThemeContext } from "../../App";
 import { useRef } from "react";
@@ -190,17 +190,21 @@ export default function PersistentDrawerLeft({
           display: 'flex', 
           alignItems: 'center', 
           justifyContent:'center',
-          mr: 5,
+          // mr: 5,
           color: "#9e0000",
           position: "fixed",
           left: matches4 ? "15px" : "30px",
           top: matches3 ? "184px" : "140px",
-          ...(open && { display: "none" }),
+          display: open && 'none',
+          borderRadius:'5px',
+          "&:hover":{
+            backgroundColor:'transparent'
+          }
         }}
         className="menu_button"
       >
         <FilterAltIcon sx={{ fontSize: "2rem" }} />
-        <h3>Filter</h3>
+        <Typography sx={{padding:'0px', fontSize:'1.5rem',fontWeight:'500'}}>Filter</Typography>
       </IconButton>
       
   
