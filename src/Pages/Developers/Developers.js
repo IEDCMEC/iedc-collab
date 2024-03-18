@@ -13,17 +13,46 @@ import { ThemeContext } from "../../App";
 
 let devs = [];
 
+const filterDevelopers = (developers, selectedSkills, branch, yop, page, setPages, setUsers, setLoading1) => {
+  setLoading1(true);
+  let developers1 = developers;
+  let filteredDevelopers = [...developers1];
+
+
+  if (selectedSkills.length > 0) {
+    filteredDevelopers = filteredDevelopers.filter(dev => 
+      dev.skills && dev.skills.some(skill => selectedSkills.includes(skill))
+    );
+  }
+
+ 
+  if (branch.length > 0) {
+    filteredDevelopers = filteredDevelopers.filter(dev => branch.includes(dev.branch));
+  }
+
+
+  if (yop.length > 0) {
+    filteredDevelopers = filteredDevelopers.filter(dev => yop.includes(dev.year));
+  }
+
+  
+  filteredDevelopers.sort((a, b) => a.name.localeCompare(b.name));
+
+ 
+  setPages(Math.ceil(filteredDevelopers.length / 10));
+  setUsers(filteredDevelopers.slice(page * 10, page * 10 + 10));
+  setLoading1(false);
+};
+
 const Developers = () => {
   const [users, setUsers] = useState(null);
-  const { developers, loading, setSelectedDevelopers } = useContext(
-    ProjectContext
-  );
-  const { branch,setBranch,yop,setYop,width,currentWidth, setcurrentWidth} = useContext(ThemeContext)
+  const { developers, loading, setSelectedDevelopers } = useContext(ProjectContext);
+  const { branch, setBranch, yop, setYop, width, currentWidth, setcurrentWidth } = useContext(ThemeContext);
   const [selectedSkills, setSelectedSkills] = useState([]);
   const [pages, setPages] = useState(0);
   const [page, setPage] = useState(0);
   const [loading1, setLoading1] = useState(false);
-  // const [branch, setBranch] = useState([]);
+  //const [branch, setBranch] = useState([]);
   // const [yop, setYop] = useState([]);
   const addYop = (selectedYop) => {
     let oldYop = yop;
@@ -35,6 +64,7 @@ const Developers = () => {
     }
     setYop(oldYop);
   };
+
   const addBranch = (b) => {
     let oldBranch = branch;
     if (oldBranch.find((s) => s === b)) {
@@ -44,16 +74,17 @@ const Developers = () => {
     }
     setBranch(oldBranch);
   };
-  useEffect(()=>{
-    window.addEventListener("resize",changedWidth);
-    function changedWidth(e){
-      setcurrentWidth(window.innerWidth)
+
+  useEffect(() => {
+    window.addEventListener("resize", changedWidth);
+    function changedWidth(e) {
+      setcurrentWidth(window.innerWidth);
     }
-    return()=>{
-      window.removeEventListener("resize",changedWidth)
+    return () => {
+      window.removeEventListener("resize", changedWidth);
     };
-  },[width,setcurrentWidth])
-  // const getDevs = async () => {
+  }, [width, setcurrentWidth]);
+// const getDevs = async () => {
   //   // await getDevelopers().then(async function (snapshot) {
   //   //   let messageObject = snapshot.docs();
   //   //   const result = Object.keys(messageObject).map((key) => ({
@@ -73,71 +104,19 @@ const Developers = () => {
     setUsers(developers.slice(page * 10, page * 10 + 10));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [developers]);
-  const filterDevelopers = () => {
-    //if(branch.length==0 && yop.length==0 && selectedSkills.length==0 && developers.length == users.length){alert("hello");return;}
-    setLoading1(true);
-    // setAllUsers(developers);
-    let developers1 = developers;
-    let skills = selectedSkills;
-    devs = [];
-    setPage(0);
-    if (skills.length === 0) {
-      devs = developers;
-    } else {
-      developers1.forEach((dev) => {
-        for (let s in skills) {
-          if (dev.skills && dev?.skills?.find((sk) => sk === skills[s])) {
-            devs = [...devs, dev];
-            break;
-          }
-        }
-      });
-    }
-
-    if (branch.length > 0) {
-      devs = devs.filter((d) => {
-        if (branch.find((br) => br === d.branch)) {
-          return true;
-        } else return false;
-      });
-    }
-    if (yop.length > 0) {
-      devs = devs.filter((d) => {
-        if (yop.find((yp) => yp === d.year)) {
-          return true;
-        } else return false;
-      });
-    }
-
-    if (devs) {
-      //  setUsers([])
-      // for(let i = 0; i < devs.length+10;i+=10){
-
-      //etTimeout(() => {
-      setPages(Math.ceil(devs.length / 10));
-      setUsers(devs.slice(page * 10, page * 10 + 10));
-      //}, 100);
-    }
-
-    setLoading1(false);
-  };
-  useEffect(() => {
-    if (developers === null) return;
-    setUsers(devs.slice(page * 10, page * 10 + 10));
-    //eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [page]);
 
   useEffect(() => {
     if (users === undefined || users === null) return;
     if (developers === undefined || developers === null) return;
-    filterDevelopers();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [selectedSkills, branch, yop]);
+    filterDevelopers(developers, selectedSkills, branch, yop, page, setPages, setUsers, setLoading1);
+  }, [selectedSkills, branch, yop, users, developers, page]);
 
   const history = useHistory();
+
   const handleClick = (u) => {
     history.push(`/developers/${u.id}`);
   };
+
   if (loading || loading1 || users === null) {
     return (
       <div>
@@ -147,11 +126,11 @@ const Developers = () => {
       </div>
     );
   }
-  // // console.log(users)
+
   return (
-    <div style={{display:'flex',justifyContent: width!==0 ? 'flex-end': 'center',width:'100vw'}}>
+    <div style={{ display: 'flex', justifyContent: width !== 0 ? 'flex-end' : 'center', width: '100vw' }}>
       <MainLayout route={"Developers"}>
-        <div className="parent_container" style={{width:currentWidth>1000? `calc(100vw - ${width}px)`:'100vw',transition:'0.2s'}}>
+        <div className="parent_container" style={{ width: currentWidth > 1000 ? `calc(100vw - ${width}px)` : '100vw', transition: '0.2s' }}>
           <Drawer
             selectedSkills={selectedSkills}
             setSelectedSkills={setSelectedSkills}
@@ -159,18 +138,16 @@ const Developers = () => {
             addYop={addYop}
           />
           <div className="developer_container">
-            <h3 className="developer-title" style={{marginTop:'3rem'}}>
+            <h3 className="developer-title" style={{ marginTop: '3rem' }}>
               {users && users.length === 0 ? "NOT FOUND" : "DEVELOPERS"}
             </h3>
-           <div>{users && users.length === 0 ? <p style={{fontWeight:'600'}}>Refine your filters please ..</p> : null}</div> 
+            <div>{users && users.length === 0 ? <p style={{ fontWeight: '600' }}>Refine your filters please ..</p> : null}</div>
             <div className="developer-details">
-              {users?.map((user, index) => {
-                return (
-                  <div key={index} onClick={() => setSelectedDevelopers(user)}>
-                    <DeveloperCard handleClick={handleClick} user={user} />
-                  </div>
-                );
-              })}
+              {users?.map((user, index) => (
+                <div key={index} onClick={() => setSelectedDevelopers(user)}>
+                  <DeveloperCard handleClick={handleClick} user={user} />
+                </div>
+              ))}
             </div>
             <Pagination
               count={pages}
