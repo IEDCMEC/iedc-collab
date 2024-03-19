@@ -534,9 +534,8 @@ const NewProjectForm = ({ onClose, project, setVariable, variable }) => {
                           }
                         }
                       }
-                      addSkills(skill);
-                      setSkill("");
-                      setACValue1([...acValue1, skill]);
+                      addSkills(skill, setACValue1);
+                      
                     }
                   }
                 }}

@@ -687,24 +687,39 @@ export const getSkills = async () => {
   return skills;
 };
 
-export const addSkills = async (skill) => {
-  try {
-    const skillsSnapshot = getSkills();
+export const addSkills = async (inputSkills, acValueSetter) => {
+  try {    
+    const newSkills = inputSkills.split(",");    
+    const filteredSkills = newSkills
+      .map((skill) => skill.trim())
+      .filter((skill) => skill !== "");    
+    acValueSetter((prevSkills) => [...prevSkills, ...filteredSkills]);
+    console.log("Filtered Skills:", filteredSkills);
+    const skillsSnapshot = await getSkills();
+    const skillsObject = skillsSnapshot.data() || {};
+    let skillsArray = Object.values(skillsObject); 
 
-    var skillsArray = {};
+    filteredSkills.forEach((skill) => {      
+      skillsArray.push(skill);
+    });  
+    console.log("Skills Array Before Deduplication:", skillsArray);    
+    skillsArray = Array.from(new Set(skillsArray.map(skill => skill.toLowerCase())));
+  
+    console.log("Unique Skills Array:", skillsArray);   
 
-    if (!skillsSnapshot.empty) {
-      skillsArray = (await skillsSnapshot).data();
-    }
-    const values = Object.values(skillsArray);
-    const updatedArray = {...values, [values.length] : skill};
-    await firebase.firestore().collection("skills").doc("skills").set(updatedArray);
+    const skillsObjectForFirestore = {};
+    skillsArray.forEach((skill, index) => {
+      skillsObjectForFirestore[`skill${index}`] = skill.toLowerCase();
+    });
+    await firebase.firestore().collection("skills").doc("skills").set(skillsObjectForFirestore);
 
     console.log("Skills added successfully");
   } catch (error) {
     console.error("Oops! Couldn't add skills \n more info:", error);
   }
 };
+
+
 export const getTags = async () => {
   const data = [];
   const tags = await firebase.firestore().collection("tags").doc("tags").get();
