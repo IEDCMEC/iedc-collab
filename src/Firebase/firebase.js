@@ -684,6 +684,7 @@ export const getSkills = async () => {
   //     });
   //   }
   // });
+  console.log(skills)
   return skills;
 };
 

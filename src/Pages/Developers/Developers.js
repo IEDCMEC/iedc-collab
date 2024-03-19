@@ -109,7 +109,7 @@ const Developers = () => {
     if (users === undefined || users === null) return;
     if (developers === undefined || developers === null) return;
     filterDevelopers(developers, selectedSkills, branch, yop, page, setPages, setUsers, setLoading1);
-  }, [selectedSkills, branch, yop, users, developers, page]);
+  }, [selectedSkills, branch, yop, developers, page]);
 
   const history = useHistory();
 
