@@ -69,7 +69,6 @@ const RequirementDetails = (props) => {
             />
           )}
         </div>
-        <div className="requirement__title">PROJECT REQUIREMENTS</div>
         <div className="requirement__content">
           {props.selectedProject?.req || "No Details Entered..."}
         </div>

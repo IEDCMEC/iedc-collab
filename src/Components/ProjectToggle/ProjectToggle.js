@@ -5,6 +5,18 @@ const ProjectToggle = ({ setToggle, selectedProject, toggle }) => {
     <div className="project-toggle__container">
       <div className="project-toggle__title">{selectedProject.name}</div>
       <div className="project-toggle__NavbarItems">
+      <div
+          className={`project-toggle__NavLinks__disc ${
+            toggle === 2 && "project-toggle__NavLinksActive"
+          }`}
+          to="/discussion"
+          onClick={(e) => {
+            e.preventDefault();
+            setToggle(2);
+          }}
+        >
+          Discussion
+        </div>
         <div
           className={`project-toggle__NavLinks__desc ${
             toggle === 1 && "project-toggle__NavLinksActive"
@@ -16,30 +28,6 @@ const ProjectToggle = ({ setToggle, selectedProject, toggle }) => {
           }}
         >
           Description
-        </div>
-        <div
-          className={`project-toggle__NavLinks ${
-            toggle === 2 && "project-toggle__NavLinksActive"
-          }`}
-          to="/requirements"
-          onClick={(e) => {
-            e.preventDefault();
-            setToggle(2);
-          }}
-        >
-          Requirements
-        </div>
-        <div
-          className={`project-toggle__NavLinks__disc ${
-            toggle === 3 && "project-toggle__NavLinksActive"
-          }`}
-          to="/discussion"
-          onClick={(e) => {
-            e.preventDefault();
-            setToggle(3);
-          }}
-        >
-          Discussion
         </div>
       </div>
     </div>
