@@ -26,7 +26,6 @@ const ProjectNav = ({ selectedProject }) => {
   if (loading) {
     return <SuspenseLoader />;
   }
-
   return (
     <div className="project-nav__container">
       <div className="view_projects">
@@ -44,13 +43,17 @@ const ProjectNav = ({ selectedProject }) => {
 
           <div className="project-nav__title-icon">
             <div className="project-nav__profile">
-              <img
-                src={
-                  user.profilePhoto ||
-                  "https://sabt.center/wp-content/uploads/2014/08/avatar-1.png"
+              <a href ={(currentUser?.uid === selectedProject.leader_id)? `/profile`:  `/developers/${selectedProject.leader_id}`
                 }
-                alt="profile"
-              />
+                >
+               <img
+                 src={
+                   user.profilePhoto ||
+                   "https://sabt.center/wp-content/uploads/2014/08/avatar-1.png"
+                 }
+                 alt="profile"
+                />
+              </a>
             </div>
           </div>
           <div className="project-nav__title">
