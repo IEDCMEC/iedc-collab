@@ -8,7 +8,7 @@ import { AuthContext } from "../../Firebase/Auth/Auth";
 import { useContext } from "react";
 import { BsArrowLeftCircle } from "react-icons/bs";
 import SuspenseLoader from "../SuspenseLoader/SuspenseLoader";
-import { useHistory } from "react-router-dom";
+import { useHistory,Link } from "react-router-dom";
 const ProjectNav = ({ selectedProject }) => {
   const [user, setUser] = useState({});
   const history = useHistory();
@@ -43,7 +43,9 @@ const ProjectNav = ({ selectedProject }) => {
 
           <div className="project-nav__title-icon">
             <div className="project-nav__profile">
-              <a href ={(currentUser?.uid === selectedProject.leader_id)? `/profile`:  `/developers/${selectedProject.leader_id}`
+              <Link to= {
+                (currentUser?.uid === selectedProject.leader_id)?
+                `/profile`:  `/developers/${selectedProject.leader_id}`
                 }
                 >
                <img
@@ -53,7 +55,7 @@ const ProjectNav = ({ selectedProject }) => {
                  }
                  alt="profile"
                 />
-              </a>
+              </Link>
             </div>
           </div>
           <div className="project-nav__title">
