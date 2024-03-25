@@ -14,6 +14,7 @@ import { RiDeleteBin7Line } from "react-icons/ri";
 import { FaPhoneAlt } from "react-icons/fa";
 import { FiEdit } from "react-icons/fi";
 import { mainUrl } from "../../Utils/urls";
+import RequirementDetails from "../RequirementDetails/RequirementDetails";
 
 const DescriptionDetails = (props) => {
   const { fetchData, devHash } = useContext(ProjectContext);
@@ -229,6 +230,12 @@ const DescriptionDetails = (props) => {
           id={props.selectedProject.id}
         />
       </div>
+      <div className="description__other-team">REQUIREMENTS</div>
+      <RequirementDetails
+        selectedProject={props.selectedProject}
+        setVariable={props.setVariable}
+        variable={props.variable}
+      />
     </>
   );
 };

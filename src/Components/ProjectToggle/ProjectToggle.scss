@@ -37,13 +37,15 @@
   font-weight: 700;
   border-bottom-left-radius: 12px;
   border-bottom-right-radius: 12px;
-  justify-content: flex-start;
-  font-size: 18px;
+  justify-content: center;
+  gap: 30px;
+  font-size: 20px;
   width: 28rem;
   margin-left: 30px;
 }
 
 .project-toggle__NavLinks {
+  width:50px;
   text-decoration: none;
   color: #9e0000;
   background-color: #ffcfcf;
@@ -72,6 +74,7 @@
   transition: 0.5s;
   padding-right: 15px;
   border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
   line-height: 29px;
   align-items: center;
   justify-content: center;
@@ -91,7 +94,9 @@
   justify-content: center;
   padding-left: 15px;
   padding-right: 15px;
+  border-bottom-left-radius: 12px;
   border-bottom-right-radius: 12px;
+
   line-height: 29px;
   align-items: center;
   display: flex;
