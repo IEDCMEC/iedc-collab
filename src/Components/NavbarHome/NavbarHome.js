@@ -136,11 +136,14 @@ import meclogo from "../../assets/meclogo.png";
 import { FaHome } from "react-icons/fa";
 import { signIn, signOut } from "../../Firebase/firebase";
 import { ProjectContext } from "../../contexts/ProjectContext";
+import useNavbar from "../../hooks/useNavbar";
 
 function NavbarHome() {
   const [open, setOpen] = useState(false);
   const { profile } = useContext(ProjectContext);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  const [scroll] = useNavbar();
 
   useEffect(() => {
     setIsLoggedIn(profile && profile.id !== undefined);
@@ -155,7 +158,7 @@ function NavbarHome() {
   };
 
   return (
-    <div className="navbar_1">
+    <div className={scroll ? "navbar_1 scrolled" :"navbar_1"}>
       <div className="nav__desktop">
         <Link to="/" className="nav_item">
           <div className="logo">
