@@ -63,8 +63,8 @@ const Animation = () => {
         ) : (
           <div
             className="signin_btn"
-            data-aos="zoom-in"
-            data-aos-duration="2000"
+            // data-aos="zoom-in"
+            // data-aos-duration="2000"
             onClick={newprojectClick}
           >
             <FcGoogle size={35} /> Sign in with Google

@@ -102,6 +102,14 @@
   font-size: 21px;
   font-weight: 400;
 }*/
+.nav_logo{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.nav_logo:hover{
+  text-decoration: none;
+}
 .nav_item {
   cursor: pointer;
   text-decoration: none;
@@ -256,8 +264,8 @@
 
 .home_logo {
   background-color: #9e0000;
-  width: 48px;
-  height: 45px;
+  width: 40px;
+  height: 40px;
   display: flex;
   justify-content: center;
   border-radius: 9px;
@@ -272,10 +280,11 @@
   flex-wrap: nowrap;
 }
 .title {
-  padding-left: 20px;
+  padding-left: 15px;
   font-weight: 800;
-  padding-top: 10px;
-  font-size: 25px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  font-size: 20px;
   color: #9e0000;
   cursor: pointer;
 }

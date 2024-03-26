@@ -160,10 +160,10 @@ function NavbarHome() {
   return (
     <div className={scroll ? "navbar_1 scrolled" :"navbar_1"}>
       <div className="nav__desktop">
-        <Link to="/" className="nav_item">
+        <Link to="/" className="nav_logo">
           <div className="logo">
             <div className="home_logo">
-              <FaHome color="white" size={25} />
+              <FaHome color="white" size={20} />
             </div>
             <div className="title">IEDC MEC COLLAB</div>
           </div>
@@ -179,7 +179,7 @@ function NavbarHome() {
             Developers
           </Link>
           {/* Conditional rendering based on login status */}
-          {isLoggedIn ? (
+          {/* {isLoggedIn ? (
              <Link to="/profile" className="nav_item">
              My Profile
            </Link>
@@ -187,7 +187,7 @@ function NavbarHome() {
             <div className="nav_item" onClick={signIn}>
               Sign In
             </div>
-          )}
+          )} */}
         </div>
         <a href="https://www.mec.ac.in/" target="_blank" rel="noreferrer">
           <img src={meclogo} alt="" className="meclogo" />
