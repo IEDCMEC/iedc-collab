@@ -15,15 +15,7 @@ const config = {
   storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
   messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
 };
-/*
-const config = {
-  apiKey: "AIzaSyAQ_ZAyiMvqylncaHQfLQ5MwuHiGrMJ4xQ",
-  authDomain: "temp-iedc-collab.firebaseapp.com",
-  projectId: "temp-iedc-collab",
-  storageBucket: "temp-iedc-collab.appspot.com",
-  messagingSenderId: "204230489361",
-  appId: "1:204230489361:web:4a30a49e17618ecdee48b0"
-};*/
+
 const initialize = () => {
   if (!firebase.apps.length) {
     firebase.initializeApp(config);
