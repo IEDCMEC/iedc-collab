@@ -30,7 +30,7 @@ const Animation = () => {
     }
   };
   useEffect(() => {
-    if (currentUser && clicked) {
+    if (currentUser !== null) {
       history.push("/projects");
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
