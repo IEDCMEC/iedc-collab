@@ -177,13 +177,13 @@ function NavbarHome() {
           </Link>
           {/* Conditional rendering based on login status */}
           {isLoggedIn ? (
-             <Link to="/profile" className="nav_item login">
+             <Link to="/profile" className="nav_item">
              My Profile
            </Link>
           ) : (
-            <button className="nav_item login" onClick={signIn}>
+            <div className="nav_item" onClick={signIn}>
               Sign In
-            </button>
+            </div>
           )}
         </div>
         <a href="https://www.mec.ac.in/" target="_blank" rel="noreferrer">
