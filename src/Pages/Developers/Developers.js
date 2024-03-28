@@ -63,9 +63,9 @@ const Developers = () => {
     setBranch,
     yop,
     setYop,
-    width,
+    // width,
     currentWidth,
-    setcurrentWidth,
+    // setcurrentWidth,
   } = useContext(ThemeContext);
   const [selectedSkills, setSelectedSkills] = useState([]);
   const [pages, setPages] = useState(0);
@@ -94,15 +94,15 @@ const Developers = () => {
     setBranch(oldBranch);
   };
 
-  useEffect(() => {
-    window.addEventListener("resize", changedWidth);
-    function changedWidth(e) {
-      setcurrentWidth(window.innerWidth);
-    }
-    return () => {
-      window.removeEventListener("resize", changedWidth);
-    };
-  }, [width, setcurrentWidth]);
+  // useEffect(() => {
+  //   window.addEventListener("resize", changedWidth);
+  //   function changedWidth(e) {
+  //     setcurrentWidth(window.innerWidth);
+  //   }
+  //   return () => {
+  //     window.removeEventListener("resize", changedWidth);
+  //   };
+  // }, [width, setcurrentWidth]);
   // const getDevs = async () => {
   //   // await getDevelopers().then(async function (snapshot) {
   //   //   let messageObject = snapshot.docs();
@@ -142,7 +142,7 @@ const Developers = () => {
       developers === null
     ) {
       // console.log(developers)
-      console.log("loading");
+      // console.log("loading");
     } else {
       filterDevelopers(
         developers,
@@ -155,7 +155,7 @@ const Developers = () => {
         setLoading1
       );
     }
-    console.log("running");
+    // console.log("running");
   }, [selectedSkills, branch, yop, page]);
 
   const history = useHistory();
@@ -163,6 +163,7 @@ const Developers = () => {
   const handleClick = (u) => {
     history.push(`/developers/${u.id}`);
   };
+  const [open, setOpen] = React.useState(false);
 
   if (loading || loading1 || users === null) {
     return (
@@ -178,7 +179,7 @@ const Developers = () => {
     <div
       style={{
         display: "flex",
-        justifyContent: width !== 0 ? "flex-end" : "center",
+        justifyContent:"center",
         width: "100vw",
       }}
     >
@@ -186,7 +187,7 @@ const Developers = () => {
         <div
           className="parent_container"
           style={{
-            width: currentWidth > 1000 ? `calc(100vw - ${width}px)` : "100vw",
+            width: "100vw",
             transition: "0.2s",
           }}
         >
@@ -195,6 +196,8 @@ const Developers = () => {
             setSelectedSkills={setSelectedSkills}
             addBranch={addBranch}
             addYop={addYop}
+            open={open}
+            setOpen={setOpen}
           />
           <div className="developer_container">
             <h3 className="developer-title" style={{ marginTop: "3rem" }}>

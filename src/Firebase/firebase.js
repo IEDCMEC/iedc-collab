@@ -502,7 +502,7 @@ export const getProjects = async () => {
   const response = await axios.get(
     `${process.env.REACT_APP_BACKEND_URL}/api/project?key=${Math.random()}`
   );
-  // // console.log(response.data)
+  // console.log(response.data)
   return response.data;
 };
 export const getDevelopers = async () => {
@@ -730,6 +730,7 @@ export const addSkills = async (skill) => {
 export const getTags = async () => {
   const data = [];
   const tags = await firebase.firestore().collection("tags").doc("tags").get();
+  console.log(tags)
   // .then((snapshot) => {
   //   if (snapshot.docs.length > 0) {
   //     snapshot.docs.forEach((doc) => {

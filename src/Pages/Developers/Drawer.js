@@ -4,8 +4,7 @@ import Drawer from "@mui/material/Drawer";
 import Buttons from "./Buttons";
 import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
-import MenuIcon from "@mui/icons-material/Menu";
-import FilterAltIcon from '@mui/icons-material/FilterAlt';
+import FilterAltIcon from "@mui/icons-material/FilterAlt";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import useMediaQuery from "@mui/material/useMediaQuery";
@@ -14,9 +13,8 @@ import "./Developers.scss";
 import { TextField, Typography } from "@mui/material";
 import Autocomplete from "@mui/material/Autocomplete";
 import { ThemeContext } from "../../App";
-import { useRef } from "react";
-
-const typeDevs = ["Skills", "Projects", "Developers"];
+import { ProjectContext } from "../../contexts/ProjectContext";
+import { useContext } from "react";
 const DrawerHeader = styled("div")(({ theme }) => ({
   display: "flex",
   alignItems: "center",
@@ -52,13 +50,13 @@ export default function PersistentDrawerLeft({
   addBranch,
   addYop,
   page,
+  open,
+  setOpen,
 }) {
-  const [skills, setSkills] = React.useState([]);
-  const [tags, setTags] = React.useState([]);
   const { branch, setBranch, yop, setYop, setWidth } = React.useContext(
     ThemeContext
   );
-  const widthRef = useRef();
+  const {tags, skills} = useContext(ProjectContext)
   // const [branch, setBranch] =  React.useState('')
   // const [yop, setYop] = React.useState('')
 
@@ -68,23 +66,7 @@ export default function PersistentDrawerLeft({
     "Javascript",
     "C++",
   ]);
-  const getAbilities = async () => {
-    await getSkills().then(async (snapshot) => {
-      setSkills(Object.values(snapshot.data()));
-    });
-  };
-  const getTagDetails = async () => {
-    await getTags().then(async (snapshot) => {
-      setTags(Object.values(snapshot.data()));
-    });
-  };
-  React.useEffect(() => {
-    getAbilities();
-  }, []);
 
-  React.useEffect(() => {
-    getTagDetails();
-  }, []);
 
   // const [renderedFilters, setRenderedFilters] = useState([]);
   // useEffect(() => {
@@ -111,21 +93,16 @@ export default function PersistentDrawerLeft({
     : "25vw";
 
   const theme = useTheme();
-  const [open, setOpen] = React.useState(false);
   const [search, setSearch] = React.useState("");
 
   const handleDrawerOpen = () => {
     setOpen(true);
   };
-  React.useEffect(() => {
-    if (open) {
-      setWidth(widthRef.current.offsetWidth);
-    } else {
-      setWidth(0);
-    }
-  }, [drawerWidth, open, setWidth]);
 
-  const handleDrawerClose = () => {
+  const handleDrawerClose = (event, reason) => {
+    if (reason === "backdropClick") {
+      setOpen(false);
+    }
     setOpen(false);
   };
   const addSkill = (skill) => {
@@ -160,10 +137,10 @@ export default function PersistentDrawerLeft({
     setSelectedTags(oldTags);
   };
 
-  const clearFilter= () => {
+  const clearFilter = () => {
     setCleared(!cleared);
     // // console.log(selectedSkills)
-    const page = window.location.href.split("/")[3]
+    const page = window.location.href.split("/")[3];
     // // console.log(page)
     if (page === "projects") {
       setSelectedSkills([]);
@@ -180,36 +157,37 @@ export default function PersistentDrawerLeft({
 
   return (
     <>
-      <IconButton 
-      
+      <IconButton
         color="inherit"
         aria-label="open drawer"
         onClick={handleDrawerOpen}
         edge="start"
         sx={{
-          display: 'flex', 
-          alignItems: 'center', 
-          justifyContent:'center',
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
           // mr: 5,
           color: "#9e0000",
           position: "fixed",
           left: matches4 ? "15px" : "30px",
           top: matches3 ? "184px" : "140px",
-          display: open && 'none',
-          borderRadius:'5px',
-          "&:hover":{
-            backgroundColor:'transparent'
-          }
+          display: open && "none",
+          borderRadius: "5px",
+          "&:hover": {
+            backgroundColor: "transparent",
+          },
         }}
         className="menu_button"
       >
         <FilterAltIcon sx={{ fontSize: "2rem" }} />
-        <Typography sx={{padding:'0px', fontSize:'1.5rem',fontWeight:'500'}}>Filter</Typography>
+        <Typography
+          sx={{ padding: "0px", fontSize: "1.5rem", fontWeight: "500" }}
+        >
+          Filter
+        </Typography>
       </IconButton>
-      
-  
+
       <Drawer
-        ref={widthRef}
         sx={{
           width: drawerWidth,
           flexShrink: 0,
@@ -223,9 +201,14 @@ export default function PersistentDrawerLeft({
             height: "100%",
           },
         }}
-        variant="persistent"
+        // variant="persistent"
         anchor="left"
         open={open}
+        onClose={(event, reason) => {
+          if (reason === "backdropClick") {
+            setOpen(false);
+          }
+        }}
       >
         <DrawerHeader>
           <IconButton onClick={handleDrawerClose} sx={{ position: "fixed" }}>
@@ -264,8 +247,8 @@ export default function PersistentDrawerLeft({
                 fontSize: "16px",
                 borderRadius: "5px",
                 backgroundColor: "transparent",
-                border:'2px solid white',
-                fontStyle:'Nunito',
+                border: "2px solid white",
+                fontStyle: "Nunito",
                 // hover: "#9e0000",
               }}
               onClick={() => {
