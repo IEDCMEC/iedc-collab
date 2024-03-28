@@ -2,9 +2,6 @@ import "./RequirementDetails.scss";
 import { FaPhoneAlt } from "react-icons/fa";
 import { IoMdMail } from "react-icons/io";
 // import { GoMarkGithub } from "react-icons/go";
-import { useHistory } from "react-router-dom";
-import { doDeleteProject } from "../../Firebase/firebase";
-import { toast } from "react-toastify";
 import { useContext, useEffect, useState } from "react";
 import { RiDeleteBin7Line } from "react-icons/ri";
 import { FiEdit } from "react-icons/fi";
@@ -15,22 +12,12 @@ import DeleteConfirmation from "../DeleteConfirmationModal/DeleteConfirmation";
 // import { useContext } from "react";
 
 const RequirementDetails = (props) => {
-  const { fetchData } = useContext(ProjectContext);
   const { currentUser } = useContext(AuthContext);
   const [canModifyProject, setCanModifyProject] = useState(false);
   const [showNewProjectModal, setShowNewProjectModal] = useState(false);
   const [displayConfirmationModal, setDisplayConfirmationModal] = useState(
     false
   );
-  const history = useHistory();
-  const submitDelete = (id) => {
-    doDeleteProject(id, () => {
-      toast("Project deleted successfully");
-      fetchData();
-    });
-    setDisplayConfirmationModal(false);
-    history.go(0);
-  };
 
   const hideConfirmationModal = () => {
     setDisplayConfirmationModal(false);
@@ -145,7 +132,6 @@ const RequirementDetails = (props) => {
       />
       <DeleteConfirmation
         showModal={displayConfirmationModal}
-        confirmModal={submitDelete}
         hideModal={hideConfirmationModal}
         id={props.selectedProject.id}
       />
