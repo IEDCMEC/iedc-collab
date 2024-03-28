@@ -285,7 +285,12 @@ export const doCreateProject = async (
   }
 };
 
-export const doDeleteProject = async (project_id, onSuccess = () => {}) => {
+export const doDeleteProject = async (
+  project_id,
+  photoId,
+  photoName,
+  onSuccess = () => {}
+) => {
   let user = firebase.auth().currentUser;
   if (!user) {
     alert("Please login to add a project");
@@ -307,7 +312,13 @@ export const doDeleteProject = async (project_id, onSuccess = () => {}) => {
     }
 
     // Delete project photo from storage
-    await storage.ref(`projectPhoto/${project_id}`).delete();
+    if (photoName !== "Default Image") {
+      // const photoRef = storage.ref(`projectPhoto/${photoId}`)
+      // const snapshot = photoRef.getDownloadURL()
+      // console.log(snapshot)
+      // console.log(photoId.slice(50))
+      await storage.ref(`projectPhoto/${photoId}`).delete();
+    }
 
     // Delete the project document from Firestore
     await projectRef.delete();
@@ -510,7 +521,7 @@ export const getDevelopers = async () => {
     `${process.env.REACT_APP_BACKEND_URL}/api/developer?key=${Math.random()}`
   );
   // // console.log(response.data)
-  const details = response.data.filter((value,index)=>value.role == "User")
+  const details = response.data.filter((value, index) => value.role == "User");
   // console.log(details)
   return details;
   // return users;
@@ -678,7 +689,11 @@ export const getRequestsRecieved = async (uid) => {
 
 export const getSkills = async () => {
   const data = [];
-  const skills = await firebase.firestore().collection("skills").doc("skills").get();
+  const skills = await firebase
+    .firestore()
+    .collection("skills")
+    .doc("skills")
+    .get();
   // .then((snapshot) => {
   //   if (snapshot.docs.length > 0) {
   //     snapshot.docs.forEach((doc) => {
@@ -686,7 +701,7 @@ export const getSkills = async () => {
   //     });
   //   }
   // });
-  console.log(skills)
+  console.log(skills);
   return skills;
 };
 
@@ -700,8 +715,12 @@ export const addSkills = async (skill) => {
       skillsArray = (await skillsSnapshot).data();
     }
     const values = Object.values(skillsArray);
-    const updatedArray = {...values, [values.length] : skill};
-    await firebase.firestore().collection("skills").doc("skills").set(updatedArray);
+    const updatedArray = { ...values, [values.length]: skill };
+    await firebase
+      .firestore()
+      .collection("skills")
+      .doc("skills")
+      .set(updatedArray);
 
     console.log("Skills added successfully");
   } catch (error) {
@@ -730,7 +749,7 @@ export const addTags = async (tag) => {
       tagsArray = tagsSnapshot.data();
     }
     const values = Object.values(tagsArray);
-    const updatedArray = {...values, [values.length] : tag};
+    const updatedArray = { ...values, [values.length]: tag };
     await firebase.firestore().collection("tags").doc("tags").set(updatedArray);
     console.log("Tags added successfully");
   } catch (error) {
