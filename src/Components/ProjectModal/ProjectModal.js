@@ -139,21 +139,15 @@ const sendEmailsToTeamMembers = async (teamMembersArray, name) => {
   
   for (const member of teamMembersArray) {
     if (member !== currentUser.email) {
-      for (const email of Object.keys(devHash)) {
-        if (email === member) {
-          let selectedUser = {
-            name: devHash[email].name,
-            id: devHash[email].id
-          };
           const data = {
             sender: currentUser.displayName,
             sender_id: currentUser.uid,
             sender_email: currentUser.email,
             sender_img: currentUser.photoURL,
             receiver_email: member,
-            receiver: selectedUser.name,
+            receiver: devHash[member]?.name||"",
             reciever_img: "https://sabt.center/wp-content/uploads/2014/08/avatar-1.png",
-            receiver_id: selectedUser.id,
+            receiver_id: devHash[member]?.id||"",
             project_id: project.id,
             project: project.name,
             message:"",
@@ -161,11 +155,10 @@ const sendEmailsToTeamMembers = async (teamMembersArray, name) => {
             createdAt: Date.now(),
           };
 
-          await sendInvite(data).then(() => {
-            fetchRequests();
-          }) 
-        }
-      }
+          await sendInvite(data)
+          .then(() => {
+             fetchRequests();
+          })   
     }
   }
 };
@@ -252,13 +245,12 @@ const sendEmailsToTeamMembers = async (teamMembersArray, name) => {
     if (!project) {
       doCreateProject(formValues, developers, () => {
         fetchData();
-        toast("Project created and Email Requests send", {
-          autoClose: 3000,
-        });
       })
-      .then(()=>{sendEmailsToTeamMembers(teamMembersArray, formValues.name)})
-      
-    
+      .then(()=>{return sendEmailsToTeamMembers(teamMembersArray, formValues.name)})
+      .then((res)=>{toast("Project created and Email Requests send", {
+        autoClose: 3000,
+      });
+      }) 
     } else {
       doEditProject(formValues, project.id, developers, () => {
         fetchData();
