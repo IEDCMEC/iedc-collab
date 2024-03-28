@@ -688,30 +688,12 @@ export const getSkills = async () => {
   return skills;
 };
 
-export const addSkills = async (inputSkills, acValueSetter) => {
+export const addSkills = async (inputSkills,removeDuplicates) => {
   try {    
-    const newSkills = inputSkills.split(",");    
-    const filteredSkills = newSkills
-      .map((skill) => skill.trim())
-      .filter((skill) => skill !== "");    
-    acValueSetter((prevSkills) => [...prevSkills, ...filteredSkills]);
-    console.log("Filtered Skills:", filteredSkills);
-    const skillsSnapshot = await getSkills();
-    const skillsObject = skillsSnapshot.data() || {};
-    let skillsArray = Object.values(skillsObject); 
-
-    filteredSkills.forEach((skill) => {      
-      skillsArray.push(skill);
-    });  
-    console.log("Skills Array Before Deduplication:", skillsArray);    
-    skillsArray = Array.from(new Set(skillsArray.map(skill => skill.toLowerCase())));
-  
-    console.log("Unique Skills Array:", skillsArray);   
-
-    const skillsObjectForFirestore = {};
-    skillsArray.forEach((skill, index) => {
-      skillsObjectForFirestore[`skill${index}`] = skill.toLowerCase();
-    });
+    
+    const skillsSnapshot = await getSkills(); 
+    
+    const skillsObjectForFirestore = removeDuplicates(skillsSnapshot,inputSkills);
     await firebase.firestore().collection("skills").doc("skills").set(skillsObjectForFirestore);
 
     console.log("Skills added successfully");
