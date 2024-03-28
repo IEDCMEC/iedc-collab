@@ -36,7 +36,7 @@ const RequirementDetails = (props) => {
     <>
       <div className="requirement__container">
         <div className="description-details__headcontrols">
-          {canModifyProject && (
+          {/* {canModifyProject && (
             <RiDeleteBin7Line
               size={38}
               style={{ cursor: "pointer" }}
@@ -54,7 +54,7 @@ const RequirementDetails = (props) => {
                 setShowNewProjectModal(true);
               }}
             />
-          )}
+          )} */}
         </div>
         <div className="requirement__content">
           {props.selectedProject?.req || "No Details Entered..."}
