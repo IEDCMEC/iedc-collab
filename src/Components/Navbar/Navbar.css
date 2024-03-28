@@ -27,25 +27,40 @@
   color: #9e0000;
   height: 100%;
   align-items: center;
+  justify-content: center;
   display: flex;
-  padding-left: 10px;
-  padding-right: 10px;
+  padding-left: 15px;
+  padding-right: 15px;
+  width: 150px;
+  transition: background-color 0.3s, font-weight 0.3s, border-bottom 0.3s;
 }
 
-.NavLinks:hover {
+.NavLinks:hover,
+.NavLinksActive{
+  color: #9e0000;
+  text-decoration: none;
+  align-items: center;
+  justify-content: center;
+  background-color: #ffcfcf;
+  font-weight: 800;
+  border-bottom: 3px solid #9e0000;
+}
+
+
+.NavLinks:nth-child(2) {
+  padding-left: 35px;
+  padding-right: 35px; 
+}
+
+
+/*.NavLinksActive {
   color: #9e0000;
   text-decoration: none;
   background-color: #ffcfcf;
   font-weight: 800;
   border-bottom: 3px solid #9e0000;
-}
-.NavLinksActive {
-  color: #9e0000;
-  text-decoration: none;
-  background-color: #ffcfcf;
-  font-weight: 800;
-  border-bottom: 3px solid #9e0000;
-}
+  padding-right: 35px;
+}*/
 
 @media (max-width: 865px) {
   .NavbarItems {
