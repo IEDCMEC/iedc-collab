@@ -84,7 +84,7 @@ const RequirementDetails = (props) => {
               {props.selectedProject?.hiring?.map((role, index) => {
                 return (
                   <div className="requirement__other-skill" key={index}>
-                    o {role}
+                     {role}
                   </div>
                 );
               })}
@@ -111,7 +111,7 @@ const RequirementDetails = (props) => {
           ) : (
             ""
           )}
-          {currentUser ? (
+          {/* {currentUser ? (
             <a href={`mailto: ${props.selectedProject.leaderEmail}`}>
               <IoMdMail
                 color="#9e0000"
@@ -121,7 +121,7 @@ const RequirementDetails = (props) => {
             </a>
           ) : (
             ""
-          )}
+          )} */}
 
           {/* {props.selectedProject.githubLink.length ? (
             <a
