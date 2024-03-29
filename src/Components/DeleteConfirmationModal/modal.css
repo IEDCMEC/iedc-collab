@@ -1,6 +1,16 @@
 .modal-header :hover {
   background-color: white !important;
 }
+
 .modal-header button {
   outline: none !important;
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.modal-footer button {
+  margin: 0 10px;
 }
