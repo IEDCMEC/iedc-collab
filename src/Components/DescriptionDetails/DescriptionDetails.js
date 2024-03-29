@@ -146,6 +146,12 @@ const DescriptionDetails = (props) => {
             </a>
           ))}
         </div>
+        <div className="description__other-team">REQUIREMENTS</div>
+        <RequirementDetails
+          selectedProject={props.selectedProject}
+          setVariable={props.setVariable}
+          variable={props.variable}
+        />
 
         {props.selectedProject.tags?.length ? (
           <div className="description__other-tags">
@@ -175,10 +181,10 @@ const DescriptionDetails = (props) => {
           {currentUser ? (
             <a
               href={`tel:${props.selectedProject.contactNo}`}
-              className="description__tag_phone_mobile"
+              // className="description__tag_phone_mobile"
             >
               <FaPhoneAlt
-                color="white"
+                color="WHITE"
                 size={40}
                 style={{
                   backgroundColor: "#9e0000",
@@ -230,12 +236,6 @@ const DescriptionDetails = (props) => {
           id={props.selectedProject.id}
         />
       </div>
-      <div className="description__other-team">REQUIREMENTS</div>
-      <RequirementDetails
-        selectedProject={props.selectedProject}
-        setVariable={props.setVariable}
-        variable={props.variable}
-      />
     </>
   );
 };

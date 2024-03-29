@@ -30,17 +30,6 @@ const Projects = () => {
   // useEffect(() => {
   //   getWorks();
 
-  // }, [projects]);
-  const { currentWidth, setcurrentWidth, width } = useContext(ThemeContext);
-  useEffect(() => {
-    window.addEventListener("resize", changedWidth);
-    function changedWidth(e) {
-      setcurrentWidth(window.innerWidth);
-    }
-    return () => {
-      window.removeEventListener("resize", changedWidth);
-    };
-  }, [width, setcurrentWidth]);
   const filterProjects = () => {
     let filteredProjects = projects;
     if (selectedSkills.length > 0 && selectedTags.length > 0) {
@@ -98,7 +87,7 @@ const Projects = () => {
   const handleClick = (p) => {
     history.push(`/projects/${p.id}`);
   };
-
+  const [open, setOpen] = useState(false);
   if (loading) {
     return (
       <div>
@@ -112,7 +101,7 @@ const Projects = () => {
     <div
       style={{
         display: "flex",
-        justifyContent: width !== 0 ? "flex-end" : "center",
+        justifyContent: "center",
         width: "100vw",
       }}
     >
@@ -120,7 +109,7 @@ const Projects = () => {
         <div
           className="projects_landing"
           style={{
-            width: currentWidth > 1000 ? `calc(100vw - ${width}px)` : "100vw",
+            width: "100vw",
             transition: "0.2s",
           }}
         >
@@ -130,6 +119,8 @@ const Projects = () => {
             selectedTags={selectedTags}
             setSelectedTags={setSelectedTags}
             page={"Projects"}
+            open={open}
+            setOpen={setOpen}
           />
           <div>
             <h3

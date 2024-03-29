@@ -6,18 +6,20 @@ import {
   getRequests,
   getRequestsRecieved,
   getUser,
+  getTags,
+  getSkills,
 } from "../Firebase/firebase";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 export const ProjectContext = React.createContext();
 
 export const ProjectProvider = ({ children }) => {
-  const history = useHistory()
+  const history = useHistory();
   const [projects, setProjects] = useState([]);
   const [selectedProject, setSelectedProject] = useState();
   const [allProjects, setAllProjects] = useState([]);
   const [developers, setDevelopers] = useState(null);
   const [jobs, setJobs] = useState(null);
-  const [allJobs, setAllJobs] = useState([])
+  const [allJobs, setAllJobs] = useState([]);
   const [selectedDevelopers, setSelectedDevelopers] = useState();
   const [profile, setProfile] = useState(null);
   const [allDevelopers, setAllDevelopers] = useState([]);
@@ -26,6 +28,8 @@ export const ProjectProvider = ({ children }) => {
   const [requestsRecieved, setRequestsRecieved] = useState([]);
   const [loading, setLoading] = useState(false);
   const [devHash, setDevHash] = useState({});
+  const [skills, setSkills] = useState([]);
+  const [tags, setTags] = useState([]);
   const [companyDetails, setCompanyDetails] = useState({
     // name: profile?.name || "",
     description: "",
@@ -107,14 +111,13 @@ export const ProjectProvider = ({ children }) => {
         getUser(currentUser?.uid).then((profile) => {
           setProfile(profile);
           // // console.log(snapshot.data())
-          if (profile?.role === "Organization"){
-            history.push('/profile')
+          if (profile?.role === "Organization") {
+            history.push("/profile");
           }
         });
       }
       // setProfile(profileUser);
       setLoading(false);
-
     }
   };
   let devMap = {};
@@ -179,6 +182,16 @@ export const ProjectProvider = ({ children }) => {
         setLoading(false);
       });
   };
+  const getAbilities = async () => {
+    await getSkills().then(async (snapshot) => {
+      setSkills(Object.values(snapshot.data()));
+    });
+  };
+  const getTagDetails = async () => {
+    await getTags().then(async (snapshot) => {
+      setTags(Object.values(snapshot.data()));
+    });
+  };
   useEffect(() => {
     fetchData();
     fetchDevelpersData();
@@ -190,6 +203,13 @@ export const ProjectProvider = ({ children }) => {
     fetchRequestsRecieved();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentUser]);
+  useEffect(() => {
+    getAbilities();
+  }, []);
+
+  useEffect(() => {
+    getTagDetails();
+  }, []);
   const fetchRequests = async () => {
     if (currentUser) {
       setLoading(true);
@@ -261,6 +281,10 @@ export const ProjectProvider = ({ children }) => {
         setCompanyDetails,
         allJobs,
         setJobs,
+        skills, 
+        setSkills,
+        tags, 
+        setTags
       }}
     >
       {children}

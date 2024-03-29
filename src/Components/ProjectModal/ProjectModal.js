@@ -11,6 +11,8 @@ import {
   getSkills,
   getTags,
   addTags,
+  sendInvite,
+  getProjects,
 } from "../../Firebase/firebase";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUpload } from "@fortawesome/free-solid-svg-icons";
@@ -54,7 +56,7 @@ const NewProjectForm = ({ onClose, project, setVariable, variable }) => {
   const [projectPhoto, setProjectPhoto] = useState(
     project?.projectPhoto || null
   );
-  const { fetchData, developers, projects } = useContext(ProjectContext);
+  const { fetchData, fetchRequests, developers, devHash } = useContext(ProjectContext);
   const initialValue = {
     name: project?.name || "",
     desc: project?.desc || "",
@@ -69,6 +71,7 @@ const NewProjectForm = ({ onClose, project, setVariable, variable }) => {
     hiring: project?.hiring ? project.hiring.join(", ") : "",
     projectPhoto: project?.projectPhoto,
   };
+  
   function getRemainSkills() {
     // let temp1 = [];
     // skills?.forEach((skill) => {
@@ -126,6 +129,39 @@ const NewProjectForm = ({ onClose, project, setVariable, variable }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [tags, acValue2]);
 
+
+const sendEmailsToTeamMembers = async (teamMembersArray, name) => {
+  const projectArray = [];
+  await getProjects()
+    .then((result) => projectArray.push(...result));
+
+  const project = projectArray.find(project => project.name === name && project.leaderEmail === currentUser.email);  
+  
+  for (const member of teamMembersArray) {
+    if (member !== currentUser.email) {
+          const data = {
+            sender: currentUser.displayName,
+            sender_id: currentUser.uid,
+            sender_email: currentUser.email,
+            sender_img: currentUser.photoURL,
+            receiver_email: member,
+            receiver: devHash[member]?.name||"",
+            reciever_img: "https://sabt.center/wp-content/uploads/2014/08/avatar-1.png",
+            receiver_id: devHash[member]?.id||"",
+            project_id: project.id,
+            project: project.name,
+            message:"",
+            status: "pending",
+            createdAt: Date.now(),
+          };
+
+          await sendInvite(data)
+          .then(() => {
+             fetchRequests();
+          })   
+    }
+  }
+};
   const theme = createTheme({
     components: {
       MuiOutlinedInput: {
@@ -176,7 +212,13 @@ const NewProjectForm = ({ onClose, project, setVariable, variable }) => {
   });
 
   const handleSubmit = (values, actions) => {
-    const { links, teamMembers, hiring } = values;
+    const { links, teamMembers:teamMembersString, hiring } = values;
+
+    const teamMembersArray = teamMembersString
+      .split(",")
+      .filter(Boolean)
+      .map((email) => email.trim());
+
     const formValues = {
       ...values,
       skills: acValue1,
@@ -185,10 +227,7 @@ const NewProjectForm = ({ onClose, project, setVariable, variable }) => {
         .split(",")
         .filter(Boolean)
         .map((link) => link.trim()),
-      teamMembers: teamMembers
-        .split(",")
-        .filter(Boolean)
-        .map((link) => link.trim()),
+      teamMembers:[],
       hiring: hiring
         .split(",")
         .filter(Boolean)
@@ -196,6 +235,7 @@ const NewProjectForm = ({ onClose, project, setVariable, variable }) => {
       projectPhoto,
       projectPhotoName,
     };
+   
     if (!formValues.teamMembers.includes(currentUser?.email)) {
       formValues.teamMembers.push(currentUser?.email);
     }
@@ -205,12 +245,12 @@ const NewProjectForm = ({ onClose, project, setVariable, variable }) => {
     if (!project) {
       doCreateProject(formValues, developers, () => {
         fetchData();
-        // console.log(projects);
-
-        toast("Project created successfully", {
-          autoClose: 3000,
-        });
+      })
+      .then(()=>{return sendEmailsToTeamMembers(teamMembersArray, formValues.name)})
+      .then((res)=>{toast("Project created and Email Requests send", {
+        autoClose: 3000,
       });
+      }) 
     } else {
       doEditProject(formValues, project.id, developers, () => {
         fetchData();
@@ -232,6 +272,21 @@ const NewProjectForm = ({ onClose, project, setVariable, variable }) => {
     } catch (error) {
       console.error(error);
     }
+  }
+
+  const removeDuplicates=(skillsSnapshot,inputSkills)=> {
+       
+    const skillsObject = skillsSnapshot.data() || {};
+    let skillsArray = Object.values(skillsObject); 
+    inputSkills.forEach((skill) => {      
+      skillsArray.push(skill);
+    });  
+    skillsArray = Array.from(new Set(skillsArray.map(skill => skill.toLowerCase()))); 
+    const skillsObjectForFirestore = {};
+    skillsArray.forEach((skill, index) => {
+      skillsObjectForFirestore[`${index}`] = skill.toLowerCase();
+    });
+    return skillsObjectForFirestore;
   }
 
   return (
@@ -534,9 +589,14 @@ const NewProjectForm = ({ onClose, project, setVariable, variable }) => {
                           }
                         }
                       }
-                      addSkills(skill);
+                      const newSkills = skill.split(",");    
+                      const filteredSkills = newSkills
+                        .map((skill) => skill.trim())
+                        .filter((skill) => skill !== "");    
+                      setACValue1((prevSkills) => [...prevSkills, ...filteredSkills]);
+                      console.log("Filtered Skills:", filteredSkills);
+                      addSkills(filteredSkills,removeDuplicates);
                       setSkill("");
-                      setACValue1([...acValue1, skill]);
                     }
                   }
                 }}
