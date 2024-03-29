@@ -29,12 +29,13 @@ function Nav({ route }) {
       onClickFunction: (attribute) => setDevelopers(attribute),
       attribute: allDevelopers,
     },
-    {
+    /*{
       label: "Ideas",
       url: "/ideas",
       onClickFunction: () => {},
       attribute: [],
-    },
+    },*/
+    
   ];
 
   const CompanyMenu = [
