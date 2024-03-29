@@ -60,14 +60,14 @@ function ProjectDetail() {
                 variable={variable}
               />
             )}
-            {toggle === 2 && (
+            {/* {toggle === 2 && (
               <RequirementDetails
                 selectedProject={selectedProject}
                 setVariable={setVariable}
                 variable={variable}
               />
-            )}
-            {toggle === 3 && (
+            )} */}
+            {toggle === 2 && (
               <DiscussionDetails
                 selectedProject={selectedProject}
                 setVariable={setVariable}

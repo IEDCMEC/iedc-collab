@@ -2,9 +2,6 @@ import "./RequirementDetails.scss";
 import { FaPhoneAlt } from "react-icons/fa";
 import { IoMdMail } from "react-icons/io";
 // import { GoMarkGithub } from "react-icons/go";
-import { useHistory } from "react-router-dom";
-import { doDeleteProject } from "../../Firebase/firebase";
-import { toast } from "react-toastify";
 import { useContext, useEffect, useState } from "react";
 import { RiDeleteBin7Line } from "react-icons/ri";
 import { FiEdit } from "react-icons/fi";
@@ -15,22 +12,12 @@ import DeleteConfirmation from "../DeleteConfirmationModal/DeleteConfirmation";
 // import { useContext } from "react";
 
 const RequirementDetails = (props) => {
-  const { fetchData } = useContext(ProjectContext);
   const { currentUser } = useContext(AuthContext);
   const [canModifyProject, setCanModifyProject] = useState(false);
   const [showNewProjectModal, setShowNewProjectModal] = useState(false);
   const [displayConfirmationModal, setDisplayConfirmationModal] = useState(
     false
   );
-  const history = useHistory();
-  const submitDelete = (id) => {
-    doDeleteProject(id, () => {
-      toast("Project deleted successfully");
-      fetchData();
-    });
-    setDisplayConfirmationModal(false);
-    history.go(0);
-  };
 
   const hideConfirmationModal = () => {
     setDisplayConfirmationModal(false);
@@ -49,7 +36,7 @@ const RequirementDetails = (props) => {
     <>
       <div className="requirement__container">
         <div className="description-details__headcontrols">
-          {canModifyProject && (
+          {/* {canModifyProject && (
             <RiDeleteBin7Line
               size={38}
               style={{ cursor: "pointer" }}
@@ -67,7 +54,7 @@ const RequirementDetails = (props) => {
                 setShowNewProjectModal(true);
               }}
             />
-          )}
+          )} */}
         </div>
         <div className="requirement__content">
           {props.selectedProject?.req || "No Details Entered..."}
@@ -84,7 +71,7 @@ const RequirementDetails = (props) => {
               {props.selectedProject?.hiring?.map((role, index) => {
                 return (
                   <div className="requirement__other-skill" key={index}>
-                    o {role}
+                     {role}
                   </div>
                 );
               })}
@@ -111,7 +98,7 @@ const RequirementDetails = (props) => {
           ) : (
             ""
           )}
-          {currentUser ? (
+          {/* {currentUser ? (
             <a href={`mailto: ${props.selectedProject.leaderEmail}`}>
               <IoMdMail
                 color="#9e0000"
@@ -121,7 +108,7 @@ const RequirementDetails = (props) => {
             </a>
           ) : (
             ""
-          )}
+          )} */}
 
           {/* {props.selectedProject.githubLink.length ? (
             <a
@@ -145,7 +132,6 @@ const RequirementDetails = (props) => {
       />
       <DeleteConfirmation
         showModal={displayConfirmationModal}
-        confirmModal={submitDelete}
         hideModal={hideConfirmationModal}
         id={props.selectedProject.id}
       />

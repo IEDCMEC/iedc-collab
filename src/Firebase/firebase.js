@@ -6,6 +6,7 @@ import "firebase/firestore";
 // import { renderEmail } from "react-html-email";
 
 import axios from "axios";
+
 const config = {
   apiKey: process.env.REACT_APP_FB_API_KEY,
   authDomain: process.env.REACT_APP_AUTH_DOMAIN,
@@ -14,6 +15,7 @@ const config = {
   storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
   messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
 };
+
 const initialize = () => {
   if (!firebase.apps.length) {
     firebase.initializeApp(config);
@@ -283,7 +285,12 @@ export const doCreateProject = async (
   }
 };
 
-export const doDeleteProject = async (project_id, onSuccess = () => {}) => {
+export const doDeleteProject = async (
+  project_id,
+  photoId,
+  photoName,
+  onSuccess = () => {}
+) => {
   let user = firebase.auth().currentUser;
   if (!user) {
     alert("Please login to add a project");
@@ -305,7 +312,13 @@ export const doDeleteProject = async (project_id, onSuccess = () => {}) => {
     }
 
     // Delete project photo from storage
-    await storage.ref(`projectPhoto/${project_id}`).delete();
+    if (photoName !== "Default Image") {
+      // const photoRef = storage.ref(`projectPhoto/${photoId}`)
+      // const snapshot = photoRef.getDownloadURL()
+      // console.log(snapshot)
+      // console.log(photoId.slice(50))
+      await storage.ref(`projectPhoto/${photoId}`).delete();
+    }
 
     // Delete the project document from Firestore
     await projectRef.delete();
@@ -489,7 +502,7 @@ export const getProjects = async () => {
   const response = await axios.get(
     `${process.env.REACT_APP_BACKEND_URL}/api/project?key=${Math.random()}`
   );
-  // // console.log(response.data)
+  // console.log(response.data)
   return response.data;
 };
 export const getDevelopers = async () => {
@@ -508,7 +521,7 @@ export const getDevelopers = async () => {
     `${process.env.REACT_APP_BACKEND_URL}/api/developer?key=${Math.random()}`
   );
   // // console.log(response.data)
-  const details = response.data.filter((value,index)=>value.role == "User")
+  const details = response.data.filter((value, index) => value.role == "User");
   // console.log(details)
   return details;
   // return users;
@@ -676,7 +689,11 @@ export const getRequestsRecieved = async (uid) => {
 
 export const getSkills = async () => {
   const data = [];
-  const skills = await firebase.firestore().collection("skills").doc("skills").get();
+  const skills = await firebase
+    .firestore()
+    .collection("skills")
+    .doc("skills")
+    .get();
   // .then((snapshot) => {
   //   if (snapshot.docs.length > 0) {
   //     snapshot.docs.forEach((doc) => {
@@ -684,7 +701,7 @@ export const getSkills = async () => {
   //     });
   //   }
   // });
-  console.log(skills)
+  console.log(skills);
   return skills;
 };
 
@@ -706,6 +723,7 @@ export const addSkills = async (inputSkills,removeDuplicates) => {
 export const getTags = async () => {
   const data = [];
   const tags = await firebase.firestore().collection("tags").doc("tags").get();
+  console.log(tags)
   // .then((snapshot) => {
   //   if (snapshot.docs.length > 0) {
   //     snapshot.docs.forEach((doc) => {
@@ -725,7 +743,7 @@ export const addTags = async (tag) => {
       tagsArray = tagsSnapshot.data();
     }
     const values = Object.values(tagsArray);
-    const updatedArray = {...values, [values.length] : tag};
+    const updatedArray = { ...values, [values.length]: tag };
     await firebase.firestore().collection("tags").doc("tags").set(updatedArray);
     console.log("Tags added successfully");
   } catch (error) {

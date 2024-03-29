@@ -10,6 +10,7 @@ import { useHistory } from "react-router-dom";
 import { useEffect } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { useState } from "react";
+import { ProjectContext } from "../../contexts/ProjectContext";
 
 const Animation = () => {
   const defaultOptions = {
@@ -18,24 +19,17 @@ const Animation = () => {
     animationData: animation,
     rendererSettings: { preserveAspectRatio: "xMidYMid slice" },
   };
-  const { currentUser } = useContext(AuthContext);
+  const { profile } = useContext(ProjectContext);
   const [clicked, setClicked] = useState(false);
   const history = useHistory();
   const newprojectClick = async () => {
     setClicked(true);
     try {
-      await signIn();
+      await signIn().then(()=> history.push('/projects'))
     } catch (error) {
       // console.log(error);
     }
   };
-  useEffect(() => {
-    if (currentUser && clicked) {
-      history.push("/projects");
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [currentUser]);
-
   return (
     <>
       <div className="animation_main">
@@ -58,13 +52,13 @@ const Animation = () => {
             options={defaultOptions}
           />
         </div>
-        {currentUser ? (
+        {profile ? (
           ""
         ) : (
           <div
             className="signin_btn"
-            data-aos="zoom-in"
-            data-aos-duration="2000"
+            // data-aos="zoom-in"
+            // data-aos-duration="2000"
             onClick={newprojectClick}
           >
             <FcGoogle size={35} /> Sign in with Google
