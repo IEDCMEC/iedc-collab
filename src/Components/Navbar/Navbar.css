@@ -17,7 +17,7 @@
   list-style: none;
   display: grid;
   grid-template-columns: repeat(6, auto);
-  grid-gap: 70px;
+  grid-gap: 30px;
   text-align: center;
   height: 100%;
 }
@@ -42,15 +42,15 @@
   align-items: center;
   justify-content: center;
   background-color: #ffcfcf;
-  font-weight: 800;
+  /*font-weight: 800;*/
   border-bottom: 3px solid #9e0000;
 }
 
 
-.NavLinks:nth-child(2) {
+/*.NavLinks:nth-child(2) {
   padding-left: 35px;
   padding-right: 35px; 
-}
+}*/
 
 
 /*.NavLinksActive {
