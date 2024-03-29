@@ -705,28 +705,21 @@ export const getSkills = async () => {
   return skills;
 };
 
-export const addSkills = async (skill) => {
-  try {
-    const skillsSnapshot = getSkills();
-
-    var skillsArray = {};
-
-    if (!skillsSnapshot.empty) {
-      skillsArray = (await skillsSnapshot).data();
-    }
-    const values = Object.values(skillsArray);
-    const updatedArray = { ...values, [values.length]: skill };
-    await firebase
-      .firestore()
-      .collection("skills")
-      .doc("skills")
-      .set(updatedArray);
+export const addSkills = async (inputSkills,removeDuplicates) => {
+  try {    
+    
+    const skillsSnapshot = await getSkills(); 
+    
+    const skillsObjectForFirestore = removeDuplicates(skillsSnapshot,inputSkills);
+    await firebase.firestore().collection("skills").doc("skills").set(skillsObjectForFirestore);
 
     console.log("Skills added successfully");
   } catch (error) {
     console.error("Oops! Couldn't add skills \n more info:", error);
   }
 };
+
+
 export const getTags = async () => {
   const data = [];
   const tags = await firebase.firestore().collection("tags").doc("tags").get();
