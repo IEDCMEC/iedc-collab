@@ -128,6 +128,23 @@
   padding-top: 2%;
   pointer-events: none;
 }
+
+.invite-button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #9e0000;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.invite-button:hover {
+  background-color: darkred;
+  color: white;
+  text-decoration: none;
+}
+
 @media (max-width: 650px) {
   .description__other-members {
     display: flex;
