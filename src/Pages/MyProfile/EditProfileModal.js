@@ -596,7 +596,23 @@ const NewUserForm = ({ onClose, user }) => {
                   className="btn"
                   type="submit"
                   size="sm"
-                  onClick={props.handleSubmit}
+                  onClick={(e) => {
+                    if (
+                      props.values.name &&
+                      props.values.branch &&
+                      props.values.year &&
+                      props.values.about &&
+                      props.values.contact &&
+                      props.values.email
+                    ) {
+                      props.handleSubmit(e);
+                    } else {
+                      toast.error('Fill all the required fields before submitting', {
+                        autoClose: 3000,
+                      });
+                      e.preventDefault();
+                    }
+                  }}
                 >
                   <strong>Submit</strong>
                 </Button>
@@ -936,7 +952,23 @@ const NewUserForm = ({ onClose, user }) => {
                   className="btn"
                   type="submit"
                   size="sm"
-                  onClick={props.handleSubmit}
+                  onClick={(e) => {
+                    if (
+                      props.values.name &&
+                      props.values.branch &&
+                      props.values.year &&
+                      props.values.about &&
+                      props.values.contact &&
+                      props.values.email
+                    ) {
+                      props.handleSubmit(e);
+                    } else {
+                      toast.error('Fill all the required fields before submitting', {
+                        autoClose: 3000,
+                      });
+                      e.preventDefault();
+                    }
+                  }}
                 >
                   <strong>Submit</strong>
                 </Button>

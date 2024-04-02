@@ -78,6 +78,27 @@
   font-size: 1.4rem;
   align-items: center;
 }
+
+.edit-profile-text{
+  text-decoration: underline;
+}
+
+.transparent-button {
+  background: none;
+  border: none;
+  outline: none;
+}
+
+.transparent-button:hover {
+  background: none !important;
+  color: inherit !important;
+  text-decoration: underline !important;
+}
+
+.transparent-button:focus {
+  outline: none !important;
+}
+
 .phone_class {
   display: flex;
   flex-direction: column;
