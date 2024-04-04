@@ -578,7 +578,7 @@ export const getUser = async (user_id) => {
 export const sendInvite = async (data) => {
   const user = firebase.auth().currentUser;
   const reqid = await user.getIdToken();
-
+  console.log(data)
   const response = await axios.post(
     `${process.env.REACT_APP_BACKEND_URL}/api/project/invite`,
     data,
@@ -588,7 +588,7 @@ export const sendInvite = async (data) => {
       },
     }
   );
-  // console.log(response);
+  console.log(response);
 };
 
 export const sendRequest = async (data) => {

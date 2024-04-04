@@ -70,9 +70,9 @@ const InviteToProjectModal = ({ user, selectedUser, ...props }) => {
       sender_id: user.uid,
       sender_email: user.email,
       sender_img: user.photoURL,
-      reciever_email: selectedUser.email,
+      receiver_email: selectedUser.email,
       receiver: selectedUser.name,
-      reciever_img:
+      receiver_img:
         selectedUser.photoURL ||
         "https://sabt.center/wp-content/uploads/2014/08/avatar-1.png",
       receiver_id: selectedUser.id,

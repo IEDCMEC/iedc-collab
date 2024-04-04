@@ -56,7 +56,13 @@ const NewProjectForm = ({ onClose, project, setVariable, variable }) => {
   const [projectPhoto, setProjectPhoto] = useState(
     project?.projectPhoto || null
   );
-  const { fetchData, fetchRequests, developers, devHash } = useContext(ProjectContext);
+  const {
+    fetchData,
+    fetchRequests,
+    projects,
+    developers,
+    devHash,
+  } = useContext(ProjectContext);
   const initialValue = {
     name: project?.name || "",
     desc: project?.desc || "",
@@ -71,13 +77,13 @@ const NewProjectForm = ({ onClose, project, setVariable, variable }) => {
     hiring: project?.hiring ? project.hiring.join(", ") : "",
     projectPhoto: project?.projectPhoto,
   };
-  
+
   function getRemainSkills() {
     // let temp1 = [];
     // skills?.forEach((skill) => {
     //   if (!acValue1.find((item) => item === skill)) temp1.push(skill);
     // });
-    console.log(skills)
+    // console.log(skills);
     setRemainSkills(skills);
     //// console.log(acValue)
 
@@ -106,9 +112,9 @@ const NewProjectForm = ({ onClose, project, setVariable, variable }) => {
     });
   };
 
-  useEffect(()=>{
-    getTagDetails()
-  },[])
+  useEffect(() => {
+    getTagDetails();
+  }, []);
   useEffect(() => {
     getAbilities();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -129,39 +135,42 @@ const NewProjectForm = ({ onClose, project, setVariable, variable }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [tags, acValue2]);
 
-
-const sendEmailsToTeamMembers = async (teamMembersArray, name) => {
-  const projectArray = [];
-  await getProjects()
-    .then((result) => projectArray.push(...result));
-
-  const project = projectArray.find(project => project.name === name && project.leaderEmail === currentUser.email);  
-  
-  for (const member of teamMembersArray) {
-    if (member !== currentUser.email) {
-          const data = {
-            sender: currentUser.displayName,
-            sender_id: currentUser.uid,
-            sender_email: currentUser.email,
-            sender_img: currentUser.photoURL,
-            receiver_email: member,
-            receiver: devHash[member]?.name||"",
-            reciever_img: "https://sabt.center/wp-content/uploads/2014/08/avatar-1.png",
-            receiver_id: devHash[member]?.id||"",
-            project_id: project.id,
-            project: project.name,
-            message:"",
-            status: "pending",
-            createdAt: Date.now(),
-          };
-
-          await sendInvite(data)
-          .then(() => {
-             fetchRequests();
-          })   
+  const sendEmailsToTeamMembers = async (teamMembersArray, name) => {
+    console.log(projects);
+    const project = projects.filter(
+      (project) =>
+        project.name === name && project.leaderEmail === currentUser.email
+    );
+    console.log(project);
+    for (const member of teamMembersArray) {
+      if (
+        member !== currentUser.email &&
+        !project[0].teamMembers.includes(member)
+      ) {
+        console.log(member, devHash[member]);
+        const data = {
+          sender: currentUser.displayName,
+          sender_id: currentUser.uid,
+          sender_email: currentUser.email,
+          sender_img: currentUser.photoURL,
+          receiver_email: member,
+          receiver: devHash[member]?.name || "",
+          receiver_img:
+            "https://sabt.center/wp-content/uploads/2014/08/avatar-1.png",
+          receiver_id: devHash[member]?.id || "",
+          project_id: project[0].id,
+          project: project[0].name,
+          message: "You are invited to this project!!",
+          status: "pending",
+          createdAt: Date.now(),
+        };
+        console.log(data);
+        await sendInvite(data).then(() => {
+          fetchRequests();
+        });
+      }
     }
-  }
-};
+  };
   const theme = createTheme({
     components: {
       MuiOutlinedInput: {
@@ -212,13 +221,17 @@ const sendEmailsToTeamMembers = async (teamMembersArray, name) => {
   });
 
   const handleSubmit = (values, actions) => {
-    const { links, teamMembers:teamMembersString, hiring } = values;
+    const { links, teamMembers: teamMembersString, hiring } = values;
 
     const teamMembersArray = teamMembersString
       .split(",")
-      .filter(Boolean)
+      .filter((value) => value !== currentUser.email)
       .map((email) => email.trim());
-
+    const confirmedMembers = initialValue.teamMembers
+      .split(",")
+      .filter((value) => value !== currentUser.email)
+      .map((email) => email.trim());
+    console.log(initialValue)
     const formValues = {
       ...values,
       skills: acValue1,
@@ -227,7 +240,7 @@ const sendEmailsToTeamMembers = async (teamMembersArray, name) => {
         .split(",")
         .filter(Boolean)
         .map((link) => link.trim()),
-      teamMembers:[],
+      teamMembers: confirmedMembers.length > teamMembersArray.length ? teamMembersArray : confirmedMembers,
       hiring: hiring
         .split(",")
         .filter(Boolean)
@@ -235,22 +248,25 @@ const sendEmailsToTeamMembers = async (teamMembersArray, name) => {
       projectPhoto,
       projectPhotoName,
     };
-   
     if (!formValues.teamMembers.includes(currentUser?.email)) {
       formValues.teamMembers.push(currentUser?.email);
     }
     formValues.teamMembers = formValues.teamMembers.filter(
       (item, index) => formValues.teamMembers.indexOf(item) === index
     );
+    console.log(formValues.teamMembers, teamMembersArray);
     if (!project) {
       doCreateProject(formValues, developers, () => {
         fetchData();
       })
-      .then(()=>{return sendEmailsToTeamMembers(teamMembersArray, formValues.name)})
-      .then((res)=>{toast("Project created and Email Requests send", {
-        autoClose: 3000,
-      });
-      }) 
+        .then(() => {
+          sendEmailsToTeamMembers(teamMembersArray, formValues.name);
+        })
+        .then((res) => {
+          toast("Project created and Email Requests send", {
+            autoClose: 3000,
+          });
+        });
     } else {
       doEditProject(formValues, project.id, developers, () => {
         fetchData();
@@ -258,6 +274,8 @@ const sendEmailsToTeamMembers = async (teamMembersArray, name) => {
         toast("Project edited successfully", {
           autoClose: 3000,
         });
+      }).then(() => {
+        sendEmailsToTeamMembers(teamMembersArray, formValues.name);
       });
     }
     onClose();

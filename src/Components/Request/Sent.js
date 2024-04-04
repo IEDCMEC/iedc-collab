@@ -27,7 +27,7 @@ function Sent({ request }) {
           <img
             className="req_profile_img"
             src={
-              request.reciever_img ||
+              request.receiver_img ||
               "https://sabt.center/wp-content/uploads/2014/08/avatar-1.png"
             }
             alt=""
