@@ -292,6 +292,21 @@ const NewProjectForm = ({ onClose, project, setVariable, variable }) => {
     }
   }
 
+  const removeDuplicates=(skillsSnapshot,inputSkills)=> {
+       
+    const skillsObject = skillsSnapshot.data() || {};
+    let skillsArray = Object.values(skillsObject); 
+    inputSkills.forEach((skill) => {      
+      skillsArray.push(skill);
+    });  
+    skillsArray = Array.from(new Set(skillsArray.map(skill => skill.toLowerCase()))); 
+    const skillsObjectForFirestore = {};
+    skillsArray.forEach((skill, index) => {
+      skillsObjectForFirestore[`${index}`] = skill.toLowerCase();
+    });
+    return skillsObjectForFirestore;
+  }
+
   return (
     <div className="newProjectForm">
       <Formik
@@ -592,9 +607,14 @@ const NewProjectForm = ({ onClose, project, setVariable, variable }) => {
                           }
                         }
                       }
-                      addSkills(skill);
+                      const newSkills = skill.split(",");    
+                      const filteredSkills = newSkills
+                        .map((skill) => skill.trim())
+                        .filter((skill) => skill !== "");    
+                      setACValue1((prevSkills) => [...prevSkills, ...filteredSkills]);
+                      console.log("Filtered Skills:", filteredSkills);
+                      addSkills(filteredSkills,removeDuplicates);
                       setSkill("");
-                      setACValue1([...acValue1, skill]);
                     }
                   }
                 }}

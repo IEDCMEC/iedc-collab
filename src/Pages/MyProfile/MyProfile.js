@@ -46,7 +46,7 @@ const MyProfile = () => {
         );
       });
   }, [projects, currentUser]);
-  // const getDev = async (id) => {
+// const getDev = async (id) => {
   //   const user = await getUser(id);
   //   setSelectedUser(await user.docs());
   //   setLoading(false);
@@ -72,7 +72,7 @@ const MyProfile = () => {
     }
     return urlArray[urlArray.length - 1];
   };
-  // useEffect(() => {
+// useEffect(() => {
   //   if (currentUser?.uid !== undefined) {
   //     // getDev(currentUser?.uid);
   //     // fetchRequests(currentUser?.uid);
@@ -82,7 +82,7 @@ const MyProfile = () => {
   // }, [currentUser]);
   useEffect(() => {
     if (!profile) fetchUserProfile();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+// eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentUser]);
   
   if (loading || !profile) {
@@ -131,15 +131,10 @@ const MyProfile = () => {
                         alignItems: "flex-end",
                       }}
                     >
-                      <FiEdit
-                        size={36}
-                        style={{
-                          cursor: "pointer",
-                          alignItems: "flex-end",
-                        }}
-                        alt=""
-                        onClick={newprojectClick}
-                      />
+                      <div>
+                        <button 
+                        className="edit-profile-text transparent-button" onClick={newprojectClick}>Edit profile</button>
+                      </div>
                     </div>
 
                     <div className="profile_details_header_name">
@@ -147,7 +142,7 @@ const MyProfile = () => {
                     </div>
 
                     <div className="phone_class">
-                      {/* <div className="profile_phone">
+{/* <div className="profile_phone">
                         <BsTelephoneInbound size={25} />
                         <div>
                           {profile.contact ? (
@@ -206,7 +201,7 @@ const MyProfile = () => {
                           )}
                         </div>
                       </div>
-                      {/* <div className="profile_phone">
+{/* <div className="profile_phone">
                         <VscGithubInverted size={25} />
                         <div>
                           {profile.github ? (
@@ -359,7 +354,7 @@ const MyProfile = () => {
                   </div>
                 </div>
                 <div className="edit__pro_box_1">
-                  {/* <div className="reqs_invite_bar">
+{/* <div className="reqs_invite_bar">
       <div className="reqs_invite_bar__requests">Requests</div>
       <div className="reqs_invite_bar__line">|</div>
       <div className="reqs_invite_bar__invite">Invite</div>
@@ -405,15 +400,9 @@ const MyProfile = () => {
                     alignItems: "flex-end",
                   }}
                 >
-                  <FiEdit
-                    size={36}
-                    style={{
-                      cursor: "pointer",
-                      alignItems: "flex-end",
-                    }}
-                    alt=""
-                    onClick={newprojectClick}
-                  />
+                  <div>
+                  <button className="edit-profile-text transparent-button" onClick={newprojectClick}>Edit profile</button>
+                  </div>
                 </div>
 
                 <div className="profile_details_header_name">
@@ -629,7 +618,7 @@ const MyProfile = () => {
                 Requests
               </div>
               <div className="edit__pro_box_1">
-                {/* <div className="reqs_invite_bar">
+{/* <div className="reqs_invite_bar">
                 <div className="reqs_invite_bar__requests">Requests</div>
                 <div className="reqs_invite_bar__line">|</div>
                 <div className="reqs_invite_bar__invite">Invite</div>

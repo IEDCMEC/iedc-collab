@@ -79,31 +79,37 @@ const DescriptionDetails = (props) => {
       <div className="description__other">
         {props.selectedProject.teamMembers?.length && (
           <div>
-            <div className="description__other-team">TEAM MEMBERS</div>
-            <div className="description__other-members">
-              {props.selectedProject.teamMembers.map((member, index) =>
-                devHash[member]?.id ? (
-                  <div className="description__other-member" key={index}>
-                    {index + 1}
-                    {"."}
-                    <div style={{ width: "6px" }}></div>
-                    <a
-                      href={`${mainUrl}/developers/${devHash[member].id}`}
-                      style={{
-                        color: "#263238",
-                        textDecoration: "underline",
-                      }}
-                    >
-                      {devHash[member].name}
-                    </a>
-                  </div>
-                ) : (
-                  <a href={`mailto:${member}`} key={index}>
-                    <div className="description__other-member">
-                      {index + 1}. {member}
+            <div>
+              <div className="description__other-team">TEAM MEMBERS</div>
+              <div className="description__other-members">
+                {props.selectedProject.teamMembers.map((member, index) =>
+                  devHash[member]?.id ? (
+                    <div className="description__other-member" key={index}>
+                      {index + 1}
+                      {"."}
+                      <div style={{ width: "6px" }}></div>
+                      <a
+                        href={`${mainUrl}/developers/${devHash[member].id}`}
+                        style={{
+                          color: "#263238",
+                          textDecoration: "underline",
+                        }}
+                      >
+                        {devHash[member].name}
+                      </a>
                     </div>
-                  </a>
-                )
+                  ) : (
+                    <a href={`mailto:${member}`} key={index}>
+                      <div className="description__other-member">
+                        {index + 1}. {member}
+                      </div>
+                    </a>
+                  )
+                )}
+              </div>
+              <br/>
+              {canModifyProject && (
+                <a href={`${mainUrl}/developers/`} className="invite-button">Invite Developers</a>
               )}
             </div>
           </div>
@@ -132,7 +138,9 @@ const DescriptionDetails = (props) => {
             ></div>
           </div>
         ) : (
-          ""
+          <div>
+
+          </div>
         )}
         <div className="description__other-references">
           {props.selectedProject.links?.map((link, index) => (
@@ -181,7 +189,7 @@ const DescriptionDetails = (props) => {
           {currentUser ? (
             <a
               href={`tel:${props.selectedProject.contactNo}`}
-              // className="description__tag_phone_mobile"
+            // className="description__tag_phone_mobile"
             >
               <FaPhoneAlt
                 color="WHITE"

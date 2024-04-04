@@ -34,10 +34,10 @@ function NavbarHome() {
           <Link to="/developers" className="nav_item">
             Developers
           </Link>
-          <Link to="/ideas" className="nav_item">
+          {/*<Link to="/ideas" className="nav_item">
             Ideas
-          </Link>
-          {/* <Link to="/jobs" className="nav_item">
+          </Link>*/
+          /* <Link to="/jobs" className="nav_item">
             Jobs
           </Link> /}
         </div>
