@@ -49,6 +49,25 @@ const DescriptionDetails = (props) => {
   function deleteProj() {
     setDisplayConfirmationModal(true);
   }
+
+  const isCurrentUserInProject =
+    currentUser &&
+    props.selectedProject.teamMembers &&
+    props.selectedProject.teamMembers.includes(currentUser.email);
+
+  const isCurrentUserLeader = currentUser?.uid === props.selectedProject.leader_id;
+
+  const leaveProject = () => {
+    if (currentUser && !isCurrentUserLeader && isCurrentUserInProject) {
+      // Remove the current user from the team members of the project
+      const updatedTeamMembers = props.selectedProject.teamMembers.filter(
+        member => member !== currentUser.email
+      );
+      // update firebase db
+    }
+  };
+
+
   return (
     <>
       <div className="description__container">
@@ -107,9 +126,17 @@ const DescriptionDetails = (props) => {
                   )
                 )}
               </div>
-              <br/>
+              <br />
               {canModifyProject && (
                 <a href={`${mainUrl}/developers/`} className="invite-button">Invite Developers</a>
+              )}
+
+              {isCurrentUserInProject && !isCurrentUserLeader && (
+                <div>
+                  <button className="leave-button" onClick={leaveProject}>
+                    Leave Project
+                  </button>
+                </div>
               )}
             </div>
           </div>
