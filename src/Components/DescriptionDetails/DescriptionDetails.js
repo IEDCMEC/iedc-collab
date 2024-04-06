@@ -46,6 +46,7 @@ const DescriptionDetails = (props) => {
       await leaveProject(projectId, userEmail);
       toast("You have left the project successfully");
       fetchData();
+      history.push("/projects");
     }
   };
 
