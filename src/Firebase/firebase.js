@@ -750,3 +750,30 @@ export const addTags = async (tag) => {
     console.error("Oops! Couldn't add tags \n more info:", error);
   }
 };
+
+export const leaveProject = async (projectId, userEmail) => {
+  console.log("Please")
+  try {
+    const db = firebase.firestore();
+    const projectRef = db.collection("projects").doc(projectId);
+    
+    const projectSnapshot = await projectRef.get();
+    if (!projectSnapshot.exists) {
+      throw new Error("Project not found");
+    }
+
+    let teamMembers = projectSnapshot.data().teamMembers || [];
+
+    const userEmailIndex = teamMembers.indexOf(userEmail);
+    if (userEmailIndex !== -1) {
+      teamMembers.splice(userEmailIndex, 1);
+      await projectRef.update({ teamMembers });
+      console.log("User removed from project successfully");
+    } else {
+      console.log("User is not part of the project");
+    }
+  } catch (error) {
+    console.error("Error leaving project:", error);
+  }
+};
+
