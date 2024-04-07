@@ -2,13 +2,16 @@ import { useContext, useEffect, useState } from "react";
 import { ProjectContext } from "../../contexts/ProjectContext";
 import "./DescriptionDetails.scss";
 import { useHistory } from "react-router-dom";
+import firebase from 'firebase/app';
+import 'firebase/auth';
+import 'firebase/firestore';
 import { AuthContext } from "../../Firebase/Auth/Auth";
 import { doDeleteProject } from "../../Firebase/firebase";
+import { leaveProject } from "../../Firebase/firebase";
 import ProjectModal from "../ProjectModal/ProjectModal";
 import { toast } from "react-toastify";
 import DeleteConfirmation from "../DeleteConfirmationModal/DeleteConfirmation";
 import { IoMdMail } from "react-icons/io";
-// import { GoMarkGithub } from "react-icons/go";
 import { IoPricetagsOutline } from "react-icons/io5";
 import { RiDeleteBin7Line } from "react-icons/ri";
 import { FaPhoneAlt } from "react-icons/fa";
@@ -21,24 +24,9 @@ const DescriptionDetails = (props) => {
   const { currentUser } = useContext(AuthContext);
   const [canModifyProject, setCanModifyProject] = useState(false);
   const [showNewProjectModal, setShowNewProjectModal] = useState(false);
-  const [displayConfirmationModal, setDisplayConfirmationModal] = useState(
-    false
-  );
-
+  const [displayConfirmationModal, setDisplayConfirmationModal] = useState(false);
   const history = useHistory();
-  const submitDelete = (id) => {
-    doDeleteProject(id, () => {
-      toast("Project deleted successfully");
-      fetchData();
-    });
-    setDisplayConfirmationModal(false);
-    history.go(0);
-  };
-  //create a map of developers with their email as key and name as value
 
-  const hideConfirmationModal = () => {
-    setDisplayConfirmationModal(false);
-  };
   useEffect(() => {
     if (currentUser?.uid === props.selectedProject.leader_id) {
       setCanModifyProject(true);
@@ -46,9 +34,40 @@ const DescriptionDetails = (props) => {
       setCanModifyProject(false);
     }
   }, [currentUser?.uid, props.selectedProject.leader_id]);
-  function deleteProj() {
+
+  const deleteProj = () => {
     setDisplayConfirmationModal(true);
-  }
+  };
+
+  const leaveProjectHandler = async () => {
+    if (currentUser && !canModifyProject && props.selectedProject.teamMembers.includes(currentUser.email)) {
+      const projectId = props.selectedProject.id;
+      const userEmail = currentUser.email;
+      await leaveProject(projectId, userEmail);
+      toast("You have left the project successfully");
+      fetchData();
+      history.push("/projects");
+    }
+  };
+
+  const submitDelete = (id) => {
+    doDeleteProject(id, () => {
+      toast("Project deleted successfully");
+      fetchData();
+      history.go(0);
+    });
+    setDisplayConfirmationModal(false);
+  };
+
+  const hideConfirmationModal = () => {
+    setDisplayConfirmationModal(false);
+  };
+
+  const isCurrentUserInProject =
+  currentUser &&
+  props.selectedProject.teamMembers &&
+  props.selectedProject.teamMembers.includes(currentUser.email);  const isCurrentUserLeader = currentUser?.uid === props.selectedProject.leader_id;
+
   return (
     <>
       <div className="description__container">
@@ -57,9 +76,7 @@ const DescriptionDetails = (props) => {
             <RiDeleteBin7Line
               size={38}
               style={{ cursor: "pointer" }}
-              onClick={() => {
-                deleteProj();
-              }}
+              onClick={deleteProj}
               alt="delete project"
             />
           )}
@@ -67,9 +84,7 @@ const DescriptionDetails = (props) => {
             <FiEdit
               size={36}
               style={{ cursor: "pointer" }}
-              onClick={() => {
-                setShowNewProjectModal(true);
-              }}
+              onClick={() => setShowNewProjectModal(true)}
             />
           )}
         </div>
@@ -99,17 +114,20 @@ const DescriptionDetails = (props) => {
                       </a>
                     </div>
                   ) : (
-                    <a href={`mailto:${member}`} key={index}>
-                      <div className="description__other-member">
-                        {index + 1}. {member}
-                      </div>
-                    </a>
+                    <div className="description__other-member" key={index}>
+                      {index + 1}. {member}
+                    </div>
                   )
                 )}
               </div>
-              <br/>
+              <br />
               {canModifyProject && (
                 <a href={`${mainUrl}/developers/`} className="invite-button">Invite Developers</a>
+              )}
+              {isCurrentUserInProject && !isCurrentUserLeader && (
+                <div>
+                  <button className="leave-button" onClick={leaveProjectHandler}>Leave Project</button>
+                </div>
               )}
             </div>
           </div>
@@ -189,7 +207,6 @@ const DescriptionDetails = (props) => {
           {currentUser ? (
             <a
               href={`tel:${props.selectedProject.contactNo}`}
-            // className="description__tag_phone_mobile"
             >
               <FaPhoneAlt
                 color="WHITE"
@@ -216,18 +233,6 @@ const DescriptionDetails = (props) => {
           ) : (
             ""
           )}
-
-          {/* {props.selectedProject.githubLink.length ? (
-            <a
-              href={props.selectedProject.githubLink}
-              target="_blank"
-              rel="noreferrer"
-            >
-              <GoMarkGithub color="#9e0000" size={40} />
-            </a>
-          ) : (
-            ""
-          )} */}
         </div>
 
         <ProjectModal
@@ -247,4 +252,5 @@ const DescriptionDetails = (props) => {
     </>
   );
 };
+
 export default DescriptionDetails;
