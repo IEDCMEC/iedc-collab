@@ -48,6 +48,8 @@ const NewProjectForm = ({ onClose, project, setVariable, variable }) => {
   const [acValue2, setACValue2] = useState(project?.tags || []);
   const [remainSkills, setRemainSkills] = useState([]);
   const [remainTags, setRemainTags] = useState([]);
+  const [formErrors,setFormErrors] = useState({});
+  const [formTouched,setFormTouched] = useState({});
 
   const { currentUser } = useContext(AuthContext);
   const [projectPhotoName, setProjectPhotoName] = useState(
@@ -77,6 +79,16 @@ const NewProjectForm = ({ onClose, project, setVariable, variable }) => {
     hiring: project?.hiring ? project.hiring.join(", ") : "",
     projectPhoto: project?.projectPhoto,
   };
+
+  useEffect(() => {
+    if(formErrors) {
+      Object.keys(formTouched).map((key) => {
+        toast(formErrors[key],{
+          autoClose: 1500,
+        })
+      })
+    }
+  },[formErrors])
 
   function getRemainSkills() {
     // let temp1 = [];
@@ -218,6 +230,10 @@ const NewProjectForm = ({ onClose, project, setVariable, variable }) => {
       ),
     links: yup.string().min(4),
     githubLink: yup.string().optional().min(4),
+    teamMembers: yup.string().optional().matches(
+      /^\b[A-Za-z0-9.%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b(?:,\s*\b[A-Za-z0-9.%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b)*$/,
+      "Please enter a valid email"
+    )
   });
 
   const handleSubmit = (values, actions) => {
@@ -313,8 +329,15 @@ const NewProjectForm = ({ onClose, project, setVariable, variable }) => {
         initialValues={initialValue}
         validationSchema={newProjectSchema}
         onSubmit={handleSubmit}
+        validateOnChange={false}
       >
-        {(props) => (
+        {(props) => {
+          if (props.errors) {
+            setFormErrors(props.errors);
+            setFormTouched(props.touched);
+          }
+          
+          return(
           <Form>
             <Form.Group controlId="formBasicTitle">
               <Form.Label>Project Name*</Form.Label>
@@ -728,7 +751,7 @@ const NewProjectForm = ({ onClose, project, setVariable, variable }) => {
               </Button>
             </Row>
           </Form>
-        )}
+        )}}
       </Formik>
     </div>
   );
