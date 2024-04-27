@@ -15,7 +15,7 @@ import {
   getProjects,
 } from "../../Firebase/firebase";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUpload } from "@fortawesome/free-solid-svg-icons";
+import { faUpload, faTrash } from "@fortawesome/free-solid-svg-icons";
 import "./ProjectModal.scss";
 import { ProjectContext } from "../../contexts/ProjectContext";
 import { toast } from "react-toastify";
@@ -50,6 +50,7 @@ const NewProjectForm = ({ onClose, project, setVariable, variable }) => {
   const [remainTags, setRemainTags] = useState([]);
   const [formErrors,setFormErrors] = useState({});
   const [formTouched,setFormTouched] = useState({});
+  const [descriptionPhotos, setDescriptionPhotos] = useState([])
 
   const { currentUser } = useContext(AuthContext);
   const [projectPhotoName, setProjectPhotoName] = useState(
@@ -513,6 +514,105 @@ const NewProjectForm = ({ onClose, project, setVariable, variable }) => {
                 ></img>
               )}
             </Row>
+
+            <br />
+            <InputGroup controlId="formPhotoDescription" className="photoContainer">
+              <Form.Label className="photoLabel">
+                <span className="photoHead" style={{ fontWeight: "800" }}>
+                  Upload Description Photos
+                </span>
+                <span className="photoIcon">
+                  <FontAwesomeIcon icon={faUpload} />
+                </span>
+
+                <Form.Control
+                  required
+                  onBlur={props.handleBlur("photo")}
+                  onChange={async (e) => {
+                    let files = e.target.files;
+                    if (files.length + descriptionPhotos.length > 4) {
+                      toast('You can only upload up to 4 images', {
+                        autoClose:2000
+                      });
+                    } else {
+                      console.log(files)
+                      if (files[0].size > 1048576) {
+                        toast("File size should be less than 1MB", {
+                          autoClose: 2000,
+                        });
+                      } else {
+                        try {
+                          const results = await compress.compress(
+                            [...e.target.files],
+                            {
+                              size: 1.5,
+                              quality: 0.7,
+                              rotate: false,
+                              resize: true,
+                            }
+                          );
+                          const img1 = results[0];
+                          const base64str = results[0].data;
+                          const imgExt = img1.ext;
+                          const compressedImage = Compress.convertBase64ToFile(
+                            base64str,
+                            imgExt
+                          );
+                          const imageURL = URL.createObjectURL(compressedImage);
+                          // setProjectPhoto(compressedImage);
+                          // setProjectPhotoName(e.target.files[0].name);
+                          // setImage(URL.createObjectURL(compressedImage));
+                          const dimensions = await fetchImageSize(imageURL);
+                          // console.log(dimensions);
+                          const width =
+                            (dimensions.width / dimensions.height) * 200;
+                          setDescriptionPhotos([...descriptionPhotos, {imageURL,dimensions,width}]);
+                        } catch (error) {
+                          // setProjectPhoto(e.target.files[0]);
+                          // setProjectPhotoName(e.target.files[0].name);
+                          // setImage(URL.createObjectURL(e.target.files[0]));
+                          // console.log("Error in compressing: " + error);
+                          setDescriptionPhotos([...descriptionPhotos, URL.createObjectURL(e.target.files[0])]);
+                        }
+                      }
+                    }}}
+                  type="file"
+                  className="customFile"
+                />
+                {/* </span> */}
+              </Form.Label>
+            </InputGroup>
+            <Form.Text  className="text-right helperText">
+              {descriptionPhotos.length}/4 images selected.
+            </Form.Text>
+            <Form.Text className="text-danger">
+              {props.touched.photo && props.errors.photo}
+            </Form.Text>
+            {descriptionPhotos && descriptionPhotos.map((img,index) => {
+
+                return (
+                <Row className="row text-center descriptionPhoto">
+                  <Col className="col-sm-10 descriptionPhoto-image">
+                    <img
+                      key={index}
+                      alt="description photos"
+                      width={img.dimensions ? img.imageWidth : 200}
+                      height="200px"
+                      src={img.imageURL}
+                    />
+                  </Col>
+                  <Col className="col-sm-2 descriptionPhoto-remove">
+                  <button className="descriptionPhoto-button"
+                    onClick={() => {
+                      setDescriptionPhotos(imgs => imgs.filter(item => item.imageURL !== img.imageURL));
+                    }}
+                  >
+                    <FontAwesomeIcon size="2x" icon={faTrash} />
+                  </button>
+                  </Col>
+                </Row>
+                )
+              })}
             <Form.Group controlId="formTeamMembers">
               <Form.Label>Team Members</Form.Label>
               <Form.Control
