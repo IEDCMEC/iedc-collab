@@ -17,7 +17,7 @@
   list-style: none;
   display: grid;
   grid-template-columns: repeat(6, auto);
-  grid-gap: 30px;
+  grid-gap: 20px;
   text-align: center;
   height: 100%;
 }
