@@ -1,4 +1,4 @@
-.animation_main {
+/*.animation_main {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -128,4 +128,122 @@
 }
 .google_logo {
   pointer-events: none;
+}*/
+
+.animation_main {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 8rem;
+  position: relative;
+
+  .left-section {
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 0 2rem;
+
+    .content {
+      text-align: left;
+
+      .title {
+        font-size: 46px;
+        color: #850000;
+        font-weight: 800;
+        text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        margin-bottom: 1rem;
+      }
+
+      .description {
+        font-size: 18px;
+        color: #333;
+        margin-bottom: 2rem;
+      }
+
+      .signin_btn {
+        background-color: #850000;
+        color: white;
+        height: 60px;
+        width: 250px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        border-radius: 15px;
+        font-weight: 600;
+        font-size: 18px;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        gap: 0.6rem;
+        transition: background-color 0.3s ease;
+        margin-top:1rem;
+
+        &:hover {
+          background-color: #a50000;
+        }
+      }
+    }
+  }
+
+  .right-section {
+    position: relative;
+    width: 60%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    .bubble_8 {
+      z-index: -1;
+      pointer-events: none;
+      position: absolute;
+      bottom: -10px;
+      width: 102%;
+    }
+
+    .iedc_logo {
+      pointer-events: none;
+      position: absolute;
+      top: 22%;
+      right: 26%;
+      z-index: 2;
+    }
+  }
+
+  @media (max-width: 1065px) {
+    .left-section {
+      width: 80%;
+    }
+  }
+
+  @media (max-width: 882px) {
+    flex-direction: column;
+
+    .left-section,
+    .right-section {
+      width: 100%;
+    }
+
+    .left-section {
+      align-items: center;
+    }
+
+    .right-section {
+      margin-top: 2rem;
+      order: -1;
+    }
+
+    .iedc_logo {
+      display: none;
+    }
+
+    .signin_btn {
+      width: 220px;
+      height: 50px;
+      font-size: 16px;
+    }
+  }
 }
