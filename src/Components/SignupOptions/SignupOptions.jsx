@@ -10,7 +10,7 @@ import { toast } from "react-toastify";
 // import { UpdateUserDetails } from "../../Firebase/firebase";
 const SignupOptions = ({ openModal, setOpenModal }) => {
   //   // console.log(openModal);
-  const { profile, fetchUserProfile, fetchDevelpersData } = useContext(
+  const { profile, fetchUserProfile, fetchDevelpersData, setProfile } = useContext(
     ProjectContext
   );
   function handleSignin(typeofuser) {
@@ -138,7 +138,7 @@ const SignupOptions = ({ openModal, setOpenModal }) => {
           >
             <Button
               onClick={() => {
-                handleSignin("User");
+                setProfile({...profile, role: "User"});
               }}
               sx={{
                 backgroundColor: "#9e0000",
@@ -157,7 +157,7 @@ const SignupOptions = ({ openModal, setOpenModal }) => {
             </Button>
             <Button
               onClick={() => {
-                handleSignin("Organization");
+                setProfile({...profile, role: "Organization"});
               }}
               sx={{
                 backgroundColor: "#9e0000",
