@@ -15,7 +15,6 @@ const SignupOptions = ({ openModal, setOpenModal }) => {
   );
   function handleSignin(typeofuser) {
     if ((profile && profile?.length === 0) || profile === null) {
-      signIn();
       UpdateUserDetails([profile, typeofuser], () => {
         fetchUserProfile();
         fetchDevelpersData();
@@ -138,7 +137,7 @@ const SignupOptions = ({ openModal, setOpenModal }) => {
           >
             <Button
               onClick={() => {
-                setProfile({...profile, role: "User"});
+                handleSignin( "User");
               }}
               sx={{
                 backgroundColor: "#9e0000",
@@ -157,7 +156,7 @@ const SignupOptions = ({ openModal, setOpenModal }) => {
             </Button>
             <Button
               onClick={() => {
-                setProfile({...profile, role: "Organization"});
+                handleSignin("Organization");
               }}
               sx={{
                 backgroundColor: "#9e0000",
