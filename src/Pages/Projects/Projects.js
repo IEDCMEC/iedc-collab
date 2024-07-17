@@ -103,6 +103,7 @@ const Projects = () => {
         display: "flex",
         justifyContent: "center",
         width: "100vw",
+        flexDirection: "column",
       }}
     >
       <MainLayout route={"Projects"}>
@@ -113,6 +114,7 @@ const Projects = () => {
             transition: "0.2s",
           }}
         >
+      
           <Drawer
             selectedSkills={selectedSkills}
             setSelectedSkills={setSelectedSkills}
@@ -129,6 +131,7 @@ const Projects = () => {
             >
               {works.length === 0 ? "NOT FOUND" : "PROJECTS"}
             </h3>
+         
             <div>
               {works && works.length === 0 ? (
                 <p style={{ fontWeight: "600", color: "black" }}>
