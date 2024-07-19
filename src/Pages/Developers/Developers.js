@@ -120,8 +120,8 @@ const Developers = () => {
                     (columnIndex + 1) * cardsPerColumn
                   )
                   .map((user, index) => (
-                    <div key={index} onClick={() => handleClick(user)}>
-                      <DeveloperCard user={user} />
+                    <div key={index}>
+                      <DeveloperCard user={user} handleClick={handleClick}/>
                     </div>
                   ))}
               </div>
