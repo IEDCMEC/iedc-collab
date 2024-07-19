@@ -27,7 +27,11 @@
   row-gap: 30px;
   column-gap: 10%;
   justify-content: center;
+  /* Set a fixed height */
+  height: calc(4.1 * (107px + 30px)); /* Adjust based on your card height and row gap */
+  overflow-y: scroll; /* Enable vertical scrolling */
 }
+
 .developer-card {
   width: 528px;
 
@@ -46,6 +50,7 @@
   padding-top: 7px;
   padding-bottom: 7px;
   justify-content: flex-start;
+  margin-bottom: 30px;
 }
 .developer-card img {
   width: 120px !important;
@@ -55,6 +60,7 @@
   object-fit: cover;
   top: -13px;
   left: -10px;
+
 }
 .developer-card h1 {
   text-transform: capitalize;
