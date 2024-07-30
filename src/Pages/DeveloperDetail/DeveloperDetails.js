@@ -1,4 +1,5 @@
 import MainLayout from "../../Components/MainLayout/MainLayout";
+import CollabFooter from "../../Components/CollabFooter/CollabFooter";
 import "./DeveloperDetails.scss";
 // import person from "../../assets/details_left.svg";
 import InviteToProjectModal from "../../Components/InviteToProjectModal/InviteToProjectModal";
@@ -312,6 +313,7 @@ function DeveloperDetails() {
           )}
         </div>
       </MainLayout>
+      <CollabFooter />
     </>
   );
 }
