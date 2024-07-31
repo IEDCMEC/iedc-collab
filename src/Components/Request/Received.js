@@ -1,7 +1,7 @@
 import "./Request.css";
 import {declineRequest} from "../../Firebase/firebase";
 import { useContext, useEffect, useState } from "react";
-import { useParams, useHistory } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { getUser } from "../../Firebase/firebase";
 import { AuthContext } from "../../Firebase/Auth/Auth";
 import { toast } from "react-toastify";
@@ -15,7 +15,7 @@ import RequestAcceptedModal from "../../Components/RequestAcceptedModal/RequestA
 import ConfirmEmail from "../ConfirmEmail/ConfirmEmail";
 
 function Received({ request }) {
-  const history = useHistory();
+  const navigate = useNavigate();
   const { currentUser } = useContext(AuthContext);
   const { fetchRequestsRecieved } = useContext(ProjectContext);
   let { id } = useParams();
@@ -119,7 +119,7 @@ function Received({ request }) {
           className="view_project_btn"
           variant="outlined"
           onClick={() => {
-            history.push(`/projects/${request.project_id}`);
+            navigate(`/projects/${request.project_id}`);
           }}
         >
           View Project

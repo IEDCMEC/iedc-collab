@@ -8,7 +8,7 @@ import { Dialog } from "@mui/material";
 import Backdrop from "@mui/material/Backdrop";
 import { updateCompanyDetails } from "../../Firebase/firebase";
 import { toast } from "react-toastify";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 const OrganizationForm = ({ openModal, setOpenModal }) => {
   const {
     companyDetails,
@@ -17,7 +17,7 @@ const OrganizationForm = ({ openModal, setOpenModal }) => {
     fetchUserProfile,
     fetchDevelpersData,
   } = useContext(ProjectContext);
-  const history = useHistory();
+  const navigate = useNavigate();
   const handleSubmit = (event) => {
     event.preventDefault();
     updateCompanyDetails([profile, companyDetails], () => {
@@ -27,7 +27,7 @@ const OrganizationForm = ({ openModal, setOpenModal }) => {
         autoClose: 2000,
       });
     });
-    history.push("/profile");
+    navigate("/profile");
     setCompanyDetails({
       description: "",
       website: "",

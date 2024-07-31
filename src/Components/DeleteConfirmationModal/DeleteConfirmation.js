@@ -1,7 +1,7 @@
 import { Modal, Button, Form } from "react-bootstrap";
 import React, { useState } from "react";
 import "./modal.css";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { doDeleteProject } from "../../Firebase/firebase";
 import { useContext } from "react";
 import { ProjectContext } from "../../contexts/ProjectContext";
@@ -9,7 +9,7 @@ import { toast } from "react-toastify";
 
 const DeleteConfirmation = ({ showModal, hideModal, id }) => {
   const { fetchData, projects } = useContext(ProjectContext);
-  const history = useHistory();
+  const navigate = useNavigate();
   const [projectName, setProjectName] = useState("");
 
   const photoDetails = projects.find((value) => value.id === id);
@@ -31,7 +31,7 @@ const DeleteConfirmation = ({ showModal, hideModal, id }) => {
       
       doDeleteProject(id, myid, photoName, () => {
         toast("Project deleted successfully");
-        history.push("/projects");
+        navigate("/projects");
         fetchData();
         hideModal();
       });

@@ -19,7 +19,7 @@ import bubble1 from "../../assets/bubble_1.svg";
 import bubble5 from "../../assets/bubble_5.svg";
 import { ProjectContext } from "../../contexts/ProjectContext";
 import { FiEdit } from "react-icons/fi";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const MyProfile = () => {
   const { currentUser } = useContext(AuthContext);
@@ -27,7 +27,7 @@ const MyProfile = () => {
   const { profile, loading, projects, fetchUserProfile } = useContext(
     ProjectContext
   );
-  const history = useHistory();
+  const navigate = useNavigate(); 
   const [count, setCount] = useState(false);
   const [isReceived, setIsReceived] = useState(true);
   const { requests, requestsRecieved } = useContext(ProjectContext);
@@ -583,7 +583,7 @@ const MyProfile = () => {
                             data-aos="fade-up"
                             data-aos-duration="1500"
                             onClick={() => {
-                              history.push(`/projects/${project.id}`);
+                              navigate(`/projects/${project.id}`);
                             }}
                           >
                             <div className="developer_details_body_right_content_project_img">

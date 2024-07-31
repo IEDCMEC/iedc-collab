@@ -4,10 +4,10 @@ import TeamCard from "./TeamCard";
 // import Lottie from "react-lottie";
 import bubble4 from "../../assets/bubble_4.svg";
 import bubble5 from "../../assets/bubble_5.svg";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import core from "../../data/core";
 const Team = () => {
-  const history = useHistory();
+  const navigate = useNavigate();
   // const defaultOptions = {
   //   loop: true,
   //   autoplay: true,
@@ -48,7 +48,7 @@ const Team = () => {
         </div> */}
         <div
           onClick={() => {
-            history.push("/team");
+            navigate("/team");
           }}
           style={{ marginBottom: "2rem", marginTop: "2rem", cursor: "pointer" }}
           className="btn btn-danger"

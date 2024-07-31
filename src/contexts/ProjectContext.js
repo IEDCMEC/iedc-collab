@@ -9,11 +9,11 @@ import {
   getTags,
   getSkills,
 } from "../Firebase/firebase";
-import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import { useNavigate } from "react-router-dom";
 export const ProjectContext = React.createContext();
 
 export const ProjectProvider = ({ children }) => {
-  const history = useHistory();
+  const navigate = useNavigate();
   const [projects, setProjects] = useState([]);
   const [selectedProject, setSelectedProject] = useState();
   const [allProjects, setAllProjects] = useState([]);
@@ -112,7 +112,7 @@ export const ProjectProvider = ({ children }) => {
           setProfile(profile);
           // // console.log(snapshot.data())
           if (profile?.role === "Organization") {
-            history.push("/profile");
+            navigate("/profile");
           }
         });
       }

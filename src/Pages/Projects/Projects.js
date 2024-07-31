@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import "./Projects.scss";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import MainLayout from "../../Components/MainLayout/MainLayout";
 // import { getProjects } from "../../Firebase/firebase";
 import SuspenseLoader from "../../Components/SuspenseLoader/SuspenseLoader";
@@ -83,9 +83,9 @@ const Projects = () => {
     setWorks(projects.slice(page * 12, page * 12 + 12));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [page]);
-  const history = useHistory();
+  const navigate = useNavigate();
   const handleClick = (p) => {
-    history.push(`/projects/${p.id}`);
+    navigate(`/projects/${p.id}`);
   };
   const [open, setOpen] = useState(false);
   if (loading) {

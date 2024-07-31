@@ -3,7 +3,7 @@ import "./DeveloperDetails.scss";
 // import person from "../../assets/details_left.svg";
 import InviteToProjectModal from "../../Components/InviteToProjectModal/InviteToProjectModal";
 import { useContext, useEffect, useState } from "react";
-import { useParams, useHistory } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { getUser } from "../../Firebase/firebase";
 import { AuthContext } from "../../Firebase/Auth/Auth";
 import SuspenseLoader from "../../Components/SuspenseLoader/SuspenseLoader";
@@ -19,7 +19,7 @@ import { ProjectContext } from "../../contexts/ProjectContext";
 
 function DeveloperDetails() {
   let { id } = useParams();
-  const history = useHistory();
+  const navigate = useNavigate();
   const { currentUser } = useContext(AuthContext);
   const [selectedUser, setSelectedUser] = useState({});
   const [loading, setLoading] = useState(true);
@@ -69,7 +69,7 @@ function DeveloperDetails() {
             <BsArrowLeftCircleFill
               color="#9e0000"
               size={40}
-              onClick={() => history.goBack()}
+              onClick={() => navigate(-1)}
               style={{
                 cursor: "pointer",
               }}
@@ -235,7 +235,7 @@ function DeveloperDetails() {
                             className="developer_details_body_right_content_project"
                             key={index}
                             onClick={() => {
-                              history.push(`/projects/${project.id}`);
+                              navigate(`/projects/${project.id}`);
                             }}
                           >
                             <div className="developer_details_body_right_content_project_img">
