@@ -1,60 +1,15 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import MainLayout from "../../Components/MainLayout/MainLayout";
-// import { getDevelopers } from "../../Firebase/firebase";
 import "./Developers.scss";
 import DeveloperCard from "./DeveloperCard";
 import Drawer from "./Drawer";
-// import { IndeterminateCheckBox } from "@mui/icons-material";
 import SuspenseLoader from "../../Components/SuspenseLoader/SuspenseLoader";
 import { ProjectContext } from "../../contexts/ProjectContext";
 import { Pagination } from "@mui/material";
 import { ThemeContext } from "../../App";
 
-let devs = [];
-
-const filterDevelopers = (
-  developers,
-  selectedSkills,
-  branch,
-  yop,
-  page,
-  setPages,
-  setUsers,
-  setLoading1
-) => {
-  setLoading1(true);
-  let developers1 = developers;
-  let filteredDevelopers = [...developers1];
-
-  if (selectedSkills.length > 0) {
-    filteredDevelopers = filteredDevelopers.filter(
-      (dev) =>
-        dev.skills && dev.skills.some((skill) => selectedSkills.includes(skill))
-    );
-  }
-
-  if (branch.length > 0) {
-    filteredDevelopers = filteredDevelopers.filter((dev) =>
-      branch.includes(dev.branch)
-    );
-  }
-
-  if (yop.length > 0) {
-    filteredDevelopers = filteredDevelopers.filter((dev) =>
-      yop.includes(dev.year)
-    );
-  }
-
-  filteredDevelopers.sort((a, b) => a.name.localeCompare(b.name));
-
-  setPages(Math.ceil(filteredDevelopers.length / 10));
-  setUsers(filteredDevelopers.slice(page * 10, page * 10 + 10));
-  setLoading1(false);
-};
-
 const Developers = () => {
-  const [users, setUsers] = useState(null);
   const { developers, loading, setSelectedDevelopers } = useContext(
     ProjectContext
   );
@@ -63,109 +18,64 @@ const Developers = () => {
     setBranch,
     yop,
     setYop,
-    // width,
-    currentWidth,
-    // setcurrentWidth,
   } = useContext(ThemeContext);
   const [selectedSkills, setSelectedSkills] = useState([]);
-  const [pages, setPages] = useState(0);
   const [page, setPage] = useState(0);
+  const cardsPerPage = 6; // Total number of cards per page
+  const cardsPerColumn = 3; // Number of cards per column
   const [loading1, setLoading1] = useState(false);
-  //const [branch, setBranch] = useState([]);
-  // const [yop, setYop] = useState([]);
-  const addYop = (selectedYop) => {
-    let oldYop = yop;
-    if (oldYop.find((s) => s === selectedYop)) {
-      if (oldYop.length === 1) oldYop = [];
-      else oldYop = oldYop.filter((s) => s !== selectedYop);
-    } else {
-      oldYop = [...oldYop, selectedYop];
-    }
-    setYop(oldYop);
-  };
+  const [filteredDevelopers, setFilteredDevelopers] = useState([]);
 
-  const addBranch = (b) => {
-    let oldBranch = branch;
-    if (oldBranch.find((s) => s === b)) {
-      oldBranch = oldBranch.filter((s) => s !== b);
-    } else {
-      oldBranch = [...oldBranch, b];
-    }
-    setBranch(oldBranch);
-  };
+  // Function to filter developers
+  const filterDevelopers = () => {
+    setLoading1(true);
 
-  // useEffect(() => {
-  //   window.addEventListener("resize", changedWidth);
-  //   function changedWidth(e) {
-  //     setcurrentWidth(window.innerWidth);
-  //   }
-  //   return () => {
-  //     window.removeEventListener("resize", changedWidth);
-  //   };
-  // }, [width, setcurrentWidth]);
-  // const getDevs = async () => {
-  //   // await getDevelopers().then(async function (snapshot) {
-  //   //   let messageObject = snapshot.docs();
-  //   //   const result = Object.keys(messageObject).map((key) => ({
-  //   //     ...messageObject[key],
-  //   //     id: key,
-  //   //   }));
+    let filteredDevs = [...developers];
 
-  //   setUsers(developers);
-  //   setLoading(false);
-  //   setAllUsers(developers);
-  // };
-  useEffect(() => {
-    if (developers === null) return;
-    devs = developers;
-    setPage(0);
-    setPages(Math.ceil(developers.length / 10));
-    // setUsers(developers.slice(page * 10, page * 10 + 10));
-    filterDevelopers(
-      developers,
-      selectedSkills,
-      branch,
-      yop,
-      page,
-      setPages,
-      setUsers,
-      setLoading1
-    );
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [developers]);
-
-  useEffect(() => {
-    if (
-      users === undefined ||
-      users === null ||
-      developers === undefined ||
-      developers === null
-    ) {
-      // console.log(developers)
-      // console.log("loading");
-    } else {
-      filterDevelopers(
-        developers,
-        selectedSkills,
-        branch,
-        yop,
-        page,
-        setPages,
-        setUsers,
-        setLoading1
+    if (selectedSkills.length > 0) {
+      filteredDevs = filteredDevs.filter(
+        (dev) =>
+          dev.skills && dev.skills.some((skill) => selectedSkills.includes(skill))
       );
     }
-    // console.log("running");
-  }, [selectedSkills, branch, yop, page]);
+
+    if (branch.length > 0) {
+      filteredDevs = filteredDevs.filter((dev) =>
+        branch.includes(dev.branch)
+      );
+    }
+
+    if (yop.length > 0) {
+      filteredDevs = filteredDevs.filter((dev) =>
+        yop.includes(dev.year)
+      );
+    }
+
+    filteredDevs.sort((a, b) => a.name.localeCompare(b.name));
+
+    setLoading1(false);
+    setFilteredDevelopers(filteredDevs);
+  };
+
+  useEffect(() => {
+    if (!developers) return;
+
+    filterDevelopers();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selectedSkills, branch, yop, developers]);
 
   const history = useHistory();
 
-  const handleClick = (u) => {
-    history.push(`/developers/${u.id}`);
+  const handleClick = (user) => {
+    setSelectedDevelopers(user);
+    history.push(`/developers/${user.id}`);
   };
-  const [open, setOpen] = React.useState(false);
 
-  if (loading || loading1 || users === null) {
+  const handlePageChange = (event, value) => {
+    setPage(value - 1); // value is 1-based index, but page state should be 0-based
+  };
+
+  if (loading || loading1 || developers === null) {
     return (
       <div>
         <MainLayout route={"Developers"}>
@@ -175,60 +85,55 @@ const Developers = () => {
     );
   }
 
+  // Pagination logic to slice developers for the current page
+  const startIndex = page * cardsPerPage;
+  const paginatedDevelopers = filteredDevelopers.slice(
+    startIndex,
+    startIndex + cardsPerPage
+  );
+
+  // Calculate number of columns needed
+  const numColumns = Math.ceil(cardsPerPage / cardsPerColumn);
+
   return (
-    <div
-      style={{
-        display: "flex",
-        justifyContent:"center",
-        width: "100vw",
-      }}
-    >
+    <div className="parent_container">
       <MainLayout route={"Developers"}>
-        <div
-          className="parent_container"
-          style={{
-            width: "100vw",
-            transition: "0.2s",
-          }}
-        >
-          <Drawer
-            selectedSkills={selectedSkills}
-            setSelectedSkills={setSelectedSkills}
-            addBranch={addBranch}
-            addYop={addYop}
-            open={open}
-            setOpen={setOpen}
-          />
-          <div className="developer_container">
-            <h3 className="developer-title" style={{ marginTop: "3rem" }}>
-              {users && users.length === 0 ? "NOT FOUND" : "DEVELOPERS"}
-            </h3>
-            <div>
-              {users && users.length === 0 ? (
-                <p style={{ fontWeight: "600" }}>
-                  Refine your filters please ..
-                </p>
-              ) : null}
-            </div>
-            <div className="developer-details">
-              {users?.map((user, index) => (
-                <div key={index} onClick={() => setSelectedDevelopers(user)}>
-                  <DeveloperCard handleClick={handleClick} user={user} />
-                </div>
-              ))}
-            </div>
-            <Pagination
-              count={pages}
-              page={page + 1}
-              onChange={(e, val) => {
-                setPage(val - 1);
-              }}
-              color="primary"
-              sx={{
-                paddingTop: "5rem",
-              }}
-            />
+        <Drawer
+          selectedSkills={selectedSkills}
+          setSelectedSkills={setSelectedSkills}
+          addBranch={setBranch}
+          addYop={setYop}
+        />
+        <div className="developer_container">
+          <h3 className="developer-title" style={{ marginTop: "3rem" }}>
+            {filteredDevelopers.length === 0 ? "NOT FOUND" : "DEVELOPERS"}
+          </h3>
+          {filteredDevelopers.length === 0 && (
+            <p style={{ fontWeight: "600" }}>Refine your filters please ..</p>
+          )}
+          <div className="developer-details">
+            {Array.from({ length: numColumns }).map((_, columnIndex) => (
+              <div key={columnIndex} className="developer-column">
+                {paginatedDevelopers
+                  .slice(
+                    columnIndex * cardsPerColumn,
+                    (columnIndex + 1) * cardsPerColumn
+                  )
+                  .map((user, index) => (
+                    <div key={index}>
+                      <DeveloperCard user={user} handleClick={handleClick}/>
+                    </div>
+                  ))}
+              </div>
+            ))}
           </div>
+          <Pagination
+            count={Math.ceil(filteredDevelopers.length / cardsPerPage)}
+            page={page + 1}
+            onChange={handlePageChange}
+            color="primary"
+            sx={{ paddingTop: "5rem" }}
+          />
         </div>
       </MainLayout>
     </div>
