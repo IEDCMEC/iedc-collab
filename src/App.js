@@ -9,6 +9,7 @@ import {
   MyProfile,
   Ideas,
   Team,
+  Developers,
   Jobs,
 } from "./Pages/index";
 import initialize from "./Firebase/firebase";
@@ -61,14 +62,19 @@ function App() {
               <ThemeContext.Provider value={{ branch, setBranch, yop, setYop, width, setWidth, currentWidth, setCurrentWidth }}>
                 <Routes>
                 <Route path="/" element={<Landing />} />
+                  <Route path="/developers" element={<Developers />} />
+                  <Route path="/projects" element={<Projects />} />
                   
-                  <Route element={<ProtectedRoute allowedRoles={["user", "organization"]} />}>
-                    <Route path="/projects" element={<Projects />} />
+                  <Route element={<ProtectedRoute allowedRoles={["user"]} />}>
                     <Route path="/profile" element={<MyProfile />} />
                     <Route path="/ideas" element={<Ideas />} />
                     <Route path="/team" element={<Team />} />
-                    <Route path="/MyJobs" element={<CompanyJobs />} />
                     <Route path="/jobs" element={<Jobs />} />
+                  </Route>
+                  
+                  <Route element={<ProtectedRoute allowedRoles={["organization"]} />}>
+                    <Route path="/profile" element={<MyProfile />} />
+                    <Route path="/MyJobs" element={<CompanyJobs />} />
                   </Route>
                 </Routes>
               </ThemeContext.Provider>
