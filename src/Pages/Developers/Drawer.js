@@ -53,10 +53,12 @@ export default function PersistentDrawerLeft({
   open,
   setOpen,
 }) {
-  const { branch, setBranch, yop, setYop, setWidth } = React.useContext(
+  /*const { branch, setBranch, yop, setYop, setWidth } = React.useContext(
     ThemeContext
-  );
-  const {tags, skills} = useContext(ProjectContext)
+  );*/
+  const { branch, setBranch, yop, setYop, setWidth } = React.useContext(ThemeContext);
+
+  const {tags, skills} = useContext(ProjectContext);
   // const [branch, setBranch] =  React.useState('')
   // const [yop, setYop] = React.useState('')
 
@@ -173,6 +175,7 @@ export default function PersistentDrawerLeft({
           top: matches3 ? "184px" : "140px",
           display: open && "none",
           borderRadius: "5px",
+          zIndex: 1300,
           "&:hover": {
             backgroundColor: "transparent",
           },
