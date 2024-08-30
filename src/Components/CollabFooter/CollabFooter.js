@@ -9,7 +9,7 @@ const CollabFooter = () => {
   const year = new Date().getFullYear();
 
   return (
-    <div className="footer_main">
+    <div className="footer__main">
       <img src={bubble6} alt="" className="bubble_6" />
       <div className="footer__content">
         <div className="footer__link">
