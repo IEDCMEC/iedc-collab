@@ -30,7 +30,7 @@
     "react-image-size": "^2.3.2",
     "react-lottie": "^1.2.3",
     "react-router": "^6.3.0",
-    "react-router-dom": "^5.2.0",
+    "react-router-dom": "^6.25.1",
     "react-scripts": "^5.0.1",
     "react-toastify": "^8.1.0",
     "sass": "^1.44.0",

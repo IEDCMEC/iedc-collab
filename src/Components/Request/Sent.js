@@ -1,9 +1,9 @@
 import React from "react";
 import "./Request.css";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function Sent({ request }) {
-  const history = useHistory();
+  const navigate = useNavigate();
   return (
     <div className="received_sent_box">
       <div className="received_bpx_header">
@@ -16,7 +16,7 @@ function Sent({ request }) {
           className="view_project_btn"
           variant="outlined"
           onClick={() => {
-            history.push(`/projects/${request.project_id}`);
+            navigate(`/projects/${request.project_id}`);
           }}
         >
           View Project

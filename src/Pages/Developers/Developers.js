@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import CollabFooter from "../../Components/CollabFooter/CollabFooter";
-import { useHistory } from "react-router-dom";
 import MainLayout from "../../Components/MainLayout/MainLayout";
 import "./Developers.scss";
 import DeveloperCard from "./DeveloperCard";
@@ -65,11 +65,11 @@ const Developers = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedSkills, branch, yop, developers]);
 
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const handleClick = (user) => {
     setSelectedDevelopers(user);
-    history.push(`/developers/${user.id}`);
+    navigate(`/developers/${user.id}`);
   };
 
   const handlePageChange = (event, value) => {

@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { ProjectContext } from "../../contexts/ProjectContext";
 import "./DescriptionDetails.scss";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import firebase from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/firestore';
@@ -25,7 +25,7 @@ const DescriptionDetails = (props) => {
   const [canModifyProject, setCanModifyProject] = useState(false);
   const [showNewProjectModal, setShowNewProjectModal] = useState(false);
   const [displayConfirmationModal, setDisplayConfirmationModal] = useState(false);
-  const history = useHistory();
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (currentUser?.uid === props.selectedProject.leader_id) {
@@ -46,7 +46,7 @@ const DescriptionDetails = (props) => {
       await leaveProject(projectId, userEmail);
       toast("You have left the project successfully");
       fetchData();
-      history.push("/projects");
+      navigate("/projects");
     }
   };
 
@@ -54,7 +54,7 @@ const DescriptionDetails = (props) => {
     doDeleteProject(id, () => {
       toast("Project deleted successfully");
       fetchData();
-      history.go(0);
+      navigate(0);
     });
     setDisplayConfirmationModal(false);
   };

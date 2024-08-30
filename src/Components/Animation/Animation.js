@@ -6,7 +6,7 @@ import Lottie from "react-lottie";
 import { signIn } from "../../Firebase/firebase";
 import { useContext } from "react";
 import { AuthContext } from "../../Firebase/Auth/Auth";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 import { useEffect } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { useState } from "react";
@@ -21,11 +21,11 @@ const Animation = () => {
   };
   const { profile } = useContext(ProjectContext);
   const [clicked, setClicked] = useState(false);
-  const history = useHistory();
+  const navigate = useNavigate();
   const newprojectClick = async () => {
     setClicked(true);
     try {
-      await signIn().then(()=> history.push('/projects'))
+      await signIn().then(()=> navigate('/projects'))
     } catch (error) {
       // console.log(error);
     }

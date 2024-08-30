@@ -16,7 +16,7 @@ import meclogo from "../../assets/meclogo.png";
 import { HiOutlineMenuAlt3 } from "react-icons/hi";
 import SignupOptions from "../SignupOptions/SignupOptions";
 import OrganizationForm from "../OrganizationForm/OrganizationForm";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 const Navbar = () => {
   const [showProjectModal, setShowProjectModal] = useState(false);
   const [showJobModal, setShowJobModal] = useState(false); // Add state for JobModal
@@ -72,7 +72,7 @@ const Navbar = () => {
   useEffect(() => {
     handleRole();
   }, [profile]);
-  const history = useHistory();
+  const navigate = useNavigate();
   const [open1, setOpen1] = useState(false);
   const location = useLocation();
   const handleDrawerOpen = () => {
@@ -259,7 +259,7 @@ const Navbar = () => {
                   </MenuItem>
                   <MenuItem
                     onClick={() => {
-                      history.push(`/profile`);
+                      navigate(`/profile`);
                     }}
                     style={{
                       color: "#9e0000",
@@ -271,7 +271,7 @@ const Navbar = () => {
                   <MenuItem
                     onClick={() => {
                       signOut();
-                      history.push("/");
+                      navigate("/");
                       setProfile(null);
                     }}
                     style={{

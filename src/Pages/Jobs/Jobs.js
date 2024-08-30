@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import MainLayout from "../../Components/MainLayout/MainLayout";
 // import { getDevelopers } from "../../Firebase/firebase";
 import "./Jobs.scss";
@@ -135,9 +135,9 @@ const Developers = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedSkills, branch, yop]);
 
-  const history = useHistory();
+  const navigate = useNavigate();
   const handleClick = (u) => {
-    history.push(`/developers/${u.id}`);
+    navigate(`/developers/${u.id}`);
   };
   if (loading || loading1 || users === null) {
     return (

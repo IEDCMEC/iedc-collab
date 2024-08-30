@@ -8,10 +8,10 @@ import { AuthContext } from "../../Firebase/Auth/Auth";
 import { useContext } from "react";
 import { BsArrowLeftCircle } from "react-icons/bs";
 import SuspenseLoader from "../SuspenseLoader/SuspenseLoader";
-import { useHistory, Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 const ProjectNav = ({ selectedProject }) => {
   const [user, setUser] = useState({});
-  const history = useHistory();
+  const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
   const { currentUser } = useContext(AuthContext);
   const getDev = async (id) => {
@@ -33,7 +33,7 @@ const ProjectNav = ({ selectedProject }) => {
             <BsArrowLeftCircle
               color="#9e0000"
               size={40}
-              onClick={() => history.goBack()}
+              onClick={() => navigate(-1)}
               style={{
                 cursor: "pointer",
               }}

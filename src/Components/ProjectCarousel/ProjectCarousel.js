@@ -3,11 +3,11 @@ import React, { useCallback, useContext, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper.min.css";
 import { ProjectContext } from "../../contexts/ProjectContext";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { BsArrowLeftCircleFill, BsArrowRightCircleFill } from "react-icons/bs";
 function ProjectCarousel({ project }) {
   const { projects, allProjects } = useContext(ProjectContext);
-  const history = useHistory();
+  const navigate = useNavigate();
   const [swiperRef, setSwiperRef] = useState();
   const handleLeftClick = useCallback(() => {
     if (!swiperRef) return;
@@ -61,7 +61,7 @@ function ProjectCarousel({ project }) {
               <div
                 key={x.id}
                 onClick={() => {
-                  history.push(`/projects/${x.id}`);
+                  navigate(`/projects/${x.id}`);
                 }}
               >
                 <ProjectCard

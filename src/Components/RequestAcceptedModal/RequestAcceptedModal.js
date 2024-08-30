@@ -4,7 +4,7 @@ import bubble9 from "../../assets/bubble_9.svg";
 import bubble10 from "../../assets/bubble_10.svg";
 import bubble11 from "../../assets/bubble_11.svg";
 import { useContext, useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import {
     acceptInvite,
@@ -21,7 +21,7 @@ import { emailUrl } from "../../Utils/urls";
 //import ConfirmEmail from "../ConfirmEmail/ConfirmEmail";
 
 const RequestAcceptedModal = ({request, ...props }) => {
-  const history = useHistory();
+  const navigate = useNavigate();
   const [message, setMessage] = useState("");
   const fullScreen = useMediaQuery(useTheme().breakpoints.down("sm"));
   const { fetchRequestsRecieved } = useContext(ProjectContext);
