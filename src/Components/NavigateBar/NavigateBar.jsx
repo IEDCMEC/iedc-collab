@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import ProjectModal from "../ProjectModal/ProjectModal";
+import JobModal from "../JobModal/JobModal"; // Import the new JobModal component
 import "./cards.css";
 import { signOut } from "../../Firebase/firebase";
 import { AuthContext } from "../../Firebase/Auth/Auth";
@@ -18,6 +19,7 @@ import OrganizationForm from "../OrganizationForm/OrganizationForm";
 import { useHistory } from "react-router-dom";
 const Navbar = () => {
   const [showProjectModal, setShowProjectModal] = useState(false);
+  const [showJobModal, setShowJobModal] = useState(false); // Add state for JobModal
   const [openModal, setOpenModal] = useState(false);
   const { currentUser } = useContext(AuthContext);
   const {
@@ -86,6 +88,15 @@ const Navbar = () => {
       alert("Please Login to Continue.");
     }
   };
+
+  const postJobClick = async () => {
+    if (currentUser) {
+      setShowJobModal(true); // Open JobModal
+    } else {
+      alert("Please Login to Continue.");
+    }
+  };
+
   return (
     <>
       {(location.pathname.split("/")[1] === "ideas" ||
@@ -211,7 +222,9 @@ const Navbar = () => {
             >
               <div
                 className="NavigateBar-Newprobtn-1 css-button"
-                onClick={newprojectClick}
+                onClick={
+                  profile?.role === "Organization" ? postJobClick : newprojectClick
+                }
               >
                 <div className="css-button-icon">
                   <i className="fa fa-plus-square"></i>
@@ -281,6 +294,10 @@ const Navbar = () => {
           <ProjectModal
             show={showProjectModal}
             onHide={() => setShowProjectModal(false)}
+          />
+          <JobModal
+            show={showJobModal}
+            onHide={() => setShowJobModal(false)}
           />
         </div>
       )}
@@ -373,7 +390,7 @@ const Navbar = () => {
                       onClick={handleDrawerClose}
                     >
                       Ideas
-                    </Link>
+                </Link>
                     {/* <Link
                       to="/jobs"
                       className="nav_item_mob"
@@ -381,7 +398,7 @@ const Navbar = () => {
                     >
                       Jobs
                     </Link> */}
-                  </div>
+              </div>
                 </div>
                 <a
                   href="https://www.mec.ac.in/"
