@@ -1,0 +1,58 @@
+// File: iedc-collab/src/Components/CollabFooter.scss
+
+.footer__main {
+  position: fixed; /* Ensures the footer stays at the bottom */
+  bottom: 0;
+  width: 100%; /* Takes full width of the viewport */
+  padding: 10px 20px; /* Adjusted padding for smaller size */
+  background-color: #000; /* Adjust this color as needed */
+  text-align: center;
+  color: white;
+  z-index: 1000; /* Ensure it stays above other content */
+}
+
+.footer__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.footer__message {
+  color: #9e0000;
+  font-size: 14px; /* Smaller font size */
+}.footer__link {
+  margin-top: 10px;
+}
+
+.footer__link a {
+  color: #9e0000;
+  text-decoration: underline;
+}
+
+
+
+.bubble_6, .bubble_7 {
+  position: absolute;
+  width: 30px; /* Smaller size */
+  height: 30px;
+}
+
+.bubble_6 {
+  top: 5px;
+  left: 5px;
+}
+
+.bubble_7 {
+  bottom: 5px;
+  right: 5px;
+}
+
+@media (max-width: 600px) {
+  .bubble_6, .bubble_7 {
+    width: 20px; /* Smaller size for mobile view */
+    height: 20px;
+  }
+  .footer__message {
+    font-size: 12px; /* Smaller font size for mobile view */
+  }
+}

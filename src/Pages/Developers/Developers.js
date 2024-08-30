@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import CollabFooter from "../../Components/CollabFooter/CollabFooter";
 import MainLayout from "../../Components/MainLayout/MainLayout";
 import "./Developers.scss";
 import DeveloperCard from "./DeveloperCard";
@@ -136,6 +137,7 @@ const Developers = () => {
           />
         </div>
       </MainLayout>
+      <CollabFooter />
     </div>
   );
 };

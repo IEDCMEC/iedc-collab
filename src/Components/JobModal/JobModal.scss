@@ -1,0 +1,87 @@
+$form-element-color: #9e0000;
+
+.modal-dialog {
+  max-width: 800px;
+}
+
+.modal-body {
+  font-weight: bold;
+
+  .form-row {
+    margin-bottom: 15px;
+
+    .form-group {
+      width: calc(50% - 15px);
+      float: left;
+      margin-right: 30px;
+      margin-left: 15px;
+
+      &:first-child {
+        margin-left: 25px;
+      }
+
+      label {
+        color: $form-element-color;
+        font-weight: bold;
+      }
+
+      input,
+      select,
+      textarea {
+        border-color: $form-element-color;
+        color: $form-element-color;
+        font-weight: bold;
+        border-width: 2px;
+        border-radius: 10px;
+        padding: 10px;
+
+        &::placeholder {
+          font-weight: normal;
+          color: $form-element-color;
+        }
+      }
+    }
+  }
+
+  .MuiAutocomplete-root {
+    .MuiOutlinedInput-root {
+      .MuiOutlinedInput-notchedOutline {
+        border-color: $form-element-color !important;
+        border-width: 2px;
+        border-radius: 10px;
+      }
+    }
+  }
+
+  .btn-row {
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+  }
+}
+
+.modal-content {
+  .modal-title {
+    font-family: "Nunito", sans-serif;
+    font-size: 30px;
+    color: #9e0000;
+    font-weight: bold;
+  }
+
+  .modal-body {
+    .form-row {
+      margin-bottom: 15px;
+    }
+
+    .btn-row {
+      display: flex;
+      justify-content: center;
+      margin-top: 15px;
+
+      Button {
+        margin: 0;
+        border: none;
+      }
+    }
+  }
+}

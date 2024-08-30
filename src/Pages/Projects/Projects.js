@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
+import CollabFooter from "../../Components/CollabFooter/CollabFooter";
 import "./Projects.scss";
 import { useNavigate } from "react-router-dom";
 import MainLayout from "../../Components/MainLayout/MainLayout";
@@ -186,6 +187,7 @@ const Projects = () => {
           />
         </div>
       </MainLayout>
+      <CollabFooter />
     </div>
   );
 };
