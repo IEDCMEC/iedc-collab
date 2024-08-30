@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import CollabFooter from "../../Components/CollabFooter/CollabFooter";
 import ProjectToggle from "../../Components/ProjectToggle/ProjectToggle";
 import MainLayout from "../../Components/MainLayout/MainLayout";
 import ProjectCarousel from "../../Components/ProjectCarousel/ProjectCarousel";
@@ -77,6 +78,7 @@ function ProjectDetail() {
           </div>
         </div>
       </MainLayout>
+      <CollabFooter />
     </>
   );
 }
