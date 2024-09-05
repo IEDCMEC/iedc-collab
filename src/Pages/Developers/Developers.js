@@ -22,8 +22,8 @@ const Developers = () => {
   } = useContext(ThemeContext);
   const [selectedSkills, setSelectedSkills] = useState([]);
   const [page, setPage] = useState(0);
-  const cardsPerPage = 6; // Total number of cards per page
-  const cardsPerColumn = 3; // Number of cards per column
+  const cardsPerPage = 8; // Total number of cards per page
+  const cardsPerColumn = 4; // Number of cards per column
   const [loading1, setLoading1] = useState(false);
   const [filteredDevelopers, setFilteredDevelopers] = useState([]);
 
@@ -133,7 +133,7 @@ const Developers = () => {
             page={page + 1}
             onChange={handlePageChange}
             color="primary"
-            sx={{ paddingTop: "5rem" }}
+            sx={{ marginTop: "3rem" }}
           />
         </div>
       </MainLayout>

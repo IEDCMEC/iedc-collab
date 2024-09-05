@@ -21,7 +21,7 @@
 .developer-details {
   display: flex;
   flex-direction: row;
-  padding-top: 3rem;
+  margin-top: 2rem;
   width: 100%;
   flex-wrap: wrap;
   row-gap: 30px;
@@ -31,7 +31,12 @@
   height: calc(4.1 * (107px + 30px)); /* Adjust based on your card height and row gap */
   overflow-y: scroll; /* Enable vertical scrolling */
 }
-
+.developer-column{
+  display:flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-direction: column;
+}
 .developer-card {
   width: 528px;
 
@@ -50,7 +55,7 @@
   padding-top: 7px;
   padding-bottom: 7px;
   justify-content: flex-start;
-  margin-bottom: 30px;
+  // margin-bottom: 25px;
 }
 .developer-card img {
   width: 120px !important;
@@ -92,6 +97,7 @@
   }
   .developer-card {
     width: 80vw;
+    margin-bottom: 25px;
   }
   .developer-card h1 {
     font-size: 21px;
