@@ -7,7 +7,7 @@ const ProtectedRoute = ({ role }) => {
   const { profile } = useContext(ProjectContext);
   const { currentUser } = useContext(AuthContext);
   const [loading, setLoading] = useState(true);
-
+  // console.log(role)
   useEffect(() => {
     if (profile !== null) {
       setLoading(false);
@@ -27,9 +27,9 @@ const ProtectedRoute = ({ role }) => {
 
   if (role && profile?.role !== role) {
     console.log(
-      `User role (${profile?.role}) does not match required role (${role}), redirecting to profile page`
+      `User role (${profile?.role}) does not match required role (${role}), redirecting to main page`
     );
-    return <Navigate to="/profile" />;
+    return <Navigate to="/" />;
   }
 
   console.log("Access granted, rendering component");

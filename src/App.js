@@ -64,16 +64,15 @@ function App() {
                 <Route path="/" element={<Landing />} />
                   <Route path="/developers" element={<Developers />} />
                   <Route path="/projects" element={<Projects />} />
+                  <Route path="/profile" element={<MyProfile />} />
                   
-                  <Route element={<ProtectedRoute allowedRoles={["user"]} />}>
-                    <Route path="/profile" element={<MyProfile />} />
+                  <Route element={<ProtectedRoute role={'User'} />}>
                     <Route path="/ideas" element={<Ideas />} />
                     <Route path="/team" element={<Team />} />
                     <Route path="/jobs" element={<Jobs />} />
                   </Route>
                   
-                  <Route element={<ProtectedRoute allowedRoles={["organization"]} />}>
-                    <Route path="/profile" element={<MyProfile />} />
+                  <Route element={<ProtectedRoute role={'Organization'} />}>
                     <Route path="/MyJobs" element={<CompanyJobs />} />
                   </Route>
                 </Routes>
