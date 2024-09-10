@@ -14,12 +14,7 @@ const Developers = () => {
   const { developers, loading, setSelectedDevelopers } = useContext(
     ProjectContext
   );
-  const {
-    branch,
-    setBranch,
-    yop,
-    setYop,
-  } = useContext(ThemeContext);
+  const { branch, setBranch, yop, setYop } = useContext(ThemeContext);
   const [selectedSkills, setSelectedSkills] = useState([]);
   const [page, setPage] = useState(0);
   const cardsPerPage = 8; // Total number of cards per page
@@ -36,20 +31,17 @@ const Developers = () => {
     if (selectedSkills.length > 0) {
       filteredDevs = filteredDevs.filter(
         (dev) =>
-          dev.skills && dev.skills.some((skill) => selectedSkills.includes(skill))
+          dev.skills &&
+          dev.skills.some((skill) => selectedSkills.includes(skill))
       );
     }
 
     if (branch.length > 0) {
-      filteredDevs = filteredDevs.filter((dev) =>
-        branch.includes(dev.branch)
-      );
+      filteredDevs = filteredDevs.filter((dev) => branch.includes(dev.branch));
     }
 
     if (yop.length > 0) {
-      filteredDevs = filteredDevs.filter((dev) =>
-        yop.includes(dev.year)
-      );
+      filteredDevs = filteredDevs.filter((dev) => yop.includes(dev.year));
     }
 
     filteredDevs.sort((a, b) => a.name.localeCompare(b.name));
@@ -75,6 +67,7 @@ const Developers = () => {
   const handlePageChange = (event, value) => {
     setPage(value - 1); // value is 1-based index, but page state should be 0-based
   };
+  const [open, setOpen] = useState(false);
 
   if (loading || loading1 || developers === null) {
     return (
@@ -104,6 +97,9 @@ const Developers = () => {
           setSelectedSkills={setSelectedSkills}
           addBranch={setBranch}
           addYop={setYop}
+          page={"developers"}
+          open={open}
+          setOpen={setOpen}
         />
         <div className="developer_container">
           <h3 className="developer-title" style={{ marginTop: "3rem" }}>
@@ -122,7 +118,7 @@ const Developers = () => {
                   )
                   .map((user, index) => (
                     <div key={index}>
-                      <DeveloperCard user={user} handleClick={handleClick}/>
+                      <DeveloperCard user={user} handleClick={handleClick} />
                     </div>
                   ))}
               </div>
