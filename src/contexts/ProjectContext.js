@@ -9,21 +9,19 @@ import {
   getTags,
   getSkills,
 } from "../Firebase/firebase";
-import { useNavigate } from "react-router-dom";
+import { useHistory } from "react-router-dom";
+
 export const ProjectContext = React.createContext();
 
 export const ProjectProvider = ({ children }) => {
-  const navigate = useNavigate();
+  const history = useHistory();
   const [projects, setProjects] = useState([]);
   const [selectedProject, setSelectedProject] = useState();
   const [allProjects, setAllProjects] = useState([]);
   const [developers, setDevelopers] = useState(null);
-  const [jobs, setJobs] = useState(null);
-  const [allJobs, setAllJobs] = useState([]);
+  const [allDevelopers, setAllDevelopers] = useState([]);
   const [selectedDevelopers, setSelectedDevelopers] = useState();
   const [profile, setProfile] = useState(null);
-  const [allDevelopers, setAllDevelopers] = useState([]);
-  const { currentUser } = useContext(AuthContext);
   const [requests, setRequests] = useState([]);
   const [requestsRecieved, setRequestsRecieved] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -31,21 +29,17 @@ export const ProjectProvider = ({ children }) => {
   const [skills, setSkills] = useState([]);
   const [tags, setTags] = useState([]);
   const [companyDetails, setCompanyDetails] = useState({
-    // name: profile?.name || "",
     description: "",
-    // company_logo: profile?.profilePhoto || "",
-    // role: profile?.role ? profile.role : "Organization",
     website: "",
     address: "",
-    // phone: profile?.contact || "",
-    // github: "",
     linkedin: "",
-    // email: profile?.email || "",
     district: "",
     state: "",
     approved: false,
     deleted: false,
   });
+  const { currentUser } = useContext(AuthContext);
+
   const fetchData = (state) => {
     let index = 0;
     switch (state) {
@@ -60,66 +54,44 @@ export const ProjectProvider = ({ children }) => {
     }
     setLoading(true);
     getProjects()
-      // .then(async function (snapshot) {
-      //   let messageObject = snapshot;
-      //   const result = Object.keys(messageObject).map((key) => ({
-      //     ...messageObject[key],
-      //     id: key,
-      //   }));
-      //   setProjects(result);
-      //   setAllProjects(result);
-      //   setSelectedProject(result[index]);
-      // })
       .then((projects) => {
-        // var data = [];
-        // // console.log(snapshot.docs)
         if (projects.length > 0) {
-          // snapshot.docs.forEach((doc) => {
-          //   data.push(doc.data());
-          // });
-          // // // console.log(data)
-          // const result = data.map((value, index) => {
-          //   return {
-          //     ...value,
-          //     id: value.id,
-          //   };
-          // });
-          // // console.log(projects)
           setProjects(projects);
           setAllProjects(projects);
-          // // console.log(projects);
           setSelectedProject(projects[index]);
         }
       })
-      .catch(function (error) {
+      .catch((error) => {
         alert("Something went wrong. Please try again after some time.");
-        // console.log(error);
+        console.error(error);
       })
       .finally(() => {
         setLoading(false);
       });
   };
+
   const fetchUserProfile = async () => {
     if (currentUser) {
-      // console.log(currentUser);
       setLoading(true);
-      getUser(currentUser?.uid).then((profile) => {
+      try {
+        const profile = await getUser(currentUser?.uid);
         setProfile(profile);
-        // // console.log(snapshot.data())
-      });
-      if ((profile && profile?.length === 0) || profile === null) {
-        getUser(currentUser?.uid).then((profile) => {
-          setProfile(profile);
-          // // console.log(snapshot.data())
-          if (profile?.role === "Organization") {
-            navigate("/profile");
+        if (!profile || profile.length === 0) {
+          const fetchedProfile = await getUser(currentUser?.uid);
+          setProfile(fetchedProfile);
+          if (fetchedProfile?.role === "Organization" && !fetchedProfile?.description) {
+            history.push("/profile");
           }
-        });
+        }
+      } catch (error) {
+        alert("Error fetching user profile. Please try again.");
+        console.error(error);
+      } finally {
+        setLoading(false);
       }
-      // setProfile(profileUser);
-      setLoading(false);
     }
   };
+
   let devMap = {};
   const fetchDevelpersData = (state1) => {
     let index1 = 0;
@@ -135,33 +107,8 @@ export const ProjectProvider = ({ children }) => {
     }
     setLoading(true);
     getDevelopers()
-      // .then(async function (snapshot) {
-      //   let messageObject = snapshot;
-      //   const result1 = Object.keys(messageObject).map((key) => ({
-      //     ...messageObject[key],
-      //     id: key,
-      //   }));
-      //   setDevelopers(result1);
-      //   setAllDevelopers(result1);
-      //   setSelectedDevelopers(result1[index1]);
-      //   result1.forEach((itm) => {
-      //     devMap[itm.email] = {
-      //       name: itm.name,
-      //       id: itm.id,
-      //     };
-      //   });
-      //   setDevHash(devMap);
-      // })
       .then((devs) => {
-        //var data = [];
         if (devs.length > 0) {
-          // // console.log(snapshot.docs)
-          // devs.forEach((doc) => {
-          //   data.push({
-          //     ...doc,
-          //     id: doc.id,
-          //   });
-          // });
           setDevelopers(devs);
           setAllDevelopers(devs);
           setSelectedDevelopers(devs[index1]);
@@ -174,35 +121,46 @@ export const ProjectProvider = ({ children }) => {
           setDevHash(devMap);
         }
       })
-      .catch(function (error) {
+      .catch((error) => {
         alert("Something went wrong. Please try again after some time.");
-        // console.log(error);
+        console.error(error);
       })
       .finally(() => {
         setLoading(false);
       });
   };
+
   const getAbilities = async () => {
-    await getSkills().then(async (snapshot) => {
+    try {
+      const snapshot = await getSkills();
       setSkills(Object.values(snapshot.data()));
-    });
+    } catch (error) {
+      alert("Error fetching skills. Please try again.");
+      console.error(error);
+    }
   };
+
   const getTagDetails = async () => {
-    await getTags().then(async (snapshot) => {
+    try {
+      const snapshot = await getTags();
       setTags(Object.values(snapshot.data()));
-    });
+    } catch (error) {
+      alert("Error fetching tags. Please try again.");
+      console.error(error);
+    }
   };
+
   useEffect(() => {
     fetchData();
     fetchDevelpersData();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
   useEffect(() => {
     fetchUserProfile();
     fetchRequests();
     fetchRequestsRecieved();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentUser]);
+
   useEffect(() => {
     getAbilities();
   }, []);
@@ -210,20 +168,37 @@ export const ProjectProvider = ({ children }) => {
   useEffect(() => {
     getTagDetails();
   }, []);
+
   const fetchRequests = async () => {
     if (currentUser) {
       setLoading(true);
-      setRequests(await getRequests(currentUser.uid));
-      setLoading(false);
+      try {
+        const requests = await getRequests(currentUser.uid);
+        setRequests(requests);
+      } catch (error) {
+        alert("Error fetching requests. Please try again.");
+        console.error(error);
+      } finally {
+        setLoading(false);
+      }
     }
   };
+
   const fetchRequestsRecieved = async () => {
     if (currentUser) {
       setLoading(true);
-      setRequestsRecieved(await getRequestsRecieved(currentUser.uid));
-      setLoading(false);
+      try {
+        const requests = await getRequestsRecieved(currentUser.uid);
+        setRequestsRecieved(requests);
+      } catch (error) {
+        alert("Error fetching received requests. Please try again.");
+        console.error(error);
+      } finally {
+        setLoading(false);
+      }
     }
   };
+
   const handleSearch = (searchtext) => {
     if (searchtext !== "") {
       const modified = allProjects.filter(
@@ -235,6 +210,7 @@ export const ProjectProvider = ({ children }) => {
       setProjects(allProjects);
     }
   };
+
   const handleSearchDevelopers = (searchtext) => {
     if (searchtext !== "") {
       setLoading(true);
@@ -250,7 +226,7 @@ export const ProjectProvider = ({ children }) => {
       setLoading(false);
     }
   };
-  // // console.log(projects, developers);
+
   return (
     <ProjectContext.Provider
       value={{
@@ -279,11 +255,9 @@ export const ProjectProvider = ({ children }) => {
         allProjects,
         companyDetails,
         setCompanyDetails,
-        allJobs,
-        setJobs,
-        skills, 
+        skills,
         setSkills,
-        tags, 
+        tags,
         setTags
       }}
     >
