@@ -12,7 +12,7 @@ const DeveloperCard = ({ user, handleClick }) => {
   const username = user.name !== undefined ? user.name.toLowerCase() : null
   return (
     <div
-      data-aos="zoom-in"
+      //data-aos="zoom-in"
       className="developer-card"
       key={user.id}
       style={{ cursor: "pointer" }}

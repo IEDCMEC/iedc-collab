@@ -9,6 +9,8 @@ import { ProjectContext } from "../../contexts/ProjectContext";
 import { Pagination } from "@mui/material";
 import Drawer from "../Developers/Drawer";
 import { ThemeContext } from "../../App";
+import AOS from "aos";
+import "aos/dist/aos.css";
 const Projects = () => {
   // const [projects, setProjects] = useState([]);
   const { projects, loading } = useContext(ProjectContext);
@@ -67,6 +69,21 @@ const Projects = () => {
     setWorks(filteredProjects.slice(page * 12, page * 12 + 12));
     setPages(Math.ceil(filteredProjects.length / 12));
   };
+
+    useEffect(() => {
+      AOS.init();
+      let resizeTimeout;
+      const handleResize = () => {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(() => {
+          AOS.refresh();
+        }, 200);
+      };
+      window.addEventListener("resize", handleResize);
+      return () => {
+        window.removeEventListener("resize", handleResize);
+      };
+    }, []);
 
   useEffect(() => {
     filterProjects();

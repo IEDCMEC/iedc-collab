@@ -1,7 +1,7 @@
 // File: iedc-collab/src/Components/CollabFooter.scss
 
 .footer__main {
-  position: fixed; /* Ensures the footer stays at the bottom */
+  position: relative; /* Ensures the footer stays at the bottom */
   bottom: 0;
   width: 100%; /* Takes full width of the viewport */
   padding: 10px 20px; /* Adjusted padding for smaller size */
