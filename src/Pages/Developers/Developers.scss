@@ -3,7 +3,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  overflow-x: hidden;
+  overflow: hidden;
   padding-bottom: 5%;
 }
 .drawer__container button:focus {
@@ -28,14 +28,14 @@
   column-gap: 10%;
   justify-content: center;
   /* Set a fixed height */
-  height: calc(4.1 * (107px + 30px)); /* Adjust based on your card height and row gap */
-  overflow-y: scroll; /* Enable vertical scrolling */
+  height: fit-content; /* Adjust based on your card height and row gap */
 }
 .developer-column{
   display:flex;
   align-items: center;
   justify-content: space-around;
   flex-direction: column;
+  gap: 50px;
 }
 .developer-card {
   width: 528px;

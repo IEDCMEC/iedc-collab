@@ -9,6 +9,8 @@ import SuspenseLoader from "../../Components/SuspenseLoader/SuspenseLoader";
 import { ProjectContext } from "../../contexts/ProjectContext";
 import { Pagination } from "@mui/material";
 import { ThemeContext } from "../../App";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const Developers = () => {
   const { developers, loading, setSelectedDevelopers } = useContext(
@@ -49,6 +51,21 @@ const Developers = () => {
     setLoading1(false);
     setFilteredDevelopers(filteredDevs);
   };
+
+  useEffect(() => {
+    AOS.init();
+    let resizeTimeout;
+    const handleResize = () => {
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(() => {
+        AOS.refresh();
+      }, 200);
+    };
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   useEffect(() => {
     if (!developers) return;
