@@ -34,7 +34,7 @@ export const UpdateUserDetails = async (data, onSuccess = () => {}) => {
   if (!user) {
     signIn();
     return;
-  }
+  } 
   // // console.log(obj.profilePhoto);
   const storage = firebase.storage();
   try {
