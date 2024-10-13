@@ -578,7 +578,7 @@ export const getUser = async (user_id) => {
 export const sendInvite = async (data) => {
   const user = firebase.auth().currentUser;
   const reqid = await user.getIdToken();
-  console.log(data)
+  console.log(data);
   const response = await axios.post(
     `${process.env.REACT_APP_BACKEND_URL}/api/project/invite`,
     data,
@@ -705,13 +705,19 @@ export const getSkills = async () => {
   return skills;
 };
 
-export const addSkills = async (inputSkills,removeDuplicates) => {
-  try {    
-    
-    const skillsSnapshot = await getSkills(); 
-    
-    const skillsObjectForFirestore = removeDuplicates(skillsSnapshot,inputSkills);
-    await firebase.firestore().collection("skills").doc("skills").set(skillsObjectForFirestore);
+export const addSkills = async (inputSkills, removeDuplicates) => {
+  try {
+    const skillsSnapshot = await getSkills();
+
+    const skillsObjectForFirestore = removeDuplicates(
+      skillsSnapshot,
+      inputSkills
+    );
+    await firebase
+      .firestore()
+      .collection("skills")
+      .doc("skills")
+      .set(skillsObjectForFirestore);
 
     console.log("Skills added successfully");
   } catch (error) {
@@ -719,11 +725,10 @@ export const addSkills = async (inputSkills,removeDuplicates) => {
   }
 };
 
-
 export const getTags = async () => {
   const data = [];
   const tags = await firebase.firestore().collection("tags").doc("tags").get();
-  console.log(tags)
+  console.log(tags);
   // .then((snapshot) => {
   //   if (snapshot.docs.length > 0) {
   //     snapshot.docs.forEach((doc) => {
@@ -752,11 +757,11 @@ export const addTags = async (tag) => {
 };
 
 export const leaveProject = async (projectId, userEmail) => {
-  console.log("Please")
+  console.log("Please");
   try {
     const db = firebase.firestore();
     const projectRef = db.collection("projects").doc(projectId);
-    
+
     const projectSnapshot = await projectRef.get();
     if (!projectSnapshot.exists) {
       throw new Error("Project not found");
@@ -777,6 +782,27 @@ export const leaveProject = async (projectId, userEmail) => {
   }
 };
 
+export const getJobsOrg = async (orgId) => {
+  const data = [];
+  await firebase
+    .firestore()
+    .collection("jobs")
+    .where("id", "==", orgId)
+    // .doc()
+    // .isEqual()
+    .get()
+    .then((snapshot) => {
+      // console.log(snapshot);
+      if (snapshot.docs.length > 0) {
+        snapshot.docs.forEach((doc) => {
+          data.push(doc.data());
+        });
+      }
+    });
+  // console.log(data);
+  return data;
+};
+// const myjobs = await getJobsOrg()
 //handleSubmit in job modal
 
 export const submitJob = async (formValues)=>{

@@ -10,6 +10,7 @@ import {
   getSkills,
 } from "../Firebase/firebase";
 import { useNavigate } from "react-router-dom";
+import { getJobsOrg } from "../Firebase/firebase";
 export const ProjectContext = React.createContext();
 
 export const ProjectProvider = ({ children }) => {
@@ -30,6 +31,7 @@ export const ProjectProvider = ({ children }) => {
   const [devHash, setDevHash] = useState({});
   const [skills, setSkills] = useState([]);
   const [tags, setTags] = useState([]);
+  const [myJobs, setMyJobs] = React.useState([]);
   const [companyDetails, setCompanyDetails] = useState({
     // name: profile?.name || "",
     description: "",
@@ -210,6 +212,12 @@ export const ProjectProvider = ({ children }) => {
   useEffect(() => {
     getTagDetails();
   }, []);
+  useEffect(async () => {
+    if (profile?.role == "Organization") {
+      const myjobs = await getJobsOrg(profile?.id);
+      setMyJobs(myjobs);
+    }
+  }, [profile]);
   const fetchRequests = async () => {
     if (currentUser) {
       setLoading(true);
@@ -263,6 +271,8 @@ export const ProjectProvider = ({ children }) => {
         selectedDevelopers,
         allDevelopers,
         setSelectedDevelopers,
+        setMyJobs,
+        myJobs,
         setDevelopers,
         selectedProject,
         setProjects,
@@ -281,10 +291,10 @@ export const ProjectProvider = ({ children }) => {
         setCompanyDetails,
         allJobs,
         setJobs,
-        skills, 
+        skills,
         setSkills,
-        tags, 
-        setTags
+        tags,
+        setTags,
       }}
     >
       {children}

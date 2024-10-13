@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from "react";
 import { AuthProvider } from "./Firebase/Auth/Auth";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.scss";
@@ -28,7 +28,7 @@ export const ThemeContext = createContext();
 const theme = createTheme({
   typography: {
     allVariants: {
-      fontFamily: 'Nunito',
+      fontFamily: "Nunito",
     },
   },
   palette: {
@@ -59,20 +59,31 @@ function App() {
               <NavigateBar />
               <ScrollToTop />
               <ToastContainer />
-              <ThemeContext.Provider value={{ branch, setBranch, yop, setYop, width, setWidth, currentWidth, setCurrentWidth }}>
+              <ThemeContext.Provider
+                value={{
+                  branch,
+                  setBranch,
+                  yop,
+                  setYop,
+                  width,
+                  setWidth,
+                  currentWidth,
+                  setCurrentWidth,
+                }}
+              >
                 <Routes>
-                <Route path="/" element={<Landing />} />
+                  <Route path="/" element={<Landing />} />
                   <Route path="/developers" element={<Developers />} />
                   <Route path="/projects" element={<Projects />} />
                   <Route path="/profile" element={<MyProfile />} />
-                  
-                  <Route element={<ProtectedRoute role={'User'} />}>
+
+                  <Route element={<ProtectedRoute role={"User"} />}>
                     <Route path="/ideas" element={<Ideas />} />
                     <Route path="/team" element={<Team />} />
                     <Route path="/jobs" element={<Jobs />} />
                   </Route>
-                  
-                  <Route element={<ProtectedRoute role={'Organization'} />}>
+
+                  <Route element={<ProtectedRoute role={"Organization"} />}>
                     <Route path="/MyJobs" element={<CompanyJobs />} />
                   </Route>
                 </Routes>
