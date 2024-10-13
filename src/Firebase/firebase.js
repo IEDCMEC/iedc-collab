@@ -34,7 +34,7 @@ export const UpdateUserDetails = async (data, onSuccess = () => {}) => {
   if (!user) {
     signIn();
     return;
-  }
+  } 
   // // console.log(obj.profilePhoto);
   const storage = firebase.storage();
   try {
@@ -777,3 +777,22 @@ export const leaveProject = async (projectId, userEmail) => {
   }
 };
 
+//handleSubmit in job modal
+
+export const submitJob = async (formValues)=>{
+  try {
+    const docRef = firebase.firestore().collection("jobs").doc();
+
+    await docRef.set({
+      ...formValues,
+      id: docRef.id, 
+      applications: [], 
+    });
+
+    console.log("Job added with ID: ", docRef.id);
+    return docRef.id;
+  } catch (error) {
+    console.error("Error adding job: ", error);
+    throw error; 
+  }
+}

@@ -1,6 +1,11 @@
 import React, { useState } from "react";
 import { Modal, Button, Form, Row, Col } from "react-bootstrap";
 import { Formik } from "formik";
+import firebase from "firebase";
+import "firebase/firestore"
+import { submitJob } from "../../Firebase/firebase";
+// import {db} from "
+
 import * as yup from "yup";
 import {
   Autocomplete,
@@ -9,7 +14,7 @@ import {
   ThemeProvider,
 } from "@mui/material";
 import "./JobModal.scss";
-
+// import { collection, addDoc } from "firebase/firestore";
 const JobModal = ({ show, onHide, job }) => {
   const [acValue, setACValue] = useState(job?.skills || []);
 
@@ -20,7 +25,7 @@ const JobModal = ({ show, onHide, job }) => {
     responsibilities: job?.responsibilities?.join(", ") || "",
     requirements: job?.requirements?.join(", ") || "",
     hiring_process: job?.hiring_process?.join(", ") || "",
-    category: job?.category || "",
+    role: job?.role || "",
     work_hours: job?.work_hours || "",
     location: job?.location || "",
     start_date: job?.start_date || "",
@@ -45,7 +50,7 @@ const JobModal = ({ show, onHide, job }) => {
     responsibilities: yup.string().required("Please add job responsibilities"),
     requirements: yup.string().required("Please add job requirements"),
     hiring_process: yup.string().required("Please add hiring process"),
-    category: yup.string().required("Category is required"),
+    role: yup.string().required("Role is required"),
     work_hours: yup.string().required("Please add work hours"),
     location: yup.string().required("Please add location"),
     start_date: yup.string().required("Please add a start date"),
@@ -61,7 +66,7 @@ const JobModal = ({ show, onHide, job }) => {
     extra_benefits: yup.string().required("Please add extra benefits"),
   });
 
-  const handleSubmit = (values, actions) => {
+  const handleSubmit = async (values, actions) => {
     const formValues = {
       ...values,
       responsibilities: values.responsibilities
@@ -77,10 +82,20 @@ const JobModal = ({ show, onHide, job }) => {
         .map((item) => item.trim()),
     };
 
+    try{
+     
+      const docId = await submitJob(formValues);
+      console.log("Job submitted successfully with ID:", docId);
+
+      onHide();
+      actions.resetForm();
+    }catch(e){
+      console.log("error adding job",e)
+    }
+
     console.log(formValues);
 
-    onHide();
-    actions.resetForm();
+    
   };
 
   const theme = createTheme({
@@ -238,18 +253,18 @@ const JobModal = ({ show, onHide, job }) => {
               </Row>
 
               <Row className="form-row">
-                <Form.Group as={Col} controlId="formCategory">
-                  <Form.Label>Category*</Form.Label>
+                <Form.Group as={Col} controlId="formRole">
+                  <Form.Label>Role*</Form.Label>
                   <Form.Control
                     required
-                    onBlur={props.handleBlur("category")}
-                    value={props.values.category}
-                    onChange={props.handleChange("category")}
+                    onBlur={props.handleBlur("role")}
+                    value={props.values.role}
+                    onChange={props.handleChange("role")}
                     type="text"
-                    placeholder="Enter Category"
+                    placeholder="Enter Role"
                   />
                   <Form.Text className="text-danger">
-                    {props.touched.category && props.errors.category}
+                    {props.touched.role && props.errors.role}
                   </Form.Text>
                 </Form.Group>
 
@@ -319,7 +334,7 @@ const JobModal = ({ show, onHide, job }) => {
                 </Form.Group>
 
                 <Form.Group as={Col} controlId="formSkillsRequired">
-                  <Form.Label>Skills Required*</Form.Label>
+                  <Form.Label>Skills Required (comma separated) *</Form.Label>
                   <ThemeProvider theme={theme}>
                     <Autocomplete
                       multiple
