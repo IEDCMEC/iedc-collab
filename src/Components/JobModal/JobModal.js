@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Modal, Button, Form, Row, Col } from "react-bootstrap";
 import { Formik } from "formik";
 import firebase from "firebase";
@@ -14,10 +14,11 @@ import {
   ThemeProvider,
 } from "@mui/material";
 import "./JobModal.scss";
+import { ProjectContext } from "../../contexts/ProjectContext";
 // import { collection, addDoc } from "firebase/firestore";
 const JobModal = ({ show, onHide, job }) => {
   const [acValue, setACValue] = useState(job?.skills || []);
-
+  const {profile} = useContext(ProjectContext)
   const initialValue = {
     job_name: job?.job_name || "",
     contact_email: job?.contact_email || "",
@@ -80,6 +81,7 @@ const JobModal = ({ show, onHide, job }) => {
       extra_benefits: values.extra_benefits
         .split(",")
         .map((item) => item.trim()),
+        orgId: profile?.id
     };
 
     try{

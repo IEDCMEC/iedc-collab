@@ -1,0 +1,44 @@
+.job-card {
+    width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+  }
+  
+  .job-title {
+    font-size: 24px;
+    color: #333;
+    text-align: center;
+  }
+  
+  .job-info {
+    margin: 10px 0;
+  }
+  
+  .section-title {
+    margin-top: 20px;
+    color: #555;
+    font-size: 18px;
+  }
+  
+  .job-list {
+    padding-left: 20px;
+  }
+  
+  .list-item {
+    margin: 5px 0;
+  }
+  
+  .contact-link {
+    color: #007bff;
+    text-decoration: none;
+  }
+  
+  .contact-link:hover {
+    text-decoration: underline;
+  }
+  

@@ -32,6 +32,7 @@ export const ProjectProvider = ({ children }) => {
   const [skills, setSkills] = useState([]);
   const [tags, setTags] = useState([]);
   const [myJobs, setMyJobs] = React.useState([]);
+  const [selectedJob, setSelectedJob] = useState({});
   const [companyDetails, setCompanyDetails] = useState({
     // name: profile?.name || "",
     description: "",
@@ -282,6 +283,8 @@ export const ProjectProvider = ({ children }) => {
         handleSearchDevelopers,
         fetchData,
         fetchDevelpersData,
+        selectedJob, 
+        setSelectedJob,
         fetchUserProfile,
         setProfile,
         fetchRequests,

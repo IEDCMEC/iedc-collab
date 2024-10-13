@@ -784,10 +784,11 @@ export const leaveProject = async (projectId, userEmail) => {
 
 export const getJobsOrg = async (orgId) => {
   const data = [];
+  // co
   await firebase
     .firestore()
     .collection("jobs")
-    .where("id", "==", orgId)
+    .where("orgId", "==", orgId)
     // .doc()
     // .isEqual()
     .get()

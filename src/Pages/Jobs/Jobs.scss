@@ -1,201 +1,201 @@
-.developer_container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  overflow-x: hidden;
-  padding-bottom: 5%;
-}
-.drawer__container button:focus {
-  outline: none;
-}
-.job-details {
-  display: flex;
-  flex-direction: column;
-  padding-top: 3rem;
-  padding-left: 30rem;
-  width: 100%;
-  flex-wrap: wrap;
-  row-gap: 30px;
-  column-gap: 10%;
-  justify-content: center;
-}
-.job-card {
-  width: 1000px;
-  height: 500px;
-  background-color: #9e0000;
-  color: white;
-  display: flex;
-  flex-direction: row;
-  row-gap: 10px;
-  border-radius: 10px;
-  padding-right: 7px;
-  padding-top: 7px;
-  padding-bottom: 7px;
-  justify-content: flex-start;
-}
-.job-card img {
-  width: 120px !important;
-  height: 120px !important;
-  border-radius: 10%;
-  position: relative;
-  object-fit: cover;
-  top: 21px;
-  left: 33px;
-}
-.job-card h1 {
-  text-transform: capitalize;
-  flex-wrap: wrap;
-  font-style: normal;
-  width: fit-content;
-  font-weight: 800;
-  font-size: 25px;
-  line-height: 34px;
-  overflow: hidden;
-  color: #ffffff;
-}
-.job-card h2 {
-  text-transform: capitalize;
-  flex-wrap: wrap;
-  font-style: normal;
-  width: fit-content;
-  font-weight: 800;
-  font-size: 25px;
-  line-height: 30px;
-  overflow: hidden;
-  color: #ffffff;
-  padding: 0px 0px 0px 0px;
-}
+// .developer_container {
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: center;
+//   align-items: center;
+//   overflow-x: hidden;
+//   padding-bottom: 5%;
+// }
+// .drawer__container button:focus {
+//   outline: none;
+// }
+// .job-details {
+//   display: flex;
+//   flex-direction: column;
+//   padding-top: 3rem;
+//   padding-left: 30rem;
+//   width: 100%;
+//   flex-wrap: wrap;
+//   row-gap: 30px;
+//   column-gap: 10%;
+//   justify-content: center;
+// }
+// .job-card {
+//   width: 1000px;
+//   height: 500px;
+//   background-color: #9e0000;
+//   color: white;
+//   display: flex;
+//   flex-direction: row;
+//   row-gap: 10px;
+//   border-radius: 10px;
+//   padding-right: 7px;
+//   padding-top: 7px;
+//   padding-bottom: 7px;
+//   justify-content: flex-start;
+// }
+// .job-card img {
+//   width: 120px !important;
+//   height: 120px !important;
+//   border-radius: 10%;
+//   position: relative;
+//   object-fit: cover;
+//   top: 21px;
+//   left: 33px;
+// }
+// .job-card h1 {
+//   text-transform: capitalize;
+//   flex-wrap: wrap;
+//   font-style: normal;
+//   width: fit-content;
+//   font-weight: 800;
+//   font-size: 25px;
+//   line-height: 34px;
+//   overflow: hidden;
+//   color: #ffffff;
+// }
+// .job-card h2 {
+//   text-transform: capitalize;
+//   flex-wrap: wrap;
+//   font-style: normal;
+//   width: fit-content;
+//   font-weight: 800;
+//   font-size: 25px;
+//   line-height: 30px;
+//   overflow: hidden;
+//   color: #ffffff;
+//   padding: 0px 0px 0px 0px;
+// }
 
-.developer-card-email {
-  font-style: normal;
-  font-weight: 400;
-  font-size: 20px;
-  line-height: 29px;
-  /* identical to box height */
+// .developer-card-email {
+//   font-style: normal;
+//   font-weight: 400;
+//   font-size: 20px;
+//   line-height: 29px;
+//   /* identical to box height */
 
-  color: #ffffff;
-}
-@media (max-width: 600px) {
-  .developer_container {
-    padding-top: 4rem;
-  }
-  .developer-title {
-    padding-top: 1rem;
-  }
-  .developer-card {
-    width: 80vw;
-  }
-  .developer-card h1 {
-    font-size: 21px;
-  }
-  .developer-card-email {
-    font-size: 18px;
-  }
-}
-@media (max-width: 420px) {
-  .developer-card {
-    margin-left: 7px;
-    width: 90vw;
+//   color: #ffffff;
+// }
+// @media (max-width: 600px) {
+//   .developer_container {
+//     padding-top: 4rem;
+//   }
+//   .developer-title {
+//     padding-top: 1rem;
+//   }
+//   .developer-card {
+//     width: 80vw;
+//   }
+//   .developer-card h1 {
+//     font-size: 21px;
+//   }
+//   .developer-card-email {
+//     font-size: 18px;
+//   }
+// }
+// @media (max-width: 420px) {
+//   .developer-card {
+//     margin-left: 7px;
+//     width: 90vw;
 
-    height: 89px;
-  }
-  .developer-card img {
-    width: 100px !important;
-    height: 100px !important;
-    border-radius: 50%;
-    position: relative;
-    object-fit: cover;
-    top: -13px;
-    left: -10px;
-  }
-  .developer-card h1 {
-    font-size: 18px;
-    width: 53vw;
-    text-overflow: ellipsis;
-    overflow: hidden;
+//     height: 89px;
+//   }
+//   .developer-card img {
+//     width: 100px !important;
+//     height: 100px !important;
+//     border-radius: 50%;
+//     position: relative;
+//     object-fit: cover;
+//     top: -13px;
+//     left: -10px;
+//   }
+//   .developer-card h1 {
+//     font-size: 18px;
+//     width: 53vw;
+//     text-overflow: ellipsis;
+//     overflow: hidden;
 
-    white-space: nowrap;
-  }
-  .developer-card-email {
-    font-size: 15px;
-  }
-}
+//     white-space: nowrap;
+//   }
+//   .developer-card-email {
+//     font-size: 15px;
+//   }
+// }
 
-/* FILTER CSS CODE */
-.filter_box {
-  background: linear-gradient(90deg, #8b1010 0%, #c71111 100%);
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  margin: 2rem 0;
-}
+// /* FILTER CSS CODE */
+// .filter_box {
+//   background: linear-gradient(90deg, #8b1010 0%, #c71111 100%);
+//   display: flex;
+//   align-items: center;
+//   flex-direction: column;
+//   margin: 2rem 0;
+// }
 
-.buttons {
-  max-width: 85%;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  flex-wrap: wrap;
-}
+// .buttons {
+//   max-width: 85%;
+//   display: flex;
+//   flex-direction: row;
+//   justify-content: space-between;
+//   flex-wrap: wrap;
+// }
 
-.buttons button {
-  min-width: 150px;
-  min-height: 50px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 0.4rem;
-  background: rgba(148, 2, 2, 0.2);
-  border: 2px solid #d9d9d9;
-  border-radius: 5px;
-}
-.buttons button p {
-  margin: 0;
-  font-size: 1.25rem;
-}
+// .buttons button {
+//   min-width: 150px;
+//   min-height: 50px;
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   margin: 0.4rem;
+//   background: rgba(148, 2, 2, 0.2);
+//   border: 2px solid #d9d9d9;
+//   border-radius: 5px;
+// }
+// .buttons button p {
+//   margin: 0;
+//   font-size: 1.25rem;
+// }
 
-.input_box {
-  min-width: 85%;
-  background: linear-gradient(90deg, #8b1010 0%, #c71111 100%);
-  color: white;
-  border: 2px solid #d9d9d9;
-  border-radius: 5px;
-  -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
-  -moz-box-sizing: border-box; /* Firefox, other Gecko */
-  box-sizing: border-box; /* Opera/IE 8+ */
-  padding-left: 1rem;
-}
-::placeholder {
-  color: white;
-}
-.skills {
-  min-width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-  flex-direction: row;
-  transition: 0.2s;
-}
-.skills .skill_boxes {
-  margin: 5px 3px;
-  border: 1px solid #d9d9d9;
-  border-radius: 5px;
-  min-height: 2.375rem;
-  box-sizing: border-box;
-  padding: 5px 10px;
-}
-.skills .skill_boxes p {
-  margin: 0;
-}
-.developer_container button:focus {
-  outline: none;
-}
-.developer_container button {
-  color: #9e0000;
-  font-size: 1rem;
-}
-.developer_container button:hover {
-  background-color: #e77e7e4d;
-}
+// .input_box {
+//   min-width: 85%;
+//   background: linear-gradient(90deg, #8b1010 0%, #c71111 100%);
+//   color: white;
+//   border: 2px solid #d9d9d9;
+//   border-radius: 5px;
+//   -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+//   -moz-box-sizing: border-box; /* Firefox, other Gecko */
+//   box-sizing: border-box; /* Opera/IE 8+ */
+//   padding-left: 1rem;
+// }
+// ::placeholder {
+//   color: white;
+// }
+// .skills {
+//   min-width: 100%;
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   flex-wrap: wrap;
+//   flex-direction: row;
+//   transition: 0.2s;
+// }
+// .skills .skill_boxes {
+//   margin: 5px 3px;
+//   border: 1px solid #d9d9d9;
+//   border-radius: 5px;
+//   min-height: 2.375rem;
+//   box-sizing: border-box;
+//   padding: 5px 10px;
+// }
+// .skills .skill_boxes p {
+//   margin: 0;
+// }
+// .developer_container button:focus {
+//   outline: none;
+// }
+// .developer_container button {
+//   color: #9e0000;
+//   font-size: 1rem;
+// }
+// .developer_container button:hover {
+//   background-color: #e77e7e4d;
+// }
