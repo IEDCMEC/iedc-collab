@@ -11,6 +11,7 @@ import {
   Team,
   Developers,
   Jobs,
+  ProjectDetail,
 } from "./Pages/index";
 import initialize from "./Firebase/firebase";
 import { ProjectProvider } from "./contexts/ProjectContext";
@@ -23,7 +24,8 @@ import { createTheme, ThemeProvider } from "@mui/material";
 import { createContext } from "react";
 import CompanyJobs from "./Pages/CompanyJobs/CompanyJobs";
 import ProtectedRoute from "./Components/ProtectedRoute";
-
+import { DeveloperDetails } from "./Pages/index";
+// import Deve
 export const ThemeContext = createContext();
 const theme = createTheme({
   typography: {
@@ -76,7 +78,16 @@ function App() {
                   <Route path="/developers" element={<Developers />} />
                   <Route path="/projects" element={<Projects />} />
                   <Route path="/profile" element={<MyProfile />} />
-
+                  <Route
+                    // exact
+                    path="/projects/:id"
+                    element={<ProjectDetail />}
+                  />
+                  <Route
+                    // exact
+                    path="/developers/:id"
+                    element={<DeveloperDetails />}
+                  />
                   <Route element={<ProtectedRoute role={"User"} />}>
                     <Route path="/ideas" element={<Ideas />} />
                     <Route path="/team" element={<Team />} />

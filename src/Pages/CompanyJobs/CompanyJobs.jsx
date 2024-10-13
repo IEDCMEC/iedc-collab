@@ -5,7 +5,7 @@ import VerificationPage from "../../Components/VerificationPage/VerificationPage
 import { useNavigate } from "react-router-dom";
 
 const CompanyJobs = () => {
-  const { profile } = useContext(ProjectContext);
+  const { profile, myJobs } = useContext(ProjectContext);
   const navigate = useNavigate();
   return (
     <div>
