@@ -25,6 +25,7 @@ import { createContext } from "react";
 import CompanyJobs from "./Pages/CompanyJobs/CompanyJobs";
 import ProtectedRoute from "./Components/ProtectedRoute";
 import { DeveloperDetails } from "./Pages/index";
+import CompanyJobDetails from "./Pages/CompanyJobDetails/CompanyJobsDetails";
 // import Deve
 export const ThemeContext = createContext();
 const theme = createTheme({
@@ -96,6 +97,7 @@ function App() {
 
                   <Route element={<ProtectedRoute role={"Organization"} />}>
                     <Route path="/MyJobs" element={<CompanyJobs />} />
+                    <Route path="/MyJobs/:id" element={<CompanyJobDetails />} />
                   </Route>
                 </Routes>
               </ThemeContext.Provider>
