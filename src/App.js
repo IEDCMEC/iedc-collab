@@ -26,6 +26,8 @@ import CompanyJobs from "./Pages/CompanyJobs/CompanyJobs";
 import ProtectedRoute from "./Components/ProtectedRoute";
 import { DeveloperDetails } from "./Pages/index";
 import CompanyJobDetails from "./Pages/CompanyJobDetails/CompanyJobsDetails";
+// import UserJobDetails from "./Pages/UserJobDetails/UserJobDetails";
+import UserJobDetails from "./Pages/UserJobDetails/UserJobDetails";
 // import Deve
 export const ThemeContext = createContext();
 const theme = createTheme({
@@ -93,6 +95,7 @@ function App() {
                     <Route path="/ideas" element={<Ideas />} />
                     <Route path="/team" element={<Team />} />
                     <Route path="/jobs" element={<Jobs />} />
+                    <Route path="/jobs/:id" element={<UserJobDetails/>}/>
                   </Route>
 
                   <Route element={<ProtectedRoute role={"Organization"} />}>
