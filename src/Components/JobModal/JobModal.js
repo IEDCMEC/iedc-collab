@@ -3,6 +3,7 @@ import { Modal, Button, Form, Row, Col } from "react-bootstrap";
 import { Formik } from "formik";
 import firebase from "firebase";
 import "firebase/firestore"
+import { submitJob } from "../../Firebase/firebase";
 // import {db} from "
 
 import * as yup from "yup";
@@ -82,9 +83,10 @@ const JobModal = ({ show, onHide, job }) => {
     };
 
     try{
-      const docRef= firebase.firestore().collection("jobs").doc();
-      await docRef.set({...formValues, id: docRef.id,applications:[],});
-      console.log("Added with ID: ", docRef.id);
+     
+      const docId = await submitJob(formValues);
+      console.log("Job submitted successfully with ID:", docId);
+
       onHide();
       actions.resetForm();
     }catch(e){
@@ -93,8 +95,7 @@ const JobModal = ({ show, onHide, job }) => {
 
     console.log(formValues);
 
-    onHide();
-    actions.resetForm();
+    
   };
 
   const theme = createTheme({
