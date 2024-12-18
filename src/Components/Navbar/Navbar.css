@@ -16,7 +16,8 @@
 .NavMenu {
   list-style: none;
   display: grid;
-  grid-template-columns: repeat(6, auto);
+  grid-template-columns: repeat(3, auto);
+  justify-content: center;
   grid-gap: 30px;
   text-align: center;
   height: 100%;
